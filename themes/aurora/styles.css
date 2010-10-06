@@ -1,0 +1,30 @@
+
+/* Aurora */
+
+body h2 {color: #fff; background:#1E466A;}
+
+body div#site-header {height:175px; background: url(header-bg-aurora.jpg) top left repeat-x;}
+
+/* Aurora */
+
+body div#site-nav ul li {color: #fff;}
+
+body div#site-nav ul li a {color:#99ccff;}
+
+body div#site-nav ul li a:hover {color: #fff; background:url(arrow-down-nav-fff.gif) center top no-repeat;}
+
+#home #site-nav ul li.home,
+#cloudscapes #site-nav ul li.cloudscapes, 
+#clouds #site-nav ul li.clouds, 
+#events #site-nav ul li.events, 
+#tags #site-nav ul li.tags, 
+#people #site-nav ul li.people, 
+#support #site-nav ul li.support {color:#fff; background:url(arrow-down-nav-fff.gif) center top no-repeat;}
+
+/* Aurora */
+
+body div.box {background: #E0EFFF; border: 2px solid #CCE5FF;}
+
+body div#region2 div.box {border:2px solid #FEE0A3;}
+
+body div#region2 div.box h2 {color:#333; background:#FEE0A3;}

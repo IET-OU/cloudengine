@@ -1,0 +1,2441 @@
+# The Cloudworks project. (http://cloudworks.ac.uk)
+# Copyright (c) 2010 The Open University.
+# This file is distributed under the same license as the Cloudworks package.
+# Nick Freear <n.d.freear _@_ open.ac.uk>, 2010.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Cloudworks application 0.1\n"
+"Report-Msgid-Bugs-To: cloudworks@open.ac.uk\n"
+"POT-Creation-Date: 2010-03-22 15:45+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: YOU <YOU@example.org>\n"
+"Language-Team: YOUR TEAM/ORGANIZATION <TEAM@example.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: BRITISH\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. /Translators: ** Start of the CONTROLLERS/MODELS section - page titles/error messages. **
+#: controllers\about.php:17
+msgid "About Cloudworks"
+msgstr ""
+
+#: controllers\about.php:23
+msgid "Introduction to Cloudworks"
+msgstr ""
+
+#: controllers\about.php:29
+msgid "Tips for using Cloudworks"
+msgstr ""
+
+#: controllers\about.php:47
+msgid "Cloudworks Vision Statement"
+msgstr ""
+
+#: controllers\about.php:59
+msgid "Cloudworks Terms and Conditions of Use"
+msgstr ""
+
+#: controllers\about.php:65
+msgid "FAQ - Using the Site"
+msgstr ""
+
+#. /Translators: Form field names.
+#: controllers\cloud.php:64 controllers\news.php:25 controllers\news.php:225
+msgid "Comment"
+msgstr ""
+
+#: controllers\cloud.php:71 controllers\cloud.php:164
+msgid "An error occurred."
+msgstr ""
+
+#: controllers\cloud.php:190 controllers\cloud.php:287
+#: controllers\cloudscape.php:163 controllers\cloudscape.php:253
+#: controllers\cloudscape.php:722 controllers\cloudscape.php:784
+#: controllers\news.php:90 controllers\news.php:137 views\cloud\list.php:26
+#: views\cloudscape\cloudscape_list.php:26 views\cloudscape\edit.php:54
+#: views\news\edit.php:16 views\user\cloud_list.php:13
+msgid "Title"
+msgstr ""
+
+#: controllers\cloud.php:245
+msgid ""
+"An error occurred adding the new cloud. Please contact the Cloudworks team "
+"at !email!"
+msgstr ""
+
+#: controllers\cloud.php:258 views\cloud\edit.php:65
+msgid "Create Cloud"
+msgstr ""
+
+#: controllers\cloud.php:337
+msgid "Edit Cloud"
+msgstr ""
+
+#: controllers\cloud.php:364 views\cloud\delete_confirm.php:6
+msgid "Delete Cloud"
+msgstr ""
+
+#: controllers\cloud.php:377 controllers\embed.php:25 views\embed\edit.php:18
+#: views\link\edit.php:17
+msgid "URL"
+msgstr ""
+
+#: controllers\cloud.php:424
+msgid "Add Link"
+msgstr ""
+
+#: controllers\cloud.php:441 libraries\MY_Form_validation.php:53
+msgid ""
+"The URL you have specified uses a URL shortener. Please give the original URL "
+"instead since URLs from URL shorteners may not exist forever."
+msgstr ""
+
+#: controllers\cloud.php:464 views\link\delete_confirm.php:6
+msgid "Delete Link"
+msgstr ""
+
+#: controllers\cloud.php:486
+msgid "Edit Link"
+msgstr ""
+
+#: controllers\cloud.php:497 controllers\tag.php:20 controllers\user.php:350
+#: views\cloudscape\edit.php:74 views\cloudscape\tag_block.php:1
+#: views\layout\header.php:45 views\tag\tag_block.php:1 views\user\edit.php:35
+#: views\user\view.php:36
+msgid "Tags"
+msgstr ""
+
+#: controllers\cloud.php:514
+msgid "Add Tags"
+msgstr ""
+
+#: controllers\cloud.php:524 views\reference\add.php:10
+msgid "Reference"
+msgstr ""
+
+#: controllers\cloud.php:565
+msgid "Add Reference"
+msgstr ""
+
+#: controllers\cloud.php:584
+msgid "Delete Reference"
+msgstr ""
+
+#: controllers\cloudscape.php:31
+msgid "All cloudscapes"
+msgstr ""
+
+#: controllers\cloudscape.php:164 controllers\cloudscape.php:254
+#: controllers\news.php:91 controllers\news.php:138 controllers\user.php:349
+#: views\cloudscape\edit.php:62 views\user\edit.php:40
+msgid "Description"
+msgstr ""
+
+#: controllers\cloudscape.php:230 views\cloudscape\edit.php:93
+msgid "Create Cloudscape"
+msgstr ""
+
+#: controllers\cloudscape.php:323 views\cloudscape\edit.php:40
+msgid "Edit Cloudscape"
+msgstr ""
+
+#: controllers\cloudscape.php:338
+msgid "Followers for the cloudscape !title"
+msgstr ""
+
+#: controllers\cloudscape.php:363 views\cloudscape\delete_confirm.php:7
+msgid "Delete Cloudscape"
+msgstr ""
+
+#: controllers\cloudscape.php:391
+msgid "Add Cloud to Cloudscapes"
+msgstr ""
+
+#: controllers\cloudscape.php:487
+msgid "Manage Cloudscape Permissions"
+msgstr ""
+
+#: controllers\cloudscape.php:752 controllers\cloudscape.php:779
+#: controllers\cloudscape.php:818 controllers\cloudscape.php:852
+#: controllers\user.php:339
+msgid "You do not have permission to view this page."
+msgstr ""
+
+#: controllers\comment.php:31
+msgid "comment"
+msgstr ""
+
+#: controllers\comment.php:50 controllers\news.php:242
+msgid "Edit comment"
+msgstr ""
+
+#: controllers\comment.php:73 controllers\news.php:262
+#: views\cloud_comment\delete_confirm.php:1
+#: views\cloud_comment\delete_confirm.php:7
+#: views\news_comment\delete_confirm.php:1
+#: views\news_comment\delete_confirm.php:5
+msgid "Delete comment"
+msgstr ""
+
+#: controllers\content.php:19 controllers\content.php:77
+#: views\cloudscape\view.php:33
+msgid "Content"
+msgstr ""
+
+#: controllers\content.php:56
+msgid "Add Extra Content"
+msgstr ""
+
+#: controllers\content.php:96
+msgid "Edit content"
+msgstr ""
+
+#: controllers\content.php:119 views\content\delete_confirm.php:1
+#: views\content\delete_confirm.php:6
+msgid "Delete content"
+msgstr ""
+
+#: controllers\embed.php:67
+msgid "Add Embedded Content"
+msgstr ""
+
+#: controllers\embed.php:88 views\embed\delete_confirm.php:6
+msgid "Delete Embedded Content"
+msgstr ""
+
+#: controllers\embed.php:110
+msgid "Edit Embedded Content"
+msgstr ""
+
+#: controllers\event.php:26 views\event\site.php:2
+#: views\user\logged_in_block.php:14
+msgid "Public Cloudstream"
+msgstr ""
+
+#: controllers\event.php:43
+msgid "Cloudworks: Public Cloudstream"
+msgstr ""
+
+#: controllers\event.php:64 views\user\logged_in_block.php:13
+msgid "Your Cloudstream"
+msgstr ""
+
+#: controllers\event.php:68
+msgid "You need to be logged in to view this page."
+msgstr ""
+
+#: controllers\event.php:89
+msgid "!person's cloudstream"
+msgstr ""
+
+#: controllers\event.php:102 views\event\user.php:2
+msgid "Cloudstream for !person"
+msgstr ""
+
+#: controllers\event.php:123
+msgid "Cloudstream for the cloudscape !title"
+msgstr ""
+
+#: controllers\event.php:136 views\event\cloudscape.php:2
+msgid "Cloudstream for !title"
+msgstr ""
+
+#: controllers\event.php:149
+msgid "Admin cloudstream"
+msgstr ""
+
+#: controllers\home.php:32 controllers\user.php:348 views\user\edit.php:14
+msgid "Homepage"
+msgstr ""
+
+#: controllers\news.php:35
+msgid "An error occurred when viewing news."
+msgstr ""
+
+#: controllers\news.php:79 views\news\archive.php:4
+msgid "Cloudworks Blog Archive"
+msgstr ""
+
+#: controllers\news.php:118 views\news\edit.php:21
+msgid "Create news"
+msgstr ""
+
+#: controllers\news.php:162
+msgid "Edit news"
+msgstr ""
+
+#: controllers\news.php:183
+msgid "Delete news"
+msgstr ""
+
+#: controllers\news.php:200 views\news\news_block.php:2
+msgid "Cloudworks Blog"
+msgstr ""
+
+#: controllers\search.php:63 views\cloudscape\add_cloud.php:19
+#: views\cloudscape\permissions.php:69 views\search\search_box.php:5
+#: views\search\search_form.php:4 views\user\people.php:21
+msgid "Search"
+msgstr ""
+
+#: controllers\search.php:81
+msgid "Error: search is not working."
+msgstr ""
+
+#: controllers\search.php:86
+msgid "Search results for !query"
+msgstr ""
+
+#: controllers\tag.php:34 views\tag\view.php:4
+msgid "Items tagged !tag"
+msgstr ""
+
+#: controllers\user.php:25
+msgid "!person's clouds"
+msgstr ""
+
+#: controllers\user.php:55
+msgid "!person's follows"
+msgstr ""
+
+#: controllers\user.php:66
+msgid "!person's followers"
+msgstr ""
+
+#: controllers\user.php:118 views\user\institution_list.php:2
+msgid "Institutions"
+msgstr ""
+
+#: controllers\user.php:146 views\user\edit_picture.php:4
+#: views\user\view.php:12
+msgid "Edit Picture"
+msgstr ""
+
+#: controllers\user.php:194 views\layout\header.php:46
+msgid "People"
+msgstr ""
+
+#: controllers\user.php:208 views\tag\view.php:36 views\user\user_list.php:2
+msgid "Users"
+msgstr ""
+
+#: controllers\user.php:288
+msgid "This user does not exist"
+msgstr ""
+
+#: controllers\user.php:344
+msgid "Full Name"
+msgstr ""
+
+#: controllers\user.php:345 views\FreakAuth_light\content\forms\register.php:52
+#: views\user\user_edit.php:18 views\user\view.php:30
+msgid "Institution"
+msgstr ""
+
+#: controllers\user.php:346 views\user\edit.php:19 views\user\user_edit.php:15
+#: views\user\view.php:31
+msgid "Department"
+msgstr ""
+
+#: controllers\user.php:347
+msgid "Twitter Username"
+msgstr ""
+
+#: controllers\user.php:394 views\user\edit.php:3 views\user\user_edit.php:5
+#: views\user\view.php:11
+msgid "Edit Profile"
+msgstr ""
+
+#: controllers\user.php:410
+#: views\FreakAuth_light\content\forms\change_password.php:20
+#: views\user\change_password.php:5
+msgid "Old Password"
+msgstr ""
+
+#: controllers\user.php:411
+#: views\FreakAuth_light\content\forms\change_password.php:28
+#: views\user\change_password.php:9
+msgid "New Password"
+msgstr ""
+
+#: controllers\user.php:412
+#: views\FreakAuth_light\content\forms\change_password.php:36
+#: views\user\change_password.php:17
+msgid "Confirm New Password"
+msgstr ""
+
+#: controllers\user.php:430 views\user\change_password.php:24
+#: views\user\view.php:13
+msgid "Change Password"
+msgstr ""
+
+#: controllers\user.php:441
+msgid "You need to be logged on to view this page"
+msgstr ""
+
+#: controllers\user.php:455
+msgid "Your preferences have been saved"
+msgstr ""
+
+#: controllers\user.php:458
+msgid "Edit e-mail preferences"
+msgstr ""
+
+#: controllers\user.php:475 libraries\MY_Form_validation.php:51
+msgid "Your fullname must contain a space"
+msgstr ""
+
+#: errors\error_404.php:33 views\home.php:5 views\layout\header.php:36
+msgid "Cloudworks home page"
+msgstr ""
+
+#: errors\error_404.php:38 views\layout\header.php:41
+msgid "Home"
+msgstr ""
+
+#: errors\error_404.php:51
+msgid "404 Page Not Found"
+msgstr ""
+
+#: errors\error_404.php:52
+msgid "The page you requested was not found."
+msgstr ""
+
+#. /Translators: Paging - First page
+#: helpers\cloudworks_design_helper.php:12
+msgid "First"
+msgstr ""
+
+#: helpers\cloudworks_design_helper.php:18
+msgid "Next"
+msgstr ""
+
+#. /Translators: Previous page
+#: helpers\cloudworks_design_helper.php:21
+msgid "Prev"
+msgstr ""
+
+#: helpers\cloudworks_design_helper.php:70
+msgid "!event on !date!"
+msgstr ""
+
+#: helpers\cloudworks_design_helper.php:72
+msgid "!count day ago"
+msgstr ""
+
+#: helpers\cloudworks_design_helper.php:72
+msgid "!count days ago"
+msgstr ""
+
+#: helpers\cloudworks_design_helper.php:77
+msgid "!count hour ago"
+msgstr ""
+
+#: helpers\cloudworks_design_helper.php:77
+msgid "!count hours ago"
+msgstr ""
+
+#: helpers\cloudworks_design_helper.php:81
+msgid "!count minute ago"
+msgstr ""
+
+#: helpers\cloudworks_design_helper.php:81
+msgid "!count minutes ago"
+msgstr ""
+
+#: helpers\cloudworks_design_helper.php:83
+msgid "moments ago"
+msgstr ""
+
+#. /Translators: The user registration library.
+#: language\english\freakauth_lang.php:55
+msgid "Security Code"
+msgstr ""
+
+#: language\english\freakauth_lang.php:56
+msgid "Please retype the letters in the image below"
+msgstr ""
+
+#: language\english\freakauth_lang.php:88 libraries\FAL_validation.php:127
+msgid "Invalid username or password"
+msgstr ""
+
+#: language\english\freakauth_lang.php:95
+msgid "!field must be between !count and !count characters in length."
+msgstr ""
+
+#: language\english\freakauth_lang.php:96
+msgid "Only alpha characters, digits, underline or dash characters allowed."
+msgstr ""
+
+#: language\english\freakauth_lang.php:97
+msgid "The !field-name is invalid: "
+msgstr ""
+
+#: language\english\freakauth_lang.php:98
+msgid "The !user-name is already in use."
+msgstr ""
+
+#: language\english\freakauth_lang.php:129
+#: views\FreakAuth_light\content\forms\change_password.php:10
+#: views\FreakAuth_light\content\forms\login.php:9
+#: views\FreakAuth_light\content\forms\register.php:19
+#: views\user\change_password.php:4 views\user\login.php:5
+#: views\user\login_block.php:9
+msgid "Username"
+msgstr ""
+
+#: language\english\freakauth_lang.php:130
+#: views\FreakAuth_light\content\forms\login.php:16
+#: views\FreakAuth_light\content\forms\register.php:71
+#: views\user\change_email.php:12 views\user\login.php:14
+#: views\user\login_block.php:12
+msgid "Password"
+msgstr ""
+
+#: language\english\freakauth_lang.php:136
+msgid "We are sorry, but no user was found with the email address you provided."
+msgstr ""
+
+#. /Translators: Form validation error messages.
+#: libraries\MY_Form_validation.php:42
+msgid "The !field-name field is required."
+msgstr ""
+
+#: libraries\MY_Form_validation.php:43
+msgid "The !field-name field must have a value."
+msgstr ""
+
+#: libraries\MY_Form_validation.php:44
+msgid "The !field-name field must contain a valid email address"
+msgstr ""
+
+#: libraries\MY_Form_validation.php:46
+msgid "The !field-name field must contain a valid URL."
+msgstr ""
+
+#: libraries\MY_Form_validation.php:47
+msgid "The !field-name field must be at least !count characters in length."
+msgstr ""
+
+#: libraries\MY_Form_validation.php:48
+msgid "The !field-name field can not exceed !count characters in length."
+msgstr ""
+
+#: libraries\MY_Form_validation.php:49
+msgid "The !field-name field does not match the !field-name field."
+msgstr ""
+
+#: libraries\MY_Form_validation.php:69
+msgid "The !field-name field has an error"
+msgstr ""
+
+#: libraries\MY_Language.php:226
+msgid "Kilo Bytes"
+msgstr ""
+
+#. /Translators: date/ date with time format, according to the strftime documentation.
+#. For example, %l (lower-case L) is the hour in 12-hour format (1 through 12).
+#. Eg. "9:49am 7 December 2009". http://php.net/manual/en/function.strftime.php
+#: libraries\MY_Language.php:281
+msgid "%l:%M%p %e %B %Y"
+msgstr ""
+
+#. /Translators: date format, eg. "7 December 2009"
+#: libraries\MY_Language.php:283
+msgid "%e %B %Y"
+msgstr ""
+
+#: models\cloud_model.php:129
+msgid "You do not have edit permission for that cloud."
+msgstr ""
+
+#: models\cloud_model.php:163
+msgid "You are not the owner of that cloud"
+msgstr ""
+
+#: models\cloudscape_model.php:804
+msgid "You do not have admin permissions for that cloudscape"
+msgstr ""
+
+#: models\cloudscape_model.php:816
+msgid "You do not have permission to add clouds to that cloudscape"
+msgstr ""
+
+#: models\comment_model.php:231
+msgid "You do not have edit permission for that comment."
+msgstr ""
+
+#: models\content_model.php:123
+msgid "You do not have edit permission for that content."
+msgstr ""
+
+#: models\embed_model.php:68
+msgid "You do not have edit permission for that embed."
+msgstr ""
+
+#. /Translators: Cloudstreams - short and long event messages.
+#: models\event_model.php:263 models\event_model.php:302
+msgid "created by !person"
+msgstr ""
+
+#: models\event_model.php:266
+msgid "new cloud created by !person"
+msgstr ""
+
+#: models\event_model.php:282
+msgid "cloud added to the cloudscape !title by !person"
+msgstr ""
+
+#: models\event_model.php:286
+msgid "cloud added to the cloudscape !title"
+msgstr ""
+
+#: models\event_model.php:305
+msgid "new cloudscape created by !person"
+msgstr ""
+
+#: models\event_model.php:319
+msgid "added to !cloud by !person"
+msgstr ""
+
+#: models\event_model.php:323
+msgid "new comment on the cloud !cloud by !person"
+msgstr ""
+
+#: models\event_model.php:336
+msgid "New Cloudworks blog post by !person"
+msgstr ""
+
+#: models\event_model.php:347
+msgid "!following is now following !followed"
+msgstr ""
+
+#: models\event_model.php:360
+msgid "!person commenting on the Cloudworks blog post !title"
+msgstr ""
+
+#: models\event_model.php:369
+msgid "!person has registered on Cloudworks"
+msgstr ""
+
+#: models\event_model.php:385
+msgid "added to !title by !person"
+msgstr ""
+
+#: models\event_model.php:389
+msgid "new link on !title added by !person"
+msgstr ""
+
+#: models\event_model.php:405
+msgid "on the cloud !title by !person"
+msgstr ""
+
+#: models\event_model.php:409
+msgid "reference added to the cloud !title by !person"
+msgstr ""
+
+#: models\event_model.php:424
+msgid "on !title by !person"
+msgstr ""
+
+#: models\event_model.php:428
+msgid "new content on !title by !person"
+msgstr ""
+
+#: models\event_model.php:444 models\event_model.php:448
+msgid "new embedded content added to the cloud !title by !person"
+msgstr ""
+
+#: models\link_model.php:92
+msgid "You do not have edit permission for that link."
+msgstr ""
+
+#. /Translators: ** The VIEWS/AUTHENTICATION section. **
+#: views\FreakAuth_light\content\activation_failed.php:2
+msgid "Account Activation Failed"
+msgstr ""
+
+#: views\FreakAuth_light\content\activation_failed.php:4
+msgid ""
+"We are sorry, but your activation has failed. Please contact !email! for "
+"assistance."
+msgstr ""
+
+#: views\FreakAuth_light\content\activation_failed.php:7
+#: views\FreakAuth_light\content\activation_success.php:6
+#: views\FreakAuth_light\content\forgotten_password_reset_failed.php:4
+#: views\FreakAuth_light\content\forgotten_password_reset_success.php:4
+#: views\FreakAuth_light\content\forgotten_password_success.php:5
+#: views\FreakAuth_light\content\register_success.php:3 views\moderate.php:6
+msgid "Continue"
+msgstr ""
+
+#: views\FreakAuth_light\content\activation_success.php:1
+msgid "Account Activated"
+msgstr ""
+
+#: views\FreakAuth_light\content\activation_success.php:2
+msgid "Your account has been activated. You can now login."
+msgstr ""
+
+#: views\FreakAuth_light\content\forgotten_password_reset_failed.php:1
+msgid "Password Reset Failed"
+msgstr ""
+
+#: views\FreakAuth_light\content\forgotten_password_reset_failed.php:2
+msgid ""
+"We are sorry but your forgotten password reset has failed. Please contact !"
+"email! for assistance."
+msgstr ""
+
+#: views\FreakAuth_light\content\forgotten_password_reset_success.php:1
+msgid "Password Reset"
+msgstr ""
+
+#: views\FreakAuth_light\content\forgotten_password_reset_success.php:2
+msgid ""
+"Your password has been reset and e-mailed to you. Please change this password "
+"as soon as possible by following the link in the e-mail."
+msgstr ""
+
+#: views\FreakAuth_light\content\forgotten_password_success.php:1
+#: views\user\login.php:22 views\user\login_block.php:17
+msgid "Forgotten password"
+msgstr ""
+
+#: views\FreakAuth_light\content\forgotten_password_success.php:3
+msgid "Instructions for resetting your password have just been emailed to you."
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\change_password.php:2
+msgid "Account Settings"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\change_password.php:44
+#: views\cloudscape\edit_picture.php:37 views\user\change_email.php:16
+#: views\user\edit.php:44 views\user\edit_picture.php:21
+#: views\user\email.php:69 views\user\user_edit.php:34
+msgid "Save"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\forgotten_password.php:1
+#: views\user\forgotten_password.php:1
+msgid "Forgot your password?"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\forgotten_password.php:3
+#: views\user\forgotten_password.php:3
+msgid ""
+"Enter the e-mail address associated with your account and Cloudworks will "
+"send you password reset instructions."
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\forgotten_password.php:8
+#: views\user\change_email.php:7
+msgid "E-mail address"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\forgotten_password.php:19
+#: views\FreakAuth_light\content\forms\register.php:97
+#: views\user\forgotten_password.php:18
+msgid "Please type the letters"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\forgotten_password.php:30
+#: views\user\forgotten_password.php:29
+msgid "Send"
+msgstr ""
+
+#. /Translators: CAPTCHA - challenge-response to tell humans from computers.
+#: views\FreakAuth_light\content\forms\html_for_captcha.php:3
+msgid "CAPTCHA image"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\login.php:1
+#: views\FreakAuth_light\content\forms\login.php:28 views\user\login.php:41
+msgid "Login"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\login.php:37
+msgid "Forgotten Password"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\login.php:38 views\user\login.php:46
+msgid "Register"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\register.php:1
+msgid "Join Cloudworks"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\register.php:32
+msgid "E-mail"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\register.php:45
+msgid "Full name"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\register.php:60
+msgid "Country"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\register.php:84
+msgid "Confirm Password"
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\register.php:114
+msgid ""
+"By creating a Cloudworks account, you agree to our [link-at]Terms and "
+"Conditions of Use[/link]."
+msgstr ""
+
+#: views\FreakAuth_light\content\forms\register.php:121
+msgid "Create my account"
+msgstr ""
+
+#: views\FreakAuth_light\content\register_success.php:1
+msgid "Thank You!"
+msgstr ""
+
+#: views\FreakAuth_light\content\register_success.php:2
+msgid ""
+"You have just been sent an email containing account activation instructions."
+msgstr ""
+
+#. /Translators: Email messages to manage user accounts.
+#: views\FreakAuth_light\email\activation_email.php:2
+#: views\FreakAuth_light\email\forgotten_password_email.php:1
+msgid "Dear !username,"
+msgstr ""
+
+#: views\FreakAuth_light\email\activation_email.php:4
+msgid ""
+"Thank you for registering on Cloudworks. To activate your account, please "
+"visit the following URL:"
+msgstr ""
+
+#: views\FreakAuth_light\email\activation_email.php:10
+msgid ""
+"This URL will work for one week. After activating your account you can login "
+"with your username, !username."
+msgstr ""
+
+#: views\FreakAuth_light\email\activation_email.php:13
+msgid "The Cloudworks Team"
+msgstr ""
+
+#: views\FreakAuth_light\email\forgotten_password_email.php:3
+msgid ""
+"You or somebody else requested a password remind about your account. If you "
+"do not remember your password and want to change it, please click on the "
+"following link:"
+msgstr ""
+
+#: views\FreakAuth_light\email\forgotten_password_email.php:7
+msgid "If you did not make this request please ignore this e-mail."
+msgstr ""
+
+#: views\FreakAuth_light\email\forgotten_password_reset_email.php:3
+msgid "Here is your new login information:"
+msgstr ""
+
+#: views\FreakAuth_light\email\forgotten_password_reset_email.php:11
+msgid ""
+"Please change this password as soon as possible by logging in with this new "
+"information and then going to the following link:"
+msgstr ""
+
+#. /Translators: ** The VIEWS section. **
+#: views\cloud\active.php:3
+msgid "Active Clouds"
+msgstr ""
+
+#: views\cloud\active.php:12 views\cloud\new.php:11
+msgid "View all !count Clouds"
+msgstr ""
+
+#: views\cloud\cloud_added.php:1
+msgid "Cloud created"
+msgstr ""
+
+#: views\cloud\cloud_added.php:2
+msgid "Your cloud !title has been created!"
+msgstr ""
+
+#: views\cloud\cloud_added.php:4
+msgid ""
+"You might like to [link-tag]add some tags to the cloud[/link] to help people "
+"find it or [link-view]view the cloud[/link]"
+msgstr ""
+
+#: views\cloud\cloudscapes_block.php:1
+msgid "In Cloudscapes"
+msgstr ""
+
+#: views\cloud\cloudscapes_block.php:12
+msgid "Add to a Cloudscape"
+msgstr ""
+
+#: views\cloud\delete_confirm.php:1
+msgid "Delete the cloud !title"
+msgstr ""
+
+#: views\cloud\delete_confirm.php:3
+msgid ""
+"Are you sure that you want to delete this cloud? Deleting a cloud deletes it "
+"permanently and cannot be undone."
+msgstr ""
+
+#: views\cloud\delete_success.php:1 views\cloud_comment\delete_success.php:1
+#: views\cloudscape\delete_success.php:1 views\content\delete_success.php:1
+#: views\news\delete_success.php:1 views\news_comment\delete_success.php:1
+msgid "Deletion successful"
+msgstr ""
+
+#: views\cloud\delete_success.php:3
+msgid "You have successfully deleted the cloud '!title'."
+msgstr ""
+
+#: views\cloud\delete_success.php:6
+msgid "Go to all clouds"
+msgstr ""
+
+#: views\cloud\edit.php:17
+msgid "Create a Cloud in the Cloudscape !title"
+msgstr ""
+
+#: views\cloud\edit.php:20 views\cloud\list.php:7
+msgid "Create a Cloud"
+msgstr ""
+
+#: views\cloud\edit.php:24
+msgid "Edit Cloud "
+msgstr ""
+
+#: views\cloud\edit.php:25
+msgid "Delete this Cloud"
+msgstr ""
+
+#: views\cloud\edit.php:25 views\cloud_comment\edit.php:8
+#: views\cloudscape\edit.php:41 views\content\edit.php:7
+#: views\link\link_block.php:11 views\news\edit.php:6
+#: views\news_comment\edit.php:6 views\reference\references_block.php:9
+msgid "delete"
+msgstr ""
+
+#: views\cloud\edit.php:44
+msgid "Title !required!"
+msgstr ""
+
+#: views\cloud\edit.php:47 views\cloudscape\edit.php:59
+msgid "Summary"
+msgstr ""
+
+#: views\cloud\edit.php:50
+msgid "Text"
+msgstr ""
+
+#: views\cloud\edit.php:53
+msgid "and/or"
+msgstr ""
+
+#: views\cloud\edit.php:54 views\link\link_block.php:23
+msgid "Add a link"
+msgstr ""
+
+#: views\cloud\edit.php:54
+msgid "Link"
+msgstr ""
+
+#: views\cloud\edit.php:59
+msgid ""
+"If this cloud is for a call of papers or for a call for book chapters, please "
+"enter the deadline here for it to appear in the diary."
+msgstr ""
+
+#: views\cloud\edit.php:60
+msgid "Deadline"
+msgstr ""
+
+#: views\cloud\edit.php:65
+msgid "Save Cloud"
+msgstr ""
+
+#: views\cloud\edit.php:70
+msgid "What is a Cloud?"
+msgstr ""
+
+#: views\cloud\edit.php:71
+msgid ""
+"Clouds can be anything of relevance to learning and teaching for example a "
+"website, a description of a learning activity, a case study, a resource or "
+"tool, or a summary of a presentation."
+msgstr ""
+
+#: views\cloud\edit.php:73
+msgid "You can also use clouds to pose questions to the Cloudworks community."
+msgstr ""
+
+#: views\cloud\edit.php:75
+msgid "Want to add embedded content?"
+msgstr ""
+
+#: views\cloud\edit.php:76
+msgid ""
+"You can add embedded content from sites such as Slideshare and Youtube once "
+"you have created the cloud (just click on 'add embedded content'):"
+msgstr ""
+
+#: views\cloud\edit.php:78
+msgid "File Uploads"
+msgstr ""
+
+#: views\cloud\edit.php:79
+msgid ""
+"It is not currently possible to directly upload files to Cloudworks. However "
+"you can upload your files to another site and then link to the file here."
+msgstr ""
+
+#: views\cloud\edit.php:81
+msgid "We suggest the following sites:"
+msgstr ""
+
+#: views\cloud\edit.php:83
+msgid "Word Docs, PDFs, Powerpoint presentations: !site_link"
+msgstr ""
+
+#: views\cloud\edit.php:85
+msgid "Videos: !site_link"
+msgstr ""
+
+#: views\cloud\edit.php:87
+msgid "Photos: !site_link"
+msgstr ""
+
+#: views\cloud\edit.php:92
+msgid "Cloud or Cloudscape?"
+msgstr ""
+
+#: views\cloud\edit.php:94
+msgid ""
+"A Cloudscape is simply a collection of related Clouds. You might set up a "
+"Cloudscape to group Clouds around a topic (i.e. assessment), an event (i.e. a "
+"conference), or set up a personal Cloudscape to group Clouds you are "
+"interested in. One Cloud can belong to any number of Cloudscapes. For more "
+"guidance, see [link-c2554]How to set up a Cloud or Cloudscape[/link]"
+msgstr ""
+
+#: views\cloud\list.php:3 views\cloudscape\cloudscape_list.php:28
+#: views\tag\view.php:14
+msgid "Clouds"
+msgstr ""
+
+#: views\cloud\list.php:4
+msgid ""
+"Clouds can be anything of relevance to learning and teaching e.g. a "
+"description of a learning activity, a case study, a resource or tool, a "
+"summary of a presentation."
+msgstr ""
+
+#: views\cloud\list.php:27 views\cloudscape\cloudscape_list.php:27
+msgid "Introduction"
+msgstr ""
+
+#: views\cloud\list.php:28 views\cloud_comment\cloud_comment_block.php:1
+#: views\news_comment\display.php:2
+msgid "Comments"
+msgstr ""
+
+#. /Translators: singular-plural forms.
+#: views\cloud\list.php:38 views\cloud_comment\cloud_comment_block.php:4
+#: views\cloudscape\cloud_block.php:26 views\news\archive.php:27
+#: views\user\clouds_block.php:7
+msgid "!count comment"
+msgstr ""
+
+#: views\cloud\list.php:38 views\cloud_comment\cloud_comment_block.php:4
+#: views\cloudscape\cloud_block.php:26 views\news\archive.php:27
+#: views\user\clouds_block.php:7
+msgid "!count comments"
+msgstr ""
+
+#: views\cloud\new.php:2 views\cloud\newest_clouds.php:2
+msgid "New Clouds"
+msgstr ""
+
+#: views\cloud\view.php:7
+msgid "Edit this Cloud"
+msgstr ""
+
+#: views\cloud\view.php:7 views\link\link_block.php:14
+#: views\news\archive.php:14 views\news\view.php:7
+msgid "edit"
+msgstr ""
+
+#: views\cloud\view.php:11
+msgid "Hide on home page"
+msgstr ""
+
+#: views\cloud\view.php:11
+msgid "hide"
+msgstr ""
+
+#: views\cloud\view.php:18
+msgid "Deadline: !date"
+msgstr ""
+
+#. /Translators: singular and plural forms - !count view/s.
+#: views\cloud\view.php:22 views\cloudscape\view.php:31
+msgid "!count view"
+msgstr ""
+
+#: views\cloud\view.php:22 views\cloudscape\view.php:31
+msgid "!count views"
+msgstr ""
+
+#: views\cloud\view.php:31
+msgid "<abbr title='!definition'>Cloud</abbr> created by: !person-date"
+msgstr ""
+
+#: views\cloud\view.php:33
+msgid "Clouds can be anything of relevance to learning and teaching"
+msgstr ""
+
+#: views\cloud\view.php:52
+msgid "Improve this cloud:"
+msgstr ""
+
+#: views\cloud\view.php:53
+msgid "Add extra content"
+msgstr ""
+
+#: views\cloud\view.php:54 views\link\edit.php:21
+msgid "Add link"
+msgstr ""
+
+#: views\cloud\view.php:55 views\tag\add.php:7
+msgid "Add tags"
+msgstr ""
+
+#: views\cloud\view.php:56 views\reference\add.php:14
+msgid "Add reference"
+msgstr ""
+
+#: views\cloud\view.php:57 views\embed\edit.php:22
+msgid "Add embedded content"
+msgstr ""
+
+#: views\cloud_comment\add.php:6 views\news\add.php:7
+#: views\news_comment\add.php:6
+msgid "Post comment"
+msgstr ""
+
+#: views\cloud_comment\add.php:8
+msgid ""
+"You can [link-mail]change your preferences for new comment e-mail "
+"notifications[/link]."
+msgstr ""
+
+#: views\cloud_comment\cloud_comment_block.php:6
+#: views\news_comment\display.php:28
+msgid "Post a comment"
+msgstr ""
+
+#: views\cloud_comment\cloud_comments.php:1 views\event\header.php:7
+#: views\event\home_header.php:5
+msgid "Discussion"
+msgstr ""
+
+#: views\cloud_comment\cloud_comments.php:21
+msgid "Edited !date"
+msgstr ""
+
+#: views\cloud_comment\cloud_comments.php:24 views\cloudscape\view.php:14
+#: views\content\content_block.php:24 views\user\view.php:11
+msgid "Edit"
+msgstr ""
+
+#: views\cloud_comment\cloud_comments.php:24
+msgid "Edit this Comment"
+msgstr ""
+
+#: views\cloud_comment\cloud_comments.php:27
+msgid "Move to content"
+msgstr ""
+
+#: views\cloud_comment\cloud_comments.php:37
+msgid "Contribute to the discussion"
+msgstr ""
+
+#: views\cloud_comment\cloud_comments.php:41 views\news_comment\display.php:33
+msgid ""
+"Please [link-log]log in[/link] to post a comment. [link-join]Register here[/"
+"link] if you haven't signed up yet."
+msgstr ""
+
+#: views\cloud_comment\delete_confirm.php:3
+#: views\news_comment\delete_confirm.php:2
+msgid "Are you sure that you want to delete the following comment?"
+msgstr ""
+
+#: views\cloud_comment\delete_success.php:3
+#: views\news_comment\delete_success.php:2
+msgid "You have successfully deleted the comment."
+msgstr ""
+
+#: views\cloud_comment\delete_success.php:5 views\content\delete_success.php:5
+msgid "Go to the cloud"
+msgstr ""
+
+#: views\cloud_comment\edit.php:4 views\news_comment\edit.php:3
+msgid "Create a comment item"
+msgstr ""
+
+#: views\cloud_comment\edit.php:6 views\news_comment\edit.php:5
+msgid "Edit Comment"
+msgstr ""
+
+#: views\cloud_comment\edit.php:8 views\news_comment\edit.php:6
+msgid "Delete this comment"
+msgstr ""
+
+#. /Translators: Comment/item body.
+#: views\cloud_comment\edit.php:18 views\news\edit.php:18
+#: views\news_comment\edit.php:16
+msgid "Body"
+msgstr ""
+
+#: views\cloud_comment\edit.php:20 views\news_comment\edit.php:18
+msgid "Create comment"
+msgstr ""
+
+#: views\cloud_comment\edit.php:20 views\news_comment\edit.php:18
+msgid "Save comment"
+msgstr ""
+
+#: views\cloud_comment\latest_comments.php:1
+msgid "Latest comments"
+msgstr ""
+
+#: views\cloud_comment\latest_comments.php:6
+msgid "!cloud-comment... <em>(in !title !time)</em>"
+msgstr ""
+
+#: views\cloudscape\add_cloud.php:1
+msgid "Add the !title cloud to a cloudscape"
+msgstr ""
+
+#: views\cloudscape\add_cloud.php:3
+msgid "No results found for !search"
+msgstr ""
+
+#: views\cloudscape\add_cloud.php:5 views\search\results.php:9
+#: views\user\people.php:25
+msgid "Results for !search"
+msgstr ""
+
+#: views\cloudscape\add_cloud.php:10
+msgid "Add to cloudscape"
+msgstr ""
+
+#: views\cloudscape\add_cloud.php:17
+msgid "Search cloudscapes"
+msgstr ""
+
+#: views\cloudscape\add_cloud_section.php:1
+msgid "Add clouds to a section !title"
+msgstr ""
+
+#: views\cloudscape\add_cloud_section.php:4
+msgid "Section where clouds will be added"
+msgstr ""
+
+#: views\cloudscape\add_cloud_section.php:12
+msgid "Check the clouds from this cloudscape to add"
+msgstr ""
+
+#: views\cloudscape\add_cloud_section.php:18
+msgid "Add clouds"
+msgstr ""
+
+#: views\cloudscape\add_section.php:1
+msgid "Add a section to the cloudscape !title"
+msgstr ""
+
+#: views\cloudscape\add_section.php:6
+msgid "Section name"
+msgstr ""
+
+#: views\cloudscape\add_section.php:8
+msgid "Add section"
+msgstr ""
+
+#: views\cloudscape\cloud_block.php:1
+msgid "Clouds in this Cloudscape"
+msgstr ""
+
+#: views\cloudscape\cloud_block.php:4 views\event\header.php:2
+#: views\event\home_header.php:2
+msgid "Show all"
+msgstr ""
+
+#: views\cloudscape\cloud_block.php:36 views\cloudscape\manage_clouds.php:23
+#: views\tag\view.php:22 views\user\clouds_block.php:15
+msgid "No clouds yet"
+msgstr ""
+
+#: views\cloudscape\cloudscape_image.php:5
+msgid "Image by !person"
+msgstr ""
+
+#: views\cloudscape\cloudscape_list.php:3 views\tag\view.php:26
+msgid "Cloudscapes"
+msgstr ""
+
+#: views\cloudscape\cloudscape_list.php:4
+msgid "Cloudscapes are collections of clouds about a certain topic."
+msgstr ""
+
+#: views\cloudscape\cloudscape_list.php:7 views\cloudscape\edit.php:37
+msgid "Create a Cloudscape"
+msgstr ""
+
+#: views\cloudscape\cloudscape_list.php:43
+msgid "No cloudscapes"
+msgstr ""
+
+#: views\cloudscape\delete_confirm.php:1
+msgid "Delete the cloudscape !title"
+msgstr ""
+
+#: views\cloudscape\delete_confirm.php:4
+msgid ""
+"Are you sure that you want to delete this cloudscape? Deleting a cloudscape "
+"deletes it permanently and cannot be undone."
+msgstr ""
+
+#: views\cloudscape\delete_success.php:3
+msgid "You have successfully deleted the cloudscape '!title'."
+msgstr ""
+
+#: views\cloudscape\delete_success.php:5
+msgid "Go to all cloudscapes"
+msgstr ""
+
+#: views\cloudscape\edit.php:38
+msgid "A Cloudscape is a collection of Clouds."
+msgstr ""
+
+#: views\cloudscape\edit.php:41
+msgid "Delete this Cloudscape"
+msgstr ""
+
+#: views\cloudscape\edit.php:46
+msgid "Please enter a start date as well as an end date."
+msgstr ""
+
+#: views\cloudscape\edit.php:47
+msgid "Please enter a start date that is before the end date."
+msgstr ""
+
+#: views\cloudscape\edit.php:66
+msgid "Twitter tag"
+msgstr ""
+
+#: views\cloudscape\edit.php:70
+msgid ""
+"Twitter only stores tweets for a hashtag for a limited period of time. If you "
+"want to archive them for longer, \n"
+" you can use !link. We will be adding support for Twapper Keeper RSS feeds in "
+"Cloudworks at some point in the near future."
+msgstr ""
+
+#: views\cloudscape\edit.php:76
+msgid "e.g. collaborative learning, problem based learning, calculus, moodle"
+msgstr ""
+
+#: views\cloudscape\edit.php:78
+msgid "Event information"
+msgstr ""
+
+#: views\cloudscape\edit.php:79
+msgid ""
+"If this cloudscape is for a conference or other event, please add the "
+"following information:"
+msgstr ""
+
+#: views\cloudscape\edit.php:80
+msgid "Start Date"
+msgstr ""
+
+#: views\cloudscape\edit.php:83
+msgid "End Date (leave blank for one-day events)"
+msgstr ""
+
+#: views\cloudscape\edit.php:88
+msgid "Location"
+msgstr ""
+
+#: views\cloudscape\edit.php:93
+msgid "Save Cloudscape"
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:3
+msgid "Add a Cloudscape Picture"
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:5
+msgid "Edit the Cloudscape Picture"
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:7
+msgid "Cropped version of picture"
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:17
+msgid "Image File"
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:21
+msgid ""
+"If you are interested in your cloudscape being featured on the home page, "
+"please make your image as close to !dimensions pixels as possible."
+msgstr ""
+
+#. /Translators: There is an opportunity to translate 'KB' (Kilo Bytes) separately.
+#: views\cloudscape\edit_picture.php:24
+msgid "Maximum file-size of !sizeKB."
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:25
+msgid "JPG, GIF, or PNG image formats."
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:26
+msgid ""
+"This is an experimental feature. If you have any problems, please contact us "
+"at !email!"
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:28 views\user\edit_picture.php:18
+msgid "Please make sure you have permission to use the photo you upload."
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:29
+msgid ""
+"If you want to use an image from a site like !link, please check the owner of "
+"the image gives permission for re-use, and provide attribution if required."
+msgstr ""
+
+#. /Translators: name of person who should be given attribution.
+#: views\cloudscape\edit_picture.php:32
+msgid "Attribution name"
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:32 views\cloudscape\edit_picture.php:34
+msgid "For example"
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:34
+msgid "Attribution link"
+msgstr ""
+
+#: views\cloudscape\edit_picture_success.php:1
+msgid "Cloudscape picture edited"
+msgstr ""
+
+#: views\cloudscape\edit_picture_success.php:2
+msgid "Your new Cloudscape picture was uploaded"
+msgstr ""
+
+#: views\cloudscape\edit_picture_success.php:5
+msgid "Cropped picture"
+msgstr ""
+
+#: views\cloudscape\edit_picture_success.php:7
+msgid "Attribution"
+msgstr ""
+
+#: views\cloudscape\edit_picture_success.php:12
+msgid "Go to the Cloudscape"
+msgstr ""
+
+#: views\cloudscape\featured_cloudscapes.php:2
+msgid "Featured Cloudscapes"
+msgstr ""
+
+#: views\cloudscape\featured_cloudscapes.php:8
+#: views\cloudscape\featured_cloudscapes.php:10
+#: views\cloudscape\featured_cloudscapes.php:11
+msgid "View Cloudscape"
+msgstr ""
+
+#: views\cloudscape\featured_cloudscapes.php:13
+msgid "image by !person"
+msgstr ""
+
+#: views\cloudscape\followers_block.php:2 views\user\followers_block.php:2
+msgid "Followers (!count)"
+msgstr ""
+
+#: views\cloudscape\followers_block.php:11 views\user\followers_block.php:12
+#: views\user\following_block.php:15
+msgid "View all"
+msgstr ""
+
+#: views\cloudscape\followers_block.php:13 views\user\followers_block.php:14
+msgid "No followers yet"
+msgstr ""
+
+#: views\cloudscape\manage_clouds.php:1 views\cloudscape\manage_sections.php:1
+msgid "Manage clouds for the cloudscape !title"
+msgstr ""
+
+#: views\cloudscape\manage_clouds.php:3
+msgid ""
+"At the moment you can just remove clouds from the cloudscape, but we plan to "
+"expand the functionality here in future."
+msgstr ""
+
+#: views\cloudscape\manage_clouds.php:4
+msgid ""
+"Removing a cloud just removes it from the cloudscape. It does not delete the "
+"cloud."
+msgstr ""
+
+#: views\cloudscape\manage_clouds.php:15
+msgid "remove cloud"
+msgstr ""
+
+#: views\cloudscape\manage_sections.php:3 views\cloudscape\permissions.php:5
+#: views\event\admin.php:14 views\event\cloudscape.php:15
+#: views\event\following.php:14
+msgid "Back to cloudscape"
+msgstr ""
+
+#: views\cloudscape\manage_sections.php:7
+msgid "Delete section"
+msgstr ""
+
+#: views\cloudscape\manage_sections.php:8 views\cloudscape\rename_section.php:7
+msgid "Rename section"
+msgstr ""
+
+#: views\cloudscape\manage_sections.php:13
+msgid "remove"
+msgstr ""
+
+#: views\cloudscape\manage_sections.php:17
+msgid "No clouds in this section."
+msgstr ""
+
+#: views\cloudscape\manage_sections.php:22
+msgid "No sections yet"
+msgstr ""
+
+#: views\cloudscape\manage_sections.php:24
+msgid "Add a section"
+msgstr ""
+
+#: views\cloudscape\manage_sections.php:25
+msgid "Add clouds to a section"
+msgstr ""
+
+#: views\cloudscape\newest_cloudscapes.php:2
+msgid "New Cloudscapes"
+msgstr ""
+
+#: views\cloudscape\permissions.php:2
+msgid "Permissions for the cloudscape !title"
+msgstr ""
+
+#: views\cloudscape\permissions.php:6
+msgid "Owner"
+msgstr ""
+
+#. /Translators: Cloudscape permission, "Open" for anybody.
+#: views\cloudscape\permissions.php:10
+msgid "Open"
+msgstr ""
+
+#: views\cloudscape\permissions.php:11
+msgid "This cloudscape is open for anybody to post clouds to."
+msgstr ""
+
+#: views\cloudscape\permissions.php:12
+msgid "Make cloudscape closed"
+msgstr ""
+
+#: views\cloudscape\permissions.php:14
+msgid "Closed"
+msgstr ""
+
+#: views\cloudscape\permissions.php:15
+msgid "This cloudscape is <b>not</b> open for anybody to post clouds to."
+msgstr ""
+
+#: views\cloudscape\permissions.php:16
+msgid "Make cloudscape open"
+msgstr ""
+
+#. /Translators: "Admins" - Cloudscape administrators.
+#: views\cloudscape\permissions.php:20
+msgid "Admins"
+msgstr ""
+
+#: views\cloudscape\permissions.php:26
+msgid "Remove as admin"
+msgstr ""
+
+#: views\cloudscape\permissions.php:31
+msgid "No admins set"
+msgstr ""
+
+#. /Translators: Cloudscape "posters" - people who can add clouds to closed Cloudscapes.
+#: views\cloudscape\permissions.php:35
+msgid "Posters"
+msgstr ""
+
+#: views\cloudscape\permissions.php:41
+msgid "Remove as poster"
+msgstr ""
+
+#: views\cloudscape\permissions.php:46
+msgid "No posters set"
+msgstr ""
+
+#: views\cloudscape\permissions.php:49
+msgid "Add new user"
+msgstr ""
+
+#: views\cloudscape\permissions.php:51
+msgid "No results found for !item"
+msgstr ""
+
+#: views\cloudscape\permissions.php:53
+msgid "Results for !item"
+msgstr ""
+
+#: views\cloudscape\permissions.php:58
+msgid "Add as admin"
+msgstr ""
+
+#: views\cloudscape\permissions.php:59
+msgid "Add as poster"
+msgstr ""
+
+#: views\cloudscape\permissions.php:66
+msgid "Search users"
+msgstr ""
+
+#: views\cloudscape\remove_section_confirm.php:1
+msgid "Delete section '!title'"
+msgstr ""
+
+#: views\cloudscape\remove_section_confirm.php:3
+msgid ""
+"Are you sure you want to delete the section '!title'. This does not delete "
+"the clouds in that section or remove them from the cloudscape."
+msgstr ""
+
+#: views\cloudscape\remove_section_confirm.php:7
+msgid "Delete Section"
+msgstr ""
+
+#: views\cloudscape\rename_section.php:1
+msgid "Rename '!title'"
+msgstr ""
+
+#: views\cloudscape\rename_section.php:5
+msgid "New section name"
+msgstr ""
+
+#: views\cloudscape\tag_block.php:12 views\tag\tag_block.php:11
+msgid "No tags"
+msgstr ""
+
+#: views\cloudscape\tweets.php:2
+msgid "Tweets for !tag"
+msgstr ""
+
+#: views\cloudscape\tweets.php:12 views\user\tweets.php:19
+msgid "No tweets"
+msgstr ""
+
+#: views\cloudscape\view.php:9 views\user\view.php:19
+msgid "Unfollow"
+msgstr ""
+
+#: views\cloudscape\view.php:11 views\user\view.php:17
+msgid "Follow"
+msgstr ""
+
+#: views\cloudscape\view.php:14
+msgid "Edit this Cloudscape"
+msgstr ""
+
+#: views\cloudscape\view.php:16
+msgid "Add picture"
+msgstr ""
+
+#: views\cloudscape\view.php:16
+msgid "Edit picture"
+msgstr ""
+
+#: views\cloudscape\view.php:37
+msgid "Tweets"
+msgstr ""
+
+#: views\cloudscape\view.php:41
+msgid "<abbr title='!definition'>Cloudscape</abbr> created by: !person"
+msgstr ""
+
+#: views\cloudscape\view.php:75
+msgid "Create Cloud in this Cloudscape"
+msgstr ""
+
+#: views\cloudscape\view.php:78
+msgid "Permissions"
+msgstr ""
+
+#: views\cloudscape\view.php:79
+msgid "Manage clouds"
+msgstr ""
+
+#: views\cloudscape\view.php:81
+msgid "Manage sections"
+msgstr ""
+
+#: views\cloudscape\view.php:84
+msgid "Cloudstream for this cloudscape"
+msgstr ""
+
+#: views\content\add.php:1
+msgid "Add extra content to the cloud !title"
+msgstr ""
+
+#: views\content\add.php:8 views\content\edit.php:18
+msgid "Add content"
+msgstr ""
+
+#: views\content\content_block.php:1 views\event\header.php:10
+#: views\event\home_header.php:8
+msgid "Extra content"
+msgstr ""
+
+#. /Translators: "live blog notes" - add a narrative of an event as it is happening.
+#: views\content\content_block.php:3
+msgid ""
+"Got extra information or live blog notes about this cloud? [link-add]Add them "
+"here![/link]"
+msgstr ""
+
+#: views\content\content_block.php:21
+msgid "Edited !date-time!"
+msgstr ""
+
+#: views\content\content_block.php:24
+msgid "Edit this content"
+msgstr ""
+
+#: views\content\content_block.php:27
+msgid "Move to comment"
+msgstr ""
+
+#: views\content\delete_confirm.php:2
+msgid "Are you sure that you want to delete the following content?"
+msgstr ""
+
+#: views\content\delete_success.php:3
+msgid "You have successfully deleted the content."
+msgstr ""
+
+#: views\content\edit.php:4
+msgid "Create content"
+msgstr ""
+
+#: views\content\edit.php:6
+msgid "Edit Content"
+msgstr ""
+
+#: views\content\edit.php:7
+msgid "Delete"
+msgstr ""
+
+#: views\content\edit.php:18
+msgid "Save content"
+msgstr ""
+
+#: views\embed\delete_confirm.php:1
+msgid "Delete embedded content from the cloud !title"
+msgstr ""
+
+#: views\embed\delete_confirm.php:3
+msgid ""
+"Are you sure that you want to delete the following embedded content? "
+"Deleting embedded content removes it permanently and cannot be undone."
+msgstr ""
+
+#: views\embed\edit.php:3
+msgid "Add embedded content to the cloud !title"
+msgstr ""
+
+#: views\embed\edit.php:5
+msgid ""
+"You can add embedded content from the following sites by entering the URL "
+"here:"
+msgstr ""
+
+#: views\embed\edit.php:8
+msgid "Edit embedded content for the cloud !title"
+msgstr ""
+
+#. /Translators: The form field is optional.
+#: views\embed\edit.php:15 views\link\edit.php:14
+msgid "Title !optional"
+msgstr ""
+
+#. /Translators: The form field is optional.
+#: views\embed\edit.php:16
+msgid "optional"
+msgstr ""
+
+#: views\embed\edit.php:22
+msgid "Edit embedded content"
+msgstr ""
+
+#: views\embed\embed_block.php:3
+msgid "Embedded Content"
+msgstr ""
+
+#: views\embed\embed_block.php:19
+msgid "delete embedded content"
+msgstr ""
+
+#: views\embed\embed_block.php:22
+msgid "edit embedded content"
+msgstr ""
+
+#: views\event\admin.php:11 views\event\cloudscape.php:12
+#: views\event\following.php:11 views\event\site.php:11 views\event\user.php:12
+msgid "No events in this cloudstream."
+msgstr ""
+
+#. /Translators: RSS Really simple syndication.
+#: views\event\admin.php:14 views\event\cloudscape.php:16
+#: views\event\cloudscape_block.php:8 views\event\following.php:14
+#: views\event\site.php:14 views\event\site_block.php:10
+#: views\event\user.php:15 views\event\user_block.php:11
+msgid "RSS"
+msgstr ""
+
+#: views\event\cloudscape.php:22 views\event\following.php:20
+#: views\event\site.php:20 views\event\user.php:21 views\news\archive.php:37
+#: views\news\view.php:33 views\tag\tag_cloud.php:47 views\tag\view.php:55
+msgid ""
+"You can also search for [link-up]people[/link] and [link-ui]institutions[/"
+"link]"
+msgstr ""
+
+#: views\event\cloudscape_block.php:7 views\event\site_block.php:8
+#: views\event\user_block.php:10
+msgid "More"
+msgstr ""
+
+#: views\event\event_stream.php:10
+msgid "No events"
+msgstr ""
+
+#: views\event\header.php:8 views\event\home_header.php:6
+#: views\link\link_block.php:1
+msgid "Links"
+msgstr ""
+
+#: views\event\header.php:9 views\event\home_header.php:7
+msgid "References"
+msgstr ""
+
+#: views\event\site.php:14
+msgid "Back to homepage"
+msgstr ""
+
+#: views\event\site_block.php:2 views\event\user_block.php:2
+msgid "Cloudstream"
+msgstr ""
+
+#: views\event\site_block.php:9
+msgid "Your cloudstream"
+msgstr ""
+
+#: views\event\user.php:15
+msgid "Back to user"
+msgstr ""
+
+#: views\events\calls.php:3 views\events\calls_archive.php:8
+msgid "Upcoming deadlines"
+msgstr ""
+
+#: views\events\calls.php:8
+msgid "Past deadlines"
+msgstr ""
+
+#: views\events\calls.php:31 views\events\calls_archive.php:30
+msgid "How can I add a deadline?"
+msgstr ""
+
+#: views\events\calls.php:32 views\events\calls_archive.php:31
+msgid ""
+"To add a deadline to this list, [link-add]create a cloud[/link] for the item "
+"with a deadline, then edit the cloud to add the deadline."
+msgstr ""
+
+#: views\events\calls.php:36 views\events\calls_archive.php:35
+#: views\layout\header.php:44
+msgid "Events"
+msgstr ""
+
+#: views\events\calls.php:37 views\events\calls_archive.php:36
+msgid ""
+"You can also view [link-ev]current and upcoming events here[/link] and [link-"
+"ep]past events[/link]."
+msgstr ""
+
+#: views\events\calls_archive.php:3
+msgid "Past Deadlines"
+msgstr ""
+
+#: views\events\list.php:3
+msgid "Current and Upcoming Events"
+msgstr ""
+
+#: views\events\list.php:33 views\events\list_past.php:33
+msgid "How can I add an event?"
+msgstr ""
+
+#: views\events\list.php:34 views\events\list_past.php:34
+msgid ""
+"To add an event to this list, [link-add]create a cloudscape[/link] for the "
+"event and add the dates and location when you create the cloudscape."
+msgstr ""
+
+#: views\events\list.php:36
+msgid ""
+"You might also find [link-c2525]Setting up a conference Cloudscape[/link] "
+"useful."
+msgstr ""
+
+#: views\events\list.php:40
+msgid "Past events"
+msgstr ""
+
+#: views\events\list.php:41
+msgid "You can [link-ep]view past events here[/link]."
+msgstr ""
+
+#: views\events\list.php:44
+msgid "Upcoming Deadlines"
+msgstr ""
+
+#: views\events\list.php:45
+msgid "You can [link-ec]view deadlines here[/link]."
+msgstr ""
+
+#: views\events\list_past.php:3
+msgid "Past Events"
+msgstr ""
+
+#: views\events\list_past.php:38
+msgid "Current and upcoming events"
+msgstr ""
+
+#: views\events\list_past.php:39
+msgid "You can [link-ev]view current and upcoming events here[/link]."
+msgstr ""
+
+#: views\home.php:7
+msgid ""
+"Welcome to Cloudworks, a place to share, find and discuss learning and "
+"teaching ideas and experiences."
+msgstr ""
+
+#: views\home.php:8
+msgid "Find out more"
+msgstr ""
+
+#: views\home.php:19
+msgid "Support"
+msgstr ""
+
+#: views\home.php:21
+msgid ""
+"You can find answers to common questions about using this site in [link-faq]"
+"our FAQ[/link]. The [link-cs1911]Using Cloudworks cloudscape[/link] contains "
+"further information on how to use the site."
+msgstr ""
+
+#: views\home.php:24
+msgid "If you have further questions, then drop us an e-mail at !email-link!"
+msgstr ""
+
+#: views\layout\footer.php:4
+msgid "Recent activity"
+msgstr ""
+
+#: views\layout\footer.php:14
+msgid "Popular Clouds today"
+msgstr ""
+
+#: views\layout\header.php:47
+msgid "About"
+msgstr ""
+
+#: views\layout\language_menu.php:5
+msgid "Preferred language"
+msgstr ""
+
+#: views\layout\language_menu.php:12
+msgid "Load"
+msgstr ""
+
+#: views\link\delete_confirm.php:1
+msgid "Delete link from the cloud !title"
+msgstr ""
+
+#: views\link\delete_confirm.php:3
+msgid ""
+"Are you sure that you want to delete the following link? Deleting a link "
+"removes it permanently and cannot be undone."
+msgstr ""
+
+#: views\link\edit.php:4
+msgid "Add a link to the cloud !title"
+msgstr ""
+
+#: views\link\edit.php:6
+msgid "Edit link for the cloud !title"
+msgstr ""
+
+#: views\link\edit.php:11
+msgid "The URL specified has already been added as a link to this cloud"
+msgstr ""
+
+#: views\link\edit.php:15
+msgid "optional - leave blank to display the URL"
+msgstr ""
+
+#: views\link\edit.php:21
+msgid "Edit link"
+msgstr ""
+
+#: views\link\link_block.php:6
+msgid "added by !person"
+msgstr ""
+
+#: views\link\link_block.php:17
+msgid "make primary"
+msgstr ""
+
+#: views\moderate.php:1
+msgid "Your !item is being moderated"
+msgstr ""
+
+#: views\moderate.php:2
+msgid ""
+"Your !item has been flagged for moderation by the system we have in place to "
+"reduce spam on Cloudworks."
+msgstr ""
+
+#: views\moderate.php:4
+msgid ""
+"Apologies if your !item has been accidentally flagged - we will attempt to "
+"moderate it as soon as possible."
+msgstr ""
+
+#: views\news\add.php:5
+msgid "Add news item"
+msgstr ""
+
+#: views\news\archive.php:14 views\news\view.php:7
+msgid "Edit this News Item"
+msgstr ""
+
+#: views\news\archive.php:24 views\news\view.php:23
+msgid "Posted by !person on !date"
+msgstr ""
+
+#: views\news\delete_confirm.php:1
+msgid "Delete the blog post !title"
+msgstr ""
+
+#: views\news\delete_confirm.php:3
+msgid ""
+"Are you sure that you want to delete this blog post? Deleting a blog post "
+"deletes it permanently and cannot be undone."
+msgstr ""
+
+#: views\news\delete_confirm.php:6
+msgid "Delete blog post"
+msgstr ""
+
+#: views\news\delete_success.php:3
+msgid "You have successfully deleted the news '!title'."
+msgstr ""
+
+#: views\news\delete_success.php:5
+msgid "Go to all news"
+msgstr ""
+
+#: views\news\edit.php:3
+msgid "Create a news item"
+msgstr ""
+
+#: views\news\edit.php:5
+msgid "Edit News Item"
+msgstr ""
+
+#: views\news\edit.php:6
+msgid "Delete this news"
+msgstr ""
+
+#: views\news\edit.php:21
+msgid "Save news"
+msgstr ""
+
+#: views\news\news_block.php:11
+msgid "Archive"
+msgstr ""
+
+#: views\news\news_block.php:12
+msgid "RSS !feed"
+msgstr ""
+
+#: views\news_comment\delete_success.php:3
+msgid "Go to the blog post"
+msgstr ""
+
+#: views\reference\add.php:5
+msgid "Add an academic reference to the cloud !title"
+msgstr ""
+
+#: views\reference\add.php:11
+msgid ""
+"Please use the [link-ref]Harvard system of referencing[/link] if possible."
+msgstr ""
+
+#: views\reference\references_block.php:1
+msgid "Academic References"
+msgstr ""
+
+#: views\reference\references_block.php:15
+msgid "Add an academic reference"
+msgstr ""
+
+#. /Translators: In case we want to translate the copyright statement..
+#: views\rss\rss.php:17
+msgid "Copyright !date !organization"
+msgstr ""
+
+#: views\search\results.php:3
+msgid "Search Results"
+msgstr ""
+
+#: views\search\results.php:13
+msgid "Cloud"
+msgstr ""
+
+#: views\search\results.php:14
+msgid "Cloudscape"
+msgstr ""
+
+#: views\search\results.php:21
+msgid "No results found for '!search'"
+msgstr ""
+
+#: views\tag\add.php:1
+msgid "Add tags to the cloud !title"
+msgstr ""
+
+#: views\tag\add.php:5
+msgid "Tags !note"
+msgstr ""
+
+#: views\tag\add.php:5
+msgid "comma-separated"
+msgstr ""
+
+#: views\tag\tag_cloud.php:3
+msgid "Popular Tags"
+msgstr ""
+
+#: views\tag\tag_cloud.php:12
+msgid "Top 10"
+msgstr ""
+
+#: views\tag\view.php:10 views\user\user_edit.php:27
+msgid "RSS feed"
+msgstr ""
+
+#: views\tag\view.php:34
+msgid "No cloudscapes yet"
+msgstr ""
+
+#: views\tag\view.php:44
+msgid "No users yet"
+msgstr ""
+
+#: views\user\change_email.php:2
+msgid "Change e-mail address"
+msgstr ""
+
+#: views\user\change_password.php:1
+msgid "Change password"
+msgstr ""
+
+#: views\user\change_password_failure.php:1
+msgid "Password incorrect"
+msgstr ""
+
+#: views\user\change_password_failure.php:2
+msgid "The password you entered was incorrect."
+msgstr ""
+
+#: views\user\change_password_failure.php:3
+msgid "Back to change password form"
+msgstr ""
+
+#: views\user\change_password_success.php:1
+msgid "Password changed"
+msgstr ""
+
+#: views\user\change_password_success.php:2
+msgid "You password has been changed"
+msgstr ""
+
+#: views\user\change_password_success.php:3
+#: views\user\edit_picture_success.php:6
+msgid "Go to your profile"
+msgstr ""
+
+#: views\user\cloud_list.php:3 views\user\clouds_block.php:1
+msgid "!name's Clouds"
+msgstr ""
+
+#: views\user\cloud_list.php:4 views\user\followers_list.php:4
+#: views\user\following_list.php:4
+msgid "Back to !name's profile"
+msgstr ""
+
+#: views\user\clouds_block.php:12 views\user\cloudscapes_block.php:10
+msgid "View all (!total)"
+msgstr ""
+
+#: views\user\cloudscapes_block.php:1
+msgid "Following Cloudscapes"
+msgstr ""
+
+#: views\user\cloudscapes_block.php:13
+msgid "Not following any cloudscapes yet"
+msgstr ""
+
+#: views\user\edit.php:9
+msgid "Name !required"
+msgstr ""
+
+#: views\user\edit.php:9
+msgid "required - please include your surname"
+msgstr ""
+
+#: views\user\edit.php:24
+msgid "Institution !required"
+msgstr ""
+
+#: views\user\edit.php:25 views\user\user_edit.php:12
+msgid "required"
+msgstr ""
+
+#: views\user\edit.php:30 views\user\user_edit.php:30
+msgid "Twitter username"
+msgstr ""
+
+#: views\user\edit_picture.php:2
+msgid "Add Picture"
+msgstr ""
+
+#: views\user\edit_picture.php:12
+msgid "File"
+msgstr ""
+
+#: views\user\edit_picture.php:15
+msgid "Maximum size of !sizeKB."
+msgstr ""
+
+#: views\user\edit_picture.php:16
+msgid "JPG, GIF, or PNG formats."
+msgstr ""
+
+#: views\user\edit_picture.php:17
+msgid ""
+"We will crop the picture to a square. If you want to control how the picture "
+"will be cropped, upload a square photo."
+msgstr ""
+
+#: views\user\edit_picture.php:19
+msgid "Maximum dimensions (in pixels): !dimensions"
+msgstr ""
+
+#: views\user\edit_picture_success.php:1
+msgid "Profile picture editted"
+msgstr ""
+
+#: views\user\edit_picture_success.php:2
+msgid "You new profile picture was uploaded"
+msgstr ""
+
+#: views\user\edit_picture_success.php:3 views\user\view.php:5
+msgid "profile picture"
+msgstr ""
+
+#: views\user\email.php:2 views\user\logged_in_block.php:17
+msgid "E-mail Preferences"
+msgstr ""
+
+#: views\user\email.php:5
+msgid ""
+"Cloudworks can notify you by e-mail when particular actions occur on the site."
+msgstr ""
+
+#: views\user\email.php:11 views\user\email.php:38
+msgid "Off"
+msgstr ""
+
+#: views\user\email.php:11 views\user\email.php:31
+msgid "On"
+msgstr ""
+
+#: views\user\email.php:14
+msgid "Notify me when somebody follows me"
+msgstr ""
+
+#: views\user\email.php:15
+msgid "Notify me when someone comments on one of my clouds"
+msgstr ""
+
+#: views\user\email.php:16
+msgid ""
+"Notify me when someone comments on a cloud on which I have already commented"
+msgstr ""
+
+#: views\user\email.php:17
+msgid "Receive occasional e-mails from the Cloudworks team"
+msgstr ""
+
+#: views\user\email.php:18
+msgid "Display my e-mail address on my profile"
+msgstr ""
+
+#: views\user\followers_list.php:3
+msgid "!person is followed by !count people."
+msgstr ""
+
+#: views\user\following_block.php:3
+msgid "Following (!count)"
+msgstr ""
+
+#: views\user\following_block.php:17
+msgid "Not following anybody yet"
+msgstr ""
+
+#: views\user\following_list.php:3
+msgid "!name follows !count people."
+msgstr ""
+
+#: views\user\html_for_captcha.php:2
+msgid "captcha image"
+msgstr ""
+
+#. /Translators: Or "Log out"
+#: views\user\logged_in_block.php:3
+msgid "Sign out"
+msgstr ""
+
+#: views\user\logged_in_block.php:7
+msgid "!count item requires moderation"
+msgstr ""
+
+#: views\user\logged_in_block.php:7
+msgid "!count items require moderation"
+msgstr ""
+
+#: views\user\logged_in_block.php:15
+msgid "Your Profile"
+msgstr ""
+
+#: views\user\logged_in_block.php:16
+msgid "Your Profile Picture"
+msgstr ""
+
+#: views\user\logged_in_block.php:19
+msgid "Administration"
+msgstr ""
+
+#: views\user\login.php:27
+msgid "Security code"
+msgstr ""
+
+#: views\user\login_block.php:2 views\user\login_block.php:16
+msgid "Log in"
+msgstr ""
+
+#: views\user\login_block.php:3
+msgid "Sign up"
+msgstr ""
+
+#: views\user\people.php:3
+msgid "Find People"
+msgstr ""
+
+#: views\user\people.php:14
+msgid ""
+"You can search here for people who already have a Cloudworks account, [link-"
+"ui]browse by institution[/link] or [link-uu]browse alphabetically[/link]."
+msgstr ""
+
+#: views\user\people.php:19
+msgid "Who are you looking for?"
+msgstr ""
+
+#: views\user\tweets.php:3
+msgid "Tweets for !name"
+msgstr ""
+
+#: views\user\user_edit.php:12
+msgid "Full name !required!"
+msgstr ""
+
+#: views\user\user_edit.php:21
+msgid "Description !required!"
+msgstr ""
+
+#: views\user\user_edit.php:24
+msgid "Home page"
+msgstr ""
+
+#: views\user\view.php:7
+msgid "no picture"
+msgstr ""
+
+#: views\user\view.php:33
+msgid "Webpage"
+msgstr ""
+
+#: views\user\view.php:34
+msgid "Email"
+msgstr ""

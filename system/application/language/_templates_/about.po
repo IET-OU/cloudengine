@@ -1,0 +1,902 @@
+# The Cloudworks project. (http://cloudworks.ac.uk)
+# Copyright (c) 2010 The Open University.
+# This file is distributed under the same license as the Cloudworks package.
+# Nick Freear <n.d.freear _@_ open.ac.uk>, 2010.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Cloudworks about 0.1\n"
+"Report-Msgid-Bugs-To: cloudworks@open.ac.uk\n"
+"POT-Creation-Date: 2010-03-22 15:45+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: YOU <YOU@example.org>\n"
+"Language-Team: YOUR TEAM/ORGANIZATION <TEAM@example.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: BRITISH\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: views\about\about.php:5
+msgid "About Cloudworks"
+msgstr ""
+
+#: views\about\about.php:11
+msgid "Welcome to Cloudworks"
+msgstr ""
+
+#: views\about\about.php:13
+msgid "Read the [link-ai]introduction to Cloudworks[/link] or watch the video:"
+msgstr ""
+
+#: views\about\about.php:22
+msgid "We also have some [link-tip]tips and hints for using Cloudworks[/link]."
+msgstr ""
+
+#: views\about\about.php:24
+msgid "Support and feedback"
+msgstr ""
+
+#: views\about\about.php:25
+msgid ""
+"We would love to hear your suggestions and comments about the Cloudworks "
+"site. Please e-mail us at !email-link!. You can also use this address to "
+"report bugs and any issues with content."
+msgstr ""
+
+#: views\about\about.php:28
+msgid "Background"
+msgstr ""
+
+#. /Translators: !project-link text is "Open University Learning Design Initiative".
+#: views\about\about.php:29
+msgid ""
+"Cloudworks is being developed by the Institute of Educational Technology at "
+"The Open University. \n"
+" It is part of the !project-link and is funded by both JISC and The Open "
+"University."
+msgstr ""
+
+#. /Translators: ** The VIEWS / ABOUT section. **
+#: views\about\about.php:33
+msgid ""
+"[link-av]The Cloudworks Vision Statement[/link] outlines the aims of the "
+"site.\n"
+" The [link-news]Cloudworks blog[/link] gives current information on what we "
+"are working on and our plans for the site."
+msgstr ""
+
+#: views\about\about.php:37
+msgid "The Cloudworks Team"
+msgstr ""
+
+#: views\about\about.php:38
+msgid "The Cloudworks team are:"
+msgstr ""
+
+#: views\about\about.php:40
+msgid "OULDI project leader"
+msgstr ""
+
+#: views\about\about.php:41
+msgid "lead developer"
+msgstr ""
+
+#: views\about\about.php:42
+msgid "project officer"
+msgstr ""
+
+#: views\about\about.php:43
+msgid "developer"
+msgstr ""
+
+#: views\about\about.php:45
+msgid ""
+"Thank you to the Cloudworks critical friends: !friends and !friends-last and "
+"also to the \n"
+" other current and past members of the OULDI project: !team and !team-last "
+"for their comments and contributions."
+msgstr ""
+
+#: views\about\about.php:50
+msgid "The graphic design of the Cloudworks site was done by !link."
+msgstr ""
+
+#: views\about\about.php:53
+msgid "Terms and Conditions"
+msgstr ""
+
+#: views\about\about.php:54
+msgid "Here are [link-at]the terms and conditions of use for Cloudworks[/link]."
+msgstr ""
+
+#: views\about\about.php:64 faq_site.php:125 introduction.php:38 tandc.php:182 tips.php:53
+#: views\about\vision.php:49
+msgid ""
+"You can also search for [link-up]people[/link] and [link-ui]institutions[/"
+"link]"
+msgstr ""
+
+#. /Translators: Bookmarklet, a Javascript-based bookmark/shortcut.
+#: views\about\bookmarklet.php:3
+msgid "Cloudworks bookmarklet"
+msgstr ""
+
+#: views\about\faq_site.php:4
+msgid "FAQ - Using the Site"
+msgstr ""
+
+#. /Translators: ABOUT / FAQ
+#: views\about\faq_site.php:10
+msgid "What is the difference between a Cloud  and a Cloudscape?"
+msgstr ""
+
+#: views\about\faq_site.php:12
+msgid ""
+"Clouds can be anything of  relevance to learning and teaching, for example: a "
+"website; a description of a  learning activity; a case study; a resource or "
+"tool; or a summary of a presentation. You can also use clouds to pose "
+"questions to the Cloudworks community."
+msgstr ""
+
+#: views\about\faq_site.php:14
+msgid ""
+"A Cloudscape is simply a collection, or bundle, of related Clouds. You might "
+"set up a Cloudscape to group Clouds around a topic (i.e. assessment), an "
+"event  (i.e. a conference or course), or set up a personal Cloudscape to "
+"group Clouds you are particularly interested in. One Cloud can belong to any "
+"number of  Cloudscapes. For more guidance, see [link-c2554]How to set up a "
+"Cloud or Cloudscape[/link]."
+msgstr ""
+
+#: views\about\faq_site.php:16
+msgid "Clouds and Cloudscapes have different functionality."
+msgstr ""
+
+#: views\about\faq_site.php:17
+msgid "!cloud: for discussion, sharing and debate"
+msgstr ""
+
+#: views\about\faq_site.php:19
+msgid "Have a discussion"
+msgstr ""
+
+#: views\about\faq_site.php:20
+msgid "Embed a video or image"
+msgstr ""
+
+#: views\about\faq_site.php:21
+msgid "Add a link"
+msgstr ""
+
+#: views\about\faq_site.php:22
+msgid "Add an academic reference"
+msgstr ""
+
+#: views\about\faq_site.php:23
+msgid "Add extra content"
+msgstr ""
+
+#: views\about\faq_site.php:24 faq_site.php:31
+msgid "Add tags"
+msgstr ""
+
+#: views\about\faq_site.php:26
+msgid "!cloudscape: for collecting, linking and following  Clouds"
+msgstr ""
+
+#: views\about\faq_site.php:28
+msgid "Follow the Cloudscape"
+msgstr ""
+
+#: views\about\faq_site.php:29
+msgid "RSS feed"
+msgstr ""
+
+#: views\about\faq_site.php:30
+msgid "View Cloudstream"
+msgstr ""
+
+#: views\about\faq_site.php:32
+msgid "Add Clouds"
+msgstr ""
+
+#: views\about\faq_site.php:33
+msgid "Upload a picture"
+msgstr ""
+
+#: views\about\faq_site.php:34
+msgid "Add a Twitter feed"
+msgstr ""
+
+#: views\about\faq_site.php:37
+msgid "I didn't receive my registration email - what should I do?"
+msgstr ""
+
+#: views\about\faq_site.php:38
+msgid ""
+"When you  first register you will be send a confirmation e-mail "
+"automatically. This will usually happen immediately but in unusual cases may "
+"take longer. Sometimes the automatic e-mail will end up in a spam folder so "
+"please also check there. If you still haven't received an email after about "
+"an hour please contact the team !email-link!"
+msgstr ""
+
+#: views\about\faq_site.php:40
+msgid "I've lost my password - what should I do?"
+msgstr ""
+
+#: views\about\faq_site.php:41
+msgid ""
+"If you have lost or forgotten your password, the site can quickly send you a "
+"new one."
+msgstr ""
+
+#: views\about\faq_site.php:43
+msgid "Click on Log in"
+msgstr ""
+
+#: views\about\faq_site.php:44
+msgid "Click on [link-pas]Forgotten Password[/link]"
+msgstr ""
+
+#: views\about\faq_site.php:46
+msgid "Enter the e-mail address associated with your account and click send"
+msgstr ""
+
+#: views\about\faq_site.php:47
+msgid ""
+"You will receive an email within a few minutes (if you don't, check your spam "
+"folder)"
+msgstr ""
+
+#: views\about\faq_site.php:48
+msgid "Click on the link"
+msgstr ""
+
+#: views\about\faq_site.php:49
+msgid "You will be sent another e-mail with your new 5 character password"
+msgstr ""
+
+#: views\about\faq_site.php:50
+msgid ""
+"This new password should be changed as soon as possible. Log in and change "
+"your password by going to your profile page"
+msgstr ""
+
+#: views\about\faq_site.php:53
+msgid "How do I upload files?"
+msgstr ""
+
+#: views\about\faq_site.php:54
+msgid ""
+"Cloudworks is not a repository - this means that it is not possible to upload "
+"files onto the site. We have done this for a number of reasons, not least "
+"because we  recognise the issues associated with uploading documents to "
+"multiple places  (such as editing and managing permissions)."
+msgstr ""
+
+#: views\about\faq_site.php:55
+msgid ""
+"We have  made it really easy to embed or link to papers, slideshows, videos, "
+"learning designs and pictures etc. For more information on how to do this see "
+"[link-c2522]'Sharing pictures, videos, case  studies and ideas through links "
+"and embeds'[/link]"
+msgstr ""
+
+#: views\about\faq_site.php:59
+msgid "My Cloudscape picture is too big. How can I reduce its size?"
+msgstr ""
+
+#: views\about\faq_site.php:60
+msgid ""
+"It is possible to upload a picture to a Cloudscape (it is not yet possible to "
+"do this in a Cloud see [link-c2522]'Sharing  pictures, videos, case studies "
+"and ideas through links and embeds'[/link]) but the following restrictions "
+"apply:"
+msgstr ""
+
+#: views\about\faq_site.php:63
+msgid "The image must be landscape not portrait."
+msgstr ""
+
+#: views\about\faq_site.php:64
+msgid ""
+"We will crop the picture to !dimensions pixels. If you want to control how "
+"the picture will be cropped, please upload an image of those dimensions."
+msgstr ""
+
+#: views\about\faq_site.php:66
+msgid ""
+"Maximum file-size of !sizeKB. Maximum upload dimensions (in pixels): !"
+"dimensions."
+msgstr ""
+
+#: views\about\faq_site.php:67
+msgid "JPG, GIF, or PNG image formats"
+msgstr ""
+
+#: views\about\faq_site.php:69
+msgid ""
+"You may find that you have to reduce the size of the picture or compress the "
+"file to upload it:"
+msgstr ""
+
+#: views\about\faq_site.php:71
+msgid "!link Using Microsoft Office Picture Manager to resize your picture"
+msgstr ""
+
+#: views\about\faq_site.php:72
+msgid "!link Using Microsoft Office Picture Manager to compress a picture file"
+msgstr ""
+
+#: views\about\faq_site.php:73
+msgid "!link Using Apple's iPhoto to resize your picture and/ or file size"
+msgstr ""
+
+#: views\about\faq_site.php:75
+msgid "It is worth noting that you can't do this in Microsoft Paint."
+msgstr ""
+
+#: views\about\faq_site.php:77
+msgid "How do I add a Twitter stream?"
+msgstr ""
+
+#: views\about\faq_site.php:78
+msgid ""
+"You can add a Twitter stream to a Cloudscape but not to a Cloud. You can not "
+"add a Twitter stream to someone else's Cloudscape unless you have been given "
+"admin permission for the cloudscape by the Cloudscape owner.\n"
+" Please note that Tweets are only available from Twitter for 3 months so if "
+"you want to keep an enduring record of the discussion you will need to set up "
+"a Tweet archive (using a service like !link)."
+msgstr ""
+
+#: views\about\faq_site.php:81
+msgid ""
+"To add a Twitter stream to a Cloudscape go to the Cloudscape and click on "
+"edit. Add your [link-twit](#) hash tag[/link] in the Twitter tag box. For "
+"more information about setting up a #tag and Twitter archive please see [link-"
+"c2524]'Using Twitter in Cloudworks'[/link]"
+msgstr ""
+
+#: views\about\faq_site.php:84
+msgid "Can I restrict access/ add editors to my Clouds and Cloudscapes?"
+msgstr ""
+
+#: views\about\faq_site.php:85
+msgid ""
+"The Cloudworks site is open, which means anyone can search for and view "
+"everything on the site. However, it is possible to manage permissions to "
+"Cloudscapes you have set up. By clicking on <em>'permissions'</em>on the "
+"right hand side of your Cloudscape page you can:"
+msgstr ""
+
+#: views\about\faq_site.php:87
+msgid "Close your Cloudscape so that other people can't add Clouds to it"
+msgstr ""
+
+#: views\about\faq_site.php:88
+msgid ""
+"Add one or more users as a 'poster' - this means they can add Clouds to an "
+"otherwise closed Cloudscape"
+msgstr ""
+
+#: views\about\faq_site.php:89
+msgid "Give one or more users full admin rights of your Cloudscape"
+msgstr ""
+
+#: views\about\faq_site.php:92
+msgid "Why are my items being moderated?"
+msgstr ""
+
+#: views\about\faq_site.php:93
+#, possible-php-format
+msgid ""
+"It is really important to us that Cloudworks stays free of spam and we use "
+"an  external spam filter on the site called !link which is 99.77% effective. "
+"From time to time,\n"
+" the filter will mistakenly identify a message as spam and put it forward for "
+"moderation. During working hours will quickly pick these up, check and clear "
+"them - although this might take longer at the weekends or in the evenings "
+"(GMT). This is likely to be a one-off occurrence."
+msgstr ""
+
+#: views\about\faq_site.php:96
+msgid ""
+"If you are finding that your posts are constantly being sent for moderation "
+"then please contact us !email-link!."
+msgstr ""
+
+#: views\about\faq_site.php:98
+msgid "Can I change my password or picture?"
+msgstr ""
+
+#: views\about\faq_site.php:99
+msgid "You can change all of these on your profile page:"
+msgstr ""
+
+#: views\about\faq_site.php:101
+msgid "Log-in and click on the red tab with  your name on."
+msgstr ""
+
+#: views\about\faq_site.php:102
+msgid "From the drop-down box choose 'Your  Profile'"
+msgstr ""
+
+#: views\about\faq_site.php:103
+msgid ""
+"Then either 'edit' to change your name and other details, 'edit picture' to "
+"change or add your picture, or 'change password' to change your password."
+msgstr ""
+
+#: views\about\faq_site.php:106
+msgid "Can I have two accounts with the same password?"
+msgstr ""
+
+#: views\about\faq_site.php:107
+msgid ""
+"An email address can only be linked to one profile. If you want to set up "
+"another profile, for a group or course for example, you will have to choose a "
+"different address."
+msgstr ""
+
+#: views\about\faq_site.php:109
+msgid "How can I change my email  notifications?"
+msgstr ""
+
+#: views\about\faq_site.php:110
+msgid "You can  switch off and on the following email preferences:"
+msgstr ""
+
+#: views\about\faq_site.php:112
+msgid "Notify me when somebody follows me"
+msgstr ""
+
+#: views\about\faq_site.php:113
+msgid "Notify me when someone comments on one of my Clouds"
+msgstr ""
+
+#: views\about\faq_site.php:114
+msgid ""
+"Notify me when someone comments of a Cloud on which I have already commented"
+msgstr ""
+
+#: views\about\faq_site.php:115
+msgid "Receive occasional e-mails from the Cloudworks team"
+msgstr ""
+
+#: views\about\faq_site.php:116
+msgid "Display my e-mail address on my profile"
+msgstr ""
+
+#: views\about\faq_site.php:118
+msgid ""
+"You can do this by logging-in, clicking on the red tab with your name on, and "
+"choosing 'E-mail  Preferences'."
+msgstr ""
+
+#: views\about\introduction.php:4
+msgid "An introduction to Cloudworks"
+msgstr ""
+
+#: views\about\introduction.php:11
+msgid "What is it?"
+msgstr ""
+
+#: views\about\introduction.php:12
+msgid ""
+"Cloudworks is a social networking site for finding, sharing and discussing "
+"learning and teaching ideas and designs."
+msgstr ""
+
+#: views\about\introduction.php:13
+msgid "Core concepts."
+msgstr ""
+
+#: views\about\introduction.php:14
+msgid ""
+"There are two key concepts associated with Cloudworks - the notion of "
+"'Clouds' and 'Cloudscapes'."
+msgstr ""
+
+#: views\about\introduction.php:15
+msgid "Clouds."
+msgstr ""
+
+#: views\about\introduction.php:16
+msgid ""
+"A Cloud can be anything to do with learning and teaching. Each Cloud is "
+"'social' in that it is possible to have a conversation around the Cloud. A "
+"Cloud could be: a short description of a learning and teaching idea, "
+"information about resources or tools for learning and teaching, detailed "
+"learning designs or case studies of practice or a question as a starting "
+"point for a discussion."
+msgstr ""
+
+#: views\about\introduction.php:17
+msgid "Cloudscapes."
+msgstr ""
+
+#: views\about\introduction.php:18
+msgid ""
+"Clouds can be aggregated into 'Cloudscapes' associated with a particular "
+"event, purpose or interest. For example you can have Cloudscapes associated "
+"with a conference aggregating Clouds about conference presentations or tools "
+"and resources referenced. A Cloudscape can be set up for a workshop where "
+"Clouds might include workshop resources, tools or activities. Cloudscapes can "
+"also be more general for example to stimulate debate about a particular "
+"teaching approach.  Clouds can be associated with more than one Cloudscape."
+msgstr ""
+
+#: views\about\introduction.php:19
+msgid "Creating a user account."
+msgstr ""
+
+#: views\about\introduction.php:20
+msgid ""
+"You can view everything available on the site, but if you want to create "
+"Clouds or Cloudscapes or if you want to add comments, then you need to create "
+"an account."
+msgstr ""
+
+#: views\about\introduction.php:21
+msgid "Navigating the site."
+msgstr ""
+
+#: views\about\introduction.php:22
+msgid ""
+"The front page shows a rolling list of new Clouds added to the site on the "
+"right hand side, features Cloudscapes are presented in the middle panel and a "
+"list of Clouds that have recently had comments added to them appear on the "
+"left hand side. You can get a list of all the Clouds in the site by clicking "
+"on 'All Clouds'. A title and brief summary for each Cloud is provided. Click "
+"on the link to get further details. Clicking on the 'All Cloudscapes' link "
+"lists all the Cloudscapes in the site, as with individual Clouds a brief "
+"description of each Cloudscape is provided. Clicking on a particular "
+"Cloudscape will take you into it and will show all the Clouds associated with "
+"that Cloudscape."
+msgstr ""
+
+#: views\about\introduction.php:23
+msgid "Setting up a profile."
+msgstr ""
+
+#: views\about\introduction.php:24
+msgid ""
+"You can set up a profile and include some information about yourself. Your "
+"profile page automatically lists any Clouds you have created. You can follow "
+"both people and Cloudscapes. Your profile page indicates the Cloudscapes you "
+"are following, who you are following and who is following you."
+msgstr ""
+
+#: views\about\introduction.php:25
+msgid "Creating a Cloud."
+msgstr ""
+
+#: views\about\introduction.php:26
+msgid ""
+"To create a Cloud click on the 'Create a Cloud' link. Enter a short title and "
+"a summary - these will appear on the 'All Clouds' page and give an indication "
+"of what your Cloud is about. Then enter a description - you can include url "
+"links, images, etc. You can also provide a URL for more information. You can "
+"tag the Cloud in terms of 'tool', 'pedagogy', 'discipline' and 'other'. "
+"Clicking on the tag list at the top will list Clouds according to how they "
+"have been tagged using these categories. You can preview to see what your "
+"Cloud will look like and then submit. A Cloudscape is produced in much the "
+"same way. Once your Cloud has been created you can add it to one or more "
+"Cloudscapes. You can also go back and edit the Cloud or delete it. Other "
+"people registered on Cloudworks are able to add comments to any Clouds or "
+"Cloudscapes you produce."
+msgstr ""
+
+#: views\about\introduction.php:27
+msgid "Finding content."
+msgstr ""
+
+#: views\about\introduction.php:28
+msgid ""
+"Clouds and Cloudscapes can be tagged by pedagogy, discipline, tool and other "
+"and can be searched using these tags or via a search facility. You can also "
+"find relevant content by browsing All Clouds, All Cloudscapes or looking at "
+"the Clouds associated with individuals under their profile."
+msgstr ""
+
+#: views\about\introduction.php:29
+msgid "Your Cloudstream."
+msgstr ""
+
+#: views\about\introduction.php:30
+msgid ""
+"All the Clouds created by the people and Cloudscapes you are following are "
+"aggregated under your 'My Cloudstream'."
+msgstr ""
+
+#: views\about\tandc.php:7
+msgid "Cloudworks Terms and Conditions of Use"
+msgstr ""
+
+#: views\about\tips.php:2
+msgid "Tips and hints for effective use of Cloudworks"
+msgstr ""
+
+#. /Translators: ABOUT / TIPS
+#: views\about\tips.php:4
+msgid "1. Supporting conferences"
+msgstr ""
+
+#: views\about\tips.php:6
+msgid "Set up a Cloudscape for a conference."
+msgstr ""
+
+#: views\about\tips.php:7
+msgid ""
+"Include a short clear description of the conference in the Cloudscape with a "
+"link to the conference website."
+msgstr ""
+
+#: views\about\tips.php:8
+msgid ""
+"Agree and promote a hash (#) tag to be used for the conference, which can be "
+"used for Twitter, Blogs, Flckr etc."
+msgstr ""
+
+#: views\about\tips.php:9
+msgid ""
+"Incorporate a dynamic twitter stream, blog aggregator, flickr stream using "
+"the agreed conference tag."
+msgstr ""
+
+#: views\about\tips.php:10
+msgid ""
+"Promote the conference Cloudscape to delegates, via Twitter etc and invite "
+"them to follow the Cloudscape."
+msgstr ""
+
+#. /Translators: Here "live blog" is used as a verb; "...and include [them] as clouds". Also http://coveritlive.com "Whether it's Live Blogging, hosting a weekly..."
+#: views\about\tips.php:12
+msgid ""
+"Live blog sessions and include as Clouds in the conference Cloudscape, keep "
+"entries short with succinct summaries, provide links to further information."
+msgstr ""
+
+#: views\about\tips.php:13
+msgid "Comment on relate Clouds in the Cloudscape that others have created."
+msgstr ""
+
+#: views\about\tips.php:14
+msgid ""
+"If you would like the Cloudscape to be featured on the front page, send us "
+"the URL and a 240x180 image. We'll need permission from the copyright holder "
+"to put the image on the site too."
+msgstr ""
+
+#: views\about\tips.php:15
+msgid ""
+"The site is only supported on a best effort basis and during UK working "
+"hours, so please don't rely on it as a replacement for a conference website. "
+"We also usually perform upgrades on Thursday mornings so there is sometimes "
+"some short downtime then.  "
+msgstr ""
+
+#: views\about\tips.php:17
+msgid "2. Supporting workshops"
+msgstr ""
+
+#: views\about\tips.php:19
+msgid ""
+"Cloudscapes can also be used to support workshops and all the tips and hints "
+"suggested for supporting conferences are also valid for supporting workshops."
+msgstr ""
+
+#: views\about\tips.php:20
+msgid ""
+"Set up discussion Clouds that can be used as a basis for group activities "
+"during the workshop. Include a brief outline of the activity you want "
+"delegates to take part in and any associated questions you want them to "
+"address. Get them working in groups and entering their discussions as "
+"comments on the discussion Cloud. Encourage them to scan what other groups "
+"are entering."
+msgstr ""
+
+#: views\about\tips.php:21
+msgid ""
+"Live blog workshop sessions such as plenary discussions and feedback sessions."
+msgstr ""
+
+#: views\about\tips.php:24
+msgid "3. Aggregating resources"
+msgstr ""
+
+#: views\about\tips.php:26
+msgid ""
+"Set up a Cloudscape to support a special interest group and input Clouds of "
+"relevant resources. For example Cloudscapes can be set up for particular "
+"cohorts of students, enabling them to share good learning resources, and "
+"discuss learning strategies."
+msgstr ""
+
+#: views\about\tips.php:28
+msgid "4. Sharing innovative learning and teaching ideas"
+msgstr ""
+
+#: views\about\tips.php:30
+msgid ""
+"Create Clouds on good learning and teaching ideas you have created or that "
+"you have seen or experienced. Keep your Clouds short and succinct; include "
+"relevant links to further information. Consider depositing further "
+"information in an Open Educational Resource repository such as Connexions. "
+"Tag appropriately in terms of subject, pedagogy and tools."
+msgstr ""
+
+#: views\about\tips.php:31
+msgid ""
+"Set up a Cloudscape to aggregate related innovative Clouds - for example "
+"those relating to mobile learning, problem-based learning, learning a "
+"language."
+msgstr ""
+
+#: views\about\tips.php:32
+msgid ""
+"Enrich Clouds using the html functionality available in the editor. Hyperlink "
+"to relevant information.  Include illustrative images. Embed slideshare "
+"presentations, YouTube videos or flickr images. Aggregate related tweets or "
+"blogs."
+msgstr ""
+
+#: views\about\tips.php:33
+msgid ""
+"Search the site by browsing the tag Cloud, 'All Clouds' list, 'All "
+"Cloudscapes' list or via individual profiles or search using key words."
+msgstr ""
+
+#: views\about\tips.php:35
+msgid "5. Connect with others"
+msgstr ""
+
+#: views\about\tips.php:37
+msgid ""
+"Complete your profile details - include a summary of your interests and link "
+"to relevant websites. Provide details of your twitter name, which will enable "
+"any tweets with your twitter name on to be aggregated under your profile and "
+"will provide a means for other users of Cloudworks to contact you via twitter."
+msgstr ""
+
+#: views\about\tips.php:38
+msgid ""
+"Follow Cloudscapes and people you are interested in, these will be listed on "
+"your profile and give others an idea of your interests."
+msgstr ""
+
+#: views\about\tips.php:39
+msgid "Get creating Clouds! These will also be listed on your profile."
+msgstr ""
+
+#: views\about\tips.php:40
+msgid "Engage in a conversation, comment on other people's entries and Clouds."
+msgstr ""
+
+#: views\about\tips.php:41
+msgid "Find others by name or institution."
+msgstr ""
+
+#: views\about\tips.php:43
+msgid "6. Keep abreast of new developments"
+msgstr ""
+
+#: views\about\tips.php:45
+msgid ""
+"Set up RSS feeds for Cloudscapes or people you are interested in keeping up "
+"to date with."
+msgstr ""
+
+#: views\about\tips.php:46
+msgid ""
+"Browse the front page to get an idea of new Clouds and any new discussions "
+"around Clouds."
+msgstr ""
+
+#: views\about\vision.php:4
+msgid "Cloudworks Vision Statement"
+msgstr ""
+
+#. /Translators: ABOUT / VISION
+#: views\about\vision.php:9
+msgid ""
+"Cloudworks is a site for finding, sharing and discussing learning and "
+"teaching ideas, experiences and issues. The aims are to:"
+msgstr ""
+
+#: views\about\vision.php:12
+msgid "enable people to find, share and discuss learning and teaching ideas"
+msgstr ""
+
+#: views\about\vision.php:14
+msgid ""
+"connect people with similar educational interests through social networking"
+msgstr ""
+
+#: views\about\vision.php:16
+msgid ""
+"provide inspiration on designing learning activities and developing resources"
+msgstr ""
+
+#: views\about\vision.php:18
+msgid ""
+"showcase the work of individuals and  communities who want to reach existing "
+"but also new  audiences"
+msgstr ""
+
+#: views\about\vision.php:20
+msgid ""
+"provide a place for different  communities to discuss, collaborate and "
+"aggregate relevant materials,  ideas and designs"
+msgstr ""
+
+#: views\about\vision.php:22
+msgid ""
+"encourage sharing, especially among  people who have not shared learning and "
+"teaching ideas and experiences before."
+msgstr ""
+
+#: views\about\vision.php:26
+msgid ""
+"Unlike many existing educational repositories, the emphasis is on building a "
+"dynamic collection of ideas and experiences; via a variety of educational "
+"content (learning designs, case studies, resources and tools)\n"
+" plus active discussions about the use and effectiveness of this content in "
+"different contexts. The voice of users of the site, their experience, reviews "
+"and reflections on the content of the site is a central feature. We plan to "
+"do this in the following ways:"
+msgstr ""
+
+#: views\about\vision.php:30
+msgid ""
+"Ensure a low barrier to entry for new contributions. We believe that one of "
+"the main barriers to contribution to other repositories is the level of "
+"detail and metadata required, cumbersome quality control processes and issues "
+"around ownership."
+msgstr ""
+
+#: views\about\vision.php:32
+msgid ""
+"Give the site a people-orientated focus. It is conversation and shared "
+"experiences that will draw people to contribute to the site and make it "
+"sustainable. Finding the right person to talk to is often as important as "
+"finding the right resource."
+msgstr ""
+
+#: views\about\vision.php:34
+msgid "Make all content contributed to the site publicly accessible."
+msgstr ""
+
+#: views\about\vision.php:36
+msgid ""
+"Target people most likely to contribute to a public site, as well as consume "
+"content from it.  This will include those with support roles in institutions "
+"(such as learning technologists, instructional designers, educational "
+"developers), as well as learning and teaching innovators and 'e-learning "
+"champions'."
+msgstr ""
+
+#: views\about\vision.php:38
+msgid ""
+"Ensure that the site acts as a conduit; by aggregating content from related "
+"sites and through APIs, so that users can access the data on the site from "
+"elsewhere. This will ensure maximum uptake and repurposing of the content "
+"from the site and enable people to use it in innovative ways we may not have "
+"anticipated."
+msgstr ""
+
+#: views\about\vision.php:42
+msgid ""
+"The target audience is practitioners in HE and FE, although the site may also "
+"be of interest to other formal and informal educational sectors. We accept "
+"that there will be a higher percentage of consumers than contributors, "
+"however over time we hope to increase the level of engagement with the site, "
+"encouraging a larger number of educators to share and discuss their ideas and "
+"practice."
+msgstr ""

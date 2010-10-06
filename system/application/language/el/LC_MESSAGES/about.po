@@ -1,0 +1,701 @@
+# The Cloudworks project. (http://cloudworks.ac.uk)
+# Copyright (c) 2010 The Open University.
+# This file is distributed under the same license as the Cloudworks package.
+# Nick Freear <n.d.freear@open.ac.uk>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cloudworks-about 0.1\n"
+"Report-Msgid-Bugs-To: cloudworks@open.ac.uk\n"
+"POT-Creation-Date: 2010-02-23 11:23+0000\n"
+"PO-Revision-Date: 2010-03-16 11:22+0200\n"
+"Last-Translator: Martha <martha.vasiliadou@gmail.org>\n"
+"Language-Team: Innovade LI Ltd. Cyprus <info@innovade.eu>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Greek\n"
+"X-Poedit-Country: GREECE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. /Translators: ** Start of the VIEWS / ABOUT section. **
+#: views\about\about.php:5
+msgid "About Cloudworks"
+msgstr "Για το Cloudworks"
+
+#: views\about\about.php:11
+msgid "Welcome to Cloudworks"
+msgstr "Καλωσορίσατε στο Cloudworks"
+
+#: views\about\about.php:13
+msgid "Read the [link-ai]introduction to Cloudworks[/link] or watch the video:"
+msgstr "Διαβάστε την [link-ai]Εισαγωγή στο Cloudworks[/link] ή παρακολουθήστε το βίντεο:"
+
+#: views\about\about.php:22
+msgid "We also have some [link-tip]tips and hints for using Cloudworks[/link]."
+msgstr "Μπορείτε επίσης να διαβάσετε μερικές [link-tip]Συμβουλές και Υποδείξεις για τη χρήση τουCloudworks [/link]."
+
+#: views\about\about.php:24
+msgid "Support and feedback"
+msgstr "Σχόλια και Υποστήριξη"
+
+#: views\about\about.php:25
+msgid "We would love to hear your suggestions and comments about the Cloudworks site. Please e-mail us at !email-link!. You can also use this address to report bugs and any issues with content."
+msgstr "Θα θέλαμε πολύ να ακούσουμε τις προτάσεις και τα σχόλιά σας σχετικά με τον ιστοχώρο του Cloudworks. Παρακαλούμε στείλτε μας τα μηνύματά σας στη διεύθυνση!email-link!. Μπορείτε επίσης να χρησιμοποιήσετε τη διεύθυνση αυτή για να αναφέρετε πιθανά σφάλματα και προβλήματα σχετικά με το περιεχόμενο."
+
+#: views\about\about.php:28
+msgid "Background"
+msgstr "Ερευνητικό Υπόβαθρο"
+
+#. /Translators: !project-link text is "Open University Learning Design Initiative".
+#: views\about\about.php:29
+msgid ""
+"Cloudworks is being developed by the Institute of Educational Technology at The Open University. \n"
+" It is part of the !project-link and is funded by both JISC and The Open University."
+msgstr ""
+"Το Cloudworks αναπτύσσεται από το Ινστιτούτο Εκπαιδευτικής Τεχνολογίας του Ανοιχτού Πανεπιστημίου της Αγγλίας. \n"
+"nΑποτελεί μέρος του !project-link και χρηματοδοτείται από το JISC και το Ανοικτό Πανεπιστήμιο της Αγγλίας."
+
+#. /Translators: ** The VIEWS / ABOUT section. **
+#: views\about\about.php:33
+msgid ""
+"[link-av]The Cloudworks Vision Statement[/link] outlines the aims of the site.\n"
+" The [link-news]Cloudworks blog[/link] gives current information on what we are working on and our plans for the site."
+msgstr ""
+"H [link-av]Η Δήλωση του Οράματος του Cloudworks[/link] σκιαγραφεί τους στόχους του ιστοχώρου αυτού.\n"
+"To [link-news]Cloudworks blog[/link] παρέχει επίκαιρες πληροφορίες για τα θέματα με τα οποία ασχολούμαστε και τα σχέδια μας για τον ιστοχώρο του Cloudworks. "
+
+#: views\about\about.php:37
+msgid "The Cloudworks Team"
+msgstr "Η ομάδα του Cloudworks "
+
+#: views\about\about.php:38
+msgid "The Cloudworks team are:"
+msgstr "Η ομάδα του Cloudworks αποτελείται από: "
+
+#: views\about\about.php:40
+msgid "OULDI project leader"
+msgstr "Επικεφαλής έργου OULDI"
+
+#: views\about\about.php:41
+msgid "lead developer"
+msgstr "Επικεφαλής προγραμματιστής"
+
+#: views\about\about.php:42
+msgid "project officer"
+msgstr "Λειτουργός έργου"
+
+#: views\about\about.php:43
+msgid "developer"
+msgstr "προγραμματιστής"
+
+# By "critical friends" do you mean people who reviewed the site and gave you feedback and comments? Or do you mean very important friends who were crucial into the development of cloudworks?
+# Nic: It means "gave feedback".
+# Nic: REVIEW Please look at "...φίλοι: !friends και !friends-last"
+#: views\about\about.php:45
+msgid ""
+"Thank you to the Cloudworks critical friends: !friends and !friends-last and also to the \n"
+" other current and past members of the OULDI project: !team and !team-last for their comments and contributions."
+msgstr ""
+"Εκφράζουμε τις ευχαριστίες μας για τους φίλους του Cloudworks που μας βοήθησαν με την κριτική τους φίλοι: !friends και !friends-last καθώς επίσης και \n"
+"τα υφιστάμενα και προηγούμενα μέλη του έργου OULDI: !team και !team-last για τα σχόλια και την συνεισφορά τους."
+
+#: views\about\about.php:50
+msgid "The graphic design of the Cloudworks site was done by !link."
+msgstr "Ο γραφικός σχεδιασμός του ιστοχώρου του Cloudworks έγινε από !link"
+
+#: views\about\about.php:53
+msgid "Terms and Conditions"
+msgstr "Όροι Χρήσης"
+
+#: views\about\about.php:54
+msgid "Here are [link-at]the terms and conditions of use for Cloudworks[/link]."
+msgstr "Εδώ μπορείτε να βρείτε τους [link-at]Όρους χρήσης του Cloudworks [/link]."
+
+#: views\about\about.php:64
+#: views\about\faq_site.php:125
+#: views\about\introduction.php:38
+#: views\about\tandc.php:182
+#: views\about\tips.php:52
+#: views\about\vision.php:49
+msgid "You can also search for [link-up]people[/link] and [link-ui]institutions[/link]"
+msgstr "Μπορείτε επίσης να αναζητήσετε [link-up]άτομα[/link] και [link-ui]οργανισμούς[/link]"
+
+#. /Translators: Bookmarklet, a Javascript-based bookmark/shortcut.
+#: views\about\bookmarklet.php:3
+msgid "Cloudworks bookmarklet"
+msgstr "Εργαλείο Σελιδοδεικτών για Cloudworks "
+
+# Nic: removed "Cloudworks" to match application.po
+#: views\about\faq_site.php:4
+msgid "FAQ - Using the Site"
+msgstr "Συνήθεις ερωτήσεις - Χρήση του ιστοχώρου"
+
+#. /Translators: ABOUT / FAQ
+#: views\about\faq_site.php:10
+msgid "What is the difference between a Cloud  and a Cloudscape?"
+msgstr "Παια είναι η διαφορά μεταξύ Cloud  και Cloudscape?"
+
+#: views\about\faq_site.php:12
+msgid "Clouds can be anything of  relevance to learning and teaching, for example: a website; a description of a  learning activity; a case study; a resource or tool; or a summary of a presentation. You can also use clouds to pose questions to the Cloudworks community."
+msgstr "Ένα cloud μπορεί να είναι οτιδήποτε σχετικό με την εκμάθηση και τη διδασκαλία, για παράδειγμα μια ιστοσελίδα, η περιγραφή μιας μαθησιακής δραστηριότητας, μια μελέτη περίπτωσης, ένας πόρος ή ένα εργαλείο, ή μια περίληψη κάποιας παρουσίασης. Μπορείτε επίσης να χρησιμοποιήσετε το clouds για να θέσετε ερωτήματα στην κοινότητα του Cloudworks. "
+
+#: views\about\faq_site.php:14
+msgid "A Cloudscape is simply a collection, or bundle, of related Clouds. You might set up a Cloudscape to group Clouds around a topic (i.e. assessment), an event  (i.e. a conference or course), or set up a personal Cloudscape to group Clouds you are particularly interested in. One Cloud can belong to any number of  Cloudscapes. For more guidance, see [link-c2554]How to set up a Cloud or Cloudscape[/link]."
+msgstr "Ένα Cloudscape είναι απλά μια συλλογή με συσχετιζόμενα Clouds. Μπορείτε να φτιάξετε ένα Cloudscape για να ομαδοποιήσετε τα Clouds γύρω από ένα θέμα (π.χ. αξιολόγηση), ένα γεγονός (π.χ. ένα συνέδριο), ή να δημιουργήσει ένα προσωπικό Cloudscape για να ομαδοποιήσετε τα Clouds που σας ενδιαφέρουν. Ένα Cloud μπορεί να ανήκει σε οποιοδήποτε αριθμό Cloudscapes. Για περισσότερες πληροφορίες διαβάστε τον [link-c2554] Οδηγό δημιουργίας Clouds και Cloudscapes[/link] "
+
+#: views\about\faq_site.php:16
+msgid "Clouds and Cloudscapes have different functionality."
+msgstr "Τα Clouds και τα Cloudscapes έχουν διαφορετική λειτουργικότητα."
+
+#: views\about\faq_site.php:17
+msgid "!cloud: for discussion, sharing and debate"
+msgstr "!cloud: για συζητήση, ανταλλαγή ιδεών και επειχηρηματολογία γύρω από κάποιο θέμα"
+
+#: views\about\faq_site.php:19
+msgid "Have a discussion"
+msgstr "Δημιουργήστε μια συζήτηση"
+
+#: views\about\faq_site.php:20
+msgid "Embed a video or image"
+msgstr "Ενσωματώστε ένα  βίντεο ή μια εικόνα"
+
+#: views\about\faq_site.php:21
+msgid "Add a link"
+msgstr "Προσθήκη συνδέσμου"
+
+#: views\about\faq_site.php:22
+msgid "Add an academic reference"
+msgstr "Προσθήκη ακαδημαϊκής αναφοράς "
+
+#: views\about\faq_site.php:23
+msgid "Add extra content"
+msgstr "Προσθήκη επιπρόσθετου περιεχομένου "
+
+#: views\about\faq_site.php:24
+#: views\about\faq_site.php:31
+msgid "Add tags"
+msgstr "Προσθήκη ετικετών "
+
+#: views\about\faq_site.php:26
+msgid "!cloudscape: for collecting, linking and following  Clouds"
+msgstr "!cloudscape: για συλλογή, διασύνδεση και λήψη ενημερώσεων για Clouds "
+
+#: views\about\faq_site.php:28
+msgid "Follow the Cloudscape"
+msgstr "Follow Cloudscape"
+
+#: views\about\faq_site.php:29
+msgid "RSS feed"
+msgstr "RSS feed"
+
+#: views\about\faq_site.php:30
+msgid "View Cloudstream"
+msgstr "Προβολή Cloudstream"
+
+#: views\about\faq_site.php:32
+msgid "Add Clouds"
+msgstr "Προσθήκη Clouds"
+
+#: views\about\faq_site.php:33
+msgid "Upload a picture"
+msgstr "Φόρτωση εικόνας "
+
+#: views\about\faq_site.php:34
+msgid "Add a Twitter feed"
+msgstr "Προσθήκη Twitter feed"
+
+#: views\about\faq_site.php:37
+msgid "I didn't receive my registration email - what should I do?"
+msgstr "Δεν έχω λάβει το email με την εγγραφή μου - τι πρέπει να κάνω;"
+
+#: views\about\faq_site.php:38
+msgid "When you  first register you will be send a confirmation e-mail automatically. This will usually happen immediately but in unusual cases may take longer. Sometimes the automatic e-mail will end up in a spam folder so please also check there. If you still haven't received an email after about an hour please contact the team !email-link!"
+msgstr "Όταν εγγραφείτε για πρώτη φορά στο Cloudworks θα σας σταλεί αυτόματα ένα email το οποίο θα επιβεβαιώνει την εγγραφή σας. Συνήθως αυτό συμβαίνει αμέσως αλλά σε ασυνήθιστες περιπτώσεις μπορεί να πάρει περισσότερο χρόνο. Μερικές φορές το αυτόματο ηλεκτρονικό μήνυμα μπορεί να καταλήξει στον φάκελλο Ανεπιθύμητων Μηνυμάτων (Spam) γι'αυτό παρακαλώ όπως ελέγξετε και εκεί. Εάν μετά από μια ώρα δεν έχετε ακόμα λάβει μήνυμα ηλεκτρονικού ταχυδρομείου παρακαλώ επικοιemail μετά από μια ώρα παρακαλώ επικοινωνήστε μαζί μας στο !email-link!"
+
+#: views\about\faq_site.php:40
+msgid "I've lost my password - what should I do?"
+msgstr "Έχω χάσει τον κωδικό πρόσβασής μου - τι πρέπει να κάνω;"
+
+#: views\about\faq_site.php:41
+msgid "If you have lost or forgotten your password, the site can quickly send you a new one."
+msgstr "Εάν έχετε χάσει ή ξεχάσει τον κωδικό σας, το Cloudworks μπορεί γρήγορα να σας στείλει ένα νέο κωδικό."
+
+#: views\about\faq_site.php:43
+msgid "Click on Log in"
+msgstr "Κάντε κλίκ στο κουμπί 'Σύνδεση'"
+
+#: views\about\faq_site.php:44
+msgid "Click on [link-pas]Forgotten Password[/link]"
+msgstr "Κάντε κλίκ στο κουμπί [link-pas]Ξεχάσατε τον κωδικό σας[/link]"
+
+#: views\about\faq_site.php:46
+msgid "Enter the e-mail address associated with your account and click send"
+msgstr "Εισάγετε τη διεύθυνση ηλεκτρονικού ταχυδρομείου που σχετίζεται με το λογαριασμό σας και πατήστε αποστολή"
+
+#: views\about\faq_site.php:47
+msgid "You will receive an email within a few minutes (if you don't, check your spam folder)"
+msgstr "Θα λάβετε ένα μήνυμα μέσω ηλεκτρονικού ταχυδρομείου μέσα σε λίγα λεπτά - αν όχι ελέγξτε τον φάκελλο Ανεπιθύμητων μηνυμάτων (Spam)"
+
+#: views\about\faq_site.php:48
+msgid "Click on the link"
+msgstr " Κάντε κλίκ στον σύνδεσμο"
+
+#: views\about\faq_site.php:49
+msgid "You will be sent another e-mail with your new 5 character password"
+msgstr "Θα σας αποσταλεί ακόμη ένα e-mail με τον νέο σας πενταψήφιο κωδικό προσβασης"
+
+#: views\about\faq_site.php:50
+msgid "This new password should be changed as soon as possible. Log in and change your password by going to your profile page"
+msgstr "Συμβουλεύεστε να αλλάξετε τον νέο αυτό κωδικό το συντομότερο δυνατό. Συνδεθείτε και αλλάξτε τον κωδικό σας πηγαίνοντας στη σελίδα του προφίλ σας"
+
+#: views\about\faq_site.php:53
+msgid "How do I upload files?"
+msgstr "Πώς μπορώ να φορτώσω αρχεία; "
+
+#: views\about\faq_site.php:54
+msgid "Cloudworks is not a repository - this means that it is not possible to upload files onto the site. We have done this for a number of reasons, not least because we  recognise the issues associated with uploading documents to multiple places  (such as editing and managing permissions)."
+msgstr "Τα Cloudworks δεν είναι χώρος αποθήκευσης αρχείων - αυτό σημαίνει ότι δεν μπορείτε να αποθηκεύετε τα αρχεία σας πάνω στον ιστοχώρο του Cloudworks. Έχουμε ακολουθήσει αυτή την τακτική για πολλούς λόγους, ένας από τους οποίους είναι τα ζητήματα που μπορούν να προκύψουν από την ταυτόχρονη φόρτωση αρχείων σε πολλούς χώρους (για παράδειγμα θέματα επεξεργασίας και διαχείρησης δικαιωμάτων χρήσης)"
+
+#: views\about\faq_site.php:55
+msgid "We have  made it really easy to embed or link to papers, slideshows, videos, learning designs and pictures etc. For more information on how to do this see [link-c2522]'Sharing pictures, videos, case  studies and ideas through links and embeds'[/link]"
+msgstr "Έχουμε κάνει πραγματικά απλή την ενσωμάτωση ή την προσθήκη συνδέσμου σε έγγραφα, παρουσιάσεις, βίντεο, σχέδια μάθησης, φωτογραφίες κ.α. Για περισσότερες πληροφορίες σχετικά με το πώς να το κάνετε αυτές τις λειτουργίες δείτε τον οδηγό [link-c2522]'Πώς να μοιράζεστε εικόνες, βίντεο, μελέτες περίπτωσης και ιδέες μέσω συνδέσμων και ενσωματωμένου περιεχομένου'[/link]"
+
+#: views\about\faq_site.php:59
+msgid "My Cloudscape picture is too big. How can I reduce its size?"
+msgstr "Η εικόνα του Cloudscape μου είναι πολύ μεγάλη. Πώς μπορώ να μειώσει το μέγεθός της;"
+
+#: views\about\faq_site.php:60
+msgid "It is possible to upload a picture to a Cloudscape (it is not yet possible to do this in a Cloud see [link-c2522]'Sharing  pictures, videos, case studies and ideas through links and embeds'[/link]) but the following restrictions apply:"
+msgstr "Μπορείτε να φορτώσετε μια εικόνα σε ένα Cloudscape (δεν είναι ακόμη δυνατό να γίνει αυτό σε ένα Cloud. Δείτε τον οδηγό  [link-c2522]'Πώς να μοιράζεστε εικόνες, βίντεο, μελέτες περίπτωσης και ιδέες μέσω συνδέσμων και ενσωματωμένου περιεχομένου'[/link]), αλλά εφαρμόζονται οι ακόλουθοι περιορισμοί:"
+
+#: views\about\faq_site.php:63
+msgid "The image must be landscape not portrait."
+msgstr "Η εικόνα πρέπει να είναι landscape, όχι portrait."
+
+#: views\about\faq_site.php:64
+msgid "We will crop the picture to !dimensions pixels. If you want to control how the picture will be cropped, please upload an image of those dimensions."
+msgstr "Θα αποκόψουμε την εικόνα σε !dimensions pixels. Εάν θέλετε να ελέγξετε πώς θα κοπεί η εικόνα παρακαλείστε να φορτώσετε μια εικόνα αυτών των διαστάσεων."
+
+#: views\about\faq_site.php:66
+msgid "Maximum file-size of !sizeKB. Maximum upload dimensions (in pixels): !dimensions."
+msgstr "Μέγιστο μέγεθος αρχείου του !sizeKB.. Μέγιστες διαστάσεις (σε pixels): !dimensions."
+
+#: views\about\faq_site.php:67
+msgid "JPG, GIF, or PNG image formats"
+msgstr " JPG, GIF, ή PNG τύποι εικόνας"
+
+#: views\about\faq_site.php:69
+msgid "You may find that you have to reduce the size of the picture or compress the file to upload it:"
+msgstr "Μπορεί να διαπιστώσετε ότι χρειάζετε να μειώσετε το μέγεθος της εικόνας ή συμπίεσετε το αρχείου για να μπορείτε να το φορτώσετε:"
+
+#: views\about\faq_site.php:71
+msgid "!link Using Microsoft Office Picture Manager to resize your picture"
+msgstr "!link  Χρήση του Microsoft Office Picture Manager για αλλαγή μεγέθους εικόνας"
+
+#: views\about\faq_site.php:72
+msgid "!link Using Microsoft Office Picture Manager to compress a picture file"
+msgstr "!link Χρήση του Microsoft Office Picture Manager για συμπίεση του αρχείου εικόνας"
+
+#: views\about\faq_site.php:73
+msgid "!link Using Apple's iPhoto to resize your picture and/ or file size"
+msgstr "!link Χρήση του Apple's iPhoto για να αλλάξετε το μέγεθος της εικόνας και/ή το μέγεθος του αρχείου"
+
+#: views\about\faq_site.php:75
+msgid "It is worth noting that you can't do this in Microsoft Paint."
+msgstr "Αξίζει να σημειωθεί ότι αυτό δεν μπορεί να γίνει στο Microsoft Paint."
+
+#: views\about\faq_site.php:77
+msgid "How do I add a Twitter stream?"
+msgstr "Πώς μπορώ να προσθέσω ένα Twitter stream;"
+
+#: views\about\faq_site.php:78
+msgid ""
+"You can add a Twitter stream to a Cloudscape but not to a Cloud. You can not add a Twitter stream to someone else's Cloudscape unless you have been given admin permission for the cloudscape by the Cloudscape owner.\n"
+" Please note that Tweets are only available from Twitter for 3 months so if you want to keep an enduring record of the discussion you will need to set up a Tweet archive (using a service like !link)."
+msgstr ""
+"Μπορείτε να προσθέσετε ένα Twitter stream σε Cloudscape αλλά όχι σε Cloud. Δεν μπορείτε να προσθέσετε Twitter stream σε Cloudscape άλλου ατόμου εαν δεν σας έχουν δοθεί δικαιώματα διαχείρισης του cloudscape από τον ιδιοκτήτη του.\n"
+" Παρακαλώ σημειώστε ότι τα Tweets είναι διαθέσιμα από το Twitter μόνο για 3 μήνες, οπότε αν θέλετε μια διαρκή καταγραφή της συζήτησης θα πρέπει να δημιουργήσετε ένα αρχείο Tweet (χρησιμοποιώντας υπηρεσίες όπως !link)."
+
+#: views\about\faq_site.php:81
+msgid "To add a Twitter stream to a Cloudscape go to the Cloudscape and click on edit. Add your [link-twit](#) hash tag[/link] in the Twitter tag box. For more information about setting up a #tag and Twitter archive please see [link-c2524]'Using Twitter in Cloudworks'[/link]"
+msgstr "Για να προσθέσετε ένα Twitter stream σε Cloudscape πηγαίνετε στο Cloudscape και κάντε κλικ στο κουμπί Επεξεργασία. Προσθέστε το [link-twit](#) hash tag[/link] σας στο πλαίσιο Twitter tag. Για περισσότερες πληροφορίες σχετικά με την δημιουργία #tag και αρχείου Twitter μπορείτε να διαβάσετε τον οδηγό [link-c2524]'Χρήση του Twitter στο Cloudworks'[/link]"
+
+#: views\about\faq_site.php:84
+msgid "Can I restrict access/ add editors to my Clouds and Cloudscapes?"
+msgstr "Μπορώ να περιορίσω την πρόσβαση/ να προσθέσω συντάκτες στα Clouds  και Cloudscapes μου;"
+
+#: views\about\faq_site.php:85
+msgid "The Cloudworks site is open, which means anyone can search for and view everything on the site. However, it is possible to manage permissions to Cloudscapes you have set up. By clicking on <em>'permissions'</em>on the right hand side of your Cloudscape page you can:"
+msgstr "Ο ιστοχώρος του Cloudworks είναι ανοιχτός, που σημαίνει πως ο καθένας μπορεί να αναζητήσει και να δει τα πάντα που υπάρχουν στον ιστοχώρο. Ωστόσο, μπορείτε να διαχειριστείτε τα δικαιώματα για τα Cloudscapes που έχετε δημιουργήσει εσείς. Κάνοντας κλικ στο κουμπί <em>'Δικαιώματα'</em>  στη δεξιά πλευρά του Cloudscape σας, μπορείτε:"
+
+#: views\about\faq_site.php:87
+msgid "Close your Cloudscape so that other people can't add Clouds to it"
+msgstr "Να κλείσετε τα Cloudscape σας έτσι ώστε να μην μπορούν να προσθέτουν Clouds  άλλα άτομα σε αυτό"
+
+#: views\about\faq_site.php:88
+msgid "Add one or more users as a 'poster' - this means they can add Clouds to an otherwise closed Cloudscape"
+msgstr "Να προσθέσετε έναν ή περισσότερους χρήστες ως συντάκτες - αυτό σημαίνει ότι οι χρήστες αυτοί θα μπορούν να προσθέτουν Clouds στο Cloudscape παρόλο που θα είναι κλειστό"
+
+#: views\about\faq_site.php:89
+msgid "Give one or more users full admin rights of your Cloudscape"
+msgstr "Να δώσετε σε έναν ή σε περισσότερους χρήστες πλήρη δικαιώματα διαχείρισης του Cloudscape σας"
+
+#: views\about\faq_site.php:92
+msgid "Why are my items being moderated?"
+msgstr "Γιατί τα αντικείμενά μου είναι υπό εποπτεία; "
+
+#: views\about\faq_site.php:93
+#, possible-php-format
+msgid ""
+"It is really important to us that Cloudworks stays free of spam and we use an  external spam filter on the site called !link which is 99.77% effective. From time to time,\n"
+" the filter will mistakenly identify a message as spam and put it forward for moderation. During working hours will quickly pick these up, check and clear them - although this might take longer at the weekends or in the evenings (GMT). This is likely to be a one-off occurrence."
+msgstr ""
+"Είναι πολύ σημαντικό για εμάς, το Cloudworks να παραμείνει χωρίς ανεπιθύμητο περιεχόμενο (spam). Γι'αυτό τον λόγο χρησιμοποιούμε ένα εξωτερικό Spam Filter για τον ιστοχώρο μας που ονομάζεται !lin και το οποίο είναι 99.7% αποτελεσματικό. \n"
+"Σε μεμονωμένες περιπτώσεις το φίλτρο θα αναγνωρίσει εσφαλμένα ένα μήνυμα ως ανεπιθύμητο και θα το θέσει υπό επιτήρηση. Κατά τη διάρκεια των ωρών εργασίας θα παραλάβουμε τα αντικείμενα υπό επιτήρηση το συντομότερο δυνατό, θα τα ελέγξουμε και θα τα διασαφηνίσουμε - παρόλο που αυτή η διαδικασία μπορεί να πάρει περισσότερο χρόνο τα Σαββατοκυρίακα ή τα βράδια (GMT). Εάν συμβεί τέτοιο περιστατικό σε εσάς το πιθανότερο είναι ότι θα είναι μεμονωμένο και δεν θα σας ξανασυμβεί μετά την πρώτη φορά."
+
+#: views\about\faq_site.php:96
+msgid "If you are finding that your posts are constantly being sent for moderation then please contact us !email-link!."
+msgstr "Εάν διαπιστώαετε ότι οι καταχωρήσεις σας στέλνονται συνεχώς για επιτήρηση παρακαλώ επικοινωνήστε μαζί μας !email-link!."
+
+#: views\about\faq_site.php:98
+msgid "Can I change my password or picture?"
+msgstr "Μπορώ να αλλάξω τον κωδικό πρόσβασης ή την εικόνα μου; "
+
+#: views\about\faq_site.php:99
+msgid "You can change all of these on your profile page:"
+msgstr "Μπορείτε να αλλάξετε όλα αυτά στην σελίδα του προφίλ σας:"
+
+#: views\about\faq_site.php:101
+msgid "Log-in and click on the red tab with  your name on."
+msgstr "Συνδεθείτε και κάντε κλίκ στην κόκκινη ετικέτα με το όνομά σας."
+
+#: views\about\faq_site.php:102
+msgid "From the drop-down box choose 'Your  Profile'"
+msgstr "Από το drop-down πλαίσιο επιλέξτε 'Το Προφίλ μου'"
+
+#: views\about\faq_site.php:103
+msgid "Then either 'edit' to change your name and other details, 'edit picture' to change or add your picture, or 'change password' to change your password."
+msgstr "Κατόπιν είτε πατήστε στο 'Επεξεργασία' για να αλλάξετε το όνομά σας και άλλες πληροφορίες, 'Επεξεργασία εικόνας' για να αλλάξετε ή να προσθέσετε την εικόνα σας,  ή τέλος το 'Αλλαγή Κωδικού Πρόσβασης' για να αλλάξετε τον κωδικό πρόσβασης στο Cloudworks."
+
+#: views\about\faq_site.php:106
+msgid "Can I have two accounts with the same password?"
+msgstr "Μπορώ να έχω δύο λογαριασμούς με το ίδιο κωδικό πρόσβασης;"
+
+#: views\about\faq_site.php:107
+msgid "An email address can only be linked to one profile. If you want to set up another profile, for a group or course for example, you will have to choose a different address."
+msgstr "Μια διεύθυνση ηλεκτρονικού ταχυδρομείου μπορεί να συνδεθεί μόνο με ένα προφίλ. Αν θέλετε να δημιουργήσετε ένα άλλο προφίλ  π.χ. για μια ομάδα ή για ένα μάθημα, θα πρέπει να επιλέξετε μια διαφορετική διεύθυνση."
+
+#: views\about\faq_site.php:109
+msgid "How can I change my email  notifications?"
+msgstr "Πώς μπορώ να αλλάξω τις ειδοποιήσεις που λαμβάνω μέσω ηλεκτρονικού ταχυδρομείου;"
+
+#: views\about\faq_site.php:110
+msgid "You can  switch off and on the following email preferences:"
+msgstr "Μπορείτε να ενεργοποιήσετε και να απενεργοποιήσετε τις ακόλουθες προτιμήσεις ηλεκτρονικού ταχυδρομείου:"
+
+#: views\about\faq_site.php:112
+msgid "Notify me when somebody follows me"
+msgstr "Αποστολή ειδοποίησης όταν κάποιος γίνει follower μου"
+
+#: views\about\faq_site.php:113
+msgid "Notify me when someone comments on one of my Clouds"
+msgstr "Ειδοποίηση όταν κάποιος προσθέτει σχόλιο σε ένα από τα Clouds μου"
+
+#: views\about\faq_site.php:114
+msgid "Notify me when someone comments of a Cloud on which I have already commented"
+msgstr "Ειδοποίηση όταν κάποιος προσθέσει σχόλιο σε ένα Cloud στο οποίο έχω κι εγώ σχολιάσει "
+
+#: views\about\faq_site.php:115
+msgid "Receive occasional e-mails from the Cloudworks team"
+msgstr "Θέλω να λαμβάνω περιστασιακά e-mails με νέα του Cloudworks"
+
+#: views\about\faq_site.php:116
+msgid "Display my e-mail address on my profile"
+msgstr "Εμφάνιση της διεύθυνσης ηλεκτρονικού ταχυδρομείου μου στο προφίλ μου"
+
+#: views\about\faq_site.php:118
+msgid "You can do this by logging-in, clicking on the red tab with your name on, and choosing 'E-mail  Preferences'."
+msgstr "Μπορείτε να το κάνετε αυτό αφού συνδεθείτε στο Cloudworks. Κάντε κλικ στην κόκκινη ετικέτα με το όνομά σας, και την επιλέξτε 'Προτιμήσεις Ηλεκτρονικού Ταχυδρομείου'"
+
+#: views\about\introduction.php:4
+msgid "An introduction to Cloudworks"
+msgstr "Ειισαγωγή στο Cloudworks"
+
+#: views\about\introduction.php:11
+msgid "What is it?"
+msgstr "Τι είναι το Cloudworks;"
+
+#: views\about\introduction.php:12
+msgid "Cloudworks is a social networking site for finding, sharing and discussing learning and teaching ideas and designs."
+msgstr "Τα Cloudworks είναι ένας ιστοχώρος κοινωνικής δικτύωσης για την εύρεση,  κοινή χρήση και συζήτηση ιδεών και σχεδίων μάθησης και διδασκαλίας."
+
+#: views\about\introduction.php:13
+msgid "Core concepts."
+msgstr "Βασικές Έννοιες"
+
+#: views\about\introduction.php:14
+msgid "There are two key concepts associated with Cloudworks - the notion of 'Clouds' and 'Cloudscapes'."
+msgstr "Υπάρχουν δύο βασικές έννοιες που συνδέονται με τα Cloudworks - η έννοια των 'Clouds' και των  'Cloudscapes'."
+
+#: views\about\introduction.php:15
+msgid "Clouds."
+msgstr "Clouds."
+
+#: views\about\introduction.php:16
+msgid "A Cloud can be anything to do with learning and teaching. Each Cloud is 'social' in that it is possible to have a conversation around the Cloud. A Cloud could be: a short description of a learning and teaching idea, information about resources or tools for learning and teaching, detailed learning designs or case studies of practice or a question as a starting point for a discussion."
+msgstr "Ένα Cloud μπορεί να είναι οτιδήποτε σχετικό με εκμάθηση και διδασκαλία. Κάθε  Cloud είναι 'κοινωνικό' υπό την έννοια ότι είναι δυνατόν να έχουμε μια συζήτηση γύρω από αυτό. Ένα  Cloud θα μπορούσε να είναι: μια σύντομη περιγραφή μιας ιδέας για μάθηση και διδασκαλία, πληροφορίες σχετικά με πηγές ή εργαλεία για την εκμάθηση και τη διδασκαλία, λεπτομερή σχέδια μάθησης ή μελέτες περίπτωσης πρακτικών ή ένα ερώτημα που τίθεται ως αφετηρία για μια συζήτηση."
+
+#: views\about\introduction.php:17
+msgid "Cloudscapes."
+msgstr "Cloudscapes."
+
+#: views\about\introduction.php:18
+msgid "Clouds can be aggregated into 'Cloudscapes' associated with a particular event, purpose or interest. For example you can have Cloudscapes associated with a conference aggregating Clouds about conference presentations or tools and resources referenced. A Cloudscape can be set up for a workshop where Clouds might include workshop resources, tools or activities. Cloudscapes can also be more general for example to stimulate debate about a particular teaching approach.  Clouds can be associated with more than one Cloudscape."
+msgstr "Τα Clouds μπορούν να συγκεντρώνονται σε 'Cloudscapes'  το οποία σχετίζονται με ένα συγκεκριμένο γεγονός, σκοπό ή ενδιαφέρον. Για παράδειγμα μπορείτε να έχετε ένα Cloudscapes σχετικό με ένα συνέδριο με την συγκέντρωση διαφόρων Clouds που αναφέρονται σε παρουσιάσεις του συνεδρίου ή εργαλεία και πηγές που αναφέρθηκαν στο συνέδριο. Ένα Cloudscape μπορεί επίσης να είναι πιο γενικό, για παράδειγμα να αποτελούν το έναυσμα συζητήσεων γύρω από μια συγκεκριμένη προσέγγιση Διδασκαλίας. Σημειώνετε ότι ένα Cloud μπορεί να συσχετιστεί με περισσότερα από ένα Cloudscape."
+
+#: views\about\introduction.php:19
+msgid "Creating a user account."
+msgstr "Δημιουργία λογαριασμού χρήστη."
+
+#: views\about\introduction.php:20
+msgid "You can view everything available on the site, but if you want to create Clouds or Cloudscapes or if you want to add comments, then you need to create an account."
+msgstr "Μπορείτε να δείτε όλο το διαθέσιμο υλικό του ιστοχώρου, αλλά εάν θέλετε να δημιουργήσετε Clouds ή Cloudscapes ή αν θέλετε να προσθέσετε σχόλια τότε θα πρέπει να δημιουργήσετε λογαριασμό."
+
+#: views\about\introduction.php:21
+msgid "Navigating the site."
+msgstr "Πλοήγηση στον ιστοχώρο."
+
+#: views\about\introduction.php:22
+msgid "The front page shows a rolling list of new Clouds added to the site on the right hand side, features Cloudscapes are presented in the middle panel and a list of Clouds that have recently had comments added to them appear on the left hand side. You can get a list of all the Clouds in the site by clicking on 'All Clouds'. A title and brief summary for each Cloud is provided. Click on the link to get further details. Clicking on the 'All Cloudscapes' link lists all the Cloudscapes in the site, as with individual Clouds a brief description of each Cloudscape is provided. Clicking on a particular Cloudscape will take you into it and will show all the Clouds associated with that Cloudscape."
+msgstr "Η πρώτη σελίδα εμφανίζει ένα κυλιόμενο κατάλογο των νέων Clouds που προστέθηκαν στον ιστοχώρο στη δεξιά πλευρά. Στο κεντρικό πλαίσιο παρουσιάζεται μια λίστα με Featured Cloudscapes και στα αριστερά εμφανίζεται η λίστα από τα Clouds στα οποία έχουν πρόσφατα προστεθεί νέα σχόλια. Μπορείτε να δείτε μια λίστα με όλα τα Clouds στον ιστοχώρο κάνοντας κλικ στο 'Όλα τα  Clouds'. Για κάθε Cloud παρέχεται ο τίτλος του και μια σύντομη περίληψη. Κάντε κλικ στον σύνδεσμο για να πάρετε περισσότερες λεπτομέρειες. Κάνοντας κλικ στην επιλογή 'Όλα τα Cloudscapes'  μπορείτε να δείτε μια λίστα με όλα τα Cloudscapes στον ιστοχώρο. Όπως και για τα Clouds παρέχεται μια σύντομη περιγραφή για κάθε Cloudscape. Κάνοντας κλικ σε ένα από τα Cloudscape θα μεταφερθείτε σε αυτό και θα δείτε όλα τα Clouds που συνδέονται με το  συγκεκριμένο Cloudscape."
+
+#: views\about\introduction.php:23
+msgid "Setting up a profile."
+msgstr "Δημιουργία και ρυθμίσεις προφίλ."
+
+#: views\about\introduction.php:24
+msgid "You can set up a profile and include some information about yourself. Your profile page automatically lists any Clouds you have created. You can follow both people and Cloudscapes. Your profile page indicates the Cloudscapes you are following, who you are following and who is following you."
+msgstr "Μπορείτε να δημιουργήσετε ένα προφίλ που να περιλαμβάνει πληροφορίες για τον εαυτό σας. Η σελίδα του προφίλ σας περιέχει αυτόματα την λίστα με τα Clouds που έχετε δημιουργήσει. Μπορείτε να λαμβάνετε ενημερώσεις (follow) τόσο άτομα όσο και Cloudscapes. Η σελίδα του προφίλ σας θα δείχνει τα Cloudscapes στα οποία είστε follower, το άτομα στα οποία είστε followers και ποιοί είναι οι followers σου."
+
+#: views\about\introduction.php:25
+msgid "Creating a Cloud."
+msgstr "Δημιουργία ενός Cloud."
+
+#: views\about\introduction.php:26
+msgid "To create a Cloud click on the 'Create a Cloud' link. Enter a short title and a summary - these will appear on the 'All Clouds' page and give an indication of what your Cloud is about. Then enter a description - you can include url links, images, etc. You can also provide a URL for more information. You can tag the Cloud in terms of 'tool', 'pedagogy', 'discipline' and 'other'. Clicking on the tag list at the top will list Clouds according to how they have been tagged using these categories. You can preview to see what your Cloud will look like and then submit. A Cloudscape is produced in much the same way. Once your Cloud has been created you can add it to one or more Cloudscapes. You can also go back and edit the Cloud or delete it. Other people registered on Cloudworks are able to add comments to any Clouds or Cloudscapes you produce."
+msgstr "Για να δημιουργήσετε ένα Cloud κάντε κλικ στον σύνδεσμο 'Δημιουργία Cloud'. Εισάγετε έναν σύντομο τίτλο και μια περίληψη - αυτά θα εμφανίζονται στη σελίδα ''Ολα τα Clouds' και θα υποδηλώνουν το θέμα του συγκεκριμένου Cloud. Έπειτα εισάγετε μια περιγραφή - μπορείτε να συμπεριλάβετε συνδέσμους URL, εικόνες κ.α. Μπορείτε επίσης να παρέχετε ένα URL για περισσότερες πληροφορίες. Μπορείτε να προσθέσετε ετικέτες στο Cloud σας όσον αφορά το εργαλείο, την παιδαγωγία που αφορά, το γνωστικό πεδίο με το οποίο σχετίζεται ή με κάποιο άλλο παράγοντα.  Κάνοντας κλικ στον κατάλογο ετικετών στην κορυφή της σελίδας η λίστα με τα Clouds θα ομαδοποιηθεί  με βάση τις ετικέτες που τους τοποθετήθηκαν σύμφωνα με τις τέσσερις αυτές κατηγορίες. Μπορείτε να δείτε πώς θα φαίνεται το Cloud σας πριν να το δημοσιεύσετε. Ένα Cloudscape δημιουργείται με τον ίδιο σχεδόν τρόπο. Μόλις δημιουργηθεί το Cloud σας μπορείτε να το προσθέσετε σε ένα ή περισσότερα Cloudscapes. Μπορείτε επίσης να επιστρέψετε και να επεξεργαστείτε το Cloud ή να το διαγράψετε. Άτομα που εγγράφονται στο Cloudworks μπορούν να προσθέσουν σχόλια σε οποιοδήποτε από τα δικά σας Clouds  ή Cloudscapes."
+
+#: views\about\introduction.php:27
+msgid "Finding content."
+msgstr "Αναζήτηση περιεχομένου."
+
+#: views\about\introduction.php:28
+msgid "Clouds and Cloudscapes can be tagged by pedagogy, discipline, tool and other and can be searched using these tags or via a search facility. You can also find relevant content by browsing All Clouds, All Cloudscapes or looking at the Clouds associated with individuals under their profile."
+msgstr "Στα Clouds και Cloudscapes μπορούν να τοποθετηθούν ετικέτες με βάση την παιδαγωγία που αφορούν, το γνωστικό τους πεδίο, το εργαλείο που αφορούν ή κάποιο άλλο παράγοντα. Μπορεί να γίνει αναζήτηση με βάση τις ετικέτες ή με την λειτουργία Αναζήτησης. Μπορείτε επίσης να βρείτε σχετικό περιεχόμενο με την προβολή όλων των Clouds και Cloudscapes ή με την προβολή των Clouds που ενδιαφέρουν άτομα τα οποία ακολουθείτε, τα οποία μπορείτε να βρείτε κάτω από το προφίλ κάθε ατόμου. "
+
+#: views\about\introduction.php:29
+msgid "Your Cloudstream."
+msgstr "Το δικό σου Cloudstream."
+
+#: views\about\introduction.php:30
+msgid "All the Clouds created by the people and Cloudscapes you are following are aggregated under your 'My Cloudstream'."
+msgstr "Το δικό σας Cloudstream αποτελείται από όλα τα Clouds που βρίσκονται κάτω από άτομα ή κάτω από τα Cloudscapes για τα οποία λαμβάνεται ενημερώσεις."
+
+#: views\about\tandc.php:7
+msgid "Cloudworks Terms and Conditions of Use"
+msgstr "Όροι Χρήσης του Cloudworks"
+
+#: views\about\tips.php:2
+msgid "Tips and hints for effective use of Cloudworks"
+msgstr "Συμβουλές για την αποτελεσματική χρήση του Cloudworks"
+
+#. /Translators: ABOUT / TIPS
+#: views\about\tips.php:4
+msgid "1. Supporting conferences"
+msgstr "1. Υποστήριξη συνεδρίων"
+
+#: views\about\tips.php:6
+msgid "Set up a Cloudscape for a conference."
+msgstr "Δημιουργία Cloudscape για ένα συνέδριο."
+
+#: views\about\tips.php:7
+msgid "Include a short clear description of the conference in the Cloudscape with a link to the conference website."
+msgstr "Συμπεριλάβετε μια σύντομη και σαφή περιγραφή του συνεδρίου στο Cloudscape με ένα σύνδεσμο στην ιστοσελίδα του συνεδρίου."
+
+#: views\about\tips.php:8
+msgid "Agree and promote a hash (#) tag to be used for the conference, which can be used for Twitter, Blogs, Flckr etc."
+msgstr "Συμφωνήστε με και προωθήστε την χρήση ενός hash (#) tag για κάθε συνέδριο,  η οποία μπορεί να χρησιμοποιηθεί για το Twitter, Blogs, Flckr κ.λπ."
+
+#: views\about\tips.php:9
+msgid "Incorporate a dynamic twitter stream, blog aggregator, flickr stream using the agreed conference tag."
+msgstr "Ενσωματώστε ένα δυναμικό twitter stream, blog aggregator, flickr stream, χρησιμοποιώντας τη συμφωνηθείσα ετικέτα (hash tag) του συνεδρίου."
+
+#: views\about\tips.php:10
+msgid "Promote the conference Cloudscape to delegates, via Twitter etc and invite them to follow the Cloudscape."
+msgstr "Προωθήστε το Cloudscape του συνεδρίου στους αντιπροσώπους μέσω του Twitter κ.λπ. και προσκαλέστε τους να γίνουν followers το Cloudscape."
+
+# Is this a typo? Nic: Here "Live blog" is used as a verb; "...and include [them] as clouds.." See http://cloudworks.ac.uk/about/tips . Also http://coveritlive.com "Whether it's Live Blogging, hosting a weekly..."
+#: views\about\tips.php:11
+msgid "Live blog sessions and include as Clouds in the conference Cloudscape, keep entries short with succinct summaries, provide links to further information."
+msgstr "Δημιουργία ζωντανών συζητήσεων σε blog και προσθήκη τους σαν Clouds κάτω από το Cloudscape του συνεδρίου. Προσπαθήστε να κρατήσετε σύντομες τις καταχωρήσεις σας και να έχετε συνοπτικές περιλήψεις, καθώς επίσης και να παρέχετε συνδέσμους για περαιτέρω πληροφορίες."
+
+#: views\about\tips.php:12
+msgid "Comment on relate Clouds in the Cloudscape that others have created."
+msgstr "Προσθέστε σχόλια σε σχετικά Clouds που έχουν δημιουργήσει άλλοι και που βρίσκονται κάτω από το ίδιο Cloudscape. "
+
+#: views\about\tips.php:13
+msgid "If you would like the Cloudscape to be featured on the front page, send us the URL and a 240x180 image. We'll need permission from the copyright holder to put the image on the site too."
+msgstr "Αν επιθυμείτε τo cloudscape να εμφανίζεται στην αρχική σελίδα, παρακαλώ στείλτε μας το URL και μια εικόνα 240x180. Θα χρειαστούμε επίσης την άδεια του κατόχου των πνευματικών δικαιωμάτων για να αναρτήσουμε την εικόνα στο Cloudworks."
+
+#: views\about\tips.php:14
+msgid "The site is only supported on a best effort basis and during UK working hours, so please don't rely on it as a replacement for a conference website. We also usually perform upgrades on Thursday mornings so there is sometimes some short downtime then.  "
+msgstr "Ο ιστοχώρος αυτός υποστηρίζεται με τον καλύτερο δυνατό τρόπο κατά την διάρκεια των ωρών εργασίας του Ηνωμένου Βασιλείου, χωρίς όμως καμιά εγγύηση.  Παρακαλείστε να μην στηρίζεστε σε αυτό σαν υποκατάστατο ιστοχώρου για ένα συνέδριο. Επιπρόσθετα, συνήθως αναβαθμίζουμε το σύστημα κάθε Πέμπτη πρωί, επομένως ενδέχεται μερικές φορές για μικρό χρονικό διάστημα ο ιστοχώρος να μην λειτουργεί κατά την διάρκεια αυτού του διαστήματος."
+
+#: views\about\tips.php:16
+msgid "2. Supporting workshops"
+msgstr "2. Υποστήριξη Εργαστηρίων "
+
+#: views\about\tips.php:18
+msgid "Cloudscapes can also be used to support workshops and all the tips and hints suggested for supporting conferences are also valid for supporting workshops."
+msgstr "Τα Cloudscapes μπορούν επίσης να χρησιμοποιηθούν για την υποστήριξη εργαστηρίων. Όλες οι συμβουλές και υποδείξεις που προτείνουμε για την υποστήριξη συνεδρίων ισχύουν επίσης για την υποστήριξη εργαστηρίων."
+
+#: views\about\tips.php:19
+msgid "Set up discussion Clouds that can be used as a basis for group activities during the workshop. Include a brief outline of the activity you want delegates to take part in and any associated questions you want them to address. Get them working in groups and entering their discussions as comments on the discussion Cloud. Encourage them to scan what other groups are entering."
+msgstr "Η ρύθμιση συζήτησης στα Clouds μπορεί να χρησιμοποιηθεί ως βάση για τις δραστηριότητες της ομάδας κατά τη διάρκεια του εργαστηρίου. Συμπεριλάβετε μια σύντομη περιγραφή της δραστηριότητας των αντιπροσώπων που θέλετε να λάβουν μέρος και κάθε συναφείς ερωτήσεις που θέλετε να αποστείλλετε. Πάρτε αυτούς που εργάζονται σε ομάδες και εισέρχονται σε συζητήσεις  με παρατηρήσεις σχετικά με τη συζήτηση στο Cloud. Να τους ενθαρρύνετε να ανιχνεύσουν τι άλλες ομάδες εισέρχονται."
+
+#: views\about\tips.php:20
+msgid "Live blog workshop sessions such as plenary discussions and feedback sessions."
+msgstr "Δημιουργία ζωντανών εργαστηρίων σε blog όπως συζητήσεις με όλα τα μέλη και συζητήσεις για ανατροφοδότηση."
+
+#: views\about\tips.php:23
+msgid "3. Aggregating resources"
+msgstr "3. Συλλογή πηγών"
+
+#: views\about\tips.php:25
+msgid "Set up a Cloudscape to support a special interest group and input Clouds of relevant resources. For example Cloudscapes can be set up for particular cohorts of students, enabling them to share good learning resources, and discuss learning strategies."
+msgstr "Δημιουργία ενός Cloudscape για την υποστήριξη μιας ομάδας ενδιαφέροντος και εισάγωγη Clouds με σχετικές πηγές. Για παράδειγμα ένα Cloudscape μπορεί να δημιουργηθεί είναι για συγκεκριμένες ομάδες μαθητών, παρέχοντας τους την δυνατότητα να μοιράζονται ενδιαφέρουσες πηγές μάθησης και να συζητούν στρατηγικές μάθησης."
+
+#: views\about\tips.php:27
+msgid "4. Sharing innovative learning and teaching ideas"
+msgstr "4. Ανταλλαγή καινοτόμων ιδεών για μάθηση και διδασκαλία"
+
+#: views\about\tips.php:29
+msgid "Create Clouds on good learning and teaching ideas you have created or that you have seen or experienced. Keep your Clouds short and succinct; include relevant links to further information. Consider depositing further information in an Open Educational Resource repository such as Connexions. Tag appropriately in terms of subject, pedagogy and tools."
+msgstr "Δημιουργία Clouds για καλές ιδέες εκμάθησης και διδασκαλίας που έχετε δημιουργήσει ή που έχετε δει ή βιώσει. Διατηρήστε τα Clouds σας σύντομα και περιεκτικά; συμπεριλάβετε σχετικούς συνδέσμους για περαιτέρω πληροφορίες. Μπορείτε επίσης να καταθέσετε επιπλέον πληροφορίες σε κάποια Ανοικτή Αποθήκη Εκπαιδευτικών πηγών όπως το Connexions.  Τοποθετήστε τις κατάλληλες ετικέτες σε σχέση με το θέμα, την παιδαγωγική προσέγγιση και τα εργαλεία. "
+
+# REvise Mobile Learning
+#: views\about\tips.php:30
+msgid "Set up a Cloudscape to aggregate related innovative Clouds - for example those relating to mobile learning, problem-based learning, learning a language."
+msgstr "Δημιουργία Cloudscape για συγκέντρωση συσχετιζόμενων καινοτόμων Clouds - παραδείγματος χάριν συγκέντρωση των Clouds που σχετίζονται με mobile learning (μάθηση με χρήση κινητών συσκευών), μάθηση βασισμένη στη επίλυση προβλημάτων, εκμάθηση μιας γλώσσας."
+
+#: views\about\tips.php:31
+msgid "Enrich Clouds using the html functionality available in the editor. Hyperlink to relevant information.  Include illustrative images. Embed slideshare presentations, YouTube videos or flickr images. Aggregate related tweets or blogs."
+msgstr "Εμπλουτίστε τα Clouds χρησιμοποιώντας τη λειτουργία HTML που είναι διαθέσιμη στον επεξεργαστή κειμένου. Προσθέστε συνδέσμους με σχετικές πληροφορίες. Συμπεριλάβετε επεξηγηματικές εικόνες. Ενσωματώστε παρουσιάσεις από το Slideshare, βίντεο από το YouTube ή εικόνες από το flickr. Συγκεντρώστε τα σχετικά tweets ή blogs."
+
+#: views\about\tips.php:32
+msgid "Search the site by browsing the tag Cloud, 'All Clouds' list, 'All Cloudscapes' list or via individual profiles or search using key words."
+msgstr "Αναζητήστε πληροφορίες στον ιστοχώρο ψάχνοντας στην λίστα από τις ετικέτες, την λίστα 'Όλα τα Clouds', 'Όλα τα Cloudscapes', μέσω των προφίλ διαφόρων ατόμων ή με την αναζήτηση λέξεων-κλειδιών."
+
+#: views\about\tips.php:34
+msgid "5. Connect with others"
+msgstr "5. Συνδεθείτε με άλλους χρήστες"
+
+#: views\about\tips.php:36
+msgid "Complete your profile details - include a summary of your interests and link to relevant websites. Provide details of your twitter name, which will enable any tweets with your twitter name on to be aggregated under your profile and will provide a means for other users of Cloudworks to contact you via twitter."
+msgstr "Συμπληρώστε τις λεπτομέρειες του προφίλ σας - συμπεριλάβετε μια περίληψη των ενδιαφερόντων και συνδέσμους σε σχετικούς ιστοχώρους. Παρέχετε τις λεπτομέρειες του  twitter ονόματος σας, το οποίο θα επιτρέψει σε οποιαδήποτε  tweets  με το twitter όνομα σας να μαζευτούν κάτω από το προφίλ σας και να παρέχεται ένα μέσο για τους άλλους χρήστες να έρθουν σε επαφή με εσάς μέσω του twitter."
+
+#: views\about\tips.php:37
+msgid "Follow Cloudscapes and people you are interested in, these will be listed on your profile and give others an idea of your interests."
+msgstr "Γίνεται follower σε Cloudscapes και άτομα που σας ενδιαφέρουν, τα οποία θα απαρριθμούνται στο προφίλ σας και θα δώσουν στους άλλους μια ιδέα γύρω από τα ενδιαφέροντά σας."
+
+#: views\about\tips.php:38
+msgid "Get creating Clouds! These will also be listed on your profile."
+msgstr "Δημιουργήστε δικά σας Clouds! Φυσικά και τα δικά σας Clouds θα παρουσιάζονται στο προφίλ σας."
+
+#: views\about\tips.php:39
+msgid "Engage in a conversation, comment on other people's entries and Clouds."
+msgstr "Συμμετέχετε σε συνομιλίες, σχολίάστε καταχωρήσεις και Clouds άλλων ατόμων."
+
+#: views\about\tips.php:40
+msgid "Find others by name or institution."
+msgstr "Αναζητήστε άτομα με βάση το όνομα ή τον οργανισμό στον οποίο ανήκουν."
+
+#: views\about\tips.php:42
+msgid "6. Keep abreast of new developments"
+msgstr "6. Ενημερωθείτε για τις νέες εξελίξεις"
+
+#: views\about\tips.php:44
+msgid "Set up RSS feeds for Cloudscapes or people you are interested in keeping up to date with."
+msgstr "Ρυθμίστε τα RSS feeds για Cloudscapes ή άτομα για τα οποία θέλετε να ενημερώνεστε."
+
+#: views\about\tips.php:45
+msgid "Browse the front page to get an idea of new Clouds and any new discussions around Clouds."
+msgstr "Ρίξτε μια ματιά στην οικοσελίδα για να πάρετε μια ιδέα για τα νέα Clouds και για τις νέες συζητήσεις γύρω από τα Clouds."
+
+#: views\about\vision.php:4
+msgid "Cloudworks Vision Statement"
+msgstr "Δήλωση Oράματος του Cloudworks"
+
+#. /Translators: ABOUT / VISION
+#: views\about\vision.php:9
+msgid "Cloudworks is a site for finding, sharing and discussing learning and teaching ideas, experiences and issues. The aims are to:"
+msgstr "Το Cloudworks είναι ένας ιστοχώρος όπου μπορείτε να μοιραστείτε, να βρείτε και να συζητήσετε ιδέες και εμπειρίες για μάθηση και διδασκαλία. Οι σκοποί του είναι:"
+
+#: views\about\vision.php:12
+msgid "enable people to find, share and discuss learning and teaching ideas"
+msgstr "Να δώσει την δυνατότητα στα άτομα να βρουν, να μοιραστούν και να συζητήσουν ιδέες εκμάθησης και διδασκαλίας "
+
+#: views\about\vision.php:14
+msgid "connect people with similar educational interests through social networking"
+msgstr "Να συνδέσει τους ανθρώπους με παρόμοια εκπαιδευτικά ενδιαφέροντα μέσω της κοινωνικής δικτύωσης"
+
+#: views\about\vision.php:16
+msgid "provide inspiration on designing learning activities and developing resources"
+msgstr "Να παρέχει έμπνευση για τον σχεδιασμό δραστηριοτήτων για μάθηση και για ανάπτυξη πόρων"
+
+#: views\about\vision.php:18
+msgid "showcase the work of individuals and  communities who want to reach existing but also new  audiences"
+msgstr "Να προβάλει την εργασία ατόμων και ομάδων που θέλουν να προσελκύσουν υπάρχοντα αλλά και νέα ακροατήρια"
+
+#: views\about\vision.php:20
+msgid "provide a place for different  communities to discuss, collaborate and aggregate relevant materials,  ideas and designs"
+msgstr "Να παρέχει ένα χώρο όπου διάφορες κοινότητες μπορούν να συζητήσουν, να συνεργαστούν και να συγκεντρώσουν σχετικό υλικό, ιδέες και σχέδια"
+
+#: views\about\vision.php:22
+msgid "encourage sharing, especially among  people who have not shared learning and teaching ideas and experiences before."
+msgstr "Να ενθαρρύνει την ανταλλαγή απόψεων και ιδεών, ειδικά μεταξύ των ανθρώπων που δεν έχουν ξαναμοιραστεί με άλλους ιδέες και εμπειρίες μάθησης και διδασκαλίας."
+
+#: views\about\vision.php:26
+msgid ""
+"Unlike many existing educational repositories, the emphasis is on building a dynamic collection of ideas and experiences; via a variety of educational content (learning designs, case studies, resources and tools)\n"
+" plus active discussions about the use and effectiveness of this content in different contexts. The voice of users of the site, their experience, reviews and reflections on the content of the site is a central feature. We plan to do this in the following ways:"
+msgstr ""
+"Αντίθετα από πολλές υπάρχουσες εκπαιδευτικές αποθήκες, εδώ δίνεται έμφαση στην οικοδόμηση μιας δυναμικής συλλογής ιδεών και πρακτικών εμπειριών; μέσω μιας μεγάλης ποικιλίας εκπαιδευτικού περιεχομένου (σχέδια μάθησης, μελέτες περίπτωσης, πόροι και εργαλεία) \n"
+" καθώς και  τις ενεργές συζητήσεις για τη χρήση και την αποτελεσματικότητα αυτού του περιεχομένου σε διαφορετικά πλαίσια. Το χαρακτηριστικό γνώρισμα του ιστοχώρου είναι η φωνή των χρηστών του ιστοχώρου, η εμπειρία τους, η κριτική τους σκέψη και οι απόψεις τους γύρω από το περιεχόμενο του ιστοχώρου.  Σχεδιάζουμε να πετύχουμε αυτό τον στόχο με τους ακόλουθους τρόπους:"
+
+#: views\about\vision.php:30
+msgid "Ensure a low barrier to entry for new contributions. We believe that one of the main barriers to contribution to other repositories is the level of detail and metadata required, cumbersome quality control processes and issues around ownership."
+msgstr "Διασφαλίζοντας την εύκολη διαδικασία καταχωρήσεων με την απαίτηση όσο το δυνατό λιγότερων πληροφοριών κατά την καταχώρηση. Πιστεύουμε ότι ένα από τα κύρια εμπόδια που έχουν οι χρήστες για να συμβάλουν σε άλλες διαδικτυακές αποθήκες πληροφοριών είναι το επίπεδο λεπτομέρειας και metadata που απαιτούνται, καθώς και οι φορτικές διαδικασίες διασφάλισης ποιότητας και τα προβλήματα γύρω από το θέμα της ιδιοκτησίας. "
+
+#: views\about\vision.php:32
+msgid "Give the site a people-orientated focus. It is conversation and shared experiences that will draw people to contribute to the site and make it sustainable. Finding the right person to talk to is often as important as finding the right resource."
+msgstr "Δίνοντας στον ιστοχώρο μια ανθρωποκεντρική  εστίαση. Η συζήτηση και οι κοινές εμπειρίες είναι αυτά που θα προσελκύσουν τον κόαμο να συνεισφέρουν στον ιστοχώρο αυτό και να τον  καταστήσουν βιώσιμο. Η εύρεση του σωστού προσώπου για να μιλήσουμε είναι συχνά σημαντικότερη από την εύρεση της σωστής πηγής."
+
+#: views\about\vision.php:34
+msgid "Make all content contributed to the site publicly accessible."
+msgstr "Περέχοντας στο κοινό πρόσβαση σε όλο το περιεχόμενο του ιστοχώρου."
+
+#: views\about\vision.php:36
+msgid "Target people most likely to contribute to a public site, as well as consume content from it.  This will include those with support roles in institutions (such as learning technologists, instructional designers, educational developers), as well as learning and teaching innovators and 'e-learning champions'."
+msgstr "Στοχεύοντας σε άτομα που είναι πιθανότερο να συμβάλουν σε ένα δημόσιο ιστοχώρο, καθώς επίσης και να αντλήσουν από το περιεχόμενό του. Σε αυτά τα άτομα περιλαμβάνονται τα άτομα με υποστηρικτικό ρόλο στους οργανισμούς  (όπως οι τεχνολόγοι της μάθησης, οι εκπαιδευτικοί σχεδιαστές (instructional designers), ερευνητές για ανάπτυξη της εκπαίδευσης), καθώς επίσης και τους καινοτόμους σε μάθηση και διδασκαλία και τους πρωτοπόρους στο e-learning."
+
+#: views\about\vision.php:38
+msgid "Ensure that the site acts as a conduit; by aggregating content from related sites and through APIs, so that users can access the data on the site from elsewhere. This will ensure maximum uptake and repurposing of the content from the site and enable people to use it in innovative ways we may not have anticipated."
+msgstr "Εξασφαλίζοντας ότι ο ιστοχώρος ενεργεί ως αγωγός;  με τη συγκέντρωση του περιεχομένου από σχετικούς ιστοχώρους και μέσω APIs, έτσι ώστε οι χρήστες να μπορούν να έχουν πρόσβαση στα δεδομένα του ιστοχώρου από άλλους χώρους. Αυτό θα εξασφαλίσει το μέγιστο βαθμό ενημέρωσης λήψης και χρησιμοποίησης περιεχομένου του ιστοχώρου και θα επιτρέψει στους ανθρώπους να το χρησιμοποιήσουν με  καινοτόμους τρόπους που μπορεί να μην είχαμε καν προβλέψει."
+
+#: views\about\vision.php:42
+msgid "The target audience is practitioners in HE and FE, although the site may also be of interest to other formal and informal educational sectors. We accept that there will be a higher percentage of consumers than contributors, however over time we hope to increase the level of engagement with the site, encouraging a larger number of educators to share and discuss their ideas and practice."
+msgstr "Το ακροατήριο στο οποίο στοχεύει ο ιστοχώρος αυτός είναι επαγγελματίες στην Μέση και --- Εκπαίδευση, παρόλο που μπορεί επίσης να ενδιαφέρει άλλους επίσημους και άτυπους εκπαιδευτικούς τομείς. Αντιλαμβανόμαστε ότι το ποσοστό των καταναλωτών θα είναι μεγαλύτερο από αυτό των ατόμων που συνεισφέρουν στον ιστοχώρο. Ωστόσο με την πάροδο του χρόνου ελπίζουμε να αυξηθεί το επίπεδο εμπλοκής με τον ιστοχώρο, ενθαρρύνοντας έτσι μεγαλύτερο αριθμό εκπαιδευτικών να μοιραστούν και να συζητήσουν τις ιδέες και τις πρακτικές τους."
+

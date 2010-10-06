@@ -1,0 +1,1 @@
+a:3:{s:5:"saved";i:1278066025;s:7:"expires";i:1278067825;s:7:"servers";a:6:{i:0;s:25:"http://xmlrpc1.mollom.com";i:1;s:25:"http://xmlrpc2.mollom.com";i:2;s:25:"http://xmlrpc3.mollom.com";i:3;s:21:"http://174.37.205.152";i:4;s:19:"http://67.228.84.10";i:5;s:20:"http://88.151.243.81";}}

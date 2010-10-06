@@ -1,0 +1,37 @@
+<?php 
+    $use_editor = TRUE; 
+    if ($this->auth_lib->is_logged_in()) {
+            $user_id = $this->db_session->userdata('id');
+            $this->CI = & get_instance();
+            $this->CI->load->model('user_model');
+            $profile = $this->CI->user_model->get_user($user_id);
+            if ($profile->do_not_use_editor) {
+                $use_editor = FALSE;
+            }
+    }
+?>
+<?php if ($use_editor): ?>
+<script type="text/javascript" src="<?= base_url()?>_scripts/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+        tinyMCE.init({
+            language : "<?=$this->lang->lang_code() /*@i18n: Tiny MCE. */ ?>",
+            mode : "textareas",
+            theme : "advanced",
+            plugins : "paste",
+            theme_advanced_buttons1 : "bold,italic,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink,|,code,|,pasteword",
+            theme_advanced_buttons2 : "",
+            theme_advanced_buttons3 : "",
+            theme_advanced_toolbar_location : "top",
+            theme_advanced_toolbar_align : "left",
+            theme_advanced_statusbar_location : "none",
+            theme_advanced_resize_horizontal : false,
+            theme_advanced_resizing : true,
+            apply_source_formatting : true,
+            relative_urls: false,
+            remove_script_host: false,
+            document_base_url: "<?=base_url() ?>",
+            content_css: "/_design/tinymce.css",
+            invalid_elements: "span,font"}); 
+</script>
+<?php endif; ?>
+

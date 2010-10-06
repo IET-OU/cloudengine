@@ -1,0 +1,27 @@
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+    RewriteRule (.*)user/login $1auth/login
+    RewriteRule (.*)user/logout $1auth/logout
+    RewriteRule (.*)user/register $1auth/register
+    RewriteRule (.*)user/activation/(.*) $1auth/activation/$2
+    RewriteRule (.*)user/forgotten_password_reset/(.*) $1auth/forgotten_password_reset/$2
+    RewriteRule (.*)user/forgotten_password $1auth/forgotten_password
+    RewriteRule (.*)user/change_password $1auth/change_password
+    
+    RewriteRule (.*)news/view/(.*) $1auth/blog/view/$2
+    
+    RewriteCond %{REQUEST_FILENAME} !index.php
+    RewriteRule (.*)\.php$ index.php/$1
+    
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [QSA,L]
+    
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    ErrorDocument 404 index.php
+</IfModule>
