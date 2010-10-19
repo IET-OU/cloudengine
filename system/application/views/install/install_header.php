@@ -29,7 +29,7 @@
 <body id="installer">
 <div id="site-header">
   <div id="site-header-content">
-    <img id="link-home" src="<?php echo $theme_url ?>aurora-logo.gif" alt="<?php echo $site_name ?>" />
+    <img id="link-home" src="<?php echo $theme_url ?>cloudengine-logo.gif" alt="<?php echo $site_name ?>" />
   </div>   
 </div>
 
