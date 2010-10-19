@@ -1,8 +1,7 @@
 <?php 
-
 /**
  * Controller for displaying various error pages for the site - it is not intended that
- * a user accesses these pages directly, however we need to use this as the default 
+ * a user accesses these pages directly, however we sometimes need to use this as the default 
  * CodeIgniter error pages cannot access the information required to display them 
  * @see system/application/libraries/MY_Exceptions.php
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
