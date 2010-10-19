@@ -1,4 +1,3 @@
-<h1><?php echo $title; #t("An error occurred") ?></h1>
+<h1><?= t("An error occurred") ?></h1>
 
-<p><?php echo $message ?></p>
-<p><?php echo t("If this problem persists, please contact !email!")  ?></p>
+<p><?=t("If this problem persists, please contact !site_email", array('!site_email' => config_item('site_email')));  ?></p>

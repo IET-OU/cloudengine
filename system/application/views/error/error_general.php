@@ -1,3 +1,3 @@
-<h1><?php echo t("An error has occurred") ?></h1>
+<h1><?= t("An error has occurred") ?></h1>
 
-<p><?php echo $message ?></p>
+<p><?= $message ?></p>
