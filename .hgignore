@@ -1,0 +1,8 @@
+# Use glob syntax.
+syntax: glob
+
+config/config.php
+config/cloudengine.php
+config/database.php
+.DS_Store
+
