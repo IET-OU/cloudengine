@@ -87,7 +87,6 @@ class Comment_model extends Model {
      */
     private function _send_comment_email($comment) {
         $this->CI = & get_instance();
-        $this->CI->load->plugin('phpmailer');
         $this->CI->load->model('cloud_model');
         $this->CI->load->model('user_model');
         // Get the comment and the cloud that the comment is on and the commenter
@@ -125,11 +124,11 @@ class Comment_model extends Model {
                            $this->CI->config->item('site_name');
                 // only send the e-mail if it's the live site otherwise send it to the 
                 // site e-mail address for debug purposes 
-                $to = $this->config->item('x_live')? $recipient->email : 
-                                                    $this->config->item('site_email');                
+                $to = $this->config->item('x_live') ? $recipient->email : 
+                                             $this->config->item('site_email');
              } 
                 
-             send_email($to,  $this->CI->config->item('site_email'), $subject, $message);
+             send_email($to, $this->CI->config->item('site_email'), $subject, $message);
         }
     } 
     
