@@ -4,7 +4,7 @@
  * Admins can update URLs under 'support' using the admin interface - this controller is used
  * to then display those pages 
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license   http://gnu.org/licenses/gpl-2.0.html GNU General Public License v2.
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Page
  */
 

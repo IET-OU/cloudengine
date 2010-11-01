@@ -9,7 +9,7 @@
  * This controller redirect the shortcut URLs to the page specified for the shortcut. 
  * 
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license   http://gnu.org/licenses/gpl-2.0.html GNU General Public License v2.
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Shortcut 
  */
 class Go extends Controller {

@@ -4,7 +4,7 @@
  * 
  * To run the tests go to test/api_test?test=0 on a fresh install.
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license   http://gnu.org/licenses/gpl-2.0.html GNU General Public License v2.
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Test 
  */
 header("Content-Type: text/html; charset=UTF-8");

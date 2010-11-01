@@ -2,7 +2,7 @@
 /**
  * Controller for functionality related to site statistics 
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license   http://gnu.org/licenses/gpl-2.0.html GNU General Public License v2.
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Statistics
  */
 class Statistics extends Controller {

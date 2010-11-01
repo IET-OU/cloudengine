@@ -8,7 +8,7 @@
  * The upgrade function for an upgrade to a version is then e.g. _upgrade_NNNNN() 
  * 
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license   http://gnu.org/licenses/gpl-2.0.html GNU General Public License v2.
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Install
  */
 class Upgrade extends Controller {
