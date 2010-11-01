@@ -4,7 +4,7 @@
  * Controller for functionality related to the cloudstreams on the site and events 
  * contained in them
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license GNU General Public License version 2. See LICENCE.txt
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU General Public License v2.
  * @package Cloudstream
  */
 

@@ -5,7 +5,7 @@
  * Images for the site are not necessarily kept in the webroot, so this controller is used to 
  * retrieve and server specified images as HTTP requests
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license GNU General Public License version 2. See LICENCE.txt
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU General Public License v2.
  * @package Image
  */
 

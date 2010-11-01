@@ -5,7 +5,7 @@
  * Cloudscapes can be given start and end dates. If a cloudscape is given a start date
  * then it is considered an 'event' and so displays in the events calendar etc. 
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license GNU General Public License version 2. See LICENCE.txt
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU General Public License v2.
  * @package Events
  */
 
