@@ -4,5 +4,6 @@ syntax: glob
 config/config.php
 config/cloudengine.php
 config/database.php
+language/*/LC_MESSAGES/*.mo
 .DS_Store
 
