@@ -2,7 +2,7 @@
 /**
  * Model file for authentication-related functions
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license GNU General Public License version 2. See LICENCE.txt
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Authentication
  */
 class Auth_model extends Model {

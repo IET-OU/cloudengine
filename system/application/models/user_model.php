@@ -2,7 +2,7 @@
 /**
  * Functions related to users and user profiles (but not user authentications)
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license GNU General Public License version 2. See LICENCE.txt
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package User
  */
 class User_model extends Model {

@@ -3,7 +3,7 @@
  * Functions related to tags
  * 
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license GNU General Public License version 2. See LICENCE.txt
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Tags
  */
 class Tag_model extends Model {
