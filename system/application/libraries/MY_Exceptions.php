@@ -3,7 +3,7 @@
  * Override Exceptions.php - don't override the show_404 method.
  *
  * @copyright See CREDITS.txt
- * @license GNU General Public License version 2. See LICENCE.txt
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Exceptions
  */
 class MY_Exceptions extends CI_Exceptions {
