@@ -4,7 +4,7 @@
  * Note: Uses php-gettext v1.0.9
  * @link http://launchpad.net/php-gettext php-gettext
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license   http://gnu.org/licenses/gpl-2.0.html GNU General Public License v2.
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package I8ln
  */
 require_once APPPATH.'libraries/php-gettext/gettext.inc';

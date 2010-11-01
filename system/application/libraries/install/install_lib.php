@@ -3,13 +3,13 @@
  * Installer library.
  *
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license GNU General Public License version 2. See LICENCE.txt
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Install
  * 
- * Some of the install code was inspired by or copied from with permission Phil Sturgeon's 
- * PyroCMS install code. The PyroCMS install code can be found here: 
+ * Some of the install code was inspired by or copied with permission from
+ * Phil Sturgeon's PyroCMS install code. The PyroCMS library can be found here: 
  * http://github.com/pyrocms/pyrocms/blob/master/installer/libraries/installer_lib.php 
- * 
+ *
  * Note that The code does not currently do the following, but ought to! 
  * - Check MySQL server version.
  * - Check the MySQL client version (tested on v5.0.77)

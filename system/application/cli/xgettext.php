@@ -3,8 +3,6 @@
 /** Commandline script. Run xgettext to extract translatable strings from directories (defined below).
  *  Create PO(T) translation template files.
  *
- * @package   Internationalization
- *
  * <code>
  *   C:\> \php5\php.exe  \system\application\cli\xgettext.php
  *
@@ -12,6 +10,9 @@
  * </code>
  *
  * @link http://gnu.org/software/gettext GNU Gettext
+ * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
+ * @package I8ln
  */
 if('cli'!=php_sapi_name()) die(__FILE__.": Must run as cli."); #Security.
 
