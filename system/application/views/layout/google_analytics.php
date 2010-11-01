@@ -1,3 +1,5 @@
+<?php if (!config_item('x_google_analytics')) return; ?>
+
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
