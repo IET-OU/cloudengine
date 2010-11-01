@@ -515,10 +515,9 @@ class Event_model extends Model {
                 $this->CI->load->model('user_model');
                 $user_id = $event->event_item_id;
                 $user = $this->CI->user_model->get_user($user_id);
-                $string = '<em>'.t("!person has registered on !site_name",
+                $string = '<em>'.t("!person has registered on !site-name!",
                                    array('!person' => 
-                                         anchor('user/view/'.$user_id, $user->fullname), 
-                                         '!site_name' => config_item('site_name'))).'</em>';
+                                         anchor('user/view/'.$user_id, $user->fullname) )).'</em>';
                 break;
 
             case 'link': 

@@ -1,10 +1,10 @@
 <?php
 /**
- * Library to implement gettext-based internatilization
+ * Library to implement gettext-based internationalization.
  * Note: Uses php-gettext v1.0.9
  * @link http://launchpad.net/php-gettext php-gettext
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
- * @license GNU General Public License version 2. See LICENCE.txt
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU General Public License v2.
  * @package I8ln
  */
 require_once APPPATH.'libraries/php-gettext/gettext.inc';
@@ -326,20 +326,21 @@ class My_Language extends CI_Language {
  */
 function t($string, $args = array(), $langcode = NULL) {
 	$msgid = $string;
-	
+
 	// Deployment: use the 'php-gettext' emulator.
 	$string = T_gettext($string);
-	
+
 	if (FALSE!==$args) { 
-		// Reserved keys - !email! , !required!
+		// Reserved keys - !email! , !required! , !site-name!
 		$CI = & get_instance();
-		$email = $CI->config->item('site_email');
+		$email    = $CI->config->item('site_email');
 
 		$args = array_merge($args, array(
 		  '[/link]'=> '</a>',
 		  '!email!'=>  $email,
 		  '!email-link!'=>"<a href=\"mailto:$email\">$email</a>",
-		  '!required!' => form_required(),     //A required form field. (Recurse.)
+		  '!site-name!' => $CI->config->item('site_name'),
+		  '!required!'  => form_required(),    //A required form field. (Recurse.)
 		  'KB'     => '<abbr title="'._('Kilo Bytes').'">&thinsp;KB</abbr>', 
 		));
 	}

@@ -63,7 +63,7 @@ $(function()
 <h2><?=t("What is a Cloud?")?></h2>
 <p><?=t("Clouds can be anything of relevance to learning and teaching for example a website, a description of a learning activity, a case study, a resource or tool, or a summary of a presentation.")?> 
  </p>
-    <p><?=t("You can also use clouds to pose questions to the !site_name community.", array('!site_name' => config_item('site_name')))?></p>
+    <p><?=t("You can also use clouds to pose questions to the !site-name! community.")?></p>
 
     <h2><?=t("Want to add embedded content?")?></h2>
 <p><?=t("You can add embedded content from sites such as Slideshare and Youtube once you have created the cloud (just click on 'add embedded content'):")?> 

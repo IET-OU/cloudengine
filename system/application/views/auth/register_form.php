@@ -1,4 +1,4 @@
-<h1><?=t("Join !site_name", array('!site_name' => config_item('site_name')))?></h1>
+<h1><?=t("Join !site-name!")?></h1>
 <div id="register">
 
 <p>
