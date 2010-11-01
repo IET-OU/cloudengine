@@ -263,7 +263,7 @@ MSG;
 	        	$this->messages[] = mysql_error($this->db); 
 	    	}
 		 } else {
-		   $this->messages[] = "OK, database does not exist.";
+		   $this->messages[] = "OK, I'll create the database (it does not exist).";
 		 }
 	 	return FALSE; 
 	}
