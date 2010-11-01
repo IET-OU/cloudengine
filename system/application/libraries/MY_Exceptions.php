@@ -21,7 +21,8 @@ class MY_Exceptions extends CI_Exceptions {
 	 */
 	function show_error($heading, $message, $template = 'error_general', $status_code = 500)
 	{
-	    $success = false;
+	    //'Success' - handle errors with branded page?
+	    $success = true;
 
         if ('error_db'== $template) {
             $status_code = 503;
@@ -58,16 +59,15 @@ class MY_Exceptions extends CI_Exceptions {
 
         // Check for missing 'cloudengine.php' config. file.
         if (preg_match('#configuration file(.*)does not exist#', $message, $matches)) {
+            // Not the most efficient way, but readable I hope!
             $message = str_replace($matches[1], ' <b>'.$matches[1].'</b> ', $message);
-          ?><html lang=en><title>Error</title>
-          <style>html{font-size:1.2em;margin:1em;}</style>
-          <?php echo $message ?></html><?php
-            exit;
+
+            $success = false;
         }
 
         // Fairly safe - load the 'branded' error view, for most error messages
         // including 404 'method not found', eg. http://cloudengine/cloud/_ERROR
-        if (function_exists('get_instance')) {
+        if ($success && function_exists('get_instance')) {
             $CI =& get_instance();
             $CI->load->library('layout', 'layout_main');
 
