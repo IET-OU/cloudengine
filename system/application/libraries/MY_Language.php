@@ -332,12 +332,13 @@ function t($string, $args = array(), $langcode = NULL) {
 	
 	if (FALSE!==$args) { 
 		// Reserved keys - !email! , !required!
-		$ci = & get_instance();
+		$CI = & get_instance();
+		$email = $CI->config->item('site_email');
+
 		$args = array_merge($args, array(
 		  '[/link]'=> '</a>',
-		  '!email!'=>  $ci->config->item('site_email'), 
-		  '!email-link!'=> '<a href="mailto:'. 
-		    $ci->config->item('site_email').'">'.$ci->config->item('site_email').'</a>',
+		  '!email!'=>  $email,
+		  '!email-link!'=>"<a href=\"mailto:$email\">$email</a>",
 		  '!required!' => form_required(),     //A required form field. (Recurse.)
 		  'KB'     => '<abbr title="'._('Kilo Bytes').'">&thinsp;KB</abbr>', 
 		));
