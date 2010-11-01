@@ -42,11 +42,10 @@ class Auth_lib {
     	$data['fullname']        = $user->fullname;
     	$data['activation_code'] = $activation_code;
 
- 		#$this->CI->load->plugin('phpmailer');
  		$message = $this->CI->load->view('email/activation_email', $data, TRUE);
         $result = send_email($user->email, config_item('site_email'), 
-                 t("!site_name - Account Activation", 
-                 array('!site_name' => config_item('site_name'))),
+                 t("!site-name! - Account Activation", 
+                 array('!site_name' => config_item('site_name')) ),
                  $message);
     }
 

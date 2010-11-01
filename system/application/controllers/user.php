@@ -131,7 +131,6 @@ class User extends Controller {
 
         // Send an e-mail notifiying the person who is being followed unless they 
         // have unsubscribed from such notifications
-        $this->load->plugin('phpmailer');
         $followed_user  = $this->user_model->get_user($followed_user_id);
         $following_user = $this->user_model->get_user($following_user_id);
         if ($followed_user->email_follow) {
@@ -141,10 +140,10 @@ class User extends Controller {
             
             $subject = $following_user->fullname.' is now following 
                                                    you on '.config_item('site_name');
-            // only send the e-mail if it's the live site otherwise send it to the site e-mail
-            // address for debug purposes 
-            $to = $this->config->item('x_live')? $followed_user->email : 
-                                                    $this->config->item('site_email');
+            // only send the e-mail if it's the live site otherwise send it 
+            // to the site e-mail address for debug purposes.
+            $to = $this->config->item('x_live') ? $followed_user->email : 
+                                                  $this->config->item('site_email');
             
             send_email($to,  $this->config->item('site_email'), $subject, $message);
         }
