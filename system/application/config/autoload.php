@@ -58,7 +58,7 @@ if ('install' != $CI->uri->segment(1)) {
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'form', 'array', 'html');
+$autoload['helper'] = array('url', 'form', 'array', 'html', 'mail');
 
 if (!function_exists('json_encode')) {
     array_push($autoload['helper'], 'json');

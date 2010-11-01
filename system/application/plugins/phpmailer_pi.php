@@ -1,12 +1,14 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-/** Use PHPMailer to send an email.
+/**
+ * Use PHPMailer to send an email. Don't use directly, see helpers/mail_helper.php.
+ *
  * @author The Open University
  * @author Thorpe Obazee
  * @see http://pinoysmartlife.com/phpmailer-plugin-for-codeigniter/112/ Pinoy Smart Life
  * @see http://codeigniter.com/wiki/PHPMailer/
  */
-function send_email($recipient, $sender, $subject, $message)
+function phpmailer_email($recipient, $sender, $subject, $message)
 {
     require_once("phpmailer/class.phpmailer.php");
 

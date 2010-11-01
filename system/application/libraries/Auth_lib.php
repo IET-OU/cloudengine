@@ -41,13 +41,13 @@ class Auth_lib {
     	$data['temp_user_id']    = $user->temp_user_id;
     	$data['fullname']        = $user->fullname;
     	$data['activation_code'] = $activation_code;
-    	
- 		$this->CI->load->plugin('phpmailer');
+
+ 		#$this->CI->load->plugin('phpmailer');
  		$message = $this->CI->load->view('email/activation_email', $data, TRUE);
-        send_email($user->email, config_item('site_email'), 
+        $result = send_email($user->email, config_item('site_email'), 
                  t("!site_name - Account Activation", 
                  array('!site_name' => config_item('site_name'))),
-                 $message); 
+                 $message);
     }
 
     /**
