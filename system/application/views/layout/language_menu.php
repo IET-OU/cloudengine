@@ -5,8 +5,8 @@
 <!-- The language drop-down menu. -->
 
 <form id="form-lang" action="" method="post">
-<p class="right">
-<?=t("Preferred language")?>:
+<p class="right"><label for="lang_select">
+<?=t("Preferred language")?> </label>
 <select id="lang_select" name="lang">
   <?php foreach ($this->lang->get_options() as $code => $name): ?>
   <?php $selected = $this->lang->lang_code()==$code ? 'selected="selected"' : ''; ?>
