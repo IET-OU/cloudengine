@@ -56,6 +56,15 @@ class MY_Exceptions extends CI_Exceptions {
 
         $message = '<p>'.implode('</p><p>', (! is_array($message)) ? array($message) : $message).'</p>';
 
+        // Check for missing 'cloudengine.php' config. file.
+        if (preg_match('#configuration file(.*)does not exist#', $message, $matches)) {
+            $message = str_replace($matches[1], ' <b>'.$matches[1].'</b> ', $message);
+          ?><html lang=en><title>Error</title>
+          <style>html{font-size:1.2em;margin:1em;}</style>
+          <?php echo $message ?></html><?php
+            exit;
+        }
+
         // Fairly safe - load the 'branded' error view, for most error messages
         // including 404 'method not found', eg. http://cloudengine/cloud/_ERROR
         if (function_exists('get_instance')) {
