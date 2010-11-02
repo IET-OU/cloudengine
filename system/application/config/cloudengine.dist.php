@@ -13,8 +13,8 @@ $config['site_email']       = '';
 $config['tag_line']         = '';
 $config['default_language'] = 'en';
 
-// Set the SMTP host so that the site can send out registration related and notification 
-// e-mails
+// Set the SMTP host so that the site can send out registration related
+// and notification e-mails.
 $config['smtp_host'] = '';
 
 // Data directory paths
@@ -35,13 +35,13 @@ $config['theme_banner']     = 'themes/aurora/header-bg-aurora.jpg';
 $config['theme_favicon']    = 'themes/aurora/favicon-aurora.ico.gif';
 
 
-// Automatically flag whether this is a LIVE or developer/test install.
+// Flag whether this is a LIVE or developer/test install.
 $config['x_live'] = TRUE;
 $config['test_install_message'] = 'This is a test install.'; // Message to display for test install
 
 
-// This overrides the settings in the index.php file (assuming CodeIgniter gets as far
-// as reading this file)
+// This overrides the settings in the index.php file (assuming CodeIgniter
+// gets as far as reading this file).
 $debug = FALSE;
 if ($debug) {
 	ini_set("display_errors", 'On');
@@ -55,15 +55,15 @@ if ($debug) {
 // revision data on the admin/phpinfo page.
 $config['hg_path'] = '';
 
-// Set a proxy here if you want to use features that use external services and need to set a proxy 
-// setting 
+// Set a proxy here if you want to use features that use external services
+// and your network requires one.
 $config['proxy'] = '';
 
 
 /**
- * Use secure password hashing. For new sites, this should be set to TRUE. Do not change to 
- * FALSE (otherwise nobody will be able to login any longer!). The option is available for 
- * reasons of backwards-compatibility. 
+ * Use secure password hashing. For new sites, this should be set to TRUE. Do
+ * not change to FALSE (otherwise nobody will be able to login any longer!).
+ * The option is available for reasons of backwards-compatibility.
  */
 $config['use_password_hash'] = TRUE;
 
@@ -77,16 +77,16 @@ $config['use_password_hash'] = TRUE;
 $config['x_google_analytics'] = FALSE;
 $config['google_analytics'] = ''; // Set this to your google analytics code 
 
-// Feature flag for internationalisation
+// Feature flag for internationalisation.
 $config['x_translate'] =FALSE;
 
-// Feature flag for search 
+// Feature flag for search.
 $config['x_search'] = FALSE;
 
-// Feature flag for event e-mails from admins for events
+// Feature flag for event e-mails from admins for events.
 $config['x_email_events_attending'] = FALSE;
-$config['email_event_attending_limit_per_hour'] = 2; // Maximum number of e-mails an admin may send to 
-// attendees of a particular event per hour
+$config['email_event_attending_limit_per_hour'] = 2; // Maximum number of e-mails
+// an admin may send to attendees of a particular event per hour.
 
 // Enable and configure the API 
 $config['x_api']                = FALSE;
@@ -105,18 +105,18 @@ $config['popular_cloudscapes_days'] = 100;
 // Configure google gadgets
 $config['x_gadgets'] = FALSE;
 $config['x_gadgets_gfc_key'] = ''; // Google Friend Connect key to use for gadgets -
-// this key needs to be obtained for the site from Google Friend Connect and entered here for Google
-// Gadgets to work on the site. It will be a string of approx 20 digits.
+// this key needs to be obtained for the site from Google Friend Connect and entered
+// here for Google Gadgets to work on the site. Expect a string of approx 20 digits.
 
 // Config variable containing IDs of users regarded as 'team' for stats purposes. 
 $config['team'] = '';
 
 // Feature flag for spam-checking of new items added to the site using Mollom
-// If you want to use this you need to copy mollom.dist.php in the config directory to 
-// mollom.php and put in your Mollom settings there. 
+// If you want to use this you need to copy mollom.dist.php in the config
+// directory to mollom.php and put in your Mollom settings there.
 $config['x_moderation'] = FALSE;
 
-// Feature flag and config for twitter hash tag and displaying tweets for a cloudscape
+// Feature flag and config for twitter hash tag and displaying tweets for a cloudscape.
 $config['x_twitter']          = FALSE;
 $config['x_twitter_username'] = '';
 $config['x_twitter_password'] = '';
@@ -181,5 +181,5 @@ $config['FAL_captcha_image_font'] = BASEPATH.'fonts/Jester.ttf';
 // this folder must be writable by php
 $config['FAL_captcha_image_path'] = $config['data_dir'].'tmp/';
 
-//name of the generate image (leave it blank!!!!!!)
+//name of the generated image (leave it blank!!!!!!)
 $config['FAL_captcha_image'] = '';
