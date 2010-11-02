@@ -1,5 +1,5 @@
 <div class="grid">
-<h2>Popular</h2>
+<h2><?=t('Popular') ?></h2>
 
 <ul class="cloudstream-filter">
     <?php if ($popular_type == 'cloud'): ?>

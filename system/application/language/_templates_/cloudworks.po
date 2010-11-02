@@ -393,7 +393,7 @@ msgid "Your fullname must contain a space"
 msgstr ""
 
 #: errors\error_404.php:33 views\home.php:5 views\layout\header.php:36
-msgid "Cloudworks home page"
+msgid "!site-name! home page"
 msgstr ""
 
 #: errors\error_404.php:38 views\layout\header.php:41
@@ -1972,7 +1972,7 @@ msgstr ""
 
 #: views\home.php:7
 msgid ""
-"Welcome to Cloudworks, a place to share, find and discuss learning and "
+"Welcome to !site-name!, a place to share, find and discuss learning and "
 "teaching ideas and experiences."
 msgstr ""
 

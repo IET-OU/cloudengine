@@ -1,11 +1,11 @@
 <?php $current_page = str_replace(base_url(), '', current_url()); ?> 
 <div id="site-header-content">
         <div id="skip">
-        <a href="#content">Skip navigation</a> </div>
+        <a href="#content"><?=t('Skip navigation') ?></a> </div>
         <?php if ($current_page != ''): ?>
         <a rel="home" href="<?=base_url()?>">
         <?php endif; ?>
-        <img id="link-home" src="<?=base_url()?><?= $this->config->item('theme_logo') ?>" alt="<?=$this->config->item('site_name').t(" home page") ?>" />
+        <img id="link-home" src="<?=base_url()?><?= $this->config->item('theme_logo') ?>" alt="<?=$this->config->item('site_name').t("home page") ?>" />
         <?php if ($current_page  != '/'): ?>
         </a>
         <?php endif; ?>

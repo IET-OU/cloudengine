@@ -1,9 +1,12 @@
 <div id="region1">
 	<div class="grid g1">
 		<div class="c1of1">
-		    <h1><?= $this->config->item('site_name').(" home page")?></h1>
+		    <h1><?= t("!site-name! home page") ?></h1>
 		    <p class="welcome">
-		<?= $this->config->item('tag_line') ?>
+            <?= t($this->config->item('tag_line')) ?></p>
+
+            <?php /* @i18n. Please leave this placeholder for 'tag_line'! */
+_('Welcome to !site-name!, a place to share, find and discuss learning and teaching ideas and experiences.'); ?>
 
 		    <?php $this->load->view('cloudscape/featured_cloudscapes'); ?>
 		</div>
