@@ -426,6 +426,8 @@ function format_date($format, $timestamp=NULL, $args=array()) {
       /*/Translators: date format, eg. "7 December 2009". */
       '!date!'     => _("%e %B %Y"),  #'j F Y'
       '!month-year!'=>_("%B %Y"),     #'F Y'
+      /*/Translators: !month! eg. "December", "Dec" (homepage events block). */
+      '!month!'    => t("%B"),
     );
 
     # Hack: '%e' and others don't work in strftime on Windows :(

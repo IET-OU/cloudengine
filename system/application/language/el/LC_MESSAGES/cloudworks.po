@@ -19,6 +19,11 @@ msgstr ""
 "X-Poedit-Country: GREECE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
+# Note, this is the placeholder for !month!.
+#: libraries\MY_Language.php
+msgid "%B"
+msgstr "%b"
+
 #. /Translators: ** Start of the CONTROLLERS/MODELS section - page titles/error messages. (application.po) **
 #: controllers\about.php:17
 #: views\about\about.php:5
@@ -2482,8 +2487,8 @@ msgid "Find People"
 msgstr "Αναζήτηση ατόμων "
 
 #: views\user\people.php:14
-msgid "You can search here for people who already have a Cloudworks account, [link-ui]browse by institution[/link] or [link-uu]browse alphabetically[/link]."
-msgstr "Εδώ μπορείτε να αναζητήσετε άτομα που έχουν ήδη λογαριασμό στο Cloudworks, [link-ui]είτε ανά οργανισμό[/link] ή [link-uu]αλφαβητικά[/link]."
+msgid "You can search here for people who already have an account, [link-ui]browse by institution[/link] or [link-uu]browse alphabetically[/link]."
+msgstr "Εδώ μπορείτε να αναζητήσετε άτομα που έχουν ήδη λογαριασμό στο !site-name!, [link-ui]είτε ανά οργανισμό[/link] ή [link-uu]αλφαβητικά[/link]."
 
 #: views\user\people.php:19
 msgid "Who are you looking for?"

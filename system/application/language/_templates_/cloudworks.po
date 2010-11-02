@@ -2417,7 +2417,7 @@ msgstr ""
 
 #: views\user\people.php:14
 msgid ""
-"You can search here for people who already have a Cloudworks account, [link-"
+"You can search here for people who already have an account, [link-"
 "ui]browse by institution[/link] or [link-uu]browse alphabetically[/link]."
 msgstr ""
 
