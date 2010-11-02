@@ -15,7 +15,7 @@ $page = preg_replace('#<!DOCTYPE.*?>#', '', $page);
 
 <p><?= anchor('admin/panel', 'Return to admin panel') ?>
  &bull; <a href="?name=value" title="Add a GET parameter">[get]</a>
- &bull; <a href="#PHP">PHP info</a> &bull; <a href="#CI">Site config</a> 
+ &bull; <a href="#PHP">PHP info</a> &bull; <a href="#CE">Site config</a> 
 </p>
 
 <div id="PHP" class="cw_phpinfo" style="font-size:1.4em;">
@@ -24,6 +24,20 @@ $page = preg_replace('#<!DOCTYPE.*?>#', '', $page);
 
 </div>
 
+
+<h2 id="CE">Versions</h2>
+<ul class="CE version">
+  <li>CloudEngine version:
+<abbr title="Version in code"><?=APP_VERSION; ?></abbr>.
+<?php
+if ($hg) {
+    echo "<abbr title='Mercurial tag / changeset'>".anchor($hg['url'],
+        $hg['tag'].' / '.$hg['changeset'].' ('.$hg['date'].')').'</abbr>';
+}
+?></li>
+  <li>CodeIgniter version: <?= CI_VERSION ?></li>
+</ul>
+<br />
 
 <h2 id="CI">Site configuration</h2>
 <ul class="CI config">

@@ -165,7 +165,12 @@ class Admin extends Controller {
      */
     function phpinfo() {
         $this->load->helper('xml_helper');
-        $this->layout->view('admin/phpinfo', array('title'=> 'Admin - Configuration'));
+
+        require_once(APPPATH.'/libraries/install/install_lib'.EXT);
+        $this->load->library('Hglib');
+        $hg_revision = $this->hglib->revision();
+
+        $this->layout->view('admin/phpinfo', array('title'=> 'Admin - Configuration', 'hg'=>$hg_revision));
     }
     
     /**
