@@ -45,7 +45,7 @@ class Hglib {
     }
 
     public static function paths($username=FALSE) {
-        $path = self::hg('paths');
+        $path = self::exec('paths');
         if (!$path) return FALSE;
         //We assume there's only one path, and its named 'default'.
         $path = trim(str_replace('default =', '', $path));
@@ -58,7 +58,7 @@ class Hglib {
     }
 
     public static function tip() {
-        $tip = self::hg('tip');
+        $tip = self::exec('tip');
         $tip = explode("\n", $tip);
         $result = FALSE;
         //Hmm, a more efficient way?
