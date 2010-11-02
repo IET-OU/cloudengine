@@ -51,6 +51,10 @@ if ($debug) {
 	error_reporting(0);
 }
 
+// Set the path to Mercurial if this CloudEngine is hg-clone'd, to show
+// revision data on the admin/phpinfo page.
+$config['hg_path'] = '';
+
 // Set a proxy here if you want to use features that use external services and need to set a proxy 
 // setting 
 $config['proxy'] = '';

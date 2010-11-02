@@ -17,7 +17,7 @@ $ chown -R 'apache:apache' .hg/
 
 class Hglib {
 
-    protected static function hg($cmd) {
+    protected static function exec($cmd) {
 
         //Security!
         $hg_path = config_item('hg_path');
@@ -27,7 +27,7 @@ class Hglib {
             return FALSE;
         }
 
-        chdir(BASEPATH); #.'/../');
+        chdir(BASEPATH);
         $result = FALSE;
         if (file_exists($hg_path)) {
             $handle= popen("$hg_path $cmd 2>&1", 'r');
@@ -38,15 +38,8 @@ class Hglib {
             if (FALSE!==strpos($result, 'hgrc from untrusted user')) {
                 // How/where to output a warning cleanly?
                 echo 'Warning, hg user/permissions problem. ';
-                #$p = strpos($result, "\n", $p);
-                #return substr($result, $p);
                 return FALSE;
             }
-        /*ob_start();
-        $result = system("$hgcmd $cmd", $return_var);
-        ob_end_clean();
-        echo $return_var;
-        */
         }
         return $result;
     }
