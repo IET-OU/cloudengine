@@ -10,19 +10,13 @@ phpinfo();
 
 $page = ob_get_clean();
 $page = str_ireplace(array('<html>','<head>','<body>', '</html>','</head>','</body>'), '', $page);
-$page = preg_replace('#<!DOCTYPE.*?>#', '', $page);
+$phpinfo = preg_replace('#<!DOCTYPE.*?>#', '', $page);
 ?>
 
 <p><?= anchor('admin/panel', 'Return to admin panel') ?>
- &bull; <a href="?name=value" title="Add a GET parameter">[get]</a>
- &bull; <a href="#PHP">PHP info</a> &bull; <a href="#CE">Site config</a> 
+ &bull; <a href="#CI">Site config</a> &bull; <a href="?name=value" title=
+  "Add a GET parameter">[get]</a> &bull; <a href="#PHP">PHP info</a>  
 </p>
-
-<div id="PHP" class="cw_phpinfo" style="font-size:1.4em;">
-
-<?= $page; ?>
-
-</div>
 
 
 <h2 id="CE">Versions</h2>
@@ -36,8 +30,8 @@ if ($hg) {
 }
 ?></li>
   <li>CodeIgniter version: <?= CI_VERSION ?></li>
-</ul>
-<br />
+</ul><p></p>
+
 
 <h2 id="CI">Site configuration</h2>
 <ul class="CI config">
@@ -48,4 +42,9 @@ if ($hg) {
 <?php endforeach; ?>
 </ul><p></p>
 
-</ul>
+
+<div id="PHP" class="cw_phpinfo" style="font-size:1.4em;">
+
+<?= $phpinfo; ?>
+
+</div>
