@@ -773,8 +773,8 @@ msgstr ""
 msgid "Register"
 msgstr ""
 
-#: views\FreakAuth_light\content\forms\register.php:1
-msgid "Join Cloudworks"
+#: views\auth\register_form.php:1
+msgid "Join !site-name!"
 msgstr ""
 
 #: views\FreakAuth_light\content\forms\register.php:32
@@ -795,7 +795,7 @@ msgstr ""
 
 #: views\FreakAuth_light\content\forms\register.php:114
 msgid ""
-"By creating a Cloudworks account, you agree to our [link-at]Terms and "
+"By creating an account, you agree to our [link-at]Terms and "
 "Conditions of Use[/link]."
 msgstr ""
 

@@ -797,9 +797,9 @@ msgstr "Ξεχάσατε τον Κωδικό σας;"
 msgid "Register"
 msgstr "Εγγραφή "
 
-#: views\FreakAuth_light\content\forms\register.php:1
-msgid "Join Cloudworks"
-msgstr "Γίνετε μέλος του Cloudworks"
+#: views\auth\register_form.php:1
+msgid "Join !site-name!"
+msgstr "Γίνετε μέλος του !site-name!"
 
 #: views\FreakAuth_light\content\forms\register.php:32
 msgid "E-mail"
@@ -818,8 +818,8 @@ msgid "Confirm Password"
 msgstr "Επιβεβαίωση Κωδικού Πρόσβασης"
 
 #: views\FreakAuth_light\content\forms\register.php:114
-msgid "By creating a Cloudworks account, you agree to our [link-at]Terms and Conditions of Use[/link]."
-msgstr "Με τη δημιουργία λογαριασμού συμφωνείται με τους [link-at]Όρους Χρήσης[/link] του Cloudworks."
+msgid "By creating an account, you agree to our [link-at]Terms and Conditions of Use[/link]."
+msgstr "Με τη δημιουργία λογαριασμού συμφωνείται με τους [link-at]Όρους Χρήσης[/link] του !site-name!."
 
 #: views\FreakAuth_light\content\forms\register.php:121
 msgid "Create my account"
