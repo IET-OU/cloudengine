@@ -31,8 +31,7 @@ blockquote, q { quotes: "" ""; }
 
 /* Remove annoying border on linked images. */
 img, a img { border: none; }
-
-
+abbr[title]{ cursor: help; border-bottom:1px dotted gray;}
 
 body {margin:0 0 1em 0; line-height:1.5em; font-size: 75%; color: #444; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
