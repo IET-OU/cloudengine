@@ -11,7 +11,7 @@ DirectoryIndex index.php
     RewriteRule (.*)user/forgotten_password $1auth/forgotten_password
     RewriteRule (.*)user/change_password $1auth/change_password
     
-    RewriteRule (.*)news/view/(.*) $1auth/blog/view/$2
+    RewriteRule (.*)news/view/(.*) $1blog/view/$2
     
     RewriteCond %{REQUEST_FILENAME} !index.php
     RewriteRule (.*)\.php$ index.php/$1
