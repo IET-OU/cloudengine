@@ -74,7 +74,25 @@ class User_model extends Model {
         }
 	    return $user;
 	}	
-	    
+	
+	/**
+	 * Get the full name of a user given the user's ID. 
+	 *
+	 * @param integer $user_id The ID of the user
+	 * @return object The details of the user
+	 */
+	function get_user_full_name($user_id) {
+		  $user = FALSE;
+        $this->db->select('fullname');
+        $this->db->where('user.id', $user_id);
+        $this->db->join('user', 'user.id = user_profile.id');
+        $query = $this->db->get('user_profile');
+        if ($query->num_rows() !=  0 ) {
+            $user = $query->row();
+        }
+	    return $user->fullname;
+	}	  
+      
     /**
      * Search the list of users' full name for a query string and return the details of 
      * any users that match that string

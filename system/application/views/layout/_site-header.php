@@ -46,6 +46,13 @@
                         <?= t("Tags") ?>
                     <?php endif; ?>               
                 </li>
+                <li class="messages">
+                    <?php if ($current_page != '/message'): ?>
+                        <?=anchor('message',  t("Messages"), array('class'=>'messages')) ?>
+                     <?php else: ?>
+                        <?= t("Messages") ?>
+                    <?php endif; ?>               
+                </li>                  
                 <li class="people">
                     <?php if ($current_page != '/user/people'): ?>
                         <?=anchor('user/people', t("People"), array('class'=>'people')) ?>
