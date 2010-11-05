@@ -3,13 +3,10 @@ DirectoryIndex index.php
 <IfModule mod_rewrite.c>
     RewriteEngine on
 
-    RewriteRule (.*)user/login $1auth/login
-    RewriteRule (.*)user/logout $1auth/logout
-    RewriteRule (.*)user/register $1auth/register
-    RewriteRule (.*)user/activation/(.*) $1auth/activation/$2
-    RewriteRule (.*)user/forgotten_password_reset/(.*) $1auth/forgotten_password_reset/$2
-    RewriteRule (.*)user/forgotten_password $1auth/forgotten_password
-    RewriteRule (.*)user/change_password $1auth/change_password
+    RewriteRule user/(login|logout|register)    auth/$1  [QSA,L]
+    RewriteRule user/(activation/.*)            auth/$1  [QSA,L]
+    RewriteRule user/(forgotten_password|change_password) auth/$1 [QSA,L]
+    RewriteRule user/(forgotten_password_reset) auth/$1  [QSA,L]
     
     RewriteRule (.*)news/view/(.*) $1blog/view/$2
     
@@ -19,7 +16,6 @@ DirectoryIndex index.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php/$1 [QSA,L]
-    
 </IfModule>
 
 <IfModule !mod_rewrite.c>

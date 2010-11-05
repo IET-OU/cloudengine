@@ -1,7 +1,7 @@
 <p class="create-cloud-link"><?=anchor("cloud/add", t("Create a Cloud")) ?></p>
 <p class="login">
     <a href="#login" class="link-arrow show"><?= $loggedinprofile->fullname ?></a> 
-    <a href="<?=base_url() ?>user/logout"><?=t("Sign out")?></a>
+    <?=anchor('auth/logout', t('Sign out')) ?>
     <?php if($this->auth_lib->is_admin() && $total_items != 0): ?>
     <br />
     <br />
