@@ -68,27 +68,17 @@ class Message extends Controller {
       for($i=0; $i < count($data['threads']); $i++) {
         $data['threads'][$i]->picture                     = $this->user_model->get_picture($data['threads'][$i]->last_message_author_id);
         $data['threads'][$i]->last_message_author_name    = $this->user_model->get_user_full_name($data['threads'][$i]->last_message_author_id);
-        $data['threads'][$i]->participants                = $this->message_model->get_thread_participants($data['threads'][$i]->thread_id,$data['user_id']);
-        //$participant_ids_array                            = explode(",", $data['threads'][$i]->participant_ids);
-        $data['threads'][$i]->participant_count           = count($data['threads'][$i]->participants) + 1;    
-        $data['threads'][$i]->participant_count_over_4    = 0; 
-        if ($data['threads'][$i]->participant_count > 4) {
-          $data['threads'][$i]->participant_count_over_4 = $data['threads'][$i]->participant_count - 4;
-        }    
+        $data['threads'][$i]->all_participants            = $this->message_model->get_thread_participants($data['threads'][$i]->thread_id); 
+        $data['threads'][$i]->other_participants          = $this->message_model->get_thread_participants($data['threads'][$i]->thread_id,$data['user_id']);         
+        $data['threads'][$i]->other_participant_count     = count($data['threads'][$i]->other_participants);       
         if (strlen($data['threads'][$i]->content) > 40) {
           $data['threads'][$i]->content_preview = substr($data['threads'][$i]->content, 0 , 40) .'...';
         }       
         else {
           $data['threads'][$i]->content_preview = substr($data['threads'][$i]->content, 0 , 40);
-        }
-        for($j=0; $j < $data['threads'][$i]->participant_count; $j++) {
-          /*if ($participant_ids_array[$j] != $data['user_id']) {
-            $data['threads'][$i]->participants[$j]->user_id = trim($participant_ids_array[$j]);
-            $data['threads'][$i]->participants[$j]->name    = $this->user_model->get_user_full_name($participant_ids_array[$j]);
-          }  */       
-        }
-          
+        }                
       }
+            
       //process
       //output
       $this->layout->view('message/list', $data);
@@ -184,17 +174,21 @@ class Message extends Controller {
           redirect($this->input->post('location'));  
        }
       elseif ($this->input->post('submit')) {
+        
+        
       
         //create the thread reply       
         if ($this->form_validation->run()) {
           //var_dump($_POST);exit;
           $thread->subject                 = $this->input->post('subject');
           $thread->participant_usernames   = explode(",",$this->input->post('recipients'));
+          array_pop($thread->participant_usernames);
           foreach ($thread->participant_usernames as $username) {
             $user = $this->auth_model->get_user_by_username(trim($username));
-            $thread->participants[] = $user->id;
+            $thread->participants[]   = $user->id;
           }
           $thread->participants[]     = $user_id;
+          $thread->participants       = array_unique($thread->participants);
            
           $message->thread_id         = $this->create_thread($thread);       
           $message->content           = $this->input->post('content');
@@ -397,5 +391,67 @@ class Message extends Controller {
       redirect('message');
         
   }    
+  
+  
+  function get_message_recipients() {
+    
+      $this->load->model('user_model');
+      $this->load->library('JSON');
+  
+      $term = $_GET['term'];
+      
+      $recipients = $this->message_model->get_recipients($term);
+      foreach ($recipients as $recipient) {
+        $temp[] = array('value' => $recipient['user_name'], 'label' => $recipient['fullname']);
+      }
+      $results_json = $this->json->encode($temp);
+      print $results_json;
+      
+      /*$video_activity_text  = $this->input->post('video_activity_text');
+      $video_id             = $this->input->post('video_id'); 
+      $user_id              = $this->input->post('user_id');
+      
+      // if there is already text for this video and user then update the entry
+      if ($this->user_video_text_model->get_item($user_id,$video_id)) {
+        $result_text = $this->user_video_text_model->edit($user_id, $video_id, $video_activity_text);
+      } 
+      // if there is no text for this video and user then insert the entry
+      else {
+        $result_text = $this->user_video_text_model->add($user_id, $video_id, $video_activity_text);
+      }*/
+      
+      //format the results as JSON and return to the 'AJAX_record.php' page       
+      //$results_json_encode = $this->json->encode(array(array('value' => 'richlove','label' => 'Richard Lovelock'),array('value' => 'bacon','label' => 'Richard Bacon')));
+      //$results_json = '[' .$results_json_encode .']';
+      /*$results_json = '[
+			{
+				"value": "juliette_culver",
+				"label": "Juliette Culver"
+			},
+			{
+				"value": "richlove",
+				"label": "Richard Lovelock"
+			},
+			{
+				"value": "richlove2",
+				"label": "Rich Lovelock"
+			},
+			{
+				"value": "grainne_conole",
+				"label": "Grainne Conole"
+			},
+			{
+				"value": "tony_hirst",
+				"label": "Tony Hirst"
+			}     
+		]';*/
+      
+      //var_dump($results_json);exit;
+      //print $results_json_encode;
+      //print $_GET['term'];
+      //$ajax_result  = array('ajax_result' => $results_json); 
+      //$this->load->view('AJAX_record',$ajax_result);        
+        
+    }   
     
 }

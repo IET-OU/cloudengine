@@ -744,7 +744,7 @@ label {
 
 #site #about h2 {margin: 0.5em 0 .8em 0; }
 
-input[type="submit"], button[type="submit"] { 
+input[type="submit"].default, button[type="submit"].default { 
     background-color:#D63333;
     padding:4px 10px 4px 5px;
     color: white;
@@ -1143,38 +1143,34 @@ img.message-pic-anon {
   margin: 10px 0 0 9px;
 }
 
-.message-actions-envelope {
+.demo {
   /*height:24px;*/
   padding:6px 0 6px 5px;
-  background:none repeat scroll 0 0 #F2F2F2;
+  /*background:none repeat scroll 0 0 #F2F2F2;*/
   border-top:1px solid #CCCCCC;
-  border-bottom:0px solid #CCCCCC;  
+  border-bottom:1px solid #CCCCCC;  
   clear: both;
   /*margin-bottom: 10px;*/
 }
 
-.message-actions-envelope input[type="submit"], 
-.message-actions-envelope button[type="submit"], 
-.message-actions-envelope button[type="button"] { 
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -moz-box-shadow:0px 1px 0 #CCCCCC;
-  -webkit-box-shadow:0px 1px 0 #CCCCCC;
-  box-shadow: 0px 1px 0 #CCCCCC;
-  /* For IE 8 */
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#CCCCCC')";
-  /* For IE 5.5 - 7 */
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#CCCCCC');  
-  border:1px solid #7E7E7E;
-  color:#333;
-  cursor:pointer;
-  display:inline-block;
-  margin:0 0 0 7px;
-  padding:1px 5px;
-  font-size: 13px;
-  background:url("button_bg.png") repeat scroll 0 0 #F3F3F3;
+.message-actions-envelope {
+  /*height:24px;*/
+  padding:6px 0 20px 5px;
+  /*background:none repeat scroll 0 0 #F2F2F2;*/
+  border-top:0px solid #CCCCCC;
+  border-bottom:1px solid #CCCCCC;  
+  clear: both;
+  /*margin-bottom: 10px;*/
+}
 
-} 
+#compose-region-1 button, #compose-region-1 input[type="submit"] {
+  height: 24px;
+  }
+
+#compose-region-1 .ui-button-text-only .ui-button-text {
+    font-size: 12px;
+    padding:0.3em 1em;    
+  }
 
 .thread-list-head table {
   border-collapse:collapse;
@@ -1559,3 +1555,5 @@ img.message-pic-anon {
 
 
 /*** Messaging styles - start  ***/
+
+

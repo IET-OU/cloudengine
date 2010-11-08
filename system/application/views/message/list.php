@@ -1,4 +1,12 @@
 
+	<script>
+	$(function() {
+		$( "button, input:submit, a", ".message-actions-envelope" ).button();
+		$( "a", ".message-actions-envelope" ).click(function() { return false; });
+	});
+	</script>
+
+
 <div class="grid headline">
     <div class="c1of2">
         <h1><?=t("Messages")?>        <?php echo '<b>'.validation_errors().'</b>'; ?></h1>
@@ -10,7 +18,9 @@
         <div class="c1of1">
             <pre><? //print_r($this->_ci_cached_vars); ?></pre>
             <?=form_open($this->uri->uri_string(), array('id' => 'thread-list-action-form'))?>
+              
               <div class="message-actions-envelope">
+              <!--<div class="message-actions-envelope">-->
                 <input type="hidden" value="submit" name="submit" /> 
                 <button id="mark" value="message/compose"     name="location"  id="compose"      type="submit" onclick="window.location='message/compose'; return false;" >Compose</button />
                 <button id="mark" value="set_unread"  name="thread-action"  id="set-unread"   type="submit" >Mark unread</button />
@@ -68,9 +78,9 @@
                             </div>
                           </td>                        
                           <td class="participants message-list-bottom-line"></a>
-                            <?= anchor("user/view/" .$user_id, 'You') ?><?php if ($thread->participant_count > 2): ?><?php for($i=0; $i < $thread->participant_count; $i++): ?><?php if ($i < 3): ?><?=', ' .anchor("user/view/".$thread->participants[$i]->user_id, $thread->participants[$i]->name) ?><?php endif; ?><?php endfor; ?><?php if ($thread->participant_count_over_4): ?> + <?= $thread->participant_count_over_4 ?> others<?php endif; ?>
-                            <?php else: ?><?= ' and ' .anchor("user/view/" .$thread->participants[0]->user_id, $thread->participants[0]->name) ?>
-                            <?php endif; ?>
+                            
+                            <?= anchor("user/view/" .$user_id, 'You') ?><?php if ($thread->other_participant_count == 1): ?><?= ' and ' .anchor("user/view/" .$thread->other_participants[0]->user_id, trim($thread->other_participants[0]->name)) ?><?php else: ?><?php for($i=0; $i < $thread->other_participant_count; $i++): ?><?php if ($i < 3): ?><?=', '.anchor("user/view/".$thread->other_participants[$i]->user_id, trim($thread->other_participants[$i]->name)) ?><?php endif; ?><?php endfor; ?><?php if ($thread->other_participant_count > 3): ?> + <?php print($thread->other_participant_count - 3); ?> others<?php endif; ?> <?php endif; ?>
+                          
                           </td>                                            
                           <td class="message-count message-list-top-line">
                             <?= $thread->total_messages ?> 

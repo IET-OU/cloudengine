@@ -245,5 +245,30 @@ class Message_model extends Model {
       
     return $message_ids;      
   } 
+ 
+  /**
+   * Get the most recent 'undeleted' message in a thread for a user
+   *  
+   * @param integer $thread_id
+   * @param integer $user_id
+   * 
+   * @return message_id integer
+   */
+  function get_recipients($term) {   
+    $query = $this->db->query("
+      SELECT u.id,user_name, fullname
+      FROM user u
+      INNER JOIN user_profile up
+      	ON up.id = u.id
+      WHERE fullname like '%$term%'
+      ORDER BY fullname
+      LIMIT 0,100");
+
+      /*foreach ($query->result_array() as $message_id) {
+        $message_ids[] = $message_id['message_id']; 
+      } */     
+      
+    return $query->result_array();      
+  }  
     
 }
