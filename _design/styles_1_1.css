@@ -1111,6 +1111,8 @@ height:auto;
 
 #form-lang label{display:inline; font-weight:normal;}
 
+.poweredby{display:inline-block; vertical-align:top; margin:-11px 0 0 2px;}
+
 .test_install {
 
 background:#fdd; border:1px solid #c00; padding:6px; margin:1em; text-align:center; font-size:medium

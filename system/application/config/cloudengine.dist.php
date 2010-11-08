@@ -10,6 +10,7 @@
 
 $config['site_name']        = 'Your Site';
 $config['site_email']       = '';
+// 'tag_line' should NOT use the t() function. It may use !site-name! etc. (i18n).
 $config['tag_line']         = '';
 $config['default_language'] = 'en';
 
