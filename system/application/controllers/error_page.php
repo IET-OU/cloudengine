@@ -8,10 +8,10 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Error
  */
-class Error_page extends Controller {
+class Error_page extends MY_Controller {
 
     function Error_page() {
-        parent::Controller();
+        parent::MY_Controller();
         $this->load->library('layout', 'layout_main'); 
     }
     

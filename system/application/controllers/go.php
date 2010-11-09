@@ -12,10 +12,10 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Shortcut 
  */
-class Go extends Controller {
+class Go extends MY_Controller {
 
 	function Go() {
-		parent::Controller();
+		parent::MY_Controller();
 		$this->load->model('shortcut_model');
 	}
 	

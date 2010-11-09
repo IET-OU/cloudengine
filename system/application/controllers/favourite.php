@@ -7,11 +7,11 @@
  * @package Favourites
  */
 
-class Favourite extends Controller {
+class Favourite extends MY_Controller {
 
 	function Favourite()
 	{
-		parent::Controller();
+		parent::MY_Controller();
 		$this->load->model('favourite_model');
 		$this->load->library('layout', 'layout_main'); 	
 	}

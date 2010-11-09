@@ -5,10 +5,10 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Blog
  */
-class Blog extends Controller {
+class Blog extends MY_Controller {
 
 	function Blog () {
-		parent::Controller();
+		parent::MY_Controller();
 		$this->load->model('blog_model');
 		$this->load->model('event_model');
 		$this->load->model('user_model');

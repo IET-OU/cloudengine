@@ -21,6 +21,7 @@
         <a href="<?= base_url() ?>user/unfollow/<?= $user->id ?>" class="button"><?=t("Unfollow")?></a>
    
     <?php endif; ?>        
+    <a href="<?= base_url() ?>message/compose/<?= $user->id ?>" class="button"><?=t("Send message")?></a>
     </h1>
     <?php if ($reputation): ?>
     <p><strong>Reputation: <?= $reputation ?></strong></p>

@@ -163,16 +163,20 @@ class Message extends MY_Controller {
    *
    * 
    */
-  function compose() {
+  function compose($recipient_id = 0) {
 
       //initialise
-      $user_id            = $this->db_session->userdata('id');
+      $user_id                      = $this->db_session->userdata('id');
+      $data['recipient_user_name']  = '';
      
       //data
-      $data['title']            = 'Messages - Compose';
-      $data['navigation']       = 'message_compose';      
+      $data['title']                = 'Messages - Compose';
+      $data['navigation']           = 'message_compose';      
       
-      $data['user_unread_count'] = $this->message_model->get_user_new_message_count($user_id);
+      if ($recipient_id) {
+        $recipient = $this->user_model->get_user($recipient_id);
+        $data['recipient_user_name'] = $recipient->user_name .', ';
+      }
       
       //ajax recipients
 
@@ -419,52 +423,8 @@ class Message extends MY_Controller {
         $temp[] = array('value' => $recipient['user_name'], 'label' => $recipient['fullname']);
       }
       $results_json = $this->json->encode($temp);
+      
       print $results_json;
-      
-      /*$video_activity_text  = $this->input->post('video_activity_text');
-      $video_id             = $this->input->post('video_id'); 
-      $user_id              = $this->input->post('user_id');
-      
-      // if there is already text for this video and user then update the entry
-      if ($this->user_video_text_model->get_item($user_id,$video_id)) {
-        $result_text = $this->user_video_text_model->edit($user_id, $video_id, $video_activity_text);
-      } 
-      // if there is no text for this video and user then insert the entry
-      else {
-        $result_text = $this->user_video_text_model->add($user_id, $video_id, $video_activity_text);
-      }*/
-      
-      //format the results as JSON and return to the 'AJAX_record.php' page       
-      //$results_json_encode = $this->json->encode(array(array('value' => 'richlove','label' => 'Richard Lovelock'),array('value' => 'bacon','label' => 'Richard Bacon')));
-      //$results_json = '[' .$results_json_encode .']';
-      /*$results_json = '[
-			{
-				"value": "juliette_culver",
-				"label": "Juliette Culver"
-			},
-			{
-				"value": "richlove",
-				"label": "Richard Lovelock"
-			},
-			{
-				"value": "richlove2",
-				"label": "Rich Lovelock"
-			},
-			{
-				"value": "grainne_conole",
-				"label": "Grainne Conole"
-			},
-			{
-				"value": "tony_hirst",
-				"label": "Tony Hirst"
-			}     
-		]';*/
-      
-      //var_dump($results_json);exit;
-      //print $results_json_encode;
-      //print $_GET['term'];
-      //$ajax_result  = array('ajax_result' => $results_json); 
-      //$this->load->view('AJAX_record',$ajax_result);        
         
     }   
     

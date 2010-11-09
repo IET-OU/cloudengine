@@ -7,11 +7,11 @@
  * @package Content
  */
 
-class content extends Controller {
+class content extends MY_Controller {
 
 	function content ()
 	{
-		parent::Controller();
+		parent::MY_Controller();
 		$this->load->model('content_model');
 	    $this->load->model('cloud_model');
 		$this->load->library('layout', 'layout_main'); 	

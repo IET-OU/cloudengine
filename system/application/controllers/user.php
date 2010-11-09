@@ -6,10 +6,10 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package User
  */
-class User extends Controller {
+class User extends MY_Controller {
 
 	function User() {
-		parent::Controller();
+		parent::MY_Controller();
 		$this->load->model('user_model');
 		$this->load->library('layout', 'layout_main'); 
         $this->load->model('event_model');   

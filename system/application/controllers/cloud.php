@@ -6,10 +6,10 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Cloud
  */
-class Cloud extends Controller {
+class Cloud extends MY_Controller {
 
     function Cloud() {
-        parent::Controller();
+        parent::MY_Controller();
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->helper('format');

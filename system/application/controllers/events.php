@@ -9,11 +9,11 @@
  * @package Events
  */
 
-class Events extends Controller {
+class Events extends MY_Controller {
 
 	function Events ()
 	{
-		parent::Controller();	
+		parent::MY_Controller();	
 		$this->load->library('layout', 'layout_main'); 
 		$this->load->model('user_model');
 		$this->load->model('events_model');

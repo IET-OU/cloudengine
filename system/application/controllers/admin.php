@@ -8,10 +8,10 @@
  * @package Admin
  */
 
-class Admin extends Controller {
+class Admin extends MY_Controller {
 
 	function Admin() {
-		parent::Controller();
+		parent::MY_Controller();
 		$this->load->library('layout', 'layout_main'); 
 		$this->load->model('cloud_model');
 		$this->load->model('comment_model');

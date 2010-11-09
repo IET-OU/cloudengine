@@ -5,10 +5,10 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Statistics
  */
-class Statistics extends Controller {
+class Statistics extends MY_Controller {
 
 	function Statistics() {
-		parent::Controller();
+		parent::MY_Controller();
         $this->load->model('statistics_model');		
 		$this->load->library('layout', 'layout_main'); 
 		$this->load->model('cloud_model');

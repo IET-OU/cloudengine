@@ -6,12 +6,12 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Install
  */
-class Install extends Controller {
+class Install extends MY_Controller {
 
 	const SITE_NAME = "CloudEngine installer";
 	
 	public function __construct() {
-		parent::Controller();
+		parent::MY_Controller();
 		
 		$this->load->library('layout', array('layout_install'));
 		$this->load->library('install/install_lib', NULL, 'lib');

@@ -11,11 +11,11 @@
 /**
  * Controller for static about pages
  */
-class Support extends Controller {
+class Support extends MY_Controller {
 
 	function Support ()
 	{
-		parent::Controller();	
+		parent::MY_Controller();	
 		$this->load->library('layout', 'layout_main'); 
 		$this->load->model('page_model');
 	}

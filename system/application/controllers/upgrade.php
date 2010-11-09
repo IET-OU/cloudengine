@@ -11,12 +11,12 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Install
  */
-class Upgrade extends Controller {
+class Upgrade extends MY_Controller {
 
     protected $messages = array();
 
     public function __construct() {
-        parent::Controller();
+        parent::MY_Controller();
 
         $this->auth_lib->check_is_admin(); 
         $this->load->library('layout', 'layout_main');

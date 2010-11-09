@@ -8,11 +8,11 @@
  * @package Cloudstream
  */
 
-class Event extends Controller {
+class Event extends MY_Controller {
 
 	function Event ()
 	{
-		parent::Controller();
+		parent::MY_Controller();
 
 		$this->load->model('event_model');
 		$this->load->library('layout', 'layout_main'); 

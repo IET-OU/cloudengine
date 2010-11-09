@@ -18,10 +18,10 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Gadgets
  */
-class Gadget extends Controller {
+class Gadget extends MY_Controller {
 
     function Gadget() {
-        parent::Controller();
+        parent::MY_Controller();
         // Check that the Google Gadgets feature flag is enabled 
         if (!$this->config->item('x_gadgets')) {
             show_404();

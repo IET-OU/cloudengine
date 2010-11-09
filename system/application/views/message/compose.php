@@ -12,7 +12,7 @@ $(function() {
 
 	$( "#recipients" ).autocomplete({
 		source: function( request, response ) {
-			$.getJSON( "get_message_recipients", {
+			$.getJSON( "/message/get_message_recipients", {
 				term: extractLast( request.term )
 			}, response );
 		},
@@ -71,7 +71,7 @@ $(function() {
                 <?=form_open($this->uri->uri_string(), array('id' => 'compose-message-form'))?>
                  
                   <label for="recipients" class="compose-label">To:</label>              
-                  <input type="text" name="recipients" id="recipients" class="compose-field" />
+                  <input type="text" name="recipients" id="recipients" class="compose-field" value="<?= $recipient_user_name ?>" />
                   <hr class="compose-input-divider" />              
                    
                   <label for="subject" class="compose-label">Subject:</label>              
@@ -91,7 +91,7 @@ $(function() {
               </div>
             </div>            
             
-            <pre><? print_r($this->_ci_cached_vars); ?></pre>
+            <pre><? //print_r($this->_ci_cached_vars); ?></pre>
           
           </div>
           

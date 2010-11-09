@@ -7,10 +7,10 @@
  * @package Embed
  */
 
-class Embed extends Controller {
+class Embed extends MY_Controller {
 
     function Embed() {
-        parent::Controller();
+        parent::MY_Controller();
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->helper('format');

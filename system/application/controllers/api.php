@@ -13,7 +13,7 @@ define('_API_VERSION', '0.1');
 // The URL segment following an ID in eg. clouds/{ID}/followers
 define('_API_RELATED_SEGMENT', 4); #3 or 4.
 
-class Api extends Controller {
+class Api extends MY_Controller {
 
     protected $api_key  = NULL;
     protected $item_type= NULL; //The item type, eg. 'cloud', 'user'.
@@ -25,7 +25,7 @@ class Api extends Controller {
     /** Constructor, for now load all models. Calls '_pre_process'.
      */
     public function Api() {
-        parent::Controller();
+        parent::MY_Controller();
 
         // Switch the API on or off.
         if (!$this->config->item('x_api')) {

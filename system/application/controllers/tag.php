@@ -5,11 +5,11 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Tag
  */
-class Tag extends Controller {
+class Tag extends MY_Controller {
 
 	function Tag()
 	{
-		parent::Controller();
+		parent::MY_Controller();
 		$this->load->model('tag_model');
 		$this->load->library('layout', 'layout_main'); 
 	}

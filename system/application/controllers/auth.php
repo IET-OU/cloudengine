@@ -8,10 +8,10 @@
  * @package Authentication
  */
 
-class Auth extends Controller {
+class Auth extends MY_Controller {
 
 	function Auth() {
-		parent::Controller();
+		parent::MY_Controller();
 		$this->load->model('user_model');
 		$this->load->model('auth_model');
 		$this->load->library('layout', 'layout_main'); 

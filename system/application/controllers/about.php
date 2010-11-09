@@ -9,11 +9,11 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Page
  */
-class About extends Controller {
+class About extends MY_Controller {
 
 	function About ()
 	{
-		parent::Controller();	
+		parent::MY_Controller();	
 		$this->load->library('layout', 'layout_main'); 
 		$this->load->model('page_model');
 	}

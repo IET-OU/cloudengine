@@ -7,10 +7,10 @@
  * @package Cloudscape
  */
 
-class Cloudscape extends Controller {
+class Cloudscape extends MY_Controller {
 
     function Cloudscape() {
-        parent::Controller();
+        parent::MY_Controller();
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->helper('format');

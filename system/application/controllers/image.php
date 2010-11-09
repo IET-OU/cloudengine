@@ -9,11 +9,11 @@
  * @package Image
  */
 
-class Image extends Controller {
+class Image extends MY_Controller {
 
 	function Image()
 	{
-        parent::Controller();  
+        parent::MY_Controller();  
 	}
 
 	/**

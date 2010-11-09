@@ -5,9 +5,9 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Search
  */
-class Search extends Controller {
+class Search extends MY_Controller {
 
-	function Search() {
+	function MY_Search() {
 		parent::Controller();
  
 		$this->load->library('zend');

@@ -7,11 +7,11 @@
  * @package Comment
  */
 
-class Comment extends Controller {
+class Comment extends MY_Controller {
 
 	function Comment ()
 	{
-		parent::Controller();
+		parent::MY_Controller();
 		$this->load->model('comment_model');
 		$this->load->library('layout', 'layout_main'); 	
 	}
