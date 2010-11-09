@@ -35,6 +35,8 @@ class Message extends MY_Controller {
         
         if ($this->input->post('delete_thread')) {
           $this->flag_thread($this->input->post('delete_thread'),'set_deleted'); 
+          $data['message_display_content'] = 'Message successfully deleted';
+          $data['message_display_type'] = 'info';          
         }
         
         elseif ($this->input->post('location')) {
@@ -44,11 +46,30 @@ class Message extends MY_Controller {
         elseif ($this->input->post('thread-action')) {    
           
           $action = $this->input->post('thread-action');                  
+          
           switch ($action) {               
+            case 'set_read':
             case 'set_read':
             case 'set_unread':
             case 'set_deleted':
               if (isset($_POST['thread_id'])) {
+               
+                //set confirmation messages
+                switch ($action) {  
+                  case 'set_read':
+                    $data['message_display_content'] = 'Messages successfully set to read';
+                    $data['message_display_type'] = 'info';
+                    break; 
+                  case 'set_unread':
+                    $data['message_display_content'] = 'Messages successfully set to unread';
+                    $data['message_display_type'] = 'info';    
+                    break;               
+                  case 'set_deleted':
+                    $data['message_display_content'] = 'Messages successfully deleted';
+                    $data['message_display_type'] = 'info';
+                    break;                   
+                }
+
                 $thread_id=$_POST['thread_id'];
                 foreach ($thread_id as $id)
                 {
@@ -64,8 +85,7 @@ class Message extends MY_Controller {
            
       //data
       
-            $data['user_message_count']   = $this->message_model->get_user_new_message_count($data['user_id']);
-      
+
       $data['title']            = 'Messages - Inbox';
       $data['navigation']       = 'message_inbox';      
       $data['threads']    = $this->message_model->get_user_threads($data['user_id']);
@@ -85,6 +105,15 @@ class Message extends MY_Controller {
       
       $user_message_count   = $this->message_model->get_user_new_message_count($data['user_id']);
       $this->db_session->set_userdata('user_message_count', $user_message_count);
+      
+      if ($this->db_session->flashdata('message_display_content')) {
+        $data['message_display_content']  = $this->db_session->flashdata('message_display_content');
+        $data['message_display_type']     = $this->db_session->flashdata('message_display_type');
+      }
+      
+      
+      //$this->db_session->set_flashdata('message_display_content', 'Message sent');    
+      //$this->db_session->set_flashdata('message_display_type', 'info');  
       
       //process
       //output
@@ -117,6 +146,18 @@ class Message extends MY_Controller {
         if ($this->input->post('thread-action')) {
           $action = $this->input->post('thread-action'); 
           $this->flag_thread($thread_id,$action);
+          //set confirmation messages
+          switch ($action) {  
+            case 'set_unread':
+               $this->db_session->set_flashdata('message_display_content', 'Conversation successfully set to unread');    
+               $this->db_session->set_flashdata('message_display_type', 'info');    
+              break;               
+            case 'set_deleted':
+              $this->db_session->set_flashdata('message_display_content', 'Conversation successfully deleted');    
+              $this->db_session->set_flashdata('message_display_type', 'info');    
+              break;                   
+          }          
+       
           redirect('message');  
         }
         
@@ -127,6 +168,8 @@ class Message extends MY_Controller {
             $message->content   = $this->input->post('content');
             $message->thread_id = $thread_id;
             $this->add_message_to_thread($message);
+            $data['message_display_content'] = 'Message sent succesfully';
+            $data['message_display_type'] = 'info';              
           }
           
         }
@@ -152,6 +195,11 @@ class Message extends MY_Controller {
 
       $user_message_count   = $this->message_model->get_user_new_message_count($data['user_id']);
       $this->db_session->set_userdata('user_message_count', $user_message_count);
+
+      if ($this->db_session->flashdata('message_display_content')) {
+        $data['message_display_content']  = $this->db_session->flashdata('message_display_content');
+        $data['message_display_type']     = $this->db_session->flashdata('message_display_type');
+      }
 
       //process
       //output
@@ -212,6 +260,9 @@ class Message extends MY_Controller {
           $message->content           = $this->input->post('content');
           
           $this->add_message_to_thread($message);
+          
+          $this->db_session->set_flashdata('message_display_content', 'Message sent successfully.');    
+          $this->db_session->set_flashdata('message_display_type', 'info');              
           
           redirect('/message/thread/'.$message->thread_id);
         }

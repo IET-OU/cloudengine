@@ -20,7 +20,13 @@
                 <button id="mark" value="set_deleted" name="thread-action"  id="set-deleted"  type="submit" >Delete</button />     
               <?=form_close()?>         
             </div>
-            
+                
+            <?php if($message_display_content): ?>
+              <div id="message-info-area" class="<?= $message_display_type ?>">
+                <?= $message_display_content; ?>               
+              </div>
+            <?php endif; ?>
+                            
             <div class="thread-participants">
               <span class="strong">Participants:</span> &nbsp; <?= anchor("user/view/".$user_id, 'You') ?><?php  foreach ($participants as $participant):?><?= ',&nbsp; ' .anchor("user/view/".$participant->user_id, $participant->name) ?><?php endforeach; ?>
             </div>

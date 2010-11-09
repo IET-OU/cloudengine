@@ -10,7 +10,7 @@
   <div id="message-region-1">
       <div class="grid g1">
           <div class="c1of1">
-              <pre><? //print_r($this); ?></pre>
+              <pre><? /*print_r($this->db_session->userdata);*/ /*print_r($this->_ci_cached_vars);*/ ?></pre>
               <?=form_open($this->uri->uri_string(), array('id' => 'thread-list-action-form'))?>
                 
                 <div class="message-actions-envelope">
@@ -21,12 +21,17 @@
                   <button id="mark" value="set_read"    name="thread-action"  id="set-read"     type="submit" >Mark read</button /> 
                   <button id="mark" value="set_deleted" name="thread-action"  id="set-deleted"  type="submit" >Delete</button />    
                 </div>
+                <?php if($message_display_content) : ?>
+                  <div id="message-info-area" class="<?= $message_display_type ?>">
+                    <?= $message_display_content; ?>               
+                  </div>
+                <?php endif; ?>
                 <div class="thread-list-head">            
                   <table>
                     <thead>
                       <tr class="message-list-top-line" >
                         <th class="replied">&nbsp;</th>
-                        <th class="message-list-checkbox">&nbsp;</th>
+                        <th class="message-list-checkbox"><input type="checkbox" id="thread_all"></th>
                         <th class="last-message-wrapper">Last message</th>
                         <th class="subject">Subject</th>
                         <th class="participants">Participants</th>
@@ -47,7 +52,7 @@
                                 <img src="<?=base_url()?>_design/replied_arrow.png" />
                               <?php endif; ?>
                             </td>
-                            <td class="message-list-checkbox"><input name="thread_id[]" type="checkbox"  value="<?= $thread->thread_id ?>" /></td>
+                            <td class="message-list-checkbox"><input class="thread-checkbox" name="thread_id[]" type="checkbox"  value="<?= $thread->thread_id ?>" /></td>
                             <td class="profile-pic">
                               <div class="thread-profile-pic">
                                 <?php if ($thread->picture): ?>

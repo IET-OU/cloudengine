@@ -1132,10 +1132,39 @@ background:#fdd; border:1px solid #c00; padding:6px; margin:1em; text-align:cent
 #message-page .ui-button .ui-button-text { display: block; line-height: 1.1em;  }
 #message-page input.ui-button { display: block; line-height: 1em; padding: 5px 6px; font-size: 12px; }
 
+.new-message-count {
+  background-image:url("message-count-elipse.png");
+  background-position:50% 50%;
+  background-repeat:no-repeat;
+  display:inline-block;
+  font-size:0.6em;
+  /*margin:0 3px;
+  padding:0 2px;*/
+  position:relative;
+  right:0.2em;
+  text-align:center;
+  top:-1em;
+  vertical-align:baseline;
+  width:15px;
+} 
 
-/*input.ui-button {
-padding:0.2em 0.5em;
-}*/
+#message-info-area {
+  min-height: 20px;
+  padding: 10px 20px; 
+  margin: 10px 0 0 0 ; 
+  border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px;  
+  font-weight: bold;
+}
+
+#message-info-area.info {
+  background: #FEF9E5;
+  border: 1px solid #EBD9C1;
+}
+
+#message-info-area.warning {
+  border: 1px solid red;
+  background: #FB9586;
+}
 
 /* thread list styles - start */
 #message-region-1 {
@@ -1186,6 +1215,7 @@ img.message-pic-anon {
 
 .thread-list-head th.message-list-checkbox {
   width:  25px;  
+  text-align: center;
 }
 
 .thread-list-head th.profile-pic {
@@ -1344,9 +1374,9 @@ img.message-pic-anon {
   background:none repeat scroll 0 0 #D8EBC4;
   border-bottom:0px solid #B3B3B3;
   display:block;
-  margin:0 0 1px;
+  margin:10px 0;
   overflow:hidden;
-  padding:10px 20px 10px 10px;
+  padding:5px 20px 5px 10px;
 }
 
 .thread-participants a {
@@ -1550,22 +1580,6 @@ img.message-pic-anon {
   cursor: pointer;
 }
 /* compose message styles - start */
-
-.new-message-count {
-  background-image:url("message-count-elipse.png");
-  background-position:50% 50%;
-  background-repeat:no-repeat;
-  display:inline-block;
-  font-size:0.6em;
-  /*margin:0 3px;
-  padding:0 2px;*/
-  position:relative;
-  right:0.2em;
-  text-align:center;
-  top:-1em;
-  vertical-align:baseline;
-  width:15px;
-} 
 
 
 
