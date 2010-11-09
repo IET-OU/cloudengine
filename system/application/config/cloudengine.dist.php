@@ -33,7 +33,7 @@ $config['search_index_path']       = $config['data_dir'].'search/index';
 $config['theme_stylesheet'] = 'themes/aurora/styles.css';
 $config['theme_logo']       = 'themes/aurora/cloudengine-logo.gif';
 $config['theme_banner']     = 'themes/aurora/header-bg-aurora.jpg';
-$config['theme_favicon']    = 'themes/aurora/favicon-aurora.ico.gif';
+$config['theme_favicon']    = 'themes/aurora/favicon-aurora.ico';
 
 
 // Flag whether this is a LIVE or developer/test install.

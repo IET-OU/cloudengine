@@ -5,7 +5,7 @@
         <?php if ($current_page != ''): ?>
         <a rel="home" href="<?=base_url()?>">
         <?php endif; ?>
-        <img id="link-home" src="<?=base_url()?><?= $this->config->item('theme_logo') ?>" alt="<?=$this->config->item('site_name').t("home page") ?>" />
+        <img id="link-home" src="<?=base_url()?><?= $this->config->item('theme_logo') ?>" alt="<?=t("!site-name! home page") ?>" />
         <?php if ($current_page  != '/'): ?>
         </a>
         <?php endif; ?>
