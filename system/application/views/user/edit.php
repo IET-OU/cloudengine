@@ -36,7 +36,7 @@
     <textarea name="description" id="description" cols="50" rows="10"><?= $user->description ?></textarea>
 </p>
 
-<p><button type="submit" name="submit" value="Save"><?=t("Save")?></button></p>
+<p><button type="submit" name="submit" class="submit" value="Save"><?=t("Save")?></button></p>
 </form>
 </div>
 <div id="region2">

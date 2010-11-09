@@ -36,7 +36,7 @@ you want to add the cloud to. </p>
 <?=form_open($this->uri->uri_string(), array('id' => 'cloud-permissions-form'))?>
      <label for="search_string"><?=t("Search cloudscapes")?></label>
  <input type="text" maxlength="128" name="search_string" id="search_string"  size="95" value="" />
- <p><button type="submit" name="submit" value="Search" class="form-submit"><?=t("Search")?></button></p>
+ <p><button type="submit" name="submit" class="submit" value="Search" class="form-submit"><?=t("Search")?></button></p>
  <?=form_close()?>
 
 </div>

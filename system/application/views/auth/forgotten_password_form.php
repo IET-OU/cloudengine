@@ -11,7 +11,7 @@
 	                       'maxlength'=>'100', 
 	                       'size'=>'60',
 	                       'value'=>''))?></p>
-	<p><?=form_submit(array('name'=>'submit', 'value'=>t("Send")))?>
+	<p><?=form_submit(array('name'=>'submit', 'class'=>'submit', 'value'=>t("Send")))?>
 	                     
  </p>
 <?=form_close()?>

@@ -4,5 +4,5 @@
     array('!title'=>$section->title)) ?>
 </p>
 <?=form_open($this->uri->uri_string(), array('id' => 'cloud-add-form'))?>
-    <p><button type="submit" name="submit" value="Delete"><?=t("Delete Section") ?></button></p>
+    <p><button type="submit" name="submit" class="submit" value="Delete"><?=t("Delete Section") ?></button></p>
 <?=form_close()?>

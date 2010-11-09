@@ -25,7 +25,7 @@ that each of the cloudscapes has an image.</p>
     <input type="hidden" name="cloudscape2" value="<?= $featured_cloudscapes[2]->cloudscape_id ?>" />
     <input type="hidden" name="cloudscape3" value="<?= $featured_cloudscapes[3]->cloudscape_id ?>" />
     <input type="hidden" name="cloudscape4" value="<?= $featured_cloudscapes[4]->cloudscape_id ?>" />
-    <input type="submit" name="submit" id="submit" value="Save" />
+    <input type="submit" name="submit" id="submit" class="submit" value="Save" />
 </form>
 
 

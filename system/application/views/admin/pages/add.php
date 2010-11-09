@@ -31,5 +31,5 @@
     </label>
     <textarea cols="80" rows="40" name="body" id="body"  ></textarea>
  
-    <p><button type="submit" name="submit" value="Save"><?= t("Save") ?></button></p>
+    <p><button type="submit" name="submit" class="submit" value="Save"><?= t("Save") ?></button></p>
 <?=form_close()?>

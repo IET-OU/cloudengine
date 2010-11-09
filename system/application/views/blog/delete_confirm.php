@@ -3,5 +3,5 @@
 <p><?=t("Are you sure that you want to delete this blog post? Deleting a blog post deletes it permanently and cannot be undone.")?></p>
 
 <?=form_open($this->uri->uri_string(), array('id' => 'news-delete-form'))?>
-    <p><button type="submit" name="submit" value="Delete"><?=t("Delete blog post")?></button></p>
+    <p><button type="submit" name="submit" class="submit" value="Delete"><?=t("Delete blog post")?></button></p>
 <?php form_close(); ?>

@@ -21,5 +21,5 @@
  <textarea cols="60" rows="20" name="body" id="body"  ><?= $news->body ?></textarea>
        
   <?php $button = ($new) ? t("Create blog post") : t("Save blog post"); ?>
-  <p><button type="submit" name="submit" value="Save"><?=$button ?></button></p>      
+  <p><button type="submit" name="submit" class="submit" value="Save"><?=$button ?></button></p>      
 <?=form_close()?>

@@ -15,5 +15,5 @@
           /><label for="cl-<?= $cloud->cloud_id ?>"><?= $cloud->title ?></label> <br />
     <?php endforeach; ?>
 
-    <p><button type="submit" name="submit" value="Add"><?=t("Add clouds")?></button></p>
+    <p><button type="submit" name="submit" class="submit" value="Add"><?=t("Add clouds")?></button></p>
 <?=form_close()?>

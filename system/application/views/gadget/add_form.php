@@ -13,5 +13,5 @@ Gadgets will only work if they are compatible with Google Friend Connect.") ?></
 	<label for="accessible_alternative"><?= t("Accessible Alternative !optional", array('!optional'=> /*/Translators: The form field is optional. */ form_required(t("optional")))) ?></label>
 	<textarea id="accessible_alternative" name="accessible_alternative" cols="60" rows= "10"><?= $gadget->accessible_alternative ?></textarea>
 </p>
-<p><button type="submit" name="submit" value="Save"><?= t('Add Google Gadget') ?></button></p>
+<p><button type="submit" name="submit" class="submit" value="Save"><?= t('Add Google Gadget') ?></button></p>
 <?=form_close()?>

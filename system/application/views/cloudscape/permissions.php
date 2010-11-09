@@ -78,7 +78,7 @@
 	    <p><label for="user_search_string"><?=t("Search users")?></label>
 	 	<input type="text" maxlength="128" name="user_search_string" id="user_search_string"  size="95" value="" />
 	 	
-	 	<button type="submit" name="submit" value="Search"><?=t("Search") ?></button>
+	 	<button type="submit" name="submit" class="submit" value="Search"><?=t("Search") ?></button>
 	 	</p>
 	 <?=form_close()?>
 </div>

@@ -8,6 +8,6 @@
 <?= form_dropdown('cloudscape_id', $cloudscapes) ?>
     
          
-        <input type="submit" name="submit" id="submit" value="<?= t("View Statistics") ?>" />
+        <input type="submit" name="submit" id="submit" class="submit" value="<?= t("View Statistics") ?>" />
         <?=form_close()?>
 </div>

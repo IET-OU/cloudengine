@@ -16,5 +16,5 @@
 	<label for="body"><?=t("Body")?>: </label>
  	<textarea cols="60" rows="20" name="body" id="body"  ><?= $comment->body ?></textarea>
     <?php $button = ($new) ? t("Create comment") : t("Save comment"); ?>
-    <p><button type="submit" name="submit" value="Save"><?=$button?></button></p>
+    <p><button type="submit" name="submit" class="submit" value="Save"><?=$button?></button></p>
 <?=form_close()?>

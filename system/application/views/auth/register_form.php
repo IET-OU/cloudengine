@@ -107,7 +107,7 @@
 </table>
 
 
-        <input type="submit" name="submit" id="submit" value="<?= t("Create my account") ?>" />
+        <input type="submit" name="submit" id="submit" class="submit" value="<?= t("Create my account") ?>" />
 <?=form_close()?>
 
 </div><!--END REGISTER DIV-->

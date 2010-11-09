@@ -16,5 +16,5 @@
      <textarea cols="60" rows="20" name="body" id="body"  ><?= $content->body ?></textarea>
      
      <?php $button = ($new) ? t("Save content") : t("Add content"); ?>
-     <p><button type="submit" name="submit" value="Save"><?=$button ?></button></p>
+     <p><button type="submit" name="submit" class="submit" value="Save"><?=$button ?></button></p>
 <?=form_close()?>

@@ -11,6 +11,6 @@
         <input type="text" maxlength="20" name="end" id="end"  size="20" value="<?php echo date("j F Y", time())?>" class="form-text" />
     
          
-        <input type="submit" name="submit" id="submit" value="View Statistics" />
+        <input type="submit" name="submit" id="submit" class="submit" value="View Statistics" />
         <?=form_close()?>
 </div>

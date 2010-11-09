@@ -3,5 +3,5 @@
 <?= $content->body ?>
 
 <?=form_open($this->uri->uri_string(), array('id' => 'content-delete-form'))?>
-	<p><button type="submit" name="submit" value="Delete"><?=t("Delete content")?></button></p>
+	<p><button type="submit" name="submit" class="submit" value="Delete"><?=t("Delete content")?></button></p>
 <?php form_close(); ?>

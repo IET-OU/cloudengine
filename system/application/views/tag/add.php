@@ -5,5 +5,5 @@
 	<label for="tags"><?=t("Tags !note", array('!note'=> form_required(t("comma-separated")))) ?>:<br/> 
 	<small><?= t("e.g. collaborative learning, problem based learning, calculus, moodle") ?></small></label>
 	<input type="text" id="tags" name="tags" size="80" />
-	<p><button type="submit" name="submit" value="Add"><?=t("Add tags")?></button></p>
+	<p><button type="submit" name="submit" class="submit" value="Add"><?=t("Add tags")?></button></p>
 <?=form_close()?>

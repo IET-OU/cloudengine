@@ -7,11 +7,11 @@
  * @package Comment
  */
 
-class Message extends Controller {
+class Message extends MY_Controller {
 
 	function Message ()
 	{
-		parent::Controller();
+		parent::MY_Controller();
 		$this->load->model('message_model');
     $this->load->model('user_model');
 		$this->load->library('layout', 'layout_main'); 	
@@ -41,7 +41,8 @@ class Message extends Controller {
           redirect($this->input->post('location'));  
         }
         
-        elseif ($this->input->post('thread-action')) {             
+        elseif ($this->input->post('thread-action')) {    
+          
           $action = $this->input->post('thread-action');                  
           switch ($action) {               
             case 'set_read':
@@ -62,6 +63,9 @@ class Message extends Controller {
       }
            
       //data
+      
+            $data['user_message_count']   = $this->message_model->get_user_new_message_count($data['user_id']);
+      
       $data['title']            = 'Messages - Inbox';
       $data['navigation']       = 'message_inbox';      
       $data['threads']    = $this->message_model->get_user_threads($data['user_id']);
@@ -78,7 +82,10 @@ class Message extends Controller {
           $data['threads'][$i]->content_preview = substr($data['threads'][$i]->content, 0 , 40);
         }                
       }
-            
+      
+      $user_message_count   = $this->message_model->get_user_new_message_count($data['user_id']);
+      $this->db_session->set_userdata('user_message_count', $user_message_count);
+      
       //process
       //output
       $this->layout->view('message/list', $data);
@@ -142,6 +149,10 @@ class Message extends Controller {
           //$data['participants'][$i]->name       = $data['thread'][$i]->author_name;
         }    
       }      
+
+      $user_message_count   = $this->message_model->get_user_new_message_count($data['user_id']);
+      $this->db_session->set_userdata('user_message_count', $user_message_count);
+
       //process
       //output
       $this->layout->view('message/thread', $data);
@@ -160,6 +171,9 @@ class Message extends Controller {
       //data
       $data['title']            = 'Messages - Compose';
       $data['navigation']       = 'message_compose';      
+      
+      $data['user_unread_count'] = $this->message_model->get_user_new_message_count($user_id);
+      
       //ajax recipients
 
       //form handling
@@ -388,7 +402,7 @@ class Message extends Controller {
       //process
     
       //output  
-      redirect('message');
+      //redirect('message');
         
   }    
   

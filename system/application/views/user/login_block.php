@@ -13,7 +13,7 @@
         <?=form_password(array('name'=>'password', 'id'=>'password','value'=>''))?></p>
         <?=(isset($this->fal_validation) ? $this->fal_validation->{'password'.'_error'} : '')?>
     
-        <p><?=form_submit(array('name'=>'login', 'id'=>'edit-submit', 'value'=>t("Log in")))?>
+        <p><?=form_submit(array('name'=>'login', 'id'=>'edit-submit', 'class'=>'submit', 'value'=>t("Log in")))?>
     <?=anchor($this->config->item('FAL_forgottenPassword_uri'), t("Forgotten password"))?></p>
     <?=form_close()?>
 </div>

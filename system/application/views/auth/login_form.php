@@ -18,7 +18,7 @@
 
     
 	<label>
-        <input type="submit" name="submit" id="submit" value="<?= t("Log in") ?>" />
+        <input type="submit" name="submit" id="submit" class="submit" value="<?= t("Log in") ?>" />
 	</label>
 <?=form_close()?>
 </fieldset>

@@ -14,13 +14,13 @@
             <input type="hidden" id="type" name="type" value="cloud" ?>
             <input type="hidden" id="action" name="action" value="approve" ?>
             <input type="hidden" id="id" name="id" value="<?=$cloud->cloud_id ?>" ?>      
-            <input type="submit" name="submit" id="submit" value="Approve" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Approve" />
         <?=form_close()?>
         <?=form_open($this->uri->uri_string(), array('id' => 'cloud-spam'))?>
             <input type="hidden" id="type" name="type" value="cloud" ?>
             <input type="hidden" id="action" name="action" value="spam" ?>
             <input type="hidden" id="id" name="id" value="<?=$cloud->cloud_id ?>" ?>
-            <input type="submit" name="submit" id="submit" value="Delete" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Delete" />
         <?=form_close()?>
     <?php endforeach; ?>
 <?php endif; ?>
@@ -37,13 +37,13 @@
             <input type="hidden" id="type" name="type" value="comment" ?>
             <input type="hidden" id="action" name="action" value="approve" ?>
             <input type="hidden" id="id" name="id" value="<?=$comment->comment_id ?>" ?>      
-            <input type="submit" name="submit" id="submit" value="Approve" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Approve" />
         <?=form_close()?>
         <?=form_open($this->uri->uri_string(), array('id' => 'comment-spam'))?>
             <input type="hidden" id="type" name="type" value="comment" ?>
             <input type="hidden" id="action" name="action" value="spam" ?>
             <input type="hidden" id="id" name="id" value="<?=$comment->comment_id ?>" ?>
-            <input type="submit" name="submit" id="submit" value="Delete" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Delete" />
         <?=form_close()?>
     <?php endforeach; ?>
 <?php endif; ?>
@@ -62,13 +62,13 @@
             <input type="hidden" id="type" name="type" value="cloudscape" ?>
             <input type="hidden" id="action" name="action" value="approve" ?>
             <input type="hidden" id="id" name="id" value="<?=$cloudscape->cloudscape_id ?>" ?>      
-            <input type="submit" name="submit" id="submit" value="Approve" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Approve" />
         <?=form_close()?>
         <?=form_open($this->uri->uri_string(), array('id' => 'cloudscape-spam'))?>
             <input type="hidden" id="type" name="type" value="cloudscape" ?>
             <input type="hidden" id="action" name="action" value="spam" ?>
             <input type="hidden" id="id" name="id" value="<?=$cloudscape->cloudscape_id ?>" ?>
-            <input type="submit" name="submit" id="submit" value="Delete" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Delete" />
         <?=form_close()?>
     <?php endforeach; ?>
 <?php endif; ?>
@@ -83,13 +83,13 @@
             <input type="hidden" id="type" name="type" value="news_comment" ?>
             <input type="hidden" id="action" name="action" value="approve" ?>
             <input type="hidden" id="id" name="id" value="<?=$comment->comment_id ?>" ?>      
-            <input type="submit" name="submit" id="submit" value="Approve" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Approve" />
         <?=form_close()?>
         <?=form_open($this->uri->uri_string(), array('id' => 'news_comment-spam'))?>
             <input type="hidden" id="type" name="type" value="news_comment" ?>
             <input type="hidden" id="action" name="action" value="spam" ?>
             <input type="hidden" id="id" name="id" value="<?=$comment->comment_id ?>" ?>
-            <input type="submit" name="submit" id="submit" value="Delete" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Delete" />
         <?=form_close()?>
     <?php endforeach; ?>
 <?php endif; ?>
@@ -104,13 +104,13 @@
             <input type="hidden" id="type" name="type" value="link" ?>
             <input type="hidden" id="action" name="action" value="approve" ?>
             <input type="hidden" id="id" name="id" value="<?=$link->link_id ?>" ?>      
-            <input type="submit" name="submit" id="submit" value="Approve" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Approve" />
         <?=form_close()?>
         <?=form_open($this->uri->uri_string(), array('id' => 'link-spam'))?>
             <input type="hidden" id="type" name="type" value="link" ?>
             <input type="hidden" id="action" name="action" value="spam" ?>
             <input type="hidden" id="id" name="id" value="<?=$link->link_id ?>" ?>
-            <input type="submit" name="submit" id="submit" value="Delete" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Delete" />
         <?=form_close()?>
     <?php endforeach; ?>
 <?php endif; ?>
@@ -125,13 +125,13 @@
             <input type="hidden" id="type" name="type" value="reference" ?>
             <input type="hidden" id="action" name="action" value="approve" ?>
             <input type="hidden" id="id" name="id" value="<?=$reference->reference_id ?>" ?>      
-            <input type="submit" name="submit" id="submit" value="Approve" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Approve" />
         <?=form_close()?>
         <?=form_open($this->uri->uri_string(), array('id' => 'reference-spam'))?>
             <input type="hidden" id="type" name="type" value="reference" ?>
             <input type="hidden" id="action" name="action" value="spam" ?>
             <input type="hidden" id="id" name="id" value="<?=$reference->reference_id ?>" ?>
-            <input type="submit" name="submit" id="submit" value="Delete" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Delete" />
         <?=form_close()?>
     <?php endforeach; ?>
 <?php endif; ?>
@@ -145,13 +145,13 @@
             <input type="hidden" id="type" name="type" value="content" ?>
             <input type="hidden" id="action" name="action" value="approve" ?>
             <input type="hidden" id="id" name="id" value="<?=$content->content_id ?>" ?>      
-            <input type="submit" name="submit" id="submit" value="Approve" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Approve" />
         <?=form_close()?>
         <?=form_open($this->uri->uri_string(), array('id' => 'content-spam'))?>
             <input type="hidden" id="type" name="type" value="content" ?>
             <input type="hidden" id="action" name="action" value="spam" ?>
             <input type="hidden" id="id" name="id" value="<?=$content->content_id ?>" ?>
-            <input type="submit" name="submit" id="submit" value="Delete" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Delete" />
         <?=form_close()?>
     <?php endforeach; ?>
 <?php endif; ?>
@@ -166,13 +166,13 @@
             <input type="hidden" id="type" name="type" value="embed" ?>
             <input type="hidden" id="action" name="action" value="approve" ?>
             <input type="hidden" id="id" name="id" value="<?=$embed->embed_id ?>" ?>      
-            <input type="submit" name="submit" id="submit" value="Approve" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Approve" />
         <?=form_close()?>
         <?=form_open($this->uri->uri_string(), array('id' => 'embed-spam'))?>
             <input type="hidden" id="type" name="type" value="embed" ?>
             <input type="hidden" id="action" name="action" value="spam" ?>
             <input type="hidden" id="id" name="id" value="<?=$embed->embed_id ?>" ?>
-            <input type="submit" name="submit" id="submit" value="Delete" />
+            <input type="submit" name="submit" id="submit" class="submit" value="Delete" />
         <?=form_close()?>
     <?php endforeach; ?>
 <?php endif; ?>

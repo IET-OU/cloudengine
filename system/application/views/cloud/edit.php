@@ -54,7 +54,7 @@ $(function()
  <input type="text" class="date-pick" maxlength="128" name="call_deadline" id="call_deadline"  size="95" value="<?php if ($cloud->call_deadline): ?><?= date('d F Y', $cloud->call_deadline) ?><?php endif; ?>" />
  <br /> <br /> <br />
         <?php endif; ?>
-        <input type="submit" name="submit" id="submit" value="<?php if ($new):
+        <input type="submit" name="submit" id="submit" class="submit" value="<?php if ($new):
           ?><?=t("Create Cloud")?><?php else:?><?=t("Save Cloud")?><?php endif;?>" />
         <?=form_close()?>
 </div>

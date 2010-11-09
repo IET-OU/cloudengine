@@ -5,5 +5,5 @@
 <?php echo '<b>'.validation_errors().'</b>'; ?>
 <?=form_open($this->uri->uri_string(), array('id' => 'add-link-form'))?>
 	<textarea cols="70" rows="30" name="body" id="body"></textarea>
-	<p><button type="submit" name="submit" value="Add"><?=t("Add content")?></button></p>
+	<p><button type="submit" name="submit" class="submit" value="Add"><?=t("Add content")?></button></p>
 <?=form_close()?>

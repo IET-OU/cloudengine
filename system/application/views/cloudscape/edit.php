@@ -70,6 +70,6 @@
  <br />
  <br />
 <?php $button = ($new) ? t("Create Cloudscape") : t("Save Cloudscape"); ?>
-<p><button type="submit" name="submit" value="Save"><?=$button?></button></p>
+<p><button type="submit" name="submit" class="submit" value="Save"><?=$button?></button></p>
        
 <?=form_close()?>

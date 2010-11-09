@@ -23,7 +23,7 @@
 </p>
 
 <?php $button = ($new) ? t("Add embedded content") : t("Save embedded content"); ?>
-<p><button type="submit" name="submit" value="Save"><?=$button ?></button></p>
+<p><button type="submit" name="submit" class="submit" value="Save"><?=$button ?></button></p>
 <?=form_close()?>
 </div>
 <div id="region2">

@@ -4,6 +4,6 @@
     <p>
     <label for="title"><?=t("New section name")?>:</label>
     <input type="text" maxlength="128" name="title" id="title" size="80" value="" />
-    <button type="submit" name="submit" value="Rename"><?=t("Rename section")?></button>
+    <button type="submit" name="submit" class="submit" value="Rename"><?=t("Rename section")?></button>
     </p>
 <?=form_close()?>

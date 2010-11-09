@@ -6,7 +6,7 @@
 
 <?=form_open($this->uri->uri_string(), array('id' => 'reference-delete-form'))?>
 
- <input type="submit" name="submit" id="submit" value="Delete Reference" />
+ <input type="submit" name="submit" id="submit" class="submit" value="Delete Reference" />
    
 <?php form_close(); ?>
 <br />

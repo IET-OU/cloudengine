@@ -18,5 +18,5 @@
 		<li><?=t("Please make sure you have permission to use the photo you upload.")?></li>
 		<li><?=t("Maximum dimensions (in pixels): !dimensions", array('!dimensions' => '1024 &times; 768'))?></li>
 	</ul>
-	<input type="submit" name="submit" id="submit" value="<?=t("Save")?>" /> 
+	<input type="submit" name="submit" id="submit" class="submit" value="<?=t("Save")?>" /> 
 </form>

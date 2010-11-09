@@ -16,6 +16,6 @@
  <input type="text" class="date-pick" maxlength="128" name="end_date" id="end_date"  size="95" value="
  <?php if ($cloudscape->end_date): ?><?=  date('d F Y', $cloudscape->end_date) ?><?php endif; ?>" />
          <br />
-        <input type="submit" name="submit" id="submit" value="<?= t("View Statistics") ?>" />
+        <input type="submit" name="submit" id="submit" class="submit" value="<?= t("View Statistics") ?>" />
         <?=form_close()?>
 </div>

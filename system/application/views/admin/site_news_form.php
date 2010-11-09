@@ -5,5 +5,5 @@
 <?=form_open($this->uri->uri_string(), array('id' => 'add-site_news-form'))?>
 <p><label for="body"><?=t("News content to appear on box on home page")?>:</label></p>
 <textarea cols="61" rows="10" name="body" id="body"><?= $site_news?></textarea>       
-<p><button type="submit" name="submit" value="Add"><?=t("Update Site News")?></button></p>
+<p><button type="submit" name="submit" class="submit" value="Add"><?=t("Update Site News")?></button></p>
 <?=form_close()?>

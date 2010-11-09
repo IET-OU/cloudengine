@@ -30,6 +30,6 @@
     <input type="text" maxlength="128" name="twitter_username" id="twitter_username"  size="80" value="<?= $profile->twitter_username ?>" />
 
     
-    <input type="submit" name="submit" id="submit" value="<?=t("Save")?>" />
+    <input type="submit" name="submit" id="submit" class="submit" value="<?=t("Save")?>" />
 <?=form_close()?>
 </div>

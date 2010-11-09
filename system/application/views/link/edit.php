@@ -18,5 +18,5 @@
 	<input type="text" id="url" name="url" value="<?php if ($link->url): ?><?= $link->url ?><?php else: ?>http://<?php endif; ?>"  size="80" />
 </p>
   <?php $button = ($new) ? t("Add link") : t("Save link"); ?>
-  <p><button type="submit" name="submit" value="Save"><?=$button ?></button></p>
+  <p><button type="submit" name="submit" class="submit" value="Save"><?=$button ?></button></p>
 <?=form_close()?>

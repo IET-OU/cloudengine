@@ -46,13 +46,18 @@
                         <?= t("Tags") ?>
                     <?php endif; ?>               
                 </li>
+                <?php if (isset($loggedinprofile)): ?>
                 <li class="messages">
                     <?php if ($current_page != '/message'): ?>
                         <?=anchor('message',  t("Messages"), array('class'=>'messages')) ?>
                      <?php else: ?>
                         <?= t("Messages") ?>
-                    <?php endif; ?>               
+                    <?php endif; ?>  
+                    <?php if ($this->db_session->userdata('user_message_count')): ?>
+                     <span class='new-message-count'><?= $this->db_session->userdata('user_message_count') ?></span>    
+                    <?php endif; ?>       
                 </li>                  
+                <?php endif; ?>
                 <li class="people">
                     <?php if ($current_page != '/user/people'): ?>
                         <?=anchor('user/people', t("People"), array('class'=>'people')) ?>

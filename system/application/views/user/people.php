@@ -18,7 +18,7 @@
         <?=form_open($this->uri->uri_string(), array('id' => 'user-search-form'))?>
             <p><label for="name"><?=t("Who are you looking for?")?></label></p>
             <p><input type="text" maxlength="128" name="name" id="name"  size="80" value="" /></p>
-            <input type="submit" name="submit" id="submit" value="<?=t("Search")?>" />
+            <input type="submit" name="submit" id="submit" class="submit" value="<?=t("Search")?>" />
         <?= form_close() ?>
 
         <?php if($users): ?>

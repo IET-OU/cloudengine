@@ -270,5 +270,31 @@ class Message_model extends Model {
       
     return $query->result_array();      
   }  
+  
+  
+    /**
+   * Get count of unread messages for a user
+   * 
+   * @param integer $user_id
+   * 
+   * @return message count integer
+   */
+  function get_user_new_message_count($user_id) {   
+    $query = $this->db->query("
+    SELECT count(m.message_id) as unread_count
+    FROM message_recipient mr
+    INNER JOIN message m 
+    	ON m.message_id = mr.message_id
+    INNER JOIN
+    	message_thread_participant mtp on mtp.thread_id = m.thread_id
+    WHERE is_new = 1
+    AND recipient_user_id = $user_id
+    AND participant_user_id = $user_id
+    AND mr.is_deleted = 0
+		AND mtp.is_deleted = 0    
+    AND is_spam = 0");
+        
+    return $query->row()->unread_count;      
+  } 
     
 }

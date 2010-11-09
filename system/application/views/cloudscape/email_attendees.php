@@ -14,7 +14,7 @@ not display correctly when the e-mail is sent out.')?></p>
     <input type="text" size="78" name="subject" id="subject" value="<?= $email->subject ?>" />
       <label for="body"><?= t('Message !required!') ?></label>
     <textarea name="body" id="body" cols="60" rows="20"><?= $email->body ?></textarea>
-    <p><button type="submit" name="submit" value="Send" class="form-submit"><?=t("Send e-mail")?></button></p>
+    <p><button type="submit" name="submit" class="submit" value="Send" class="form-submit"><?=t("Send e-mail")?></button></p>
     <?= form_close(); ?>
 <?php else: ?>
     <p><?= t('This event has no attendees yet') ?></p>

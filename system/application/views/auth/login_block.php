@@ -11,7 +11,7 @@
     	<p><label for="password"><?=t("Password")?>:</label><br />
         <?=form_password(array('name'=>'password', 'id'=>'password','value'=>''))?></p>    
         <p>
-        <input type="submit" name="submit" id="submit" value="<?= t("Log in") ?>" />
+        <input type="submit" name="submit" id="submit" class="submit" value="<?= t("Log in") ?>" />
     <?=anchor('auth/forgotten_password', t("Forgotten password"))?>
     
     

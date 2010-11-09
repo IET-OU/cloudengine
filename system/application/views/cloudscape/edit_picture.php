@@ -34,5 +34,5 @@
   <br /><label for="a_link" title="<?=t("For example")?> http://flickr.com/photos/4everyoung/313308360/"><?=t("Attribution link")?> </label>
       <input id="a_link" name="attr_link" size="30" maxlength="499" value="<?=$image_attr_link ?>" /></p>
 
-  <p><button type="submit" name="submit" value="Save"><?=t("Save")?></button></p>
+  <p><button type="submit" name="submit" class="submit" value="Save"><?=t("Save")?></button></p>
 </form>

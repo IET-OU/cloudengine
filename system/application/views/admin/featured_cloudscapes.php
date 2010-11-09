@@ -14,5 +14,5 @@ selected together with their images before you save them.</p>
 <input type="text" name="cloudscape3" id="cloudscape3" value="<?= $cloudscapes[3]->cloudscape_id ?>"/>
 <label>5:</label>
 <input type="text" name="cloudscape4" id="cloudscape4" value="<?= $cloudscapes[4]->cloudscape_id ?>"/>
-<input type="submit" name="preview" id="preview" value="Preview" />
+<input type="submit" name="preview" class="submit" id="preview" value="Preview" />
 </form>
