@@ -1,5 +1,8 @@
 <?php
     $theme_url = base_url()."themes/aurora/";
+
+  @header("Content-Type: text/html; charset=utf-8");
+  // We're moving to HTML5 (BB issue #62).
 ?>
 <!DOCTYPE html><html lang="en"><meta charset="UTF-8" />
 <title><?php echo $site_name ?> <?php if (isset($step)) { echo " - step ".($step +1); } ?></title>
