@@ -5,20 +5,23 @@
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  */
-/*
+/* Usage
+
+$$ visudo
+# Allow apache user to run Hg.
+# See, http://www.sudo.ws/sudo/sudoers.man.html
+apache localhost = NOPASSWD: NOEXEC: /usr/bin/hg
+
+config/cloudengine.php
+    $config['hg_path'] = 'sudo -u apache /usr/bin/hg';
+
 Mac: /usr/local/bin/hg
 RHEL/Linux: /usr/bin/hg
-
-"Not trusting file /var/www/cloudworks_hg/.hg/hgrc from untrusted user apache, group apache"
-
-$ cd /var/www/cloudengine_hg/
-$ chown -R 'apache:apache' .hg/
 */
 
 class Hglib {
 
     protected static function exec($cmd) {
-
         //Security!
         $hg_path = config_item('hg_path');
         if (!$hg_path) return FALSE;
@@ -29,7 +32,8 @@ class Hglib {
 
         chdir(BASEPATH);
         $result = FALSE;
-        if (file_exists($hg_path)) {
+        // The path may contain 'sudo ../hg'.
+        #if (file_exists($hg_path)) {
             $handle= popen("$hg_path $cmd 2>&1", 'r');
             #echo "'$handle'; ".gettype($handle).PHP_EOL;
             $result = fread($handle, 2096);
@@ -40,7 +44,7 @@ class Hglib {
                 echo 'Warning, hg user/permissions problem. ';
                 return FALSE;
             }
-        }
+        #}
         return $result;
     }
 
@@ -70,19 +74,32 @@ class Hglib {
         return $result;
     }
 
+    public static function parents() {
+        $rev = self::exec('parents');
+        $rev = explode("\n", $rev);
+        $result = FALSE;
+        //Hmm, a more efficient way?
+        foreach ($rev as $line) {
+            if (FALSE !== ($p = strpos($line, ':'))) {
+                $result[trim(substr($line, 0, $p))] = trim(substr($line, $p+1));
+            }
+        }
+        return $result;
+    }
+
     public static function revision() {
         $result= FALSE;
         $path  = self::paths();
         if ($path) {
-            $tip = self::tip();
-            $changeset = preg_replace('#\d+:#', '', $tip['changeset']);
+            $rev = self::parents();
+            $changeset = preg_replace('#\d+:#', '', $rev['changeset']);
             //'/changeset/..' - Are all repositories structured like Bitbucket?
             $link = "$path/changeset/$changeset";
             $result = array(
                 'url' => $link,
-                'tag' => $tip['tag'],
-                'date'=> $tip['date'],
-                'changeset' => $changeset,
+                'tag' => $rev['tag'],
+                'date'=> $rev['date'],
+                'changeset' => $rev['changeset'],
             );
         }
         return $result;
