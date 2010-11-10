@@ -1,12 +1,15 @@
 <?php
     $theme_url = base_url()."themes/aurora/";
+
+  @header("Content-Type: text/html; charset=utf-8");
+  // We're moving to HTML5 (BB issue #62).
 ?>
 <!DOCTYPE html><html lang="en"><meta charset="UTF-8" />
 <title><?php echo $site_name ?> <?php if (isset($step)) { echo " - step ".($step +1); } ?></title>
 <meta name="ROBOTS" content="noindex,nofollow" />
 
-  <link rel="stylesheet" href="<?php    echo base_url() ?>_design/styles_1_1.css" type="text/css" />
-  <link rel="stylesheet" href="<?php    echo $theme_url ?>styles.css" type="text/css" />
+  <link rel="stylesheet" href="<?php echo base_url() ?>_design/styles_1_1.css" />
+  <link rel="stylesheet" href="<?php echo $theme_url ?>styles.css" />
   <link rel="shortcut icon" href="<?php echo $theme_url ?>favicon-aurora.ico" />
 
   <!--[if IE 6]>
