@@ -1154,16 +1154,22 @@ background:#fdd; border:1px solid #c00; padding:6px; margin:1em; text-align:cent
   margin: 10px 0 0 0 ; 
   border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px;  
   font-weight: bold;
+  display: none;
 }
 
 #message-info-area.info {
-  background: #FEF9E5;
-  border: 1px solid #EBD9C1;
+  background: #FFD79B;
+  border: 2px solid #FF9900;
 }
 
-#message-info-area.warning {
-  border: 1px solid red;
+#message-info-area.error {
+  border: 2px solid red;
   background: #FB9586;
+}
+
+#message-info-area.success {
+  border: 2px solid green;
+  background: #D1F1CF;
 }
 
 /* thread list styles - start */
@@ -1247,14 +1253,16 @@ img.message-pic-anon {
 }
 
 .thread-list-row {
+  border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;    
   border-top:1px solid #E5E5E5;
   height:56px;
+  margin:5px 0;
   overflow:hidden;
   position:relative;
 }
 
 .thread-list-row.new-message {
-  background-color: #F2F2F2;
+  background-color: #F1F6FC;
 }
 
 .thread-list-row table {
@@ -1388,10 +1396,12 @@ img.message-pic-anon {
 }
 
 .thread-message {
+  background:none repeat scroll 0 0 #FAFBFF;
   border-top:1px solid #DDDDDD;
   margin:0 0 8px;
   overflow:hidden;
-  padding:20px 0 0;
+  padding:10px 0 5px 10px;
+  border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;    
 }
 
 .thread-message-profile-pic {
@@ -1453,8 +1463,12 @@ img.message-pic-anon {
 }
 
 #thread-message-compose-envelope {
-  padding-top:8px;
+  border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px;  
+  background:none repeat scroll 0 0 #F1F6FC;
+  height:129px;
   margin-bottom:10px;
+  margin-top: 20px;
+  padding:20px 0 0 10px;
 }
 
 #thread-message-compose-box-label {
@@ -1465,7 +1479,7 @@ img.message-pic-anon {
   min-width:50px;
   width:auto;
   font-size: 13px;  
-  color: #777;
+  color: #666;
 }
 
 #thread-message-compose-box {
@@ -1520,15 +1534,24 @@ img.message-pic-anon {
 
 #compose-header {
   height:20px;
-  padding:6px 0 6px 10px;
+  padding:6px 0 6px 15px;
   background:none repeat scroll 0 0 #F2F2F2;
   border-top:0px solid #CCCCCC;
   border-bottom:0px solid #CCCCCC;  
   margin-bottom: 10px;
 }
 
+#compose-to-help {
+  margin-left: 166px;
+  margin-bottom: 10px;
+}
+
 #compose-message-form {
   margin-top: 30px;
+  border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px;
+  background:none repeat scroll 0 0 #F1F6FC;
+  margin-top:20px;
+  padding:23px 0;
 }
 
 .compose-field {

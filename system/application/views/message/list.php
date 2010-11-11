@@ -64,7 +64,11 @@
                             </td>
                             <td class="last-message-wrapper">
                               <div class="last-message-author message-list-top-line">
-                                <?=anchor("user/view/$thread->last_message_author_id", $thread->last_message_author_name) ?>
+                                <?php if($thread->last_message_author_id == $user_id): ?>
+                                  <?=anchor("user/view/$thread->last_message_author_id", 'You') ?>
+                                <?php else: ?>
+                                  <?=anchor("user/view/$thread->last_message_author_id", $thread->last_message_author_name) ?>
+                                <?php endif; ?>
                               </div>
                               <div class="last-message-date message-list-bottom-line">
                                 <?= date("j M Y \a\\t g:i", $thread->last_message_date) ?>

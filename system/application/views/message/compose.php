@@ -64,22 +64,31 @@ $(function() {
               <?=form_close()?>         
             </div>
   
-            <?php echo '<b>'.validation_errors().'</b>'; ?>
+            <?php if($message_display_content): ?>
+              <div id="message-info-area" class="<?= $message_display_type ?>">
+                <?= $message_display_content; ?>          
+              </div>
+            <?php elseif(validation_errors()): ?>
+              <div id="message-info-area" class="error">
+                <?= validation_errors() ?>          
+              </div>            
+            <?php endif; ?> 
   
             <div id="compose">
               <div id="message-compose-envelope">
                 <?=form_open($this->uri->uri_string(), array('id' => 'compose-message-form'))?>
                  
+                  <p id="compose-to-help"><?= t("Search for recipients using the user's full name.") ?></p>
                   <label for="recipients" class="compose-label">To:</label>              
-                  <input type="text" name="recipients" id="recipients" class="compose-field" value="<?= $recipient_user_name ?>" />
+                  <input type="text" name="recipients" id="recipients" class="compose-field" value="<?= implode(', ',$valid_recipients) ?>" />
                   <hr class="compose-input-divider" />              
                    
                   <label for="subject" class="compose-label">Subject:</label>              
-                  <input type="text" name="subject" id="subject" class="compose-field" />
+                  <input type="text" name="subject" id="subject" class="compose-field" value="<?= $subject ?>" />
                   <hr class="compose-input-divider" />    
                                
                   <label for="content" class="compose-label">Message:</label>
-                  <textarea id="compose-message-compose-box" name="content" class="compose-field"></textarea>
+                  <textarea id="compose-message-compose-box" name="content" class="compose-field"><?= $content ?></textarea>
                   <hr class="compose-input-divider" />
                   
                   <div id="compose-message-submit-envelope">&nbsp;

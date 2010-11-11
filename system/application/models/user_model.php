@@ -215,7 +215,8 @@ class User_model extends Model {
         $user_to_update->email_news             = $user->email_news;
         $user_to_update->display_email          = $user->display_email;
         $user_to_update->whitelist              = $user->whitelist;
-        $user_to_update->do_not_use_editor     = $user->do_not_use_editor;
+        $user_to_update->do_not_use_editor      = $user->do_not_use_editor;
+        $user_to_update->email_message_notify   = $user->email_message_notify;
         
         $this->db->update('user_profile', $user_to_update, array('id'=>$user_id)); 
         $this->update_in_search_index($user_id);

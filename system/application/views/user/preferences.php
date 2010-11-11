@@ -15,7 +15,8 @@
   'email_follow'           => t("Notify me by e-mail when somebody follows me"),
   'email_comment'          => t("Notify me by e-mail when someone comments on one of my clouds"),
   'email_comment_followup' => t("Notify me by e-mail when someone comments on a cloud on which I have already commented"),
-  'email_news'             => t("Receive occasional e-mails from the !site-name! team"),
+  'email_message_notify'   => t("Notify me by e-mail when I receive a new message"),  
+  'email_news'             => t("Receive occasional e-mails from the !site-name! team")
   );
 
   if ($this->config->item('x_email_events_attending')) {

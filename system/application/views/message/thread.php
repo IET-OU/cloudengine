@@ -15,7 +15,7 @@
               <?=form_open($this->uri->uri_string(), array('id' => 'message-action-form1'))?>
                 <input type="hidden" value="submit" name="submit" /> 
                 <input type="hidden" value="<?= $thread_id ?>" name="thread_id" />
-                <button id="mark" value="message"   name="location"       id="message"      type="submit"  onclick="window.location='message'; return false;" >All messages</button />
+                <button id="mark" value="message"   name="location"       id="message"      type="submit"  onclick="window.location='/message'; return false;" >All messages</button />
                 <button id="mark" value="set_unread"  name="thread-action"  id="set-unread"   type="submit" >Mark unread</button />
                 <button id="mark" value="set_deleted" name="thread-action"  id="set-deleted"  type="submit" >Delete</button />     
               <?=form_close()?>         
@@ -23,10 +23,14 @@
                 
             <?php if($message_display_content): ?>
               <div id="message-info-area" class="<?= $message_display_type ?>">
-                <?= $message_display_content; ?>               
+                <?= $message_display_content; ?>          
               </div>
-            <?php endif; ?>
-                            
+            <?php elseif(validation_errors()): ?>
+              <div id="message-info-area" class="error">
+                <?= validation_errors() ?>          
+              </div>            
+            <?php endif; ?>       
+                                          
             <div class="thread-participants">
               <span class="strong">Participants:</span> &nbsp; <?= anchor("user/view/".$user_id, 'You') ?><?php  foreach ($participants as $participant):?><?= ',&nbsp; ' .anchor("user/view/".$participant->user_id, $participant->name) ?><?php endforeach; ?>
             </div>

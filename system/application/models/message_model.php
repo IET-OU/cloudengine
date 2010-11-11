@@ -59,14 +59,33 @@ class Message_model extends Model {
   }
 
   /**
-   * Read a thread 
+   * get a thread
+   *
+   * @param integer $thread_id
+   * 
+   * @return query object of a thread
+   */
+  function get_thread($thread_id = 0) {
+    $query = $this->db->query("
+      SELECT *
+      FROM message_thread mt        
+      WHERE mt.thread_id = $thread_id
+      ");
+    return $query->row();
+  }
+
+  /**
+   * Get a thread for a user (each user has their own copy of a thread)
    *
    * @param integer $user_id
    * @param integer $thread_id
    * 
    * @return query object of a thread
    */
-  function get_thread($user_id, $thread_id = 0) {
+  function get_user_thread($user_id, $thread_id = 0) {
+    
+    $result = 0;
+    
     $query = $this->db->query("
       SELECT 
       t.subject,
@@ -93,7 +112,13 @@ class Message_model extends Model {
       AND mr.is_spam = 0
       ORDER BY m.created
       ");
-    return $query->result();
+      
+    if ($query->num_rows()) {  
+      $result = $query->result();
+    }
+    
+    return $result;
+    
   }
 
   /**

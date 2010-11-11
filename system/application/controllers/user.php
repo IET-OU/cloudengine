@@ -464,6 +464,7 @@ class User extends MY_Controller {
         	$user->email_events_attending = $this->input->post('email_events_attending');
         	$user->display_email          = $this->input->post('display_email');
         	$user->do_not_use_editor      = $this->input->post('do_not_use_editor');
+          $user->email_message_notify   = $this->input->post('email_message_notify');
         	$this->user_model->update_profile($user);
             $data['message'] = t("Your preferences have been saved");
         } 
