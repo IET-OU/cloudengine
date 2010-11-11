@@ -44,7 +44,7 @@ class Auth_lib {
 
  		$message = $this->CI->load->view('email/activation_email', $data, TRUE);
         $result = send_email($user->email, config_item('site_email'), 
-                 t("!site-name! - Account Activation", $message));
+                 t("!site-name! - Account Activation"), $message);
     }
 
     /**
