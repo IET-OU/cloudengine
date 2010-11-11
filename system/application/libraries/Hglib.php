@@ -34,8 +34,7 @@ class Hglib {
         $result = FALSE;
         // The path may contain 'sudo ../hg'.
         #if (file_exists($hg_path)) {
-            $handle= popen("$hg_path $cmd 2>&1", 'r');
-            #echo "'$handle'; ".gettype($handle).PHP_EOL;
+            $handle = popen(escapeshellcmd("$hg_path $cmd"), 'r'); //2>&1
             $result = fread($handle, 2096);
             pclose($handle);
 
