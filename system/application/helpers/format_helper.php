@@ -14,10 +14,10 @@
  * @param string $text
  * @return string The truncated string 
  */
-function truncate_content($text) {
+function truncate_content($text, $string_length = 100) {
     $text = strip_tags($text);
     // Strip HTML
-    $max_chars = 100;
+    $max_chars = $string_length;
     $text = $text." ";
     // Truncate the string
     $text = substr($text, 0, $max_chars);

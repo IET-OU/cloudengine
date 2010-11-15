@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Controller for functionality related to comments on clouds
+ * Model functionality relating to messages
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
  * @license GNU General Public License version 2. See LICENCE.txt
  * @package Comment
@@ -54,6 +54,7 @@ class Message_model extends Model {
       GROUP BY mt.thread_id
       ORDER BY last_message_date desc;
       ");
+   
     return $query->result();
     
   }
@@ -122,12 +123,12 @@ class Message_model extends Model {
   }
 
   /**
-   * Read a thread 
+   * Get participants of a thread
    *
    * @param integer $thread_id
    * @param integer $user_id (if this is supplied, it will exclude the user_id from the result set)
    * 
-   * @return query object of a thread
+   * @return array of participant data
    */
   function get_thread_participants($thread_id = 0, $user_id = 0) {
     $query = $this->db->query("
@@ -198,7 +199,8 @@ class Message_model extends Model {
    *  - deleted
    *  - spam
    *
-   * @param integer $comment_id The ID of the comment
+   * @param integer $message_id
+   * @param integer $recipient_user_id 
    * @param string $action_field
    * @param string $action_value
    */
@@ -215,6 +217,7 @@ class Message_model extends Model {
    *  - archived
    *
    * @param integer $thread_id
+   * @param integer $participant_user_id
    * @param string $action_field
    * @param string $action_value
    */
@@ -247,12 +250,12 @@ class Message_model extends Model {
   } 
     
   /**
-   * Get the most recent 'undeleted' message in a thread for a user
+   * Get message_ids in a thread for a user
    *  
    * @param integer $thread_id
    * @param integer $user_id
    * 
-   * @return message_id integer
+   * @return array message_ids integer
    */
   function get_thread_message_ids($thread_id,$user_id) {   
     $query = $this->db->query("
@@ -272,7 +275,7 @@ class Message_model extends Model {
   } 
  
   /**
-   * Get the most recent 'undeleted' message in a thread for a user
+   * Get receipients for the compose 'To' dropdown jQuery/Ajax call
    *  
    * @param integer $thread_id
    * @param integer $user_id
@@ -287,13 +290,10 @@ class Message_model extends Model {
       	ON up.id = u.id
       WHERE fullname like '%$term%'
       ORDER BY fullname
-      LIMIT 0,100");
-
-      /*foreach ($query->result_array() as $message_id) {
-        $message_ids[] = $message_id['message_id']; 
-      } */     
+      LIMIT 0,100");  
       
-    return $query->result_array();      
+    return $query->result_array();    
+      
   }  
   
   
@@ -319,7 +319,8 @@ class Message_model extends Model {
 		AND mtp.is_deleted = 0    
     AND is_spam = 0");
         
-    return $query->row()->unread_count;      
+    return $query->row()->unread_count;    
+      
   } 
     
 }

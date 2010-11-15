@@ -1118,9 +1118,11 @@ height:auto;
 background:#fdd; border:1px solid #c00; padding:6px; margin:1em; text-align:center; font-size:medium
 }
 
-
+/*********************************/
 /*** Messaging styles - start  ***/
+/*********************************/
 
+/* misc messaging styles - start */
 .strong {
   font-weight: bold;
   color: #666;
@@ -1171,6 +1173,7 @@ background:#fdd; border:1px solid #c00; padding:6px; margin:1em; text-align:cent
   border: 2px solid green;
   background: #D1F1CF;
 }
+/* misc messaging styles - end */
 
 /* thread list styles - start */
 #message-region-1 {
@@ -1192,13 +1195,10 @@ img.message-pic-anon {
 }
 
 .message-actions-envelope {
-  /*height:24px;*/
   padding:6px 0 20px 5px;
-  /*background:none repeat scroll 0 0 #F2F2F2;*/
   border-top:0px solid #CCCCCC;
   border-bottom:1px solid #CCCCCC;  
   clear: both;
-  /*margin-bottom: 10px;*/
 }
 
 .thread-list-head table {
@@ -1322,7 +1322,6 @@ img.message-pic-anon {
 }
 
 .thread-list-row .message-list-top-line {
-  /*color:#333333;*/
   font-size:12px;
 }
 
@@ -1602,10 +1601,10 @@ img.message-pic-anon {
   float: right;
   cursor: pointer;
 }
-/* compose message styles - start */
+/* compose message styles - end */
 
-
-
-/*** Messaging styles - start  ***/
+/*********************************/
+/*** Messaging styles - end  ***/
+/*********************************/
 
 
