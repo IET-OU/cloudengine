@@ -396,6 +396,7 @@ CREATE TABLE `user_profile` (
   `whitelist` int(1) NOT NULL default '0',
   `email_events_attending` int(1) NOT NULL default '1',
   `do_not_use_editor` int(1) NOT NULL default '0',
+  `email_message_notify`  int(1) NOT NULL DEFAULT 1 ,  
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -620,3 +621,65 @@ CREATE TABLE `user_picture` (
   `picture` varchar(140) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- command split --
+
+DROP TABLE IF EXISTS `message`;
+
+-- command split --
+
+CREATE TABLE `message` (
+  `message_id`  int(10) NOT NULL AUTO_INCREMENT ,
+  `thread_id`  int(10) NOT NULL ,
+  `author_user_id`  int(10) NOT NULL ,
+  `content`  longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+  `created`  int(10) NOT NULL ,
+  PRIMARY KEY (`message_id`)
+) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+  COMMENT='Message information, relates to the original author';
+
+-- command split --
+
+DROP TABLE IF EXISTS `message_recipient`;
+
+-- command split --
+  
+CREATE TABLE `message_recipient` (
+  `message_id`  int(10) NOT NULL ,
+  `recipient_user_id`  int(10) NOT NULL ,
+  `is_new`  tinyint(1) NOT NULL DEFAULT 1 ,
+  `is_spam`  tinyint(1) NOT NULL DEFAULT 0 ,
+  `is_deleted`  tinyint(1) NOT NULL DEFAULT 0 ,
+  PRIMARY KEY (`message_id`, `recipient_user_id`)
+) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+  COMMENT='Message information for recipients, e.g. copies of a message';  
+ 
+-- command split --
+
+DROP TABLE IF EXISTS `message_thread`; 
+
+-- command split --
+  
+CREATE TABLE `message_thread` (
+  `thread_id`  int(10) NOT NULL AUTO_INCREMENT ,
+  `subject`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+  `author_user_id`  int(10) NOT NULL ,
+  `created`  int(10) NULL DEFAULT NULL ,
+  PRIMARY KEY (`thread_id`)
+) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci 
+  COMMENT='Information about threads, relates to original author';
+ 
+-- command split --
+
+DROP TABLE IF EXISTS `message_thread_participant`; 
+
+-- command split --
+
+CREATE TABLE `message_thread_participant` (
+  `thread_id`  int(10) NOT NULL ,
+  `participant_user_id`  int(10) NOT NULL ,
+  `is_deleted`  tinyint(1) NOT NULL DEFAULT 0 ,
+  `is_archived`  tinyint(1) NOT NULL DEFAULT 0 ,
+  PRIMARY KEY (`thread_id`, `participant_user_id`)
+) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT='Information about users\' copies of a thread';
