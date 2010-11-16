@@ -75,8 +75,7 @@
                                 <?php endif; ?>
                               </div>
                               <div class="last-message-date message-list-bottom-line">
-                                
-                                <?= format_date('!date-time!',$thread->last_message_date) ?>
+                                <?= format_date('!date-time-abbr!',$thread->last_message_date) ?>
                               </div>
                             </td>       
                             <td class="subject">

@@ -49,7 +49,7 @@
                   <div class="thread-message-envelope">
                     <div class="thread-message-header">
                       <span class="thread-message-author"><?= anchor("user/view/".$message->author_user_id, $message->author_name) ?></span>
-                      <span class="thread-message-date"><?= date("j F Y \a\\t g:i", $message->created) ?></span>
+                      <span class="thread-message-date"><?= format_date('!date-time-message!',$message->created) ?></span>
                     </div>
                     <div class="thread-message-content">
                       <?= $message->content ?>

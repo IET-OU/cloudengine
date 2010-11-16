@@ -422,21 +422,23 @@ function format_date($format, $timestamp=NULL, $args=array()) {
     /*/Translators: date/ date with time format, according to the strftime documentation.
     For example, %l (lower-case L) is the hour in 12-hour format (1 through 12).
     Eg. "9:49am 7 December 2009". http://php.net/manual/en/function.strftime.php */
-      '!date-time!'=> _("%l:%M%p %e %B %Y"),  #'g:ia j F Y', content_block.php, zh 2010?3?13? ??? 23:38.
+      '!date-time!'         => _("%H:%M on %e %B %Y"),  #'g:ia j F Y', content_block.php, zh 2010?3?13? ??? 23:38.
+      '!date-time-message!' => _("%e %B %Y at %H:%M"),  #e.g. 14:24 on 15 Nov 2010    
+      '!date-time-abbr!'    => _("%e %b %Y at %H:%M"),  #e.g. 14:24 on 15 Nov 2010      
       /*/Translators: date format, eg. "7 December 2009". */
-      '!date!'     => _("%e %B %Y"),  #'j F Y'
-      '!month-year!'=>_("%B %Y"),     #'F Y'
+      '!date!'              => _("%e %B %Y"),  #'j F Y'
+      '!month-year!'        =>_("%B %Y"),     #'F Y'
       /*/Translators: !month! eg. "December", "Dec" (homepage events block). */
-      '!month!'    => t("%B"),
+      '!month!'             => t("%B"),
     );
 
     # Hack: '%e' and others don't work in strftime on Windows :(
     if (isset($_SERVER['WINDIR'])) {
-      $date_args = str_replace('%e', '%d', $date_args);     
+      $date_args = str_replace('%e', '%#d', $date_args);     
     }
 
     foreach ($date_args as $j => $a) {
-      	$date_args[$j] = strftime($a, $timestamp);
+      	$date_args[$j] = strftime($a, $timestamp);          
     }
 
     $date_args['!date'] = $date_args['!date!'];
