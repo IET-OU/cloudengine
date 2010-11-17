@@ -13,7 +13,7 @@ $(function() {
 
 	$( "#recipients" ).autocomplete({
 		source: function( request, response ) {
-			$.getJSON( "/message/get_message_recipients", {
+			$.getJSON( "<?=base_url()?>message/get_message_recipients", {
 				term: extractLast( request.term )
 			}, response );
 		},

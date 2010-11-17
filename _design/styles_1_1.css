@@ -1128,7 +1128,7 @@ background:#fdd; border:1px solid #c00; padding:6px; margin:1em; text-align:cent
   color: #666;
 }
 
-.ui-autocomplete-loading { background: white url('/_design/ui-anim_basic_16x16.gif') right center no-repeat; }
+.ui-autocomplete-loading { background: white url('ui-anim_basic_16x16.gif') right center no-repeat; }
 
 #message-page .ui-button { margin-right: .5em;  }
 #message-page .ui-button .ui-button-text { display: block; line-height: 1.1em;  }
