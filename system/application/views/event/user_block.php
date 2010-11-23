@@ -8,5 +8,5 @@
    
 </div>
 <p>
-<?= anchor('event/user/'.$user->id.'/'.$type, t("More")) ?> | 
-<a href="<? base_url() ?>event/user_rss/<?= $user->id  ?>/<?= $type ?>" class="rss"><?=t("RSS")?></a></p>
+<?= anchor("event/user/$user->id/$type", t('More')) ?> | 
+<?= anchor("event/user_rss/$user->id/$type", t('RSS'), 'class="rss"') ?></p>
