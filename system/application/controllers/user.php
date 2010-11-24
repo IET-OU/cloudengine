@@ -81,7 +81,7 @@ class User extends Controller {
         $this->load->helper('xml');
         $profile                  = $this->user_model->get_user($user_id);
         $data['clouds']           = $this->user_model->get_clouds($user_id, 10); 
-        $data['encoding']         = $this->config->item('charset');;
+        $data['encoding']         = $this->config->item('charset');
         $data['feed_name']        = $this->config->item('site_name').': '.$profile->fullname;
         $data['feed_url']         = base_url().'user/rss.'.$user_id;
         $data['page_description'] = $this->config->item('site_name').' clouds by '.$profile->fullname;
@@ -336,12 +336,12 @@ class User extends Controller {
         $data['type']             = $type;
         $data['events']           = $events; 
         $data['type']             = $type;
-        $data['basepath']         = '/user/view/'.$user_id;         
-        $data['rss']              = '/event/user_rss/'.$user_id.'/'.$type; 
+        $data['basepath']         = $this->config->site_url('user/view/'.$user_id);
+        $data['rss_event']        = $this->config->site_url('event/user_rss/'.$user_id.'/'.$type);
         $data['user']             = $user;
         $data['display_email']    = $user->display_email;
         $data['title']            = $user->fullname;
-        $data['rss']              = '/user/rss/'.$user_id;
+        $data['rss']              = $this->config->site_url('user/rss/'.$user_id);
         $data['clouds']           = $this->user_model->get_clouds($user_id, 10);
         $data['picture']          = $this->user_model->get_picture($user_id);
         $data['cloud_total']      = $this->user_model->get_cloud_total($user_id);

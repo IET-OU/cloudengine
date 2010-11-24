@@ -122,9 +122,9 @@ class Cloudscape extends Controller {
             $data['total_views'] = $this->cloudscape_model->get_total_views($cloudscape_id);          
             $data['events']              = $events; 
             $data['type']                = $type;
-            $data['basepath']            = '/cloudscape/view/'.$cloudscape_id;
+            $data['basepath']            = $this->config->site_url('cloudscape/view/'.$cloudscape_id);
             $data['omit_cloudscapes']    = true;          
-            $data['rss']                 = '/event/cloudscape_rss/'.$cloudscape_id.'/'.$type;
+            $data['rss']                 = $this->config->site_url('event/cloudscape_rss/'.$cloudscape_id.'/'.$type);
             $data['total_favourites']    = $this->favourite_model->get_total_favourites(
                                                               $cloudscape_id, 'cloudscape'); 
             $data['favourite']           = $this->favourite_model->is_favourite($user_id, 
