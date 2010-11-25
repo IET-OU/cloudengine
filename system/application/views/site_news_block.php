@@ -1,3 +1,4 @@
+<span id="site-news"></span>
 <?php if ($site_news): ?>
     <div class="box">
     <h2><?=t("News")?></h2>

@@ -1,4 +1,4 @@
-<div class="grid">
+<div id="popular-box" class="grid">
 <h2><?=t('Popular') ?></h2>
 
 <ul class="cloudstream-filter">
@@ -12,7 +12,7 @@
 </ul>
 </div>
 
-<div class="grid" id="popular">
+<div id="popular" class="grid">
 <?php if ($popular_type == 'cloud'): ?>
     <ul class="clouds">
         <?php foreach($popular_clouds as $cloud): ?>

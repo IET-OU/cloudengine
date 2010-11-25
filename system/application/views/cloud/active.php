@@ -1,5 +1,5 @@
 <?php /*/Translators: ** The VIEWS section. ** */ ?>
-<div class="box">
+<div id="active-clouds" class="box">
 <h2><?=t("Active Clouds")?></h2>
 <ul class="active-clouds">
     <?php if(count($active_clouds) > 0):?>
