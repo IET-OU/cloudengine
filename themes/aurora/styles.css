@@ -28,3 +28,5 @@ body div.box {background: #E0EFFF; border: 2px solid #CCE5FF;}
 body div#region2 div.box {border:2px solid #FEE0A3;}
 
 body div#region2 div.box h2 {color:#333; background:#FEE0A3;}
+
+.new-message-count{background:transparent; color:#fff; font-weight:bold;}
