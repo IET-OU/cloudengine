@@ -1,10 +1,17 @@
 <?php
+/**
+ * Most controllers in CloudEngine should be extended from this one.
+ *
+ * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * @license GNU General Public License version 2. See LICENCE.txt
+ * @package
+ */
 
-class  MY_Controller  extends  Controller  {
+class MY_Controller extends Controller {
 
   function MY_Controller ()  {
     parent::Controller();
-      
+  
       //get message unread count for the user, this is called on nearly every page and is used to
       //update the message count in the primary navigation for a user 
       //(most controllers extend MY_Controller)
@@ -15,6 +22,6 @@ class  MY_Controller  extends  Controller  {
           $this->db_session->set_userdata('user_message_count', $user_message_count);
         }
       }
-                    
+
   }
-} 
+}
