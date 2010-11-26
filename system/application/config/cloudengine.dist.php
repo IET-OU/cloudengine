@@ -122,6 +122,9 @@ $config['x_twitter']          = FALSE;
 $config['x_twitter_username'] = '';
 $config['x_twitter_password'] = '';
 
+// Feature flag for direct messaging (Beta default: FALSE).
+$config['x_message'] = FALSE;
+
 // Feature flag for captchas on registration form 
 $config['x_captcha'] = FALSE;
 $config['whitelist_domains'] = '.ac.uk:.edu:.ac.jp:.ac.ae:.ac.nz:.edu.au:.ac.za:.ac.be';

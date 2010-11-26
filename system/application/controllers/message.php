@@ -15,6 +15,12 @@ class Message extends MY_Controller {
 	function Message ()
 	{
 		parent::MY_Controller();
+
+		// Switch the API on or off.
+    if (!$this->config->item('x_message')) {
+        show_404('/message');
+    }
+
 		$this->load->model('message_model');
     $this->load->model('user_model');
 		$this->load->library('layout', 'layout_main'); 	
