@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Controller for functionality related to the message system
  * 
@@ -563,8 +562,8 @@ class Message extends MY_Controller {
       //redirect('message');
         
   }    
-  
-  
+
+
   /**
    * Get message recipients
    *  - this is used for the jQuery/Ajax call to get the list of recipients 
@@ -578,7 +577,7 @@ class Message extends MY_Controller {
       $this->load->library('JSON');
   
       //passed from the jQuery call and will do a search against user full name
-      $term = $_GET['term'];
+      $term = $this->input->get('term');
       
       //get recipient names that contain the search term
       $recipients = $this->message_model->get_recipients($term);
@@ -590,7 +589,7 @@ class Message extends MY_Controller {
       $results_json = $this->json->encode($temp);
       //return results
       print $results_json;
-        
+
     }   
-    
+
 }
