@@ -46,7 +46,7 @@
                         <?= t("Tags") ?>
                     <?php endif; ?>               
                 </li>
-                <?php if (isset($loggedinprofile)): ?>
+                <?php if ($this->config->item('x_message') && isset($loggedinprofile)): ?>
                 <li class="messages">
                     <?php if ($current_page != '/message'): ?>
                         <?=anchor('message',  t("Messages"), array('class'=>'messages')) ?>

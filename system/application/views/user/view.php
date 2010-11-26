@@ -20,7 +20,9 @@
     <?php elseif(!$current_user): ?>
         <a href="<?= base_url() ?>user/unfollow/<?= $user->id ?>" class="button"><?=t("Unfollow")?></a>
     <?php endif; ?>        
-    <a href="<?= base_url() ?>message/compose/<?= $user->id ?>" class="button"><?=t("Send message")?></a>
+    <?php if(!$current_user && $this->config->item('x_message')): ?>
+        <?= anchor("message/compose/$user->id", t('Send message'), 'class="button"') ?>
+	<?php endif; ?>
     </h1>
     <?php if ($reputation): ?>
     <p><strong>Reputation: <?= $reputation ?></strong></p>

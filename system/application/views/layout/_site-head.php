@@ -26,7 +26,9 @@
     </style>
     <![endif]-->
 
-    <link type="text/css" href="<?=base_url()?>_scripts/jquery/css/redmond/jquery-ui-1.8.6.custom.css" rel="stylesheet" />	
-		<script type="text/javascript" src="<?=base_url()?>_scripts/jquery/js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="<?=base_url()?>_scripts/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
-    <script src="<?=base_url()?>_scripts/custom.js" type="text/javascript"></script>
+	<script type="text/javascript" src="<?=base_url()?>_scripts/jquery/js/jquery-1.4.2.min.js"></script>
+    <?php if ($this->config->item('x_message')): ?>
+        <script type="text/javascript" src="<?=base_url()?>_scripts/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
+        <link type="text/css" href="<?=base_url()?>_scripts/jquery/css/redmond/jquery-ui-1.8.6.custom.css" rel="stylesheet" />
+    <?php endif; ?>
+	<script src="<?=base_url()?>_scripts/custom.js" type="text/javascript"></script>
