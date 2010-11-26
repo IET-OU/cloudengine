@@ -86,7 +86,7 @@ $(function() {
                   <input type="text" name="subject" id="subject" class="compose-field" value="<?= $subject ?>" />
                   <hr class="compose-input-divider" />    
                                
-                  <label for="content" class="compose-label"><?= t("Message") ?>:</label>
+                  <label for="compose-message-compose-box" class="compose-label"><?= t("Message") ?>:</label>
                   <textarea id="compose-message-compose-box" name="content" class="compose-field"><?= $content ?></textarea>
                   <hr class="compose-input-divider" />
                   
