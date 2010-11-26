@@ -16,7 +16,7 @@
 <?=$this->lang->meta_link() ?>
     <link rel="shortcut icon" href="<?=base_url().config_item('theme_favicon') ?>" />
     <?php if($rss): ?>
-    <link rel="alternate" type="application/rss+xml" title="<?= $this->config->item('site_name') ?>') - <?= $title ?>" href="<?= $rss ?>" />
+    <link rel="alternate" type="application/rss+xml" title="<?= $this->config->item('site_name') ?> - <?= $title ?>" href="<?= $rss ?>" />
     <?php endif; ?>
     
     <!--[if IE 6]>

@@ -1,4 +1,4 @@
-<div class="box clearfix">
+<div id="featured-box" class="box clearfix">
     <h2><?=t("Featured Cloudscapes")?></h2>
     <div class="featured-cloudscapes">
 

@@ -14,7 +14,7 @@
     </div>
      <p>
      <?= anchor('cloudscape/view/'.$cloudscape->cloudscape_id, t("Back to cloudscape")) ?>
-     | <a class="rss" href="/event/cloudscape_rss/<?= $cloudscape->cloudscape_id ?>/<?= $type ?>"><?=t("RSS")?></a></p>          
+     | <?= anchor("event/cloudscape_rss/$cloudscape->cloudscape_id/$type", t('RSS'), 'class="rss"') ?></p>          
 </div>
 <div id="region2">
     <?php $this->load->view('search/search_box'); ?>

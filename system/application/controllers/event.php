@@ -116,8 +116,8 @@ class Event extends MY_Controller {
                 $simple = true;
             }  
         $data['events'] = $this->event_model->display_format($events, $simple); 
-        $data['basepath'] = '/event/user/'.$user_id;
-        $data['rss']    = '/event/user_rss/'.$user_id.'/'.$type;
+        $data['basepath']= $this->config->site_url('event/user/'.$user_id);
+        $data['rss']     = $this->config->site_url('event/user_rss/'.$user_id.'/'.$type);
         $data['title'] = t("!person's cloudstream", array('!person'=>$user->fullname));    
         $this->layout->view('event/user', $data); 
     }
@@ -161,9 +161,9 @@ class Event extends MY_Controller {
                                                                    $cloudscape_id, 100, $type);
         $data['cloudscape']       = $cloudscape;
         $data['events']           = $this->event_model->display_format($events);
-        $data['rss']              = '/event/cloudscape_rss/'.$cloudscape_id.'/'.$type;
+        $data['rss']              = $this->config->site_url('event/cloudscape_rss/'.$cloudscape_id.'/'.$type);
         $data['type']             = $type;
-        $data['basepath']         = '/event/cloudscape/'.$cloudscape_id;
+        $data['basepath']         = $this->config->site_url('event/cloudscape/'.$cloudscape_id);
         $data['omit_cloudscapes'] = true;
         $data['title']            = t("Cloudstream for the cloudscape !title", 
                                       array('!title'=>"'$cloudscape->title'"));    

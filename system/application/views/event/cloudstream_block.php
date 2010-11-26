@@ -1,4 +1,4 @@
-<div class="box">
+<div id="cloudstream-box" class="box">
 <h2><?=t("Cloudstreams")?></h2>
 <ul class="arrows">
 <li><?= anchor('event/site', t("All activity on the site")) ?></li>

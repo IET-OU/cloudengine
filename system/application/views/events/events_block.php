@@ -1,5 +1,5 @@
-<div class="grid">
-    <h2 id="events"><?=t('Events') ?></h2>
+<div id="events" class="grid">
+    <h2><?=t('Events') ?></h2>
 
     <ul class="cloudstream-filter">
     <li><?php if ($month == $current_month): ?><strong><?=

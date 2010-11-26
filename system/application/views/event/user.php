@@ -1,6 +1,6 @@
 <div id="region1">
     <h1><?=t("Cloudstream for !person", 
-        array('!person'=>"<a href='".base_url()."/user/view/$user->user_id'>$user->fullname ?></a>"))?></h1>
+          array('!person'=>anchor("user/view/$user->user_id", $user->fullname))) ?></h1>
     
     <div class="grid">
         <?php $this->load->view('event/header'); ?>
