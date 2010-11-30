@@ -9,13 +9,20 @@ require_once BASEPATH.'helpers/xml_helper.php';
  *  Preserve numeric entities which are allowed, eg. &#39; &#45;.
  */
 function xml_safe($input) {
-    $xml_safe = array('&lt;', '&gt;', '&amp;', '&apos;', '&quot;');
+    if (!function_exists('mb_detect_encoding')) { echo "Help, we need 'mb_detect_encoding'!"; exit; }
+
+	$xml_safe = array('&lt;', '&gt;', '&amp;', '&apos;', '&quot;');
     $placeholders = array('#LT#', '#GT#', '#AMP#', '#APOS#', '#QUOT#');
-    $output = str_replace($xml_safe, $placeholders, $input);
+
+	// Everything should be UTF-8 already - in case it isn't, safely encode!
+	$output = 'UTF-8'==mb_detect_encoding($input, 'UTF-8') ? $input : utf8_encode($input);
+
+	$output = html_entity_decode($output, ENT_NOQUOTES, 'UTF-8');
+    $output = str_replace($xml_safe, $placeholders, $output);
     $output = preg_replace('/&[^#]\w*?;/', '', $output);
     $output = str_replace($placeholders, $xml_safe, $output);
 
-    return utf8_encode($output);
+    return $output;
 }  
 
 class ArrayToXML {
@@ -65,7 +72,6 @@ class ArrayToXML {
             } else {
 
                 // add single node.
-                $value = htmlentities( $value );
                 $value = xml_safe($value);  #NDF.
                 $xml->addChild( $key, $value );
             }
