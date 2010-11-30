@@ -168,7 +168,7 @@ class Admin extends MY_Controller {
 
         require_once(APPPATH.'/libraries/install/install_lib'.EXT);
         $this->load->library('Hglib');
-        $hg_revision = $this->hglib->revision();
+        $hg_revision = $this->hglib->read_revision();
 
         $this->layout->view('admin/phpinfo', array('title'=> 'Admin - Configuration', 'hg'=>$hg_revision));
     }
