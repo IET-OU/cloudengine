@@ -21,16 +21,22 @@ RHEL/Linux: /usr/bin/hg
 
 class Hglib {
 
+    /** Execute a Mercurial/hg command.
+    */
     protected static function exec($cmd) {
         //Security!
-        $hg_path = config_item('hg_path');
-        if (!$hg_path) return FALSE;
-        if (!preg_match("#\/hg$#", $hg_path)) { #[/\\]
-            echo "Error, unexpected 'hg_path' value in config/cloudengine.php, $hg_path";
-            return FALSE;
+        if (defined('APP_CLI')) {
+            $hg_path = 'hg';
+        } else {
+            $hg_path = config_item('hg_path');
+            if (!$hg_path) return FALSE;
+            if (!preg_match("#\/hg$#", $hg_path)) { #[/\\]
+                echo "Error, unexpected 'hg_path' value in config/cloudengine.php, $hg_path";
+                return FALSE;
+          }
         }
 
-        chdir(BASEPATH);
+        chdir(APPPATH);
         $result = FALSE;
         // The path may contain 'sudo ../hg'.
         #if (file_exists($hg_path)) {
@@ -102,5 +108,25 @@ class Hglib {
             );
         }
         return $result;
+    }
+
+    /** Read serialized PHP revision file.
+    */
+    public static function read_revision() {
+        $rev_file = APPPATH.'../../.hgrevision';
+        return unserialize(file_get_contents($rev_file));
+    }
+
+    /** Write a serialized PHP revision file.
+    */
+    public static function write_revision() {
+        $rev_file = APPPATH.'../../.hgrevision';
+        $result = self::revision();
+        if (!$result) {
+            echo 'Error in Hglib. Problem getting revision.'.PHP_EOL;
+        }
+        $result['agent'] = basename(__FILE__);
+        //(Was json_encode.)
+        $result = file_put_contents($rev_file, serialize($result));
     }
 }
