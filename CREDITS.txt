@@ -2,23 +2,24 @@
 
 See also LICENCE.txt for the licence for this software. 
 
-Version 1.0 Code Contributers and Acknowledgements:
----------------------------------------------------
+CloudEngine version 1.0 Code Contributors and Acknowledgements:
+--------------------------------------------------------------
 
 Version 1.0 - all code apart from that specified below.
 Copyright (c) 2009-2010, The Open University 
 
-Juliette Culver, IET, The Open University [Lead Developer]
-Nick Freear, IET, The Open University  [Internationalisation, API, 
-Install and Upgrade Infrastructure, oEmbed]
-Stephen Turvey, Yep Design [Graphic Design including HTML/CSS for many pages]
+* Juliette Culver, IET, The Open University [Lead Developer]
+* Nick Freear, IET, The Open University  [Internationalisation, API, 
+  Install and Upgrade Infrastructure, oEmbed]
+* Richard Lovelock, IET, The Open University [Messaging]
+* Stephen Turvey, Yep Design [Graphic Design including HTML/CSS for many pages]
 
 Work on this software has been partially funded by:
 
-The Open University
-JISC via the OULDI project 
-The EU via the EUPT3 project
- 
+* The Open University
+* JISC via the OULDI project
+* The EU via the EUPT3 project
+
 Translation Contributers:
 --------------------------
 
