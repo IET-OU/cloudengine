@@ -1,14 +1,15 @@
 <?php
 /**
- * Controller for functionality releated to search
+ * Controller for functionality related to search.
+ *
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Search
  */
 class Search extends MY_Controller {
 
-	function MY_Search() {
-		parent::Controller();
+	function Search() {
+		parent::MY_Controller();
  
 		$this->load->library('zend');
 		$this->zend->load('Zend/Search/Lucene');
