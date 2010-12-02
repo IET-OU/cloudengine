@@ -191,7 +191,7 @@ class User_model extends Model {
 
 
         return $query->result();
-    }  
+    }
 
     /**
      * Update the profile for a user
@@ -200,7 +200,6 @@ class User_model extends Model {
      */
 	function update_profile($user) {
         $user_id       = $user->id;
-        $this->CI =& get_instance();
         $user_to_update->id                     = $user_id;
         $user_to_update->fullname               = $user->fullname;
         $user_to_update->institution            = $user->institution;
@@ -216,11 +215,13 @@ class User_model extends Model {
         $user_to_update->display_email          = $user->display_email;
         $user_to_update->whitelist              = $user->whitelist;
         $user_to_update->do_not_use_editor      = $user->do_not_use_editor;
-        $user_to_update->email_message_notify   = $user->email_message_notify;
-        
-        $this->db->update('user_profile', $user_to_update, array('id'=>$user_id)); 
+        if ($this->config->item('x_message')) {
+            $user_to_update->email_message_notify = $user->email_message_notify;
+        }
+
+        $this->db->update('user_profile', $user_to_update, array('id'=>$user_id));
         $this->update_in_search_index($user_id);
-	}   
+	}
 
 	/**
 	 * Mark a user as whitelisted (for purposes of moderation/spam)
