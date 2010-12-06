@@ -17,8 +17,8 @@ function xml_safe($input) {
 	// Everything should be UTF-8 already - in case it isn't, safely encode!
 	$output = 'UTF-8'==mb_detect_encoding($input, 'UTF-8') ? $input : utf8_encode($input);
 
-	$output = html_entity_decode($output, ENT_NOQUOTES, 'UTF-8');
     $output = str_replace($xml_safe, $placeholders, $output);
+    $output = html_entity_decode($output, ENT_NOQUOTES, 'UTF-8');
     $output = preg_replace('/&[^#]\w*?;/', '', $output);
     $output = str_replace($placeholders, $xml_safe, $output);
 

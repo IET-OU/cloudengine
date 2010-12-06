@@ -18,8 +18,10 @@ class Home extends MY_Controller {
 	    $this->load->model('cloud_model');
 	    $this->load->model('cloudscape_model');
 	    $this->load->model('site_news_model');
-	    $this->load->model('event_model');		
-	    $this->load->model('events_model');	
+	    $this->load->model('event_model');
+	    $this->load->model('events_model');
+
+		$this->load->model('session_model');
 	}
 	
 	/**
