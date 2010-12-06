@@ -102,7 +102,7 @@ class Hglib {
             $link = "$path/changeset/$changeset";
             $result = array(
                 'url' => $link,
-                'tag' => $rev['tag'],
+                'tag' => isset($rev['tag']) ? $rev['tag'] : null, # Why is this sometimes not set?
                 'date'=> $rev['date'],
                 'changeset' => $rev['changeset'],
             );
