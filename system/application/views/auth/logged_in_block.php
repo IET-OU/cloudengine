@@ -11,6 +11,10 @@
 
 <div id="login" class="collapsed">
     <ul>
+	<?php if($this->auth_lib->is_admin() && isset($online_users)): ?>
+	    <li class="online-users"><?=t('There are curently <b>!U users</b> and <b>!G guests</b> online.', 
+		    array('!U'=>$online_users->loggedin, '!G'=>$online_users->guests)); ?></li>
+	<?php endif; ?>
         <li><a href="<?=base_url() ?>user/view/<?= $loggedinprofile->user_id ?>"><?=t("Your Profile")?></a></li>
         <li><a href="<?=base_url() ?>user/preferences"     ><?=t("Preferences")?></a></li>
         <li><a href="<?=base_url() ?>user/favourites"><?=t("Your Favourites")?></a></li>

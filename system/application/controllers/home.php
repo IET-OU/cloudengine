@@ -12,7 +12,8 @@ class Home extends MY_Controller {
 		$this->load->library('layout', 'layout_main');	
 		$this->load->helper('format');
 		if ($this->auth_lib->is_logged_in()) {
-           $this->load->model('user_model'); 
+            $this->load->model('user_model');
+            $this->load->model('session_model');
 		}
 		
 	    $this->load->model('cloud_model');
@@ -20,10 +21,8 @@ class Home extends MY_Controller {
 	    $this->load->model('site_news_model');
 	    $this->load->model('event_model');
 	    $this->load->model('events_model');
+    }
 
-		$this->load->model('session_model');
-	}
-	
 	/**
 	 * The site homepage
 	 *
@@ -59,10 +58,12 @@ class Home extends MY_Controller {
             $total_items  += count($this->cloud_model->get_references_for_moderation());
             $total_items  += count($this->content_model->get_content_for_moderation());
             $total_items  += count($this->embed_model->get_embeds_for_moderation());
-                       
+
             $data['total_items'] = $total_items;
+
+            $data['online_users']= $this->session_model->count_users();
         }
-        
+
         $data['popular_type'] = $this->uri->segment(2, 'cloud');
         $data['current_month'] = date("n", time());
         $data['month']        = $this->uri->segment(1, $data['current_month'] );
@@ -73,8 +74,8 @@ class Home extends MY_Controller {
             $year = $current_year;
         }
         $data['events'] = $this->events_model->get_events_for_month($data['month'], $year);
-              
+
 		$this->layout->view('home', $data);
 	}
-	
+
 }
