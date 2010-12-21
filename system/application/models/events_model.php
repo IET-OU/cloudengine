@@ -23,7 +23,7 @@ class Events_model extends Model {
         $this->load->helper('date');
         if ($month > 12) {
             // Fix a seasonal month-wrap bug [BB #106].
-			$month -= 12;
+            $month -= 12;
             $year++;
         }
         // strtotime uses US date format with month before day of month
