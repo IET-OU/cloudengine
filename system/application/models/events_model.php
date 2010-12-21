@@ -11,7 +11,7 @@ class Events_model extends Model {
     function Events_model() {
         parent::Model();
     }
-    
+
     /**
      * Get all the events in a specifed month
      *
@@ -21,6 +21,11 @@ class Events_model extends Model {
      */
     function get_events_for_month($month, $year) {
         $this->load->helper('date');
+        if ($month > 12) {
+            // Fix a seasonal month-wrap bug [BB #106].
+			$month -= 12;
+            $year++;
+        }
         // strtotime uses US date format with month before day of month
         $month_start_date = strtotime("$month/1/$year");
         $last_day_of_month = days_in_month($month, $year);

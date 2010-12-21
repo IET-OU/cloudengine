@@ -2,6 +2,7 @@
 /** Session model, for counts of current logged in and guest users.
  *
  * Note, the default session expiration time is 2*60*60 seconds.
+ *       Drupal has a default of 15 min. for it's "Who's online" block.
  *       Currently called in the 'Home' controller.
  *       NDF, 1 Dec 2010.
  *
