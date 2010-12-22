@@ -21,8 +21,11 @@ class Events_model extends Model {
      */
     function get_events_for_month($month, $year) {
         $this->load->helper('date');
-        if ($month > 12) {
-            // Fix a seasonal month-wrap bug [BB #106].
+        // Fix a seasonal month-wrap bug [BB #106].
+        if (!is_numeric($month) || $month > 24) {
+            show_error();
+        }
+        elseif ($month > 12) {
             $month -= 12;
             $year++;
         }
