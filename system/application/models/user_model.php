@@ -6,12 +6,12 @@
  * @package User
  */
 class User_model extends Model {
-	
+
     function User_model()
     {     
         parent::Model();
     }
-	
+
 	/**
 	 * Get the details of all activated users
 	 *
@@ -21,7 +21,7 @@ class User_model extends Model {
 		$query = $this->db->get('user');
 		return $query->result();
 	}
-	
+
     /**
      * Get all the users starting with a specified letter of the alphabet
      *
@@ -38,7 +38,7 @@ class User_model extends Model {
                                    WHERE fullname LIKE '$alpha%' ORDER BY fullname ASC");
         return $query->result();
     }
-    
+
    /**
 	 * Get the details of a user given their username
 	 *
@@ -46,6 +46,7 @@ class User_model extends Model {
 	 * @return object The details of the user
 	 */
 	function get_user_by_username($user_name) {
+	    $this->where_active();
 	    $this->db->where('user.user_name', $user_name);
 	    $this->db->join('user_profile', 'user_profile.id=user.id');
 	    $query = $this->db->get('user');
@@ -62,6 +63,7 @@ class User_model extends Model {
 	 */
 	function get_user($user_id) {
 		$user = FALSE;
+        $this->where_active();
         $this->db->where('user.id', $user_id);
         $this->db->join('user', 'user.id = user_profile.id');
 	    $query = $this->db->get('user_profile');
@@ -443,7 +445,7 @@ class User_model extends Model {
         $query = $this->db->get('user');
         return $query->num_rows();
     }  	    
-    
+
     /**
      * Get the number of users registered between two dates 
      *
@@ -456,11 +458,11 @@ class User_model extends Model {
                           AND created < $enddate");
         return $query->num_rows();
     }
-    
+
     /***************************************************************************************
      * SEARCH
      * *************************************************************************************/
-           
+
     /**
      * Update the entry for a user in the search index
      *
@@ -471,10 +473,10 @@ class User_model extends Model {
         $this->CI=& get_instance();
         $this->CI->load->model('search_model');
 		$this->CI->search_model->update_item_in_index(base_url().'user/view/'.$user_id, 
-		                                              $user_id, 'user');    
+		                                              $user_id, 'user');
     	}
      }
-    
+
     /**
      * Remove a user from the search index
      *
@@ -487,4 +489,11 @@ class User_model extends Model {
 			$this->CI->search_model->delete_item_from_index($user_id, 'user');
     	}
     }
+
+    /** Add database check for users who are 'deleted' or not active.
+    */
+    protected function where_active() {
+        $this->db->where('user.banned', 0);
+    }
+
 }
