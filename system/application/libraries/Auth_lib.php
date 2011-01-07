@@ -1,25 +1,27 @@
 <?php
 /**
  * Library for Authentication related functions
- * 
+ *
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Authentication
  */
 class Auth_lib {
-	
-    function Auth_lib() {
+
+    protected $CI;
+
+    public function Auth_lib() {
         $this->CI =& get_instance();
         $this->CI->load->model('auth_model');
         $this->CI->load->library('Db_session');
     }
-    
+
     /**
      * Process a user's registration
      *
      * @param object $user The user's registration details
      */
-    function register($user) {
+    public function register($user) {
     	$hash = $this->CI->auth_model->_hash_password($user->password);
     	$user->password = $hash;
 
@@ -29,7 +31,7 @@ class Auth_lib {
     	$user->temp_user_id = $this->CI->auth_model->insert_temp_user($user);
     	$this->_send_activation_email($user, $activation_code);
     }
-    
+
     /**
      * Send the activation e-mail to a newly registered user with the link for the 
      * user to click on to activate their account. 
@@ -37,7 +39,7 @@ class Auth_lib {
      * @param object $user The details of the user to send the e-mail to
      * @param string $activation_code The activation code to send in the e-mail
      */
-    function _send_activation_email($user, $activation_code) {
+    protected function _send_activation_email($user, $activation_code) {
     	$data['temp_user_id']    = $user->temp_user_id;
     	$data['fullname']        = $user->fullname;
     	$data['activation_code'] = $activation_code;
@@ -54,7 +56,7 @@ class Auth_lib {
      * @param string $code The activation code 
      * @return boolean TRUE if the user was successfully activated, FALSE otherwise
      */
-    function activate($temp_user_id, $activation_code) {
+    public function activate($temp_user_id, $activation_code) {
     	$success = FALSE;
     	
     	// Delete any users in the temp table who have expired
@@ -82,7 +84,7 @@ class Auth_lib {
      * @return boolean TRUE if the request was processed successfully, FALSE if an error
      * occurred. 
      */
-    function forgotten_password($email) {
+    public function forgotten_password($email) {
     	$success = FALSE;
     	$user = $this->CI->auth_model->get_user_by_email($email);
     	if ($user) {
@@ -107,7 +109,7 @@ class Auth_lib {
      * @param object $user Details of the user to send the e-mail too
      * @param string $forgotten_password_code The forgotten password code
      */
-    function _send_forgotten_password_email($user, $forgotten_password_code) {
+    protected function _send_forgotten_password_email($user, $forgotten_password_code) {
 		$data['fullname']                = $user->fullname;
 		$data['user_id']                 = $user->id;
 		$data['forgotten_password_code'] = $forgotten_password_code;
@@ -118,7 +120,7 @@ class Auth_lib {
                    t('!site_name - Forgotten password', 
                    array('!site_name' =>config_item('site_name'))), $message); 
     }
-    
+
     /**
      * Process a forgotten password reset
      *
@@ -126,7 +128,7 @@ class Auth_lib {
      * @param string $code The forgotten password reset code
      * @return boolean TRUE if the password was successfully reset, FALSE otherwise
      */
-    function new_password($user_id, $code) {
+    public function new_password($user_id, $code) {
     	$success = FALSE;
     	$user = $this->CI->auth_model->get_user($user_id);
     	$code_correct = $this->CI->auth_model->forgotten_password_code_valid($user_id, 
@@ -143,7 +145,7 @@ class Auth_lib {
     	}
         return $success;
     }
-    
+
     /**
      * Sends the e-mail to a user with their temporary new password when they have
      * requested a password reset. 
@@ -151,14 +153,14 @@ class Auth_lib {
      * @param object $user Details of the user to send the e-mail to
      * @param string $password The new (plain-text) password
      */
-    function _send_new_password_email($user, $password) {
+    protected function _send_new_password_email($user, $password) {
    		$data['password']  = $password;
    		$data['fullname']  = $user->fullname;
    		$data['user_name'] = $user->user_name;           
-		
+
         // displays message to the user on screen
         $message = $this->CI->load->view('email/new_password_email', $data, true);
-		
+
         $this->CI->load->plugin('phpmailer');
         send_email($user->email, config_item('site_email'), 
                    t('!site_name - Password Reset', 
@@ -166,11 +168,11 @@ class Auth_lib {
                    $message); 
  
     }
-    
+
     /**
      * Logs a user out
      */
-    function logout() {
+    public function logout() {
         if ($this->CI->db_session) {
             $username = $this->CI->db_session->userdata('user_name');
 
@@ -181,7 +183,7 @@ class Auth_lib {
             }
         }
     }  
-    
+
 	/**
 	 * Logs in a user
 	 *
@@ -189,10 +191,10 @@ class Auth_lib {
 	 * @param string $password The password given for the username
 	 * @return boolean TRUE if login was successful, FALSE otherwise 
 	 */
-	function login($username, $password) { 
+	public function login($username, $password) { 
 		$login_success = FALSE;
 		$password_valid = $this->CI->auth_model->password_valid($username, $password);
-        
+
         if ($password_valid) {
         	$user= $this->CI->auth_model->get_user_by_username($username);
             // Update the session data
@@ -211,57 +213,57 @@ class Auth_lib {
         }
         return $login_success;
 	}
-	
+
 	/**
 	 * Generate a captcha
 	 *
 	 */
-	function captcha_init() {
+	public function captcha_init() {
         if (config_item('x_captcha')) {
         	$this->CI->load->library('Captcha_lib', 'captcha_lib');
         	$this->CI->captcha_lib->captcha_init('_register');
         }		
 	}
-	
+
 	/**
 	 * Determines if the current user is logged on to the site
 	 *
 	 * @return boolean TRUE if logged on, FALSE otherwise
 	 */
-	function is_logged_in() {
+	public function is_logged_in() {
 		$logged_in = FALSE;
 		if ($this->CI->db_session->userdata('role')) {
 			$logged_in = TRUE;
 		}
 		return $logged_in;
 	}
-	
+
 	/**
 	 * If the current user is not logged on, redirects to the login page
 	 */
-	function check_logged_in() {
+	public function check_logged_in() {
 		if (!$this->is_logged_in()) {
 			redirect('/auth/login');
 		}
 	}
-	
+
 	/**
 	 * Determines if the current user is an admin
 	 *
 	 * @return boolean TRUE if logged on and an admin, FALSE otherwise 
 	 */
-	function is_admin() {
+	public function is_admin() {
 		$is_admin = FALSE;
-		
+
         if ($this->CI->db_session->userdata('id')) {
             $username = $this->CI->db_session->userdata('user_name');
             $role     = $this->CI->db_session->userdata('role');
-            
+
             if ($username && $role == 'admin') {
             	$is_admin = TRUE;
             }
         }
-		
+
         return $is_admin;
 	}
 
@@ -269,28 +271,28 @@ class Auth_lib {
 	 * Check if the current user is logged on and is an admin. If not, 
 	 * redirects to an error page. 
 	 */
-	function check_is_admin() {
+	public function check_is_admin() {
 		$is_admin = $this->is_admin();
 		if (!$is_admin) {
 			show_error(t('You are not allowed to access this page'));
 		}
-		
+
 	}
-	
+
     /**
      * Generates a random string.
      *
      * @return $key random string
      */
-    function _generate_random_string($length)
+    protected function _generate_random_string($length)
     {
     	// Not using special characters as can cause problems in URLs 
         $charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
 
         $key = '';
-        for ($i = 0; $i < $length; $i++)
+        for ($i = 0; $i < $length; $i++) {
             $key .= $charset[(mt_rand(0, (strlen($charset)-1)))];
-
+        }
         return $key;
     }
 }
