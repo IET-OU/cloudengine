@@ -5,7 +5,7 @@
  * @link http://launchpad.net/php-gettext php-gettext
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
- * @package I8ln
+ * @package I18n
  */
 require_once APPPATH.'libraries/php-gettext/gettext.inc';
 

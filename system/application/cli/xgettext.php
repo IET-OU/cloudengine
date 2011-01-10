@@ -12,9 +12,9 @@
  * @link http://gnu.org/software/gettext GNU Gettext
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
- * @package I8ln
+ * @package I18n
  */
-if('cli'!=php_sapi_name()) die(__FILE__.": Must run as cli."); #Security.
+if('cli'!=php_sapi_name()) die(basename(__FILE__).": Must run as cli."); #Security.
 
 $xgettext = array(
     'mac' => "/Applications/Poedit.app/Contents/MacOS/xgettext",
