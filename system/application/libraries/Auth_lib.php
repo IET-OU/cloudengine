@@ -46,7 +46,7 @@ class Auth_lib {
 
  		$message = $this->CI->load->view('email/activation_email', $data, TRUE);
         $result = send_email($user->email, config_item('site_email'), 
-                 t("!site-name! - Account Activation"), $message);
+                 t("!site-name! - Account activation"), $message);
     }
 
     /**
@@ -162,7 +162,7 @@ class Auth_lib {
 
         $this->CI->load->plugin('phpmailer');
         send_email($user->email, config_item('site_email'), 
-                   t('!site-name! - Password Reset'), 
+                   t('!site-name! - Password reset'), 
                    $message); 
  
     }
