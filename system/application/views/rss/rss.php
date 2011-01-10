@@ -16,9 +16,9 @@
         <description><?php echo xml_convert($page_description); ?></description>
         <dc:language><?php echo $page_language; ?></dc:language>
         <dc:creator><?php echo $creator_email; /*/Translators: In case we want to translate the copyright statement.. */ ?></dc:creator>
-        <dc:rights><?=t("Copyright !date !organization", array('!date'=> gmdate("Y", time()), '!organization'=>NULL)) ?></dc:rights>
-        <admin:generatorAgent rdf:resource="http://www.codeigniter.com/" />
-    
+        <dc:rights><?=t("Copyright !date !organization", array('!date'=>gmdate("Y"), '!organization'=>NULL)) ?></dc:rights>
+        <admin:generatorAgent rdf:resource="http://getcloudengine.org/"/>
+
         <?php foreach($clouds as $entry): ?>
             <item>
               <title><?php echo xml_safe(xml_convert($entry->title)); ?></title>
@@ -26,7 +26,7 @@
               <guid><?php echo base_url().'cloud/view/' . $entry->cloud_id; ?></guid>
               <description><![CDATA[<?= $entry->body ?>]]></description>
           <pubDate><?php echo date ('r', $entry->timestamp);?></pubDate>
-            </item>   
+            </item>
         <?php endforeach; ?>
     </channel>
 </rss>

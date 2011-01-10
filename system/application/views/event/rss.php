@@ -16,8 +16,8 @@
 	<description><?php echo xml_convert($page_description); ?></description>
 	<dc:language><?php echo $page_language; ?></dc:language>
 	<dc:creator><?php echo $creator_email; ?></dc:creator>
-	<dc:rights>Copyright <?php echo gmdate("Y", time()); ?></dc:rights>
-	<admin:generatorAgent rdf:resource="http://www.codeigniter.com/" />
+	<dc:rights><?=t("Copyright !date !organization", array('!date'=>gmdate("Y"), '!organization'=>NULL)) ?></dc:rights>
+	<admin:generatorAgent rdf:resource="http://getcloudengine.org/"/>
     <atom:link href="<?php echo $feed_url ?>" rel="self" type="application/rss+xml" />
 
 	<?php foreach($events as $event): ?>

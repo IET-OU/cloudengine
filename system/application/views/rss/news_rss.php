@@ -10,7 +10,7 @@
     xmlns:content="http://purl.org/rss/1.0/modules/content/">
 
     <channel>
-    
+
     <title><?php echo $feed_name; ?></title>
 
     <link><?php echo $feed_url; ?></link>
@@ -18,21 +18,19 @@
     <dc:language><?php echo $page_language; ?></dc:language>
     <dc:creator><?php echo $creator_email; ?></dc:creator>
 
-    <dc:rights>Copyright <?php echo gmdate("Y", time()); ?></dc:rights>
-    <admin:generatorAgent rdf:resource="http://www.codeigniter.com/" />
+    <dc:rights><?=t("Copyright !date !organization", array('!date'=>gmdate("Y"), '!organization'=>NULL)) ?></dc:rights>
+    <admin:generatorAgent rdf:resource="http://getcloudengine.org/"/>
 
     <?php foreach($news as $entry): ?>
     
         <item>
-
           <title><?php echo xml_convert($entry->title); ?></title>
           <link><?php echo base_url().'blog/view/' . $entry->post_id; ?></link>
           <guid><?php echo base_url().'blog/view/' . $entry->post_id; ?></guid>
           <description><![CDATA[<?= $entry->body ?>]]></description>
       <pubDate><?php echo date ('r', $entry->created);?></pubDate>
         </item>
-
         
     <?php endforeach; ?>
-    
+
     </channel></rss>  
