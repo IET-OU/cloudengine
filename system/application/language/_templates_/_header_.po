@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Cloudworks (application/about.po) 0.1\n"
+"Project-Id-Version: CloudEngine 1.0.1\n"
 "Report-Msgid-Bugs-To: cloudworks _@_ open.ac.uk\n"
-"POT-Creation-Date: 2010-02-18 16:44+0000\n"
+"POT-Creation-Date: 2011-01-10 14:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: YOU <YOU@example.org>\n"
 "Language-Team: YOUR TEAM/ORGANIZATION <TEAM@example.org>\n"
@@ -20,15 +20,19 @@ msgstr ""
 "X-Poedit-Country: BRITISH\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#. /Translators: ** Start of the VIEWS / ABOUT section. **
-#: about.php:5
-msgid "About !site-name!"
+#. /Translators: ** Start of the CONTROLLERS/MODELS section - page titles/error messages. **
+#: controllers\admin.php:34
+msgid "Admin panel"
 msgstr ""
 
-#: about.php:11
-msgid "Welcome to !site-name!"
+#: controllers\admin.php:123
+msgid "Moderate"
 msgstr ""
 
-#: about.php:13
-msgid "Read the [link-ai]introduction to !site-name![/link] or watch the video:"
+#: controllers\admin.php:158 views\admin\index.php:6
+msgid "Manage featured cloudscapes"
+msgstr ""
+
+#: controllers\admin.php:201
+msgid "Site news updated"
 msgstr ""
