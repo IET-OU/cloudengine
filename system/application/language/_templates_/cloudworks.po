@@ -1,4 +1,4 @@
-# The CloudEngine project. (http://bitbucket.org/cloudengine/cloudengine)
+# The CloudEngine project (http://getcloudengine.org/)
 # @copyright Copyright 2010 The Open University. See CREDITS.txt
 # @license http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
 # @author  Nick Freear <n.d.freear _@_ open.ac.uk>, 2010.
@@ -6,7 +6,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Cloudworks (application/about.po) 0.1\n"
+"Project-Id-Version: CloudEngine (application/about.po) 0.1\n"
 "Report-Msgid-Bugs-To: cloudworks@open.ac.uk\n"
 "POT-Creation-Date: 2010-03-22 15:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
