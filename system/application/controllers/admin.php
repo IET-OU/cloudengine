@@ -30,10 +30,10 @@ class Admin extends MY_Controller {
 	 *
 	 */
 	function panel() {
-        $data['title'] = 'Admin panel';
+        ///Translators: ** Start of the CONTROLLERS/MODELS section - page titles/error messages. **
+        $data['title'] = t('Admin panel');
 	    $this->layout->view('admin/index', $data);	    
-	}	
-	
+	}
 
 	/**
 	 * Display the moderation queue page 
@@ -119,11 +119,11 @@ class Admin extends MY_Controller {
     	 $data['references']    = $this->cloud_model->get_references_for_moderation();
     	 $data['contents']      = $this->content_model->get_content_for_moderation();
          $data['embeds']        = $this->embed_model->get_embeds_for_moderation();  
-    	 
-        $data['title'] = 'Moderate';     
+
+        $data['title'] = t('Moderate');
         $this->layout->view('admin/moderate', $data);
 
-	}	
+	}
 	
 	/**
 	 * Edit the featured cloudscapes
@@ -154,7 +154,8 @@ class Admin extends MY_Controller {
             redirect(base_url());
 
 	   }
-	   
+
+        $data['title'] = t('Manage featured cloudscapes');	   
        $data['cloudscapes'] =  $this->cloudscape_model->get_featured_cloudscapes(5);
 	   $this->layout->view('admin/featured_cloudscapes', $data);
 	}
@@ -182,8 +183,8 @@ class Admin extends MY_Controller {
         $this->cloudscape_model->repopulate_popular_cloudscapes();
         redirect('admin/panel');
     }
-    
-    
+
+
     /**
      * Update the site news block on the home page
      *
@@ -204,7 +205,7 @@ class Admin extends MY_Controller {
 	        $this->layout->view('admin/site_news_form', $data); 
          }       
     }
-    
+
     /**
      * Panel for managing support/about pages on the site
      *
@@ -216,7 +217,7 @@ class Admin extends MY_Controller {
         $data['title']         = t("Manage Pages");
         $this->layout->view('admin/pages/index', $data); 
     }
-    
+
     /**
      * Edit a support/about page
      *
@@ -253,14 +254,14 @@ class Admin extends MY_Controller {
             $this->layout->view('admin/pages/edit', $data);
         }
     }
-    
+
     /**
      * Add a new support/about page. 
      *
      */
     function add_page() {
-        $this->load->model('page_model'); 
-        // Set up form validation 
+        $this->load->model('page_model');
+        // Set up form validation
         $this->load->library('form_validation');
         $this->form_validation->set_rules('section', t("Section"), 'required');
         $this->form_validation->set_rules('name', t("Page name"), 'required');
@@ -282,10 +283,10 @@ class Admin extends MY_Controller {
         } else {   
             $data["title"] = t("Add Page");
             $this->layout->view('admin/pages/add', $data);
-        } 
+        }
     }
-    
-    
+
+
     /**
      * Delete a support/about page
      *
@@ -296,16 +297,16 @@ class Admin extends MY_Controller {
      */
     function delete_page($section ='', $name ='', $lang = '') {
         $this->load->model('page_model'); 
+        $data['title']= t("Delete Page");
         $data['page'] = $this->page_model->get_page($section, $name, $lang);
         
         if ($this->input->post('submit')) {
             $this->page_model->delete_page($section, $name, $lang);
             $this->layout->view('admin/pages/delete_success', $data);
-                
+
         } else {
-            $data["title"] = t("Delete Page");
             $this->layout->view('admin/pages/delete_confirm', $data);
         }
-        
+
     }
 }
