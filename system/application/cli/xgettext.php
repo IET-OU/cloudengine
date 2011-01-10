@@ -41,7 +41,7 @@ $domains = array(
   'application/libraries/',  #My_Form_validation.
   'application/models/',     #9 x show_error.
   'application/views/',      #exclude: /about/ */
-  'application/views/about/',
+  #'application/views/about/',
   'application/',
 );
 foreach ($domains as $path) {
@@ -64,7 +64,7 @@ foreach ($domains as $path) {
 
  --language=PHP
   --from-code=utf-8
- --width=80
+ --width=85
  --add-comments=/
  --sort-by-file
  --force-po
