@@ -863,8 +863,8 @@ class Cloudscape_model extends Model {
      */
     function check_post_permission($cloudscape_id, $user_id) {
         if (!$this->has_post_permission($cloudscape_id, $user_id)) {
-            show_error(t("The owner of this cloudscape has restricted who is allowed to".
-            "add clouds to this cloudscape."));
+            show_error(t(
+			'The owner of this cloudscape has restricted who is allowed to add clouds to this cloudscape.'));
         }
     } 
 

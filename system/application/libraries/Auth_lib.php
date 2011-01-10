@@ -117,8 +117,7 @@ class Auth_lib {
         $message = $this->CI->load->view('email/forgotten_password_email', $data, true);
         $this->CI->load->plugin('phpmailer');
         send_email($user->email, config_item('site_email'), 
-                   t('!site_name - Forgotten password', 
-                   array('!site_name' =>config_item('site_name'))), $message); 
+                   t('!site-name! - Forgotten password'), $message); 
     }
 
     /**
@@ -163,8 +162,7 @@ class Auth_lib {
 
         $this->CI->load->plugin('phpmailer');
         send_email($user->email, config_item('site_email'), 
-                   t('!site_name - Password Reset', 
-                   array('!site_name' => config_item('site_name'))), 
+                   t('!site-name! - Password Reset'), 
                    $message); 
  
     }

@@ -622,8 +622,7 @@ class Event_model extends Model {
                     $string .= '<strong>'.$embed->title.'</strong><br />';
                 }
                 if ($simple) {
-                  $string .= '<em>'.t("new embedded content added to the cloud !title
-                                       by !person",
+                  $string .= '<em>'.t("new embedded content added to the cloud !title by !person",
                                        array('!person'=> 
                                              anchor('user/view/'.$embed->user_id, 
                                                     $embed->fullname, 
@@ -632,8 +631,7 @@ class Event_model extends Model {
                                                anchor('cloud/view/'.$cloud->cloud_id, 
                                                       $cloud->title))).'</em>'; 
                 } else {
-                  $string .= '<em>'.t("new embedded content added to the cloud !title 
-                                       by !person",
+                  $string .= '<em>'.t("new embedded content added to the cloud !title by !person",
                       array('!person'=> anchor('user/view/'.$embed->user_id, 
                                                 $embed->fullname, 
                                                 array('rel'=>'author')),

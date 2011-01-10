@@ -48,7 +48,7 @@ class Search extends MY_Controller {
             $data['total_hits']  = count($data['results']);
         }
         
-        $data['title']        = t("Search results for !query", 
+        $data['title']        = t("Search results for '!query'", 
                                   array('!query'=>$query_string));
         $data['query_string'] = $query_string;
         $data['navigation']   = 'search';

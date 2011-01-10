@@ -941,8 +941,8 @@ class Cloudscape extends MY_Controller {
         // As an anti-spam measure, check that the user hasn't sent too many e-mails to 
         // attendees of this particular event in the last hour
         if ($this->events_model->check_email_limit_exceeded($user_id, $cloudscape_id)) {
-            show_error(t('You are only allowed to send !count emails per hour to attendees of 
-                          a specific event. Please wait and send this e-mail later.', 
+            show_error(t(
+			'You are only allowed to send !count emails per hour to attendees of a specific event. Please wait and send this e-mail later.', 
             array('!count' => $this->config->item(email_event_attending_limit_per_hour))));
         }
         

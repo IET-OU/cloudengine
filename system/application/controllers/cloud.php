@@ -447,10 +447,8 @@ class Cloud extends MY_Controller {
         if (preg_match($regex, $url)) {
             $real_url = false;
             $this->form_validation->set_message('does_not_use_url_shortener', 
-                                               t("The URL you have specified uses a URL 
-                                               shortener. Please give the original URL 
-                                               instead since URLs from URL shorteners may 
-                                               not exist forever."));
+                t("The URL you have specified uses a URL shortener. Please give the original URL
+instead since URLs from URL shorteners may not exist forever."));
         }
         
         return $real_url;
@@ -618,9 +616,9 @@ class Cloud extends MY_Controller {
        $user_id  = $this->db_session->userdata('id');
        $can_favourite = $this->favourite_model->can_favourite($user_id, $cloud_id, 'cloud');
        if (!$can_favourite) {
-           show_error(t("You cannot add this item as a favourite - either you created the 
-           item yourself, you have already favourited it or you do not have high enough 
-           reputation on the site to add favourites."));
+           show_error(t(
+		   'You cannot add this item as a favourite - either you created the item yourself, you have
+already favourited it or you do not have high enough reputation on the site to add favourites.'));
        }
        $this->favourite_model->add_favourite($user_id, $cloud_id, 'cloud');
        redirect('/cloud/view/'.$cloud_id);
