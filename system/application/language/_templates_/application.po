@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CloudEngine 1.0.1\n"
 "Report-Msgid-Bugs-To: cloudworks _@_ open.ac.uk\n"
-"POT-Creation-Date: 2011-01-10 14:11+0000\n"
+"POT-Creation-Date: 2011-01-10 15:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: YOU <YOU@example.org>\n"
 "Language-Team: YOUR TEAM/ORGANIZATION <TEAM@example.org>\n"
@@ -37,8 +37,7 @@ msgstr ""
 msgid "Site news updated"
 msgstr ""
 
-#: controllers\admin.php:204 views\admin\index.php:7
-#: views\admin\site_news_form.php:8
+#: controllers\admin.php:204 views\admin\index.php:7 views\admin\site_news_form.php:8
 msgid "Update Site News"
 msgstr ""
 
@@ -214,10 +213,9 @@ msgid "Blog Archive"
 msgstr ""
 
 #: controllers\blog.php:84 controllers\blog.php:127 controllers\cloud.php:219
-#: controllers\cloud.php:307 controllers\cloud.php:393
-#: controllers\cloudscape.php:191 controllers\cloudscape.php:269
-#: controllers\cloudscape.php:702 controllers\cloudscape.php:764
-#: views\blog\edit.php:17 views\cloud\list.php:24
+#: controllers\cloud.php:307 controllers\cloud.php:393 controllers\cloudscape.php:191
+#: controllers\cloudscape.php:269 controllers\cloudscape.php:702
+#: controllers\cloudscape.php:764 views\blog\edit.php:17 views\cloud\list.php:24
 #: views\cloudscape\cloudscape_list.php:26 views\cloudscape\edit.php:24
 #: views\user\cloud_list.php:13
 msgid "Title"
@@ -312,8 +310,8 @@ msgstr ""
 
 #: controllers\cloud.php:620
 msgid ""
-"You cannot add this item as a favourite - either you created the item yourself, "
-"you have\n"
+"You cannot add this item as a favourite - either you created the item yourself, you "
+"have\n"
 "already favourited it or you do not have high enough reputation on the site to add "
 "favourites."
 msgstr ""
@@ -388,8 +386,8 @@ msgstr ""
 msgid "comment"
 msgstr ""
 
-#: controllers\content.php:30 controllers\content.php:77
-#: views\cloudscape\view.php:38
+#: controllers\content.php:30 controllers\content.php:77 views\cloudscape\view.php:38
+#: views\statistics\cloudscape_stats.php:6
 msgid "Content"
 msgstr ""
 
@@ -560,7 +558,8 @@ msgid "Search results for '!query'"
 msgstr ""
 
 #: controllers\tag.php:23 controllers\tag.php:101 views\layout\_site-header.php:44
-#: views\layout\_site-header.php:46 views\tag\tag_block.php:1
+#: views\layout\_site-header.php:46 views\statistics\stats.php:12
+#: views\tag\tag_block.php:1
 msgid "Tags"
 msgstr ""
 
@@ -920,8 +919,8 @@ msgstr ""
 #: views\admin\moderate.php:2 views\admin\stats.php:2
 #: views\statistics\cloudscape_form.php:2
 #: views\statistics\cloudscape_form_dates.php:3
-#: views\statistics\cloudscape_stats.php:3
-#: views\statistics\cloudscape_stats_dates.php:4 views\statistics\stats.php:2
+#: views\statistics\cloudscape_stats.php:4
+#: views\statistics\cloudscape_stats_dates.php:5 views\statistics\stats.php:2
 #: views\statistics\stats_dates_form.php:2
 msgid "Back to admin panel"
 msgstr ""
@@ -947,7 +946,7 @@ msgstr ""
 
 #: views\admin\pages\add.php:34 views\admin\pages\edit.php:26
 #: views\cloudscape\edit_picture.php:37 views\user\edit.php:39
-#: views\user\edit_picture.php:21 views\user\preferences.php:56
+#: views\user\edit_picture.php:21 views\user\preferences.php:57
 #: views\user\user_edit.php:33
 msgid "Save"
 msgstr ""
@@ -1085,15 +1084,14 @@ msgstr ""
 
 #: views\auth\activation_failed.php:4
 msgid ""
-"We are sorry, but your activation has failed. Please contact !email! for "
-"assistance."
+"We are sorry, but your activation has failed. Please contact !email! for assistance."
 msgstr ""
 
 #: views\auth\activation_failed.php:7 views\auth\activation_success.php:6
 #: views\auth\forgotten_password_failed.php:7
 #: views\auth\forgotten_password_success.php:5 views\auth\new_password_failed.php:4
 #: views\auth\new_password_success.php:4 views\auth\register_success.php:3
-#: views\moderate.php:12
+#: views\moderate.php:10
 msgid "Continue"
 msgstr ""
 
@@ -1150,8 +1148,8 @@ msgstr ""
 
 #: views\auth\forgotten_password_form.php:3
 msgid ""
-"Enter the e-mail address associated with your account and we will send you "
-"password reset instructions."
+"Enter the e-mail address associated with your account and we will send you password "
+"reset instructions."
 msgstr ""
 
 #: views\auth\forgotten_password_form.php:8
@@ -1395,7 +1393,7 @@ msgid "Go to the blog post"
 msgstr ""
 
 #: views\blog_comment\display.php:2 views\cloud\list.php:26
-#: views\cloud_comment\cloud_comment_block.php:1
+#: views\cloud_comment\cloud_comment_block.php:1 views\statistics\stats.php:14
 msgid "Comments"
 msgstr ""
 
@@ -1516,8 +1514,8 @@ msgstr ""
 
 #: views\cloud\edit.php:52
 msgid ""
-"If this cloud is for a call of papers or for a call for book chapters, please "
-"enter the deadline here for it to appear in the diary."
+"If this cloud is for a call of papers or for a call for book chapters, please enter "
+"the deadline here for it to appear in the diary."
 msgstr ""
 
 #: views\cloud\edit.php:53
@@ -1534,9 +1532,9 @@ msgstr ""
 
 #: views\cloud\edit.php:64
 msgid ""
-"Clouds can be anything of relevance to learning and teaching for example a "
-"website, a description of a learning activity, a case study, a resource or tool, "
-"or a summary of a presentation."
+"Clouds can be anything of relevance to learning and teaching for example a website, "
+"a description of a learning activity, a case study, a resource or tool, or a "
+"summary of a presentation."
 msgstr ""
 
 #: views\cloud\edit.php:66
@@ -1550,7 +1548,7 @@ msgstr ""
 #: views\cloud\edit.php:69
 msgid ""
 "You can add embedded content from sites such as Slideshare and Youtube once you "
-"have created the cloud (just click on 'add embedded content'):"
+"have created the cloud (just click on 'add embedded content')."
 msgstr ""
 
 #: views\cloud\edit.php:71
@@ -1559,8 +1557,8 @@ msgstr ""
 
 #: views\cloud\edit.php:72
 msgid ""
-"It is not currently possible to directly upload files to this site. However you "
-"can upload your files to another site and then link to the file here."
+"It is not currently possible to directly upload files to this site. However you can "
+"upload your files to another site and then link to the file here."
 msgstr ""
 
 #: views\cloud\edit.php:74
@@ -1587,9 +1585,9 @@ msgstr ""
 msgid ""
 "A Cloudscape is simply a collection of related Clouds. You might set up a "
 "Cloudscape to group Clouds around a topic (i.e. assessment), an event (i.e. a "
-"conference), or set up a personal Cloudscape to group Clouds you are interested "
-"in. One Cloud can belong to any number of Cloudscapes. For more guidance, see "
-"[link-c2554]How to set up a Cloud or Cloudscape[/link]"
+"conference), or set up a personal Cloudscape to group Clouds you are interested in. "
+"One Cloud can belong to any number of Cloudscapes. For more guidance, see [link-"
+"c2554]How to set up a Cloud or Cloudscape[/link]"
 msgstr ""
 
 #: views\cloud\favourited.php:2
@@ -1642,7 +1640,7 @@ msgstr ""
 
 #: views\cloud\list.php:3 views\cloud\popular_block.php:9
 #: views\cloudscape\cloudscape_list.php:28 views\search\results.php:9
-#: views\tag\view.php:11
+#: views\statistics\stats.php:6 views\tag\view.php:11
 msgid "Clouds"
 msgstr ""
 
@@ -1704,7 +1702,7 @@ msgid "Popular"
 msgstr ""
 
 #: views\cloud\popular_block.php:7 views\cloudscape\cloudscape_list.php:3
-#: views\search\results.php:24 views\tag\view.php:24
+#: views\search\results.php:24 views\statistics\stats.php:10 views\tag\view.php:24
 msgid "Cloudscapes"
 msgstr ""
 
@@ -1730,7 +1728,7 @@ msgid "Discussion"
 msgstr ""
 
 #: views\cloud\view.php:63 views\cloud\view.php:66 views\event\header.php:9
-#: views\event\home_header.php:6
+#: views\event\home_header.php:6 views\statistics\stats.php:16
 msgid "Links"
 msgstr ""
 
@@ -1863,8 +1861,8 @@ msgstr ""
 
 #: views\cloudscape\delete_confirm.php:5
 msgid ""
-"Are you sure that you want to delete this cloudscape? Deleting a cloudscape "
-"deletes it permanently and cannot be undone."
+"Are you sure that you want to delete this cloudscape? Deleting a cloudscape deletes "
+"it permanently and cannot be undone."
 msgstr ""
 
 #: views\cloudscape\delete_success.php:3
@@ -2119,8 +2117,8 @@ msgstr ""
 
 #: views\cloudscape\manage_clouds.php:3
 msgid ""
-"At the moment you can just remove clouds from the cloudscape, but we plan to "
-"expand the functionality here in future."
+"At the moment you can just remove clouds from the cloudscape, but we plan to expand "
+"the functionality here in future."
 msgstr ""
 
 #: views\cloudscape\manage_clouds.php:4
@@ -2348,7 +2346,7 @@ msgid "Add content"
 msgstr ""
 
 #: views\content\content_block.php:2 views\event\header.php:11
-#: views\event\home_header.php:8
+#: views\event\home_header.php:8 views\statistics\stats.php:18
 msgid "Extra content"
 msgstr ""
 
@@ -2654,8 +2652,8 @@ msgstr ""
 
 #: views\events\calls.php:32 views\events\calls_archive.php:31
 msgid ""
-"To add a deadline to this list, [link-add]create a cloud[/link] for the item with "
-"a deadline, then edit the cloud to add the deadline."
+"To add a deadline to this list, [link-add]create a cloud[/link] for the item with a "
+"deadline, then edit the cloud to add the deadline."
 msgstr ""
 
 #: views\events\calls.php:36 views\events\calls_archive.php:35
@@ -2737,8 +2735,8 @@ msgstr ""
 
 #: views\gadget\accessible_alternative.php:3
 msgid ""
-"The following alternative to this Google Gadget has been provided by the person "
-"who put the gadget on the site for accessibility reasons"
+"The following alternative to this Google Gadget has been provided by the person who "
+"put the gadget on the site for accessibility reasons"
 msgstr ""
 
 #: views\gadget\add_form.php:3
@@ -2888,8 +2886,8 @@ msgstr ""
 
 #: views\link\delete_confirm.php:3
 msgid ""
-"Are you sure that you want to delete the following link? Deleting a link removes "
-"it permanently and cannot be undone."
+"Are you sure that you want to delete the following link? Deleting a link removes it "
+"permanently and cannot be undone."
 msgstr ""
 
 #: views\link\edit.php:4
@@ -2979,14 +2977,12 @@ msgstr ""
 
 #: views\moderate.php:4
 msgid ""
-"Apologies, your post is being moderated. This is likely to be a one-off "
-"occurrence\n"
-"and should usually only affect new users to the site. From time to time, the "
-"filter\n"
-"will mistakenly identify a message as spam and put it forward for moderation.\n"
-"During working hours we will quickly pick these up, check and clear them - "
-"although\n"
-"this might take longer at the weekends or in the evenings (!timezone)."
+"Apologies, your post is being moderated. This is likely to be a one-off occurrence "
+"and should usually only affect new users to the site. From time to time,\n"
+"the filter will mistakenly identify a message as spam and put it forward for "
+"moderation. During working hours we will quickly pick these up, check and clear\n"
+"them - although this might take longer at the weekends or in the evenings (!"
+"timezone)."
 msgstr ""
 
 #: views\reference\add.php:1
@@ -3025,12 +3021,19 @@ msgid "End Date e.g. !date"
 msgstr ""
 
 #: views\statistics\cloudscape_stats.php:2
+msgid "Statistics for !title"
+msgstr ""
+
 #: views\statistics\cloudscape_stats_dates.php:2
-msgid "Statistics for "
+msgid "Statistics for !title from !start-date to !end-date"
+msgstr ""
+
+#: views\statistics\stats.php:20
+msgid "Embeds"
 msgstr ""
 
 #: views\tag\add.php:2
-msgid "Add tags to "
+msgid "Add tags to !title"
 msgstr ""
 
 #: views\tag\add.php:5
@@ -3167,11 +3170,11 @@ msgstr ""
 msgid "Who are you looking for?"
 msgstr ""
 
-#: views\user\preferences.php:10 views\user\preferences.php:43
+#: views\user\preferences.php:10 views\user\preferences.php:44
 msgid "On"
 msgstr ""
 
-#: views\user\preferences.php:11 views\user\preferences.php:51
+#: views\user\preferences.php:11 views\user\preferences.php:52
 msgid "Off"
 msgstr ""
 
@@ -3207,7 +3210,11 @@ msgstr ""
 
 #. /Translators: WYSIWYG, what you see is what you get/ rich-text editor.
 #: views\user\preferences.php:31
-msgid "Do not use WYSIWYG text editor"
+msgid "Do not use a <abbr>WYSIWYG</abbr> text editor"
+msgstr ""
+
+#: views\user\preferences.php:32
+msgid "What you see is what you get"
 msgstr ""
 
 #: views\user\tweets.php:3
