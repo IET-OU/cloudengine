@@ -28,7 +28,8 @@
   
   $rows['display_email' ]    = t("Display my e-mail address on my profile"); 
   ///Translators: WYSIWYG, what you see is what you get/ rich-text editor.
-  $rows['do_not_use_editor'] = t("Do not use WYSIWYG text editor");
+  $rows['do_not_use_editor'] = t('Do not use a <abbr>WYSIWYG</abbr> text editor',
+                                array('<abbr>' => '<abbr title="'.t('What you see is what you get').'">'));
   ?>
 
 
