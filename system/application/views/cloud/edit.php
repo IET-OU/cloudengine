@@ -61,12 +61,12 @@ $(function()
 <div id="region2">
 <div class="box">
 <h2><?=t("What is a Cloud?")?></h2>
-<p><?=t("Clouds can be anything of relevance to learning and teaching for example a website, a description of a learning activity, a case study, a resource or tool, or a summary of a presentation.")?> 
+<p><?=t("Clouds can be anything of relevance to learning and teaching for example a website, a description of a learning activity, a case study, a resource or tool, or a summary of a presentation.")?>
  </p>
     <p><?=t("You can also use clouds to pose questions to the !site-name! community.")?></p>
 
     <h2><?=t("Want to add embedded content?")?></h2>
-<p><?=t("You can add embedded content from sites such as Slideshare and Youtube once you have created the cloud (just click on 'add embedded content'):")?> 
+<p><?=t("You can add embedded content from sites such as Slideshare and Youtube once you have created the cloud (just click on 'add embedded content').")?>
     </p>
     <h2><?=t("File Uploads")?></h2>
 <p><?=t("It is not currently possible to directly upload files to this site. However you can upload your files to another site and then link to the file here.")?>

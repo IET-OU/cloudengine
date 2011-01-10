@@ -1,5 +1,5 @@
 
-<h1><?=t("Add tags to ").anchor($url, $item_title) ?> </h1>
+<h1><?=t("Add tags to !title", array('!title'=>anchor($url, $item_title))) ?></h1>
 <?php echo '<b>'.validation_errors().'</b>'; ?>
 <?=form_open($this->uri->uri_string(), array('id' => 'add-tags-form'))?>
 	<label for="tags"><?=t("Tags !note", array('!note'=> form_required(t("comma-separated")))) ?>:<br/> 

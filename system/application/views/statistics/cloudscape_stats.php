@@ -1,8 +1,9 @@
 
-<h1><?= t("Statistics for ").anchor('cloudscape/view/'.$cloudscape->cloudscape_id, $cloudscape->title) ?></h1>
-<p><?= anchor('/admin/panel', t("Back to admin panel")) ?></p>
+<h1><?= t("Statistics for !title",
+    array('!title'=>anchor("cloudscape/view/$cloudscape->cloudscape_id", $cloudscape->title))) ?></h1>
+<p><?= anchor('admin/panel', t("Back to admin panel")) ?></p>
 <div id="region1">
-<h2>Content</h2>
+<h2><?=t('Content') ?></h2>
 <table>
 <tr>
     <td>

@@ -1,5 +1,5 @@
 <h1><?= t("View statistics for specific cloudscape") ?></h1>
-<p><?= anchor('/admin/panel', t("Back to admin panel")) ?></p>
+<p><?= anchor('admin/panel', t("Back to admin panel")) ?></p>
 <div id="region1">
     
     <?=form_open($this->uri->uri_string(), array('id' => 'stats-cloudscape-form'))?>
