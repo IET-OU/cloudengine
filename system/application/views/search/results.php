@@ -1,6 +1,6 @@
 <?php if (config_item('x_search')): ?>
 <div class="grid headline">
-	<h1><?=t("Search results for '!search'", array('!search'=>$query_string))?></h1>
+	<h1><?=t("Search results for '!query'", array('!query'=>$query_string))?></h1>
 </div>
 <div id="region1">
 

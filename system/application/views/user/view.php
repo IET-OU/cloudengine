@@ -13,7 +13,7 @@
 
     <?php endif;?>
     <?php if($admin && config_item('x_moderation') && !$user->whitelist): ?>
-         <a href="<?= base_url() ?>user/whitelist/<?= $user->user_id ?>" class="button" title ="Whitelist">Whitelist</a>
+	     <?=anchor("user/whitelist/$user->user_id", t('Whitelist'), array('title'=>t('Whitelist'), 'class'=>'button')) ?>
     <?php endif; ?>
     <?php if(!$current_user && !$isfollowing): ?>
         <a href="<?= base_url() ?>user/follow/<?= $user->id ?>" class="button"><?=t("Follow")?></a>
@@ -25,7 +25,7 @@
 	<?php endif; ?>
     </h1>
     <?php if ($reputation): ?>
-    <p><strong>Reputation: <?= $reputation ?></strong></p>
+    <p><strong><?=t('Reputation: !count', array('!count'=> $reputation)) ?></strong></p>
     <?php endif; ?>
     <p><?= $user->institution ?></p>
 

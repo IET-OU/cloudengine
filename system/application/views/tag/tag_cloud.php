@@ -9,7 +9,8 @@
 
 <div class="c1of2">
 
-<h2><?=t("Top 10")?></h2>
+<?php /*/Translators: 'Top 10' etc. */ ?>
+<h2><?=t("Top !count", array('!count'=>10)?></h2>
 
 <ul class="top-tags">
 <?php foreach($toptags as $tag): ?>

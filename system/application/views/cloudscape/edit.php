@@ -37,19 +37,20 @@
 	 <input type="text" maxlength="128" name="twitter_tag" id="twitter_tag"  size="60" value="<?= $cloudscape->twitter_tag ?>" class="form-text" />
 	
 	</p>
-	 <p><?=t("Twitter only stores tweets for a hashtag for a limited period of time. If you want to archive them for longer, 
-	 you can use !link.",
+	 <p><?=t(
+	 "Twitter only stores tweets for a hashtag for a limited period of time. If you want to archive them for longer, you can use !link.",
 	   array('!link'=>'<a href="http://www.twapperkeeper.com/">Twapper Keeper</a>'))?></p>
 <?php endif; ?>
  <?php if (!$new): ?>
  <fieldset>
  <legend><?= t("Customisation")?></legend>
 <p>
- <label for="colour">Hexcode for background colour for headings</label>
+ <label for="colour"><?=t('Hexcode for background colour for headings')?></label>
  <input type="text" id="colour" name="colour" value="<?= $cloudscape->colour?>"/>
- <br /><small>This is an experimental feature. If you specify the hexcode of a colour then the background colour of headings
- for the cloudscape will be displayed as that colour. <br />If it is successful, we'll extend the feature, including adding a 
- colourpicker to the user interface here. </small>
+ <br /><small><?=t('This is an experimental feature.')?>
+<?=t('If you specify the hexidecimal code of a colour then the background colour of headings for the cloudscape will be displayed as that colour.')?>
+ <br />
+<?=t("If it is successful, we'll extend the feature, including adding a colour picker to the user interface here.")?> </small>
  </p>
  </fieldset>
  <?php endif; ?>

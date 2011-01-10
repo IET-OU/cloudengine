@@ -3,10 +3,11 @@
 
 
 <?php if($total_attendees > 0): ?>
-<p><?= t('This event has '.plural('!count person', '!count people', $total_attendees).' marked as attending. Submitting this form will send an e-mail to all 
-of these attendees who have not opted out of such e-mails') ?></p>
-<p><?= t('Please bear in mind that complicated formatting in the message of the email, such as tables, may
-not display correctly when the e-mail is sent out.')?></p>
+<p><?= t('This event has !people marked as attending. Submitting this form will send
+an e-mail to all of these attendees who have not opted out of such e-mails',
+    array('!people'=>plural(_('!count person'), _('!count people'), $total_attendees))) ?></p>
+<p><?= t('Please bear in mind that complicated formatting in the message of the email,
+such as tables, may not display correctly when the e-mail is sent out.')?></p>
 
 <?= '<b>'.validation_errors().'</b>' ?>
 <?=form_open($this->uri->uri_string(), array('id' => 'cloudscape-email-attendees-form'))?>

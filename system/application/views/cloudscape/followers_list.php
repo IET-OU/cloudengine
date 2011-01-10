@@ -1,7 +1,8 @@
 <div class="grid headline">
     <div class="c1of2">
-        <h1><?=t("!item is followed by ".plural('!count person', '!count people', count($users)),
-          array('!item'=>"<a href='".base_url()."cloudscape/view/$cloudscape->cloudscape_id'>$cloudscape->title</a>"))?></h1>
+        <h1><?=t('!item is followed by !people',
+            array('!item'=>anchor("cloudscape/view/$cloudscape->cloudscape_id", $cloudscape->title),
+		          '!people'=>plural(_('!count person'), _('!count people'), count($users))) ) ?></h1>
 </div>
 
 <div id="region1">
