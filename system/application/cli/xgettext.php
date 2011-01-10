@@ -48,7 +48,8 @@ foreach ($domains as $path) {
   $domain = basename($path);
   $directory = win_dir("$sys_dir/$path");
 
-  $exclude = ".|..|.svn|.po|.DS_Store|cli|about|admin|config|Zend|phpmailer|index.html";
+  // No longer exclude the 'admin' section.
+  $exclude = ".|..|.svn|.po|.DS_Store|cli|about|config|Zend|phpmailer|index.html";
   $files = file_array($directory, $directory, $exclude);
   $bytes = file_put_contents($files_from, $files); #implode(PHP_EOL, $files));
 
@@ -63,8 +64,8 @@ foreach ($domains as $path) {
  --keyword=t
 
  --language=PHP
-  --from-code=utf-8
- --width=85
+ --from-code=utf-8
+ --width=86
  --add-comments=/
  --sort-by-file
  --force-po
@@ -75,8 +76,8 @@ EOF;
     # The Windows builds don't have these options :(
     $command .= <<<EOF
  --copyright-holder="Copyright 2010 The Open University."
- --package-name=Cloudworks-$domain
- --package-version="0.1"
+ --package-name=CloudEngine-$domain
+ --package-version="1.0.1"
  --msgid-bugs-address="cloudworks@open.ac.uk"
 EOF;
   }
