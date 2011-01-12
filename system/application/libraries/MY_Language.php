@@ -307,11 +307,15 @@ class My_Language extends CI_Language {
 	
 /** 
  * Translate strings to the page language or a given language.
- *<code>
- * <?= t("Your cloud !title has been created!",  //app./views/cloud/cloud_added.php
- *     array('!title' => anchor("cloud/view/$cloud->cloud_id", $cloud->title))) ?>
- *</code>
- *
+ <code>
+   <?= ///Translators: this substitutes !title with a dynamic link.
+      t("Your cloud !title has been created!",  //app./views/cloud/cloud_added.php
+        array('!title' => anchor("cloud/view/$cloud->cloud_id", $cloud->title))) ?>
+
+   <?= ///Translators: replaces !site-name! with the predefined $config variable.
+      t("Visit !site-name!.") ?>
+ </code>
+
  * @param  string $string A string containing the English string to translate.
  * @param  array  $args   An associative array of replacements to make after translation.
  *   Incidences of any key in this array are replaced with the corresponding value. (..):

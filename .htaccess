@@ -41,6 +41,7 @@ DirectoryIndex index.php
     # Protect hidden files.
     RewriteRule ^\.(hg|git).*$ index.php/_403_ [QSA,L]
 
+    # Finally, point to the front controller.
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php/$1 [QSA,L]
