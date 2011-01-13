@@ -5,7 +5,7 @@
 <?=t("By creating an account, you agree to our [link-at]Terms and Conditions of Use[/link].",
     array('[link-at]' => t_link('about/tandc')))?> 
 </p>
-<?=form_open($this->uri->uri_string(), array('id' => 'register_form'))?>
+<?=form_open($this->uri->uri_string(), array('id'=>'register_form', 'class'=>'__h5fm')); /*Uses HTML5 form attributes (BB #115).*/ ?>
 <?= validation_errors() ?>
 <table>
     <tr>
@@ -13,8 +13,16 @@
         	<?=form_label(t("Username"), 'user_name') ?>
         </td>
         <td>
-        <input type="text" name="user_name" id="user_name" max_length="45" size="45" 
-               value="<?= isset($user->user_name) ? $user->user_name : '' ?> " />
+            <?=form_input(array('name'=>'user_name',
+                'required'=>true,
+                // Need to move dup. data to controller/config. (cf. installer/login).
+                'pattern' =>'[a-zA-Z]\w{3,44}\s?',
+                'title'=>t('Minimum !N characters, letters and numbers (no spaces)',
+                          array('!N'=> 4 )),
+                'maxlength'=>45,
+                'value'=>set_value('user_name'),
+              #'value'   =>isset($user->user_name) ? $user->user_name :'',
+            ))?>
         </td>
 
     </tr>
@@ -23,24 +31,34 @@
             <label for="email"><?=t("E-mail")?></label>
         </td>
         <td>
-        <input type="text" name="email" id="email" max_length="320" size="45" 
-               value="<?= isset($user->email) ? $user->email : '' ?> " />
-
+            <?=form_email(array('name'=>'email',
+                'required' =>true,
+                'placeholder'=>'you@example.org',
+                'maxlength'=>320,
+                'value'    =>set_value('email') )) ?>
          </td> 
     </tr>
     <tr>
         <td>
             <label for="fullname"><?=t("Full name")?></label>
         </td>
-        <td> <input type="text" id="fullname" name="fullname" value="<?= isset($user->fullname) ? $user->fullname : '' ?>"/>
-        </td>
+        <td>
+            <?=form_input(array('name'=>'fullname',
+                'required' =>true,
+                'pattern'  =>'\w{1,} \w{1,}',
+                'maxlength'=>140,
+                'value'    =>set_value('fullname') ))?>
     </tr>
     <tr>
         <td>
             <label for="institution"><?=t("Institution")?></label>
         </td>
-        <td> 
-            <input type="text" id="institution" name="institution" value="<?= isset($user->institution) ? $user->institution : '' ?>"/>
+        <td>
+            <?=form_input(array('name'=>'institution',
+                'required'=>true,
+                'pattern' =>'\w{2,}',
+                'value'   =>set_value('institution') ))?>
+
         <?php
             $view_data = array(
                 'html_id'  => 'institution',
@@ -59,7 +77,6 @@
         <td>
     	<?=form_dropdown('country_id', $countries,
     	                 (isset($user->country_id) ? $user->country_id : 0 ), 'id="country_id"')?>
-
         </td>
     </tr>    
     <tr>
@@ -67,12 +84,14 @@
             <label for="password"><?=t("Password")?></label>
         </td>
     	<td>
-    	   <?=form_password(array('name'=>'password', 
-    	                       'id'=>'password',
-    	                       'maxlength'=>'16', 
+    	   <?=form_password(array('name'=>'password',
+    	       'required'=>true,
+    	       'pattern' =>'\w[^\s\c]{4,49}',
+    	       'title'=>t('Minimum !N characters, letters, numbers and symbols (no spaces)',
+    	                 array('!N' => 5 )),
+    	                       'maxlength'=>'16',
     	                       'size'=>'16',
     	                       'value'=>''))?>
-
         </td>
     </tr>
     <tr>
@@ -80,8 +99,10 @@
             <label for="password_confirm"><?=t("Confirm Password")?></label>
     	</td>
         <td>
-            <?=form_password(array('name'=>'password_confirm', 
-    	                       'id'=>'password_confirm',
+            <?=form_password(array('name'=>'password_confirm',
+                 'required'=>true,
+                 'oninput'=>"setCustomValidity(value!=password.value ? '"
+                     .t('Error, the passwords should match')."' : '')",
     	                       'maxlength'=>'16', 
     	                       'size'=>'16',
     	                       'value'=>''))?>
@@ -94,10 +115,11 @@
 <?=t("If you are unable to read the letters, please e-mail !email! so that we can register you manually.") ?></label>
     	</td>
     	<td>
-
             <?=$this->load->view('auth/html_for_captcha', null, true)?><br />
-    	   <?=form_input(array('name'=>'captcha', 
-    	                       'id'=>'captcha',
+    	   <?=form_input(array('name'=>'captcha',
+    	         'required'=>true,
+    	         'pattern'=>'\w{'.config_item('FAL_captcha_min').',}',
+    	         'autocomplete'=>false,
     	                       'maxlength'=>'45', 
     	                       'size'=>'45',
     	                       'value'=>''))?>
