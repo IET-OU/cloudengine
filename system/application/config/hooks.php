@@ -10,12 +10,20 @@
 |
 */
 
-    $hook['display_override'] = array(
+    /*$hook['display_override'] = array(
       'class'    => 'oembed',
       'function' => 'filter',
       'filename' => 'oembed_hook.php',
       'filepath' => 'hooks',
       'params'   => ($mode = 'link')  #OR 'braces'.
+    );*/
+
+    $hook['display_override'] = array(
+      'class'   => 'project_hook',
+      'function'=> 'filter',
+      'filename'=> 'project_hook.php',
+      'filepath'=> 'hooks',
+      'params'  => NULL,
     );
 
 /* End of file hooks.php */

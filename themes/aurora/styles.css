@@ -1,4 +1,7 @@
 
+._[id]:before{content:'id='attr(id); background:#fff;color:#000;}
+
+
 /* Aurora */
 
 body h2 {color: #fff; background:#1E466A;}

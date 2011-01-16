@@ -10,7 +10,7 @@
  */
 
 
-/** Text Input Field
+/** Text Input Field (HTML 3+).
  *
  * @access	public
  * @param	mixed
@@ -35,6 +35,8 @@ if (! function_exists('form_input')) {
 require_once BASEPATH.'/helpers/form_helper.php';
 
 
+/** Email input field (HTML5).
+*/
 if (! function_exists('form_email')) {
 
 	function form_email($data = '', $value = '', $extra = '') {
@@ -47,6 +49,8 @@ if (! function_exists('form_email')) {
 	}
 }
 
+/** Web address input field (HTML5).
+*/
 if (! function_exists('form_url')) {
 
 	function form_url($data = '', $value = '', $extra = '') {
@@ -55,6 +59,21 @@ if (! function_exists('form_url')) {
 		}
 
 		$data['type'] = 'url';
+		return form_input($data, $value, $extra);
+	}
+}
+
+/** Search input field (HTML5).
+ *  CSS:  [type=search]{-moz-appearance:searchfield;}
+ */
+if (! function_exists('form_search')) {
+
+	function form_search($data = '', $value = '', $extra = '') {
+		if ( ! is_array($data)) {
+			$data = array('name' => $data);
+		}
+
+		$data['type'] = 'search';
 		return form_input($data, $value, $extra);
 	}
 }
