@@ -9,6 +9,8 @@
  */
 class Item_model extends Model {
 
+    protected $ci;
+
     function Item_model() {
         parent::Model();
     }
@@ -71,26 +73,26 @@ class Item_model extends Model {
      * @return string The item title
      */
     function get_title($item_type, $item_id) {
-       $title = FALSE; 
+       $title = FALSE;
        $this->ci = & get_instance();
        switch ($item_type) {
-           case 'cloud' : 
+           case 'cloud' :
                $this->ci->load->model('cloud_model');
                $cloud = $this->ci->cloud_model->get_cloud($item_id);
                $title = $cloud->title;
                break;
-           case 'cloudscape' : 
+           case 'cloudscape' :
                $this->ci->load->model('cloudscape_model');
                $cloudscape = $this->ci->cloudscape_model->get_cloudscape($item_id);
                $title = $cloudscape->title;
                break;
            case 'user':
                 $this->ci->load->model('user_model');
-                $profile = $this->user_model->get_user($item_id);
+                $profile = $this->ci->user_model->get_user($item_id);
                 $title = $profile->fullname;
-        }  
-        
+        }
+
         return $title;
     }
-    
+
 }
