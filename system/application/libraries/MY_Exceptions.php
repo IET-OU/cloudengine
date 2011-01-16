@@ -31,7 +31,12 @@ class MY_Exceptions extends CI_Exceptions {
         // API error handling.
         if ($template == 'error_general') {
 			// Deal with API errors 
-			$CI =& get_instance();
+			if (function_exists('get_instance')) {
+				$CI =& get_instance();
+			} else {
+			    @header("HTTP/1.1 $status_code", $status_code);
+			    die($message);
+			}
 			if ('api'==$CI->uri->segment(1) && config_item('x_api')) {
 				$CI->load->library('Api_error_lib');
 				if (404 == $status_code) {
