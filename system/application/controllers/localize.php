@@ -35,7 +35,7 @@ class Localize extends Controller {
 		  	show_404("localize/pot/$domain");
 		}
 	}
-	
+    
 	/**
 	* Output a PO file for a given language.
 	* 
@@ -56,5 +56,51 @@ class Localize extends Controller {
 		} else {
 		  	show_404("localize/po/$lang/$domain");
 		}
+	}
+
+    /** Output PO files for dynamic support/about pages.
+     *     Currently this only outputs templates.
+     *
+     * @param $lang Language code, eg. 'en', 'da'.
+     * @param $section Section of the site (about or support) (Gettext 'domain').
+     */
+	public function pages($lang, $section) {
+	    $this->load->model('page_model');
+
+	    $pages = $this->page_model->get_pages($section);
+
+	    if (!isset($pages[0])) {
+	        show_error("Section '$section' not found.");
+	    }
+
+        $pg_out = array();
+	    foreach ($pages as $n => $page) {
+	        if ('en' != $page->lang) break;
+
+            $pg_out[$n]->ref = "$page->section/$page->name";
+            $pg_out[$n]->url = site_url("$page->section/$page->name");
+            $pg_out[$n]->title = $page->title;
+	        $pg_out[$n]->lines = explode("\n", addcslashes($page->body, '"'));
+	    }
+
+	    header("Content-Type: text/plain; charset=UTF-8");
+	    header("Content-Disposition: inline; filename=pages-$section-$lang.po");
+		header("Content-Language: $lang");
+
+	    #require APPPATH ."language/_templates_/_header_.po";
+	    $this->load->view('localize/po-header', array('date'=>date('c'), 'lang'=>$lang));
+
+	    $this->load->view('localize/po-pages', array('pages'=>$pg_out));
+
+        #$this->_parse();
+	}
+
+	protected function _parse() {
+		//http://code.google.com/p/php-po-parser/#modify
+		require APPPATH ."libraries/POParserEx.php";
+
+	    $parser = new POParser();
+	    $po = $parser->parse(APPPATH."language/pages-support-en.po");
+	var_dump($po);
 	}
 }
