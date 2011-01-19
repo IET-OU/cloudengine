@@ -96,17 +96,19 @@ class My_Language extends CI_Language {
 	 * @return string The chosen locale.
 	 */
 	public function initialize() {
-		if (!config_item('x_translate')) {
+		$this->CI =& get_instance();
+
+		$this->lang_ui = str_replace('english', 'en', $this->CI->config->item('language'));
+
+		if (!$this->CI->config->item('x_translate')) {
 		  return FALSE;
 		}
-		
-		$this->CI =& get_instance();
-		
+
 		# 1. Content negotiation, using 'Accept-Language' header.
 		$this->CI->load->library('user_agent');
-		$_lang = str_replace('english', 'en', config_item('language'));
+		$_lang = $this->lang_ui; #str_replace('english', 'en', $this->CI->config->item('language'));
 		$method= 'non';
-		
+
 		# Order is significant :(
 		foreach ($this->locales as $lang => $item) {
 			if ($this->CI->agent->accept_lang(strtolower($lang))) {
@@ -116,7 +118,7 @@ class My_Language extends CI_Language {
 				break;
 			}
 		}
-	
+
 		# 2. If there's a COOKIE, use that.
 		$lc = $this->CI->input->cookie('language', FALSE);
 		if ($lc && isset($this->locales[$lc])) {
