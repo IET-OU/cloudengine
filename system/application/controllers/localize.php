@@ -58,7 +58,8 @@ class Localize extends Controller {
 		}
 	}
 
-    /** Output PO files for dynamic support/about pages.
+    /** EXPERIMENTAL.
+     *  Output PO files for dynamic support/about pages.
      *     Currently this only outputs templates.
      *
      * @param $lang Language code, eg. 'en', 'da'.
@@ -88,11 +89,10 @@ class Localize extends Controller {
 		header("Content-Language: $lang");
 
 	    #require APPPATH ."language/_templates_/_header_.po";
-	    $this->load->view('localize/po-header', array('date'=>date('c'), 'lang'=>$lang));
+	    $this->load->view('localize/po-header', array('date'=>date('c'), 'lang'=>$lang,
+							'count'=>count($pg_out), 'section'=>$section));
 
 	    $this->load->view('localize/po-pages', array('pages'=>$pg_out));
-
-        #$this->_parse();
 	}
 
 	protected function _parse() {

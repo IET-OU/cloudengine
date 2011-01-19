@@ -1,5 +1,5 @@
 # *** EXPERIMENTAL ***
-# Translate/ localize dynamic support and about pages.
+# Translate/ localize dynamic support and about pages (<?="$count $section" ?> pages)
 #
 # The CloudEngine project (http://getcloudengine.org/)
 # @copyright Copyright 2010 The Open University. See CREDITS.txt
