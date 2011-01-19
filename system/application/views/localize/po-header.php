@@ -8,8 +8,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: CloudEngine 1.0.1\n"
-"Report-Msgid-Bugs-To: cloudworks@open.ac.uk\n"
+"Project-Id-Version: pages-<?=section ?> (CloudEngine 1.0.1)\n"
+"Report-Msgid-Bugs-To: <?=config_item('site_email') ?>\n"
 "POT-Creation-Date: <?=$date ?>\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: YOU <YOU@example.org>\n"
@@ -21,6 +21,5 @@ msgstr ""
 "X-Poedit-Language: <?=$lang ?>\n"
 "X-Poedit-Country: \n"
 "X-Poedit-SourceCharset: utf-8\n"
-"--X-Poedit-Base-URL: <?php /*http://cloudworks.ac.uk/*/ echo base_url(); ?>\n"
-
+"--X-Poedit-Base-URL: <?php echo base_url(); ?>\n"
 

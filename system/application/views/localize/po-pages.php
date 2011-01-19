@@ -1,5 +1,7 @@
 
 <?php foreach ($pages as $idx=>$page): ?>
+# -----------------------------------------------------------------
+
 #. /Page title
 #: <?=$page->ref ?>:title
 msgid "<?=$page->title ?>"
