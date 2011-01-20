@@ -8,6 +8,7 @@
 class Home extends MY_Controller {
 
 	function Home() {
+	    
 		parent::MY_Controller();
 		$this->load->library('layout', 'layout_main');	
 		$this->load->helper('format');
@@ -21,6 +22,9 @@ class Home extends MY_Controller {
 	    $this->load->model('site_news_model');
 	    $this->load->model('event_model');
 	    $this->load->model('events_model');
+      
+        
+      
     }
 
 	/**
@@ -28,6 +32,7 @@ class Home extends MY_Controller {
 	 *
 	 */
 	function index() {
+	    
 	    $data['home'] = TRUE;
 
 	    $data['active_clouds']        = $this->cloud_model->get_active_clouds(10);

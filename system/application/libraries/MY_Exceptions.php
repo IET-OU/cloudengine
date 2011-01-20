@@ -31,12 +31,7 @@ class MY_Exceptions extends CI_Exceptions {
         // API error handling.
         if ($template == 'error_general') {
 			// Deal with API errors 
-			if (function_exists('get_instance')) {
-				$CI =& get_instance();
-			} else {
-			    @header("HTTP/1.1 $status_code", $status_code);
-			    die($message);
-			}
+			$CI =& get_instance();
 			if ('api'==$CI->uri->segment(1) && config_item('x_api')) {
 				$CI->load->library('Api_error_lib');
 				if (404 == $status_code) {
@@ -61,7 +56,7 @@ class MY_Exceptions extends CI_Exceptions {
 		header("HTTP/1.1 $status_code", TRUE, $status_code);
 
         $message = '<p>'.implode('</p><p>', (! is_array($message)) ? array($message) : $message).'</p>';
-
+          
         // Check for missing 'cloudengine.php' config. file.
         if (preg_match('#configuration file(.*)does not exist#', $message, $matches)) {
             // Not the most efficient way, but readable I hope!
@@ -74,13 +69,15 @@ class MY_Exceptions extends CI_Exceptions {
         // including 404 'method not found', eg. http://cloudengine/cloud/_ERROR
         if ($success && function_exists('get_instance')) {
             $CI =& get_instance();
-            $CI->load->library('layout', 'layout_main');
-
+            //if the site is offline, load the offline template (less navigation, just branding)
+            if ($template == 'site_offline') {
+              $CI->layout->setLayout('layout_offline');
+            }
             $data['title']  = $heading;
             $data['message']= $message;
             echo $CI->layout->view("error/$template", $data, TRUE);
 
-            echo " [a] ";
+            //echo " [a] ";
             $success = true;
         }
         // For 404 'controller not found' errors, use cURL to POST

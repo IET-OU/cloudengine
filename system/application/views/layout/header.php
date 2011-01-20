@@ -12,6 +12,7 @@
 <div id="site-header">
 <?php $this->load->view('layout/_site-header'); ?>   
 </div>
+<pre><? //print_r($this->_ci_cached_vars);  ?></pre>
 
 <div id="site">
     <div id="site-body">
@@ -20,3 +21,7 @@
         <?php if (!config_item('x_live')): ?>
             <p class="test_install warn"> <?= $this->config->item('test_install_message') ?></p>
         <?php endif; ?>
+        <?php if (!config_item('site_live')): ?>
+            <p class="test_install warn"> <strong><?= $this->config->item('offline_message_admin') ?></strong>  <?= t('(Last updated:') .$this->config->item('offline_message_created') .')'?></p>
+        <?php endif; ?>        
+        

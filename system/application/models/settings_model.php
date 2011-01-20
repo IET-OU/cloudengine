@@ -67,4 +67,18 @@ class Settings_model extends Model {
 		$query = $this->db->query($sql, $array);
 		return (bool) $query;
 	}
+
+	public function get_all()
+	{
+	 
+   return $this->db->get('settings')->result();
+   
+   /*
+		return $this->db
+			->select('name, value, title, description, admin_output_section, type ', FALSE)
+			->get('settings')
+			->result();*/
+	}
+
 }
+
