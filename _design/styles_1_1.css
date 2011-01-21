@@ -1119,11 +1119,15 @@ background:#fdd; border:1px solid #c00; padding:6px; margin:1em; text-align:cent
 }
 
 
-/*HTML5 form validation. */
+/*HTML5 forms/ form validation. */
 ._h5 input {border-radius:2px; border:1px solid rgd(127,157,185);}
 .h5 input:focus{background:#ffd;}
 .h5 input:focus:invalid, .h5 input:focus.invalid{outline:1px solid #c44; -moz-outline-radius:3px; -webkit-outline-radius:3px;}
 .h5 input:valid, .h5 input.valid{border:1px solid green; border-radius:2px; margin:1px 0;}
+
+input[type=search]{-moz-appearance:searchfield; ---webkit-appearance:textfield;}
+input::-webkit-input-placeholder{color:#575; background:#FFFFE0;}
+input:-moz-placeholder          {color:#575;}
 
 
 /*********************************/
