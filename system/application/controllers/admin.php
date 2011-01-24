@@ -309,4 +309,43 @@ class Admin extends MY_Controller {
         }
 
     }
+    
+	
+	/**
+	 * Edit the site settings cloudscapes
+	 */
+	function site_settings() {
+	   
+    $this->load->model('settings_model');
+    
+    //process form submission     
+    if ($this->input->post('save')) {
+      foreach($_POST as $name => $value ) {
+        if (substr($name,0,3) == 'db_') {
+          $this->settings_model->replace_setting(substr($name,3),$this->input->post($name));
+        }
+      }    
+      redirect('admin/site_settings');
+    }
+
+    $settings   = $this->settings_model->get_all();
+    
+    foreach($settings as $setting) {
+      switch($setting->name) {
+        case 'site_live':
+         $data['site_live'] = $setting;
+        case 'offline_message_public':
+         $data['offline_message_public'] = $setting;
+        case 'offline_message_admin':
+         $data['offline_message_admin'] = $setting;
+        case 'offline_message_created':
+         $data['offline_message_created'] = $setting;
+      }
+    }
+    
+    $data['title']      = t('Site settings');
+    $this->layout->view('admin/site_settings', $data);
+	}
+    
+                
 }

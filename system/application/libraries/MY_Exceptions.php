@@ -69,7 +69,7 @@ class MY_Exceptions extends CI_Exceptions {
         // including 404 'method not found', eg. http://cloudengine/cloud/_ERROR
         if ($success && function_exists('get_instance')) {
             $CI =& get_instance();
-            //if the site is offline, load the offline template (less navigation, just branding)
+            //if the site is offline, load the offline template (no navigation, just branding)
             if ($template == 'site_offline') {
               $CI->layout->setLayout('layout_offline');
             }

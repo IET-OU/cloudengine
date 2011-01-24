@@ -44,6 +44,19 @@ class Settings_model extends Model {
 		
 		return (object) $output;
 	}
+
+	/**
+	* Insert or update a name-value pair in the settings
+	*
+	* @param array $data  of name value pairs
+	* @return boolean TRUE if the insert/update was successful. 
+	*/
+	public function update_setting($data) {
+				
+    $this->db->where('name', $data['name']);
+    $this->db->update('settings', $data); 
+		return $this->db->result;
+	}
 	
 	/**
 	* Insert or update a name-value pair in the settings depending on whether the
@@ -54,30 +67,29 @@ class Settings_model extends Model {
 	* @return boolean TRUE if the insert/update was successful. 
 	*/
 	public function replace_setting($name, $value) {
-		$current = $this->get_setting($name);
 		
-		if ($current) {
+    $current = $this->get_setting($name);
+       
+		if (!is_null($current)) {
 		  	$sql = "UPDATE settings SET value = ? WHERE name = ?";
 		  	$array = array($value, $name);
 		} else {
 		  	$sql = "INSERT INTO settings (name, value) VALUES (?, ?)";
 		  	$array = array($name, $value);
 		}
-		
+
 		$query = $this->db->query($sql, $array);
 		return (bool) $query;
 	}
 
+	/**
+	* Get all settings
+  *
+	* @return array  
+	*/
 	public function get_all()
 	{
-	 
    return $this->db->get('settings')->result();
-   
-   /*
-		return $this->db
-			->select('name, value, title, description, admin_output_section, type ', FALSE)
-			->get('settings')
-			->result();*/
 	}
 
 }

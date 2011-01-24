@@ -192,11 +192,12 @@ MSG;
 	
 		$error_paths = null; // Used to record any paths for directories that
 		// give errors during the checking process
-		
+
 		// Check each of the directories (with the location set in the config file
 		// or the default set above if no config is set) exists and is writeable
 		foreach ($writeable_dirs as $conf_key => $default) {
 			$path = $this->ci->config->item($conf_key);
+
 			if (!$path) {
 				$path = $default;
 			}
@@ -207,7 +208,7 @@ MSG;
 				$error_paths[] = $path;
 			}
 		}
-		
+
 		if ($error_paths) {
 	  		$error_paths = implode("\n", $error_paths);
       		$message =<<<MSG
@@ -252,6 +253,7 @@ MSG;
 	
 	    	// If the user table exists, assume it's not a clean install and abort
 	    	$result = @mysql_query("SELECT * FROM user WHERE id = 1", $this->db);
+
 		    if ($result) {
 		        log_message('error', __CLASS__.": installation attempted. DB tables already exist. Aborting.");
 		        if (self::INSTALL_LIVE) {

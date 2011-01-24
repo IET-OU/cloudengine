@@ -68,28 +68,28 @@ class Install extends MY_Controller {
 		
 		// Check that the required data directories exists and are writeable
 		$this->lib->_check_writeable();
-		
+
 		// Check database configuration
 		$db_conf = $this->lib->_load_db_config();
 		if ($db_conf) {
 		    $messages[] = "OK, database configuration read successfully.";
 		}
-		
+
 		$success = $this->lib->_validate_db_config($db_conf);
 		
 		if ($success) {
 		    $messages[] = "OK, database configuration parsed successfully.";
 		} 
-	
+
 		// Test the database connection.
 		$db = $this->lib->_test_db_connection($db_conf);
 		if ($db) {
 		  	$messages[] = "Connection to database server is OK.";
 		}
-	
+			
 		// Check that the database is empty
 		$db_exists = $this->lib->_db_tables_exist($db_conf);
-		
+
 		// Display the next page of the install script
 		$view_data = array(
 		  'site_name'=> self::SITE_NAME,

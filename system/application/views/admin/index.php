@@ -23,6 +23,7 @@
 <ul class="arrows">
 <li><?= anchor('search/create', t("Update search index")) ?></li>
 <li><?= anchor('admin/recalculate_popular', t("Recalculate Popular Clouds and Cloudscapes")) ?></li>
+<li><?= anchor('admin/site_settings', t('Site settings and status')) ?></li>
 <li><?= anchor('admin/phpinfo', t('Display PHP configuration info')) ?></li>
 </ul>
 
