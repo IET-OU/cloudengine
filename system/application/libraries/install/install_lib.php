@@ -519,8 +519,11 @@ EOF;
 	 * Set the 'app_version' in the 'settings' table.
 	 */
 	function _set_version() {
-		$version_sql = "INSERT INTO settings (name, value) VALUES	('app_version', 
-		                '__VERSION__'), ('app_created', '__TIME__')";
+		$version_sql =  "INSERT INTO settings (name, value, title, description, admin_output_section, type) 
+                    VALUES	('app_version','__VERSION__', 'Software version', 'Latest software version', 'software_version', 'text'), 
+                            ('app_created', '__TIME__', 'Version release date', 
+                                'Release date of the latest software version', 'software_version', 'date')
+                    ";
 		$version_sql = str_replace(array('__VERSION__', '__TIME__'), array(APP_VERSION, time()), $version_sql);
 		$num_inserts = $this->_process_schema($version_sql, FALSE);
 		if ($num_inserts) {
