@@ -502,6 +502,7 @@ class Api_lib {
             foreach ($data->totals as $name => $count) {
                 $user["total_$name"] = $count;
             }
+            $user['reputation'] = $data->reputation;
         } elseif (!$rich && isset($user_id)) {
             $user['user_id'] = $user_id;
             if (isset($data->fullname)) {

@@ -395,6 +395,7 @@ class Api extends MY_Controller {
                 $data->tags = $this->tag_model->get_tags($this->item_type, $user_id);
                 $data->totals->clouds = $this->user_model->get_cloud_total($user_id);
                 $data->totals->cloudscapes= $this->user_model->get_cloudscape_total($user_id);
+                $data->reputation     = $this->favourite_model->get_reputation($user_id);
             	break;
 
             case 'followers':
