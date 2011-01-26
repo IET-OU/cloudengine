@@ -20,9 +20,9 @@
             language : "<?=$this->lang->lang_code() /*@i18n: Tiny MCE. */ ?>",
             mode : "textareas",
             theme : "advanced",
-            plugins : "paste",
+            plugins : "paste,fullscreen",
             theme_advanced_buttons1 : "<?= ($editor_headings)? 'formatselect,' : ''
-                ?>bold,italic,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink,|,code,|,pasteword",
+                ?>bold,italic,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink,|,code,|,pasteword,fullscreen",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
             theme_advanced_toolbar_location : "top",
