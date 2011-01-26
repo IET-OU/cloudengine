@@ -24,7 +24,6 @@
             theme_advanced_buttons1 : "<?= ($editor_headings)? 'formatselect,' : ''
                 ?>bold,italic,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink,|,code,|,pasteword,fullscreen",
             theme_advanced_buttons2 : "",
-            theme_advanced_buttons3 : "",
             theme_advanced_toolbar_location : "top",
             theme_advanced_toolbar_align : "left",
             theme_advanced_statusbar_location : "none",
@@ -39,7 +38,7 @@
             relative_urls: false,
             remove_script_host: false,
             document_base_url: "<?=base_url() ?>",
-            content_css: "/_design/tinymce.css",
+            content_css: "<?=base_url() ?>_design/tinymce.css",
             invalid_elements: "span,font"}); 
 </script>
 <?php endif; ?>
