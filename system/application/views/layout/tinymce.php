@@ -1,4 +1,7 @@
-<?php 
+<?php
+    //Accessibility: encourage authors to use headings to structure longer texts.
+    $editor_headings =TRUE;
+
     $use_editor = TRUE; 
     if ($this->auth_lib->is_logged_in()) {
             $user_id = $this->db_session->userdata('id');
@@ -18,7 +21,8 @@
             mode : "textareas",
             theme : "advanced",
             plugins : "paste",
-            theme_advanced_buttons1 : "bold,italic,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink,|,code,|,pasteword",
+            theme_advanced_buttons1 : "<?= ($editor_headings)? 'formatselect,' : ''
+                ?>bold,italic,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink,|,code,|,pasteword",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
             theme_advanced_toolbar_location : "top",
@@ -26,6 +30,11 @@
             theme_advanced_statusbar_location : "none",
             theme_advanced_resize_horizontal : false,
             theme_advanced_resizing : true,
+        <?php if ($editor_headings):
+        ?>    //Accessibility: when we have 'formatselect', discourage use of [H1] (in site template).
+            theme_advanced_blockformats : "p,pre,h2,h3,h4",<?php //address,blockquote?
+        endif; ?>
+
             apply_source_formatting : true,
             relative_urls: false,
             remove_script_host: false,

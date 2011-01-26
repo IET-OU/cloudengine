@@ -2,6 +2,7 @@
 /* Aurora */
 
 body h2 {color: #fff; background:#1E466A;}
+.user-entry h2, .extra-content h2, .user-comment h2{color: #333; background:transparent;}
 
 body div#site-header {height:175px; background: url(header-bg-aurora.jpg) top left repeat-x;}
 
