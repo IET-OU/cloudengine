@@ -36,12 +36,12 @@ class Api_lib {
             $this->_api_error("400.3", "Error, the URL segment following '".
                                         str_replace('_id', '', $name)."/' is required.");
         }
-        if ($is_integer && !is_numeric($term)) {
+        if ($is_integer && (!is_numeric($term) && 0!==strpos($term, _API_USERNAME_PREFIX))) {
             $this->_api_error("400.3", "Error, the URL segment following '".
                                        str_replace('_id', '', $name).
                                        "/' (segment 3) should be a numeric ID.");
         }
-        return $term;
+        return ltrim($term, _API_USERNAME_PREFIX);
     }
 
     /** 
@@ -482,6 +482,7 @@ class Api_lib {
             // Don't expose 'last_visit' date, etc., as it's not visible on site.
             $user = array(
                 'user_id' => $user_id,
+                'user_name'=>_API_USERNAME_PREFIX . $data->user_name,
                 'name'    => $data->fullname,
                 'html_url'=> site_url("user/view/$user_id"),
                 'api_url' => $this->url('user', $user_id),
@@ -505,6 +506,7 @@ class Api_lib {
             $user['reputation'] = $data->reputation;
         } elseif (!$rich && isset($user_id)) {
             $user['user_id'] = $user_id;
+            $user['user_name']= _API_USERNAME_PREFIX . $data->user_name;
             if (isset($data->fullname)) {
               $user['name'] = $data->fullname;
             }

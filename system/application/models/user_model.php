@@ -63,6 +63,9 @@ class User_model extends Model {
 	 */
 	function get_user($user_id) {
 		$user = FALSE;
+		if (!is_numeric($user_id)) {
+		    return $this->get_user_by_username($user_id);
+		}
         $this->where_active();
         $this->db->where('user.id', $user_id);
         $this->db->join('user', 'user.id = user_profile.id');
