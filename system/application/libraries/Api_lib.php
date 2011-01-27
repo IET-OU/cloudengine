@@ -188,18 +188,19 @@ class Api_lib {
      * @return string A username to match against the 'user' table, or '_example_'.
      */
     public function api_key_valid($api_key) {
-        $this->api_client = $this->CI->api_client_model->is_valid_key($api_key);
-        if ($this->api_client) {
-            return $this->api_client->user_name;
-        }
-        //ELSE.
         $required = $this->CI->config->item('x_api_key_required') && 
                     'suggest' != $this->CI->uri->segment(2);
         if ($required && !$api_key) {
             $this->_api_error("403.1", "Error, 'api_key' is a required parameter.");
         }
+        //ELSE.
+		$this->api_client = $this->CI->api_client_model->is_valid_key($api_key);
+        if ($this->api_client) {
+            return $this->api_client->user_name;
+        }
+
         #401.2 Unauthorized.
-        if ($required && !$api_client) {
+        if ($required && !$this->api_client) {
             $this->_api_error('403.2', "Error, the 'api_key' is invalid.");
         }
         return FALSE;
