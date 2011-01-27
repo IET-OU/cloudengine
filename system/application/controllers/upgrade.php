@@ -90,8 +90,7 @@ class Upgrade extends MY_Controller {
 			// Change the version numbers into integer form (see comment in header)
 			$version_try = $this->parse_version($version_db);
 			$version_end = $this->parse_version($version_code);
-			var_dump($version_try,$version_end);
-      //exit;
+
 			// Search for the relevant upgrade methods in this class.
 			$functions = NULL;
 			while ($version_try < $version_end) {
