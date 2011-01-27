@@ -194,7 +194,7 @@ class Api_lib {
             $this->_api_error("403.1", "Error, 'api_key' is a required parameter.");
         }
         //ELSE.
-		$this->api_client = $this->CI->api_client_model->is_valid_key($api_key);
+        $this->api_client = $this->CI->api_client_model->is_valid_key($api_key);
         if ($this->api_client) {
             return $this->api_client->user_name;
         }
