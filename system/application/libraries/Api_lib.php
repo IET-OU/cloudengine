@@ -36,12 +36,12 @@ class Api_lib {
             $this->_api_error("400.3", "Error, the URL segment following '".
                                         str_replace('_id', '', $name)."/' is required.");
         }
-        if ($is_integer && !is_numeric($term)) {
+        if ($is_integer && (!is_numeric($term) && 0!==strpos($term, _API_USERNAME_PREFIX))) {
             $this->_api_error("400.3", "Error, the URL segment following '".
                                        str_replace('_id', '', $name).
                                        "/' (segment 3) should be a numeric ID.");
         }
-        return $term;
+        return ltrim($term, _API_USERNAME_PREFIX);
     }
 
     /** 
@@ -188,18 +188,19 @@ class Api_lib {
      * @return string A username to match against the 'user' table, or '_example_'.
      */
     public function api_key_valid($api_key) {
-        $this->api_client = $this->CI->api_client_model->is_valid_key($api_key);
-        if ($this->api_client) {
-            return $this->api_client->user_name;
-        }
-        //ELSE.
         $required = $this->CI->config->item('x_api_key_required') && 
                     'suggest' != $this->CI->uri->segment(2);
         if ($required && !$api_key) {
             $this->_api_error("403.1", "Error, 'api_key' is a required parameter.");
         }
+        //ELSE.
+        $this->api_client = $this->CI->api_client_model->is_valid_key($api_key);
+        if ($this->api_client) {
+            return $this->api_client->user_name;
+        }
+
         #401.2 Unauthorized.
-        if ($required && !$api_client) {
+        if ($required && !$this->api_client) {
             $this->_api_error('403.2', "Error, the 'api_key' is invalid.");
         }
         return FALSE;
@@ -482,6 +483,7 @@ class Api_lib {
             // Don't expose 'last_visit' date, etc., as it's not visible on site.
             $user = array(
                 'user_id' => $user_id,
+                'user_name'=>_API_USERNAME_PREFIX . $data->user_name,
                 'name'    => $data->fullname,
                 'html_url'=> site_url("user/view/$user_id"),
                 'api_url' => $this->url('user', $user_id),
@@ -502,8 +504,10 @@ class Api_lib {
             foreach ($data->totals as $name => $count) {
                 $user["total_$name"] = $count;
             }
+            $user['reputation'] = $data->reputation;
         } elseif (!$rich && isset($user_id)) {
             $user['user_id'] = $user_id;
+            $user['user_name']= _API_USERNAME_PREFIX . $data->user_name;
             if (isset($data->fullname)) {
               $user['name'] = $data->fullname;
             }

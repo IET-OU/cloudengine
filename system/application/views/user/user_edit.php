@@ -1,4 +1,4 @@
-<?php $this->load->view('layout/tinymce.php'); ?>
+<?php $this->load->view('layout/tinymce.php'); /* NOT USED - see edit.php */ ?>
 <div id="region1">
 
     <h1><?=t("Edit Profile") ?></h1>
@@ -17,7 +17,7 @@
     <label for="institution"><?=t("Institution")?> </label>
     <input type="text" maxlength="128" name="institution" id="institution"  size="80" value="<?= $profile->institution ?>" />
  
-    <label for="description"><?=t("Description !required!"))?></label>
+    <label for="description"><?=t("Description !required!")?></label>
     <textarea cols="61" rows="20" name="description" id="description"><?= $profile->description ?></textarea>
 
     <label for="homepage"><?=t("Home page")?> </label>

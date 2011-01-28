@@ -1,17 +1,18 @@
 <?php
-/** 
+/**
  * The API Controller for URLs under api/clouds/, api/cloudscapes/, api/users/, api/tags/
  * and api/search/
- * 
+ *
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package API
  */
 
 // Don't change please!
-define('_API_VERSION', '0.1');
+define('_API_VERSION', '0.5');
 // The URL segment following an ID in eg. clouds/{ID}/followers
 define('_API_RELATED_SEGMENT', 4); #3 or 4.
+define('_API_USERNAME_PREFIX', ''); //Hmm, was '~'
 
 class Api extends MY_Controller {
 
@@ -369,8 +370,15 @@ class Api extends MY_Controller {
      */
     public function users() {
         $this->item_type = 'user';
-        $user_id = $this->_required_segment('user_id');
+        $user_id = $this->_required_segment('user_id', FALSE); //Allow non-numeric (starting '~'. Eg. users/~nick.)
         $related = $this->uri->segment(_API_RELATED_SEGMENT);
+
+		$data = $this->user_model->get_user($user_id);
+        if (!$data || !($data->user_id || $data->id)) {
+            $this->_api_error(404, "A user with the ID '$user_id' was not found.");
+        }
+        $user_id  = $data->user_id = $data->id;
+        $user_name= $data->user_name;
 
         $html_url = site_url("user/$related/$user_id");
         if (!$related) {
@@ -384,17 +392,15 @@ class Api extends MY_Controller {
             case FALSE:
             case 'view':
             case 'item':
-                $data = $this->user_model->get_user($user_id);
-                if (!$data || !$data->user_id) {
-                    $this->_api_error(404, "A user with the ID '$user_id' was not found.");
-                }
-                $data->user_id = $user_id;
                 $data->picture = $this->user_model->get_picture($user_id);
 
                 //  Add richness. (get_tags_for_item removed, iet-bug#1034)
-                $data->tags = $this->tag_model->get_tags($this->item_type, $user_id);
+                if (!isset($data->tags)) {
+                    $data->tags = $this->tag_model->get_tags($this->item_type, $user_id);
+                }
                 $data->totals->clouds = $this->user_model->get_cloud_total($user_id);
                 $data->totals->cloudscapes= $this->user_model->get_cloudscape_total($user_id);
+                $data->reputation     = $this->favourite_model->get_reputation($user_id);
             	break;
 
             case 'followers':
@@ -457,7 +463,7 @@ class Api extends MY_Controller {
                     'self_url'=> $this->apilib->url($this->item_type, $user_id, $related),
                     'html_url'=> $html_url,
                     'total_results' => count($data),
-                    'user'    => $this->apilib->_user_process((object) array('user_id'=>$user_id)),
+                    'user'    => $this->apilib->_user_process((object) array('user_id'=>$user_id, 'user_name'=> $user_name)),
                     'items'   => $data,
                 );
             }

@@ -1,5 +1,5 @@
 <h1>Statistics for <?= $startdate ?> to <?= $enddate ?></h1>
-<p><?= anchor('admin/stats', t("Back to statistics") ?></p>
+<p><?= anchor('admin/stats', t("Back to statistics")) ?></p>
 <p><strong>Total new users registered in this period:</strong> <?= $user_total ?></p>
 <p><strong>Total distinct logged in users in this period:</strong> <?= $active_total ?></p>
 <table width="200px">

@@ -16,8 +16,9 @@
             <?=form_input(array('name'=>'user_name',
                 'required'=>true,
                 // Need to move dup. data to controller/config. (cf. installer/login).
-                'pattern' =>'[a-zA-Z]\w{3,44}\s?',
-                'title'=>t('Minimum !N characters, letters and numbers (no spaces)',
+                'pattern' =>'[a-zA-Z][\w-]{3,44}\s?',
+                //Was: 'Minimum !N characters, letters and numbers (no spaces)'
+                'title'=>t('Minimum !N characters, letters, numbers, dash and underscore (no spaces)',
                           array('!N'=> 4 )),
                 'maxlength'=>45,
                 'value'=>set_value('user_name'),
@@ -45,7 +46,7 @@
         <td>
             <?=form_input(array('name'=>'fullname',
                 'required' =>true,
-                'pattern'  =>'\w{1,} \w{1,}',
+                'pattern'  =>'\w[\w-]* [\w- ]+',
                 'maxlength'=>140,
                 'value'    =>set_value('fullname') ))?>
     </tr>
@@ -56,7 +57,7 @@
         <td>
             <?=form_input(array('name'=>'institution',
                 'required'=>true,
-                'pattern' =>'\w{2,}',
+                'pattern' =>'\w[\w- ]+',
                 'value'   =>set_value('institution') ))?>
 
         <?php
