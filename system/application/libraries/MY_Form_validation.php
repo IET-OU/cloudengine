@@ -41,6 +41,8 @@ class My_Form_validation extends CI_Form_validation {
       'valid_url'  => t("The !field-name field must contain a valid URL.",$substitute),
       'min_length' => t("The !field-name field must be at least !count characters in length.", $substitute),
       'max_length' => t("The !field-name field can not exceed !count characters in length.", $substitute),
+	  'alpha_dash' => t("The !field-name field can contain letters, numbers, dash and underscore (no space).", $substitute),
+	  'alpha_numeric'=>t("The !field-name field can contain letters and numbers only.", $substitute),
       'matches'    => t("The !field-name field does not match the !field-name field.", $substitute),
       'callback_fullname_check'=> t("Your fullname must contain a space"),  # Used by controllers/user.php
       'callback_does_not_use_url_shortener'=>  # Used by controllers/cloud.php
