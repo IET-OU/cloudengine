@@ -58,12 +58,14 @@ class Upgrade extends MY_Controller {
      *
      */
     public function index() {
+       
         $continue = false;
-
+        
         // Get version numbers both from code and from the database 
         $version_code= APP_VERSION;
         $version_obj = $this->settings_model->get_setting('app_%', TRUE);
         $version_db  = isset($version_obj->app_version) ? $version_obj->app_version : FALSE;
+        //$this->db_conf = _load_db_config();
 
         // Check these two version numbers and only continue if the code version
         // number is more recent than the database version number
@@ -288,7 +290,7 @@ class Upgrade extends MY_Controller {
         $this->message("OK, created table '$table'.");
         //message_recipient table - end    
         
-        //message_recipient table - start
+        //message_thread_participant table - start
         $table = 'message_thread_participant';
         if ($this->db->table_exists($table)) {
             $this->message("Woops, '$table' table already exists. Aborting.", 'error');
@@ -325,9 +327,9 @@ class Upgrade extends MY_Controller {
         $this->dbforge->create_table($table);
 
         $this->message("OK, created table '$table'.");
-        //message_recipient table - end         
+        //message_thread_participant table - end         
 
-        //message_recipient table - start
+        //message_thread table - start
         $table = 'message_thread';
         if ($this->db->table_exists($table)) {
             $this->message("Woops, '$table' table already exists. Aborting.", 'error');
@@ -338,6 +340,7 @@ class Upgrade extends MY_Controller {
             'thread_id' => array(
                 'type'        => 'INT',
                 'constraint'  => 10, 
+                'auto_increment'  => TRUE                
             ),
             'subject' => array(
                 'type'        => 'VARCHAR',
@@ -361,8 +364,25 @@ class Upgrade extends MY_Controller {
         $this->dbforge->create_table($table);
 
         $this->message("OK, created table '$table'.");
-        //message_recipient table - end     
-                    
+        //message_thread table - end     
+
+        //user_profile table - start
+        //var_dump($this->dbforge->check_field_exists('user_profile','email_message_notify'));
+        //exit;        
+                                
+        $table = 'user_profile';
+        $fields = array(
+            'email_message_notify'  => array(
+              'type'                  => 'INT',
+              'default'               => 1,
+              'constraint'            => 1,            
+              'null'                  => FALSE,          
+            ),      
+        );
+        $this->dbforge->add_column($table, $fields);
+        $this->message("OK, altered table '$table'.");                    
+        //user_profile table - start
+                            
         return TRUE;
     }
 

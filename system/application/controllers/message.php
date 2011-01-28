@@ -289,16 +289,27 @@ class Message extends MY_Controller {
           $data['subject']              = $this->input->post('subject');
           $data['content']              = $this->input->post('content');
         
+          
+          
           //remove white space from recipient list
-          $recipients                      = preg_replace( '/\s*/m', '', $this->input->post('recipients'));
+          //var_dump($this->input->post('recipients'));
+          //$recipients                      = preg_replace( '/\s*/m', '', $this->input->post('recipients'));
+          $recipients                      = trim($this->input->post('recipients'));          
+          var_dump($recipients);
+
           //remove trailing comma from recipient list if it has one
           if (substr($recipients, -1) == ',') {
             $recipients      = substr($recipients, 0, strlen($recipients) - 1 );
-          }          
+          }         
+          
+          var_dump($recipients);
+          
+           
           //create array of usernames]
           $thread->participant_usernames = explode(',',$recipients);
           //loop through users
           foreach ($thread->participant_usernames as $username) {
+                        
             $username = (trim($username));
             $user = $this->auth_model->get_user_by_username($username);
             
@@ -374,7 +385,7 @@ class Message extends MY_Controller {
           $this->message_model->create_thread_participant($thread_participant);
           
           //send email to each participant except the user
-          if ($participant != $user_id) {           
+          /*if ($participant != $user_id) {           
             $email->subject     = 'New message on '.$this->config->item('site_name');     
             $email->recipient   = $this->user_model->get_user($participant); 
             $email->to          = $this->config->item('x_live') ? $email->recipient->email : 
@@ -382,7 +393,7 @@ class Message extends MY_Controller {
             $email->thread      = $thread;
             $email->content     = $this->load->view('email/message_new_notification', $email, true);   
             send_email($email->to, $this->config->item('site_email'), $email->subject, $email->content); 
-          }
+          }*/
           
         }     
         
@@ -420,7 +431,7 @@ class Message extends MY_Controller {
           if (!$new_thread) {
             
              //send email to each participant except the user
-            if ($message_recipient->user_id != $user_id) {     
+            /*if ($message_recipient->user_id != $user_id) {     
               $email->subject     = 'New reply on '.$this->config->item('site_name');     
               $email->recipient   = $this->user_model->get_user($message_recipient->user_id); 
               $email->to          = $this->config->item('x_live') ? $email->recipient->email : 
@@ -429,7 +440,7 @@ class Message extends MY_Controller {
               $email->content     = $this->load->view('email/message_reply_notification', $email, true); 
                 
               send_email($email->to, $this->config->item('site_email'), $email->subject, $email->content);
-            }          
+            } */         
           }
                  
         }  
