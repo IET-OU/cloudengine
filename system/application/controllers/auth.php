@@ -97,12 +97,13 @@ class Auth extends MY_Controller {
 	 */
     function register() {	
 		$display_form = TRUE;
-    	    
+
     	$data['title'] = t("Register");
-    	
-    	// Set up form validation
-        $this->form_validation->set_rules('user_name', t("Username"), 
-                      'trim|required|max_length[45]|min_length[4]|callback__username_duplicate_check');
+
+    	// Set up form validation.
+		// user_name - alpha_dash matches HTML5 @pattern in views/auth/register_form.php [#128].
+        $this->form_validation->set_rules('user_name', t("Username"),
+                      'trim|required|max_length[45]|min_length[4]|alpha_dash|callback__username_duplicate_check');
         $this->form_validation->set_rules('fullname', t("Full name"), 
                                          'trim|required|max_length[140]|callback__fullname_check');        
         $this->form_validation->set_rules('email', t("Email"), 
@@ -112,13 +113,13 @@ class Auth extends MY_Controller {
         $this->form_validation->set_rules('country_id', t("Country"), 'required');
         $this->form_validation->set_rules('password', t("Password"), 
                                                 'trim|required|min_length[6]|max_length[50]');
-        $this->form_validation->set_rules('password_confirm', t("Password Confirm"), 
+        $this->form_validation->set_rules('password_confirm', t("Password Confirm"),
                                                   'trim|required|matches[password]');
         if (config_item('x_captcha')) {
        		$this->form_validation->set_rules('captcha', t("captcha Code"), 
        		                                  'trim|required|callback__captcha_check');
         }        
-        
+
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');  
   
     	if ($this->input->post('submit')) {
