@@ -1281,7 +1281,8 @@ img.message-pic-anon {
 }
 
 .thread-list-row.new-message {
-  background-color: #F1F6FC;
+  /*background-color: #F1F6FC;*/
+  background-color: #DFEFFC;  
 }
 
 .thread-list-row table {
@@ -1374,6 +1375,7 @@ img.message-pic-anon {
 .thread-list-row div.new-messages {
   font-weight: bold;
   font-size: 9px;
+  color: #D63333;
 }
 
 .thread-list-row button.delete-cross {

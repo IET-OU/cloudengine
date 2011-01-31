@@ -92,7 +92,7 @@
                             <td class="message-count message-list-top-line">
                               <?= $thread->total_messages ?> 
                               <?php if (intval($thread->new_messages)): ?>
-                                <div class='new-messages message-list-bottom-line'> (<?= $thread->new_messages ?>  new) </div>
+                                <div class='new-messages message-list-bottom-line'> <?= $thread->new_messages ?>  new </div>
                               <?php endif; ?>
                             </td>
                             <td class="delete-message message-list-top-line">
