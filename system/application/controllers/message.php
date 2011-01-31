@@ -292,21 +292,17 @@ class Message extends MY_Controller {
           
           
           //remove white space from recipient list
-          //var_dump($this->input->post('recipients'));
-          //$recipients                      = preg_replace( '/\s*/m', '', $this->input->post('recipients'));
-          $recipients                      = trim($this->input->post('recipients'));          
-          var_dump($recipients);
+          //$recipients  = preg_replace( '/\s*/m', '', $this->input->post('recipients'));
+          $recipients    = trim($this->input->post('recipients'));          
 
           //remove trailing comma from recipient list if it has one
           if (substr($recipients, -1) == ',') {
             $recipients      = substr($recipients, 0, strlen($recipients) - 1 );
-          }         
-          
-          var_dump($recipients);
-          
+          }                 
            
           //create array of usernames]
           $thread->participant_usernames = explode(',',$recipients);
+          
           //loop through users
           foreach ($thread->participant_usernames as $username) {
                         
@@ -385,20 +381,22 @@ class Message extends MY_Controller {
           $this->message_model->create_thread_participant($thread_participant);
           
           //send email to each participant except the user
-          /*if ($participant != $user_id) {           
-            $email->subject     = 'New message on '.$this->config->item('site_name');     
-            $email->recipient   = $this->user_model->get_user($participant); 
-            $email->to          = $this->config->item('x_live') ? $email->recipient->email : 
-                                             $this->config->item('site_email');
-            $email->thread      = $thread;
-            $email->content     = $this->load->view('email/message_new_notification', $email, true);   
-            send_email($email->to, $this->config->item('site_email'), $email->subject, $email->content); 
-          }*/
-          
+          if ($participant != $user_id) {
+            $participant_profile = $this->user_model->get_user($participant); 
+            if ($participant_profile->email_message_notify) {
+              $email->subject     = 'New message on '.$this->config->item('site_name');     
+              $email->recipient   = $participant_profile; 
+              $email->to          = $this->config->item('x_live') ? $email->recipient->email : 
+                                               $this->config->item('site_email');
+              $email->thread      = $thread;
+              $email->content     = $this->load->view('email/message_new_notification', $email, true);   
+              send_email($email->to, $this->config->item('site_email'), $email->subject, $email->content); 
+            }
+          }
         }     
         
       //output 
-       return $thread->thread_id;
+      return $thread->thread_id;
   } 
 
   /**
@@ -425,22 +423,27 @@ class Message extends MY_Controller {
           //create a copy of the message for each recipient
           $message_recipient_data->message_id             = $message->message_id;
           $message_recipient_data->recipient_user_id      = $message_recipient->user_id;  
-          $this->message_model->create_message_recipient($message_recipient_data);   
+          $this->message_model->create_message_recipient($message_recipient_data);        
           
           //if we are adding messages to an existing conversation then send the recipients and email
           if (!$new_thread) {
             
              //send email to each participant except the user
-            /*if ($message_recipient->user_id != $user_id) {     
-              $email->subject     = 'New reply on '.$this->config->item('site_name');     
-              $email->recipient   = $this->user_model->get_user($message_recipient->user_id); 
-              $email->to          = $this->config->item('x_live') ? $email->recipient->email : 
-                                               $this->config->item('site_email');
-              $email->message     = $message;
-              $email->content     = $this->load->view('email/message_reply_notification', $email, true); 
-                
-              send_email($email->to, $this->config->item('site_email'), $email->subject, $email->content);
-            } */         
+            if ($message_recipient->user_id != $user_id) {     
+             
+              $recipient_profile  = $this->user_model->get_user($message_recipient->user_id);        
+             
+              if ($recipient_profile->email_message_notify) {           
+                $email->subject     = 'New reply on '.$this->config->item('site_name');     
+                $email->recipient   = $recipient_profile; 
+                $email->to          = $this->config->item('x_live') ? $email->recipient->email : 
+                                                 $this->config->item('site_email');
+                $email->message     = $message;
+                $email->content     = $this->load->view('email/message_reply_notification', $email, true); 
+                send_email($email->to, $this->config->item('site_email'), $email->subject, $email->content);
+              }
+            }    
+                 
           }
                  
         }  
