@@ -1281,8 +1281,8 @@ img.message-pic-anon {
 }
 
 .thread-list-row.new-message {
-  /*background-color: #F1F6FC;*/
   background-color: #DFEFFC;  
+  border: 1px solid #C5DBEC;  
 }
 
 .thread-list-row table {
