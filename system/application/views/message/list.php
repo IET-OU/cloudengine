@@ -15,10 +15,10 @@
                 
                 <div class="message-actions-envelope">
                   <input type="hidden" value="submit" name="submit" /> 
-                  <button id="mark" value="message/compose"     name="location"  id="compose"      type="submit" onclick="window.location='message/compose'; return false;" ><?= t("Compose") ?></button />
-                  <button id="mark" value="set_unread"  name="thread-action"  id="set-unread"   type="submit" ><?= t("Mark unread") ?></button />
-                  <button id="mark" value="set_read"    name="thread-action"  id="set-read"     type="submit" ><?= t("Mark read") ?></button /> 
-                  <button id="mark" value="set_deleted" name="thread-action"  id="set-deleted"  type="submit" ><?= t("Delete") ?></button />    
+                  <button value="message/compose"     name="location"  id="compose"   type="submit" onclick="window.location='message/compose'; return false;" ><span class="button-message/compose"></span><?= t("Compose") ?></button>
+                  <button value="set_unread"  name="thread-action"  id="set-unread"   type="submit" ><span class="button-set_unread"></span><?= t("Mark unread") ?></button>
+                  <button value="set_read"    name="thread-action"  id="set-read"     type="submit" ><span class="button-set_read"></span><?= t("Mark read") ?></button> 
+                  <button value="set_deleted" name="thread-action"  id="set-deleted"  type="submit" ><span class="button-set_deleted"></span><?= t("Delete") ?></button>    
                 </div>
                 
                 <?php if($message_display_content) : ?>
@@ -97,7 +97,7 @@
                             </td>
                             <td class="delete-message message-list-top-line">
                               <button value="<?= $thread->thread_id ?>" name="delete_thread" class="delete-cross"  type="submit" >
-                                <img src="<?=base_url()?>_design/delete_cross.png" />
+                                <span class="button-<?= $thread->thread_id ?>"></span><img src="<?=base_url()?>_design/delete_cross.png" />
                               </button>
                             </td> 
                           </tr>

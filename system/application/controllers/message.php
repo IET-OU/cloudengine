@@ -40,25 +40,29 @@ class Message extends MY_Controller {
         }
       
       //form processing
+        $this->load->library('form_validation');
+      
         if ($this->input->post('submit')) {
-          
+                    
           //delete single thread from inbox view
           if ($this->input->post('delete_thread')) {
-            $this->flag_thread($this->input->post('delete_thread'),'set_deleted'); 
+            $thread_id = $this->form_validation->ie7_button_fix($this->input->post('delete_thread'));  
+            $this->flag_thread($thread_id,'set_deleted'); 
             $data['message_display_content'] = t("Message successfully deleted");
             $data['message_display_type'] = 'success';          
           }
           
           //redirect
           elseif ($this->input->post('location')) {
-            redirect($this->input->post('location'));  
+            $location = $this->form_validation->ie7_button_fix($this->input->post('location'));
+            redirect($location);  
           }
           
           //actions for multiple select checkboxes
           elseif ($this->input->post('thread-action')) {    
             
-            $action = $this->input->post('thread-action');                  
-            
+            $action = $this->form_validation->ie7_button_fix($this->input->post('thread-action'));  
+                 
             switch ($action) {               
             
               case 'set_read':
@@ -154,17 +158,19 @@ class Message extends MY_Controller {
         }
       
       //form processing      
+        $this->load->library('form_validation');
         
         //redirect if appropriate
         if ($this->input->post('location')) {
-          redirect($this->input->post('location'));  
+          $location = $this->form_validation->ie7_button_fix($this->input->post('location'));          
+          redirect($location);  
         }
         
         elseif ($this->input->post('submit')) {
         
           //action had been requested on a thread  
           if ($this->input->post('thread-action')) {
-            $action = $this->input->post('thread-action');
+            $action = $this->form_validation->ie7_button_fix($this->input->post('thread-action'));  
             //set approriate flag on the thread 
             $this->flag_thread($thread_id,$action);
             //set confirmation messages
@@ -183,7 +189,6 @@ class Message extends MY_Controller {
           
           //thread reply
           else {          
-            $this->load->library('form_validation');
             $this->form_validation->set_rules('content', t("Reply"), 'required');
             if ($this->form_validation->run()) {   
               $message->content   = $this->input->post('content');
@@ -274,14 +279,15 @@ class Message extends MY_Controller {
         $this->form_validation->set_rules('recipients', t("To"), 'required');
         $this->form_validation->set_rules('subject', t("Subject"), 'required');
         $this->form_validation->set_rules('content', t("Message"), 'required');
-        
+
         //user clicked cancel, take to the inbox
         if ($this->input->post('cancel')) {
           redirect('message');
         }
         //redirect if appropriate    
         elseif ($this->input->post('location')) {
-            redirect($this->input->post('location'));  
+            $location = $this->form_validation->ie7_button_fix($this->input->post('location'));
+            redirect($location);  
          }
         //process sending message
         elseif ($this->input->post('submit')) {

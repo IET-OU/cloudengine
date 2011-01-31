@@ -59,7 +59,7 @@ $(function() {
             <div class="message-actions-envelope">
               <?=form_open($this->uri->uri_string(), array('id' => 'message-action-form1'))?>
                 <input type="hidden" value="submit" name="submit" /> 
-                <button class="green" id="mark" value="message"     name="location"  id="message"      type="submit"  ><?= t("All messages") ?></button />
+                <button class="green" id="mark" value="message" name="location" id="message" type="submit"  ><span class="button-message"></span><?= t("All messages") ?></button />
               <?=form_close()?>         
             </div>
   

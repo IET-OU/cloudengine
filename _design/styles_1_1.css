@@ -1604,6 +1604,7 @@ img.message-pic-anon {
   padding-bottom: 12px;
   clear: both;
   border: 0;
+  visibility: hidden;
 }
 
 #compose-message-submit-envelope {

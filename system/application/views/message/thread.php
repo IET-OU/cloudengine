@@ -15,9 +15,9 @@
               <?=form_open($this->uri->uri_string(), array('id' => 'message-action-form1'))?>
                 <input type="hidden" value="submit" name="submit" /> 
                 <input type="hidden" value="<?= $thread_id ?>" name="thread_id" />
-                <button id="mark" value="message"   name="location"       id="message"      type="submit" ><?= t("All messages") ?></button />
-                <button id="mark" value="set_unread"  name="thread-action"  id="set-unread"   type="submit" ><?= t("Mark unread") ?></button />
-                <button id="mark" value="set_deleted" name="thread-action"  id="set-deleted"  type="submit" ><?= t("Delete") ?></button />     
+                <button id="mark" value="message"     name="location"       id="message"      type="submit" ><span class="button-message"></span><?= t("All messages") ?></button />
+                <button id="mark" value="set_unread"  name="thread-action"  id="set-unread"   type="submit" ><span class="button-set_unread"></span><?= t("Mark unread") ?></button />
+                <button id="mark" value="set_deleted" name="thread-action"  id="set-deleted"  type="submit" ><span class="button-set_deleted"></span><?= t("Delete") ?></button />     
               <?=form_close()?>         
             </div>
                 

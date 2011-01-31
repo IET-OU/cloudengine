@@ -69,6 +69,35 @@ t("The URL you have specified uses a URL shortener. Please give the original URL
     return $res;
   }
 
+	/**
+	 * IE7 Button Fix
+   * 
+   * IE7 passes the display value of a button rather than the value parameter.
+   * Use this function by adding <span class="button-xxxxxx"></span> as the opening part
+   * of the display value of your button and replace xxxxxx with the actual value for the button.
+   * Do keep the actual value="xxxxxx" attribute of the button as all other browsers will use this.
+   * 
+   * Note: this does not work with IE6 and less because they send all button values in the POST submission
+   * rather than the value of the button that was pressed.
+	 *
+	 * @param	 string  $field string.
+	 */
+  public function ie7_button_fix($field) {
+    if ($startpos = stripos($field,'span class=button-')) {
+      //add 18 characters, which is length of 'span class=button-'
+      $startpos = $startpos +18;
+      //where string ends, which is the closing '>' of '<span class=button-xxxxxx>'
+      $endpos   = stripos($field,'>',$startpos);
+      //find length of string
+      $length   = $endpos - $startpos;
+      //get string
+      $return = substr($field,$startpos,$length);
+    } else {
+      $return = $field;
+    }
+    return $return;
+  }
+
 }
 
 
