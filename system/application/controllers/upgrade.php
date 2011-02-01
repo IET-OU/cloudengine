@@ -19,45 +19,18 @@ class Upgrade extends MY_Controller {
         parent::MY_Controller();
 
         $this->auth_lib->check_is_admin(); 
-        $this->load->library('layout', 'layout_main');
+        $this->load->library('layout', 'layout_main');     
+        $this->load->library('database_lib');                     
         $this->load->dbforge();
-        $this->load->model('settings_model');
-
+        $this->load->model('settings_model'); 
         require_once APPPATH."/libraries/install/install_lib.php";
-    }
-
-    /**
-     * Add a message to the queue (use 'show_error' for fatal errors).
-     * @param string $text
-     * @param string $class One of 'info', 'warn', 'error'.
-     */
-    protected function message($text, $class='info') {
-        $backtrace = debug_backtrace();
-        $callee = $backtrace[1]['function'];
-        $this->messages[] = (object) array('class'=>$class, 'text'=>$text, 
-                                           'context'=>$callee);
-    }
-
-    /**
-     * Convert "MAJOR.MINOR.REVISION" to a meaningful integer.
-     *
-     * @param string $dotted The version number in the form  "MAJOR.MINOR.REVISION"
-     * @return integer The version number as an integer
-     */
-    protected function parse_version($dotted) {
-        #Naive:
-        #$version = str_replace('.', '', $dotted);
-        $parts = explode('.', $dotted);
-        //$version = sprintf("_%d%02d%02d", $parts[0], $parts[1], $parts[2]);
-        $version = sprintf("_%d%d%d", $parts[0], $parts[1], $parts[2]);        
-        return $version;
     }
 
     /**
      * The index methods holds the upgrade logic.
      *
      */
-    public function index() {
+    public function index() {      
        
         $continue = false;
         
@@ -65,7 +38,6 @@ class Upgrade extends MY_Controller {
         $version_code= APP_VERSION;
         $version_obj = $this->settings_model->get_setting('app_%', TRUE);
         $version_db  = isset($version_obj->app_version) ? $version_obj->app_version : FALSE;
-        //$this->db_conf = _load_db_config();
 
         // Check these two version numbers and only continue if the code version
         // number is more recent than the database version number
@@ -145,56 +117,31 @@ class Upgrade extends MY_Controller {
         $this->layout->view('upgrade', $view_data);
     }
 
-    /** 
-     * An example upgrade - to 0.9.1 (note no '0' in function name!)
-     *
-     *  @return mixed TRUE on success; FALSE or string on error.
+    /**
+     * Add a message to the queue (use 'show_error' for fatal errors).
+     * @param string $text
+     * @param string $class One of 'info', 'warn', 'error'.
      */
-    protected function _upgrade_00901() {
-        $table = 'upgrade_test';
-        if ($this->db->table_exists($table)) {
-            $this->message("Woops, '$table' table already exists. Aborting.", 'error');
-            return FALSE;
-        }
-        
-        $fields = array(
-            'blog_id' => array(
-                'type' => 'INT',
-                'constraint' => 5, 
-                'unsigned' => TRUE,
-                'auto_increment' => TRUE
-            ),
-            'blog_title' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-                'default' => 'King of Town',
-            ),
-            'blog_description' => array(
-                'type' => 'TEXT',
-                'null' => TRUE,
-            ),
-        );
-        
-        $this->dbforge->add_field($fields);
-        $this->dbforge->add_key('blog_id', TRUE);
-        $this->dbforge->create_table($table);
-
-        $this->message("OK, created table '$table'.");
-        return TRUE;
+    protected function message($text, $class='info') {
+        $backtrace = debug_backtrace();
+        $callee = $backtrace[1]['function'];
+        $this->messages[] = (object) array('class'=>$class, 'text'=>$text, 
+                                           'context'=>$callee);
     }
 
-    protected function _upgrade_00902() {
-        $table = 'upgrade_test';
-        // Note, there is no "column_exists" function.
-        $fields = array(
-            'created' => array('type' => 'INT'),
-        );
-        $this->dbforge->add_column($table, $fields);
-        $this->dbforge->drop_table($table);
-
-        $this->message("OK, altered table '$table'.");
-        $this->message("OK, deleted table '$table'.");
-        return TRUE;
+    /**
+     * Convert "MAJOR.MINOR.REVISION" to a meaningful integer.
+     *
+     * @param string $dotted The version number in the form  "MAJOR.MINOR.REVISION"
+     * @return integer The version number as an integer
+     */
+    protected function parse_version($dotted) {
+        #Naive:
+        #$version = str_replace('.', '', $dotted);
+        $parts = explode('.', $dotted);
+        //$version = sprintf("_%d%02d%02d", $parts[0], $parts[1], $parts[2]);
+        $version = sprintf("_%d%d%d", $parts[0], $parts[1], $parts[2]);        
+        return $version;
     }
 
     /**
@@ -203,185 +150,186 @@ class Upgrade extends MY_Controller {
      *  @return mixed TRUE on success; FALSE or string on error.
      */
     protected function _upgrade_103() {
-
-        //message table - start
+        
+        //***** Message table - start *****
         $table = 'message';
         if ($this->db->table_exists($table)) {
-            $this->message("Woops, '$table' table already exists. Aborting.", 'error');
-            return FALSE;
+            $this->message("Woops, '$table' table already exists.", 'error');
         }
+        else {
+          $fields = array(
+              'message_id' => array(
+                  'type'            => 'INT',
+                  'constraint'      => 10,
+                  'auto_increment'  => TRUE
+              ),
+              'thread_id' => array(
+                  'type'            => 'INT',
+                  'constraint'      => 10,
+                  'null'            => FALSE,
+              ),
+              'author_user_id' => array(
+                  'type'            => 'INT',
+                  'constraint'      => 10,
+                  'null'            => FALSE,
+              ),
+              'content' => array(
+                  'type'            => 'longtext',
+                  'null'            => TRUE,       
+              ),
+              'created' => array(
+                  'type'            => 'INT',
+                  'constraint'      => 10,
+                  'null'            => FALSE,
+              ),
+          );
+  
+          $this->dbforge->add_field($fields);
+          $this->dbforge->add_key('message_id', TRUE);
+          $this->dbforge->create_table($table);
+          $this->message("OK, created table '$table'.");
+        }
+        //***** Message table - end *****
 
-        $fields = array(
-            'message_id' => array(
-                'type'            => 'INT',
-                'constraint'      => 10,
-                'auto_increment'  => TRUE
-            ),
-            'thread_id' => array(
-                'type'            => 'INT',
-                'constraint'      => 10,
-                'null'            => FALSE,
-            ),
-            'author_user_id' => array(
-                'type'            => 'INT',
-                'constraint'      => 10,
-                'null'            => FALSE,
-            ),
-            'content' => array(
-                'type'            => 'longtext',
-                'null'            => TRUE,       
-            ),
-            'created' => array(
-                'type'            => 'INT',
-                'constraint'      => 10,
-                'null'            => FALSE,
-            ),
-        );
-
-        $this->dbforge->add_field($fields);
-        $this->dbforge->add_key('message_id', TRUE);
-        $this->dbforge->create_table($table);
-
-        $this->message("OK, created table '$table'.");
-        //message table - end
-
-        //message_recipient table - start
+        //***** Message_recipient table - start *****
         $table = 'message_recipient';
         if ($this->db->table_exists($table)) {
-            $this->message("Woops, '$table' table already exists. Aborting.", 'error');
-            return FALSE;
+            $this->message("Woops, '$table' table already exists.", 'error');
         }
+        else {
+          $fields = array(
+              'message_id' => array(
+                  'type'        => 'INT',
+                  'constraint'  => 10,
+              ),
+              'recipient_user_id' => array(
+                  'type'        => 'INT',
+                  'constraint'  => 10,
+                  'null'        => FALSE,
+              ),
+              'is_new' => array(
+                  'type'        => 'TINYINT',
+                  'null'        => FALSE,  
+                  'default'     => 1,
+                  'constraint'  => 1,
+              ),
+              'is_spam' => array(
+                  'type'        => 'TINYINT',
+                  'null'        => FALSE,
+                  'default'     => 0,
+                  'constraint'  => 1,
+              ),
+              'is_deleted' => array(
+                  'type'        => 'TINYINT',
+                  'null'        => FALSE,
+                  'default'     => 0,
+                  'constraint'  => 1,
+              ),
+          );
+  
+          $this->dbforge->add_field($fields);
+          $this->dbforge->add_key('message_id', TRUE);
+          $this->dbforge->add_key('recipient_user_id', TRUE);
+          $this->dbforge->create_table($table);
+          $this->message("OK, created table '$table'.");
+        }
+        //***** Message_recipient table - end *****
 
-        $fields = array(
-            'message_id' => array(
-                'type'        => 'INT',
-                'constraint'  => 10,
-            ),
-            'recipient_user_id' => array(
-                'type'        => 'INT',
-                'constraint'  => 10,
-                'null'        => FALSE,
-            ),
-            'is_new' => array(
-                'type'        => 'TINYINT',
-                'null'        => FALSE,  
-                'default'     => 1,
-                'constraint'  => 1,
-            ),
-            'is_spam' => array(
-                'type'        => 'TINYINT',
-                'null'        => FALSE,
-                'default'     => 0,
-                'constraint'  => 1,
-            ),
-            'is_deleted' => array(
-                'type'        => 'TINYINT',
-                'null'        => FALSE,
-                'default'     => 0,
-                'constraint'  => 1,
-            ),
-        );
-
-        $this->dbforge->add_field($fields);
-        $this->dbforge->add_key('message_id', TRUE);
-        $this->dbforge->add_key('recipient_user_id', TRUE);
-        $this->dbforge->create_table($table);
-
-        $this->message("OK, created table '$table'.");
-        //message_recipient table - end
-
-        //message_thread_participant table - start
+        //***** Message_thread_participant table - start *****
         $table = 'message_thread_participant';
         if ($this->db->table_exists($table)) {
-            $this->message("Woops, '$table' table already exists. Aborting.", 'error');
-            return FALSE;
+            $this->message("Woops, '$table' table already exists.", 'error');
         }
+        else {
+          $fields = array(
+              'thread_id' => array(
+                  'type'        => 'INT',
+                  'constraint'  => 10,
+              ),
+              'participant_user_id' => array(
+                  'type'        => 'INT',
+                  'constraint'  => 10,
+                  'null'        => FALSE,
+              ),
+              'is_deleted' => array(
+                  'type'        => 'TINYINT',
+                  'null'        => FALSE,  
+                  'default'     => 0,
+                  'constraint'  => 1,
+              ),
+              'is_archived' => array(
+                  'type'        => 'TINYINT',
+                  'null'        => FALSE,
+                  'default'     => 0,
+                  'constraint'  => 1,
+              ), 
+          );
+  
+          $this->dbforge->add_field($fields);
+          $this->dbforge->add_key('thread_id', TRUE);
+          $this->dbforge->add_key('participant_user_id', TRUE);
+          $this->dbforge->create_table($table);
+          $this->message("OK, created table '$table'.");
+        }
+        //***** Message_thread_participant table - end *****         
 
-        $fields = array(
-            'thread_id' => array(
-                'type'        => 'INT',
-                'constraint'  => 10,
-            ),
-            'participant_user_id' => array(
-                'type'        => 'INT',
-                'constraint'  => 10,
-                'null'        => FALSE,
-            ),
-            'is_deleted' => array(
-                'type'        => 'TINYINT',
-                'null'        => FALSE,  
-                'default'     => 0,
-                'constraint'  => 1,
-            ),
-            'is_archived' => array(
-                'type'        => 'TINYINT',
-                'null'        => FALSE,
-                'default'     => 0,
-                'constraint'  => 1,
-            ), 
-        );
-
-        $this->dbforge->add_field($fields);
-        $this->dbforge->add_key('thread_id', TRUE);
-        $this->dbforge->add_key('participant_user_id', TRUE);
-        $this->dbforge->create_table($table);
-
-        $this->message("OK, created table '$table'.");
-        //message_thread_participant table - end         
-
-        //message_thread table - start
+        //***** message_thread table - start *****
         $table = 'message_thread';
         if ($this->db->table_exists($table)) {
-            $this->message("Woops, '$table' table already exists. Aborting.", 'error');
-            return FALSE;
+            $this->message("Woops, '$table' table already exists.", 'error');
+            //return FALSE;
         }
+        else {
+          $fields = array(
+              'thread_id' => array(
+                  'type'        => 'INT',
+                  'constraint'  => 10,
+                  'auto_increment'  => TRUE                
+              ),
+              'subject' => array(
+                  'type'        => 'VARCHAR',
+                  'constraint'  => 255,
+                  'null'        => TRUE,
+              ),
+              'author_user_id' => array(
+                  'type'        => 'INT',
+                  'null'        => FALSE,
+                  'constraint'  => 10,
+              ),
+              'created' => array(
+                  'type'        => 'INT',
+                  'null'        => TRUE,
+                  'constraint'  => 10,
+              ),
+          );
+  
+          $this->dbforge->add_field($fields);
+          $this->dbforge->add_key('thread_id', TRUE);
+          $this->dbforge->create_table($table);
+          $this->message("OK, created table '$table'.");
+        }
+        //***** message_thread table - end *****     
 
-        $fields = array(
-            'thread_id' => array(
-                'type'        => 'INT',
-                'constraint'  => 10,
-                'auto_increment'  => TRUE                
-            ),
-            'subject' => array(
-                'type'        => 'VARCHAR',
-                'constraint'  => 255,
-                'null'        => TRUE,
-            ),
-            'author_user_id' => array(
-                'type'        => 'INT',
-                'null'        => FALSE,
-                'constraint'  => 10,
-            ),
-            'created' => array(
-                'type'        => 'INT',
-                'null'        => TRUE,
-                'constraint'  => 10,
-            ),
-        );
-
-        $this->dbforge->add_field($fields);
-        $this->dbforge->add_key('thread_id', TRUE);
-        $this->dbforge->create_table($table);
-
-        $this->message("OK, created table '$table'.");
-        //message_thread table - end     
-
-        //user_profile table - start
-        //var_dump($this->dbforge->check_field_exists('user_profile','email_message_notify'));
-        //exit;        
-                                
-        $table = 'user_profile';
-        $fields = array(
-            'email_message_notify'  => array(
-              'type'                  => 'INT',
-              'default'               => 1,
-              'constraint'            => 1,            
-              'null'                  => FALSE,          
-            ),      
-        );
-        $this->dbforge->add_column($table, $fields);
-        $this->message("OK, altered table '$table'.");                    
-        //user_profile table - start
+        //***** user_profile table - start *****                               
+        $table        = 'user_profile';
+        $field        = 'email_message_notify';
+        $field_exists = $this->database_lib->check_field_exists($table,$field);
+        if(!$field_exists) {
+          $fields = array(
+              'email_message_notify'  => array(
+                'type'                  => 'INT',
+                'default'               => 1,
+                'constraint'            => 1,            
+                'null'                  => FALSE,          
+              ),      
+          );
+          $this->dbforge->add_column($table, $fields);
+          $this->message("OK, altered table '$table' by adding column '$field'.");
+        } 
+        else {
+          $this->message("Did not alter table '" .$table ."', column '" .$field ."' already exists.", 'error');
+        }                    
+        //***** user_profile table - start *****
                             
         return TRUE;
     }
