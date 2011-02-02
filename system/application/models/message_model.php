@@ -28,7 +28,7 @@ class Message_model extends Model {
       	Min(m.created) AS created_date, 
       	Min(u1.user_name) AS creator, 
       	Max(m.created) AS last_message_date, 
-        Max(m.content) AS content,        
+        (select content from message inner join user on user.id = message.author_user_id and message.created = (select max(created) from message where thread_id = mt.thread_id)) as content,
       	Count(m.message_id) AS total_messages, 
       	Sum(Abs(is_new)) AS new_messages,
       	(select group_concat(DISTINCT recipient_user_id SEPARATOR ', ') FROM message_recipient WHERE message_id in (select message_id from message where thread_id = mt.thread_id)) as participant_ids,
