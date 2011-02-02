@@ -25,6 +25,7 @@ error_reporting(E_ALL | E_STRICT);
 define('LINT_EXCLUDE', '.hg|.orig|.git|.svn|Zend|php-gettext|.po|.js|.css|.gif|.png');
 define('APP_CLI', basename(__FILE__));
 
+// Parse commandline arguments.
 $opts = 'ci hgstatus all rel exclude help h';
 $do;
 foreach ($argv as $idx => $arg) {
@@ -38,7 +39,6 @@ foreach ($argv as $idx => $arg) {
     }
 }
 
-$php_bin = 'php';
 $src_dir  = '.';
 $file_list= array();
 
@@ -66,15 +66,15 @@ $count_error=0;
 
 My_Lint::p( "checking $count_files+ files (php -l)" );
 
-$lint = new My_Lint($php_bin);
+$lint = new My_Lint();
 $count_error = $lint->parse($file_list, $src_dir);
 
 if ($count_error > 0) {
     #Error, exit 1.
-    My_Lint::p( "Woops, found $count_error errors.", 1 ); 
+    My_Lint::p( "Woops, found $count_error errors.", 1 );
 }
 #OK, exit 0.
-My_Lint::p( "OK, found no errors.", 0 ); 
+My_Lint::p( "OK, no errors found.", 0 );
 
 //Exit 1 or 0.
 
@@ -91,9 +91,9 @@ class My_Lint {
         }
     }
 
-    public function __construct($bin) {
-		$this->php_bin = $bin;
-	}
+    public function __construct() {
+        $this->php_bin = getenv('_') ? getenv('_') : PHP_BINDIR.'/php';
+    }
 
 	public function parse($file_list, $src_dir=NULL) {
 		$count_error=0;
@@ -108,7 +108,7 @@ class My_Lint {
 				#$count_error += $this->parse("$src_dir/$key", $file, $count_error);
 			} else {
 				ob_start();
-				system("$this->php_bin -l $file");
+				system("$this->php_bin -l $file 2>&1");
 				$ob = ob_get_clean();
 				if (''!=$ob && 0!==strpos($ob, 'No syntax errors')) {
 					echo $ob;
