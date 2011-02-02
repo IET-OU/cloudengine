@@ -85,8 +85,14 @@ class Hglib {
         $result = FALSE;
         //Hmm, a more efficient way?
         foreach ($rev as $line) {
+            $key = $val = false;
             if (FALSE !== ($p = strpos($line, ':'))) {
-                $result[trim(substr($line, 0, $p))] = trim(substr($line, $p+1));
+                $key = trim(substr($line, 0, $p));
+                $val = trim(substr($line, $p+1));
+                $result[$key] = $val;
+            }
+            if ($key == 'changeset') {
+                $result['changeset_n'] = substr($val, 0, strpos($val, ':'));
             }
         }
         return $result;
@@ -128,5 +134,30 @@ class Hglib {
         $result['agent'] = basename(__FILE__);
         //(Was json_encode.)
         $result = file_put_contents($rev_file, serialize($result));
+    }
+
+    /** Get an array of file statuses.
+    * @param bool Whether to return absolute (default) or relative paths.
+    * @return array Array with file-path as the key and state-indicator as value.
+    * Eg. array("system/application/cli/update-hook.php"=>"M", ...);
+    */
+    public static function status($absolute = true) {
+        $result = self::exec('status');
+        if (!$result) {
+            echo 'Error in Hglib. Problem getting status.'.PHP_EOL;
+        }
+        $lines = explode("\n", $result);
+        $stat;
+        foreach ($lines as $line) {
+            $ind = substr($line, 0, 1);
+            $file= trim(substr($line, 1));
+            if ($ind) {
+                if ($absolute) {
+                    $file = BASEPATH."../$file";
+                }
+                $stat[$file] = $ind;
+            }
+        }
+        return $stat;
     }
 }
