@@ -31,9 +31,12 @@ DirectoryIndex index.php
     RewriteRule user/(activation/.*)            auth/$1  [QSA,L]
     RewriteRule user/(forgotten_password|change_password) auth/$1 [QSA,L]
     RewriteRule user/(forgotten_password_reset) auth/$1  [QSA,L]
-    
+
     RewriteRule news/view/(.*) blog/view/$1 [QSA,L]
 
+    # Suggestions API - ?term=X
+    RewriteRule api/suggest/users(.*)  message/get_message_recipients [QSA,L]
+	
     # Protect scripts.
     RewriteCond %{REQUEST_FILENAME} !index.php
     RewriteRule (.*)\.php$ index.php/$1  [L]
