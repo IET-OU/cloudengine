@@ -22,7 +22,7 @@ pre-commit.lint=/var/www/cloudengine2/system/application/cli/lint.php
 if('cli'!=php_sapi_name()) die(basename(__FILE__).": Must run as cli (?)"); #Security.
 
 error_reporting(E_ALL | E_STRICT);
-define('LINT_EXCLUDE', '.hg|.orig|.git|.svn|Zend|php-gettext|.js|.css|.gif|.png');
+define('LINT_EXCLUDE', '.hg|.orig|.git|.svn|Zend|php-gettext|.po|.js|.css|.gif|.png');
 define('APP_CLI', basename(__FILE__));
 
 $opts = 'ci hgstatus all rel exclude help h';
@@ -67,7 +67,7 @@ $count_error=0;
 My_Lint::p( "checking $count_files+ files (php -l)" );
 
 $lint = new My_Lint($php_bin);
-$count_error = $lint->parse($file_list, $src_dir, 0);
+$count_error = $lint->parse($file_list, $src_dir);
 
 if ($count_error > 0) {
     #Error, exit 1.
@@ -95,7 +95,8 @@ class My_Lint {
 		$this->php_bin = $bin;
 	}
 
-	public function parse($file_list, $src_dir=NULL, $count_error=0) {
+	public function parse($file_list, $src_dir=NULL) {
+		$count_error=0;
 		foreach ($file_list as $key => $file) {
 			if (is_string($key)) {
 			    $file = $key;
@@ -109,8 +110,9 @@ class My_Lint {
 				ob_start();
 				system("$this->php_bin -l $file");
 				$ob = ob_get_clean();
-				if (0!==strpos($ob, 'No syntax errors')) {
+				if (''!=$ob && 0!==strpos($ob, 'No syntax errors')) {
 					echo $ob;
+					var_dump($ob);
 					$count_error++;
 				}
 			}
