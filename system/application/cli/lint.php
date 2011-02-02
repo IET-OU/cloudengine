@@ -7,13 +7,11 @@
  @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  @author    Nick Freear <n.d.freear AT open.ac.uk>, 2011-01-27.
 
+ @uses   libraries/Hglib.php, file_helper.php
  @return int Exits with 0 on success, 1 otherwise.
 
-#!/usr/bin/env php  --RHEL
-#!/usr/bin/php      --OSX.
-
 Usage - Mercurial hook:
-pre-commit.lint=/var/www/cloudengine2/system/application/cli/mylint.php
+pre-commit.lint=/var/www/cloudengine2/system/application/cli/lint.php
     --ci        // Assume CodeIgniter.
     --hgstatus  // Perform lint on the result of hg status.
     --all       // Or, lint on all files
@@ -40,10 +38,7 @@ foreach ($argv as $idx => $arg) {
     }
 }
 
-//'C:/xampp/htdocs/cloudengine2/system/application/libraries/'; #views/
-#$php_bin = 'C:/xampp/php/php';
 $php_bin = 'php';
-
 $src_dir  = '.';
 $file_list= array();
 
@@ -64,7 +59,6 @@ elseif (isset($do['all'])) {
    My_Lint::p( $src_dir );
    $file_list  = get_filenames($src_dir, TRUE); //CI helper.
 }
-#$file_list = directory_list($src_dir, FALSE);
 
 $count_files= count($file_list);
 $count_error=0;
@@ -75,7 +69,8 @@ My_Lint::p( "checking $count_files+ files (php -l)" );
 $lint = new My_Lint($php_bin);
 $count_error = $lint->parse($file_list, $src_dir, 0);
 
-if ($count_error > 0) { #Error, exit 1.
+if ($count_error > 0) {
+    #Error, exit 1.
     My_Lint::p( "Woops, found $count_error errors.", 1 ); 
 }
 #OK, exit 0.
@@ -107,15 +102,12 @@ class My_Lint {
 			}
 			if (preg_match("/(".LINT_EXCLUDE.")/", $file)) {
 				#echo "Skipping $file".PHP_EOL;
-			} elseif (is_array($file)) {
-				//Recurse
+			} elseif (is_array($file)) { //Recurse?
 				echo "Directory? $key".PHP_EOL;
 				#$count_error += $this->parse("$src_dir/$key", $file, $count_error);
-				#break;
 			} else {
-			    
 				ob_start();
-				system("$this->php_bin -l $file"); #$src_dir/'
+				system("$this->php_bin -l $file");
 				$ob = ob_get_clean();
 				if (0!==strpos($ob, 'No syntax errors')) {
 					echo $ob;
@@ -126,18 +118,6 @@ class My_Lint {
 		return $count_error;
 	}
 }
-
-
-//token_get_all($source);
-
-
-/** cgray at metamedia dot us 28-Jul-2010 02:36 : http://php.net/manual/en/function.opendir.php#99113.
-* directory_list
-* return an array containing optionally all files, only directiories or only files at a file system path
-* @author     cgray The Metamedia Corporation www.metamedia.us
-* @license    GPL v3
-*/
-//function directory_list($directory_base_path, $filter_dir = false, $filter_files = false, $exclude = ".|..|.DS_Store|.svn", $recursive = true){
 
 
 /* hg update --rev 166:
