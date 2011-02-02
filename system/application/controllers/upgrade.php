@@ -131,16 +131,17 @@ class Upgrade extends MY_Controller {
 
     /**
      * Convert "MAJOR.MINOR.REVISION" to a meaningful integer.
+	 *     The function handles version strings suffixes, eg. "1.1.0-beta".
      *
-     * @param string $dotted The version number in the form  "MAJOR.MINOR.REVISION"
+     * @param string $dotted The version number in the form "MAJOR.MINOR.REVISION".
      * @return integer The version number as an integer
      */
     protected function parse_version($dotted) {
         #Naive:
-        #$version = str_replace('.', '', $dotted);
+		//(Not required: str_ireplace(array('-beta', '-dev', '-rc1'), '', $dotted); )
         $parts = explode('.', $dotted);
-        //$version = sprintf("_%d%02d%02d", $parts[0], $parts[1], $parts[2]);
-        $version = sprintf("_%d%d%d", $parts[0], $parts[1], $parts[2]);        
+        //Was: $version = sprintf("_%d%02d%02d", $parts[0], $parts[1], $parts[2]);
+        $version = sprintf("_%d%d%d", $parts[0], $parts[1], $parts[2]);
         return $version;
     }
 

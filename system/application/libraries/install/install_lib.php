@@ -21,7 +21,8 @@
 // THE application version number. 
 // This needs to be changed for new releases and also whenever there is a new upgrade function 
 // that needs to be run e.g. if there are database changes. 
-define("APP_VERSION", "1.0.3");
+define("APP_VERSION", "1.1.0-beta");
+
 
 class Install_lib {
 	const EXAMPLE_IMAGE = 'flickr_nickrussil_146743083.jpg'; // An example cloudscape image
