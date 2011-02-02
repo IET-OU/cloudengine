@@ -18,4 +18,12 @@
 			});
 		});					   
     
+    $(".thread-list-row").click( function() {
+      $(window.location).attr('href', '/message/thread/' + this.id);
+    });
+
+    $(".thread-list-row").hover( function() {
+      $(this).css('cursor','pointer');
+    });    
+    
 	});
