@@ -45,7 +45,7 @@
                 
                 <?php  foreach ($threads as $thread):?>
                   <div>
-                    <div class="thread-list-row <?php if (intval($thread->new_messages)): ?>new-message<?php endif; ?>">
+                    <div id="<?= $thread->thread_id ?>" class="thread-list-row <?php if (intval($thread->new_messages)): ?>new-message<?php endif; ?>">
                       <table>
                         <tbody>
                           <tr>
