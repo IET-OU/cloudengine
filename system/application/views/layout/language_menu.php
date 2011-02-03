@@ -2,9 +2,9 @@
   return;
 } ?>
 
-<!-- The language drop-down menu. -->
+<!-- The language drop-down menu - jump to the top/#skip. -->
 
-<form id="form-lang" action="" method="post">
+<form id="form-lang" action="#skip" method="post">
 <p class="right"><label for="lang_select">
 <?=t("Preferred language")?> </label>
 <select id="lang_select" name="lang">
