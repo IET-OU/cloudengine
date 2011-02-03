@@ -758,8 +758,8 @@ input[type="submit"].submit, button[type="submit"].submit {
     margin: 10px 0 10px 0;
     border: 0;
     display: block;
+    cursor:  pointer;
 } 
-
 
 .checkbox {
     display: inline;
@@ -1324,7 +1324,7 @@ img.message-pic-anon {
 
 
 .thread-list-row .clickable {
-  cursor: pointer;
+  /*cursor: pointer;*/
 }
 
 .thread-list-row td.last-message-wrapper {
