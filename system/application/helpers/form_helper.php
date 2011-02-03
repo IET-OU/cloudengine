@@ -27,6 +27,13 @@ if (! function_exists('form_input')) {
 		if (isset($data['name'])) {
 		    $defaults['id'] = $data['name'];
 		}
+		// HTML5 attributes - ensure they are valid.
+		if (isset($data['required'])) {
+		    $data['required'] = 'required';
+		}
+		if (isset($data['autocomplete'])) {
+		    $data['autocomplete'] = $data['autocomplete'] ? 'on' : 'off';
+		}
 
 		return "<input "._parse_form_attributes($data, $defaults).$extra." />";
 	}
@@ -74,6 +81,6 @@ if (! function_exists('form_search')) {
 		}
 
 		$data['type'] = 'search';
-		return form_input($data, $value, $extra);
+ 		return form_input($data, $value, $extra);
 	}
 }
