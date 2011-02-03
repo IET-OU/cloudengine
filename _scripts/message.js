@@ -18,12 +18,19 @@
 			});
 		});					   
     
-    $(".thread-list-row").click( function() {
-      $(window.location).attr('href', '/message/thread/' + this.id);
+    $(".row-click").click( function() {
+      var id = $(this).parent().parent().parent().parent().attr('id');
+      $(window.location).attr('href', '/message/thread/' + id);
     });
 
-    $(".thread-list-row").hover( function() {
-      $(this).css('cursor','pointer');
-    });    
+    $(".row-click").hover( function() {      
+      $(this).parent().parent().parent().parent().css({'cursor' : 'pointer', 'background-color' : '#D2E3F3'});
+      }, function() {$(this).parent().parent().parent().parent().css({'cursor' : 'default','background-color' : ''});} 
+    );     
+    
+    $("button.delete-cross").hover( function() {      
+      $(this).css({'cursor' : 'pointer', 'background-color' : '#D63333'});
+      }, function() {$(this).css({'background-color' : ''});} 
+    );      
     
 	});
