@@ -52,7 +52,7 @@
                       <span class="thread-message-date"><?= format_date('!date-time-message!',$message->created) ?></span>
                     </div>
                     <div class="thread-message-content">
-                      <?= $message->content ?>
+                      <?= nl2br($message->content) ?>
                     </div>
                   </div>
                 </div>
