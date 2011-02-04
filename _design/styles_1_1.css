@@ -1138,10 +1138,11 @@ input:-moz-placeholder          {color:#575;}
 
 
 /*Highlight untranslated text, i18n.*/
-i[ut]{color:red; font-style:normal;}
+i[ut]{color:#933; font-style:normal;}
+a i[ut]:hover{background:#fff;}
 
 /*Ensure Greek site-nav fits! i18n.*/
-html[lang=el]  #site-nav{letter-spacing:-0.08em;}
+html[lang=el]  #site-nav, [lang=da]  #site-nav{letter-spacing:-0.08em;}
 
 
 /*********************************/
