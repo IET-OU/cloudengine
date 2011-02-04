@@ -16,21 +16,22 @@
 			{
 				this.checked = checked_status;
 			});
-		});					   
-    
-    $(".row-click").click( function() {
-      var id = $(this).parent().parent().parent().parent().attr('id');
-      $(window.location).attr('href', '/message/thread/' + id);
+		});
+
+    $(".thread-list-row .cell-click").click( function() { //Was:.row-click.
+	  var parent = $(this).parent();
+	  var href = jQuery('.subject  a', parent).attr('href');
+      $(window.location).attr('href', href);
     });
 
-    $(".row-click").hover( function() {      
-      $(this).parent().parent().parent().parent().css({'cursor' : 'pointer', 'background-color' : '#D2E3F3'});
-      }, function() {$(this).parent().parent().parent().parent().css({'cursor' : 'default','background-color' : ''});} 
+    $(".thread-list-row").hover( function() { //Was:.row-click
+      $(this).css({'cursor' : 'pointer', 'background-color' : '#D2E3F3'});
+      }, function() {$(this).css({'cursor' : 'default','background-color' : ''});} 
     );     
-    
-    $("button.delete-cross").hover( function() {      
+
+    $("button.delete-cross").hover( function() {
       $(this).css({'cursor' : 'pointer', 'background-color' : '#D63333'});
       }, function() {$(this).css({'background-color' : ''});} 
-    );      
-    
+    );
+
 	});
