@@ -60,6 +60,8 @@ $config['hg_path'] = '';
 // and your network requires one.
 $config['proxy'] = '';
 
+// A list of devices for which the rich editor (Tiny MCE) should be disabled (pipe | separated). EXPERIMENTAL.
+$config['device_no_richedit_pattern'] = 'iPhone|iPod|iPad|Android|IEMobile|Opera Mini';
 
 /**
  * Use secure password hashing. For new sites, this should be set to TRUE. Do
@@ -96,7 +98,7 @@ $config['x_api_debug']          = TRUE;
 $config['x_api_key_required']   = TRUE;
 $config['x_api_max_results']    = 200;
 $config['x_api_stream_default'] = 15;
-$config['x_api_formats']        = "json|js"; // Delimiter "|".
+$config['x_api_formats']        = "json|js|xml"; // Delimiter "|".
 
 // Configure the number  of days used to calculate active/popular items on the site
 $config['active_clouds_days']       = 10;
@@ -125,7 +127,7 @@ $config['x_twitter_password'] = '';
 // Feature flag for direct messaging (Beta default: FALSE).
 $config['x_message'] = FALSE;
 
-// Feature flag for captchas on registration form 
+// Feature flag for captchas on registration form (colon : separated). 
 $config['x_captcha'] = FALSE;
 $config['whitelist_domains'] = '.ac.uk:.edu:.ac.jp:.ac.ae:.ac.nz:.edu.au:.ac.za:.ac.be';
 
