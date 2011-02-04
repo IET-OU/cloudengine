@@ -336,9 +336,9 @@ function t($string, $args = array(), $langcode = NULL) {
 	// Deployment: use the 'php-gettext' emulator.
 	$string = T_gettext($string);
 
+    $CI = & get_instance();
 	if (FALSE!==$args) { 
 		// Reserved keys - !email! , !required! , !site-name!
-		$CI = & get_instance();
 		$email    = $CI->config->item('site_email');
 		$site_name= $CI->config->item('site_name');
 
@@ -355,9 +355,13 @@ function t($string, $args = array(), $langcode = NULL) {
 	if (FALSE==$args) {
 		$args = array();
 	}
-	
-	// Debugging: prefix with eg. '>'.
-	return /*'^ './**/ strtr($string, $args);
+    if (!$CI->config->item('x_live') && $CI->lang->lang_code()!='en' && $msgid==$string) {
+        // Debugging: not live and not English - highlight untranslated text (BB issue #139).
+        // Set a custom attribute 'ut', for styling.
+        return '<i ut>'.strtr($string, $args).'</i>';
+    }
+
+	return strtr($string, $args);
 }
 
 /** Used within t() calls, to replace text like [link-c2525] with the start of a link.
@@ -394,7 +398,7 @@ function t_link($url, $local=TRUE) {
  * @uses T_ngettext()
  */
 function plural($string1, $string2, $number) {
-	$args = array('!count' => $number, '!number' => $number);
+	$args = array('!count' => $number, '!number' => $number, '!N' => $number);
 	$string1 = strtr($string1, $args);
 	$string2 = strtr($string2, $args);
 	
