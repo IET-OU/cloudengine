@@ -33,7 +33,7 @@ class My_Language extends CI_Language {
 	protected $CI = NULL;
 
 	/**
-	 * Set up the MY_Language::locales array.
+	 * Set up the initial MY_Language::locales array.
 	 *   Class and helper usage:
 	 *<code>
 	 * $LANG =& load_class('Language');   //codeigniter/CodeIgniter.php
@@ -47,18 +47,27 @@ class My_Language extends CI_Language {
 	 * @see $locales
 	 */
 	public function __construct() {
-		$this->locales = array(
+        $this->locales = array(
 		  # Keys must be lower-case, using '-'.
-		  # Order is significant - 'en'+aliases last.
-		  'el' => array(
+		  # Order is significant - 'en'+aliases must be last.
+		  /* Set in config/cloudengine.php : $config[translations]
+          # Danish.
+          'da' => array(
+            'name'   => 'Dansk/ Danish',
+            'locales'=> array('da_DK.UTF-8', 'da_DK.utf8')
+          ),*/
+          # Greek.
+          'el' => array(
 		    'name'   => 'Ελληνικά / Greek',
 		    'locales'=> array(
 		      'el_GR.UTF-8'/*Mac/10.6*/, 'el_GR.utf8'/*RHEL/Skir*/, 'el_CY.utf8', 
 		      'el_GR@euro',
-		      'Greek_Greece.x__1253'/*Bug #541: Windows server, don't want 1253 encoding*/)),
-		  # Aliases.
+		      'Greek_Greece.x__1253'/*Bug #541: Windows server, we don't want 1253 encoding*/)),
+		  # Greek aliases.
 		  'el-gr' => 'el',
 		  'el-cy' => 'el',
+
+          # Finally, English.
 		  'en' => array(
 		    'name'   => 'English',
 		    'locales'=> array(
@@ -71,10 +80,10 @@ class My_Language extends CI_Language {
 		parent::__construct();
 		log_message('debug', __CLASS__." Class Initialized");
 	}
-	
+
 	/** 
 	 * Determine which locale/language to use.
-	 * 
+	 *
 	 *  Note, $CI doesn't exist when this class is created (front controller, 
 	 *  CodeIgniter.php)
 	 *  Hence, initialize() is called from app./libraries/Layout.php, not the 
@@ -104,9 +113,15 @@ class My_Language extends CI_Language {
 		  return FALSE;
 		}
 
+        # Load most locales from config/cloudengine.php file.
+        $locales_r = $this->CI->config->item('locale_array');
+        if (is_array($locales_r)) {
+            $this->locales = array_merge($locales_r, $this->locales);
+        }
+
 		# 1. Content negotiation, using 'Accept-Language' header.
 		$this->CI->load->library('user_agent');
-		$_lang = $this->lang_ui; #str_replace('english', 'en', $this->CI->config->item('language'));
+		$_lang = $this->lang_ui;
 		$method= 'non';
 
 		# Order is significant :(
