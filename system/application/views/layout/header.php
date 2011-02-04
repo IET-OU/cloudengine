@@ -4,7 +4,7 @@
   @header("Content-Type: text/html; charset=".config_item("charset"));
   // We're moving to HTML5 (BB issue #62).
 
-?><!DOCTYPE html><html lang="en"><head>
+?><!DOCTYPE html><html <?=$this->lang->lang_tag()?>><head>
 <?php $this->load->view('layout/_site-head.php'); ?>
 </head>
 <body id="<?= $navigation ?>">
