@@ -1,0 +1,3436 @@
+# The CloudEngine project (http://getcloudengine.org/)
+# @copyright Copyright 2010 The Open University. See CREDITS.txt
+# @license http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
+# @author  Nick Freear <n.d.freear _@_ open.ac.uk>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CloudEngine 1.0.1\n"
+"Report-Msgid-Bugs-To: cloudworks@open.ac.uk\n"
+"POT-Creation-Date: 2011-01-10 15:24+0000\n"
+"PO-Revision-Date: 2011-02-01 14:52+0100\n"
+"Last-Translator: Asger Harlung <imvahh@hum.au.dk>\n"
+"Language-Team: YOUR TEAM/ORGANIZATION <TEAM@example.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Dansk\n"
+"X-Poedit-Country: DANSK\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: controllers\blog.php:187
+#: views\blog\news_block.php:2
+msgid " Blog"
+msgstr " Blog"
+
+#: views\blog\archive.php:4
+msgid " Blog Archive"
+msgstr " Blogarkiv"
+
+#: views\cloud_comment\cloud_comments.php:6
+msgid " by "
+msgstr "af"
+
+#: views\cloud_comment\latest_comments.php:6
+msgid "!cloud-comment... <em>(in !title !time)</em>"
+msgstr "!cloud-kommentar... <em>(i !title !time)</em>"
+
+#. /Translators: singular-plural forms.
+#: views\blog\archive.php:32
+#: views\cloud\list.php:36
+#: views\cloud_comment\cloud_comment_block.php:4
+#: views\cloudscape\cloud_block.php:26
+#: views\user\clouds_block.php:7
+msgid "!count comment"
+msgstr "!count kommentar"
+
+#: views\blog\archive.php:32
+#: views\cloud\list.php:36
+#: views\cloud_comment\cloud_comment_block.php:4
+#: views\cloudscape\cloud_block.php:26
+#: views\user\clouds_block.php:7
+msgid "!count comments"
+msgstr "!count kommentarer"
+
+#: helpers\format_helper.php:47
+msgid "!count day ago"
+msgstr "!count dag siden"
+
+#: helpers\format_helper.php:47
+msgid "!count days ago"
+msgstr "!count dage siden"
+
+#: views\cloud\options_block.php:29
+#: views\cloudscape\options_block.php:41
+msgid "!count favourite"
+msgstr "!count favorit"
+
+#: views\cloud\options_block.php:29
+#: views\cloudscape\options_block.php:41
+msgid "!count favourites"
+msgstr "!count favoritter"
+
+#: helpers\format_helper.php:52
+msgid "!count hour ago"
+msgstr "!count time siden"
+
+#: helpers\format_helper.php:52
+msgid "!count hours ago"
+msgstr "!count timer siden"
+
+#: views\auth\logged_in_block.php:8
+msgid "!count item requires moderation"
+msgstr ""
+
+#: views\auth\logged_in_block.php:8
+msgid "!count items require moderation"
+msgstr ""
+
+#: helpers\format_helper.php:56
+msgid "!count minute ago"
+msgstr "!count minut siden"
+
+#: helpers\format_helper.php:56
+msgid "!count minutes ago"
+msgstr "!count minutter siden"
+
+#: views\cloudscape\email_attendees.php:8
+#: views\cloudscape\followers_list.php:5
+#: views\events\attendees_list.php:5
+msgid "!count people"
+msgstr "!count personer"
+
+#: views\cloudscape\email_attendees.php:8
+#: views\cloudscape\followers_list.php:5
+#: views\events\attendees_list.php:5
+msgid "!count person"
+msgstr "!count person"
+
+#: controllers\api.php:631
+msgid "!count user"
+msgstr "!count bruger"
+
+#: controllers\api.php:632
+msgid "!count users"
+msgstr "!count brugere"
+
+#. /Translators: singular and plural forms - !count view/s.
+#: views\cloud\options_block.php:26
+#: views\cloudscape\options_block.php:38
+msgid "!count view"
+msgstr "Set !count gang"
+
+#: views\cloud\options_block.php:26
+#: views\cloudscape\options_block.php:38
+msgid "!count views"
+msgstr "Set !count gange"
+
+#: helpers\format_helper.php:45
+msgid "!event on !date!"
+msgstr "!event den !date!"
+
+#: models\event_model.php:488
+msgid "!following is now following !followed"
+msgstr "!following følger nu !followed"
+
+#: views\events\attendees_list.php:3
+msgid "!item is attended by !people"
+msgstr "!item har !people deltagere"
+
+#: views\cloudscape\followers_list.php:3
+msgid "!item is followed by !people"
+msgstr "!item følges af !people"
+
+#: views\events\events_block.php:6
+#: views\events\events_block.php:9
+#: views\events\events_block.php:12
+#: views\events\events_block.php:15
+#: views\events\events_block.php:18
+#: views\events\events_block.php:21
+msgid "!month!"
+msgstr "!month!"
+
+#: views\user\following_list.php:3
+msgid "!name follows !count people."
+msgstr "!name følger !count personer."
+
+#: views\user\cloud_list.php:3
+#: views\user\clouds_block.php:1
+msgid "!name's Clouds"
+msgstr "!name's Clouds"
+
+#: models\event_model.php:506
+msgid "!person commenting on the blog post !title"
+msgstr "!person kommenterer på blogindlægget !title"
+
+#: models\event_model.php:518
+msgid "!person has registered on !site-name!"
+msgstr "!person har registreret på !site-name!"
+
+#: views\user\followers_list.php:3
+msgid "!person is followed by !count people."
+msgstr "!person følges af !count personer."
+
+#: controllers\user.php:71
+msgid "!person's clouds"
+msgstr "!person's clouds"
+
+#: views\user\cloudscapes_block.php:1
+msgid "!person's Cloudscapes"
+msgstr "!person's Cloudscapes"
+
+#: controllers\event.php:121
+msgid "!person's cloudstream"
+msgstr "!person's cloudstream"
+
+#: views\user\view.php:74
+msgid "!person's favourites (!count)"
+msgstr "!person's favoritter (!count)"
+
+#: controllers\user.php:114
+msgid "!person's followers"
+msgstr "Personer som følger !person"
+
+#: controllers\user.php:102
+msgid "!person's follows"
+msgstr "!person følger"
+
+#: libraries\Auth_lib.php:49
+msgid "!site-name! - Account activation"
+msgstr "!site-name! - Oprettelse af brugerkonto"
+
+#: libraries\Auth_lib.php:120
+msgid "!site-name! - Forgotten password"
+msgstr "!site-name! - Glemt password"
+
+#: libraries\Auth_lib.php:165
+msgid "!site-name! - Password reset"
+msgstr "!site-name! - nulstil password"
+
+#: views\home.php:4
+#: views\layout\_site-header.php:8
+msgid "!site-name! home page"
+msgstr ""
+
+#. /Translators: !month! eg. "December", "Dec" (homepage events block).
+#: libraries\MY_Language.php:434
+msgid "%B"
+msgstr ""
+
+#: libraries\MY_Language.php:432
+msgid "%B %Y"
+msgstr ""
+
+#. /Translators: date format, eg. "7 December 2009".
+#: libraries\MY_Language.php:431
+msgid "%e %B %Y"
+msgstr ""
+
+#: libraries\MY_Language.php:429
+msgid "%e %b %Y at %H:%M"
+msgstr ""
+
+#: libraries\MY_Language.php:428
+msgid "%e %B %Y at %H:%M"
+msgstr ""
+
+#. /Translators: date/ date with time format, according to the strftime documentation.
+#. For example, %l (lower-case L) is the hour in 12-hour format (1 through 12).
+#. Eg. "9:49am 7 December 2009". http://php.net/manual/en/function.strftime.php
+#: libraries\MY_Language.php:427
+msgid "%H:%M on %e %B %Y"
+msgstr ""
+
+#: views\cloud_comment\add.php:8
+msgid "[link-mail]Change new comment e-mail notification preferences[/link]."
+msgstr ""
+
+#: views\cloud\view.php:24
+msgid "<abbr title='!definition'>Cloud</abbr> created by: !person-date"
+msgstr ""
+
+#: views\cloudscape\view.php:45
+msgid "<abbr title='!definition'>Cloudscape</abbr> created by: !person"
+msgstr ""
+
+#: views\cloudscape\edit.php:7
+msgid "A Cloudscape is a collection of Clouds."
+msgstr "Et Cloudscape er en samling af Clouds."
+
+#: views\cloud\edit.php:87
+msgid "A Cloudscape is simply a collection of related Clouds. You might set up a Cloudscape to group Clouds around a topic (i.e. assessment), an event (i.e. a conference), or set up a personal Cloudscape to group Clouds you are interested in. One Cloud can belong to any number of Cloudscapes. For more guidance, see [link-c2554]How to set up a Cloud or Cloudscape[/link]"
+msgstr "Et Cloudscape er en samling af beslægtede Clouds. Du kan opsætte et Cloudscape så det samler Clouds om et emne (f.eks. prøver), et arrangement (f.eks. en konference), og du kan opsætte et personligt Cloudscape som samler Clouds du er interesseret i. En enkelt Cloud til et ubegrænset antal Cloudscapes. For yderligere forklaring, se [link-c2554]Sådan opsættes en Cloud eller et Cloudscape[/link]"
+
+#: views\admin\pages\add.php:11
+#: views\layout\footer.php:4
+msgid "About"
+msgstr "Om"
+
+#: views\admin\pages\index.php:22
+msgid "About Pages"
+msgstr "Hjælpesider"
+
+#: views\cloud\view.php:70
+#: views\cloud\view.php:73
+msgid "Academic References"
+msgstr "Akademiske referencer"
+
+#: views\embed\embed_block.php:20
+msgid "Accessible Alternative"
+msgstr ""
+
+#: views\embed\edit.php:20
+#: views\gadget\add_form.php:13
+msgid "Accessible Alternative !optional"
+msgstr ""
+
+#: views\auth\activation_success.php:1
+msgid "Account Activated"
+msgstr "Brugerkonto aktiveret"
+
+#. /Translators: ** The VIEWS/AUTHENTICATION section. **
+#: views\auth\activation_failed.php:2
+msgid "Account Activation Failed"
+msgstr "Aktivering af brugerkonto mislykkedes"
+
+#: controllers\auth.php:163
+msgid "Activation Successful"
+msgstr "Aktivering lykkedes"
+
+#: controllers\auth.php:166
+msgid "Activation Unsuccessful"
+msgstr "Aktivering lykkedes ikke"
+
+#. /Translators: ** The VIEWS section. **
+#: views\cloud\active.php:3
+msgid "Active Clouds"
+msgstr "Aktive Clouds"
+
+#: views\cloudscape\edit_picture.php:3
+msgid "Add a Cloudscape Picture"
+msgstr "Tilføj et cloudscapebillede"
+
+#: views\gadget\manage.php:4
+msgid "Add a Google Gadget to all your clouds"
+msgstr "Tilføj en Google Gadget til alle dine clouds"
+
+#: views\cloud\edit.php:47
+msgid "Add a link"
+msgstr "Tilføj et link"
+
+#: views\link\edit.php:4
+msgid "Add a link to the cloud !title"
+msgstr "Tilføj et link til clouden !title"
+
+#: views\cloudscape\manage_sections.php:31
+msgid "Add a section"
+msgstr "Tilføj en sektion"
+
+#: views\cloudscape\add_section.php:1
+msgid "Add a section to the cloudscape !title"
+msgstr "Tilføj en sektion til cloudscapet !title"
+
+#: views\cloud\improve_this_cloud_block.php:4
+#: views\cloud\view.php:92
+#: views\cloudscape\view.php:74
+#: views\user\view.php:68
+msgid "Add a tag"
+msgstr "Tilføj et stikord"
+
+#: views\reference\add.php:1
+msgid "Add an academic reference to the cloud !title"
+msgstr "Tilføj en akademisk reference til clouden !title"
+
+#: views\cloudscape\permissions.php:68
+msgid "Add as admin"
+msgstr "Tilføj som administrator"
+
+#: views\cloudscape\permissions.php:71
+msgid "Add as poster"
+msgstr "Tilføj som afsender"
+
+#: controllers\cloudscape.php:413
+msgid "Add Cloud to Cloudscapes"
+msgstr "Tilføj denne Cloud til Cloudscapes"
+
+#: views\cloudscape\add_cloud_section.php:18
+msgid "Add clouds"
+msgstr "Tilføj clouds"
+
+#: views\cloudscape\manage_sections.php:32
+msgid "Add clouds to a section"
+msgstr "Tilføj clouds til en sektion"
+
+#: views\cloudscape\add_cloud_section.php:1
+msgid "Add clouds to a section !title"
+msgstr "Add clouds to a section !title"
+
+#: views\content\add.php:8
+#: views\content\edit.php:18
+msgid "Add content"
+msgstr "Tilføj indhold"
+
+#: views\cloud\improve_this_cloud_block.php:8
+#: views\embed\edit.php:25
+#: views\embed\embed_block.php:42
+msgid "Add embedded content"
+msgstr "Tilføj indlejret indhold"
+
+#: controllers\embed.php:63
+msgid "Add Embedded Content"
+msgstr "Tilføj indlejret indhold"
+
+#: views\embed\edit.php:4
+msgid "Add embedded content to the cloud !title"
+msgstr "Tilføj indlejret indhold til clouden !title"
+
+#: views\cloud\improve_this_cloud_block.php:6
+#: views\content\content_block.php:36
+msgid "Add extra content"
+msgstr "Tilføj ekstra indhold"
+
+#: controllers\content.php:56
+msgid "Add Extra Content"
+msgstr "Tilføj ekstra indhold"
+
+#: views\content\add.php:1
+msgid "Add extra content to the cloud !title"
+msgstr "Tilføj ekstra indhold til clouden !title"
+
+#: views\cloud\improve_this_cloud_block.php:15
+#: views\gadget\gadget_block.php:77
+msgid "Add gadget"
+msgstr "Tilføj gadget"
+
+#: controllers\gadget.php:66
+#: controllers\gadget.php:101
+#: views\gadget\add_form.php:16
+msgid "Add Google Gadget"
+msgstr "Tilføj Google Gadget"
+
+#: views\gadget\add_to_user.php:2
+msgid "Add Google Gadget to all your clouds"
+msgstr "Tilføj Google Gadget til alle dine clouds"
+
+#: views\gadget\add_to_cloud.php:2
+msgid "Add Google Gadget to the cloud !title"
+msgstr "Tilføj Google Gadget til clouden !title"
+
+#: views\cloud\improve_this_cloud_block.php:10
+#: views\link\edit.php:20
+#: views\link\link_block.php:35
+msgid "Add link"
+msgstr "Tilføj link"
+
+#: controllers\cloud.php:432
+msgid "Add Link"
+msgstr "Tilføj link"
+
+#: views\admin\pages\index.php:3
+msgid "Add new page"
+msgstr "Tilføj ny side"
+
+#: views\cloudscape\permissions.php:57
+msgid "Add new user"
+msgstr "Tilføj ny bruger"
+
+#: controllers\admin.php:284
+#: views\admin\pages\add.php:3
+msgid "Add Page"
+msgstr "Tilføj side"
+
+#: views\cloudscape\options_block.php:6
+msgid "Add picture"
+msgstr "Tilføj billede"
+
+#: views\user\edit_picture.php:2
+msgid "Add Picture"
+msgstr "Tilføj billede"
+
+#: views\cloud\improve_this_cloud_block.php:12
+#: views\reference\add.php:10
+#: views\reference\references_block.php:16
+msgid "Add reference"
+msgstr "Tilføj reference"
+
+#: controllers\cloud.php:545
+msgid "Add Reference"
+msgstr "Tilføj reference"
+
+#: views\cloudscape\add_section.php:8
+msgid "Add section"
+msgstr "Tilføj sektion"
+
+#: views\tag\add.php:8
+msgid "Add tags"
+msgstr "Tilføj stikord"
+
+#: controllers\tag.php:117
+msgid "Add Tags"
+msgstr "Tilføj stikord"
+
+#: views\tag\add.php:2
+msgid "Add tags to !title"
+msgstr "Tilføj stikord til !title"
+
+#: views\cloudscape\add_cloud.php:1
+msgid "Add the !title cloud to a cloudscape"
+msgstr "Tilføjen clouden !title til et cloudscape"
+
+#: views\cloud\cloudscapes_block.php:11
+msgid "Add to a Cloudscape"
+msgstr "Tilføj til et cloudscape"
+
+#: views\cloudscape\add_cloud.php:12
+#: views\cloudscape\add_cloud.php:26
+msgid "Add to cloudscape"
+msgstr "Tilføj til et cloudscape"
+
+#: views\link\link_block.php:6
+msgid "added by !person"
+msgstr "Tilføjet af !person"
+
+#: models\event_model.php:450
+msgid "added to !cloud by !person"
+msgstr "Tilføjet til !cloud af !person"
+
+#: models\event_model.php:536
+msgid "added to !title by !person"
+msgstr "tilføjet til !title af !person"
+
+#: controllers\event.php:206
+msgid "Admin cloudstream"
+msgstr ""
+
+#: views\admin\index.php:14
+msgid "Admin Cloudstream"
+msgstr ""
+
+#. /Translators: ** Start of the CONTROLLERS/MODELS section - page titles/error messages. **
+#: controllers\admin.php:34
+msgid "Admin panel"
+msgstr "Administrationspanel"
+
+#: views\admin\index.php:1
+msgid "Admin Panel"
+msgstr "Administrationspanel"
+
+#: views\auth\logged_in_block.php:22
+msgid "Administration"
+msgstr "Administration"
+
+#. /Translators: "Admins" - Cloudscape administrators.
+#: views\cloudscape\permissions.php:22
+msgid "Admins"
+msgstr "Administratorer"
+
+#: views\events\events_block.php:23
+msgid "All"
+msgstr ""
+
+#: views\event\cloudstream_block.php:5
+msgid "All activity on items you are following"
+msgstr "Al aktivitet på emner, du følger med i"
+
+#: views\event\cloudstream_block.php:4
+msgid "All activity on the site"
+msgstr "Al aktivitet på webstedet"
+
+#: controllers\cloudscape.php:33
+msgid "All cloudscapes"
+msgstr "Alle cloudscapes"
+
+#: views\message\compose.php:62
+#: views\message\thread.php:18
+msgid "All messages"
+msgstr "Alle beskeder"
+
+#: views\user\preferences.php:26
+msgid "Allow organisers of events I have marked that I am attending to e-mail me"
+msgstr "Tillad ansvarshavende for arrangementer, jeg har tilmeldt mig, at kontakte mig på email"
+
+#: views\error\error_general.php:1
+msgid "An error has occurred"
+msgstr "Der er opstået en fejl"
+
+#: controllers\cloud.php:261
+msgid "An error occurred adding the new cloud."
+msgstr "Der opstod en fejl i forsøget på at tilføje den nye cloud."
+
+#: controllers\blog.php:37
+msgid "An error occurred when viewing this blog post"
+msgstr "Der opstod en fejl ved visning af dette blogindlæg"
+
+#: controllers\cloud.php:75
+#: controllers\cloud.php:189
+msgid "An error occurred."
+msgstr "Der opstod en fejl."
+
+#: views\cloud\edit.php:46
+msgid "and/or"
+msgstr "og/eller"
+
+#: views\moderate.php:4
+msgid ""
+"Apologies, your post is being moderated. This is likely to be a one-off occurrence and should usually only affect new users to the site. From time to time,\n"
+"the filter will mistakenly identify a message as spam and put it forward for moderation. During working hours we will quickly pick these up, check and clear\n"
+"them - although this might take longer at the weekends or in the evenings (!timezone)."
+msgstr ""
+"Vi beklager, dit indlæg er under gennemsyn af moderator. Dette er ikke hyppigt, og vil almindeligvis primært berøre nye brugere. Lejlighedsvis vil\n"
+"filteret fejlagtigt kategorisere en besked som spam og sende den til moderator. Vi vil hurtigst muligt følge op på sådanne beskeder og fjerne spam-\n"
+"kategoriseringen. Der kan dog være en vis ventetid, især for indlæg lavet i weekenden eller om aftenen (!timezone)."
+
+#: views\blog_comment\delete_confirm.php:2
+#: views\cloud_comment\delete_confirm.php:3
+msgid "Are you sure that you want to delete the following comment?"
+msgstr "Er du sikker på, at du vil slette den følgende kommentar?"
+
+#: views\content\delete_confirm.php:2
+msgid "Are you sure that you want to delete the following content?"
+msgstr "Er du sikker på, at du vil slette det følgende indhold?"
+
+#: views\embed\delete_confirm.php:3
+msgid "Are you sure that you want to delete the following embedded content? Deleting embedded content removes it permanently and cannot be undone."
+msgstr "Er du sikker på, at du vil slette det følgende indlejrede indhold? Det indlejrede indhold slettes permanent, og det er ikke muligt at fortryde."
+
+#: views\link\delete_confirm.php:3
+msgid "Are you sure that you want to delete the following link? Deleting a link removes it permanently and cannot be undone."
+msgstr "Er du sikker på, at du vil slette det følgende link? Linket slettes permanent, og det er ikke muligt at fortryde."
+
+#: views\gadget\delete_confirm_user.php:2
+msgid "Are you sure that you want to delete the Google gadget '!title' from all your clouds?"
+msgstr "Er du sikker på, at du vil slette Google gadget '!title' fra alle dine clouds?"
+
+#: views\gadget\delete_confirm_cloud.php:3
+msgid "Are you sure that you want to delete the Google gadget '!title'?"
+msgstr "Er du sikker på, at du vil slette Google gadget '!title'? "
+
+#: views\admin\pages\delete_confirm.php:2
+msgid "Are you sure that you want to delete the page !title? Deleting a page deletes it permanently and cannot be undone."
+msgstr "Er du sikker på, at du vil slette siden !title? Siden slettes helt, og det er ikke muligt at fortryde."
+
+#: views\blog\delete_confirm.php:3
+msgid "Are you sure that you want to delete this blog post? Deleting a blog post deletes it permanently and cannot be undone."
+msgstr "Er du sikker på, at du vil slette dette blogindlæg? Blogindlægget slettes helt, og det er ikke muligt at fortryde."
+
+#: views\cloud\delete_confirm.php:3
+msgid "Are you sure that you want to delete this cloud? Deleting a cloud deletes it permanently and cannot be undone."
+msgstr "Er du sikker på, at du vil slette denne cloud? Clouden slettes helt, og det er ikke muligt at fortryde."
+
+#: views\cloudscape\delete_confirm.php:5
+msgid "Are you sure that you want to delete this cloudscape? Deleting a cloudscape deletes it permanently and cannot be undone."
+msgstr "Er du sikker på, at du vil slette dette cloudscape? Cloudscapet slettes helt, og det er ikke muligt at fortryde."
+
+#: views\cloudscape\remove_section_confirm.php:3
+msgid "Are you sure you want to delete the section '!title'. This does not delete the clouds in that section or remove them from the cloudscape."
+msgstr "Er du sikker på, at du vil slette sektionen !title? Dette sletter ikke de clouds, der er i sektionen, og de bliver heller ikke fjernet fra cloudscapet."
+
+#: views\cloudscape\manage_clouds.php:3
+msgid "At the moment you can just remove clouds from the cloudscape, but we plan to expand the functionality here in future."
+msgstr "For øjeblikket kan du kun fjerne clouds fra cloudscapet, men vi har planer om at tilføje flere muligheder."
+
+#: controllers\cloudscape.php:361
+msgid "Attendess for the cloudscape !title"
+msgstr "Deltagere i cloudscapet !title"
+
+#: views\cloudscape\edit_picture_success.php:6
+msgid "Attribution"
+msgstr "Tillæg"
+
+#: views\cloudscape\edit_picture.php:34
+msgid "Attribution link"
+msgstr "Link til tillæg"
+
+#. /Translators: name of person who should be given attribution.
+#: views\cloudscape\edit_picture.php:32
+msgid "Attribution name"
+msgstr "Navn på tillæg"
+
+#: views\user\cloud_list.php:4
+#: views\user\followers_list.php:6
+#: views\user\following_list.php:6
+msgid "Back to !name's profile"
+msgstr "Tilbage til profil for !name"
+
+#: views\admin\moderate.php:2
+#: views\admin\stats.php:2
+#: views\statistics\cloudscape_form.php:2
+#: views\statistics\cloudscape_form_dates.php:3
+#: views\statistics\cloudscape_stats.php:4
+#: views\statistics\cloudscape_stats_dates.php:5
+#: views\statistics\stats.php:2
+#: views\statistics\stats_dates_form.php:2
+msgid "Back to admin panel"
+msgstr "Tilbage til administrationspanel"
+
+#: views\auth\change_password_failed.php:3
+msgid "Back to change password form"
+msgstr "Tilbage til ændring af password"
+
+#: views\cloudscape\manage_sections.php:3
+#: views\cloudscape\permissions.php:6
+#: views\event\admin.php:14
+#: views\event\cloudscape.php:16
+#: views\event\following.php:14
+msgid "Back to cloudscape"
+msgstr "Tilbage til cloudscape"
+
+#: views\admin\pages\add_success.php:5
+#: views\admin\pages\delete_success.php:5
+#: views\admin\pages\edit_success.php:5
+msgid "Back to Manage Pages"
+msgstr "Tilbage til administration af sider"
+
+#: views\admin\stats_dates_results.php:2
+#: views\statistics\stats_dates_results.php:2
+msgid "Back to statistics"
+msgstr "Tilbage til statistik"
+
+#: views\event\user.php:16
+msgid "Back to user"
+msgstr "Tilbage til bruger"
+
+#: views\layout\footer.php:5
+msgid "Blog"
+msgstr "Blog"
+
+#: controllers\blog.php:70
+#: views\blog\news_block.php:11
+msgid "Blog Archive"
+msgstr "Blogarkiv"
+
+#. /Translators: Comment/item body.
+#: views\blog\edit.php:20
+#: views\blog_comment\edit.php:16
+#: views\cloud_comment\edit.php:18
+msgid "Body"
+msgstr "Brødtekst"
+
+#: views\auth\register_form.php:5
+msgid "By creating an account, you agree to our [link-at]Terms and Conditions of Use[/link]."
+msgstr "Ved at oprette en brugerkonto accepterer du samtidig [link-at]Terms and Conditions of Use[/link] for brug af Cloudworks."
+
+#: views\message\compose.php:94
+msgid "Cancel"
+msgstr "Fortryd"
+
+#: controllers\auth.php:118
+msgid "captcha Code"
+msgstr "captcha-kode"
+
+#. /Translators: CAPTCHA - challenge-response to tell humans from computers.
+#: views\auth\html_for_captcha.php:4
+msgid "CAPTCHA image"
+msgstr "CAPTCHA-billede"
+
+#: views\auth\change_password_form.php:1
+msgid "Change password"
+msgstr "Skift password"
+
+#: controllers\auth.php:246
+#: views\auth\change_password_form.php:24
+#: views\user\view.php:12
+msgid "Change Password"
+msgstr "Skift password"
+
+#: views\cloudscape\add_cloud_section.php:12
+msgid "Check the clouds from this cloudscape to add"
+msgstr "Marker de clouds, du vil tilføje fra dette cloudscape"
+
+#: views\cloudscape\permissions.php:16
+msgid "Closed"
+msgstr "Afsluttet"
+
+#: models\event_model.php:410
+msgid "cloud added to the cloudscape !title"
+msgstr "cloud tilføjet til cloudscapet !title"
+
+#: models\event_model.php:403
+msgid "cloud added to the cloudscape !title by !person"
+msgstr "cloud tilføjet til cloudscapet !title af !person"
+
+#: views\cloud\cloud_added.php:1
+msgid "Cloud created"
+msgstr "Cloud oprettet"
+
+#: views\cloud\edit.php:85
+msgid "Cloud or Cloudscape?"
+msgstr "Cloud eller Cloudscape?"
+
+#: views\cloud\list.php:3
+#: views\cloud\popular_block.php:9
+#: views\cloudscape\cloudscape_list.php:28
+#: views\search\results.php:9
+#: views\statistics\stats.php:6
+#: views\tag\view.php:11
+msgid "Clouds"
+msgstr "Clouds"
+
+#: views\event\home_header.php:3
+msgid "Clouds Activity"
+msgstr ""
+
+#: views\cloud\view.php:26
+msgid "Clouds can be anything of relevance to learning and teaching"
+msgstr "Clouds kan omhandle alle emner, der er relevante for læring og undervisning"
+
+#: views\cloud\list.php:4
+msgid "Clouds can be anything of relevance to learning and teaching e.g. a description of a learning activity, a case study, a resource or tool, a summary of a presentation."
+msgstr "Clouds kan omhandle alle emner, der er relevante for læring og undervisning, f.eks. beskrivelser af læringsaktiviteter, casestudier, ressourcer og værktøjer, referater af foredrag."
+
+#: views\cloud\edit.php:64
+msgid "Clouds can be anything of relevance to learning and teaching for example a website, a description of a learning activity, a case study, a resource or tool, or a summary of a presentation."
+msgstr "Clouds kan omhandle alle emner, der er relevante for læring og undervisning,, eksempelvis websider, beskrivelser af læringsaktiviteter, casestudier, ressourcer og værktøjer, referater af foredrag."
+
+#: views\cloudscape\cloud_block.php:1
+msgid "Clouds in this Cloudscape"
+msgstr "Clouds i dette Cloudscape"
+
+#: controllers\cloudscape.php:617
+#: views\cloudscape\edit_picture_success.php:1
+msgid "Cloudscape picture edited"
+msgstr "Cloudscapebilledet blev ændret"
+
+#: views\admin\index.php:17
+msgid "Cloudscape Statistics"
+msgstr "Cloudscapestatistik"
+
+#: views\admin\index.php:18
+msgid "Cloudscape Statistics By Date"
+msgstr "Cloudscapestatistik, dato"
+
+#: views\cloud\popular_block.php:7
+#: views\cloudscape\cloudscape_list.php:3
+#: views\search\results.php:24
+#: views\statistics\stats.php:10
+#: views\tag\view.php:24
+msgid "Cloudscapes"
+msgstr "Cloudscapes"
+
+#: views\event\home_header.php:4
+msgid "Cloudscapes Activity"
+msgstr ""
+
+#: views\cloudscape\cloudscape_list.php:4
+msgid "Cloudscapes are collections of clouds about a certain topic."
+msgstr "Cloudscapes er samlinger af clouds om et bestemt tema."
+
+#: views\event\site_block.php:2
+#: views\event\user_block.php:2
+msgid "Cloudstream"
+msgstr "Cloudstream"
+
+#: controllers\event.php:140
+#: views\event\user.php:2
+msgid "Cloudstream for !person"
+msgstr "Cloudstream for !person"
+
+#: controllers\event.php:189
+#: views\event\cloudscape.php:2
+msgid "Cloudstream for !title"
+msgstr "Cloudstream for !title"
+
+#: controllers\event.php:168
+msgid "Cloudstream for the cloudscape !title"
+msgstr "Cloudstream for cloudscapet !title"
+
+#: views\cloudscape\view.php:91
+msgid "Cloudstream for this cloudscape"
+msgstr "Cloudstream for dette cloudscape"
+
+#: views\event\cloudstream_block.php:2
+msgid "Cloudstreams"
+msgstr "Cloudstreams"
+
+#: views\tag\add.php:5
+msgid "comma-separated"
+msgstr "adskilt med kommaer"
+
+#: controllers\comment.php:37
+msgid "comment"
+msgstr "kommentar"
+
+#. /Translators: Form field names.
+#: controllers\blog.php:28
+#: controllers\blog.php:213
+#: controllers\cloud.php:68
+msgid "Comment"
+msgstr "Kommentar"
+
+#: views\cloud_comment\cloud_comments.php:6
+msgid "Comment "
+msgstr "Kommentar"
+
+#: views\blog_comment\display.php:2
+#: views\cloud\list.php:26
+#: views\cloud_comment\cloud_comment_block.php:1
+#: views\statistics\stats.php:14
+msgid "Comments"
+msgstr "Kommentarer"
+
+#: views\message\list.php:18
+msgid "Compose"
+msgstr "Opret"
+
+#: views\message\compose.php:50
+msgid "Compose message"
+msgstr "Opret besked"
+
+#: controllers\auth.php:224
+#: views\auth\change_password_form.php:17
+msgid "Confirm New Password"
+msgstr "Bekræft nyt password"
+
+#: views\auth\register_form.php:80
+msgid "Confirm Password"
+msgstr "Bekræft password"
+
+#: controllers\content.php:30
+#: controllers\content.php:77
+#: views\cloudscape\view.php:38
+#: views\statistics\cloudscape_stats.php:6
+msgid "Content"
+msgstr "Indhold"
+
+#: views\auth\activation_failed.php:7
+#: views\auth\activation_success.php:6
+#: views\auth\forgotten_password_failed.php:7
+#: views\auth\forgotten_password_success.php:5
+#: views\auth\new_password_failed.php:4
+#: views\auth\new_password_success.php:4
+#: views\auth\register_success.php:3
+#: views\moderate.php:10
+msgid "Continue"
+msgstr "Fortsæt"
+
+#: views\cloud\view.php:50
+msgid "Contribute"
+msgstr "Deltag"
+
+#: views\cloud_comment\cloud_comments.php:43
+msgid "Contribute to the discussion"
+msgstr "Deltag i diskussionen"
+
+#: views\message\thread.php:5
+msgid "Conversation - "
+msgstr "Samtale - "
+
+#: controllers\message.php:177
+msgid "Conversation deleted"
+msgstr ""
+
+#: controllers\message.php:210
+msgid "Conversation does not exist."
+msgstr ""
+
+#: controllers\message.php:173
+msgid "Conversation set to unread"
+msgstr ""
+
+#: controllers\message.php:80
+msgid "Conversations deleted"
+msgstr ""
+
+#: controllers\message.php:72
+msgid "Conversations set to read"
+msgstr ""
+
+#: controllers\message.php:76
+msgid "Conversations set to unread"
+msgstr ""
+
+#. /Translators: In case we want to translate the copyright statement..
+#: views\rss\rss.php:19
+msgid "Copyright !date !organization"
+msgstr "Copyright !date !organization"
+
+#: controllers\auth.php:112
+#: views\auth\register_form.php:57
+msgid "Country"
+msgstr "Land"
+
+#: views\auth\logged_in_block.php:1
+#: views\cloud\edit.php:19
+msgid "Create a Cloud"
+msgstr "Opret en cloud"
+
+#: views\cloud\edit.php:16
+msgid "Create a Cloud in the Cloudscape !title"
+msgstr "Opret en cloud i cloudscapet !title"
+
+#: views\cloudscape\cloudscape_list.php:7
+#: views\cloudscape\edit.php:6
+msgid "Create a Cloudscape"
+msgstr "Opret et Cloudscape"
+
+#: views\blog_comment\edit.php:3
+#: views\cloud_comment\edit.php:4
+msgid "Create a comment item"
+msgstr ""
+
+#: views\blog\edit.php:3
+msgid "Create a new blog post"
+msgstr "Opret et nyt blogindlæg"
+
+#: views\blog\edit.php:23
+msgid "Create blog post"
+msgstr "Opret blogindlæg"
+
+#: controllers\cloud.php:274
+#: views\cloud\edit.php:58
+msgid "Create Cloud"
+msgstr "Opret Cloud"
+
+#: views\cloudscape\view.php:78
+msgid "Create Cloud in this Cloudscape"
+msgstr "Opret Cloud i dette Cloudscape"
+
+#: controllers\cloudscape.php:248
+#: views\cloudscape\edit.php:73
+msgid "Create Cloudscape"
+msgstr "Opret Cloudscape"
+
+#: views\blog_comment\edit.php:18
+#: views\cloud_comment\edit.php:20
+msgid "Create comment"
+msgstr "Opret kommentar"
+
+#: views\content\edit.php:4
+msgid "Create content"
+msgstr "Opret indhold"
+
+#: views\auth\register_form.php:110
+msgid "Create my account"
+msgstr "Opret min brugerkonto"
+
+#: views\admin\index.php:5
+msgid "Create new blog post"
+msgstr "Opret nyt blogindlæg"
+
+#: controllers\blog.php:107
+msgid "Create news"
+msgstr "Opret nyhed"
+
+#. /Translators: Cloudstreams - short and long event messages.
+#. Add 'rel' for semantics/styling, http://whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes
+#: models\event_model.php:382
+#: models\event_model.php:427
+msgid "created by !person"
+msgstr "oprettet af !person"
+
+#: views\cloudscape\edit_picture_success.php:4
+msgid "Cropped picture"
+msgstr "Beskåret billede"
+
+#: views\events\list_past.php:48
+msgid "Current and upcoming events"
+msgstr "Aktuelle og kommende arrangementer"
+
+#: views\events\list.php:3
+msgid "Current and Upcoming Events"
+msgstr "Aktuelle og kommende arrangementer"
+
+#: views\cloudscape\edit_picture.php:6
+msgid "Current Cloudscape picture"
+msgstr "Aktuelt cloudscapebillede"
+
+#: views\cloudscape\edit.php:46
+msgid "Customisation"
+msgstr "Tilpasning"
+
+#: views\cloud\edit.php:53
+msgid "Deadline"
+msgstr "Deadline"
+
+#: views\cloud\view.php:7
+msgid "Deadline: !date"
+msgstr "Deadline: !date"
+
+#: views\email\new_password_email.php:1
+msgid "Dear !fullname"
+msgstr "Kære !fullname"
+
+#. /Translators: Email messages to manage user accounts.
+#: views\email\activation_email.php:2
+#: views\email\forgotten_password_email.php:1
+#: views\email\message_new_notification.php:2
+#: views\email\message_reply_notification.php:2
+msgid "Dear !fullname,"
+msgstr "Kære !fullname,"
+
+#: views\blog\edit.php:7
+#: views\blog_comment\edit.php:6
+#: views\cloud\edit.php:24
+#: views\cloud_comment\edit.php:8
+#: views\cloudscape\edit.php:10
+#: views\content\edit.php:7
+#: views\gadget\manage.php:8
+#: views\link\link_block.php:11
+#: views\reference\references_block.php:8
+msgid "delete"
+msgstr "slet"
+
+#: views\admin\pages\index.php:15
+#: views\admin\pages\index.php:29
+#: views\message\list.php:21
+#: views\message\thread.php:20
+msgid "Delete"
+msgstr "Slet"
+
+#: views\blog\delete_confirm.php:6
+msgid "Delete blog post"
+msgstr "Slet blogindlæg"
+
+#: controllers\cloud.php:375
+#: views\cloud\delete_confirm.php:6
+msgid "Delete Cloud"
+msgstr "Dlet cloud"
+
+#: controllers\cloudscape.php:384
+#: views\cloudscape\delete_confirm.php:8
+msgid "Delete Cloudscape"
+msgstr "Slet cloudscape"
+
+#: controllers\blog.php:251
+#: controllers\comment.php:77
+#: views\blog_comment\delete_confirm.php:1
+#: views\blog_comment\delete_confirm.php:5
+#: views\cloud_comment\delete_confirm.php:1
+#: views\cloud_comment\delete_confirm.php:7
+msgid "Delete comment"
+msgstr "Slet kommentar"
+
+#: controllers\content.php:119
+#: views\content\delete_confirm.php:1
+#: views\content\delete_confirm.php:6
+msgid "Delete content"
+msgstr "Slet indhold"
+
+#: views\embed\embed_block.php:29
+msgid "delete embedded content"
+msgstr "slet indlejret indhold"
+
+#: controllers\embed.php:88
+#: views\embed\delete_confirm.php:6
+msgid "Delete Embedded Content"
+msgstr "Slet indlejret indhold"
+
+#: views\embed\delete_confirm.php:1
+msgid "Delete embedded content from the cloud !title"
+msgstr "slet indlejret indhold fra clouden !title"
+
+#: views\gadget\gadget_block.php:36
+msgid "delete Google gadget"
+msgstr "slet Google gadget"
+
+#: controllers\gadget.php:128
+#: controllers\gadget.php:156
+#: views\gadget\delete_confirm_cloud.php:7
+#: views\gadget\delete_confirm_user.php:6
+msgid "Delete Google Gadget"
+msgstr "Slet Google Gadget"
+
+#: views\gadget\delete_confirm_user.php:1
+msgid "Delete Google Gadget from all your clouds"
+msgstr "Slet Google Gadget fra slle dine clouds"
+
+#: views\gadget\delete_confirm_cloud.php:1
+msgid "Delete Google Gadget from the cloud !title"
+msgstr "Slet Google Gadget fra clouden !title"
+
+#: controllers\cloud.php:477
+#: views\link\delete_confirm.php:6
+msgid "Delete Link"
+msgstr "Slet link"
+
+#: views\link\delete_confirm.php:1
+msgid "Delete link from the cloud !title"
+msgstr "Slet link fra clouden !title"
+
+#: controllers\blog.php:173
+msgid "Delete news"
+msgstr "Slet nyhed"
+
+#: views\admin\pages\delete_confirm.php:1
+msgid "Delete page"
+msgstr "Slet side"
+
+#: controllers\admin.php:300
+#: views\admin\pages\delete_confirm.php:5
+msgid "Delete Page"
+msgstr "Slet side"
+
+#: controllers\cloud.php:567
+msgid "Delete Reference"
+msgstr "Slet reference"
+
+#: views\cloudscape\manage_sections.php:10
+msgid "Delete section"
+msgstr "Slet sektion"
+
+#: views\cloudscape\remove_section_confirm.php:7
+msgid "Delete Section"
+msgstr "Slet sektion"
+
+#: views\cloudscape\remove_section_confirm.php:1
+msgid "Delete section '!title'"
+msgstr "Slet sektionen '!title'"
+
+#: views\blog\delete_confirm.php:1
+msgid "Delete the blog post !title"
+msgstr "Slet blogindlægget !title"
+
+#: views\cloud\delete_confirm.php:1
+msgid "Delete the cloud !title"
+msgstr "Slet clouden !title"
+
+#: views\cloudscape\delete_confirm.php:1
+msgid "Delete the cloudscape !title"
+msgstr "Slet cloudscapet !title"
+
+#: views\blog\edit.php:7
+msgid "Delete this Blog Post"
+msgstr "Slet dette blogindlæg"
+
+#: views\cloud\edit.php:24
+msgid "Delete this Cloud"
+msgstr "Slet denne cloud"
+
+#: views\cloudscape\edit.php:10
+msgid "Delete this Cloudscape"
+msgstr "Slet dette Cloudscape"
+
+#: views\blog_comment\edit.php:6
+#: views\cloud_comment\edit.php:8
+msgid "Delete this comment"
+msgstr "Slet denne kommentar"
+
+#: views\gadget\delete_confirm_cloud.php:5
+#: views\gadget\delete_confirm_user.php:4
+msgid "Deleting a Google Gadget removes it permanently and cannot be undone."
+msgstr "At slette en Google Gadget fjerner den helt, der kan ikke fortrydes."
+
+#: views\blog\delete_success.php:1
+#: views\blog_comment\delete_success.php:1
+#: views\cloud\delete_success.php:1
+#: views\cloud_comment\delete_success.php:1
+#: views\cloudscape\delete_success.php:1
+#: views\content\delete_success.php:1
+msgid "Deletion successful"
+msgstr "Sletning udført"
+
+#: controllers\user.php:391
+#: views\user\edit.php:19
+#: views\user\user_edit.php:14
+#: views\user\view.php:41
+msgid "Department"
+msgstr "Afdeling"
+
+#: controllers\blog.php:85
+#: controllers\blog.php:128
+#: controllers\cloudscape.php:192
+#: controllers\cloudscape.php:270
+#: controllers\user.php:396
+#: views\cloudscape\edit.php:32
+#: views\user\edit.php:35
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: views\user\user_edit.php:20
+msgid "Description !required!"
+msgstr "Beskrivelse !required!"
+
+#: views\cloud\view.php:55
+#: views\cloud\view.php:58
+#: views\event\header.php:8
+#: views\event\home_header.php:5
+msgid "Discussion"
+msgstr ""
+
+#: views\event\home_header.php:5
+msgid "Discussion Activity"
+msgstr ""
+
+#: views\user\preferences.php:29
+msgid "Display my e-mail address on my profile"
+msgstr "Vis emailadressen på min profil"
+
+#: views\admin\index.php:26
+msgid "Display PHP configuration info"
+msgstr "Vis oplysninger om PHP-konfiguration"
+
+#. /Translators: WYSIWYG, what you see is what you get/ rich-text editor.
+#: views\user\preferences.php:31
+msgid "Do not use a <abbr>WYSIWYG</abbr> text editor"
+msgstr "Brug ikke <abbr>WYSIWYG</abbr> tekstredigering"
+
+#: views\tag\add.php:6
+msgid "e.g. collaborative learning, problem based learning, calculus, moodle"
+msgstr "f.eks. kollaborativ læring, problembaseret læring, regning, moodle"
+
+#: views\blog\archive.php:15
+#: views\blog\view.php:6
+#: views\link\link_block.php:16
+msgid "edit"
+msgstr "rediger"
+
+#: views\admin\pages\index.php:15
+#: views\admin\pages\index.php:29
+#: views\cloud\options_block.php:4
+#: views\cloud_comment\cloud_comments.php:25
+#: views\cloudscape\options_block.php:4
+#: views\content\content_block.php:22
+#: views\user\view.php:10
+msgid "Edit"
+msgstr "Rediger"
+
+#: views\blog\edit.php:5
+msgid "Edit blog post"
+msgstr "Rediger blogindlæg"
+
+#: controllers\cloud.php:349
+msgid "Edit Cloud"
+msgstr "Rediger cloud"
+
+#: views\cloud\edit.php:23
+msgid "Edit Cloud "
+msgstr "Rediger cloud "
+
+#: controllers\cloudscape.php:332
+#: views\cloudscape\edit.php:9
+msgid "Edit Cloudscape"
+msgstr "Rediger cloudscape"
+
+#: controllers\blog.php:230
+#: controllers\comment.php:56
+msgid "Edit comment"
+msgstr "Rediger kommentar"
+
+#: views\blog_comment\edit.php:5
+#: views\cloud_comment\edit.php:6
+msgid "Edit Comment"
+msgstr "Rediger kommentar"
+
+#: controllers\content.php:96
+msgid "Edit content"
+msgstr "Rediger indhold"
+
+#: views\content\edit.php:6
+msgid "Edit Content"
+msgstr "Rediger indhold"
+
+#: views\embed\embed_block.php:34
+msgid "edit embedded content"
+msgstr "rediger indlejret indhold"
+
+#: controllers\embed.php:114
+msgid "Edit Embedded Content"
+msgstr "Rediger indlejret indhold"
+
+#: views\embed\edit.php:8
+msgid "Edit embedded content for the cloud !title"
+msgstr "Rediger indlejret indhold i clouden !title"
+
+#: controllers\cloud.php:504
+msgid "Edit Link"
+msgstr "Rediger link"
+
+#: views\link\edit.php:6
+msgid "Edit link for the cloud !title"
+msgstr "Rediger link til clouden !title"
+
+#: controllers\blog.php:152
+msgid "Edit news"
+msgstr ""
+
+#: controllers\admin.php:253
+#: views\admin\pages\edit.php:3
+msgid "Edit Page"
+msgstr "Rediger side"
+
+#: views\cloudscape\options_block.php:6
+msgid "Edit picture"
+msgstr "Rediger billede"
+
+#: controllers\user.php:210
+#: views\user\edit_picture.php:4
+#: views\user\view.php:11
+msgid "Edit Picture"
+msgstr "Rediger billede"
+
+#: controllers\user.php:472
+msgid "Edit Preferences"
+msgstr "Rediger indstillinger"
+
+#: controllers\user.php:440
+#: views\user\edit.php:3
+#: views\user\user_edit.php:4
+#: views\user\view.php:10
+msgid "Edit Profile"
+msgstr "Rediger profil"
+
+#: views\cloudscape\edit_picture.php:5
+msgid "Edit the Cloudscape Picture"
+msgstr "Rediger cloudscapebilledet"
+
+#: views\blog\archive.php:15
+msgid "Edit this Blog Post"
+msgstr "Rediger dette blogindlæg"
+
+#: views\cloud_comment\cloud_comments.php:25
+msgid "Edit this Comment"
+msgstr "Rediger denne kommentar"
+
+#: views\content\content_block.php:22
+msgid "Edit this content"
+msgstr "Rediger dette indhold"
+
+#: views\blog\view.php:6
+msgid "Edit this News Item"
+msgstr ""
+
+#: views\cloud_comment\cloud_comments.php:22
+msgid "Edited !date"
+msgstr "Redigeret !date"
+
+#: views\content\content_block.php:19
+msgid "Edited !date-time!"
+msgstr "Redigeret !date-time!"
+
+#: controllers\auth.php:108
+#: controllers\auth.php:179
+#: views\user\view.php:44
+msgid "Email"
+msgstr "Email"
+
+#: views\auth\register_form.php:23
+msgid "E-mail"
+msgstr "Email"
+
+#: views\auth\forgotten_password_form.php:8
+msgid "E-mail address"
+msgstr "Emailadresse"
+
+#: views\cloudscape\view.php:88
+msgid "Email attendees"
+msgstr "Email til deltagere"
+
+#: controllers\cloudscape.php:999
+msgid "E-mail Attendees"
+msgstr "Email til deltagere"
+
+#: views\cloudscape\email_attendees.php:2
+msgid "Email attendees of !title"
+msgstr "Email til deltagere i !title"
+
+#: controllers\cloudscape.php:963
+msgid "E-mail Sent"
+msgstr "Email sendt"
+
+#: views\cloudscape\email_attendees_success.php:1
+msgid "Email sent to attendees of !title"
+msgstr "Email sendt til deltagere i !title"
+
+#: views\embed\embed_block.php:3
+msgid "Embedded Content"
+msgstr "Indlejret indhold"
+
+#: views\statistics\stats.php:20
+msgid "Embeds"
+msgstr "Indlejringer"
+
+#: views\statistics\cloudscape_form_dates.php:14
+msgid "End Date e.g. !date"
+msgstr "Slutdato, f.eks. !date"
+
+#: views\cloudscape\edit.php:63
+msgid "End Date e.g. !date (leave blank for one-day events)"
+msgstr "Slutdato, f.eks. !date (udfyldes ikke for éndags-arrangementer)"
+
+#: views\auth\forgotten_password_form.php:3
+msgid "Enter the e-mail address associated with your account and we will send you password reset instructions."
+msgstr "Angiv den emailadresse, du har knyttet til din brugerkonto, så sender vi instruktioner til fornyelse af dit password."
+
+#: controllers\error_page.php:32
+#: controllers\error_page.php:41
+msgid "Error"
+msgstr "Fejl"
+
+#: models\search_model.php:125
+msgid "Error: search is not working."
+msgstr "Fejl: Søgning kan ikke udføres."
+
+#: views\events\calls.php:36
+#: views\events\calls_archive.php:35
+#: views\events\events_block.php:2
+#: views\layout\_site-header.php:37
+#: views\layout\_site-header.php:39
+msgid "Events"
+msgstr "Arrangementer"
+
+#: views\content\content_block.php:2
+#: views\event\header.php:11
+#: views\event\home_header.php:8
+#: views\statistics\stats.php:18
+msgid "Extra content"
+msgstr "Ekstra indhold"
+
+#: views\event\home_header.php:8
+msgid "Extra Content Activity"
+msgstr ""
+
+#: views\cloudscape\edit.php:58
+msgid "Extra information if your Cloudscape is for an event"
+msgstr "Yderligere informationer hvis dit Cloudscape er til et arrangement"
+
+#: views\cloud\options_block.php:22
+#: views\cloudscape\options_block.php:33
+msgid "Favourite"
+msgstr "Favorit"
+
+#: views\favourite\popular.php:16
+#: views\favourite\popular.php:29
+msgid "favourites"
+msgstr "favoritter"
+
+#: views\user\view.php:72
+msgid "Favourites"
+msgstr "Favoritter"
+
+#: views\cloudscape\featured_cloudscapes.php:2
+msgid "Featured Cloudscapes"
+msgstr ""
+
+#: views\user\edit_picture.php:12
+msgid "File"
+msgstr "Fil"
+
+#: views\cloud\edit.php:71
+msgid "File Uploads"
+msgstr "Filuploads"
+
+#: views\user\people.php:3
+msgid "Find People"
+msgstr "Søg efter personer"
+
+#: views\cloud\options_block.php:15
+#: views\cloudscape\options_block.php:17
+#: views\user\view.php:19
+msgid "Follow"
+msgstr "Følg med"
+
+#: views\cloudscape\followers_block.php:2
+#: views\user\followers_block.php:2
+msgid "Followers (!count)"
+msgstr "Følges af (!count)"
+
+#: controllers\cloudscape.php:347
+msgid "Followers for the cloudscape !title"
+msgstr "Personer som følger med i cloudscapet !title"
+
+#: views\user\following_block.php:3
+msgid "Following (!count)"
+msgstr "Følger med i (!count)"
+
+#: views\cloudscape\edit_picture.php:31
+#: views\cloudscape\edit_picture.php:34
+msgid "For example"
+msgstr "For eksempel"
+
+#: views\auth\forgotten_password_form.php:1
+msgid "Forgot your password?"
+msgstr "Har du glemt dit password?"
+
+#: views\auth\forgotten_password_success.php:1
+#: views\auth\login_block.php:15
+#: views\user\login_block.php:17
+msgid "Forgotten password"
+msgstr "Glemt password"
+
+#: controllers\auth.php:176
+#: views\auth\login_form.php:25
+msgid "Forgotten Password"
+msgstr "Glemt password"
+
+#: controllers\auth.php:106
+#: views\auth\register_form.php:33
+msgid "Full name"
+msgstr "Fulde navn"
+
+#: controllers\user.php:388
+msgid "Full Name"
+msgstr "Fulde navn"
+
+#: views\user\user_edit.php:11
+msgid "Full name !required!"
+msgstr "Fulde navn !required!"
+
+#: controllers\gadget.php:46
+#: controllers\gadget.php:81
+msgid "Gadget Title"
+msgstr "Titel på gadget"
+
+#: views\gadget\add_form.php:8
+msgid "Gadget Title !required!"
+msgstr "Titel på gadget !required!"
+
+#: views\gadget\gadget_block.php:2
+msgid "Gadgets"
+msgstr "Gadgets"
+
+#: views\blog\delete_success.php:6
+msgid "Go to all blog posts"
+msgstr "Fortsæt til alle blogindlæg"
+
+#: views\cloud\delete_success.php:6
+msgid "Go to all clouds"
+msgstr "Fortsæt til alle clouds"
+
+#: views\cloudscape\delete_success.php:5
+msgid "Go to all cloudscapes"
+msgstr "Fortsæt til alle cloudscapes"
+
+#: views\blog_comment\delete_success.php:3
+msgid "Go to the blog post"
+msgstr "Fortsæt til blogindlægget"
+
+#: views\cloud_comment\delete_success.php:5
+#: views\content\delete_success.php:5
+msgid "Go to the cloud"
+msgstr "Fortsæt til clouden"
+
+#: views\cloudscape\edit_picture_success.php:12
+msgid "Go to the Cloudscape"
+msgstr "Fortsæt til cloudscapet"
+
+#: views\auth\change_password_success.php:3
+#: views\user\edit_picture_success.php:6
+msgid "Go to your profile"
+msgstr "Fortsæt til din profil"
+
+#: views\email\new_password_email.php:3
+msgid "Here is your new login information:"
+msgstr "Her er din nye login-information:"
+
+#: views\cloudscape\edit.php:48
+msgid "Hexcode for background colour for headings"
+msgstr "Hexadecimalkode til baggrundsfarve på overskrifter"
+
+#: views\cloud\options_block.php:8
+#: views\cloudscape\options_block.php:10
+msgid "Hide"
+msgstr "Skjul"
+
+#. /Translators: primary navigation links, so only space for single words.
+#: views\layout\_site-header.php:16
+#: views\layout\_site-header.php:18
+msgid "Home"
+msgstr ""
+
+#: views\user\user_edit.php:23
+msgid "Home page"
+msgstr ""
+
+#: controllers\home.php:41
+#: controllers\user.php:394
+#: views\user\edit.php:14
+msgid "Homepage"
+msgstr ""
+
+#: views\events\calls.php:31
+#: views\events\calls_archive.php:30
+msgid "How can I add a deadline?"
+msgstr "Hvordan tilføjer jeg en deadline?"
+
+#: views\events\list.php:43
+#: views\events\list_past.php:43
+msgid "How can I add an event?"
+msgstr "Hvordan kan jeg tilføje et arrangement?"
+
+#: views\cloudscape\edit.php:53
+msgid "If it is successful, we'll extend the feature, including adding a colour picker to the user interface here."
+msgstr "Hvis denne funktion bliver populær, vil vi udvide den, blandt andet med en farvevælger."
+
+#: views\cloud\edit.php:52
+msgid "If this cloud is for a call of papers or for a call for book chapters, please enter the deadline here for it to appear in the diary."
+msgstr "Hvis denne cloud annoncerer efter bidrag til udgivelser, så angiv venligst en deadline, som vil blive vist i oversigten."
+
+#: views\cloudscape\edit.php:59
+msgid "If this cloudscape is for a conference or other event, please add the following information:"
+msgstr "Hvis dette cloudscape er knyttet til en konference eller andet arrangement, så angiv venligst supplerende information:"
+
+#: views\error\error_db.php:4
+msgid "If this problem persists, please contact !email!"
+msgstr "Kontakt venligst !email!, hvis problemet fortsætter."
+
+#: views\cloudscape\edit_picture.php:20
+msgid "If you are interested in your cloudscape being featured on the home page, please make your image as close to !dimensions pixels as possible."
+msgstr ""
+
+#: views\auth\register_form.php:94
+msgid "If you are unable to read the letters, please e-mail !email! so that we can register you manually."
+msgstr ""
+
+#: views\email\forgotten_password_email.php:10
+msgid "If you did not make this request please ignore this e-mail."
+msgstr ""
+
+#: views\cloudscape\edit.php:51
+msgid "If you specify the hexidecimal code of a colour then the background colour of headings for the cloudscape will be displayed as that colour."
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:28
+msgid "If you want to use an image from a site like !link, please check the owner of the image gives permission for re-use, and provide attribution if required."
+msgstr "Hvis du vil bruge et billede fra en webside som !link, så undersøg venligst, om billedets ophav tillader brug af billedet og angiv kilde hvis dette kræves."
+
+#: views\cloudscape\featured_cloudscapes.php:11
+msgid "image by !person"
+msgstr "billedets ophav er !person"
+
+#: views\cloudscape\cloudscape_image.php:5
+msgid "Image by !person"
+msgstr "Billedets ophav er !person"
+
+#: views\cloudscape\edit_picture.php:16
+msgid "Image File"
+msgstr "Billedfil"
+
+#: views\cloud\improve_this_cloud_block.php:1
+msgid "Improve this cloud"
+msgstr "Gør denne cloud bedre"
+
+#: views\cloud\cloudscapes_block.php:1
+msgid "In Cloudscapes"
+msgstr "I cloudscapes"
+
+#: controllers\auth.php:110
+#: controllers\user.php:390
+#: views\auth\register_form.php:40
+#: views\user\user_edit.php:17
+#: views\user\view.php:38
+msgid "Institution"
+msgstr "Institution"
+
+#: views\user\edit.php:24
+msgid "Institution !required"
+msgstr "Institution !required"
+
+#: views\cloud\favourited.php:9
+#: views\user\favourites.php:44
+msgid "institutions"
+msgstr "institutioner"
+
+#: controllers\user.php:182
+#: views\user\institution_list.php:2
+msgid "Institutions"
+msgstr "Institutioner"
+
+#: views\auth\forgotten_password_success.php:3
+msgid "Instructions for resetting your password have just been emailed to you."
+msgstr "Instruktioner til nulstilling af dit password er blevet sendt til dig som email."
+
+#: views\cloud\list.php:25
+#: views\cloudscape\cloudscape_list.php:27
+msgid "Introduction"
+msgstr "Introduktion"
+
+#: controllers\message.php:319
+msgid "Invalid usernames:"
+msgstr "Ugyldige brugernavne:"
+
+#: views\cloud\edit.php:72
+msgid "It is not currently possible to directly upload files to this site. However you can upload your files to another site and then link to the file here."
+msgstr "Det er ikke muligt at uploade filer direkte til denne side. Du kan i stedet uploade filen til en anden webtjeneste og indsætte et link til den her."
+
+#: controllers\tag.php:39
+#: views\tag\view.php:4
+msgid "Items tagged !tag"
+msgstr ""
+
+#: views\auth\register_form.php:1
+msgid "Join !site-name!"
+msgstr ""
+
+#: views\user\edit_picture.php:16
+msgid "JPG, GIF, or PNG formats."
+msgstr "Formater: JPG, GIF eller PNG."
+
+#: views\cloudscape\edit_picture.php:24
+msgid "JPG, GIF, or PNG image formats."
+msgstr "Billedformater: JPG, GIF eller PNG."
+
+#: libraries\MY_Language.php:346
+msgid "Kilo Bytes"
+msgstr "Kilobytes"
+
+#: views\admin\pages\index.php:13
+#: views\admin\pages\index.php:27
+msgid "language"
+msgstr "sprog"
+
+#: controllers\admin.php:236
+#: controllers\admin.php:269
+msgid "Language"
+msgstr "Sprog"
+
+#: views\message\list.php:36
+msgid "Last message"
+msgstr "Seneste besked"
+
+#: views\cloud_comment\latest_comments.php:1
+msgid "Latest comments"
+msgstr "Seneste kommentarer"
+
+#: views\cloud\edit.php:47
+msgid "Link"
+msgstr "Link"
+
+#: views\cloud\view.php:63
+#: views\cloud\view.php:66
+#: views\event\header.php:9
+#: views\event\home_header.php:6
+#: views\statistics\stats.php:16
+msgid "Links"
+msgstr "Links"
+
+#: views\event\home_header.php:6
+#: views\event\home_header.php:7
+msgid "Links Activity"
+msgstr ""
+
+#: views\layout\language_menu.php:16
+msgid "Load"
+msgstr "Indlæs"
+
+#: views\cloudscape\edit.php:68
+msgid "Location"
+msgstr ""
+
+#: views\auth\login_block.php:2
+#: views\auth\login_block.php:14
+#: views\auth\login_form.php:21
+#: views\user\login_block.php:2
+#: views\user\login_block.php:16
+msgid "Log in"
+msgstr "Log ind"
+
+#: controllers\auth.php:51
+#: views\auth\login_form.php:1
+msgid "Login"
+msgstr "Login"
+
+#: views\cloudscape\permissions.php:13
+msgid "Make cloudscape closed"
+msgstr ""
+
+#: views\cloudscape\permissions.php:18
+msgid "Make cloudscape open"
+msgstr ""
+
+#: views\link\link_block.php:20
+msgid "make primary"
+msgstr ""
+
+#: views\cloudscape\view.php:85
+msgid "Manage clouds"
+msgstr ""
+
+#: views\cloudscape\manage_clouds.php:1
+#: views\cloudscape\manage_sections.php:1
+msgid "Manage clouds for the cloudscape !title"
+msgstr ""
+
+#: controllers\cloudscape.php:492
+msgid "Manage Cloudscape Permissions"
+msgstr ""
+
+#: controllers\admin.php:158
+#: views\admin\index.php:6
+msgid "Manage featured cloudscapes"
+msgstr ""
+
+#: controllers\gadget.php:170
+#: views\gadget\manage.php:2
+msgid "Manage Google Gadgets"
+msgstr ""
+
+#: views\gadget\gadget_block.php:71
+msgid "Manage Google gadgets added to all your clouds"
+msgstr "Administrer Google gadgets knyttet til alle dine clouds"
+
+#: views\admin\pages\index.php:1
+msgid "Manage pages"
+msgstr "Administrer sider"
+
+#: controllers\admin.php:217
+#: views\admin\index.php:8
+msgid "Manage Pages"
+msgstr "Administrer sider"
+
+#: views\cloudscape\view.php:86
+msgid "Manage sections"
+msgstr "Administrer sektioner"
+
+#: views\cloudscape\options_block.php:26
+msgid "Mark as attended"
+msgstr "Angiv, at du har deltaget"
+
+#: views\cloudscape\options_block.php:26
+msgid "Mark as attending"
+msgstr "Angiv, at du deltager"
+
+#: views\cloudscape\options_block.php:24
+msgid "Mark as not attended"
+msgstr "Angiv, at du ikke har deltaget"
+
+#: views\cloudscape\options_block.php:24
+msgid "Mark as not attending"
+msgstr "Angiv, at du ikke deltager"
+
+#: views\message\list.php:20
+msgid "Mark read"
+msgstr "marker som læst"
+
+#: views\message\list.php:19
+#: views\message\thread.php:19
+msgid "Mark unread"
+msgstr "Marker som ulæst"
+
+#: views\user\edit_picture.php:19
+msgid "Maximum dimensions (in pixels): !dimensions"
+msgstr "Maksimal størrelse (i pixels): !dimensions"
+
+#. /Translators: There is an opportunity to translate 'KB' (Kilo Bytes) separately.
+#: views\cloudscape\edit_picture.php:23
+msgid "Maximum file-size of !sizeKB."
+msgstr "Maksimal filstørrelse på !sizeKB."
+
+#: views\user\edit_picture.php:15
+msgid "Maximum size of !sizeKB."
+msgstr "Maksimal størrelse på !sizeKB."
+
+#: controllers\cloudscape.php:954
+#: controllers\message.php:276
+#: views\message\compose.php:89
+msgid "Message"
+msgstr "besked"
+
+#: views\cloudscape\email_attendees.php:16
+msgid "Message !required!"
+msgstr "Besked !required!"
+
+#: controllers\message.php:193
+#: controllers\message.php:337
+msgid "Message sent successfully"
+msgstr "Beskeden blev sendt"
+
+#: controllers\message.php:48
+msgid "Message successfully deleted"
+msgstr "Beskeden blev slettet"
+
+#: views\layout\_site-header.php:52
+#: views\layout\_site-header.php:54
+#: views\message\list.php:5
+#: views\message\list.php:39
+msgid "Messages"
+msgstr "Beskeder"
+
+#: controllers\message.php:260
+msgid "Messages - Compose"
+msgstr "Beskeder - Opret"
+
+#: controllers\message.php:202
+msgid "Messages - Conversation"
+msgstr ""
+
+#: controllers\message.php:106
+msgid "Messages - Inbox"
+msgstr "Beskeder - Indbakke"
+
+#: controllers\admin.php:123
+msgid "Moderate"
+msgstr ""
+
+#: views\admin\index.php:4
+msgid "Moderate clouds, cloudscapes and comments"
+msgstr ""
+
+#: helpers\format_helper.php:58
+msgid "moments ago"
+msgstr "for lidt siden"
+
+#: views\event\user_block.php:11
+msgid "More"
+msgstr ""
+
+#: views\event\cloudscape_block.php:8
+#: views\event\site_block.php:8
+msgid "More activity"
+msgstr ""
+
+#: views\cloudscape\featured_cloudscapes.php:24
+msgid "More featured Cloudscapes"
+msgstr ""
+
+#: views\content\content_block.php:26
+msgid "Move to comment"
+msgstr "Flyt til kommentar"
+
+#: views\cloud_comment\cloud_comments.php:28
+msgid "Move to content"
+msgstr "Flyt til indhold"
+
+#: views\user\edit.php:9
+msgid "Name !required"
+msgstr "Navn !required"
+
+#: models\event_model.php:474
+msgid "New blog post by !person"
+msgstr "Nyt blogindlæg af !person"
+
+#: models\event_model.php:386
+msgid "new cloud created by !person"
+msgstr ""
+
+#: views\cloud\new.php:2
+#: views\cloud\newest_clouds.php:2
+msgid "New Clouds"
+msgstr ""
+
+#: models\event_model.php:433
+msgid "new cloudscape created by !person"
+msgstr ""
+
+#: views\cloudscape\new_cloudscapes.php:2
+msgid "New Cloudscapes"
+msgstr ""
+
+#: models\event_model.php:457
+msgid "new comment on the cloud !cloud by !person"
+msgstr ""
+
+#: models\event_model.php:603
+msgid "new content on !title by !person"
+msgstr ""
+
+#: models\event_model.php:625
+#: models\event_model.php:634
+msgid "new embedded content added to the cloud !title by !person"
+msgstr "nyt indlejret materiale er blevet tilknyttet clouden !title af !person"
+
+#: models\event_model.php:544
+msgid "new link on !title added by !person"
+msgstr "nyt link tilføjet på !title af !person"
+
+#: controllers\auth.php:222
+#: views\auth\change_password_form.php:9
+#: views\email\new_password_email.php:9
+msgid "New Password"
+msgstr "Nyt password"
+
+#: views\user\edit_picture_success.php:3
+msgid "New profile picture"
+msgstr "Nyt profilbillede"
+
+#: views\cloudscape\rename_section.php:5
+msgid "New section name"
+msgstr "Nyt sektionsnavn"
+
+#: views\site_news_block.php:4
+msgid "News"
+msgstr "Nyheder"
+
+#: views\admin\site_news_form.php:6
+msgid "News content to appear on box on home page"
+msgstr ""
+
+#: views\cloudscape\permissions.php:36
+msgid "No admins set"
+msgstr ""
+
+#: views\cloudscape\manage_sections.php:24
+msgid "No clouds in this section."
+msgstr "Der er ingen clouds i denne sektion."
+
+#: views\cloudscape\cloud_block.php:36
+#: views\cloudscape\manage_clouds.php:23
+#: views\favourite\popular.php:20
+#: views\search\results.php:19
+#: views\tag\view.php:20
+#: views\user\clouds_block.php:17
+msgid "No clouds yet"
+msgstr ""
+
+#: views\cloudscape\cloudscape_list.php:43
+msgid "No cloudscapes"
+msgstr ""
+
+#: views\favourite\popular.php:33
+#: views\search\results.php:34
+#: views\tag\view.php:34
+#: views\user\cloudscapes_block.php:10
+msgid "No cloudscapes yet"
+msgstr ""
+
+#: controllers\message.php:94
+msgid "No conversations selected"
+msgstr ""
+
+#: views\event\event_stream.php:10
+msgid "No events"
+msgstr "Ingen arrangementer"
+
+#: views\event\admin.php:11
+#: views\event\cloudscape.php:12
+#: views\event\following.php:11
+#: views\event\site.php:11
+#: views\event\user.php:12
+msgid "No events in this cloudstream."
+msgstr "Ingen arrangementer i denne cloudstream."
+
+#: views\cloudscape\followers_block.php:13
+#: views\user\followers_block.php:14
+msgid "No followers yet"
+msgstr ""
+
+#: views\cloudscape\permissions.php:54
+msgid "No posters set"
+msgstr ""
+
+#: views\cloudscape\permissions.php:59
+msgid "No results found for !item"
+msgstr ""
+
+#: views\cloudscape\add_cloud.php:3
+msgid "No results found for !search"
+msgstr "Der blev ingen resultater fundet for !search"
+
+#: views\cloudscape\manage_sections.php:29
+msgid "No sections yet"
+msgstr "der er ingen sektioner endnu"
+
+#: views\api\suggest_response.php:23
+#: views\api\suggest_response.php:33
+msgid "No suggestions"
+msgstr "Der er ingen forslag"
+
+#: views\cloudscape\tweets.php:13
+#: views\user\tweets.php:19
+msgid "No tweets"
+msgstr "Ingen tweets"
+
+#: views\search\results.php:46
+#: views\tag\view.php:44
+msgid "No users yet"
+msgstr "Der er ingen brugere endnu"
+
+#: views\user\following_block.php:17
+msgid "Not following anybody yet"
+msgstr ""
+
+#: views\user\preferences.php:22
+msgid "Notify me by e-mail when I receive a new message"
+msgstr ""
+
+#: views\user\preferences.php:15
+msgid "Notify me by e-mail when somebody follows me"
+msgstr ""
+
+#: views\user\preferences.php:17
+msgid "Notify me by e-mail when someone comments on a cloud on which I have already commented"
+msgstr ""
+
+#: views\user\preferences.php:16
+msgid "Notify me by e-mail when someone comments on one of my clouds"
+msgstr ""
+
+#: views\user\preferences.php:11
+#: views\user\preferences.php:52
+msgid "Off"
+msgstr "Slået fra"
+
+#: controllers\auth.php:220
+#: views\auth\change_password_form.php:5
+msgid "Old Password"
+msgstr "Tidligere password"
+
+#: views\user\preferences.php:10
+#: views\user\preferences.php:44
+msgid "On"
+msgstr "Om"
+
+#: models\event_model.php:594
+msgid "on !title by !person"
+msgstr "on !title af !person"
+
+#: models\event_model.php:565
+msgid "on the cloud !title by !person"
+msgstr "om clouden !title af !person"
+
+#: views\email\message_reply_notification.php:5
+msgid "Once logged in you can view the conversation by following this link: !link"
+msgstr ""
+
+#: views\email\message_new_notification.php:5
+msgid "Once logged in you can view the new message by following this link: !link"
+msgstr ""
+
+#. /Translators: Cloudscape permission, "Open" for anybody.
+#: views\cloudscape\permissions.php:11
+msgid "Open"
+msgstr ""
+
+#. /Translators: The form field is optional.
+#: views\embed\edit.php:16
+#: views\embed\edit.php:20
+#: views\gadget\add_form.php:13
+msgid "optional"
+msgstr "valgfrit"
+
+#: views\cloudscape\permissions.php:7
+msgid "Owner"
+msgstr ""
+
+#: controllers\admin.php:237
+#: controllers\admin.php:270
+#: views\admin\pages\add.php:30
+#: views\admin\pages\edit.php:22
+msgid "Page Body"
+msgstr ""
+
+#: views\admin\pages\delete_success.php:1
+msgid "Page deleted"
+msgstr ""
+
+#: views\admin\pages\add.php:25
+#: views\admin\pages\edit.php:17
+msgid "Page Language (put 'en' for English)"
+msgstr ""
+
+#: controllers\admin.php:234
+#: controllers\admin.php:267
+msgid "Page name"
+msgstr ""
+
+#: views\admin\pages\add.php:15
+msgid "Page name. This will be used to determine the URL of the page so this should be short with no spaces."
+msgstr ""
+
+#: views\admin\pages\edit.php:7
+msgid "Page name. This will be used to determine the URL of the page so this should be short with no spaces. If you change this you may break any links to the page."
+msgstr ""
+
+#: controllers\error_page.php:23
+msgid "Page not found"
+msgstr ""
+
+#: views\error\error_404.php:1
+msgid "Page Not Found"
+msgstr ""
+
+#: views\admin\pages\add_success.php:1
+#: views\admin\pages\edit_success.php:1
+msgid "Page saved"
+msgstr ""
+
+#: controllers\admin.php:249
+#: controllers\admin.php:281
+msgid "Page Saved"
+msgstr ""
+
+#: controllers\admin.php:235
+#: controllers\admin.php:268
+#: views\admin\pages\add.php:20
+#: views\admin\pages\edit.php:12
+msgid "Page Title"
+msgstr ""
+
+#: views\message\list.php:38
+#: views\message\thread.php:35
+msgid "Participants"
+msgstr ""
+
+#: controllers\auth.php:113
+#: views\auth\login_block.php:11
+#: views\auth\login_form.php:11
+#: views\auth\register_form.php:67
+#: views\user\login_block.php:12
+msgid "Password"
+msgstr ""
+
+#: views\auth\change_password_success.php:1
+msgid "Password changed"
+msgstr ""
+
+#: controllers\auth.php:115
+msgid "Password Confirm"
+msgstr ""
+
+#: views\auth\change_password_failed.php:1
+msgid "Password incorrect"
+msgstr ""
+
+#: views\auth\new_password_success.php:1
+msgid "Password Reset"
+msgstr ""
+
+#. /Translators: ** The VIEWS/AUTHENTICATION section. **
+#: views\auth\forgotten_password_failed.php:2
+#: views\auth\new_password_failed.php:1
+msgid "Password Reset Failed"
+msgstr ""
+
+#: views\events\calls.php:8
+msgid "Past deadlines"
+msgstr ""
+
+#: views\events\calls_archive.php:3
+msgid "Past Deadlines"
+msgstr ""
+
+#: views\events\list.php:48
+msgid "Past events"
+msgstr "Tidligere arrangementer"
+
+#: views\events\list_past.php:3
+msgid "Past Events"
+msgstr "Tidligere arrangementer"
+
+#: views\cloud\favourited.php:9
+#: views\user\favourites.php:44
+msgid "people"
+msgstr ""
+
+#: controllers\user.php:281
+#: views\layout\_site-header.php:63
+#: views\layout\_site-header.php:65
+msgid "People"
+msgstr ""
+
+#: views\cloudscape\view.php:84
+msgid "Permissions"
+msgstr ""
+
+#: views\cloudscape\permissions.php:2
+msgid "Permissions for the cloudscape !title"
+msgstr ""
+
+#: views\cloud\edit.php:80
+msgid "Photos: !site_link"
+msgstr ""
+
+#: views\blog_comment\display.php:33
+#: views\cloud_comment\cloud_comments.php:47
+msgid "Please [link-log]log in[/link] to post a comment. [link-join]Register here[/link] if you haven't signed up yet."
+msgstr ""
+
+#: views\cloudscape\email_attendees.php:9
+msgid ""
+"Please bear in mind that complicated formatting in the message of the email,\n"
+"such as tables, may not display correctly when the e-mail is sent out."
+msgstr ""
+
+#: views\email\new_password_email.php:13
+msgid "Please change this password as soon as possible by logging in with this new information and then going to the following link:"
+msgstr ""
+
+#: views\cloudscape\edit.php:16
+msgid "Please enter a start date as well as an end date."
+msgstr ""
+
+#: views\cloudscape\edit.php:17
+msgid "Please enter a start date that is before the end date."
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:27
+#: views\user\edit_picture.php:18
+msgid "Please make sure you have permission to use the photo you upload."
+msgstr ""
+
+#: controllers\auth.php:320
+msgid "Please retype the letters in the image below"
+msgstr ""
+
+#: views\auth\register_form.php:93
+msgid "Please type the letters. "
+msgstr ""
+
+#: views\reference\add.php:7
+msgid "Please use the [link-ref]Harvard system of referencing[/link] if possible."
+msgstr ""
+
+#: views\cloud\popular_block.php:2
+msgid "Popular"
+msgstr ""
+
+#: controllers\favourite.php:24
+#: views\favourite\popular.php:4
+msgid "Popular Clouds and Cloudscapes"
+msgstr ""
+
+#: views\tag\tag_cloud.php:3
+msgid "Popular Tags"
+msgstr ""
+
+#: views\blog_comment\display.php:28
+#: views\cloud_comment\cloud_comment_block.php:6
+msgid "Post a comment"
+msgstr ""
+
+#: views\blog_comment\add.php:6
+#: views\cloud_comment\add.php:6
+msgid "Post comment"
+msgstr ""
+
+#: views\blog\archive.php:25
+#: views\blog\view.php:22
+msgid "Posted by !person on !date"
+msgstr ""
+
+#. /Translators: Cloudscape "posters" - people who can add clouds to closed Cloudscapes.
+#: views\cloudscape\permissions.php:40
+msgid "Posters"
+msgstr ""
+
+#: views\layout\footer.php:7
+#: views\layout_install.php:8
+msgid "Powered by !name, open-source social software"
+msgstr ""
+
+#: views\auth\logged_in_block.php:19
+#: views\user\preferences.php:1
+msgid "Preferences"
+msgstr ""
+
+#: views\layout\language_menu.php:9
+msgid "Preferred language"
+msgstr ""
+
+#: views\user\edit_picture_success.php:1
+msgid "Profile picture edited"
+msgstr "Profilbillede redigeret"
+
+#: controllers\event.php:40
+#: controllers\event.php:63
+#: controllers\event.php:65
+#: views\event\site.php:2
+msgid "Public Cloudstream"
+msgstr ""
+
+#: views\admin\index.php:25
+msgid "Recalculate Popular Clouds and Cloudscapes"
+msgstr ""
+
+#: views\user\preferences.php:18
+msgid "Receive occasional e-mails from the !site-name! team"
+msgstr ""
+
+#: views\link\link_block.php:28
+msgid "recommend"
+msgstr ""
+
+#: controllers\cloud.php:519
+#: views\reference\add.php:6
+msgid "Reference"
+msgstr ""
+
+#: models\event_model.php:574
+msgid "reference added to the cloud !title by !person"
+msgstr "reference tilføjet til clouden !title af !person"
+
+#: views\event\header.php:10
+#: views\event\home_header.php:7
+msgid "References"
+msgstr ""
+
+#: controllers\auth.php:101
+#: views\auth\login_form.php:27
+msgid "Register"
+msgstr ""
+
+#: views\cloudscape\manage_sections.php:19
+msgid "remove"
+msgstr ""
+
+#: views\cloudscape\permissions.php:30
+msgid "Remove as admin"
+msgstr ""
+
+#: views\cloudscape\permissions.php:48
+msgid "Remove as poster"
+msgstr ""
+
+#: views\cloudscape\manage_clouds.php:15
+msgid "remove cloud"
+msgstr ""
+
+#: views\cloudscape\manage_clouds.php:4
+msgid "Removing a cloud just removes it from the cloudscape. It does not delete the cloud."
+msgstr ""
+
+#: views\cloudscape\rename_section.php:1
+msgid "Rename '!title'"
+msgstr ""
+
+#: views\cloudscape\manage_sections.php:13
+#: views\cloudscape\rename_section.php:7
+msgid "Rename section"
+msgstr ""
+
+#: controllers\message.php:187
+#: views\message\thread.php:63
+msgid "Reply"
+msgstr ""
+
+#: views\user\view.php:28
+msgid "Reputation: !count"
+msgstr ""
+
+#: libraries\MY_Language.php:474
+#: views\link\edit.php:15
+#: views\user\edit.php:25
+#: views\user\user_edit.php:11
+msgid "required"
+msgstr "skal udfyldes"
+
+#: views\user\edit.php:9
+msgid "required - please include your surname"
+msgstr "skal udfyldes - husk både fornavn og efternavn"
+
+#: controllers\auth.php:202
+msgid "Reset forgotten password"
+msgstr ""
+
+#: views\cloudscape\permissions.php:61
+msgid "Results for !item"
+msgstr ""
+
+#: views\cloudscape\add_cloud.php:5
+#: views\user\people.php:25
+msgid "Results for !search"
+msgstr ""
+
+#: views\cloudscape\email_attendees_success.php:4
+msgid "Return to cloudscape"
+msgstr ""
+
+#: views\admin\site_news_success.php:6
+msgid "Return to the admin panel"
+msgstr ""
+
+#. /Translators: RSS Really simple syndication.
+#: views\event\admin.php:14
+#: views\event\cloudscape.php:17
+#: views\event\cloudscape_block.php:9
+#: views\event\following.php:14
+#: views\event\site.php:14
+#: views\event\site_block.php:10
+#: views\event\user.php:16
+#: views\event\user_block.php:12
+msgid "RSS"
+msgstr ""
+
+#: views\blog\news_block.php:12
+msgid "RSS !feed"
+msgstr ""
+
+#: views\tag\view.php:8
+#: views\user\user_edit.php:26
+msgid "RSS feed"
+msgstr ""
+
+#: views\admin\pages\add.php:34
+#: views\admin\pages\edit.php:26
+#: views\cloudscape\edit_picture.php:37
+#: views\user\edit.php:39
+#: views\user\edit_picture.php:21
+#: views\user\preferences.php:57
+#: views\user\user_edit.php:33
+msgid "Save"
+msgstr ""
+
+#: views\blog\edit.php:23
+msgid "Save blog post"
+msgstr ""
+
+#: views\cloud\edit.php:58
+msgid "Save Cloud"
+msgstr ""
+
+#: views\cloudscape\edit.php:73
+msgid "Save Cloudscape"
+msgstr ""
+
+#: views\blog_comment\edit.php:18
+#: views\cloud_comment\edit.php:20
+msgid "Save comment"
+msgstr ""
+
+#: views\content\edit.php:18
+msgid "Save content"
+msgstr ""
+
+#: views\embed\edit.php:25
+msgid "Save embedded content"
+msgstr ""
+
+#: views\link\edit.php:20
+msgid "Save link"
+msgstr ""
+
+#: controllers\search.php:27
+#: views\cloudscape\add_cloud.php:39
+#: views\cloudscape\permissions.php:81
+#: views\search\search_box.php:5
+#: views\search\search_box.php:7
+#: views\search\search_form.php:4
+#: views\search\search_form.php:6
+#: views\user\people.php:21
+msgid "Search"
+msgstr ""
+
+#: views\cloudscape\add_cloud.php:37
+msgid "Search cloudscapes"
+msgstr ""
+
+#: views\message\compose.php:80
+msgid "Search for recipients using the user's full name."
+msgstr ""
+
+#: controllers\search.php:51
+#: views\search\results.php:3
+msgid "Search results for '!query'"
+msgstr ""
+
+#: views\cloudscape\permissions.php:78
+msgid "Search users"
+msgstr ""
+
+#: controllers\admin.php:266
+#: views\admin\pages\add.php:7
+msgid "Section"
+msgstr ""
+
+#: views\cloudscape\add_section.php:6
+msgid "Section name"
+msgstr ""
+
+#: views\cloudscape\add_cloud_section.php:4
+msgid "Section where clouds will be added"
+msgstr "Sektion hvor clouds bliver tilføjet"
+
+#: views\auth\forgotten_password_form.php:14
+msgid "Send"
+msgstr ""
+
+#: views\cloudscape\email_attendees.php:18
+msgid "Send e-mail"
+msgstr ""
+
+#: views\message\compose.php:95
+#: views\user\view.php:24
+msgid "Send message"
+msgstr ""
+
+#: views\cloudscape\cloud_block.php:4
+#: views\event\header.php:3
+#: views\event\home_header.php:2
+msgid "Show all"
+msgstr ""
+
+#: views\event\header.php:3
+#: views\event\home_header.php:2
+msgid "Show all activity"
+msgstr ""
+
+#: views\auth\logged_in_block.php:4
+msgid "Sign out"
+msgstr ""
+
+#: views\auth\login_block.php:3
+#: views\user\login_block.php:3
+msgid "Sign up"
+msgstr ""
+
+#: views\admin\index.php:2
+msgid "Site Content"
+msgstr ""
+
+#: controllers\admin.php:201
+msgid "Site news updated"
+msgstr ""
+
+#: views\admin\site_news_success.php:1
+msgid "Site News Updated"
+msgstr ""
+
+#: views\admin\index.php:15
+#: views\statistics\stats.php:1
+msgid "Site Statistics"
+msgstr ""
+
+#: views\admin\index.php:16
+msgid "Site Statistics By Date"
+msgstr ""
+
+#: views\layout\_site-header.php:4
+msgid "Skip navigation"
+msgstr ""
+
+#: views\cloudscape\edit.php:60
+#: views\statistics\cloudscape_form_dates.php:11
+msgid "Start Date e.g. !date"
+msgstr ""
+
+#: views\admin\index.php:12
+msgid "Statistics and Admin Data"
+msgstr ""
+
+#: views\statistics\cloudscape_stats.php:2
+msgid "Statistics for !title"
+msgstr ""
+
+#: views\statistics\cloudscape_stats_dates.php:2
+msgid "Statistics for !title from !start-date to !end-date"
+msgstr ""
+
+#: controllers\cloudscape.php:953
+#: controllers\message.php:275
+#: views\message\compose.php:85
+#: views\message\list.php:37
+msgid "Subject"
+msgstr ""
+
+#: views\cloudscape\email_attendees.php:14
+msgid "Subject !required!"
+msgstr "Emne !required!"
+
+#: views\message\thread.php:69
+msgid "Submit reply"
+msgstr ""
+
+#: controllers\api.php:620
+#: views\auth\register_form.php:50
+msgid "Suggested institutions"
+msgstr ""
+
+#: views\api\suggest_response.php:10
+msgid "Suggestions"
+msgstr ""
+
+#: views\cloud\edit.php:40
+#: views\cloudscape\edit.php:29
+msgid "Summary"
+msgstr ""
+
+#: views\admin\pages\add.php:10
+#: views\layout\_site-header.php:70
+#: views\layout\_site-header.php:72
+msgid "Support"
+msgstr ""
+
+#: views\admin\pages\index.php:9
+msgid "Support Pages"
+msgstr ""
+
+#: views\embed\edit.php:31
+msgid "Supported sites for embeds"
+msgstr ""
+
+#: controllers\tag.php:23
+#: controllers\tag.php:101
+#: views\layout\_site-header.php:44
+#: views\layout\_site-header.php:46
+#: views\statistics\stats.php:12
+#: views\tag\tag_block.php:1
+msgid "Tags"
+msgstr ""
+
+#: views\tag\add.php:5
+msgid "Tags !note"
+msgstr ""
+
+#: views\layout\footer.php:6
+msgid "Terms and Conditions"
+msgstr "Regler og betingelser"
+
+#: views\cloud\edit.php:43
+msgid "Text"
+msgstr ""
+
+#: views\email\activation_email.php:4
+msgid ""
+"Thank you for registering on !site-name!. To activate your account, \n"
+"please visit the following URL:"
+msgstr "Tak for din registrering på  !site-name!. Klik venligst på dette link for at aktivere din brugerkonto:"
+
+#: views\auth\register_success.php:1
+msgid "Thank You!"
+msgstr ""
+
+#: libraries\MY_Form_validation.php:43
+msgid "The !field-name field can not exceed !count characters in length."
+msgstr ""
+
+#: libraries\MY_Form_validation.php:44
+msgid "The !field-name field does not match the !field-name field."
+msgstr ""
+
+#: libraries\MY_Form_validation.php:64
+msgid "The !field-name field has an error"
+msgstr ""
+
+#. /Translators: Form validation error messages.
+#: libraries\MY_Form_validation.php:38
+msgid "The !field-name field is required."
+msgstr "Feltet !field-name skal udfyldes."
+
+#: libraries\MY_Form_validation.php:42
+msgid "The !field-name field must be at least !count characters in length."
+msgstr ""
+
+#: libraries\MY_Form_validation.php:40
+msgid "The !field-name field must contain a valid email address"
+msgstr "Feltet !field-name skal udfyldes med en gyldig emailadresse."
+
+#: libraries\MY_Form_validation.php:41
+msgid "The !field-name field must contain a valid URL."
+msgstr ""
+
+#: libraries\MY_Form_validation.php:39
+msgid "The !field-name field must have a value."
+msgstr ""
+
+#: views\email\activation_email.php:15
+msgid "The !site-name! Team"
+msgstr ""
+
+#: views\cloud\favourited.php:2
+msgid "The cloud !title is a favourite of the following people"
+msgstr ""
+
+#: controllers\auth.php:283
+msgid "The email address is already in use."
+msgstr "Emailadressen er allerede i brug."
+
+#: views\embed\accessible_alternative.php:3
+msgid "The following alternative to this embedded content has been provided by the person who put the content on the site for accessibility reasons."
+msgstr ""
+
+#: views\gadget\accessible_alternative.php:3
+msgid "The following alternative to this Google Gadget has been provided by the person who put the gadget on the site for accessibility reasons"
+msgstr ""
+
+#: views\gadget\add_form.php:5
+msgid "The gadget will display in the right sidebar of a cloud so please make sure it is suitable dimensions for this"
+msgstr ""
+
+#: models\cloudscape_model.php:867
+msgid "The owner of this cloudscape has restricted who is allowed to add clouds to this cloudscape."
+msgstr "Ejeren af dette cloudscape har begrænset adgangen til at tilføje clouds til netop dette cloudscape."
+
+#: views\error\error_404.php:3
+msgid "The page you requested was not found."
+msgstr ""
+
+#: views\auth\change_password_failed.php:2
+msgid "The password you entered was incorrect."
+msgstr ""
+
+#: views\admin\site_news_success.php:3
+msgid "The site news has been updated successfully."
+msgstr ""
+
+#: views\link\edit.php:11
+msgid "The URL specified has already been added as a link to this cloud"
+msgstr "Den angivne URL er allerede blevet tilføjet som link til denne cloud"
+
+#: controllers\cloud.php:450
+msgid ""
+"The URL you have specified uses a URL shortener. Please give the original URL\n"
+"instead since URLs from URL shorteners may not exist forever."
+msgstr ""
+
+#: libraries\MY_Form_validation.php:47
+msgid "The URL you have specified uses a URL shortener. Please give the original URL instead since URLs from URL shorteners may not exist forever."
+msgstr ""
+
+#: controllers\auth.php:265
+msgid "The username is already in use."
+msgstr ""
+
+#: views\auth\logged_in_block.php:15
+msgid "There are curently <b>!U users</b> and <b>!G guests</b> online."
+msgstr ""
+
+#: views\cloudscape\permissions.php:17
+msgid "This cloudscape is <b>not</b> open for anybody to post clouds to."
+msgstr ""
+
+#: views\cloudscape\permissions.php:12
+msgid "This cloudscape is open for anybody to post clouds to."
+msgstr ""
+
+#: views\cloudscape\email_attendees.php:6
+msgid ""
+"This event has !people marked as attending. Submitting this form will send\n"
+"an e-mail to all of these attendees who have not opted out of such e-mails"
+msgstr ""
+"Dette arrangement har !people tilmeldinger. Med denne formular kan du\n"
+"sende en email til alle tilmeldte, som ikke har fravalgt sådanne emails."
+
+#: views\cloudscape\email_attendees.php:21
+msgid "This event has no attendees yet"
+msgstr "Dette arrangement har endnu ingen tilmeldinger"
+
+#: views\cloudscape\edit.php:50
+msgid "This is an experimental feature."
+msgstr ""
+
+#: views\cloudscape\edit_picture.php:25
+msgid "This is an experimental feature. If you have any problems, please contact us at !email!"
+msgstr ""
+
+#: views\email\activation_email.php:12
+msgid "This URL will work for one week. After activating your account you can login with your username, !username."
+msgstr "Dette link kan bruges i en uge. Når du har aktiveret din brugerkonto, kan du logge ind med brugernavnet !username."
+
+#: controllers\user.php:322
+msgid "This user does not exist"
+msgstr ""
+
+#: controllers\blog.php:84
+#: controllers\blog.php:127
+#: controllers\cloud.php:219
+#: controllers\cloud.php:307
+#: controllers\cloud.php:393
+#: controllers\cloudscape.php:191
+#: controllers\cloudscape.php:269
+#: controllers\cloudscape.php:702
+#: controllers\cloudscape.php:764
+#: views\blog\edit.php:17
+#: views\cloud\list.php:24
+#: views\cloudscape\cloudscape_list.php:26
+#: views\cloudscape\edit.php:24
+#: views\user\cloud_list.php:13
+msgid "Title"
+msgstr ""
+
+#: views\embed\edit.php:15
+msgid "Title !optional"
+msgstr ""
+
+#. /Translators: The form field is optional.
+#: views\link\edit.php:14
+msgid "Title !required"
+msgstr "Titel !required"
+
+#: views\cloud\edit.php:37
+msgid "Title !required!"
+msgstr "Titel !required!"
+
+#: controllers\message.php:274
+#: views\message\compose.php:81
+msgid "To"
+msgstr ""
+
+#: views\events\calls.php:32
+#: views\events\calls_archive.php:31
+msgid "To add a deadline to this list, [link-add]create a cloud[/link] for the item with a deadline, then edit the cloud to add the deadline."
+msgstr "To add a deadline to this list, [link-add]create a cloud[/link] for the item with a deadline, then edit the cloud to add the deadline."
+
+#: views\events\list.php:44
+#: views\events\list_past.php:44
+msgid "To add an event to this list, [link-add]create a cloudscape[/link] for the event and add the dates and location when you create the cloudscape."
+msgstr "For at tilføje et arrangement til denne liste, må du [link-add]oprette et cloudscape[/link] for arrangementet og angive tid og sted, når du oprettet cloudscapet."
+
+#: views\admin\site_news_form.php:4
+msgid "To remove the site news block, leave empty, making sure that the HTML for the news is also empty"
+msgstr ""
+
+#: views\admin\pages\index.php:5
+msgid "To view pages not in the current language, change the current language to the language of the page that you wish to view"
+msgstr ""
+
+#. /Translators: 'Top 10' etc.
+#: views\tag\tag_cloud.php:13
+msgid "Top !count"
+msgstr ""
+
+#: views\cloudscape\view.php:41
+msgid "Tweets"
+msgstr ""
+
+#: views\user\tweets.php:3
+msgid "Tweets for !name"
+msgstr ""
+
+#: views\cloudscape\tweets.php:2
+msgid "Tweets for !tag"
+msgstr ""
+
+#: views\cloudscape\edit.php:41
+msgid "Twitter only stores tweets for a hashtag for a limited period of time. If you want to archive them for longer, you can use !link."
+msgstr ""
+
+#: views\cloudscape\edit.php:36
+msgid "Twitter tag"
+msgstr ""
+
+#: views\user\edit.php:30
+#: views\user\user_edit.php:29
+msgid "Twitter username"
+msgstr ""
+
+#: controllers\user.php:392
+msgid "Twitter Username"
+msgstr ""
+
+#: views\cloud\options_block.php:20
+#: views\cloudscape\options_block.php:31
+msgid "Unfavourite"
+msgstr ""
+
+#: views\cloud\options_block.php:13
+#: views\cloudscape\options_block.php:15
+#: views\user\view.php:21
+msgid "Unfollow"
+msgstr ""
+
+#: views\events\calls.php:3
+#: views\events\calls_archive.php:8
+msgid "Upcoming deadlines"
+msgstr ""
+
+#: views\events\list.php:51
+msgid "Upcoming Deadlines"
+msgstr ""
+
+#: views\admin\index.php:24
+msgid "Update search index"
+msgstr ""
+
+#: controllers\admin.php:204
+#: views\admin\index.php:7
+#: views\admin\site_news_form.php:8
+msgid "Update Site News"
+msgstr ""
+
+#: controllers\cloud.php:394
+#: controllers\embed.php:31
+#: controllers\gadget.php:47
+#: controllers\gadget.php:82
+#: views\link\edit.php:17
+msgid "URL"
+msgstr ""
+
+#: views\embed\edit.php:18
+msgid "URL !required!"
+msgstr "URL !required!"
+
+#: views\gadget\add_form.php:10
+msgid "URL of the XML file for the Google Gadget !required!"
+msgstr "URLen til XML-filen for denne Google Gadget !required!"
+
+#: views\gadget\manage.php:3
+msgid "Use this page to manage the Google Gadgets that are added to all your clouds"
+msgstr "På denne side kan du administrere de Google Gadgets, der er tilføjet til alle dine clouds"
+
+#: views\email\new_password_email.php:6
+msgid "User name"
+msgstr ""
+
+#: controllers\auth.php:104
+#: views\auth\change_password_form.php:4
+#: views\auth\login_block.php:8
+#: views\auth\login_form.php:4
+#: views\auth\register_form.php:13
+#: views\user\login_block.php:9
+msgid "Username"
+msgstr ""
+
+#: controllers\auth.php:47
+msgid "Username or password is not recognised"
+msgstr ""
+
+#: controllers\user.php:295
+#: views\search\results.php:36
+#: views\tag\view.php:36
+#: views\user\user_list.php:2
+msgid "Users"
+msgstr ""
+
+#: views\cloud\edit.php:78
+msgid "Videos: !site_link"
+msgstr ""
+
+#: views\admin\pages\index.php:15
+#: views\admin\pages\index.php:29
+msgid "View"
+msgstr ""
+
+#: views\gadget\gadget_block.php:32
+#: views\gadget\gadget_block.php:66
+msgid "View accessible alternative to this gadget"
+msgstr ""
+
+#: views\cloud\active.php:12
+#: views\cloud\new.php:11
+msgid "View all !count Clouds"
+msgstr ""
+
+#: views\user\clouds_block.php:14
+msgid "View all (!total)"
+msgstr ""
+
+#: views\events\attendees_block.php:14
+msgid "View all attendees"
+msgstr "Vis alle tilmeldte"
+
+#: views\cloudscape\followers_block.php:11
+#: views\user\followers_block.php:12
+msgid "View all followers"
+msgstr ""
+
+#: views\user\following_block.php:15
+msgid "View all following"
+msgstr ""
+
+#: views\cloudscape\featured_cloudscapes.php:7
+msgid "View Cloudscape: "
+msgstr ""
+
+#: views\admin\stats.php:24
+#: views\admin\stats_dates_results.php:34
+#: views\statistics\stats.php:24
+#: views\statistics\stats_dates_results.php:35
+msgid "View data between specific dates"
+msgstr ""
+
+#: views\statistics\cloudscape_form.php:11
+#: views\statistics\cloudscape_form_dates.php:19
+msgid "View Statistics"
+msgstr ""
+
+#: views\statistics\cloudscape_form.php:1
+#: views\statistics\cloudscape_form_dates.php:2
+msgid "View statistics for specific cloudscape"
+msgstr ""
+
+#: views\admin\site_news_success.php:5
+msgid "View the site news on the home page"
+msgstr ""
+
+#: views\embed\edit.php:35
+msgid "Want to add an embed from a site not on the list?"
+msgstr "Vi du gerne tilføje en indlejling fra en webtjeneste, som ikke er på listen?"
+
+#: views\cloud\edit.php:68
+msgid "Want to add embedded content?"
+msgstr "Ønsker du at tilføje indlejret indhold?"
+
+#: views\auth\activation_failed.php:4
+msgid "We are sorry, but your activation has failed. Please contact !email! for assistance."
+msgstr ""
+
+#: views\auth\forgotten_password_failed.php:4
+#: views\auth\new_password_failed.php:2
+msgid "We are sorry, but your password reset has failed. Please contact !email! for assistance."
+msgstr ""
+
+#: controllers\auth.php:301
+msgid "We have no user with that e-mail address registered."
+msgstr "Der er ikke registreret nogen bruger med denne emailadresse."
+
+# Why the line break after "If"
+#: views\embed\edit.php:36
+msgid ""
+"We only allow embeds from sites that support a standard called oEmbed. If \n"
+"you want to add embeds from a site not on the list above, please ask them to support oEmbed and let us know when they have added support for it."
+msgstr ""
+"Der tillades kun indlejring af materiale fra webtjenester, som understøtter standarden oEmbed. Hvis \n"
+"du gerne vil indlejre materiale fra en webtjeneste, som ikke findes på lsiten ovenfor, så bed dem venligst op at understøtte oEmbed, og giv os besked, når de gør det."
+
+#: views\cloud\edit.php:74
+msgid "We suggest the following sites:"
+msgstr ""
+
+#: views\user\edit_picture.php:17
+msgid "We will crop the picture to a square. If you want to control how the picture will be cropped, upload a square photo."
+msgstr ""
+
+#: views\user\view.php:43
+msgid "Webpage"
+msgstr ""
+
+#: views\home.php:11
+msgid "Welcome to !site-name!, a place to share, find and discuss learning and teaching ideas and experiences."
+msgstr ""
+
+#: views\cloud\favourited.php:12
+msgid "What does 'favourite' mean?"
+msgstr ""
+
+#: views\cloud\edit.php:63
+msgid "What is a Cloud?"
+msgstr ""
+
+#: views\user\preferences.php:32
+msgid "What you see is what you get"
+msgstr ""
+
+#: views\user\view.php:16
+msgid "Whitelist"
+msgstr ""
+
+#: views\user\people.php:19
+msgid "Who are you looking for?"
+msgstr ""
+
+#: views\cloud\edit.php:76
+msgid "Word Docs, PDFs, Powerpoint presentations: !site_link"
+msgstr ""
+
+#: libraries\Auth_lib.php:275
+msgid "You are not allowed to access this page"
+msgstr ""
+
+#: controllers\cloudscape.php:945
+msgid "You are only allowed to send !count emails per hour to attendees of a specific event. Please wait and send this e-mail later."
+msgstr "Du kan kun sende !count emails in timen til deltagerne i et arrangement. Vent venligst og send denne email senere."
+
+#: views\events\list.php:52
+msgid "You can [link-ec]view deadlines here[/link]."
+msgstr ""
+
+#: views\events\list.php:49
+msgid "You can [link-ep]view past events here[/link]."
+msgstr "Du kan [link-ep]se tidligere arrangementer her[/link]."
+
+#: views\events\list_past.php:49
+msgid "You can [link-ev]view current and upcoming events here[/link]."
+msgstr "Du kan [link-ev]se aktuelle og kommende arrangementer her[/link]."
+
+#: views\cloud\edit.php:69
+msgid "You can add embedded content from sites such as Slideshare and Youtube once you have created the cloud (just click on 'add embedded content')."
+msgstr "Du kan tilføje indlejret indhold fra webtjenester som Slideshare og Youtube, når du har oprettet clouden (klik på 'tilføj indlejret indhold')."
+
+#: views\embed\edit.php:6
+msgid "You can add embedded content from supported sites by entering the URL here."
+msgstr "Du kan tilføje indlejret indhold fra understøttede webtjenester ved at tilføje en URL her."
+
+#: views\gadget\add_form.php:3
+msgid ""
+"You can add Google Gadgets to a Cloud if you know the URL of the XML file for the Google Gadget. \n"
+"Gadgets will only work if they are compatible with Google Friend Connect."
+msgstr ""
+"Du kan tilføje Google Gadgets til alle dine clouds hvis du har URLen til XML-filen for den ønskede Google Gadget. \n"
+"Gadgets virker kun hvis de er kompatible med Google Friend Connect."
+
+#: views\gadget\add_to_user.php:3
+msgid "You can add Google Gadgets to all your clouds if you know the URL of the XML file for the Google Gadget"
+msgstr "Du kan tilføje Google Gadgets til alle dine clouds hvis du har URLen til XML-filen for den ønskede Google Gadget"
+
+#: views\gadget\add_to_cloud.php:9
+msgid "You can also [link-add-to-user]add a gadget to all your clouds[/link] and [link-manage]manage the gadgets[/link] that you have added to all your clouds."
+msgstr "Du kan også [link-add-to-user]tilføje en gadget til alle dine clouds[/link] og [link-manage]administrere gadgets[/link] som du har tilføjet til alle dine clouds."
+
+#: views\gadget\manage.php:18
+msgid "You can also add and delete gadgets for individual clouds. To do this go to the page for the cloud"
+msgstr "Du kan også tilføje og slette gadgets til en enkelt cloud. Dette kan du gøre på siden med den pågældende cloud."
+
+#: views\blog\archive.php:43
+#: views\blog\view.php:32
+#: views\event\cloudscape.php:23
+#: views\event\following.php:20
+#: views\event\site.php:20
+#: views\event\user.php:22
+#: views\favourite\popular.php:43
+#: views\page\view.php:18
+#: views\search\results.php:55
+#: views\tag\tag_cloud.php:46
+#: views\tag\view.php:53
+msgid "You can also search for [link-up]people[/link] and [link-ui]institutions[/link]"
+msgstr "Du kan også søge efter [link-up]personer[/link] og [link-ui]institutioner[/link]"
+
+#: views\cloud\edit.php:66
+msgid "You can also use clouds to pose questions to the !site-name! community."
+msgstr "Du kan også bruge clouds til at rette spørgsmål til mennesker på !site-name!."
+
+#: views\events\calls.php:37
+#: views\events\calls_archive.php:36
+msgid "You can also view [link-ev]current and upcoming events here[/link] and [link-ep]past events[/link]."
+msgstr "Du kan også se [link-ev]aktuelle og kommende arrangementer[/link] og [link-ep]tidligere begivenheder[/link]."
+
+#: views\user\people.php:14
+msgid "You can search here for people who already have an account, [link-ui]browse by institution[/link] or [link-uu]browse alphabetically[/link]."
+msgstr "Her kan du søge efter personer, som allerede er brugere:·[link-ui]browse·by·institution[/link]·or·[link-uu]browse·alphabetically[/link]."
+
+#: views\email\message_new_notification.php:7
+#: views\email\message_reply_notification.php:7
+msgid "You can turn off these e-mails at !link"
+msgstr "Du kan afmelde disse emails på !link"
+
+#: controllers\cloud.php:620
+msgid ""
+"You cannot add this item as a favourite - either you created the item yourself, you have\n"
+"already favourited it or you do not have high enough reputation on the site to add favourites."
+msgstr "Kan ikke tilføjes til dine favoritter. Dette kan skyldes at det er noget, du selv har oprettet, noget du allerede har i dine favoritter, eller at du endnu ikke er så velkendt på siden, så du har adgang til at oprette favoritter."
+
+#: models\cloudscape_model.php:854
+msgid "You do not have admin permissions for that cloudscape"
+msgstr "Du har ikke adgang som administrator for dette cloudscape."
+
+#: models\cloud_model.php:178
+msgid "You do not have edit permission for that cloud."
+msgstr "Du har ikke adgang til at redigere denne cloud."
+
+#: models\comment_model.php:303
+msgid "You do not have edit permission for that comment."
+msgstr "Du har ikke adgang til at ændre denne kommentar."
+
+#: models\embed_model.php:88
+msgid "You do not have edit permission for that embed."
+msgstr "Du har ikke adgang til at ændre denne indlejring."
+
+#: models\link_model.php:108
+msgid "You do not have edit permission for that link."
+msgstr "Du har ikke adgang til at ændre dette link."
+
+#: controllers\gadget.php:117
+#: controllers\gadget.php:146
+msgid "You do not have permission to view this page"
+msgstr "Du har ikke adgang til denne side"
+
+#: controllers\cloudscape.php:732
+#: controllers\cloudscape.php:759
+#: controllers\cloudscape.php:798
+#: controllers\cloudscape.php:831
+#: controllers\user.php:383
+msgid "You do not have permission to view this page."
+msgstr "Du har ikke adgang til denne side."
+
+#: views\auth\register_success.php:2
+msgid "You have just been sent an email containing account activation instructions."
+msgstr "Der er nu blevet sendt en email til dig med instruktioner til brugeroprettelsen."
+
+#: views\gadget\manage.php:12
+msgid "You have not added any gadgets to all your clouds yet"
+msgstr "Du har endnu ikke tilføjet gadgets til alle dine clouds"
+
+#: views\email\message_reply_notification.php:3
+msgid "You have received a new message on !site-link! from !person as a reply in the following conversation \"!subject\"."
+msgstr "Der er en ny besked på !site-link! fra !person som svar i tråden \"!subject\"."
+
+#: views\email\message_new_notification.php:3
+msgid "You have received a new message on !site-name! from !person titled \"!subject\"."
+msgstr "Der er en ny besked på !site-name! fra !person med titlen \"!subject\"."
+
+#: views\blog\delete_success.php:3
+msgid "You have successfully deleted the blog post '!title'."
+msgstr "Du har slettet dit blogindlæg '!title'."
+
+#: views\cloud\delete_success.php:3
+msgid "You have successfully deleted the cloud '!title'."
+msgstr "Du har slettet din cloud '!title'."
+
+#: views\cloudscape\delete_success.php:3
+msgid "You have successfully deleted the cloudscape '!title'."
+msgstr "Du har slettet dit cloudscape '!title'."
+
+#: views\blog_comment\delete_success.php:2
+#: views\cloud_comment\delete_success.php:3
+msgid "You have successfully deleted the comment."
+msgstr "Du har slettet kommentaren."
+
+#: views\content\delete_success.php:3
+msgid "You have successfully deleted the content."
+msgstr "Du har slettet indholdet."
+
+#: views\cloud\cloud_added.php:4
+msgid "You might like to [link-tag]add some tags to the cloud[/link] to help people find it or [link-view]view the cloud[/link]"
+msgstr "Du kan  [link-tag]tilføje stikord til din cloud[/link] så den bliver lettere at finde, eller [link-view]vise din cloud[/link]"
+
+#: controllers\event.php:94
+msgid "You need to be logged in to view this page."
+msgstr "Du skal være logget ind for at se denne side."
+
+#: controllers\user.php:453
+msgid "You need to be logged on to view this page"
+msgstr "Du skal være logget på for at se denne side"
+
+#: views\email\forgotten_password_email.php:3
+msgid "You or somebody else requested a password remind about your account. If you do not remember your password and want to change it, please click on the following link:"
+msgstr "Du eller en anden person har anmodet om at få dit password gensendt. Hvis du ikke kan huske dit password og ønsker at ændre det, så følg venligst dette link:"
+
+#: views\auth\change_password_success.php:2
+msgid "You password has been changed"
+msgstr "Dit password blev ændret"
+
+#: views\moderate.php:1
+msgid "Your !item is being moderated"
+msgstr "!item afventer godkendelse af moderator"
+
+#: views\auth\activation_success.php:2
+msgid "Your account has been activated. You can now login."
+msgstr "Din brugerkonto er aktiveret. Du kan nu logge ind."
+
+#: views\cloud\cloud_added.php:2
+msgid "Your cloud !title has been created!"
+msgstr "Din cloud, !title, er oprettet!"
+
+#: views\event\site_block.php:9
+msgid "Your cloudstream"
+msgstr "Din cloudstream"
+
+#: controllers\event.php:90
+msgid "Your Cloudstream"
+msgstr "Din Cloudstream"
+
+#: views\cloudscape\email_attendees_success.php:3
+msgid "Your email has been successfully sent"
+msgstr "Din email blev sendt"
+
+#: views\auth\logged_in_block.php:20
+msgid "Your Favourites"
+msgstr "Dine favoritter"
+
+#: controllers\auth.php:339
+#: controllers\user.php:490
+#: libraries\MY_Form_validation.php:45
+msgid "Your fullname must contain a space"
+msgstr "Der skal være et mellemrum i dit fulde navn"
+
+#: views\cloudscape\edit_picture_success.php:2
+msgid "Your new Cloudscape picture was uploaded"
+msgstr "Dit nye Cloudscape-billede blev uploadet"
+
+#: views\user\edit_picture_success.php:2
+msgid "Your new profile picture was uploaded"
+msgstr "Dit nye profilbillede er uploadet"
+
+#: views\admin\pages\add_success.php:2
+msgid "Your page !title has been added successfully"
+msgstr "Din side !title er blev slettet"
+
+#: views\admin\pages\delete_success.php:2
+msgid "Your page !title has been deleted successfully"
+msgstr "Din side"
+
+#: views\admin\pages\edit_success.php:2
+msgid "Your page !title has been editted successfully"
+msgstr "Ændringerne på din side !title blev gemt"
+
+#: views\auth\new_password_success.php:2
+msgid "Your password has been reset and e-mailed to you. Please change this password as soon as possible by following the link in the e-mail."
+msgstr "Dit password blev slettet, og et nyt password er blevet sendt med email. Brug venligst linket i emailen til at lave et nyt personligt password snarest muligt."
+
+#: controllers\user.php:469
+msgid "Your preferences have been saved"
+msgstr "Dine indstillinger blev gemt"
+
+#: views\auth\logged_in_block.php:18
+msgid "Your Profile"
+msgstr "Din profil"
+
