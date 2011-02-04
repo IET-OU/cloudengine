@@ -12,6 +12,20 @@
                 $use_editor = FALSE;
             }
     }
+
+
+	// Disable the rich-editor for most mobiles and tablets. EXPERIMENTAL (BB issue #131).
+	//
+	//$config['device_no_richedit_pattern'] = 'iPhone|iPod|iPad|Android|IEMobile|Opera Mini|--Firefox';
+	$device_pattern = config_item('device_no_richedit_pattern');
+	if ($device_pattern) {
+	    // Sanitize the $config variable.
+		$device_pattern = addcslashes(trim($device_pattern, '|'), '.*+?^$()<{[\>');
+		if (preg_match("/($device_pattern)/i", $_SERVER['HTTP_USER_AGENT'])) {
+			$use_editor = FALSE;
+		}
+	}
+
 ?>
 <?php if ($use_editor): ?>
 <script type="text/javascript" src="<?= base_url()?>_scripts/tiny_mce/tiny_mce.js"></script>
@@ -39,7 +53,7 @@
             remove_script_host: false,
             document_base_url: "<?=base_url() ?>",
             content_css: "<?=base_url() ?>_design/tinymce.css",
-            invalid_elements: "span,font"}); 
+            invalid_elements: "span,font"});
 </script>
 <?php endif; ?>
 
