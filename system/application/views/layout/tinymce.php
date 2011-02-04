@@ -16,8 +16,8 @@
 
 	// Disable the rich-editor for most mobiles and tablets. EXPERIMENTAL (BB issue #131).
 	//
-	//$config['device_no_richedit_pattern'] = 'iPhone|iPod|iPad|Android|IEMobile|Opera Mini|--Firefox';
-	$device_pattern = config_item('device_no_richedit_pattern');
+	//$config['device_no_richedit'] = 'iPhone|iPod|iPad|Android|IEMobile|Opera Mini|--Firefox';
+	$device_pattern = config_item('device_no_richedit');
 	if ($device_pattern) {
 	    // Sanitize the $config variable.
 		$device_pattern = addcslashes(trim($device_pattern, '|'), '.*+?^$()<{[\>');

@@ -60,8 +60,9 @@ $config['hg_path'] = '';
 // and your network requires one.
 $config['proxy'] = '';
 
-// A list of devices for which the rich editor (Tiny MCE) should be disabled (pipe | separated). EXPERIMENTAL.
-$config['device_no_richedit_pattern'] = 'iPhone|iPod|iPad|Android|IEMobile|Opera Mini';
+// A list of devices for which the rich editor (Tiny MCE) should be disabled
+// (pipe | separated).  EXPERIMENTAL.
+$config['device_no_richedit'] = 'iPhone|iPod|iPad|Android|IEMobile|Opera Mini';
 
 /**
  * Use secure password hashing. For new sites, this should be set to TRUE. Do
