@@ -1337,11 +1337,11 @@ img.message-pic-anon {
 
 .thread-list-row td.last-message-wrapper {
   padding-left:5px;
-  width:100px;
+  width:150px;
 }
 
 .thread-list-row div.last-message-author {
-
+  padding-top: 10px;
 }
 
 .thread-list-row div.last-message-date {
