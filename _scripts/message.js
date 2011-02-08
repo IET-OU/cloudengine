@@ -24,9 +24,15 @@
       $(window.location).attr('href', href);
     });
 
-    $(".thread-list-row").hover( function() { //Was:.row-click
-      $(this).css({'cursor' : 'pointer', 'background-color' : '#D2E3F3'});
-      }, function() {$(this).css({'cursor' : 'default','background-color' : ''});} 
+    $(".thread-list-row").hover( 
+      function() { //Was:.row-click
+        $(this).children().css({'cursor' : 'pointer', 'background-color' : '#D2E3F3'});
+        $(this).children(':first-child').css({'border-radius' : '10px 0 0 10px', '-webkit-border-radius' : '10px 0 0 10px', '-moz-border-radius' : '10px 0 0 10px'});   
+        $(this).children(':last-child').css({'border-radius' : '0 10px 10px 0', '-webkit-border-radius' : '0 10px 10px 0', '-moz-border-radius' : '0 10px 10px 0'});        
+      }, 
+      function() {
+        $(this).children().css({'cursor' : 'default','background-color' : ''});
+      } 
     );     
 
     $("button.delete-cross").hover( function() {
