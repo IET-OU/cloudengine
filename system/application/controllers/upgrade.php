@@ -131,6 +131,7 @@ class Upgrade extends MY_Controller {
       			
       			if (!$functions) {
       				$this->message(t("Oh dear, no upgrade functions found. This may be an error."),'warn');
+              $continue = FALSE;
       			}
             
           }
