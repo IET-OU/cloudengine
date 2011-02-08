@@ -9,7 +9,7 @@
 </style>
 <div class="upgrade">
 
-<h1> Upgrading </h1>
+<h1> Upgrade outcome </h1>
 
 <ol class="messages">
 <?php foreach ($messages as $message): ?>
@@ -24,7 +24,7 @@
   endforeach; endif; ?>
 </ol>
 
-<p><strong><?=$message_final ?></strong></p>
+<p><br/><strong><?=$message_final ?></strong></p>
 </div>
 
-<p ><?=anchor('', "Return to home page") ?>.</p>
+<p ><?=anchor('', t("Return to home page")) ?>.</p>

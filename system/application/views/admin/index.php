@@ -21,6 +21,7 @@
 <h2>Technical</h2>
 
 <ul class="arrows">
+<li><?= anchor('upgrade', t("Run site upgrade")) ?></li>
 <li><?= anchor('search/create', t("Update search index")) ?></li>
 <li><?= anchor('admin/recalculate_popular', t("Recalculate Popular Clouds and Cloudscapes")) ?></li>
 <li><?= anchor('admin/site_settings', t('Site settings and status')) ?></li>
