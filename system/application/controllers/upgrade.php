@@ -71,7 +71,7 @@ class Upgrade extends MY_Controller {
                 $message_final = t("Failed to upgrade database from version $version_db 
                                   to $version_code");
                 log_message("error", t("Failed to upgrade database from version $version_db 
-                                     to $version_code"));
+                                     to $version_code."));
             }
     
             $view_data = array(
