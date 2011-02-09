@@ -337,12 +337,13 @@ class Message extends MY_Controller {
           else {
             if ($this->form_validation->run()) {
               $thread->subject   = $this->input->post('subject');
+              $message_content   = $this->input->post('content');              
               //add user to participant list
               $thread->participants[]         = $user_id;
               //remove duplicate participant list
               $thread->participants           = array_unique($thread->participants);
               //create the new thread
-              $message->thread_id             = $this->create_thread($thread);       
+              $message->thread_id             = $this->create_thread($thread,$message_content);       
               $message->content               = $this->input->post('content');
               //add the message to the newly created thread
               $this->add_message_to_thread($message, true);
@@ -364,8 +365,8 @@ class Message extends MY_Controller {
    *
    * 
    */
-  function create_thread($thread) { 
-    
+  function create_thread($thread,$message_content) { 
+
       //initialise
         $user_id                      = $this->db_session->userdata('id');
       
@@ -390,12 +391,13 @@ class Message extends MY_Controller {
           if ($participant != $user_id) {
             $participant_profile = $this->user_model->get_user($participant); 
             if ($participant_profile->email_message_notify) {
-              $email->subject     = 'New message on '.$this->config->item('site_name');     
-              $email->recipient   = $participant_profile; 
-              $email->to          = $this->config->item('x_live') ? $email->recipient->email : 
+              $email->subject         = 'New message "' .$thread->subject .'" on '.$this->config->item('site_name') ;     
+              $email->recipient       = $participant_profile; 
+              $email->to              = $this->config->item('x_live') ? $email->recipient->email : 
                                                $this->config->item('site_email');
-              $email->thread      = $thread;
-              $email->content     = $this->load->view('email/message_new_notification', $email, true);   
+              $email->thread          = $thread;
+              $email->message_content = $message_content;
+              $email->content         = $this->load->view('email/message_new_notification', $email, true);   
               send_email($email->to, $this->config->item('site_email'), $email->subject, $email->content); 
             }
           }
@@ -440,7 +442,7 @@ class Message extends MY_Controller {
               $recipient_profile  = $this->user_model->get_user($message_recipient->user_id);        
              
               if ($recipient_profile->email_message_notify) {           
-                $email->subject     = 'New reply on '.$this->config->item('site_name');     
+                $email->subject     = 'New reply in conversation "' .$message->thread_subject .'" on '.$this->config->item('site_name');     
                 $email->recipient   = $recipient_profile; 
                 $email->to          = $this->config->item('x_live') ? $email->recipient->email : 
                                                  $this->config->item('site_email');
