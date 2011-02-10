@@ -47,6 +47,50 @@ class User extends MY_Controller {
     }	
 
     /**
+     * 'Delete' a user 
+     *
+     * @param integer $user_id The ID of the user to delete
+     */
+    function delete($user_id = 0) {
+        $this->auth_lib->check_is_admin(); 
+        $this->user_model->delete($user_id);
+        redirect(base_url().'user/view/'.$user_id);
+    } 
+    
+    /**
+     * 'Undelete' a user 
+     *
+     * @param integer $user_id The ID of the user to undelete
+     */
+    function undelete($user_id = 0) {
+        $this->auth_lib->check_is_admin(); 
+        $this->user_model->undelete($user_id);
+        redirect(base_url().'user/view/'.$user_id);
+    }    
+    
+    /**
+     * Ban a user 
+     *
+     * @param integer $user_id The ID of the user to whitelist
+     */
+    function ban($user_id = 0) {
+        $this->auth_lib->check_is_admin(); 
+        $this->user_model->ban($user_id);
+        redirect(base_url().'user/view/'.$user_id);
+    }    
+    
+    /**
+     * Unban a user 
+     *
+     * @param integer $user_id The ID of the user to whitelist
+     */
+    function unban($user_id = 0) {
+        $this->auth_lib->check_is_admin(); 
+        $this->user_model->unban($user_id);
+        redirect(base_url().'user/view/'.$user_id);
+    }      
+    
+    /**
      * Whitelist a user so their items aren't moderated for spam - for admins only
      *
      * @param integer $user_id The ID of the user to whitelist
@@ -290,8 +334,13 @@ class User extends MY_Controller {
      */
     function user_list($alpha = 'A') {
         // Get the data for the list and display it
+        if($this->auth_lib->is_admin()) {
+          $only_active = FALSE;
+        } else {
+          $only_active = TRUE;
+        }        
         $data['alpha'] = $alpha;
-        $data['users'] = $this->user_model->get_users_alpha($alpha);
+        $data['users'] = $this->user_model->get_users_alpha($alpha,$only_active);
         $data['title']  = t("Users");
         $data['navigation'] = 'people';
         $this->layout->view('user/user_list', $data);          
@@ -308,14 +357,19 @@ class User extends MY_Controller {
         $this->load->model('events_model');
         $this->load->model('cloudscape_model');
         $this->load->model('tag_model');
-          
         $current_user_id = $this->db_session->userdata('id');    
           
         if (!$user_id) {
             $user_id = $current_user_id;
         }
         
-        $user = $this->user_model->get_user($user_id);
+        if($this->auth_lib->is_admin()) {
+          $only_active = FALSE;
+        } else {
+          $only_active = TRUE;
+        }
+        
+        $user = $this->user_model->get_user($user_id, $only_active);
         
         // If the user id given is not a valid user id, display an error 
         if (!$user) {

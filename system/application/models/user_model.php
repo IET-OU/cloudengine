@@ -28,14 +28,23 @@ class User_model extends Model {
      * @param string $alpha The letter of the alphabete
      * @return array Array of the users
      */
-    function get_users_alpha($alpha = 'A') {
+    function get_users_alpha($alpha = 'A', $only_active = TRUE) {
         // Need to check alphabetical
         if (strlen($alpha) != 1) {
             $alpha = 'A';
         }
 
-        $query = $this->db->query("SELECT id, fullname, institution FROM user_profile 
-                                   WHERE fullname LIKE '$alpha%' ORDER BY fullname ASC");
+        if($only_active) {
+          $this->where_active();
+        }
+        $this->db->like('fullname',$alpha,'after');
+        $this->db->select('user.id, fullname, institution,banned,deleted');
+        $this->db->order_by('fullname','asc');
+   	    $this->db->join('user', 'user_profile.id=user.id');
+        $query = $this->db->get('user_profile');
+
+        /*$query = $this->db->query("SELECT id, fullname, institution FROM user_profile 
+                                   WHERE fullname LIKE '$alpha%' ORDER BY fullname ASC");*/
         return $query->result();
     }
 
@@ -61,12 +70,14 @@ class User_model extends Model {
 	 * @param integer $user_id The ID of the user
 	 * @return object The details of the user
 	 */
-	function get_user($user_id) {
+	function get_user($user_id,$only_active = TRUE) {
 		$user = FALSE;
 		if (!is_numeric($user_id)) {
 		    return $this->get_user_by_username($user_id);
 		}
-        $this->where_active();
+        if($only_active) {
+          $this->where_active();
+        }
         $this->db->where('user.id', $user_id);
         $this->db->join('user', 'user.id = user_profile.id');
 	    $query = $this->db->get('user_profile');
@@ -237,6 +248,26 @@ class User_model extends Model {
        $this->db->where('id', $user_id);
        $this->db->update('user_profile', array('whitelist' => 1));    
     }
+    
+	/**
+	 * Mark a user as deleted 
+	 *
+	 * @param integer $user_id The ID of the user
+	 */
+    function delete($user_id) {
+       $this->db->where('id', $user_id);
+       $this->db->update('user_profile', array('deleted' => 1));    
+    }    
+
+	/**
+	 * Unmark a user as deleted 
+	 *
+	 * @param integer $user_id The ID of the user
+	 */
+    function undelete($user_id) {
+       $this->db->where('id', $user_id);
+       $this->db->update('user_profile', array('deleted' => 0));    
+    }  
 
     /**
      * Update the filename of a users picture
@@ -493,10 +524,31 @@ class User_model extends Model {
     	}
     }
 
+	/**
+	 * Mark a user as banned
+	 *
+	 * @param integer $user_id The ID of the user
+	 */
+    function ban($user_id) {
+       $this->db->where('id', $user_id);
+       $this->db->update('user', array('banned' => 1));    
+    }
+
+	/**
+	 * Mark a user as unbanned
+	 *
+	 * @param integer $user_id The ID of the user
+	 */
+    function unban($user_id) {
+       $this->db->where('id', $user_id);
+       $this->db->update('user', array('banned' => 0));    
+    }
+
     /** Add database check for users who are 'deleted' or not active.
     */
     protected function where_active() {
-        $this->db->where('user.banned', 0);
+        $this->db->where('user_profile.deleted', 0);
+        $this->db->where('user.banned', 0);        
     }
 
 }

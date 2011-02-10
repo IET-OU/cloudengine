@@ -423,10 +423,27 @@ div.tweet p {margin-bottom:.5em;}
 div.tweet p.date-stamp {margin-bottom:0;}
 
 
+/* User list page
+----------------------------------------------------------------------------------- */
+table#userlist .inactive, table#userlist .inactive a {
+    color: #D63333;
+}
 
+table#userlist .inactive a:hover {
+    color: #00822B;
+}
 
 /* User profile page
 ----------------------------------------------------------------------------------- */
+
+#profile-inactive {
+  font-weight: bold;
+  margin: 0 0 20px;
+  border: 2px solid red;
+  background: #FB9586;  
+  padding: 12px;
+  border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px;
+}
 
 #user-profile div.headline img {margin-right:10px;}
 

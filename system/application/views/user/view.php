@@ -12,6 +12,20 @@
              <a href="<?= base_url() ?>auth/change_password/" class="button" title="<?=t("Change Password")?>"><?=t("Change Password")?></a>
 
     <?php endif;?>
+    <?php if($admin): ?>
+      <?php if(!$user->deleted): ?>
+        <?=anchor("user/delete/$user->user_id", t('Delete'), array('title'=>t('Delete'), 'class'=>'button')) ?>
+      <?php else: ?>        
+        <?=anchor("user/undelete/$user->user_id", t('Undelete'), array('title'=>t('Undelete'), 'class'=>'button')) ?>      
+      <?php endif; ?>
+    <?php endif; ?>
+    <?php if($admin): ?>
+      <?php if(!$user->banned): ?>
+        <?=anchor("user/ban/$user->user_id", t('Ban'), array('title'=>t('Ban'), 'class'=>'button')) ?>
+      <?php else: ?>        
+        <?=anchor("user/unban/$user->user_id", t('Unban'), array('title'=>t('Unban'), 'class'=>'button')) ?>      
+      <?php endif; ?>
+    <?php endif; ?>    
     <?php if($admin && config_item('x_moderation') && !$user->whitelist): ?>
 	     <?=anchor("user/whitelist/$user->user_id", t('Whitelist'), array('title'=>t('Whitelist'), 'class'=>'button')) ?>
     <?php endif; ?>
@@ -32,6 +46,18 @@
 </div>
 
 <div id="region1">
+
+    <?php if(($user->banned) || ($user->deleted) ): ?>
+      <p id="profile-inactive">
+        <?php if($user->banned): ?>
+       	  <?= t('User has been banned.') ?>
+        <?php endif; ?> 
+        <?php if($user->deleted): ?>
+       	  <?= t("User has been 'deleted.'") ?>
+        <?php endif; ?>         
+      </p>
+   	<?php endif; ?>
+
     <div class="user-entry">   
       <?= $user->description ?>
       <?php if ($user->institution): ?>

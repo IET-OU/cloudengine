@@ -14,14 +14,23 @@
 	           <?php }?>
 	    </ul>
 	    <?php if ($users): ?>
-        <table>
+        <table id="userlist">
             <tbody>
                 <?php $row = 1; ?>
                 <?php  foreach ($users as $user):?>
+                    
                     <tr <?php if ($row % 2 == 0): ?>class="even"<?php endif; ?>>
-                        <td><a href="<?= base_url() ?>user/view/<?= $user->id?>"><?= $user->fullname ?></a></td>
-                        <td><?= $user->institution ?></td></td> 
-                        </tr>
+                      <td <?php if ($user->banned || $user->deleted): ?>class="inactive"<?php endif; ?>>
+                        <a href="<?= base_url() ?>user/view/<?= $user->id?>"><?= $user->fullname ?></a>
+                        <?php if ($user->banned): ?> 
+                          <?= t('(Banned)') ?>
+                        <?php endif; ?>
+                        <?php if ($user->deleted): ?> 
+                          <?= t('(Deleted)') ?>
+                        <?php endif; ?>
+                      </td>                        
+                      <td><?= $user->institution ?></td> 
+                    </tr>
                     <?php $row++; ?>
                 <?php endforeach; ?>
             </tbody>

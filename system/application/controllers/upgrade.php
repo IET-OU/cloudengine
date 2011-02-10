@@ -137,11 +137,12 @@ class Upgrade extends MY_Controller {
           }
           
           $view_data = array(
-            'title'    => t('Upgrade steps...'),
-            'version'  => $version_code,
-            'messages' => $this->messages,
-            'functions'=> $functions,
-            'continue' => $continue,
+            'title'         => t('Upgrade steps...'),
+            'version_old'   => $version_db,
+            'version_new'   => $version_code,
+            'messages'      => $this->messages,
+            'functions'     => $functions,
+            'continue'      => $continue,
           );  
                 
           $this->layout->view('upgrade_confirm', $view_data);          
@@ -372,10 +373,51 @@ class Upgrade extends MY_Controller {
           else {
             $this->message("Did not alter table '" .$table ."', column '" .$field ."' already exists.", 'error');
           }                    
-          //***** user_profile table - start *****
+          //***** user_profile table - end *****
                               
           return TRUE;
         }
     }
+
+    /**
+     * Modify the 'user' table to change the 'banned' field to be called 'inactive'
+     *
+     *  @return mixed TRUE on success; FALSE or string on error.
+     */
+     function _upgrade_111($action) {
+        
+        $table        = 'user_profile';
+        $field        = 'deleted';
+        
+        if ($action == 'get_message') {        
+          $this->message("Modify '$table' table, add field '$field'");
+          return TRUE;       
+        }
+        
+        elseif ($action == 'do_update') {
+  
+          //***** user_profile table - start *****                               
+          $field_exists = $this->database_lib->check_field_exists($table,$field);
+          if(!$field_exists) {
+            $fields = array(
+                $field  => array(
+                  'type'                  => 'INT',
+                  'default'               => 0,
+                  'constraint'            => 1,            
+                  'null'                  => FALSE,          
+                ),      
+            );
+            $this->dbforge->add_column($table, $fields);
+            $this->message("OK, altered table '$table' by adding column '$field'.");
+          } 
+          else {
+            $this->message("Did not alter table '" .$table ."', column '" .$field ."' already exists.", 'error');
+          }                    
+          //***** user_profile table - end *****
+                              
+          return TRUE;
+        }
+    }
+
 
 }

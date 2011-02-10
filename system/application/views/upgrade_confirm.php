@@ -14,7 +14,7 @@
   <h1><?=$title ?></h1>
     
   <? if($continue): ?>
-    <p><?= t("Upgrade to v$version will perform the following steps:") ?></p>
+    <p><?= t("Upgrade from <strong>v$version_old</strong> to <strong>v$version_new</strong> will perform the following steps:") ?></p>
   <? endif; ?>
     
   <ol class="messages">
