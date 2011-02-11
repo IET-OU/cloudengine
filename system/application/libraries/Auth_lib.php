@@ -42,6 +42,7 @@ class Auth_lib {
     protected function _send_activation_email($user, $activation_code) {
     	$data['temp_user_id']    = $user->temp_user_id;
     	$data['fullname']        = $user->fullname;
+        $data['user_name']       = $user->user_name;
     	$data['activation_code'] = $activation_code;
 
  		$message = $this->CI->load->view('email/activation_email', $data, TRUE);
