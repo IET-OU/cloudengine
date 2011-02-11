@@ -38,7 +38,7 @@ class User_model extends Model {
           $this->where_active();
         }
         $this->db->like('fullname',$alpha,'after');
-        $this->db->select('user.id, fullname, institution,banned,deleted');
+        $this->db->select('user.id, fullname, institution, banned, deleted, email, user_name');
         $this->db->order_by('fullname','asc');
    	    $this->db->join('user', 'user_profile.id=user.id');
         $query = $this->db->get('user_profile');

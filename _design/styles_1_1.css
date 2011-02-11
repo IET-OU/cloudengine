@@ -433,6 +433,11 @@ table#userlist .inactive a:hover {
     color: #00822B;
 }
 
+table#userlist .user-info {
+    visibility: hidden;
+    padding-left: 10px;
+}
+
 /* User profile page
 ----------------------------------------------------------------------------------- */
 

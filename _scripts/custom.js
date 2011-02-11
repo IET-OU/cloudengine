@@ -13,4 +13,14 @@
 	  return false;
    }); 
    
+   //visibility of usernames and email addresses for admins on user list page
+   $("table#userlist .user-info").parents('tr').hover( 
+      function() {
+        $(this).find('.user-info').css({'visibility' : 'visible'});
+      }, 
+      function() {
+        $(this).find('.user-info').css({'visibility' : 'hidden'});
+      } 
+    );   
+   
  });

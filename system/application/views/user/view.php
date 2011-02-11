@@ -59,6 +59,11 @@
    	<?php endif; ?>
 
     <div class="user-entry">   
+      
+      <?php if ($admin || $is_own_profile): ?>
+          <p><strong><?=t("Email")?></strong>: <?= $user->email ?> </p>
+          <p><strong><?=t("Username")?></strong>: <?= $user->user_name ?> </p>
+      <?php endif;?>
       <?= $user->description ?>
       <?php if ($user->institution): ?>
           <p><strong><?=t("Institution")?></strong>: 

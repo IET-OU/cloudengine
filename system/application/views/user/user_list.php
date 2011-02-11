@@ -1,3 +1,5 @@
+
+<pre><? //print_r($this->_ci_cached_vars); ?></pre>
 <div class="grid headline">
         <h1><?=t("Users")?></h1>
 </div>
@@ -22,6 +24,9 @@
                     <tr <?php if ($row % 2 == 0): ?>class="even"<?php endif; ?>>
                       <td <?php if ($user->banned || $user->deleted): ?>class="inactive"<?php endif; ?>>
                         <a href="<?= base_url() ?>user/view/<?= $user->id?>"><?= $user->fullname ?></a>
+                        <?php if($admin) : ?>
+                          <span class="user-info"> (<?= $user->user_name .' - ' .$user->email ?>)</span>
+                        <?php endif; ?>
                         <?php if ($user->banned): ?> 
                           <?= t('(Banned)') ?>
                         <?php endif; ?>

@@ -335,14 +335,15 @@ class User extends MY_Controller {
     function user_list($alpha = 'A') {
         // Get the data for the list and display it
         if($this->auth_lib->is_admin()) {
-          $only_active = FALSE;
+          $only_active        = FALSE;
         } else {
-          $only_active = TRUE;
+          $only_active        = TRUE;
         }        
-        $data['alpha'] = $alpha;
-        $data['users'] = $this->user_model->get_users_alpha($alpha,$only_active);
-        $data['title']  = t("Users");
-        $data['navigation'] = 'people';
+        $data['alpha']        = $alpha;
+        $data['users']        = $this->user_model->get_users_alpha($alpha,$only_active);
+        $data['title']        = t("Users");
+        $data['navigation']   = 'people';
+        $data['admin']        = $this->auth_lib->is_admin();        
         $this->layout->view('user/user_list', $data);          
     }
     
@@ -357,7 +358,14 @@ class User extends MY_Controller {
         $this->load->model('events_model');
         $this->load->model('cloudscape_model');
         $this->load->model('tag_model');
+        
         $current_user_id = $this->db_session->userdata('id');    
+        
+        if($user_id == $current_user_id) {
+          $data['is_own_profile'] = true;
+        } else {
+          $data['is_own_profile'] = false;
+        }
           
         if (!$user_id) {
             $user_id = $current_user_id;
