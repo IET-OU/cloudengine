@@ -17,10 +17,23 @@
    $("table#userlist .user-info").parents('tr').hover( 
       function() {
         $(this).find('.user-info').css({'visibility' : 'visible'});
-      }, 
+      },  
       function() {
         $(this).find('.user-info').css({'visibility' : 'hidden'});
       } 
     );   
+
+   //visibility of usernames and email addresses for admins on user list page
+   $("table#userlist a").focus( 
+      function() {      
+        $(this).siblings('.user-info').css({'visibility' : 'visible'});
+      } 
+    );   
+   $("table#userlist a").blur( 
+      function() {
+        $(this).siblings('.user-info').css({'visibility' : 'hidden'});
+      } 
+    );    
+   
    
  });
