@@ -125,7 +125,9 @@ class Embed_model extends Model {
     function get_embeds($cloud_id) {
         $this->db->where('cloud_id', $cloud_id);
         $this->db->where('moderate', 0);
-        $this->db->join('user_profile', 'user_profile.id = cloud_embed.user_id');        
+        $this->db->where('user.banned',0);          
+        $this->db->join('user_profile', 'user_profile.id = cloud_embed.user_id');
+        $this->db->join('user', 'user.id = cloud_embed.user_id');                
         $this->db->order_by('timestamp', 'asc');
         $query = $this->db->get('cloud_embed');
         return $query->result(); 

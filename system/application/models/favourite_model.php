@@ -69,6 +69,8 @@ class Favourite_model extends Model {
     function get_total_favourites($item_id, $item_type) {
         $this->db->where('item_id', $item_id);
         $this->db->where('item_type', $item_type);
+        $this->db->where('user.banned',0);  
+        $this->db->join('user', 'favourite.user_id = user.id');        
         $query = $this->db->get('favourite'); 
         return $query->num_rows();
     }
@@ -240,6 +242,8 @@ class Favourite_model extends Model {
         $this->db->order_by('favourite.timestamp', 'desc');
         $this->db->where('item_id', $item_id);
         $this->db->where('item_type', $item_type);
+        $this->db->where('user.banned',0);  
+        $this->db->join('user', 'favourite.user_id = user.id');        
         $this->db->join('user_picture', 'favourite.user_id = user_picture.user_id', 'left');
         $this->db->join('user_profile', 'user_profile.id = favourite.user_id');
         $query = $this->db->get('favourite');

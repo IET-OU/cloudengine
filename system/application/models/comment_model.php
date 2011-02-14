@@ -245,13 +245,15 @@ class Comment_model extends Model {
      */
     function get_comments($cloud_id) {
         $this->db->select('comment_id, comment.user_id as user_id, picture, fullname, 
-                           body, email_comment, email_comment_followup, timestamp, modified');
+                           body, email_comment, email_comment_followup, timestamp, comment.modified');
         $this->db->from('comment');
         $this->db->where('comment.moderate', 0);
         $this->db->where('comment.cloud_id', $cloud_id);
+        $this->db->where('user.banned',0);     
         $this->db->order_by('timestamp', 'asc');
         $this->db->join('user_profile', 'user_profile.id = comment.user_id');      
         $this->db->join('user_picture', 'user_profile.id = user_picture.user_id', 'left');
+        $this->db->join('user', 'user_profile.id = user.id');
 
         $query = $this->db->get();
         return $query->result();

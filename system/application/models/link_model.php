@@ -167,12 +167,14 @@ class Link_model extends Model {
         $cloud_id = (int) $cloud_id;
         if (is_int($cloud_id)) {
             $query = $this->db->query("SELECT l.url, l.title, count(f.item_id)  AS total, 
-                                       l.link_id, l.type, u.id AS user_id, u.fullname, 
+                                       l.link_id, l.type, up.id AS user_id, up.fullname, 
                                        l.timestamp FROM cloud_link l 
                                        LEFT OUTER JOIN favourite f ON f.item_id = l.link_id 
                                        AND f.item_type = 'link'
-                                       INNER JOIN user_profile u ON u.id = l.user_id
+                                       INNER JOIN user_profile up ON up.id = l.user_id
+                                       INNER JOIN user u on u.id = up.id
                                        WHERE l.cloud_id = $cloud_id
+                                       AND banned = 0
                                        GROUP BY l.link_id ORDER BY total DESC, timestamp ASC");
             
             return $query->result(); 

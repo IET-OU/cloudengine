@@ -106,15 +106,15 @@ class Cloud_model extends Model {
         $cloud = false;
         $this->db->from('cloud');
         $this->db->where('cloud.cloud_id', $cloud_id);
+        $this->db->where('user.banned',0);     
         $this->db->join('user_picture', 'cloud.user_id = user_picture.user_id', 'left');
         $this->db->join('user_profile', 'user_profile.id = cloud.user_id');
+        $this->db->join('user', 'user_profile.id = user.id');        
         $query = $this->db->get();
         if ($query->num_rows() !=  0 ) {
             $cloud = $query->row();
         }
-        
- 
-        
+
         $cloud->owner = false;
         if ($this->auth_lib->is_logged_in()) {
             $user_id = $this->db_session->userdata('id');
@@ -135,8 +135,10 @@ class Cloud_model extends Model {
         $cloud = false;
         $this->db->from('cloud');
         $this->db->where('cloud.title', $cloud_title);
+        $this->db->where('user.banned',0);       
         $this->db->join('user_picture', 'cloud.user_id = user_picture.user_id', 'left');
         $this->db->join('user_profile', 'user_profile.id = cloud.user_id');
+        $this->db->join('user', 'user_profile.id = user.id');               
         $query = $this->db->get();
         if ($query->num_rows() !=  0 ) {
             $cloud = $query->row();
@@ -224,6 +226,8 @@ class Cloud_model extends Model {
     function get_cloudscapes($cloud_id) {
         $this->db->from('cloudscape');
         $this->db->where('cloudscape_cloud.cloud_id', $cloud_id);
+        $this->db->where('user.banned',0);  
+        $this->db->join('user', 'cloudscape.user_id = user.id');        
         $this->db->join('cloudscape_cloud', 'cloudscape_cloud.cloudscape_id = cloudscape.cloudscape_id');
         $query = $this->db->get();
         return $query->result();        
@@ -415,6 +419,8 @@ class Cloud_model extends Model {
     function get_references($cloud_id) {
         $this->db->where('cloud_id', $cloud_id);
         $this->db->where('moderate', 0);       
+        $this->db->where('user.banned',0);          
+        $this->db->join('user', 'cloud_reference.user_id = user.id');        
         $this->db->join('user_profile', 'user_profile.id = cloud_reference.user_id');        
         $this->db->order_by('timestamp', 'asc');
         $query = $this->db->get('cloud_reference');
