@@ -30,7 +30,10 @@ class Cloudscape_model extends Model {
                                   c.summary, c.cloudscape_id, c.created FROM cloudscape c 
                                   INNER JOIN cloudscape_cloud cc
                                   ON c.cloudscape_id = cc.cloudscape_id 
-                                  WHERE ltrim(c.title) LIKE'$alpha%' AND c.moderate = 0
+                                  INNER JOIN user u on u.id = c.user_id
+                                  WHERE ltrim(c.title) LIKE'$alpha%' 
+                                  AND c.moderate = 0
+                                  AND banned = 0
                                   GROUP BY c.cloudscape_id
                                   ORDER BY c.title ASC");	
       return $query->result();
