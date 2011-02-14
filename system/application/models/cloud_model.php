@@ -36,8 +36,11 @@ class Cloud_model extends Model {
                                    COUNT(co.comment_id) AS total_comments 
 						           FROM cloud cl
 						           LEFT OUTER JOIN comment co ON cl.cloud_id = co.cloud_id
-						           WHERE ltrim(cl.title) LIKE '$alpha%' AND cl.moderate = 0 
-						           GROUP BY cl.cloud_id 
+                       INNER JOIN user u on u.id = cl.user_id                       
+						           WHERE ltrim(cl.title) LIKE '$alpha%' 
+                       AND cl.moderate = 0 
+						           AND u.banned = 0
+                       GROUP BY cl.cloud_id 
 						           ORDER BY title ASC");	
                        
         return $query->result();
