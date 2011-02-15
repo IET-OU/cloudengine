@@ -119,7 +119,7 @@ class Cloudscape extends MY_Controller {
             
             // Make sure the view has everything it needs 
             $data['user_id']             = $user_id;
-            $data['total_views'] = $this->cloudscape_model->get_total_views($cloudscape_id);          
+            $data['total_views']         = $this->cloudscape_model->get_total_views($cloudscape_id);          
             $data['events']              = $events; 
             $data['type']                = $type;
             $data['basepath']            = $this->config->site_url('cloudscape/view/'.$cloudscape_id);

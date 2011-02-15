@@ -438,6 +438,8 @@ class Cloud_model extends Model {
      */
     function get_reference($reference_id) {
         $this->db->where('reference_id', $reference_id);
+        $this->db->where('user.banned',0);  
+        $this->db->join('user', 'user.id = cloud_reference.user_id');
         $this->db->join('user_profile', 'user_profile.id = cloud_reference.user_id');                
         
         $query = $this->db->get('cloud_reference');

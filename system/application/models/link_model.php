@@ -174,7 +174,7 @@ class Link_model extends Model {
                                        INNER JOIN user_profile up ON up.id = l.user_id
                                        INNER JOIN user u on u.id = up.id
                                        WHERE l.cloud_id = $cloud_id
-                                       AND banned = 0
+                                       AND u.banned = 0
                                        GROUP BY l.link_id ORDER BY total DESC, timestamp ASC");
             
             return $query->result(); 
@@ -189,6 +189,8 @@ class Link_model extends Model {
      */
     function get_link($link_id) {
         $this->db->where('link_id', $link_id);
+        $this->db->where('user.banned',0);  
+        $this->db->join('user', 'user.id = cloud_link.user_id');        
         $this->db->join('user_profile', 'user_profile.id = cloud_link.user_id');                      
         $query = $this->db->get('cloud_link');
         

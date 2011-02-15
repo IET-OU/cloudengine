@@ -381,7 +381,10 @@ class Cloudscape_model extends Model {
             FROM  cloud cl 
             LEFT OUTER JOIN comment co ON cl.cloud_id = co.cloud_id
             INNER JOIN cloudscape_cloud cc ON cc.cloud_id = cl.cloud_id 
-            WHERE cc.cloudscape_id = $cloudscape_id AND cl.moderate = 0 
+            INNER JOIN user u on u.id = cl.user_id
+            WHERE cc.cloudscape_id = $cloudscape_id 
+            AND cl.moderate = 0 
+            AND u.banned = 0
             GROUP BY cl.cloud_id ORDER BY title");
             $clouds = $query->result();
          }
@@ -492,6 +495,8 @@ class Cloudscape_model extends Model {
     function get_followers($cloudscape_id) {
         $this->db->from('user_profile');
         $this->db->where('cloudscape_followed.cloudscape_id', $cloudscape_id);
+        $this->db->where('user.banned',0);  
+        $this->db->join('user', 'user_profile.id = user.id');                
         $this->db->join('cloudscape_followed', 
                         'user_profile.id = cloudscape_followed.user_id');
         $this->db->join('user_picture', 'user_profile.id = user_picture.user_id', 
@@ -509,6 +514,8 @@ class Cloudscape_model extends Model {
     function get_total_followers($cloudscape_id) {
         $this->db->from('user_profile');
         $this->db->where('cloudscape_followed.cloudscape_id', $cloudscape_id);
+        $this->db->where('user.banned',0);  
+        $this->db->join('user', 'user_profile.id = user.id');                
         $this->db->join('cloudscape_followed', 
                         'user_profile.id = cloudscape_followed.user_id', 'left');
         $total_followers = $this->db->count_all_results();  
@@ -1016,6 +1023,8 @@ class Cloudscape_model extends Model {
     function get_clouds_in_section($section_id) {
         $this->db->order_by('title', 'asc');
         $this->db->where('section_id', $section_id);
+        $this->db->where('user.banned',0);  
+        $this->db->join('user', 'cloud.user_id = user.id');        
         $this->db->join('cloud', 'cloud.cloud_id = section_cloud.cloud_id');
         $query = $this->db->get('section_cloud');
         return $query->result();

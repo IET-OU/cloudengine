@@ -78,7 +78,9 @@ class Content_model extends Model {
      * @return object The details of the extra content item
      */
     function get_content_item($content_id) {
-        $this->db->join('user_profile', 'user_profile.id = cloud_content.user_id');                
+        $this->db->join('user_profile', 'user_profile.id = cloud_content.user_id');            
+        $this->db->where('user.banned',0);  
+        $this->db->join('user', 'user.id = cloud_content.user_id');            
         $this->db->where('content_id', $content_id);
         $query = $this->db->get('cloud_content');
         

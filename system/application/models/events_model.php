@@ -89,6 +89,8 @@ class Events_model extends Model {
         if ($user_id) {
             $this->db->where('cloudscape_id', $cloudscape_id);
             $this->db->where('user_id', $user_id);
+            $this->db->where('user.banned',0);  
+            $this->db->join('user', 'user.id = cloudscape_attended.user_id');            
             $query = $this->db->get('cloudscape_attended');
             
             if ($query->num_rows() > 0) {
@@ -152,6 +154,8 @@ class Events_model extends Model {
      */
     function get_attendees($cloudscape_id) {
         $this->db->where('cloudscape_id', $cloudscape_id);
+        $this->db->where('user.banned',0);  
+        $this->db->join('user', 'user.id = cloudscape_attended.user_id');        
         $this->db->join('user_picture', 'cloudscape_attended.user_id = user_picture.user_id',                         'left');
         $this->db->join('user_profile', 'user_profile.id = cloudscape_attended.user_id',                        'left');
         $query = $this->db->get('cloudscape_attended');

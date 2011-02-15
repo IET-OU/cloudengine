@@ -39,7 +39,9 @@ class Comment_model extends Model {
                            comment.timestamp AS timestamp');
         $this->db->join('cloud', 'cloud.cloud_id = comment.cloud_id');
         $this->db->join('user_profile', 'user_profile.id = comment.user_id');
+        $this->db->join('user', 'user.id = comment.user_id');
         $this->db->where('comment_id', $comment_id);
+        $this->db->where('banned', 0);
         $query = $this->db->get('comment');
         if ($query->num_rows() !=  0 ) {
             $comment = $query->row();

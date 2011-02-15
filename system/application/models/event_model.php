@@ -294,24 +294,27 @@ class Event_model extends Model {
         $this->CI = &get_instance();
         $where = "";
         switch($type) {
-            case 'cloud': $where = "AND event_type = 'cloud'"; break;
-            case 'cloudscape': $where = "AND event_type = 'cloudscape'"; break;
-            case 'comment': $where = "AND (event_type = 'comment' 
+            case 'cloud':       $where = "AND event_type = 'cloud'"; break;
+            case 'cloudscape':  $where = "AND event_type = 'cloudscape'"; break;
+            case 'comment':     $where = "AND (event_type = 'comment' 
                                       OR event_type = 'news_comment')"; break;    
-            case 'link': $where = "AND event_type = 'link'"; break; 
-            case 'reference': $where = "AND event_type = 'reference'"; break; 
-            case 'content': $where = "AND (event_type = 'content' OR event_type = 'embed')";
+            case 'link':        $where = "AND event_type = 'link'"; break; 
+            case 'reference':   $where = "AND event_type = 'reference'"; break; 
+            case 'content':     $where = "AND (event_type = 'content' OR event_type = 'embed')";
              break;                                             
         } 
+        
         $cloudscape_where = "follow_item_type = 'cloudscape' 
                              AND follow_item_id = $cloudscape_id";
-        $cloud_query = "UNION SELECT e.* FROM event e INNER JOIN cloudscape_cloud c 
-                        ON e.follow_item_id = c.cloud_id WHERE (e.follow_item_type = 'cloud' 
-                        AND c.cloudscape_id = $cloudscape_id) $where";
+                             
+        $cloud_query      = "UNION SELECT e.* FROM event e INNER JOIN cloudscape_cloud c 
+                              ON e.follow_item_id = c.cloud_id WHERE (e.follow_item_type = 'cloud' 
+                              AND c.cloudscape_id = $cloudscape_id) $where";
 
 
         $query = $this->db->query("SELECT * FROM event WHERE ($cloudscape_where) $where
         $cloud_query ORDER BY timestamp DESC LIMIT $num");
+        
         return $query->result();
     }
     
@@ -365,13 +368,14 @@ class Event_model extends Model {
      * @return string The HTML string
      */
     function to_string($event, $simple = false) {
+        
         $this->load->helper('format');
         $this->CI = &get_instance();
         switch ($event->event_type) {
-            case 'cloud':
+            case 'cloud':            
                 if ($event->follow_item_type == 'user') {
                     // New cloud created by user
-                    $cloud_id = $event->event_item_id; 
+                    $cloud_id = $event->event_item_id;
                     $this->CI->load->model('cloud_model');
                     $cloud = $this->CI->cloud_model->get_cloud($cloud_id);
                     $string = anchor("cloud/view/$cloud_id", $cloud->title).'<br />'; 
@@ -393,34 +397,37 @@ class Event_model extends Model {
                     $cloudscape_id = $event->follow_item_id;
                     $this->CI->load->model('cloud_model');
                     $cloud = $this->CI->cloud_model->get_cloud($cloud_id);
-                    
-                    $this->CI->load->model('cloudscape_model'); 
-                    $cloudscape = $this->CI->cloudscape_model->get_cloudscape($cloudscape_id);
-                    $user = $this->CI->cloudscape_model->get_cloud_added_user($cloud_id, 
-                                                                              $cloudscape_id);
-                    $string = anchor('cloud/view/'.$cloud->cloud_id, $cloud->title).'<br />'; 
-                    if ($user) {
-                        $string .= '<em>'.t("cloud added to the cloudscape !title by !person", array(
-                            '!person'=> anchor('user/view/'.$user->user_id, $user->fullname, 
-                             array('rel'=>'author')),
-                                   '!title' => 
-                                   anchor('cloudscape/view/'.$cloudscape->cloudscape_id, 
-                                          $cloudscape->title))).'</em>';
-                    } else {
-                        $string .= '<em>'.t("cloud added to the cloudscape !title", 
-                                   array('!title' => 
-                                         anchor('cloudscape/view/'.$cloudscape->cloudscape_id, 
-                                                $cloudscape->title))).'</em>';
-                    }
+                    if (!$cloud->user_id) {
+                      return false;
+                    } 
+                    else {
+                      $this->CI->load->model('cloudscape_model'); 
+                      $cloudscape = $this->CI->cloudscape_model->get_cloudscape($cloudscape_id);
+                      $user = $this->CI->cloudscape_model->get_cloud_added_user($cloud_id, 
+                                                                                $cloudscape_id);
+                      $string = anchor('cloud/view/'.$cloud->cloud_id, $cloud->title).'<br />'; 
+                      if ($user) {
+                          $string .= '<em>'.t("cloud added to the cloudscape !title by !person", array(
+                              '!person'=> anchor('user/view/'.$user->user_id, $user->fullname, 
+                               array('rel'=>'author')),
+                                     '!title' => 
+                                     anchor('cloudscape/view/'.$cloudscape->cloudscape_id, 
+                                            $cloudscape->title))).'</em>';
+                      } else {
+                          $string .= '<em>'.t("cloud added to the cloudscape !title", 
+                                     array('!title' => 
+                                           anchor('cloudscape/view/'.$cloudscape->cloudscape_id, 
+                                                  $cloudscape->title))).'</em>';
+                      }
+                  }
+                  break;
                 }
-                break;
 
            case 'cloudscape':
                 // New cloudscape created
                 $this->CI->load->model('cloudscape_model');
                 $cloudscape_id = $event->event_item_id; 
                 $cloudscape = $this->CI->cloudscape_model->get_cloudscape($cloudscape_id); 
-
                 $string = anchor("cloudscape/view/$cloudscape_id", $cloudscape->title).
                                 '<br />';  
                 if ($simple) {
@@ -443,27 +450,32 @@ class Event_model extends Model {
                 $this->CI->load->model('comment_model');
                 $comment_id         = $event->event_item_id; 
                 $comment            = $this->CI->comment_model->get_comment($comment_id);
-                $truncated_comment  = truncate_content(strip_tags($comment->body));
-                $string             = '<strong>'.'"'.$truncated_comment.'</strong><br />';
-                
-                if ($simple) {
-                    $string .= '<em>'.t("added to !cloud by !person",
-                        array('!cloud' => anchor('cloud/view/'.$comment->cloud_id, 
-                                                 $comment->cloud_title),
-                              '!person'=> anchor('user/view/'.$comment->user_id, 
-                                                 $comment->fullname, 
-                                                 array('rel'=>'author')))).'</em>';
-                } else {
-                    $string .= '<em>'.t("new comment on the cloud !cloud by !person",
-                                        array('!cloud' => 
-                                              anchor('cloud/view/'.$comment->cloud_id, 
-                                                     $comment->cloud_title),
-                                              '!person'=> 
-                                              anchor('user/view/'.$comment->user_id, 
-                                                     $comment->fullname, 
-                                                     array('rel'=>'author')))).'</em>';
+                if (!$comment) {
+                  return false;
                 }
-                break;
+                else {
+                  $truncated_comment  = truncate_content(strip_tags($comment->body));
+                  $string             = '<strong>'.'"'.$truncated_comment.'</strong><br />';
+                  
+                  if ($simple) {
+                      $string .= '<em>'.t("added to !cloud by !person",
+                          array('!cloud' => anchor('cloud/view/'.$comment->cloud_id, 
+                                                   $comment->cloud_title),
+                                '!person'=> anchor('user/view/'.$comment->user_id, 
+                                                   $comment->fullname, 
+                                                   array('rel'=>'author')))).'</em>';
+                  } else {
+                      $string .= '<em>'.t("new comment on the cloud !cloud by !person",
+                                          array('!cloud' => 
+                                                anchor('cloud/view/'.$comment->cloud_id, 
+                                                       $comment->cloud_title),
+                                                '!person'=> 
+                                                anchor('user/view/'.$comment->user_id, 
+                                                       $comment->fullname, 
+                                                       array('rel'=>'author')))).'</em>';
+                  }
+                  break;
+                }
 
             case 'news':
                 // New blog post
@@ -525,121 +537,141 @@ class Event_model extends Model {
                 $this->CI->load->model('link_model');
                 $link_id = $event->event_item_id;
                 $link = $this->CI->link_model->get_link($link_id);
-                $cloud = $this->CI->cloud_model->get_cloud($link->cloud_id);
-
-                $string = '';
-                if ($link->title) {
-                    $string = '<strong>'.$link->title.' </strong><br />';
+                if (!$link) {
+                  return false;
                 }
-
-               if ($simple) {
-                    $string .= '<em>'.t("added to !title by !person",
-                        array('!person'=> 
-                               anchor('user/view/'.$link->user_id, 
-                                      $link->fullname, array('rel'=>'author')),
-                               '!title' => 
-                                anchor('cloud/view/'.$cloud->cloud_id, 
-                                $cloud->title))).'</em>';           
-               } else {
-                    $string .= '<em>'.t("new link on !title added by !person",
-                                       array('!person'=> 
-                                             anchor('user/view/'.$link->user_id, 
-                                                    $link->fullname, 
-                                                    array('rel'=>'author')),
-                                             '!title' => 
-                                             anchor('cloud/view/'.$cloud->cloud_id, 
-                                                    $cloud->title))).'</em>'; 
+                else {
+                  $cloud = $this->CI->cloud_model->get_cloud($link->cloud_id);
+  
+                  $string = '';
+                  if ($link->title) {
+                      $string = '<strong>'.$link->title.' </strong><br />';
+                  }
+  
+                 if ($simple) {
+                      $string .= '<em>'.t("added to !title by !person",
+                          array('!person'=> 
+                                 anchor('user/view/'.$link->user_id, 
+                                        $link->fullname, array('rel'=>'author')),
+                                 '!title' => 
+                                  anchor('cloud/view/'.$cloud->cloud_id, 
+                                  $cloud->title))).'</em>';           
+                 } else {
+                      $string .= '<em>'.t("new link on !title added by !person",
+                                         array('!person'=> 
+                                               anchor('user/view/'.$link->user_id, 
+                                                      $link->fullname, 
+                                                      array('rel'=>'author')),
+                                               '!title' => 
+                                               anchor('cloud/view/'.$cloud->cloud_id, 
+                                                      $cloud->title))).'</em>'; 
+                 }
+                 break;
                }
-               break;
 
             case 'reference': 
                 $this->CI->load->model('cloud_model');
                 $reference_id = $event->event_item_id;
                 $reference = $this->CI->cloud_model->get_reference($reference_id);
-                $cloud = $this->CI->cloud_model->get_cloud($reference->cloud_id);
-                $truncated_reference = truncate_content(
-                                       strip_tags($reference->reference_text));
-
-                $string = '<strong>'.'"'.$truncated_reference.'..."</em> </strong><br />';
-                if ($simple) {
-                    $string .= '<em>'.t("on the cloud !title by !person",
-                                      array('!person'=> 
-                                            anchor('user/view/'.$reference->user_id, 
-                                                   $reference->fullname, 
-                                                   array('rel'=>'author')),
-                                            '!title' => 
-                                            anchor('cloud/view/'.$cloud->cloud_id, 
-                                                   $cloud->title))).'</em>';    
-                } else {
-                    $string .= '<em>'.t("reference added to the cloud !title by !person",
-                                         array('!person'=> 
-                                               anchor('user/view/'.$reference->user_id, 
-                                                       $reference->fullname, 
-                                                       array('rel'=>'author')),
-                                                '!title' => 
-                                                 anchor('cloud/view/'.$cloud->cloud_id, 
-                                                        $cloud->title))).'</em>';
+                if (!$reference) {
+                  return false;
                 }
-                break;
+                else {
+                  $cloud = $this->CI->cloud_model->get_cloud($reference->cloud_id);
+                  $truncated_reference = truncate_content(
+                                         strip_tags($reference->reference_text));
+  
+                  $string = '<strong>'.'"'.$truncated_reference.'..."</em> </strong><br />';
+                  if ($simple) {
+                      $string .= '<em>'.t("on the cloud !title by !person",
+                                        array('!person'=> 
+                                              anchor('user/view/'.$reference->user_id, 
+                                                     $reference->fullname, 
+                                                     array('rel'=>'author')),
+                                              '!title' => 
+                                              anchor('cloud/view/'.$cloud->cloud_id, 
+                                                     $cloud->title))).'</em>';    
+                  } else {
+                      $string .= '<em>'.t("reference added to the cloud !title by !person",
+                                           array('!person'=> 
+                                                 anchor('user/view/'.$reference->user_id, 
+                                                         $reference->fullname, 
+                                                         array('rel'=>'author')),
+                                                  '!title' => 
+                                                   anchor('cloud/view/'.$cloud->cloud_id, 
+                                                          $cloud->title))).'</em>';
+                  }
+                  break;
+                }
 
             case 'content': 
                 $this->CI->load->model('cloud_model');
                 $this->CI->load->model('content_model');
                 $content_id = $event->event_item_id;
                 $content = $this->CI->content_model->get_content_item($content_id);
-                $truncated_content = truncate_content(strip_tags($content->body));
-                $cloud = $this->CI->cloud_model->get_cloud($content->cloud_id);
-                $string = '<strong>'.$truncated_content.'..."</strong><br />'; 
-                if ($simple) {
-                    $string .= '<em>'.t("on !title by !person",
-                                       array('!person'=> 
-                                                 anchor('user/view/'.$content->user_id, 
-                                                        $content->fullname, 
-                                                        array('rel'=>'author')),
-                                              '!title' => 
-                                                  anchor('cloud/view/'.$cloud->cloud_id, 
-                                                         $cloud->title))).'</em>';   
-                } else {
-                    $string .= '<em>'.t("new content on !title by !person",
+                if (!$content) {
+                  return false;
+                }
+                else {
+                  $truncated_content = truncate_content(strip_tags($content->body));
+                  $cloud = $this->CI->cloud_model->get_cloud($content->cloud_id);
+                  $string = '<strong>'.$truncated_content.'..."</strong><br />'; 
+                  if ($simple) {
+                      $string .= '<em>'.t("on !title by !person",
                                          array('!person'=> 
                                                    anchor('user/view/'.$content->user_id, 
-                                               $content->fullname, 
-                                               array('rel'=>'author')),
-                                               '!title' => 
-                                                     anchor('cloud/view/'.$cloud->cloud_id, 
-                                                            $cloud->title))).'</em>';
+                                                          $content->fullname, 
+                                                          array('rel'=>'author')),
+                                                '!title' => 
+                                                    anchor('cloud/view/'.$cloud->cloud_id, 
+                                                           $cloud->title))).'</em>';   
+                  } else {
+                      $string .= '<em>'.t("new content on !title by !person",
+                                           array('!person'=> 
+                                                     anchor('user/view/'.$content->user_id, 
+                                                 $content->fullname, 
+                                                 array('rel'=>'author')),
+                                                 '!title' => 
+                                                       anchor('cloud/view/'.$cloud->cloud_id, 
+                                                              $cloud->title))).'</em>';
+                  }
+                  break;
                 }
-                break;
 
             case 'embed':
                 $this->CI->load->model('cloud_model');
                 $this->CI->load->model('embed_model');
                 $embed_id = $event->event_item_id;
                 $embed = $this->CI->embed_model->get_embed($embed_id);
-                $cloud = $this->CI->cloud_model->get_cloud($embed->cloud_id);
-                $string = '';
-                if ($embed->title) {
-                    $string .= '<strong>'.$embed->title.'</strong><br />';
+                if (!$embed) {
+                  return false;
                 }
-                if ($simple) {
-                  $string .= '<em>'.t("new embedded content added to the cloud !title by !person",
-                                       array('!person'=> 
-                                             anchor('user/view/'.$embed->user_id, 
-                                                    $embed->fullname, 
-                                                    array('rel'=>'author')),
-                                              '!title' => 
-                                               anchor('cloud/view/'.$cloud->cloud_id, 
-                                                      $cloud->title))).'</em>'; 
-                } else {
-                  $string .= '<em>'.t("new embedded content added to the cloud !title by !person",
-                      array('!person'=> anchor('user/view/'.$embed->user_id, 
-                                                $embed->fullname, 
-                                                array('rel'=>'author')),
-                                               '!title' => 
-                                               anchor('cloud/view/'.$cloud->cloud_id, 
-                            $cloud->title))).'</em>';
+                else {
+                  $cloud = $this->CI->cloud_model->get_cloud($embed->cloud_id);
+                  $string = '';
+                  if ($embed->title) {
+                      $string .= '<strong>'.$embed->title.'</strong><br />';
+                  }
+                  if ($simple) {
+                    $string .= '<em>'.t("new embedded content added to the cloud !title by !person",
+                                         array('!person'=> 
+                                               anchor('user/view/'.$embed->user_id, 
+                                                      $embed->fullname, 
+                                                      array('rel'=>'author')),
+                                                '!title' => 
+                                                 anchor('cloud/view/'.$cloud->cloud_id, 
+                                                        $cloud->title))).'</em>'; 
+                  } else {
+                    $string .= '<em>'.t("new embedded content added to the cloud !title by !person",
+                        array('!person'=> anchor('user/view/'.$embed->user_id, 
+                                                  $embed->fullname, 
+                                                  array('rel'=>'author')),
+                                                 '!title' => 
+                                                 anchor('cloud/view/'.$cloud->cloud_id, 
+                              $cloud->title))).'</em>';
+                  }
+                  break;
                 }
-                break;
         }
 
         return $string;
@@ -663,9 +695,11 @@ class Event_model extends Model {
             	// pertains to then don't display the item twice 
                 if ($event->event_item_id != $last_event_item_id || 
                     $event->event_type != $last_event_type) {
-                    $new_events[] = '<li class="'.$this->event_category($event->event_type).
-                                    '">'.$this->event_model->to_string($event, $simple).
-                                    ' <em>'.time_ago($event->timestamp).'</em></li>';
+                    $new_event    = $this->event_model->to_string($event, $simple);    
+                    if ($new_event) {
+                      $new_events[] = '<li class="'.$this->event_category($event->event_type).
+                                      '">'.$new_event.' <em>'.time_ago($event->timestamp).'</em></li>';
+                                    }
                     $last_event_item_id = $event->event_item_id;
                     $last_event_type    = $event->event_type;
                 }
