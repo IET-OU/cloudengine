@@ -17,8 +17,12 @@ class Cloud_model extends Model {
      * @return Array of clouds
      */
     function get_clouds() {
-         $query = $this->db->query("SELECT * FROM cloud WHERE moderate = 0");	
-        return $query->result();
+      $query = $this->db->query(" SELECT * 
+                                  FROM cloud c
+                                  INNER JOIN user u on u.id = c.user_id 
+                                  WHERE moderate = 0
+                                  AND u.banned = 0");	
+      return $query->result();
     }     
 
     /**

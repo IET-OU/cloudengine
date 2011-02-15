@@ -33,9 +33,15 @@ class Events_model extends Model {
         $month_start_date = strtotime("$month/1/$year");
         $last_day_of_month = days_in_month($month, $year);
         $month_end_date   = strtotime("$month/$last_day_of_month/$year");
-        $query = $this->db->query("SELECT * FROM cloudscape 
-        WHERE (start_date >= $month_start_date AND start_date < $month_end_date) OR 
-        (end_date >= $month_start_date AND end_date <= $month_end_date) ORDER BY start_date");
+        $query = $this->db->query("SELECT * 
+                                    FROM cloudscape c
+                                    INNER JOIN user u on u.id = c.user_id
+                                    WHERE 
+                                      ((start_date >= $month_start_date AND start_date < $month_end_date) 
+                                    OR 
+                                      (end_date >= $month_start_date  AND end_date <= $month_end_date))
+                                    AND u.banned = 0
+                                    ORDER BY start_date");
         
         return $query->result();
     }

@@ -111,6 +111,8 @@ class Cloudscape_model extends Model {
         $cloudscape = false;
         $this->db->from('cloudscape');
         $this->db->where('cloudscape.cloudscape_id', $cloudscape_id);
+        $this->db->where('user.banned', 0);
+        $this->db->join('user', 'user.id = cloudscape.user_id');
         $this->db->join('user_picture', 'cloudscape.user_id = user_picture.user_id', 'left');
         $this->db->join('user_profile', 'user_profile.id = cloudscape.user_id');
         $query = $this->db->get();
