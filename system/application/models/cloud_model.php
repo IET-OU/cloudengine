@@ -62,9 +62,16 @@ class Cloud_model extends Model {
                     $this->config->item('active_clouds_days') : 10;
         $since = time() - 60*60*24* $days;
         $query = $this->db->query("SELECT c.cloud_id, c.title, COUNT(*) AS total_comments 
-                  FROM cloud c INNER JOIN comment co ON co.cloud_id = c.cloud_id 
-                  WHERE co.timestamp > $since
-                    GROUP BY c.cloud_id ORDER BY total_comments  DESC LIMIT $limit");   
+                                    FROM cloud c 
+                                    INNER JOIN comment co 
+                                      ON co.cloud_id = c.cloud_id
+                                    INNER JOIN user u
+                                      on u.id = c.user_id 
+                                    WHERE 1=1
+                                    #AND co.timestamp > $since
+                                    #AND u.banned = 0
+                                    GROUP BY c.cloud_id 
+                                    ORDER BY total_comments  DESC LIMIT $limit");   
         if (!$query) {
           return FALSE;
         }
@@ -98,6 +105,8 @@ class Cloud_model extends Model {
      * @return integer The number of clouds
      */
     function get_total_clouds() {
+        $this->db->where('user.banned',0);  
+        $this->db->join('user', 'user.id = cloud.user_id');      
         $query = $this->db->get('cloud');
         return $query->num_rows();
     }
@@ -247,10 +256,12 @@ class Cloud_model extends Model {
      * @return array Array of clouds
      */
     function get_new_clouds($limit) {
+        $this->db->join('user', 'user.id = cloud.user_id');       
+        $this->db->where('user.banned',0);  
         $this->db->where('omit_from_new_list', 0);
         $this->db->where('moderate', 0);
         $this->db->select('cloud_id, title');
-        $this->db->order_by("created", "desc");  
+        $this->db->order_by("cloud.created", "desc");  
         $query = $this->db->get('cloud', $limit);
         return $query->result();
     }
@@ -644,9 +655,14 @@ class Cloud_model extends Model {
      * @return array Array of clouds
      */
     function get_popular_clouds($limit = 10) {
-        $query = $this->db->query("SELECT c.cloud_id, c.title FROM cloud_popular cp
-        INNER JOIN cloud c ON c.cloud_id = cp.cloud_id
-        ORDER BY RAND() LIMIT $limit", $limit);
+        $query = $this->db->query("SELECT c.cloud_id, c.title 
+                                    FROM cloud_popular cp
+                                    INNER JOIN cloud c 
+                                      ON c.cloud_id = cp.cloud_id
+                                    INNER JOIN user u
+                                      ON u.id = c.user_id
+                                    WHERE u.banned = 0  
+                                    ORDER BY RAND() LIMIT $limit", $limit);
         return $query->result();
     } 
 }
