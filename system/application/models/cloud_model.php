@@ -68,8 +68,8 @@ class Cloud_model extends Model {
                                     INNER JOIN user u
                                       on u.id = c.user_id 
                                     WHERE 1=1
-                                    #AND co.timestamp > $since
-                                    #AND u.banned = 0
+                                    AND co.timestamp > $since
+                                    AND u.banned = 0
                                     GROUP BY c.cloud_id 
                                     ORDER BY total_comments  DESC LIMIT $limit");   
         if (!$query) {
