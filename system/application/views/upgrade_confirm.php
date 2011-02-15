@@ -15,6 +15,7 @@
     
   <? if($continue): ?>
     <p><?= t("Upgrade from <strong>v$version_old</strong> to <strong>v$version_new</strong> will perform the following steps:") ?></p>
+    <p class="test_install warn"><?= t("We recommend you back up your database before performing any upgrade.") ?></p>
   <? endif; ?>
     
   <ol class="messages">
