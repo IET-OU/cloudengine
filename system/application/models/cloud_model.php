@@ -121,6 +121,8 @@ class Cloud_model extends Model {
 
         $cloud = false;
         $this->db->from('cloud');
+        // Call select() to ensure we don't include the user.created field.
+        $this->db->select('cloud.*, user_picture.*, user_profile.*');
         $this->db->where('cloud.cloud_id', $cloud_id);
         $this->db->where('user.banned',0);     
         $this->db->join('user_picture', 'cloud.user_id = user_picture.user_id', 'left');
@@ -150,6 +152,7 @@ class Cloud_model extends Model {
     function get_cloud_by_title($cloud_title) {
         $cloud = false;
         $this->db->from('cloud');
+        $this->db->select('cloud.*, user_picture.*, user_profile.*');
         $this->db->where('cloud.title', $cloud_title);
         $this->db->where('user.banned',0);       
         $this->db->join('user_picture', 'cloud.user_id = user_picture.user_id', 'left');
