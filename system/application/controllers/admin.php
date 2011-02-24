@@ -353,21 +353,14 @@ class Admin extends MY_Controller {
         $this->load->model('user_model');
         $random_users = $this->user_model->get_random_users($target);
 
-        @header('Content-Type: text/plain; utf-8');
+        @header('Content-Type: text/plain; charset=utf-8');
         header('Content-Disposition: inline; filename=random-users.csv');
-        echo "email,fullname,is-OU".PHP_EOL;
+        echo "Email,Fullname,Is-OU".PHP_EOL;
         foreach ($random_users as $user) {
             #$len = fputcsv(STDOUT, $random_users);
             $ou_flag = FALSE===strpos($user->email, 'open.ac.uk') ? '': '1';
             //Escaping?
             echo "$user->email,$user->fullname,$ou_flag". PHP_EOL;
         }
-
-        /*$outstream = fopen("php://output", 'w');
-        function __outputCSV(&$vals, $key, $filehandler) {
-            fputcsv($filehandler, $vals, ';', '"');
-        }
-        array_walk($random_users, '__outputCSV', $outstream);
-        fclose($outstream);*/
     }
 }
