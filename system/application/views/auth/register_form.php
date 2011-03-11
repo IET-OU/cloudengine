@@ -46,7 +46,8 @@
         <td>
             <?=form_input(array('name'=>'fullname',
                 'required' =>true,
-                'pattern'  =>'\w[\w-]* [\w- ]+',
+                'pattern'  =>"\w[\w-']* [\w-' ]+",
+                'title'    =>t('Minimum !N words, letters, apostrophe, dash and accents', array('!N'=>2)),
                 'maxlength'=>140,
                 'value'    =>set_value('fullname') ))?>
     </tr>
