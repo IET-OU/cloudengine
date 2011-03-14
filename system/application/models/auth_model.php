@@ -304,7 +304,7 @@ class Auth_model extends Model {
 	    $this->db->where('id', $user_id);
 	    $this->db->update('user', array('password' => $this->_hash_password($password)));
 	}
-	
+
 	/**
 	 * Updates any data that needs to be updated when a user logs in 
 	 * (e.g. logs, date last visited etc)
@@ -323,10 +323,10 @@ class Auth_model extends Model {
         // 'logs' is like most tables - it uses Unix timestamp.
         $this->db->set('timestamp', time());
         $this->db->set('user_id', $user_id);
-        $this->db->set('ip', ''); 
-        $this->db->insert('logs');  
+        $this->db->set('ip', $this->input->ip_address());
+        $this->db->insert('logs');
 	}
-	
+
 	/**
 	 * Set a forgotten password code for a user
 	 *
