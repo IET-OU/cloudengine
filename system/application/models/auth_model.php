@@ -310,16 +310,19 @@ class Auth_model extends Model {
 	 * (e.g. logs, date last visited etc)
 	 *
 	 * @param integer $user_id The id of the user
+	 * @param bool $attempt Is this a banned user trying to login? Default FALSE.
 	 */
-	function update_user_login_data($user_id) {
+	function update_user_login_data($user_id, $attempt=FALSE) {
 		// Update the time of last visit
 		$this->db->where('id', $user_id);
 		//Bug #69, 'user' table is a historic exception - it uses MySQL datetime/timestamp.
 		$this->db->update('user', array('last_visit'=>date('Y-m-d H:i:s')));
-		
+
+        $item_type = ($attempt) ? 'login_attempt' : 'login';
+
 		// Update the log table
         $this->db->set('item_id', $user_id);   
-        $this->db->set('item_type', 'login');
+        $this->db->set('item_type', $item_type);
         // 'logs' is like most tables - it uses Unix timestamp.
         $this->db->set('timestamp', time());
         $this->db->set('user_id', $user_id);
