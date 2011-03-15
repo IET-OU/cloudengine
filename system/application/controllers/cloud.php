@@ -61,7 +61,7 @@ class Cloud extends MY_Controller {
         }
 
         $cloud = $data['cloud'];
-        
+
          // Set up form validation for the comment form 
         $this->load->library('form_validation');
         ///Translators: Form field names.
@@ -235,8 +235,9 @@ class Cloud extends MY_Controller {
                 $cloud_id = $this->cloud_model->insert_cloud($cloud);
 
                 if (config_item('x_moderation') && $cloud->moderate) {
+                    $data['title']= t('Your !item is being moderated', array('!item'=>'cloud'));
                     $data['item'] = 'cloud';
-                    $data['continuelink'] = '/cloud/cloud_list';
+                    $data['continuelink'] = site_url('cloud/cloud_list');
                     $this->layout->view('moderate', $data);
                     return;
                 }
@@ -329,8 +330,9 @@ class Cloud extends MY_Controller {
                 $this->cloud_model->update_cloud($cloud);
                 
                 if (config_item('x_moderation') && $cloud->moderate) {
+                    $data['title']= t('Your !item is being moderated', array('!item'=>'cloud'));
                     $data['item'] = 'cloud';
-                    $data['continuelink'] = '/cloud/cloud_list';
+                    $data['continuelink'] = site_url('cloud/cloud_list');
                     $this->layout->view('moderate', $data);
                     return;                     
                 }
@@ -672,23 +674,10 @@ already favourited it or you do not have high enough reputation on the site to a
      * FALSE otherwise 
      */
     function _moderate_cloud($cloud, $user_id) {
-    	$moderate = FALSE;	
-		if (config_item('x_moderation')) {
-			$user = $this->user_model->get_user($user_id); 
-			if (!$user->whitelist) {
-			    $this->load->library('mollom');
-			    try {
-			        $spam_status = $this->mollom->checkContent($cloud->title, 
-			                               $cloud->summary.' '.$cloud->body, '', $cloud->url); 	  	 
-			        if ($spam_status['quality'] < 0.5) {
-			            $moderate = TRUE;
-			        }    
-			    } catch (Exception $e) {
-			        
-			    }
-			}  
-		}
-		return $moderate;
+    	$item_id = isset($cloud->cloud_id) ? $cloud->cloud_id : 0;
+        $summary = isset($cloud->summary) ? $cloud->summary : NULL;
+        $item_url= isset($cloud->url) ? $cloud->url : NULL;
+        return $this->_moderate(__CLASS__, $item_id, $user_id, $cloud->title, "$summary $cloud->body", '', $item_url);
     }
     
     /**
