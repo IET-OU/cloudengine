@@ -9,7 +9,7 @@
 
 class MY_Controller extends Controller {
 
-  function MY_Controller ()  {
+  public function MY_Controller ()  {
     parent::Controller();
     
       //initalise
@@ -72,4 +72,40 @@ class MY_Controller extends Controller {
       //***********************************************************************************   
 
   }
+
+  /** A wrapper around the Mollom anti-spam library.
+   *    Initial use: Cloud::_moderate_cloud, Message::compose.
+   */
+  protected function _moderate($item_type, $item_id=0, $user_id=0, $title=null, $body=null, $authorName=null, $authorUrl=null, $authorEmail=null, $authorOpenId=null, $authorId=null) {
+    $moderate = FALSE;
+	if (config_item('x_moderation')) {
+        $threshold = 0.5;
+        $thres_raw = config_item('moderation_less_than');
+        // Sanity checks.
+        if ($thres_raw && is_float($thres_raw) && $thres_raw > 0 && $thres_raw < 0.9) {
+            $threshold = $thres_raw;
+        }
+
+        if ($user_id) {
+            $this->load->model('user_model');
+            $user = $this->user_model->get_user($user_id);
+        }
+		if (!is_object($user) || !$user->whitelist) {
+		    $this->load->library('mollom');
+		    try {
+                // The Mollom library call.
+		        $status = (object)$this->mollom->checkContent($title, $body, $authorName, $authorUrl, $authorEmail, $authorOpenId, $authorId);
+			    if ($status->quality < $threshold) { #($spam_status['quality'] < 0.5) {
+			        $moderate = TRUE;
+			    }
+                // Data-logging: should be 'debug' or 'important'!
+                log_message('error', "Anti-spam check. $item_type:$item_id '$title'; $status->spam, $status->quality (threshold:$threshold)");
+			} catch (Exception $e) {
+			    log_message('error', 'Anti-spam exception, Mollom: '.$e->getMessage());
+			}
+		}
+	}
+	return $moderate;
+  }
+
 }
