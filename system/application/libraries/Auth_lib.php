@@ -191,13 +191,19 @@ class Auth_lib {
 	 * @return boolean TRUE if login was successful, FALSE otherwise 
 	 */
 	public function login($username, $password) { 
-		$login_success = FALSE;
-		$password_valid = $this->CI->auth_model->password_valid($username, $password);
-
+		$login_success = $password_valid = FALSE;
+		$user= $this->CI->auth_model->get_user_by_username($username);
+        if (1 == $user->banned) {
+            // Log login-attempts by banned users! $attempt=TRUE
+            $this->CI->auth_model->update_user_login_data($user->id, TRUE);
+            show_error(t("The username is invalid. If you think this is a mistake, please contact site support."));
+        } else {
+            $password_valid = $this->CI->auth_model->password_valid($username, $password);
+        }
         if ($password_valid) {
-        	$user= $this->CI->auth_model->get_user_by_username($username);
+        	//$user= $this->CI->auth_model->get_user_by_username($username);
             // Update the session data
-        	$userdata['id']         = $user->id;
+            $userdata['id']         = $user->id;
             $userdata['user_name']  = $user->user_name;
             $userdata['country_id'] = $user->country_id;
             $userdata['email']      = $user->email;

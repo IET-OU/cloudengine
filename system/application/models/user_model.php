@@ -551,4 +551,48 @@ class User_model extends Model {
         $this->db->where('user.banned', 0);        
     }
 
+    /**Get array of random users, filtered by existing CSV file(s).
+     * @return array
+     */
+    public function get_random_users($target=300) {
+    //SELECT user.id,user_name,email,fullname FROM user JOIN user_profile ON user_profile.id=user.id WHERE banned=0 ORDER BY RAND() LIMIT 20;
+        $this->where_active();
+        $this->db->select('user.id,user_name,email, fullname');
+        $this->db->order_by('RAND()');
+        $this->db->limit($target+200);
+   	    $this->db->join('user_profile', 'user_profile.id=user.id');
+        $query = $this->db->get('user');
+
+        $rand_users = $query->result();
+
+        // Read in existing CSV file(s).
+        $csv = $this->_read_csv($this->config->item('data_dir').'tmp/cloudworks_users_300_rand.csv');
+
+        //Filter existing CSV users from query result.
+        $removed = array();
+        foreach ($rand_users as $key => $user) {
+            $email = $user->email;
+            if (in_array($email, $csv)) {
+                $removed[] = $user;
+                unset($rand_users[$key]);
+            }
+        }
+        echo "(Filtered:".count($removed)."),".PHP_EOL;
+
+        return array_slice($rand_users, 0, $target);
+    }
+
+    protected function _read_csv($csv_file) {
+        $csv = array();
+        if (($handle = fopen($csv_file, "r")) !== FALSE) {
+            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                $csv[] = $data[0];
+                //$csv[$data[0]] = array('email'=>$data[0], 'fullname'=>$data[1]);
+            }
+            fclose($handle);
+        } else {
+            show_error("Error reading $csv_file.");
+        }
+        return $csv;
+    }
 }

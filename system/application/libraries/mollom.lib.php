@@ -385,7 +385,7 @@ class Mollom
 
 		$CI = & get_instance(); 
         if ($CI->config->item('proxy')) {
-            curl_setopt($_curl, CURLOPT_PROXY, $proxy = $CI->config->item('proxy'));
+            curl_setopt($curl, CURLOPT_PROXY, $proxy = $CI->config->item('proxy'));
         }
 
 		// set url

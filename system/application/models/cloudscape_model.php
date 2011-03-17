@@ -100,7 +100,7 @@ class Cloudscape_model extends Model {
         $event_model->add_event('user', $cloudscape->id, 'cloudscape', $cloudscape_id);
         $this->update_in_search_index($cloudscape_id);
     }
-         
+
     /**
      * Get the cloudscape with a given id 
      *
@@ -110,6 +110,8 @@ class Cloudscape_model extends Model {
     function get_cloudscape($cloudscape_id) {
         $cloudscape = false;
         $this->db->from('cloudscape');
+        // Call select() to ensure we don't include the user.created field.
+        $this->db->select('cloudscape.*, user_picture.*, user_profile.*');
         $this->db->where('cloudscape.cloudscape_id', $cloudscape_id);
         $this->db->where('user.banned', 0);
         $this->db->join('user', 'user.id = cloudscape.user_id');
@@ -143,7 +145,7 @@ class Cloudscape_model extends Model {
                     $cloudscape->dates .=  ' - '.date('j F Y', $cloudscape->end_date); 
                 }
             }
-                      
+
         } else {
             $cloudscape = false;
         }
@@ -166,8 +168,6 @@ class Cloudscape_model extends Model {
         $query = $this->db->get();
         if ($query->num_rows() !=  0 ) {
             $cloudscape = $query->row();
-        
-        
 
         }
         return $cloudscape;
@@ -1025,9 +1025,10 @@ class Cloudscape_model extends Model {
     function get_clouds_in_section($section_id) {
         $this->db->order_by('title', 'asc');
         $this->db->where('section_id', $section_id);
-        $this->db->where('user.banned',0);  
-        $this->db->join('user', 'cloud.user_id = user.id');        
+        $this->db->where('user.banned',0);
+        // Ensure that the `cloud` table is joined before the ON `cloud`.user_id... part.
         $this->db->join('cloud', 'cloud.cloud_id = section_cloud.cloud_id');
+        $this->db->join('user', 'cloud.user_id = user.id');
         $query = $this->db->get('section_cloud');
         return $query->result();
     }

@@ -46,7 +46,13 @@
         <td>
             <?=form_input(array('name'=>'fullname',
                 'required' =>true,
-                'pattern'  =>'\w[\w-]* [\w- ]+',
+                #'pattern'  =>"\w[\w-']* [\w-' ]+",
+                /*ECMAScript: Unicode Basic Latin + Latin-1 Sup. + Latin extended-A,
+                  http://regexlib.com/CheatSheet.aspx
+                  http://en.wikipedia.org/wiki/List_of_Unicode_characters#Latin_extended-A
+                */
+                'pattern'  =>"\w[\w-'\u00c0-\u017f]* [\w-' \u00c0-\u017f]+",
+                'title'    =>t('Minimum !N words, letters, apostrophe, dash and accents', array('!N'=>2)),
                 'maxlength'=>140,
                 'value'    =>set_value('fullname') ))?>
     </tr>
