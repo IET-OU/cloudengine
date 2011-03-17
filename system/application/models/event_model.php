@@ -447,7 +447,7 @@ class Event_model extends Model {
                                           $cloudscape->fullname, 
                                               $attr_author))).'</em>';
                 }
-                break;
+                break; // Always break last - defensive.
 
             case 'comment': 
                 // New comment on a cloud
@@ -470,16 +470,15 @@ class Event_model extends Model {
                                            $attr_author))).'</em>';
                   } else {
                       $string .= '<em>'.t("new comment on the cloud !cloud by !person",
-                                       array('!cloud' => 
-                                           anchor('cloud/view/'.$comment->cloud_id, 
-                                                $comment->cloud_title),
-                                           '!person'=> 
-                                           anchor('user/view/'.$comment->user_id, 
-                                                $comment->fullname, 
-                                                $attr_author))).'</em>';
+                                   array('!cloud' => 
+                                       anchor('cloud/view/'.$comment->cloud_id, 
+                                           $comment->cloud_title),
+                                       '!person'=> 
+                                       anchor('user/view/'.$comment->user_id,
+                                       $comment->fullname, $attr_author))).'</em>';
                   }
-                  break;
                 }
+                break;
 
             case 'news':
                 // New blog post
@@ -518,11 +517,12 @@ class Event_model extends Model {
                 $user = $this->CI->user_model->get_user($comment->user_id);
                 $string = '<strong>'.'"'.$truncated_comment.'</strong><br />';
                 $string .= '<em>'.t("!person commenting on the blog post !title",
-                                    array('!person'=> 
-                                        anchor('user/view/'.$comment->user_id, 
-                                                $comment->fullname, $attr_author),
-                                        '!title' => anchor('blog/view/'.$comment->post_id, 
-                                                $comment->news_title))).'</em>';
+                                    array('!person'=>
+                                        anchor('user/view/'.$comment->user_id,
+                                        $comment->fullname, $attr_author),
+                                    '!title' =>
+                                        anchor('blog/view/'.$comment->post_id,
+                                        $comment->news_title))).'</em>';
                 break;
 
             case 'new_user':
@@ -568,8 +568,8 @@ class Event_model extends Model {
                                              anchor('cloud/view/'.$cloud->cloud_id, 
                                                     $cloud->title))).'</em>';
                  }
-                 break;
                }
+               break;
 
             case 'reference': 
                 $this->CI->load->model('cloud_model');
@@ -603,8 +603,8 @@ class Event_model extends Model {
                                             anchor('cloud/view/'.$cloud->cloud_id, 
                                                    $cloud->title))).'</em>';
                   }
-                  break;
                 }
+                break;
 
             case 'content': 
                 $this->CI->load->model('cloud_model');
@@ -637,8 +637,8 @@ class Event_model extends Model {
                                              anchor('cloud/view/'.$cloud->cloud_id, 
                                                       $cloud->title))).'</em>';
                   }
-                  break;
                 }
+                break;
 
             case 'embed':
                 $this->CI->load->model('cloud_model');
@@ -672,8 +672,8 @@ class Event_model extends Model {
                                                  anchor('cloud/view/'.$cloud->cloud_id, 
                               $cloud->title))).'</em>';
                   }
-                  break;
                 }
+                break;
         }
 
         return $string;
