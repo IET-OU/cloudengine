@@ -371,6 +371,7 @@ class Event_model extends Model {
         
         $this->load->helper('format');
         $this->CI = &get_instance();
+
         switch ($event->event_type) {
             case 'cloud':            
                 if ($event->follow_item_type == 'user') {
@@ -420,8 +421,9 @@ class Event_model extends Model {
                                                   $cloudscape->title))).'</em>';
                       }
                   }
-                  break;
+                  #break;
                 }
+                break; //BB bug #166.
 
            case 'cloudscape':
                 // New cloudscape created
