@@ -371,6 +371,7 @@ class Event_model extends Model {
         
         $this->load->helper('format');
         $this->CI = &get_instance();
+        $attr_author = array('rel'=>'author'); // Commonly used HTML attributes.
 
         switch ($event->event_type) {
             case 'cloud':            
@@ -386,11 +387,11 @@ class Event_model extends Model {
                         // Add 'rel' for semantics/styling, http://whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes
                         $string .= '<em>'.t("created by !person",
                             array('!person' => anchor('user/view/'.$cloud->id, 
-                                  $cloud->fullname, array('rel'=>'author')))).'</em>'; 
+                                  $cloud->fullname, $attr_author))).'</em>'; 
                     } else {
                         $string .= '<em>'.t("new cloud created by !person",
                             array('!person' => anchor('user/view/'.$cloud->id, 
-                                   $cloud->fullname, array('rel'=>'author')))).'</em>';
+                                   $cloud->fullname, $attr_author))).'</em>';
                     }
                 } elseif ($event->follow_item_type = 'cloudscape') {
                     // Cloud added to a cloudscape 
@@ -410,7 +411,7 @@ class Event_model extends Model {
                       if ($user) {
                           $string .= '<em>'.t("cloud added to the cloudscape !title by !person", array(
                               '!person'=> anchor('user/view/'.$user->user_id,
-                                      $user->fullname, array('rel'=>'author')),
+                                      $user->fullname, $attr_author),
                               '!title' => anchor('cloudscape/view/'.
                                       $cloudscape->cloudscape_id, 
                                       $cloudscape->title))).'</em>';
@@ -437,14 +438,14 @@ class Event_model extends Model {
                     $string .= '<em>'.t("created by !person",
                                       array('!person' => 
                                           anchor('user/view/'.$cloudscape->user_id, 
-                                          $cloudscape->fullname, 
-                                              array('rel'=>'author')))).'</em>';
+                                          $cloudscape->fullname,
+                                              $attr_author))).'</em>';
                 } else {
                     $string .= '<em>'.t("new cloudscape created by !person",
                                       array('!person' => 
                                           anchor('user/view/'.$cloudscape->user_id, 
                                           $cloudscape->fullname, 
-                                              array('rel'=>'author')))).'</em>';
+                                              $attr_author))).'</em>';
                 }
                 break;
 
@@ -466,7 +467,7 @@ class Event_model extends Model {
                                            $comment->cloud_title),
                                 '!person'=> anchor('user/view/'.$comment->user_id, 
                                            $comment->fullname, 
-                                           array('rel'=>'author')))).'</em>';
+                                           $attr_author))).'</em>';
                   } else {
                       $string .= '<em>'.t("new comment on the cloud !cloud by !person",
                                        array('!cloud' => 
@@ -475,7 +476,7 @@ class Event_model extends Model {
                                            '!person'=> 
                                            anchor('user/view/'.$comment->user_id, 
                                                 $comment->fullname, 
-                                                array('rel'=>'author')))).'</em>';
+                                                $attr_author))).'</em>';
                   }
                   break;
                 }
@@ -487,10 +488,9 @@ class Event_model extends Model {
                 $news = $this->CI->blog_model->get_blog_post($post_id);
                 $string = anchor("blog/view/$post_id", $news->title).'<br />'; 
                 $string .= '<em>'.t("New blog post by !person",
-                                    array('!person' => 
-                                          anchor('user/view/'.$news->user_id, 
-                                                 $news->fullname, 
-                                                 array('rel'=>'author')))).'</em>'; 
+                                   array('!person' => 
+                                       anchor('user/view/'.$news->user_id, 
+                                           $news->fullname, $attr_author))).'</em>'; 
                 break;
 
             case 'follow':
@@ -503,11 +503,10 @@ class Event_model extends Model {
                 $string = '<em>'.t("!following is now following !followed",
                                    array('!following'=> 
                                        anchor('user/view/'.$following_user->user_id, 
-                                                $following_user->fullname, 
-                                                array('rel'=>'author')),
+                                           $following_user->fullname, $attr_author),
                                       '!followed' => 
                                        anchor('user/view/'.$followed_user->user_id, 
-                                                $followed_user->fullname))).'</em>';
+                                           $followed_user->fullname))).'</em>';
                 break;
 
             case 'news_comment':
@@ -521,7 +520,7 @@ class Event_model extends Model {
                 $string .= '<em>'.t("!person commenting on the blog post !title",
                                     array('!person'=> 
                                         anchor('user/view/'.$comment->user_id, 
-                                                $comment->fullname, array('rel'=>'author')),
+                                                $comment->fullname, $attr_author),
                                         '!title' => anchor('blog/view/'.$comment->post_id, 
                                                 $comment->news_title))).'</em>';
                 break;
@@ -555,7 +554,7 @@ class Event_model extends Model {
                       $string .= '<em>'.t("added to !title by !person",
                           array('!person'=> 
                                  anchor('user/view/'.$link->user_id, 
-                                        $link->fullname, array('rel'=>'author')),
+                                        $link->fullname, $attr_author),
                                  '!title' => 
                                   anchor('cloud/view/'.$cloud->cloud_id, 
                                   $cloud->title))).'</em>';
@@ -564,7 +563,7 @@ class Event_model extends Model {
                                          array('!person'=> 
                                              anchor('user/view/'.$link->user_id, 
                                                     $link->fullname, 
-                                                    array('rel'=>'author')),
+                                                    $attr_author),
                                                '!title' => 
                                              anchor('cloud/view/'.$cloud->cloud_id, 
                                                     $cloud->title))).'</em>';
@@ -590,7 +589,7 @@ class Event_model extends Model {
                                         array('!person'=> 
                                             anchor('user/view/'.$reference->user_id, 
                                                    $reference->fullname, 
-                                                   array('rel'=>'author')),
+                                                   $attr_author),
                                             '!title' => 
                                             anchor('cloud/view/'.$cloud->cloud_id, 
                                                    $cloud->title))).'</em>';
@@ -599,7 +598,7 @@ class Event_model extends Model {
                                        array('!person'=> 
                                             anchor('user/view/'.$reference->user_id, 
                                                    $reference->fullname, 
-                                                   array('rel'=>'author')),
+                                                   $attr_author),
                                             '!title' => 
                                             anchor('cloud/view/'.$cloud->cloud_id, 
                                                    $cloud->title))).'</em>';
@@ -624,7 +623,7 @@ class Event_model extends Model {
                                          array('!person'=> 
                                              anchor('user/view/'.$content->user_id, 
                                                     $content->fullname, 
-                                                    array('rel'=>'author')),
+                                                    $attr_author),
                                              '!title' => 
                                              anchor('cloud/view/'.$cloud->cloud_id, 
                                                      $cloud->title))).'</em>';
@@ -633,7 +632,7 @@ class Event_model extends Model {
                                            array('!person'=> 
                                              anchor('user/view/'.$content->user_id, 
                                                  $content->fullname, 
-                                                 array('rel'=>'author')),
+                                                 $attr_author),
                                              '!title' => 
                                              anchor('cloud/view/'.$cloud->cloud_id, 
                                                       $cloud->title))).'</em>';
@@ -660,7 +659,7 @@ class Event_model extends Model {
                                          array('!person'=> 
                                              anchor('user/view/'.$embed->user_id, 
                                                   $embed->fullname, 
-                                                      array('rel'=>'author')),
+                                                      $attr_author),
                                              '!title' => 
                                              anchor('cloud/view/'.$cloud->cloud_id, 
                                                       $cloud->title))).'</em>';
@@ -668,7 +667,7 @@ class Event_model extends Model {
                     $string .= '<em>'.t("new embedded content added to the cloud !title by !person",
                         array('!person'=> anchor('user/view/'.$embed->user_id, 
                                                   $embed->fullname, 
-                                                  array('rel'=>'author')),
+                                                  $attr_author),
                                                  '!title' =>
                                                  anchor('cloud/view/'.$cloud->cloud_id, 
                               $cloud->title))).'</em>';
