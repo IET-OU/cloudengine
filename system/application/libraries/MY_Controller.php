@@ -26,23 +26,19 @@ class MY_Controller extends Controller {
         }
       }
       
-      //***********************************************************************************
+      //*********************************************************************
       // Maintenance mode processing - start
-      //***********************************************************************************   
+      //*********************************************************************
       //public site offline message
-      $temp = str_replace('!site-name!', config_item('site_name'),t(config_item('offline_message_public')));
-      $this->config->set_item('offline_message_public', str_replace(  '!site-email!',
-                                                                      mailto(config_item('site_email')),
-                                                                      $temp
-                                                                    )
-                             );                                                                                                                                                           
+      $temp = str_replace('!site-name!', config_item('site_name'), t(config_item('offline_message_public')));
+      $this->config->set_item('offline_message_public', str_replace(
+                         '!site-email!', mailto(config_item('site_email')), $temp)
+                         );
       //admin site offline message
       $this->config->set_item('offline_message_admin', str_replace( '!site-name!',
-                                                                    config_item('site_name'),
-                                                                    t(config_item('offline_message_admin'))
-                                                                  )
-                             );                                                                    
-        
+                         config_item('site_name'), t(config_item('offline_message_admin')))
+                         );
+
       //if the site is offline and we have a numeric value for site_live (i.e. we are not in install script)
       if (!config_item('site_live') && is_numeric(config_item('site_live'))) {
         //if there is session data for the user and the user is admin
@@ -67,9 +63,9 @@ class MY_Controller extends Controller {
           exit; 
         }        
       }                        
-      //***********************************************************************************
+      //*********************************************************************
       // Maintenance mode processing - end
-      //***********************************************************************************   
+      //*********************************************************************
 
   }
 
