@@ -10,7 +10,7 @@ $site_name = $this->config->item('site_name');
 header('Content-Type: application/opensearchdescription+xml; charset=utf-8');
 @header('Content-Disposition: inline; '.$_SERVER['HTTP_HOST'].'-opensearch.xml');
 ?>
-<?xml version="1.0" encoding="utf-8"?>
+<?='<'?>?xml version="1.0" encoding="utf-8"<?='?'?>>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
                        xmlns:moz="http://www.mozilla.org/2006/browser/search/">
   <ShortName><?=$site_name ?></ShortName>
