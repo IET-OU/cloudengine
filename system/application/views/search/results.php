@@ -1,4 +1,8 @@
 <?php if (config_item('x_search')): ?>
+<?php if (isset($error)): ?>
+    <p class="test_install warn"><?=$error ?></p>
+<?php endif; ?>
+
 <div class="grid headline">
 	<h1><?=t("Search results for '!query'", array('!query'=>$query_string))?></h1>
 </div>

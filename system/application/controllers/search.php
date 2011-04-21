@@ -37,6 +37,7 @@ class Search extends MY_Controller {
 	    ini_set('memory_limit','128M');
 
         if ($query_string = $this->input->get('q')) {
+		  try {
             $data['results']     = $this->search_model->search($query_string);
             $data['clouds']      = $this->search_model->search_for_item_type($query_string, 
                                                                              'cloud') ;
@@ -45,8 +46,12 @@ class Search extends MY_Controller {
             $data['users']       = $this->search_model->search_for_item_type($query_string, 
                                                                              'user');
             $data['total_hits']  = count($data['results']);
+		  }
+		  catch (Exception $e) {
+		    $data['error'] = $e->getMessage();
+		  }
         }
-        
+
         $data['title']        = t("Search results for '!query'", 
                                   array('!query'=>$query_string));
         $data['query_string'] = $query_string;
