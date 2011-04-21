@@ -59,6 +59,8 @@ class Content_model extends Model {
      * @return array Array of extra content items
      */
     function get_content($cloud_id) {
+        $this->db->select('cloud_content.*, user_picture.*, user_profile.*');
+        $this->db->from('cloud_content');      
         $this->db->where('cloud_id', $cloud_id);
         $this->db->where('moderate', 0);
         $this->db->where('user.banned',0);  
@@ -67,7 +69,7 @@ class Content_model extends Model {
                         'left');        
         $this->db->join('user_profile', 'user_profile.id = cloud_content.user_id');        
         $this->db->order_by('cloud_content.created', 'asc');
-        $query = $this->db->get('cloud_content');
+        $query = $this->db->get();
         return $query->result();   
     }
     

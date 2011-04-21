@@ -7,6 +7,9 @@ config/database.php
 config/mollom.php
 language/*/LC_MESSAGES/*.mo
 themes/cloudworks
+libraries/Firephp.php
+libraries/Firephp_fake.php
+libraries/MY_Profiler.php
 */Thumbs.db
 .DS_Store
 .hgrevision
