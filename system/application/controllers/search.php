@@ -13,7 +13,7 @@ class Search extends MY_Controller {
  
 		$this->load->library('zend');
 		$this->zend->load('Zend/Search/Lucene');
-		$this->load->library('layout', 'layout_main');  
+		$this->load->library('layout', 'layout_main');
 		$this->load->model('search_model');
 		if (!config_item('x_search')) {
 			show_404();
@@ -119,6 +119,8 @@ class Search extends MY_Controller {
 	/** Output the OpenSearch Description XML.
 	*/
 	public function opensearch_desc() {
-	    $this->layout->view('search/opensearch_description');
+	    header('Content-Type: application/xml; charset=utf-8');
+	    //@header('Content-Disposition: inline; '.$_SERVER['HTTP_HOST'].'-opensearch.xml');
+		$this->load->view('search/opensearch_description');
 	}
 }
