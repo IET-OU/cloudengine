@@ -1,6 +1,6 @@
 <?php if (config_item('x_search')): ?>
 <?php if (isset($error)): ?>
-    <p class="test_install warn"><?=$error ?></p>
+    <p class="test_install warn"><?=t("Woops, search didn't succeed.") ?> <?=$error ?></p>
 <?php endif; ?>
 
 <div class="grid headline">
