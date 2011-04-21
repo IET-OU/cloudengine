@@ -35,9 +35,8 @@ class Search extends MY_Controller {
 	function result() {
 	    // Increase the memory limit as Zend Lucene sometimes struggles 
 	    ini_set('memory_limit','128M');
-	    
-        if ($query_string  = $this->input->post('query_string')) {
-            $query_string        = $this->input->post('query_string');
+
+        if ($query_string = $this->input->get('q')) {
             $data['results']     = $this->search_model->search($query_string);
             $data['clouds']      = $this->search_model->search_for_item_type($query_string, 
                                                                              'cloud') ;
