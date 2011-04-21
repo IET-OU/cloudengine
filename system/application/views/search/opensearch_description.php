@@ -7,17 +7,15 @@
  * @package Search
  */
 $site_name = $this->config->item('site_name');
-header('Content-Type: application/opensearchdescription+xml; charset=utf-8');
-@header('Content-Disposition: inline; '.$_SERVER['HTTP_HOST'].'-opensearch.xml');
 ?>
 <?='<'?>?xml version="1.0" encoding="utf-8"<?='?'?>>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
                        xmlns:moz="http://www.mozilla.org/2006/browser/search/">
   <ShortName><?=$site_name ?></ShortName>
-  <Description><?=$this->config->item('tag_line') ?></Description>
+  <Description><?=t($this->config->item('tag_line')) ?></Description>
   <Contact><?=$this->config->item('site_email') ?></Contact>
   <Image type="image/vnd.microsoft.icon" width="16" height="16"><?=base_url(). $this->config->item('theme_favicon') ?></Image>
-  <Url type="text/html" template="<?=base_url() ?>/search/result?q={searchTerms}"/>
+  <Url type="text/html" template="<?=site_url('search/result') ?>?q={searchTerms}"/>
   <LongName></LongName>
   <Query role="example" searchTerms="OULDI" />
   <Developer>CloudEngine/OULDI development team at The Open University.</Developer>
@@ -26,5 +24,5 @@ header('Content-Type: application/opensearchdescription+xml; charset=utf-8');
   <Language><?=$this->config->item('default_language') ?></Language>
   <InputEncoding>UTF-8</InputEncoding>
   <OutputEncoding>UTF-8</OutputEncoding>
-  <moz:SearchForm><?=base_url() ?>/search</moz:SearchForm>
+  <moz:SearchForm><?=site_url('search') ?></moz:SearchForm>
 </OpenSearchDescription>
