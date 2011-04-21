@@ -114,6 +114,11 @@ class Search extends MY_Controller {
 	    $this->auth_lib->check_is_admin(); 
 	    $this->search_model->delete_item_from_index($item_id, $item_type);
 	    echo "Deleted item with item_id $item_id item type $item_type";
-	}	
-	
+	}
+
+	/** Output the OpenSearch Description XML.
+	*/
+	public function opensearch_desc() {
+	    $this->layout->view('search/opensearch_description');
+	}
 }
