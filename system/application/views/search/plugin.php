@@ -1,6 +1,6 @@
 <?php
 /* Javascript for browser search plugin.
-   Source: http://mycroft.mozdev.org/developer/hosting.html
+   Based on: http://mycroft.mozdev.org/developer/hosting.html
    Experimental:  /search?plugin=1
    Supported on:  MSIE 7+, Firefox 2+, Chrome.
    Todo: move CSS to stylesheet.
@@ -20,15 +20,15 @@ if ($this->input->get('plugin')):
 <br /><small>(Supported in Internet Explorer 7+, Firefox and Chrome.)</small>
 </p>
 <script>
-$('#search-plugin-btn').click(function addOpenSearch(name,ext,meth) {
-  if ((typeof window.external == "object") && ((typeof window.external.AddSearchProvider == "unknown") || (typeof window.external.AddSearchProvider == "function"))) {
-    if((typeof window.external.AddSearchProvider == "unknown") && meth == "p"){
+$('#search-plugin-btn').click(function addOpenSearch(<?php /*name,ext,meth*/ ?>) {
+  if ((typeof window.external=="object") && ((typeof window.external.AddSearchProvider=="unknown") || (typeof window.external.AddSearchProvider=="function"))) {
+<?php /*if((typeof window.external.AddSearchProvider == "unknown") && meth == "p"){
       alert("This plugin uses POST which is not currently supported by Internet Explorer's implementation of OpenSearch.");
-    } else {
+    } else {*/ ?>
       window.external.AddSearchProvider(
         "<?=site_url('search/opensearch_desc.xml')?>");
-        //"http://mycroft.mozdev.org/externalos.php/" + name + ".xml");
-    }
+<?php /*"http://mycroft.mozdev.org/externalos.php/" + name + ".xml");
+    }*/ ?>
   } else {
     alert("<?=t('You will need a browser which supports OpenSearch to install this plugin.') ?>");
   }
