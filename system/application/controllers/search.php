@@ -40,11 +40,11 @@ class Search extends MY_Controller {
 		  try {
             $data['results']     = $this->search_model->search($query_string);
             $data['clouds']      = $this->search_model->search_for_item_type($query_string, 
-                                                                             'cloud') ;
+                                                           'cloud');
             $data['cloudscapes'] = $this->search_model->search_for_item_type($query_string, 
-                                                                            'cloudscape');
+                                                           'cloudscape');
             $data['users']       = $this->search_model->search_for_item_type($query_string, 
-                                                                             'user');
+                                                           'user');
             $data['total_hits']  = count($data['results']);
 		  }
 		  catch (Exception $e) {
