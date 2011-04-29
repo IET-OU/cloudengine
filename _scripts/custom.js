@@ -34,6 +34,6 @@
         $(this).siblings('.user-info').css({'visibility' : 'hidden'});
       } 
     );    
-   
-   
+
+  $("input[type=search]").attr('results', '5');
  });
