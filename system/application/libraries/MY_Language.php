@@ -348,6 +348,9 @@ class My_Language extends CI_Language {
 function t($string, $args = array(), $langcode = NULL) {
 	$msgid = $string;
 
+    //BB #173, prevent warnings in log.
+    if (!$string) return $string;
+
 	// Deployment: use the 'php-gettext' emulator.
 	$string = T_gettext($string);
 
