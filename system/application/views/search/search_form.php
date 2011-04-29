@@ -5,5 +5,6 @@
     <input id="query" name="q" type="search" size="50" maxlength="30" />
     <button type="submit" id="search-submit"><?=t("Search")?></button>
   </p>
+<?php $this->load->view('search/plugin'); ?>
 </form>
 <?php endif; ?>

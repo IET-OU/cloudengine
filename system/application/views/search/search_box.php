@@ -6,6 +6,7 @@
         <input id="query" name="q" type="search" value="<?=$query_string ?>" maxlength="30" />
         <input id="search-button" type="image" src="<?=base_url() ?>_design/search-button.gif" alt="<?=t("Search")?>" />
       </p>
+    <?php $this->load->view('search/plugin'); ?>
     </form>
 </div>
 <?php endif; ?>
