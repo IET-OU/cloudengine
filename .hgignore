@@ -13,3 +13,5 @@ libraries/MY_Profiler.php
 */Thumbs.db
 .DS_Store
 .hgrevision
+*.orig
+extensions/*
