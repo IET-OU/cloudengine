@@ -176,7 +176,7 @@ $config['FAL_captcha_image_font_color'] = '33CC33';
 $config['FAL_captcha_image_library'] = 'GD2';
 
 // Folder of the Base image needed to generate Captcha
-$config['FAL_captcha_base_image_path'] = $config['base_url'].'_design/';
+$config['FAL_captcha_base_image_path'] = $this->config['base_url'].'_design/';
 
 // Base image name for captcha
 $config['FAL_captcha_image_base_image'] = 'captcha_base_image.jpg';
