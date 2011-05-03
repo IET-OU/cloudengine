@@ -2,7 +2,7 @@
 <p class="login">
     <a href="#login" class="link-arrow show"><?= $loggedinprofile->fullname ?></a> 
     <?=anchor('auth/logout', t('Sign out')) ?>
-    <?php if($this->auth_lib->is_admin() && $total_items != 0): ?>
+    <?php if($this->auth_lib->is_admin() && isset($total_items) && $total_items != 0): ?>
     <br />
     <br />
     <a href="<?=base_url() ?>admin/moderate"><?=plural(_("!count item requires moderation"), _("!count items require moderation"), $total_items) ?></a>
