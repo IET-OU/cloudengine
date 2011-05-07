@@ -1,17 +1,16 @@
 
-<div id="embeds">
+
+<div id="embeds" class="embed-block">
 <h2><?=t("Embedded Content")?></h2>
 <?php if ($embeds): ?>
-<?php $i = 0; ?>
-<?php foreach($embeds as $embed): ?>
+<?php foreach($embeds as $idx => $embed): ?>
 
     <h3><?= $embed->title ?></h3>
-  <div id="oembed<?= $i ?>"></div>
-
-  <?php if ($embed->accessible_alternative): ?>
+  <a id="em<?= $idx ?>" class="em" href="<?=$embed->url ?>"><?=$embed->title ?></a>
+<p><?php if ($embed->accessible_alternative): ?>
    <?= anchor('embed/accessible_alternative/'.$embed->embed_id, t('Accessible Alternative')); ?><br />
   <?php endif; ?>
-&nbsp; <small>added by
+  <small>added by
 <?= anchor('user/view/'.$embed->user_id, $embed->fullname) ?>
 </small>
 
@@ -24,21 +23,14 @@
     &nbsp; <small>
     <?= anchor('embed/edit/'.$embed->embed_id, t("edit embedded content")) ?></small>
 <?php endif; ?>
-<?php $i++; ?>
-<br /><br />
+</p>
 <?php endforeach; ?>
 
-<?php /*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>*/ ?>
+<?php /*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>*/ ?>
 <script src="<?=base_url() ?>_scripts/jquery.oembed.js"></script>
 <script>
 $(document).ready(function() {
-<?php
-  $i = 0;
-  foreach($embeds as $embed): ?>
-  $("#oembed<?= $i ?>").oembed("<?= $embed->url ?>");
-<?php
-  $i++;
-  endforeach; ?>
+  $('.embed-block a.em').oembed();
 });
 </script>
 <?php endif; ?>
