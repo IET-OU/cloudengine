@@ -24,7 +24,7 @@ class Search extends MY_Controller {
      * Display the search form
      */
 	function index() {
-        $data['title'] = t("Search");  
+    $data['title'] = t("Search");  
 		$this->layout->view('search/search_form', $data);
 	}
 
@@ -36,16 +36,31 @@ class Search extends MY_Controller {
 	    // Increase the memory limit as Zend Lucene sometimes struggles 
 	    ini_set('memory_limit','128M');
 
-        if ($query_string = $this->input->get('q')) {
+      if ($query_string = $this->input->get('q')) {
 		  try {
-            $data['results']     = $this->search_model->search($query_string);
-            $data['clouds']      = $this->search_model->search_for_item_type($query_string, 
-                                                           'cloud');
-            $data['cloudscapes'] = $this->search_model->search_for_item_type($query_string, 
-                                                           'cloudscape');
-            $data['users']       = $this->search_model->search_for_item_type($query_string, 
-                                                           'user');
-            $data['total_hits']  = count($data['results']);
+    
+        //search clouds                                                
+        $data['clouds']           = $this->search_model->search_for_item_type($query_string,'cloud');
+        $data['cloud_hits']       = count($data['clouds']);
+        $this->firephp->fb($data['clouds'],'cloud results','INFO');
+        $this->firephp->fb($data['cloud_hits'],'cloud_hits','INFO');
+        
+        //search cloudscapes
+        $data['cloudscapes']      = $this->search_model->search_for_item_type($query_string,'cloudscape');
+        $data['cloudscape_hits']  = count($data['cloudscapes']);
+        $this->firephp->fb($data['cloudscapes'],'cloudscape results','INFO');
+        $this->firephp->fb($data['cloudscape_hits'],'cloudscape_hits','INFO');
+        
+        //search users
+        $data['users']            = $this->search_model->search_for_item_type($query_string,'user');
+        $data['user_hits']        = count($data['users']);
+        $this->firephp->fb($data['users'],'user results','INFO');
+        $this->firephp->fb($data['user_hits'],'user_hits','INFO');
+        
+        //total hits
+        $data['total_hits']       = $data['cloud_hits'] + $data['cloudscape_hits'] + $data['user_hits'];
+        $this->firephp->fb($data['total_hits'],'total_hits','INFO');
+                                    
 		  }
 		  catch (Exception $e) {
 		    $data['error'] = $e->getMessage();
@@ -57,19 +72,40 @@ class Search extends MY_Controller {
         $data['query_string'] = $query_string;
         $data['navigation']   = 'search';
         $this->search_model->log_search($query_string);
-		$this->layout->view('search/results', $data);		
+		    $this->layout->view('search/results', $data);		
 	}
 
 	/**
 	 * Recreate the search index
 	 *
 	 */
-	function create() {
-	    $this->auth_lib->check_is_admin(); 
-        // This takes a while, so make sure the php script doesn't timeout.
+	function create($index_limit) {
+	 
+      $this->firephp->fb($index_limit,'$index_limit','INFO');    
+   
+      $this->auth_lib->check_is_admin(); 
+      // This takes a while, so make sure the php script doesn't timeout.
 	    set_time_limit(60*60);  
-        $index = $this->search_model->create_index();
-		echo 'Index created';
+      
+           //set start time variable
+      $time = microtime();
+      $time = explode(' ', $time);
+      $time = $time[1] + $time[0];
+      $start = $time;
+      //end start time variable
+
+      $index = $this->search_model->create_index(false,$index_limit);
+      
+      //set end time variable      
+      $time = microtime();
+      $time = explode(' ', $time);
+      $time = $time[1] + $time[0];
+      $finish = $time;
+      $total_time = round(($finish - $start), 4);
+      $this->firephp->fb($total_time .' seconds','Time to index','INFO');
+      //end end time variable    
+     
+		  echo 'Index created';
 	}
 	
 	/**

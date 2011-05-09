@@ -1029,4 +1029,128 @@ class Cloudscape extends MY_Controller {
         }
         return $moderate;  		
     }
+    
+    /**
+     * View a specified cloudscape (search layout)
+     *
+     * @param string $cloudscape Either the ID of the cloudscape of the cloudscape title 
+     * (URL-encoded)
+     * @param string $type The item type to display in the cloudscape activity stream
+     * @param integer $section_id The section of the cloudscape to display
+     */
+    function search_view($cloudscape = 0, $type = 'all', $section_id = 0) {        
+        $this->load->model('favourite_model');
+        $this->load->model('events_model');
+                
+        $user_id = $this->db_session->userdata('id');
+        
+        // Get the cloudscape 
+        if (is_numeric($cloudscape)) {
+            $data['cloudscape'] = $this->cloudscape_model->get_cloudscape($cloudscape);
+            $cloudscape_id = $cloudscape;
+        } else {
+           $data['cloudscape'] = $this->cloudscape_model->get_cloudscape_by_title(
+                                                                    urldecode($cloudscape)); 
+           $cloudscape_id = $data['cloudscape']->cloudscape_id;
+        }
+        $cloudscape = $data['cloudscape'];    
+        if ($data['cloudscape']) {
+            // Get tags, followers with images and number of followers for the cloudscapes 
+            $data['tags'] = $this->tag_model->get_tags('cloudscape',  $cloudscape_id);
+            $data['followers'] = $this->cloudscape_model->get_followers($cloudscape_id);
+            $data['total_followers'] = $this->cloudscape_model->get_total_followers(
+                                                                             $cloudscape_id);
+            
+            // Figure out what permissions the current user has for this cloudscape         
+            if ($user_id) {
+                $data['admin_permission'] = $this->cloudscape_model->has_admin_permission(
+                                                                   $cloudscape_id, $user_id);
+                $data['edit_permission']  = $data['admin_permission'];
+                $data['post_permission']  = $this->cloudscape_model->has_post_permission(
+                                                                   $cloudscape_id, $user_id);
+                $data['owner'] = $this->cloudscape_model->has_owner_permissions(
+                                                                   $cloudscape_id, $user_id);
+            }
+    
+            // Get the clouds to display
+            $data['sections'] = $this->cloudscape_model->get_sections($cloudscape_id);
+
+            if ($data['sections'] && $section_id) {
+                // A section has been specified - only get the clouds for that section
+                // Really ought to check the section  belongs to the cloudscape
+                $data['clouds'] = $this->cloudscape_model->get_clouds_in_section($section_id); 
+                $data['section_id'] = $section_id; 
+            } else {
+                $data['clouds'] = $this->cloudscape_model->get_clouds($cloudscape_id);     
+            }
+                        
+            // Get the tweets for the cloudscape if a tag has been defined
+            if (config_item('x_twitter') && $data['cloudscape']->twitter_tag) {
+                $this->load->library('twitter');
+                $this->twitter->auth(config_item('x_twitter_username'), 
+                                     config_item('x_twitter_password'));
+                $tweets = $this->twitter->search('search', 
+                                  array('q' => urlencode($data['cloudscape']->twitter_tag)));
+                $data['tweets'] = $tweets->results;
+            }
+            
+            // Get all the information to display the cloudscape's cloudstream 
+            $this->load->model('event_model');  
+            
+            $events = $this->event_model->get_events_for_cloudscape($cloudscape_id, 20, 
+                                                                    $type);
+            $simple = false;
+            if ($type) {
+                $simple = true;
+            }
+            
+            $events = $this->event_model->display_format($events, $simple); 
+
+            $data['type']   = $type;
+            
+            if ($events) {
+                $events = array_slice($events , 0, 10);
+            }
+            
+            // Make sure the view has everything it needs 
+            $data['user_id']             = $user_id;
+            $data['total_views']         = $this->cloudscape_model->get_total_views($cloudscape_id);          
+            $data['events']              = $events; 
+            $data['type']                = $type;
+            $data['basepath']            = $this->config->site_url('cloudscape/view/'.$cloudscape_id);
+            $data['omit_cloudscapes']    = true;          
+            $data['rss']                 = $this->config->site_url('event/cloudscape_rss/'.$cloudscape_id.'/'.$type);
+            $data['total_favourites']    = $this->favourite_model->get_total_favourites(
+                                                              $cloudscape_id, 'cloudscape'); 
+            $data['favourite']           = $this->favourite_model->is_favourite($user_id, 
+                                                            $cloudscape_id, 'cloudscape');  
+            $data['show_favourite_link'] = $this->favourite_model->can_favourite_item(
+                                                     $user_id, $cloudscape_id, 'cloudscape');
+            $data['title']               = $data['cloudscape']->title;
+            $data['admin']               = $this->auth_lib->is_admin();
+            $data['following']           = $this->cloudscape_model->is_following(
+            												       $cloudscape_id, $user_id);
+            $data['attended']            = $this->events_model->is_attending($cloudscape_id,
+                                                                                   $user_id);
+            $data['navigation']          = 'cloudscapes';
+
+            // If this cloudscape is an event, determine if it is a past event
+            if ($cloudscape->start_date) {
+   
+                if (($cloudscape->end_date && $cloudscape->end_date < time()) ||
+                     (!$cloudscape->end_date && $cloudscape->start_date < time())) {
+                    $data['past_event'] = true;
+                }
+                
+                $data['attendees'] = $this->events_model->get_attendees($cloudscape_id);
+            }
+            $this->layout->layout('layout_search_view');            
+            $this->layout->view('cloudscape/search_view', $data);
+            $this->cloudscape_model->log_view($cloudscape_id);         
+        } else {
+            $this->layout->view('notfound');            
+        }
+    }    
+    
+    
 }

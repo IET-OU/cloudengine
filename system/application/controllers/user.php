@@ -348,7 +348,7 @@ class User extends MY_Controller {
     }
     
     /**
-     * Display a user's profile
+     * Display a user's profile 
      *
      * @param integer $user_id The ID of the user
      * @param string $type The type of items to display in the user's activity stream
@@ -554,4 +554,93 @@ class User extends MY_Controller {
 
         return $contains_space;
     }
+    
+    /**
+     * Display a user's profile (search layout)
+     *
+     * @param integer $user_id The ID of the user
+     * @param string $type The type of items to display in the user's activity stream
+     */
+    function search_view($user_id = 0, $type = '') {
+        $this->load->model('favourite_model');
+        $this->load->model('events_model');
+        $this->load->model('cloudscape_model');
+        $this->load->model('tag_model');
+        
+        $current_user_id = $this->db_session->userdata('id');    
+        
+        if($user_id == $current_user_id) {
+          $data['is_own_profile'] = true;
+        } else {
+          $data['is_own_profile'] = false;
+        }
+          
+        if (!$user_id) {
+            $user_id = $current_user_id;
+        }
+        
+        if($this->auth_lib->is_admin()) {
+          $only_active = FALSE;
+        } else {
+          $only_active = TRUE;
+        }
+        
+        $user = $this->user_model->get_user($user_id, $only_active);
+        
+        // If the user id given is not a valid user id, display an error 
+        if (!$user) {
+            show_error(t("This user does not exist"));
+        }
+        
+        // Get this user's cloudstream 
+        $this->load->model('event_model');   
+        $events = $this->event_model->get_events_for_user($user_id, 20, $type);
+        if ($type) {
+            $simple = true;
+        }  
+        $events = $this->event_model->display_format($events, $simple); 
+        if ($events) {
+            $events = array_slice($events , 0, 10); 
+        }
+        
+        $data['type']             = $type;
+        $data['events']           = $events; 
+        $data['type']             = $type;
+        $data['basepath']         = $this->config->site_url('user/view/'.$user_id);
+        $data['rss_event']        = $this->config->site_url('event/user_rss/'.$user_id.'/'.$type);
+        $data['user']             = $user;
+        $data['display_email']    = $user->display_email;
+        $data['title']            = $user->fullname;
+        $data['rss']              = $this->config->site_url('user/rss/'.$user_id);
+        $data['clouds']           = $this->user_model->get_clouds($user_id, 10);
+        $data['picture']          = $this->user_model->get_picture($user_id);
+        $data['cloud_total']      = $this->user_model->get_cloud_total($user_id);
+        $data['cloudscape_total'] = $this->user_model->get_cloudscape_total($user_id);
+        $data['cloudscapes']      = $this->cloudscape_model->get_cloudscapes_owner($user_id);
+        $data['following']        = $this->user_model->get_following($user_id);
+        $data['followers']        = $this->user_model->get_followers($user_id);
+        $data['reputation']       = $this->favourite_model->get_reputation($user_id);
+        $data['total_favourites'] = count($this->favourite_model->get_favourites($user_id, 
+                                    'cloud')) + 
+                                    count($this->favourite_model->get_favourites($user_id, 
+                                    'cloudscape'));
+        $data['admin']            = $this->auth_lib->is_admin();
+        $data['past_events']      = $this->events_model->get_past_events_attended($user_id);
+        $data['current_events']   = $this->events_model->get_current_events_attended($user_id);
+        $data['tags']             = $this->tag_model->get_tags('user', $user_id);
+        
+        // Determine if the user is the current user 
+        $data['current_user'] = FALSE;
+        if ($user_id == $current_user_id) {     
+            $data['current_user']    = TRUE; 
+            $data['edit_permission'] = TRUE;
+        }
+        
+        // Determine if the current user is following this user
+        $data['isfollowing'] = $this->user_model->is_following($user_id, $current_user_id);    
+        $this->layout->layout('layout_search_view');           
+        $this->layout->view('user/search_view', $data);
+    }     
+    
+  
 }
