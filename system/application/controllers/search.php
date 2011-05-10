@@ -43,7 +43,7 @@ class Search extends MY_Controller {
         //search clouds                                                
         $data['clouds']           = $this->search_model->search_for_item_type($query_string,'cloud');
         $data['cloud_hits']       = count($data['clouds']);
-        $this->firephp->fb($data['clouds'],'cloud results','INFO');
+        $this->firephp->fb($data['clouds'],'cloud_results','INFO');
         $this->firephp->fb($data['cloud_hits'],'cloud_hits','INFO');
         
         //search cloudscapes
