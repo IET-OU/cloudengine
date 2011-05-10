@@ -81,8 +81,6 @@ class Search extends MY_Controller {
 	 *
 	 */
 	function create($index_limit) {
-	 
-      $this->firephp->fb($index_limit,'$index_limit','INFO');    
    
       $this->auth_lib->check_is_admin(); 
       // This takes a while, so make sure the php script doesn't timeout.

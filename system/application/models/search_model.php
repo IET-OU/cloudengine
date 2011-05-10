@@ -29,9 +29,7 @@ class Search_model extends Model {
      */
     function create_index($return_error = false, $index_limit = false ) {
 
-      $this->CI=& get_instance();
-	    
-      $this->firephp->fb($index_limit,'$index_limit','INFO');          
+      $this->CI=& get_instance();  
       
       // Change the analyser to a better one so stems words, indexes 
 	    // numbers etc. 
@@ -96,13 +94,13 @@ class Search_model extends Model {
 		    $this->CI->load->model('cloud_model');
         $clouds = $this->CI->cloud_model->get_clouds();
         $clouds_indexed = 0;
-        $this->firephp->fb($clouds,'$clouds','INFO');
+        //$this->firephp->fb($clouds,'$clouds','INFO');
         
         //allow a limit to indexing to be passed for testing purposes
         if ($index_limit) {
           for($i=0; $i<$index_limit; $i++) {
             $cloud_id = $clouds[$i]->cloud_id;
-            $this->firephp->fb($cloud_id,'$cloud_id','INFO');   
+            //$this->firephp->fb($cloud_id,'$cloud_id','INFO');   
       	    $this->update_item_in_index(base_url().'cloud/view/'.$cloud_id, 
       	                                           $cloud_id, 'cloud', $index);  
           }         
@@ -137,7 +135,7 @@ class Search_model extends Model {
         if ($index_limit) {
           for($i=0; $i<$index_limit; $i++) {
             $cloudscape_id = $cloudscapes[$i]->cloudscape_id;
-            $this->firephp->fb($cloudscape_id,'$cloudscape_id','INFO');   
+            //$this->firephp->fb($cloudscape_id,'$cloudscape_id','INFO');   
       	    $this->search_model->update_item_in_index(base_url().'cloudscape/view/'.
       	                                              $cloudscape_id, 
       	                                              $cloudscape_id, 'cloudscape',  $index);   
@@ -163,7 +161,7 @@ class Search_model extends Model {
      */    
     function update_indexed_users($index = false, $index_limit = false) {
       
-        $this->firephp->fb($index,'$index','INFO');    
+        //$this->firephp->fb($index,'$index','INFO');    
 
         if (!$index) {
             $index = $this->open_index();
@@ -175,7 +173,7 @@ class Search_model extends Model {
         if ($index_limit) {
           for($i=0; $i<$index_limit; $i++) {
             $user_id = $users[$i]->id;
-            $this->firephp->fb($user_id,'$user_id','INFO');   
+            //$this->firephp->fb($user_id,'$user_id','INFO');   
             $this->search_model->update_item_in_index(base_url().'user/view/'.$user_id, 
       	                                           $user_id, 'user',  $index);     	   
           } 
@@ -221,15 +219,15 @@ class Search_model extends Model {
         try {
             Zend_Search_Lucene_Analysis_Analyzer::setDefault(new 
                                                StandardAnalyzer_Analyzer_Standard_English() );
-          $this->firephp->fb($url,'$url','INFO');
+          //$this->firephp->fb($url,'$url','INFO');
           $url_to_index = str_replace('/view','/search_view',$url);
-          $this->firephp->fb($url_to_index,'$url_to_index','INFO');
+          //$this->firephp->fb($url_to_index,'$url_to_index','INFO');
         	$doc = Zend_Search_Lucene_Document_HTML::loadHTMLFile($url_to_index);
 
         	$doc->addField(Zend_Search_Lucene_Field::Keyword('url',  $url));
         	$doc->addField(Zend_Search_Lucene_Field::Keyword($item_type.'_id', $item_id ));  
           $doc->addField(Zend_Search_Lucene_Field::Keyword('item_type', $item_type));
-          $this->firephp->fb($doc,'$doc','INFO');
+          //$this->firephp->fb($doc,'$doc','INFO');
           $index->addDocument($doc);
         } catch (Zend_Search_Lucene_Exception $e){
               log_message('error', "Error: Adding $item_type $item_id. | ".$e->getMessage()); 
@@ -251,7 +249,6 @@ class Search_model extends Model {
         foreach ($ids as $id) { 
             if ( $id !== FALSE) {
                 $index->delete($id);
-                $this->firephp->fb($_SERVER,'$_SERVER','INFO');
             }
         }
     }
@@ -269,15 +266,12 @@ class Search_model extends Model {
             $index = $this->open_index();
         }
 
-        $this->firephp->fb($item_id,'$item_id','INFO');
-        $this->firephp->fb($item_type,'$item_type','INFO');
-        $this->firephp->fb($index,'$index','INFO');
+        //$this->firephp->fb($item_id,'$item_id','INFO');
+        //$this->firephp->fb($item_type,'$item_type','INFO');
+        //$this->firephp->fb($index,'$index','INFO');
 
         $term = new Zend_Search_Lucene_Index_Term($item_id, $item_type.'_id');        
-        $ids = $index->termDocs($term);
-        
-        $test = ' ';
-        $this->firephp->fb($test,'$ids','INFO');       
+        $ids = $index->termDocs($term);   
         
         return $ids;
     }
@@ -314,7 +308,7 @@ class Search_model extends Model {
                                                 StandardAnalyzer_Analyzer_Standard_English());
 
         $index   = $this->open_index();
-        $this->firephp->fb($item_type,'$item_type','INFO');
+        //$this->firephp->fb($item_type,'$item_type','INFO');
         //exit;
         $results = $index->find($search_string);
 
@@ -348,5 +342,4 @@ class Search_model extends Model {
 
 function open_index() {
       $index   = $this->open_index();
-      $this->firephp->fb('index opened','index opened','INFO');
 }
