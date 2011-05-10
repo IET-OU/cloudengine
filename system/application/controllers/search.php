@@ -15,7 +15,7 @@ class Search extends MY_Controller {
 		$this->zend->load('Zend/Search/Lucene');
 		$this->load->library('layout', 'layout_main');
 		$this->load->model('search_model');
-    $this->CI->load->library('firephp');          
+    $this->load->library('firephp');          
 		if (!config_item('x_search')) {
 			show_404();
 		}
