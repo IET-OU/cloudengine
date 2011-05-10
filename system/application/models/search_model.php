@@ -276,7 +276,8 @@ class Search_model extends Model {
         $term = new Zend_Search_Lucene_Index_Term($item_id, $item_type.'_id');        
         $ids = $index->termDocs($term);
         
-        $this->firephp->fb($ids,'$ids','INFO');       
+        $test = ' ';
+        $this->firephp->fb($test,'$ids','INFO');       
         
         return $ids;
     }
