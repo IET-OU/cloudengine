@@ -21,7 +21,7 @@
 // THE application version number. 
 // This needs to be changed for new releases and also whenever there is a new upgrade function 
 // that needs to be run e.g. if there are database changes. 
-define("APP_VERSION", "1.1.1");
+define("APP_VERSION", "1.1.2");
 
 
 class Install_lib {

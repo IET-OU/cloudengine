@@ -420,4 +420,64 @@ class Upgrade extends MY_Controller {
     }
 
 
+    /**
+     * Add debug values to the settings table 
+     *
+     *  @return mixed TRUE on success; FALSE or string on error.
+     */
+     function _upgrade_112($action) {
+        
+        $table        = 'settings';
+        $field        = 'name';
+        $value1        = 'debug_for_admin';
+        $value2        = 'debug_unauthenticated';        
+        
+        if ($action == 'get_message') {        
+          $this->message("Add '$value1' value to the '$table' table");
+          $this->message("Add '$value2' value to the '$table' table");          
+          return TRUE;       
+        }
+        
+        elseif ($action == 'do_update') {
+  
+          //***** debug_for_admin value - start *****                               
+          $value_exists = $this->database_lib->check_value_exists($table,$field,$value1);
+          if(!$value_exists) {
+            $query        = " INSERT INTO `settings` 
+                              VALUES ('debug_for_admin', 
+                                      '1', 
+                                      'Show debug for admin users', 
+                                      'Show PHP errors and Firephp output', 
+                                      'debug', 
+                                      'select_list');"; 
+            $result       = mysql_query($query);                   
+            $this->message("OK, added '$value1' value to the '$table' table.");
+          } 
+          else {
+            $this->message("Did not add data to '" .$table ."' table, value '" .$value1 ."' already exists.", 'error');
+          }                    
+          //***** debug_for_admin value - end *****
+          
+          //***** debug_unauthenticated value - start *****                               
+          $value_exists = $this->database_lib->check_value_exists($table,$field,$value2);
+          if(!$value_exists) {
+            $query        = " INSERT INTO `settings` 
+                              VALUES ('debug_unauthenticated', 
+                                      '0', 
+                                      'Show debug for admin users', 
+                                      'Show PHP errors and Firephp output', 
+                                      'debug', 
+                                      'select_list');"; 
+            $result       = mysql_query($query);                   
+            $this->message("OK, added '$value2' value to the '$table' table.");
+          } 
+          else {
+            $this->message("Did not add data to '" .$table ."' table, value '" .$value2 ."' already exists.", 'error');
+          }                    
+          //***** debug_fdebug_unauthenticatedor_admin value - end *****          
+                              
+          return TRUE;
+        }
+    }
+
 }

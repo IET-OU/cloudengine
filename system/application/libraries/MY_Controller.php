@@ -39,7 +39,7 @@ class MY_Controller extends Controller {
     	}    
     
       $this->firephp->fb($_SERVER,'Server info','INFO');   
-            
+
       //get message unread count for the user, this is called on nearly every page and is used to
       //update the message count in the primary navigation for a user 
       //(most controllers extend MY_Controller)
