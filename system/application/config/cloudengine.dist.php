@@ -40,18 +40,6 @@ $config['theme_favicon']    = 'themes/aurora/favicon-aurora.ico';
 $config['x_live'] = TRUE;
 $config['test_install_message'] = 'This is a test install.'; // Message to display for test install
 
-
-// This overrides the settings in the index.php file (assuming CodeIgniter
-// gets as far as reading this file).
-$debug = FALSE;
-if ($debug) {
-	ini_set("display_errors", 'On');
-	error_reporting(E_ALL & ~E_NOTICE);
-} else {
-	ini_set("display_errors", 'Off');
-	error_reporting(0);
-}
-
 // Set the path to Mercurial if this CloudEngine is hg-clone'd, to show
 // revision data on the admin/phpinfo page.
 $config['hg_path'] = '';

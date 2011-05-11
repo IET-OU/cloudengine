@@ -10,8 +10,7 @@ class Search_model extends Model {
 
     function Search_model() {
         parent::Model();
-        $this->CI=& get_instance();
-        $this->CI->load->library('firephp');            
+        $this->CI=& get_instance();      
         $this->CI->load->library('zend');
 		    $this->CI->zend->load('Zend/Search/Lucene');
 		    Zend_Search_Lucene_Analysis_Analyzer::setDefault(new 
