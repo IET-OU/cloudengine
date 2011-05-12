@@ -42,24 +42,17 @@ class Search extends MY_Controller {
         //search clouds                                                
         $data['clouds']           = $this->search_model->search_for_item_type($query_string,'cloud');
         $data['cloud_hits']       = count($data['clouds']);
-        $this->firephp->fb($data['clouds'],'cloud_results','INFO');
-        $this->firephp->fb($data['cloud_hits'],'cloud_hits','INFO');
         
         //search cloudscapes
         $data['cloudscapes']      = $this->search_model->search_for_item_type($query_string,'cloudscape');
         $data['cloudscape_hits']  = count($data['cloudscapes']);
-        $this->firephp->fb($data['cloudscapes'],'cloudscape results','INFO');
-        $this->firephp->fb($data['cloudscape_hits'],'cloudscape_hits','INFO');
         
         //search users
         $data['users']            = $this->search_model->search_for_item_type($query_string,'user');
         $data['user_hits']        = count($data['users']);
-        $this->firephp->fb($data['users'],'user results','INFO');
-        $this->firephp->fb($data['user_hits'],'user_hits','INFO');
         
         //total hits
         $data['total_hits']       = $data['cloud_hits'] + $data['cloudscape_hits'] + $data['user_hits'];
-        $this->firephp->fb($data['total_hits'],'total_hits','INFO');
                                     
 		  }
 		  catch (Exception $e) {
@@ -85,7 +78,7 @@ class Search extends MY_Controller {
       // This takes a while, so make sure the php script doesn't timeout.
 	    set_time_limit(60*60);  
       
-           //set start time variable
+      //set start time variable
       $time = microtime();
       $time = explode(' ', $time);
       $time = $time[1] + $time[0];
