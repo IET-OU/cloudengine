@@ -5,7 +5,24 @@
 
 <?=form_open($this->uri->uri_string(), array('id' => 'site-settings-form'))?>
 
-  <?= form_fieldset() ?>
+  <?= form_fieldset(t('Debug status')) ?>
+
+    <?
+      //debug setting
+      echo form_label(t($debug->title), 'db_'.$debug->name, array('id' => 'debug-label')); 
+      echo '<p>' .t($debug->description) .'</p>';
+      $options = array(
+                  '0'   => 'Debug off',
+                  '1'   => 'Debug for admin only',
+                  '2'   => 'Debug for all users',
+                );
+      
+      echo form_dropdown('db_'.$debug->name,$options,$debug->value);
+    ?>
+    <br /><br />
+  </fieldset>
+
+  <?= form_fieldset(t('Online / Offline settings')) ?>
   
     <p><strong><?= t($site_live->title) ?></strong></p>
     <p><?= t($site_live->description) ?></p>

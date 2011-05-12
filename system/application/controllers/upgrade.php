@@ -429,52 +429,54 @@ class Upgrade extends MY_Controller {
         
         $table        = 'settings';
         $field        = 'name';
-        $value1        = 'debug_for_admin';
-        $value2        = 'debug_unauthenticated';        
+        $value        = 'debug';
+        $new_field    = 'notes';                
         
         if ($action == 'get_message') {        
-          $this->message("Add '$value1' value to the '$table' table");
-          $this->message("Add '$value2' value to the '$table' table");          
+          $this->message("Add '$new_field' field to '$table' table");             
+          $this->message("Add '$value' value to the '$table' table");          
           return TRUE;       
         }
         
         elseif ($action == 'do_update') {
+
+          //***** notes field - start *****                               
+          $field_exists = $this->database_lib->check_field_exists($table,$new_field);
+          if(!$field_exists) {
+            $fields = array(
+                'notes' => array(
+                    'type'        => 'VARCHAR',
+                    'constraint'  => 128,
+                    'null'        => TRUE,
+                ),    
+            );
+            $this->dbforge->add_column($table, $fields);
+            $this->message("OK, altered table '$table' by adding column '$field'.");
+          } 
+          else {
+            $this->message("Did not alter table '" .$table ."', column '" .$field ."' already exists.", 'error');
+          }                    
+          //***** notes field - end *****
   
-          //***** debug_for_admin value - start *****                               
-          $value_exists = $this->database_lib->check_value_exists($table,$field,$value1);
+          //***** debug value - start *****                               
+          $value_exists = $this->database_lib->check_value_exists($table,$field,$value);
           if(!$value_exists) {
             $query        = " INSERT INTO `settings` 
-                              VALUES ('debug_for_admin', 
+                              VALUES ('debug', 
                                       '1', 
-                                      'Show debug for admin users', 
+                                      'Show debug output', 
                                       'Show PHP errors and Firephp output', 
                                       'debug', 
-                                      'select_list');"; 
+                                      'select_list',
+                                      '0 debug is off, 1 debug for admin users, 2 debug for all users (emergency use only)'
+                                      );"; 
             $result       = mysql_query($query);                   
             $this->message("OK, added '$value1' value to the '$table' table.");
           } 
           else {
-            $this->message("Did not add data to '" .$table ."' table, value '" .$value1 ."' already exists.", 'error');
+            $this->message("Did not add data to '" .$table ."' table, value '" .$value ."' already exists.", 'error');
           }                    
-          //***** debug_for_admin value - end *****
-          
-          //***** debug_unauthenticated value - start *****                               
-          $value_exists = $this->database_lib->check_value_exists($table,$field,$value2);
-          if(!$value_exists) {
-            $query        = " INSERT INTO `settings` 
-                              VALUES ('debug_unauthenticated', 
-                                      '0', 
-                                      'Show debug for admin users', 
-                                      'Show PHP errors and Firephp output', 
-                                      'debug', 
-                                      'select_list');"; 
-            $result       = mysql_query($query);                   
-            $this->message("OK, added '$value2' value to the '$table' table.");
-          } 
-          else {
-            $this->message("Did not add data to '" .$table ."' table, value '" .$value2 ."' already exists.", 'error');
-          }                    
-          //***** debug_fdebug_unauthenticatedor_admin value - end *****          
+          //***** debug value - end *****   
                               
           return TRUE;
         }

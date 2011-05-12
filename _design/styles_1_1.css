@@ -754,9 +754,16 @@ label {
     display: block;
     margin: 5px 0 0 0;
 }
+form#site-settings-form legend {
+  padding-top: 10px;
+}
 
 form#site-settings-form label#offline-label, form#site-settings-form label#online-label {
   display: inline;
+}
+
+form#site-settings-form label#debug-label {
+  padding: 0px;
 }
 
 form#site-settings-form p {

@@ -15,10 +15,11 @@ class MY_Controller extends Controller {
       //initalise
       $prevent_access = 0;
       $debug          = false;
+      $show_debug     = config_item('debug');      
       
-      $debug_for_admin        = config_item('debug_for_admin');
-      $debug_unauthenticated  = config_item('debug_unauthenticated');
-      if (($this->auth_lib->is_admin() && $debug_for_admin) || $debug_unauthenticated) {
+      //debug value of 1 is debug output for admin users
+      //debug value of 2 is debug output for all users (emergency use only)
+      if (($this->auth_lib->is_admin() && $show_debug == 1) || $show_debug == 2) {
         $debug = true;
       }
 
