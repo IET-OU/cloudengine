@@ -7,7 +7,7 @@
 	<h1><?=t("Search results for '!query'", array('!query'=>$query_string))?></h1>
   <p><?=t("Your search produced a total of !results results", array('!results'=>$total_hits))?><br />
   <?=t("The figure in brackets following each result is the relevance of the search result 
-        relative to the highest ranked result, which will usually be 100%.")?></p>
+        to the highest ranked result, which will usually be 100%.")?></p>
 </div>
 <div id="region1">
 
