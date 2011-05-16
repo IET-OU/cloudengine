@@ -11,10 +11,36 @@ class MY_Controller extends Controller {
 
   public function MY_Controller ()  {
     parent::Controller();
-    
+              
       //initalise
       $prevent_access = 0;
+      $debug          = false;
+      $show_debug     = config_item('debug');      
       
+      //debug value of 1 is debug output for admin users
+      //debug value of 2 is debug output for all users (emergency use only)
+      if (($this->auth_lib->is_admin() && $show_debug == 1) || $show_debug == 2) {
+        $debug = true;
+      }
+
+      //firephp - should we enable it?
+  		if ($debug)
+  		{
+  			$this->load->library('firephp');
+        // This overrides the settings in the index.php file 
+      	ini_set("display_errors", 'On');
+      	error_reporting(E_ALL & ~E_NOTICE);        
+  		}
+  		else 
+  		{
+  			$this->load->library('firephp_fake');
+  			$this->firephp =& $this->firephp_fake;
+      	ini_set("display_errors", 'Off');
+      	error_reporting(0);  	
+    	}    
+    
+      $this->firephp->fb($_SERVER,'Server info','INFO');   
+
       //get message unread count for the user, this is called on nearly every page and is used to
       //update the message count in the primary navigation for a user 
       //(most controllers extend MY_Controller)

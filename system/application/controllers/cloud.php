@@ -763,4 +763,164 @@ already favourited it or you do not have high enough reputation on the site to a
        	
         return $moderate;
     }
+    
+
+    /**
+     * View a specific cloud (search layout)
+     *
+     * @param mixed $cloud Either the ID of the cloud or the title of the cloud (URL-encoded)
+     * @param string $view The type of items to display in the tabbed section i.e. 'comments',
+     * 'links' or 'references'. 
+     */
+    function search_view($cloud = 0, $view = 'comments') {
+        // The URL may specify either the cloud ID or cloud name, find out which
+        $user_id  = $this->db_session->userdata('id');
+        $this->load->model('comment_model');
+        $this->load->model('content_model');
+        $this->load->model('link_model');
+        $this->load->model('embed_model');
+        $this->load->model('favourite_model');
+
+        // Get the cloud
+        if (is_numeric($cloud)) {
+            $data['cloud'] = $this->cloud_model->get_cloud($cloud);
+            $cloud_id      = $cloud;
+        } else {           
+            $data['cloud'] = $this->cloud_model->get_cloud_by_title(urldecode($cloud));
+            $cloud_id      = $data['cloud']->cloud_id;
+        }
+
+        $cloud = $data['cloud'];
+
+         // Set up form validation for the comment form 
+        $this->load->library('form_validation');
+        ///Translators: Form field names.
+        $this->form_validation->set_rules('body', t("Comment"), 'required');
+        
+        // See if the comment form has been submitted
+        if ($this->input->post('submit')) {
+            $this->auth_lib->check_logged_in();
+            $cloud_id = $this->input->post('cloud_id');
+            if (!is_numeric($cloud_id)) {
+                show_error(t("An error occurred."));
+            }
+            
+            if ($this->form_validation->run()) {
+                // Get the form data 
+                $body     = $this->input->post('body');
+                
+                // Moderate for spam
+                $moderate = $this->_moderate_comment($body, $user_id); 
+
+                // Add the comment
+                $comment_id = $this->comment_model->insert_comment($cloud_id, $user_id, $body,                                                                   $moderate);
+                
+                // If moderated, tell the user, otherwise send notifications and redirect 
+                if (config_item('x_moderation') && $moderate) {
+                	$data['item']         = 'comment';
+                    $data['continuelink'] = '/cloud/view/'.$cloud_id;
+                    $this->layout->view('moderate', $data);
+                    return;
+                } else {                  
+                    redirect('/cloud/view/'.$cloud_id); // Return to the main cloud view page 
+                }
+            }
+        }
+        
+        // If the cloud exists, get all the other information needed for the page
+        if ($data['cloud']->cloud_id) {
+            
+            // For each comment figure out if the current user has edit permission for that
+            // comment and add the information to the comment 
+            $comments = $this->comment_model->get_comments($cloud_id);
+            if ($comments) {
+                foreach ($comments as $comment) {
+                    $comment->edit_permission = 
+                                         $this->comment_model->has_edit_permission($user_id, 
+                                                                        $comment->comment_id);
+                    $modified_comments[] = $comment;
+                }
+            }
+            
+            // Do the same for content 
+            $contents = $this->content_model->get_content($cloud_id);
+            if ($contents) {
+                foreach ($contents as $content) {
+                    $content->edit_permission = 
+                                          $this->content_model->has_edit_permission($user_id, 
+                                                                        $content->content_id);
+                    $modified_contents[] = $content;
+                }
+            }
+            
+            // Do the same for links 
+            $links = $this->link_model->get_links($cloud_id);
+            if ($links) {
+                foreach ($links as $link) {
+                    $link->edit_permission = 
+                             $this->link_model->has_edit_permission($user_id, $link->link_id);
+                    $link->show_favourite_link  = 
+                                        $this->favourite_model->can_favourite_item($user_id, 
+                                                                      $link->link_id, 'link');
+
+                    $modified_links[] = $link;
+                }
+            }  
+
+            // Do the same for links 
+            $embeds = $this->embed_model->get_embeds($cloud_id);
+            if ($embeds) {
+                foreach ($embeds as $embed) {
+                    $embed->edit_permission = $this->embed_model->has_edit_permission($user_id,                                                                             $embed->embed_id);
+                    $modified_embeds[] = $embed;
+                }
+            }   
+            
+            // Get the data for gadgets for this cloud
+            if ($this->config->item('x_gadgets')) {
+                $this->load->model('gadget_model');
+                // Get the gadgets added to this cloud, and the gadgets added to all the cloud 
+                // owner's clouds - we can't combine the lists as the links for deleting the 
+                // gadgets are slightly different for each
+                $data['gadgets_cloud'] = $this->gadget_model->get_gadgets_for_cloud($cloud_id); 
+                $data['gadgets_user'] = $this->gadget_model->get_gadgets_for_user(
+                                                                              $cloud->user_id);
+                $data['current_user_id'] = $user_id;      
+            }
+            
+            // We need to log the view before we calculate the number of views 
+            $this->cloud_model->log_view($cloud_id);  
+            
+            $data['total_views']      = $this->cloud_model->get_total_views($cloud_id);
+            $data['comments']         = $modified_comments;
+            $data['total_comments']   = $this->comment_model->get_total_comments($cloud_id);
+            $data['tags']             = $this->tag_model->get_tags('cloud', $cloud_id);
+            $data['links']            = $modified_links;
+            $data['references']       = $this->cloud_model->get_references($cloud_id);
+            $data['contents']         = $modified_contents;
+            $data['embeds']           = $modified_embeds;
+            $data['cloudscapes']      = $this->cloud_model->get_cloudscapes($cloud_id);
+            $data['total_favourites'] = $this->favourite_model->get_total_favourites($cloud_id,                                                                                      'cloud');
+            $data['favourite']        = $this->favourite_model->is_favourite($user_id, 
+                                                                           $cloud_id, 'cloud');
+            $data['show_favourite_link']   = $this->favourite_model->can_favourite_item(
+                                                                 $user_id, $cloud_id, 'cloud');
+            $data['title']            = $data['cloud']->title;
+            $data['navigation']       = 'clouds';
+            $data['edit_permission']  = $this->cloud_model->has_edit_permission($user_id, 
+                                                                                    $cloud_id);
+            $data['admin']            = $this->auth_lib->is_admin();
+            $data['following']        = $this->cloud_model->is_following($cloud_id, $user_id);
+            $data['view']             = $view;
+            $this->layout->layout('layout_search_view');
+            $this->layout->view('cloud/search_view', $data);
+
+        } else { 
+            // If invalid cloud id, display error page
+            show_error(t("An error occurred."));
+        }
+    }
+
+    
+    
 }

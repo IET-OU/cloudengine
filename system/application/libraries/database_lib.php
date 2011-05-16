@@ -44,4 +44,33 @@ class Database_lib {
     }          
     return $return;
   }
+  
+/** 
+   * Check field exists
+   * 
+   * Used to check if a field exists on a table before applying a modify table statement to add/delete a column
+   * 
+   * @param string  $database The name of the database
+   * @param string  $table The name of the table
+   * @param string  $field The name of the field
+   * @return boolean true or false
+   */
+  function check_value_exists($table,$field,$value) {
+    $return       = false;
+    $database     = $this->CI->db->database;    
+    $query        = sprintf("SELECT * 
+                                    FROM %s
+                                    WHERE
+                                    %s = '%s';",
+                        mysql_real_escape_string($table),
+                        mysql_real_escape_string($field),
+                        mysql_real_escape_string($value)); 
+    $result       = mysql_query($query);         
+    $result_count = mysql_num_rows($result);
+    if ($result_count) {
+      $return = true;
+    }          
+    return $return;
+  }  
+  
 }

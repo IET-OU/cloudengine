@@ -330,19 +330,10 @@ class Admin extends MY_Controller {
 
     $settings   = $this->settings_model->get_all();
     
-    foreach($settings as $setting) {
-      switch($setting->name) {
-        case 'site_live':
-         $data['site_live'] = $setting;
-        case 'offline_message_public':
-         $data['offline_message_public'] = $setting;
-        case 'offline_message_admin':
-         $data['offline_message_admin'] = $setting;
-        case 'offline_message_created':
-         $data['offline_message_created'] = $setting;
-      }
-    }
-    
+    foreach ($settings as $setting) {
+      $data[$setting->name] = $setting;
+    }    
+
     $data['title']      = t('Site settings');
     $this->layout->view('admin/site_settings', $data);
 	}

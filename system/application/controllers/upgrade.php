@@ -420,4 +420,127 @@ class Upgrade extends MY_Controller {
     }
 
 
+    /**
+     * Add debug values to the settings table 
+     *
+     *  @return mixed TRUE on success; FALSE or string on error.
+     */
+     function _upgrade_112($action) {
+        
+        $table        = 'settings';
+        $field        = 'name';
+        $value        = 'debug';
+        $new_field    = 'notes';                
+        
+        if ($action == 'get_message') {        
+          $this->message("Add '$new_field' field to '$table' table");             
+          $this->message("Add '$value' value to the '$table' table");          
+          return TRUE;       
+        }
+        
+        elseif ($action == 'do_update') {
+
+          //***** notes field - start *****                               
+          $field_exists = $this->database_lib->check_field_exists($table,$new_field);
+          if(!$field_exists) {
+            $fields = array(
+                'notes' => array(
+                    'type'        => 'VARCHAR',
+                    'constraint'  => 128,
+                    'null'        => TRUE,
+                ),    
+            );
+            $this->dbforge->add_column($table, $fields);
+            $this->message("OK, altered table '$table' by adding column '$field'.");
+          } 
+          else {
+            $this->message("Did not alter table '" .$table ."', column '" .$field ."' already exists.", 'error');
+          }                    
+          //***** notes field - end *****
+  
+          //***** debug value - start *****                               
+          $value_exists = $this->database_lib->check_value_exists($table,$field,$value);
+          if(!$value_exists) {
+            $query        = " INSERT INTO `settings` 
+                              VALUES ('debug', 
+                                      '1', 
+                                      'Show debug output', 
+                                      'Show PHP errors and Firephp output', 
+                                      'debug', 
+                                      'select_list',
+                                      '0 debug is off, 1 debug for admin users, 2 debug for all users (emergency use only)'
+                                      );"; 
+            $result       = mysql_query($query);                   
+            $this->message("OK, added '$value' value to the '$table' table.");
+          } 
+          else {
+            $this->message("Did not add data to '" .$table ."' table, value '" .$value ."' already exists.", 'error');
+          }                    
+          //***** debug value - end *****   
+                              
+          return TRUE;
+        }
+    }
+    
+    /**
+     * Add moderation flag fields to the message tables
+     *
+     *  @return mixed TRUE on success; FALSE or string on error.
+     */
+     function _upgrade_113($action) {
+        
+        $table1       = 'message';
+        $table2       = 'message_thread';
+        $field        = 'moderate';                
+        
+        if ($action == 'get_message') {        
+          $this->message("Add '$field' field to '$table1' table");
+          $this->message("Add '$field' field to '$table2' table");                       
+          return TRUE;       
+        }
+        
+        elseif ($action == 'do_update') {
+
+          //***** message table, moderate field - start *****                               
+          $field_exists = $this->database_lib->check_field_exists($table1,$field);
+          if(!$field_exists) {
+            $fields = array(
+                $field  => array(
+                  'type'                  => 'INT',
+                  'default'               => 0,
+                  'constraint'            => 1,            
+                  'null'                  => FALSE,          
+                ),    
+            );
+            $this->dbforge->add_column($table1, $fields);
+            $this->message("OK, altered table '$table1' by adding column '$field'.");
+          } 
+          else {
+            $this->message("Did not alter table '" .$table1 ."', column '" .$field ."' already exists.", 'error');
+          }                    
+          //***** message table, moderate field - end *****
+
+          //***** message table, moderate field - start *****                               
+          $field_exists = $this->database_lib->check_field_exists($table2,$field);
+          if(!$field_exists) {
+            $fields = array(
+                $field  => array(
+                  'type'                  => 'INT',
+                  'default'               => 0,
+                  'constraint'            => 1,            
+                  'null'                  => FALSE,          
+                ),    
+            );
+            $this->dbforge->add_column($table2, $fields);
+            $this->message("OK, altered table '$table2' by adding column '$field'.");
+          } 
+          else {
+            $this->message("Did not alter table '" .$table2 ."', column '" .$field ."' already exists.", 'error');
+          }                    
+          //***** message table, moderate field - end *****
+                              
+          return TRUE;
+        }
+    }    
+
 }

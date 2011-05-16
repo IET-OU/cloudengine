@@ -1,6 +1,6 @@
 <?php $rss = isset($rss) ? $rss : false; ?>
 
-<?php if (!config_item('x_live')): ?>
+<?php if (!config_item('x_live') || strrpos(current_url(),'search_view') ) : ?>
 <meta name="ROBOTS" content="noindex,nofollow" />
 <?php endif; ?>
 <meta http-equiv="Content-Type" content="text/html; charset=<?=config_item("charset") ?>" />
