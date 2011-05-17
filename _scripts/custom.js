@@ -87,5 +87,5 @@
     $("#user-section").css({'background-color' : '#D8EBC4'});  
     return false;
   });  
-  
+    
  });

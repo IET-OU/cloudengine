@@ -514,9 +514,11 @@ ul.ticks {margin-bottom:1em;}
 
 div.box ul.ticks li {width:auto;}
 
+ol.clouds li a,
 ul.clouds li a,
 ul.active-clouds li a,
 ul.cloudscapes li a,
+ol.cloudscapes li a,
 ul li a.pdf,
 ul.events li a {padding: 4px 0 4px 24px; background:url(icon-cloud.gif) 0 .5em no-repeat; display:block; text-decoration:none;}
 
@@ -955,7 +957,7 @@ margin: 0 0 0 0;
 padding: 0 0 0 0;
 }
 
-ul.users li a {padding: 4px 0 4px 24px; background:url(/_design/avatar-default-16.jpg) 0 .5em no-repeat; 
+ol.users li a, ul.users li a {padding: 4px 0 4px 24px; background:url(/_design/avatar-default-16.jpg) 0 .5em no-repeat; 
 display:block; text-decoration:none;}
 
 

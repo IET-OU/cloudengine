@@ -6,6 +6,8 @@
 <div class="grid headline">
 	<h1><?= $title ?></h1>
   <p><?=t("Your search produced a total of !results results", array('!results'=>$total_hits))?></p>
+  <p><a href="<?= base_url() .'search/result?q=' .$query_string ?>" class="back-link" >Back to results</a></p>
+  
 </div>
 <div id="region1">
         

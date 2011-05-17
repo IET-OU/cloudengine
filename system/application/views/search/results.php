@@ -5,7 +5,7 @@
 
 <div class="grid headline">
 	<h1><?= $title ?></h1>
-  <p><?=t("Your search produced a total of !results results", array('!results'=>$total_hits))?><br />
+  <p><?=t("Your search produced a total of !results results. The top !output_limit results for clouds, cloudscapes and users are shown below.", array('!results'=>$total_hits,'!output_limit'=>$output_limit))?><br />
   <?=t("The figure in brackets following each result is the relevance of the search result 
         to the highest ranked result, which will usually be 100%.")?></p>
 </div>
@@ -21,17 +21,17 @@
         
         <div id="cloud-results"> 
           <?php if (count($clouds) > 0): ?>
-            <?php if (count($clouds) > 15): ?>
+            <?php if (count($clouds) > $output_limit): ?>
               <a class="search_all_link" href="<?= base_url() .'search/all_results/cloud?q=' .$query_string ?> "><?= t("View all !clouds cloud results", array('!clouds'=>$cloud_hits))?></a><br /><br />
             <?php endif; ?>
-          <ul class="clouds">
+          <ol class="clouds">
           <?php for($i=0; $i<$cloud_output_limit; $i++): ?>          
               <li>
                   <a href="<?= $clouds[$i]->url ?>"><?= str_replace('- '.$this->config->item('site_name'), '', $clouds[$i]->title) 
                       .'(' .round(($clouds[$i]->score * 100),1) .'%)'?></a>
               </li>
           <?php endfor;?>
-          </ul>
+          </ol>
         <?php else: ?>
             <p><?=t("No clouds yet")?></p>
         <?php endif; ?>
@@ -39,17 +39,17 @@
 
         <div id="cloudscape-results">
           <?php if (count($cloudscapes) > 0): ?>
-            <?php if (count($cloudscapes) > 15): ?>
+            <?php if (count($cloudscapes) > $output_limit): ?>
               <a class="search_all_link" href="<?= base_url() .'search/all_results/cloudscape?q=' .$query_string ?> "><?= t("View all !cloudscapes cloudscape results", array('!cloudscapes'=>$cloudscape_hits))?></a><br /><br />
             <?php endif; ?>          
-          <ul class="cloudscapes">
+          <ol class="cloudscapes">
           <?php for($i=0; $i<$cloudscape_output_limit; $i++): ?>          
                 <li>
                    <a href="<?= $cloudscapes[$i]->url ?>"><?= str_replace('- '.$this->config->item('site_name'), '', $cloudscapes[$i]->title) 
                       .'(' .round(($cloudscapes[$i]->score * 100),1) .'%)'?></a>
                 </li>
           <?php endfor;?>
-          </ul>
+          </ol>
           <?php else: ?>
               <p><?=t("No cloudscapes yet")?></p>
           <?php endif; ?>
@@ -57,17 +57,17 @@
           
         <div id="user-results">          
           <?php if (count($users) > 0): ?>
-            <?php if (count($users) > 15): ?>
+            <?php if (count($users) > $output_limit): ?>
               <a class="search_all_link" href="<?= base_url() .'search/all_results/user?q=' .$query_string ?> "><?= t("View all !user user results", array('!users'=>$user_hits))?></a><br /><br />
             <?php endif; ?>            
-          <ul class="users">
+          <ol class="users">
           <?php for($i=0; $i<$user_output_limit; $i++): ?>   
                 <li>
                    <a href="<?= $users[$i]->url ?>"><?= str_replace('- '.$this->config->item('site_name'), '', $users[$i]->title)
                       .'(' .round(($users[$i]->score * 100),1) .'%)'?></a>
                 </li>
             <?php endfor;?>
-          </ul>
+          </ol>
           <?php else: ?>
               <p><?=t("No users yet")?></p>
           <?php endif; ?>  
