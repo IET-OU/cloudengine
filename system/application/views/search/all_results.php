@@ -15,14 +15,14 @@
         
         <div id="results"> 
           <?php if (count($type_plural) > 0): ?>
-          <ul class="<?= $type_plural ?>">
+          <ol class="<?= $type_plural ?>">
           <?php foreach($$type_plural as $result): ?>          
               <li>
                   <a href="<?= $result->url ?>"><?= str_replace('- '.$this->config->item('site_name'), '', $result->title) 
                       .'(' .round(($result->score * 100),1) .'%)'?></a>
               </li>
           <?php endforeach;?>
-          </ul>
+          </ol>
         <?php else: ?>
             <p><?=t("No " .$type_plural ." yet")?></p>
         <?php endif; ?>

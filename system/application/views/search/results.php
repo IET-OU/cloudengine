@@ -58,7 +58,7 @@
         <div id="user-results">          
           <?php if (count($users) > 0): ?>
             <?php if (count($users) > $output_limit): ?>
-              <a class="search_all_link" href="<?= base_url() .'search/all_results/user?q=' .$query_string ?> "><?= t("View all !user user results", array('!users'=>$user_hits))?></a><br /><br />
+              <a class="search_all_link" href="<?= base_url() .'search/all_results/user?q=' .$query_string ?> "><?= t("View all !users user results", array('!users'=>$user_hits))?></a><br /><br />
             <?php endif; ?>            
           <ol class="users">
           <?php for($i=0; $i<$user_output_limit; $i++): ?>   
