@@ -36,4 +36,56 @@
     );    
 
   $("input[type=search]").attr('results', '5');
+  
+  
+  //search interface show/hide sections
+  
+  $("#cloud-section").hover(function() {
+    $(this).css('cursor','pointer');
+    }, function() {
+    $(this).css('cursor','auto');
+  });
+  
+  $("#cloudscape-section").hover(function() {
+    $(this).css('cursor','pointer');
+    }, function() {
+    $(this).css('cursor','auto');
+  });
+  
+  $("#user-section").hover(function() {
+    $(this).css('cursor','pointer');
+    }, function() {
+    $(this).css('cursor','auto');
+  });    
+  
+  $("#cloud-section").click(function() {
+    $("#cloud-results").show();
+    $("#cloud-section").css({'background-color' : '#D8EBC4'});
+    $("#cloudscape-results").hide();
+    $("#cloudscape-section").css({'background-color' : '#BED9EC'});    
+    $("#user-results").hide();    
+    $("#user-section").css({'background-color' : '#BED9EC'});    
+    return false;
+  });
+
+  $("#cloudscape-section").click(function() {
+    $("#cloud-results").hide();
+    $("#cloud-section").css({'background-color' : '#BED9EC'});    
+    $("#cloudscape-results").show();
+    $("#cloudscape-section").css({'background-color' : '#D8EBC4'}); 
+    $("#user-results").hide();    
+    $("#user-section").css({'background-color' : '#BED9EC'});        
+    return false;
+  });
+  
+  $("#user-section").click(function() {
+    $("#cloud-results").hide();
+    $("#cloud-section").css({'background-color' : '#BED9EC'});    
+    $("#cloudscape-results").hide();
+    $("#cloudscape-section").css({'background-color' : '#BED9EC'});    
+    $("#user-results").show();    
+    $("#user-section").css({'background-color' : '#D8EBC4'});  
+    return false;
+  });  
+  
  });

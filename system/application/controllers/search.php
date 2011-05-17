@@ -38,18 +38,35 @@ class Search extends MY_Controller {
 
       if ($query_string = $this->input->get('q')) {
 		  try {
+      
+        $data['output_limit'] = 15;
     
         //search clouds                                                
         $data['clouds']           = $this->search_model->search_for_item_type($query_string,'cloud');
         $data['cloud_hits']       = count($data['clouds']);
+        if ($data['cloud_hits'] < $data['output_limit']) {
+          $data['cloud_output_limit'] = $data['cloud_hits'];
+        } else {
+          $data['cloud_output_limit'] = $data['output_limit'];
+        }
         
         //search cloudscapes
         $data['cloudscapes']      = $this->search_model->search_for_item_type($query_string,'cloudscape');
         $data['cloudscape_hits']  = count($data['cloudscapes']);
+        if ($data['cloudscape_hits'] < $data['output_limit']) {
+          $data['cloudscape_output_limit'] = $data['cloudscape_hits'];
+        } else {
+          $data['cloudscape_output_limit'] = $data['output_limit'];
+        } 
         
         //search users
         $data['users']            = $this->search_model->search_for_item_type($query_string,'user');
         $data['user_hits']        = count($data['users']);
+        if ($data['user_hits'] < $data['output_limit']) {
+          $data['user_output_limit'] = $data['user_hits'];
+        } else {
+          $data['user_output_limit'] = $data['output_limit'];
+        }
         
         //total hits
         $data['total_hits']       = $data['cloud_hits'] + $data['cloudscape_hits'] + $data['user_hits'];
@@ -64,8 +81,42 @@ class Search extends MY_Controller {
                                   array('!query'=>$query_string));
         $data['query_string'] = $query_string;
         $data['navigation']   = 'search';
+
         $this->search_model->log_search($query_string);
 		    $this->layout->view('search/results', $data);		
+	}
+
+	/**
+	 * Display the result of a search
+	 *
+	 */
+	function all_results($type) {
+	    
+      // Increase the memory limit as Zend Lucene sometimes struggles 
+	    ini_set('memory_limit','128M');
+      
+      $type_single = $type;
+      $type_plural = $type .'s';
+
+      if ($query_string = $this->input->get('q')) {
+		  try {
+        //search                                                
+        $data[$type_plural]  = $this->search_model->search_for_item_type($query_string,$type_single);
+        $data['total_hits']  = count($data[$type_plural]);         
+		  }
+		  catch (Exception $e) {
+		    $data['error'] = $e->getMessage();
+		  }
+        }
+
+      $data['title']        = t(ucfirst($type_single) ." search results for '!query'", array('!query'=>$query_string));
+      $data['query_string'] = $query_string;
+      $data['navigation']   = 'search';
+      $data['type_single']  = $type;
+      $data['type_plural']  =  $type .'s';    
+      
+      $this->search_model->log_search($query_string);
+	    $this->layout->view('search/all_results', $data);		
 	}
 
 	/**

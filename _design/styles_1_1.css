@@ -1014,6 +1014,50 @@ table.jCalendar td.unselectable.dp-hover {
 	color: #888;
 }
 
+#search-nav {
+  width: 100%;
+  float: left;
+  margin-bottom: 20px;
+}
+
+.search-result-nav-section {
+  width: 32%;
+  float:  left;
+  text-align: center;
+  height: 14px;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px 0;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+}
+
+#cloud-section {
+  background-color: #D8EBC4;  
+}
+
+#cloudscape-section {
+  background-color: #BED9EC; 
+  margin-left: 2px;
+}
+
+#user-section {
+  background-color: #BED9EC; 
+  margin-left: 2px;
+}
+
+#search-nav a {
+  text-decoration: none; 
+}
+
+#user-results, #cloudscape-results {
+  display: none;
+}
+
+.search_all_link {
+  margin: 0 0 0 24px;
+}
+
 /* For the popup */
 
 /* NOTE - you will probably want to style a.dp-choose-date - see how I did it in demo.css */
