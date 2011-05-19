@@ -514,8 +514,6 @@ ul.ticks {margin-bottom:1em;}
 
 div.box ul.ticks li {width:auto;}
 
-ol.clouds li a,
-ul.clouds li a,
 ul.active-clouds li a,
 ul.cloudscapes li a,
 ol.cloudscapes li a,
@@ -1054,10 +1052,6 @@ table.jCalendar td.unselectable.dp-hover {
 
 #user-results, #cloudscape-results {
   display: none;
-}
-
-.search_all_link {
-  margin: 0 0 0 24px;
 }
 
 /* For the popup */
@@ -1714,4 +1708,64 @@ img.message-pic-anon {
 /*** Messaging styles - end  ***/
 /*********************************/
 
+/****************************************/
+/*** Search usability styles - start  ***/
+/****************************************/
+ul.paging li ,
+ol.paging li  {
+    background: none !important; 
+    margin: 0 0 0 3em !important;
+    padding: 0 !important;
+}
 
+ul.paging li a,
+ol.paging li a {
+    padding: 4px 0 4px 24px; 
+    display:block; 
+    text-decoration:none;
+    clear: both;
+}
+
+ul.paging li a.cloud-link,
+ol.paging li a.cloud-link {
+    background:url(icon-cloud.gif) 0 .5em no-repeat; 
+}
+
+ul.paging li a.cloudscape-link,
+ol.paging li a.cloudscape-link {
+    background:url(icon-cloudscape.gif) 0 .4em no-repeat;
+}
+
+ul.paging li a.user-link,
+ol.paging li a.user-link {
+    background:url(/_design/avatar-default-16.jpg) 0 .5em no-repeat;
+}
+
+ol.simplePagerNav,
+ul.simplePagerNav {
+    list-style-type: none;
+    margin: 0 0 7px 240px !important;
+    float: left;
+}
+
+ol.simplePagerNav li,
+ul.simplePagerNav li {
+    display:block;
+    floaT: left;
+    padding: 0px 8px !important;
+    margin: 0 0 0 0 !important;
+    background: none !important;
+}
+
+ol.simplePagerNav li.currentPage a, 
+ul.simplePagerNav li.currentPage a {
+    color: red;
+}
+
+ol.simplePagerNav li a, 
+ul.simplePagerNav li a {
+    color: #333;
+}
+/****************************************/
+/*** Search usability styles - end  ***/
+/****************************************/

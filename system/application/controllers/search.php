@@ -39,31 +39,41 @@ class Search extends MY_Controller {
       if ($query_string = $this->input->get('q')) {
 		  try {
       
-        $data['output_limit'] = 15;
+        //this limits the display of results
+        $data['output_limit'] = 200;
+        //this limits how many results are shown on each page.
+        //this figure also needs changing in custom.js 'page_limit' if it is changed here
+        $data['page_limit']   = 15;
     
-        //search clouds                                                
+        //clouds                                                
         $data['clouds']           = $this->search_model->search_for_item_type($query_string,'cloud');
         $data['cloud_hits']       = count($data['clouds']);
+        //if there are less clouds than the output limit, adjust the limit to the number of results
         if ($data['cloud_hits'] < $data['output_limit']) {
           $data['cloud_output_limit'] = $data['cloud_hits'];
+        //else use the limit
         } else {
           $data['cloud_output_limit'] = $data['output_limit'];
         }
         
-        //search cloudscapes
+        //cloudscapes
         $data['cloudscapes']      = $this->search_model->search_for_item_type($query_string,'cloudscape');
         $data['cloudscape_hits']  = count($data['cloudscapes']);
+        //if there are less cloudscapes than the output limit, adjust the limit to the number of results
         if ($data['cloudscape_hits'] < $data['output_limit']) {
           $data['cloudscape_output_limit'] = $data['cloudscape_hits'];
+        //else use the limit          
         } else {
           $data['cloudscape_output_limit'] = $data['output_limit'];
         } 
         
-        //search users
+        //users
         $data['users']            = $this->search_model->search_for_item_type($query_string,'user');
         $data['user_hits']        = count($data['users']);
+        //if there are less users than the output limit, adjust the limit to the number of results        
         if ($data['user_hits'] < $data['output_limit']) {
           $data['user_output_limit'] = $data['user_hits'];
+        //else use the limit          
         } else {
           $data['user_output_limit'] = $data['output_limit'];
         }
@@ -77,8 +87,7 @@ class Search extends MY_Controller {
 		  }
         }
 
-        $data['title']        = t("Search results for '!query'", 
-                                  array('!query'=>$query_string));
+        $data['title']        = t("Search results for '!query'", array('!query'=>$query_string));
         $data['query_string'] = $query_string;
         $data['navigation']   = 'search';
 

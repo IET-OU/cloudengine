@@ -31,4 +31,5 @@
         <script type="text/javascript" src="<?=base_url()?>_scripts/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
         <link type="text/css" href="<?=base_url()?>_scripts/jquery/css/redmond/jquery-ui-1.8.6.custom.css" rel="stylesheet" />
     <?php endif; ?>
-	<script src="<?=base_url()?>_scripts/custom.js" type="text/javascript"></script>
+  <script type="text/javascript" src="<?=base_url()?>_scripts/buildpager.jquery.js"></script>
+  <script src="<?=base_url()?>_scripts/custom.js" type="text/javascript"></script>

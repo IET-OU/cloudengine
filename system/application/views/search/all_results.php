@@ -7,6 +7,7 @@
 	<h1><?= $title ?></h1>
   <p><?=t("Your search produced a total of !results results", array('!results'=>$total_hits))?></p>
   <p><a href="<?= base_url() .'search/result?q=' .$query_string ?>" class="back-link" >Back to results</a></p>
+  <p><a href="#" id="alllist">All</a> <a href="#" id="showlist">Show</a> <a href="#" id="hidelist">Hide</a></p>
   
 </div>
 <div id="region1">
@@ -16,11 +17,14 @@
         <div id="results"> 
           <?php if (count($type_plural) > 0): ?>
           <ol class="<?= $type_plural ?>">
-          <?php foreach($$type_plural as $result): ?>          
-              <li>
+          <?php $counter = 0 ?>
+          <?php foreach($$type_plural as $result): ?>
+          <?php if ($counter < 4) {$class = 'aaa';} else {$class = 'bbb';} ?>                    
+              <li class="<?= $class ?>">
                   <a href="<?= $result->url ?>"><?= str_replace('- '.$this->config->item('site_name'), '', $result->title) 
-                      .'(' .round(($result->score * 100),1) .'%)'?></a>
+                       .'(' .round(($result->score * 100),1) .'%)'?></a>
               </li>
+          <?php ++$counter ?>
           <?php endforeach;?>
           </ol>
         <?php else: ?>
