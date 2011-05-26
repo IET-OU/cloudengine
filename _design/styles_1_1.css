@@ -1032,16 +1032,16 @@ table.jCalendar td.unselectable.dp-hover {
   border-bottom: 1px solid #999;
 }
 
-#cloud-section {
+#cloud {
   background-color: #D8EBC4;  
 }
 
-#cloudscape-section {
+#cloudscape {
   background-color: #BED9EC; 
   margin-left: 2px;
 }
 
-#user-section {
+#user {
   background-color: #BED9EC; 
   margin-left: 2px;
 }

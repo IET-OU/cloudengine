@@ -92,33 +92,39 @@
 				usePageNumbers: true,
 				usePrevNext: true,
 				prevText: "",
-				nextText: ""
+				nextText: "",
+        resetPaging: false,
+        pageCounter: 1,
 		};
 
 
 		var options = $.extend(defaults, options);
 
 
+
+
 		return this.each(function() {
 			this.pagerOptions = options;
 
-
 			var selector = $(this);	
-			var pageCounter = 1;
+      var pageCounter = options.pageCounter;
 
-			selector.wrap("<div class='simplePagerContainer'></div>");
-
-			selector.children().each(function(i){ 
-
-				if(i < pageCounter*options.pageSize && i >= (pageCounter-1)*options.pageSize) {
-					$(this).addClass("simplePagerPage"+pageCounter);
-				}
-				else {
-					$(this).addClass("simplePagerPage"+(pageCounter+1));
-					pageCounter ++;
-				}	
-
-			});
+      if (!options.resetPaging) {
+        
+  			selector.wrap("<div class='simplePagerContainer'></div>");
+  
+  			selector.children().each(function(i){ 
+  
+  				if(i < pageCounter*options.pageSize && i >= (pageCounter-1)*options.pageSize) {
+  					$(this).addClass("simplePagerPage"+pageCounter);
+  				}
+  				else {
+  					$(this).addClass("simplePagerPage"+(pageCounter+1));
+  					pageCounter ++;
+  				}	
+  
+  			});
+      }
 
 			// show/hide the appropriate regions 
 			selector.children().hide();

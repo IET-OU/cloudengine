@@ -12,9 +12,9 @@
 <div id="region1">
 
     <div id="search-nav">
-      <div class="search-result-nav-section" id="cloud-section"><a href="#"><?= t("Clouds (!clouds)", array('!clouds'=>$cloud_hits))?></a></div>
-      <div class="search-result-nav-section" id="cloudscape-section"><a href="#"><?= t("Cloudscapes (!cloudscapes)", array('!cloudscapes'=>$cloudscape_hits))?></a></div>     
-      <div class="search-result-nav-section" id="user-section"><a href="#"><?=t("Users (!users)", array('!users'=>$user_hits))?></a> </div>                                   
+      <div class="search-result-nav-section" id="cloud"><a href="#"><?= t("Clouds (!clouds)", array('!clouds'=>$cloud_hits))?></a></div>
+      <div class="search-result-nav-section" id="cloudscape"><a href="#"><?= t("Cloudscapes (!cloudscapes)", array('!cloudscapes'=>$cloudscape_hits))?></a></div>     
+      <div class="search-result-nav-section" id="user"><a href="#"><?=t("Users (!users)", array('!users'=>$user_hits))?></a> </div>                                   
     </div> 
         
     <div class="grid g1">
@@ -35,7 +35,6 @@
           <?php if (count($clouds) > $output_limit): ?>
             <br /><a class="search_all_link" href="<?= base_url() .'search/all_results/cloud?q=' .$query_string ?> "><?= t("View all !clouds cloud results on one page", array('!clouds'=>$cloud_hits))?></a> <?= t(' (may result in large/slow page download)') ?><br />
           <?php endif; ?>
-          <div id="search-pagination"></div>
         <?php else: ?>
             <p><?=t("No clouds yet")?></p>
         <?php endif; ?>
@@ -58,7 +57,6 @@
           <?php if (count($cloudscapes) > $output_limit): ?>
             <br /><a class="search_all_link" href="<?= base_url() .'search/all_results/cloudscape?q=' .$query_string ?> "><?= t("View all !cloudscapes cloudscape results on one page", array('!cloudscapes'=>$cloudscape_hits))?></a> <?= t(' (may result in large/slow page download)') ?><br />
           <?php endif; ?>
-          <div id="search-pagination"></div>
         <?php else: ?>
             <p><?=t("No cloudscapes yet")?></p>
         <?php endif; ?>
@@ -80,7 +78,6 @@
           <?php if (count($users) > $output_limit): ?>
             <br /><a class="search_all_link" href="<?= base_url() .'search/all_results/user?q=' .$query_string ?> "><?= t("View all !users user results on one page", array('!users'=>$user_hits))?></a> <?= t(' (may result in large/slow page download)') ?><br />
           <?php endif; ?>
-          <div id="search-pagination"></div>
         <?php else: ?>
             <p><?=t("No users yet")?></p>
         <?php endif; ?>
