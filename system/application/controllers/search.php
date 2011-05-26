@@ -33,6 +33,10 @@ class Search extends MY_Controller {
 	 *
 	 */
 	function result() {
+	 
+      $this->firephp->fb(uri_string(1),'base_url','INFO');
+   
+   
 	    // Increase the memory limit as Zend Lucene sometimes struggles 
 	    ini_set('memory_limit','128M');
 
