@@ -122,7 +122,7 @@ class Search extends MY_Controller {
       $data['query_string'] = $query_string;
       $data['navigation']   = 'search';
       $data['type_single']  = $type;
-      $data['type_plural']  =  $type .'s';    
+      $data['type_plural']  = $type .'s';    
       
       $this->search_model->log_search($query_string);
 	    $this->layout->view('search/all_results', $data);		

@@ -1711,14 +1711,14 @@ img.message-pic-anon {
 /****************************************/
 /*** Search usability styles - start  ***/
 /****************************************/
-ul.paging li ,
+ol.all-results li ,
 ol.paging li  {
     background: none !important; 
     margin: 0 0 0 3em !important;
     padding: 0 !important;
 }
 
-ul.paging li a,
+ol.all-results li a,
 ol.paging li a {
     padding: 4px 0 4px 24px; 
     display:block; 
@@ -1726,17 +1726,17 @@ ol.paging li a {
     clear: both;
 }
 
-ul.paging li a.cloud-link,
+ol.all-results li a.cloud-link,
 ol.paging li a.cloud-link {
     background:url(icon-cloud.gif) 0 .5em no-repeat; 
 }
 
-ul.paging li a.cloudscape-link,
+ol.all-results li a.cloudscape-link,
 ol.paging li a.cloudscape-link {
     background:url(icon-cloudscape.gif) 0 .4em no-repeat;
 }
 
-ul.paging li a.user-link,
+ol.all-results li a.user-link,
 ol.paging li a.user-link {
     background:url(/_design/avatar-default-16.jpg) 0 .5em no-repeat;
 }
