@@ -10,9 +10,7 @@
 </div>
 
 <div id="region1">
-        
     <div class="grid g1">
-        
         <div id="results"> 
           <?php if (count($type_plural) > 0): ?>
           <ol class="all-results <?= $type_plural ?>">
@@ -29,7 +27,6 @@
             <p><?=t("No " .$type_plural ." yet")?></p>
         <?php endif; ?>
         </div>
-
     </div>
 </div>
 

@@ -100,9 +100,6 @@
 
 		var options = $.extend(defaults, options);
 
-
-
-
 		return this.each(function() {
 			this.pagerOptions = options;
 

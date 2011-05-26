@@ -1,6 +1,6 @@
  $(document).ready(function() {
 
-  //search interface show/hide sections
+  //search interface tab sections
   $("#cloud").hover(function() {
     $(this).css('cursor','pointer');
     }, function() {

@@ -9,8 +9,9 @@
   <?=t("The figure in brackets following each result is the relevance of the search result 
         to the highest ranked result, which will usually be 100%.")?></p>
 </div>
-<div id="region1">
 
+<div id="region1">
+    
     <div id="search-nav">
       <div class="search-result-nav-section" id="cloud"><a href="#"><?= t("Clouds (!clouds)", array('!clouds'=>$cloud_hits))?></a></div>
       <div class="search-result-nav-section" id="cloudscape"><a href="#"><?= t("Cloudscapes (!cloudscapes)", array('!cloudscapes'=>$cloudscape_hits))?></a></div>     
@@ -83,8 +84,6 @@
         <?php endif; ?>
         </div>   
 
-       
-
     </div>
 </div>
 
@@ -93,5 +92,5 @@
     <?php $this->load->view('user/user_block'); ?>
     <p><?=t("You can also search for [link-up]people[/link] and [link-ui]institutions[/link]",
     array('[link-up]' => t_link('user/people'), '[link-ui]' => t_link('user/institution_list')))?></p>
- </div> 
+</div> 
 <?php endif; ?>
