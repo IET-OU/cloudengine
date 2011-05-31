@@ -548,6 +548,7 @@ CREATE TABLE `settings` (
   `description` varchar(512) COLLATE utf8_unicode_ci DEFAULT NULL,
   `admin_output_section` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `type` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `notes` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,  
   PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Settings and configuration variables';
 
