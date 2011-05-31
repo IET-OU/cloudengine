@@ -19,7 +19,7 @@ class MY_Controller extends Controller {
       
       //debug value of 1 is debug output for admin users
       //debug value of 2 is debug output for all users (emergency use only)
-      if (($this->auth_lib->is_admin() && $show_debug == 1) || $show_debug == 2) {
+      if (($this->auth_lib && $this->auth_lib->is_admin() && $show_debug == 1) || $show_debug == 2) {
         $debug = true;
       }
 
