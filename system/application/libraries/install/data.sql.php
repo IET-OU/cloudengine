@@ -129,16 +129,16 @@ INSERT INTO `tag`(`item_id`,`tag`,`item_type`,`user_id`,`timestamp`,`tag_id`) VA
 
 -- command split --
 
-INSERT INTO `settings` VALUES ('site_live', '1', 'Site status', 'When \'Online\' all users can browse the site normally. When \'Offline\' only users with the administrator rights can access the site to perform maintenance, all other visitors will see the site \'offline public message\' below. Authorized users can log in during \'Offline\' mode via the <a href=\"../auth/login\">user login page</a>.', 'site_status', 'boolean');
+INSERT INTO `settings` VALUES ('site_live', '1', 'Site status', 'When \'Online\' all users can browse the site normally. When \'Offline\' only users with the administrator rights can access the site to perform maintenance, all other visitors will see the site \'offline public message\' below. Authorized users can log in during \'Offline\' mode via the <a href=\"../auth/login\">user login page</a>.', 'site_status', 'boolean', '');
 
 -- command split --
 
-INSERT INTO `settings` VALUES ('offline_message_public', '!site-name! is undergoing maintenance and will be back online soon. Please accept our apologies. \n\nTo contact !site-name! please email: !site-email!\n\n(Last update to message: 10:30am on 16/11/2010)', 'Site offline public message', 'Message to display to public on site holding page whilst offline', 'site_status', 'text');
+INSERT INTO `settings` VALUES ('offline_message_public', '!site-name! is undergoing maintenance and will be back online soon. Please accept our apologies. \n\nTo contact !site-name! please email: !site-email!\n\n(Last update to message: 10:30am on 16/11/2010)', 'Site offline public message', 'Message to display to public on site holding page whilst offline', 'site_status', 'text', '');
 
 -- command split --
 
 INSERT INTO `settings` VALUES ('offline_message_admin', '!site-name! is offline', 'Site offline admin message', 'Message to display in banner
- to admin whilst site is offline', 'site_status', 'text');
+ to admin whilst site is offline', 'site_status', 'text', '');
 
 -- command split --
 
