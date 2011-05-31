@@ -36,4 +36,5 @@
     );    
 
   $("input[type=search]").attr('results', '5');
+    
  });

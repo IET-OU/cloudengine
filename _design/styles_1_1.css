@@ -514,9 +514,9 @@ ul.ticks {margin-bottom:1em;}
 
 div.box ul.ticks li {width:auto;}
 
-ul.clouds li a,
 ul.active-clouds li a,
 ul.cloudscapes li a,
+ol.cloudscapes li a,
 ul li a.pdf,
 ul.events li a {padding: 4px 0 4px 24px; background:url(icon-cloud.gif) 0 .5em no-repeat; display:block; text-decoration:none;}
 
@@ -955,7 +955,7 @@ margin: 0 0 0 0;
 padding: 0 0 0 0;
 }
 
-ul.users li a {padding: 4px 0 4px 24px; background:url(/_design/avatar-default-16.jpg) 0 .5em no-repeat; 
+ol.users li a, ul.users li a {padding: 4px 0 4px 24px; background:url(/_design/avatar-default-16.jpg) 0 .5em no-repeat; 
 display:block; text-decoration:none;}
 
 
@@ -1012,6 +1012,46 @@ table.jCalendar td.unselectable:hover,
 table.jCalendar td.unselectable.dp-hover {
 	background: #bbb;
 	color: #888;
+}
+
+#search-nav {
+  width: 100%;
+  float: left;
+  margin-bottom: 20px;
+}
+
+.search-result-nav-section {
+  width: 32%;
+  float:  left;
+  text-align: center;
+  height: 14px;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px 0;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+}
+
+#cloud {
+  background-color: #D8EBC4;  
+}
+
+#cloudscape {
+  background-color: #BED9EC; 
+  margin-left: 2px;
+}
+
+#user {
+  background-color: #BED9EC; 
+  margin-left: 2px;
+}
+
+#search-nav a {
+  text-decoration: none; 
+}
+
+#user-results, #cloudscape-results {
+  display: none;
 }
 
 /* For the popup */
@@ -1668,4 +1708,64 @@ img.message-pic-anon {
 /*** Messaging styles - end  ***/
 /*********************************/
 
+/****************************************/
+/*** Search usability styles - start  ***/
+/****************************************/
+ol.all-results li ,
+ol.paging li  {
+    background: none !important; 
+    margin: 0 0 0 3em !important;
+    padding: 0 !important;
+}
 
+ol.all-results li a,
+ol.paging li a {
+    padding: 4px 0 4px 24px; 
+    display:block; 
+    text-decoration:none;
+    clear: both;
+}
+
+ol.all-results li a.cloud-link,
+ol.paging li a.cloud-link {
+    background:url(icon-cloud.gif) 0 .5em no-repeat; 
+}
+
+ol.all-results li a.cloudscape-link,
+ol.paging li a.cloudscape-link {
+    background:url(icon-cloudscape.gif) 0 .4em no-repeat;
+}
+
+ol.all-results li a.user-link,
+ol.paging li a.user-link {
+    background:url(/_design/avatar-default-16.jpg) 0 .5em no-repeat;
+}
+
+ol.simplePagerNav,
+ul.simplePagerNav {
+    list-style-type: none;
+    margin: 0 0 7px 240px !important;
+    float: left;
+}
+
+ol.simplePagerNav li,
+ul.simplePagerNav li {
+    display:block;
+    floaT: left;
+    padding: 0px 8px !important;
+    margin: 0 0 0 0 !important;
+    background: none !important;
+}
+
+ol.simplePagerNav li.currentPage a, 
+ul.simplePagerNav li.currentPage a {
+    color: red;
+}
+
+ol.simplePagerNav li a, 
+ul.simplePagerNav li a {
+    color: #333;
+}
+/****************************************/
+/*** Search usability styles - end  ***/
+/****************************************/
