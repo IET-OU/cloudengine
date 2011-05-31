@@ -514,6 +514,8 @@ ul.ticks {margin-bottom:1em;}
 
 div.box ul.ticks li {width:auto;}
 
+ol.clouds li a,
+ul.clouds li a,
 ul.active-clouds li a,
 ul.cloudscapes li a,
 ol.cloudscapes li a,
