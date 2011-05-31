@@ -140,3 +140,6 @@ INSERT INTO `settings` VALUES ('offline_message_public', '!site-name! is undergo
 INSERT INTO `settings` VALUES ('offline_message_admin', '!site-name! is offline', 'Site offline admin message', 'Message to display in banner
  to admin whilst site is offline', 'site_status', 'text');
 
+-- command split --
+
+INSERT INTO `settings` VALUES ('debug', '1', 'Show debug output', 'Show PHP errors and Firephp output', 'debug', 'select_list', '0 debug is off, 1 debug for admin users, 2 debug for all users (emergency use only)');

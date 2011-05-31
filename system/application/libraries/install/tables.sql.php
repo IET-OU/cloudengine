@@ -396,7 +396,8 @@ CREATE TABLE `user_profile` (
   `whitelist` int(1) NOT NULL default '0',
   `email_events_attending` int(1) NOT NULL default '1',
   `do_not_use_editor` int(1) NOT NULL default '0',
-  `email_message_notify`  int(1) NOT NULL DEFAULT 1 ,  
+  `email_message_notify`  int(1) NOT NULL DEFAULT 1 , 
+  `deleted` int(1) NOT NULL default '0',   
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -639,6 +640,7 @@ CREATE TABLE `message` (
   `author_user_id`  int(10) NOT NULL ,
   `content`  longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
   `created`  int(10) NOT NULL ,
+  `moderate` int(1) NOT NULL DEFAULT '0',  
   PRIMARY KEY (`message_id`)
 ) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
   COMMENT='Message information, relates to the original author';
@@ -670,6 +672,7 @@ CREATE TABLE `message_thread` (
   `subject`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
   `author_user_id`  int(10) NOT NULL ,
   `created`  int(10) NULL DEFAULT NULL ,
+  `moderate` int(1) NOT NULL DEFAULT '0',  
   PRIMARY KEY (`thread_id`)
 ) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci 
   COMMENT='Information about threads, relates to original author';
