@@ -6,8 +6,10 @@
 <div class="grid headline">
 	<h1><?= $title ?></h1>
   <p><?=t("Your search produced a total of !results results. A maximum of !output_limit results for clouds, cloudscapes and users are shown below.", array('!results'=>$total_hits,'!output_limit'=>$output_limit))?><br />
-  <?=t("The figure in brackets following each result is the relevance of the search result 
-        to the highest ranked result, which will usually be 100%.")?></p>
+
+  <?=t("The figure in brackets shows the relevance of your results, with 100% as the most relevant.")
+  /*"The figure in brackets following each result is the relevance of the search result
+        to the highest ranked result, which will usually be 100%."*/ ?></p>
 </div>
 
 <div id="region1">
