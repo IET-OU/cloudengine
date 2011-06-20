@@ -5,7 +5,7 @@
    Supported on:  MSIE 7+, Firefox 2+, Chrome.
    Todo: move CSS to stylesheet.
 */
-if ($this->input->get('plugin')):
+if ($this->input->get('plugin') || 'search'==$this->uri->segment(1)):
 ?>
 <p class="search-plugin">
 <input type="hidden" name="plugin" value="1" />
@@ -15,7 +15,7 @@ if ($this->input->get('plugin')):
  href="<?=site_url('search/opensearch_desc.xml') ?>" />
 
 <a role="button" id="search-plugin-btn" href="<?=site_url('search/opensearch_desc.xml') ?>" title=
- "<?=t('Add the !site-name! search plugin to your browser') ?>" style="display:inline-block; background:#D63333; color:#eee; padding:4px; margin:4px 0; --moz-appearance:button;"
+ "<?=t('Add the !site-name! search plugin to your browser') ?>"
  ><?=t('Add browser search plugin') ?></a>
 <br /><small>(Supported in Internet Explorer 7+, Firefox and Chrome.)</small>
 </p>
