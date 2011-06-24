@@ -91,9 +91,10 @@ img.right {float:right;}
 
 p.add-link {clear: both; padding-top: 1em;}
 
-p.add-link a {border:1px solid #ccc; padding: 5px 5px 5px 20px; text-decoration: none; font-weight: bold; background-image: url(icon-add.gif); background-position: .5em .6em; background-repeat: no-repeat; border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px;}
+p.add-link a {border:1px solid #ccc; padding:5px 5px 5px 20px; text-decoration:none; font-weight:bold; opacity:.9;
+ background:#fafafa url(icon-add.gif) no-repeat .5em .6em; background-repeat:no-repeat; -webkit-border-radius:6px; -moz-border-radius:6px; border-radius:6px;}
 
-p.add-link a:hover {border:1px solid #00822b;}
+p.add-link a:hover, .add-link a:focus{border:1px solid #00822b;}
 
 
 /* Headlines
@@ -1160,6 +1161,12 @@ a.cloud {text-decoration: none; background:url(icon-cloud.gif)  no-repeat; paddi
 #form-lang h3 { margin:0; color:#444; font-size:100%; }
 #form-lang label { }
 #form-lang select{ margin-right:1em; }
+
+/* Embedding. */
+.oembed, .oembed iframe{display:block; min-width:420px; width:100% !important;}
+.oembed{padding:2px; border:1px solid #ddd; border-radius:4px; background:#fafafa;}
+.oembed.youtube{padding:0; border:none;}
+
 
 /* Accessibility. Text hidden off-screen - only visible to screen readers. */
 .accesshide { position:absolute; top:-999px; }
