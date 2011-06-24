@@ -30,10 +30,10 @@
 <script src="<?=base_url() ?>_scripts/jquery.oembed.js"></script>
 <script>
 $(document).ready(function() {
-  $('.embed-block a.em').oembed();
+  $('.embed-block a.em').oembed(null, {'oupodcast':{'theme':'ouice-dark'}});
 });
 </script>
 <?php endif; ?>
 
-<p class="add-embed"><?= anchor('embed/add/'.$cloud->cloud_id, t("Add embedded content")) ?></p>
+<p class="add-link add-embed"><?= anchor('embed/add/'.$cloud->cloud_id, t("Add embedded content")) ?></p>
 </div>
