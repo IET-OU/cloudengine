@@ -1,5 +1,5 @@
-/*auto-generated: 2011-06-24T14:52:58+01:00 */
-/*!
+/*auto-generated: 2011-08-31T15:21:08+01:00 */
+﻿/*!
  * jquery oembed plugin
  *
  * Copyright (c) 2009 Richard Chamorro
@@ -7,7 +7,7 @@
  * 
  * Author: Richard Chamorro 
  */
-//Revision #23 on Google Code.
+//Revision #23 on Google Code (was #20).
 
 (function ($) {
     $.fn.oembed = function (url, options, embedAction) {
@@ -349,7 +349,7 @@
 		new $.fn.oembed.OEmbedProvider('lams', 'rich', ["lamscommunity\.org"], 'http://embed.open.ac.uk/oembed'),
 		new $.fn.oembed.OEmbedProvider('youtube', 'video', ["youtube\.com"], 'http://embed.open.ac.uk/oembed'),
 		new $.fn.oembed.OEmbedProvider('prezi', 'rich', ["prezi\.com"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('gglspread', 'rich', ["spreadsheets\.google\.com"], 'http://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('gglspread', 'rich', ["docs\.google\.com"], 'http://embed.open.ac.uk/oembed'),
 
 		//new $.fn.oembed.OEmbedProvider("youtube", "video", ["youtube\\.com/watch.+v=[\\w-]+&?"]), // "http://www.youtube.com/oembed"	(no jsonp)
 //ou-specific ends.
