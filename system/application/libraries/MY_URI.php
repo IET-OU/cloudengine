@@ -15,6 +15,13 @@ class My_URI extends CI_URI {
 
     protected $_file_extension = NULL;
 
+	public function __construct(){
+		parent::__construct();
+		log_message('debug', "My_URI Class Initialized");
+	}
+
+	//function _filter_uri($str){ return $str; }
+
     /** Return any file extension, or NULL.
      */
     public function file_extension() {
@@ -30,6 +37,7 @@ class My_URI extends CI_URI {
 	 */
 	function _explode_segments()
 	{
+		log_message('debug', __METHOD__." - start.");
 #ou-specific
         // Separate file extension - don't mess with 'uri_string' member variable.
         $_uri_string = $this->uri_string;
@@ -50,5 +58,6 @@ class My_URI extends CI_URI {
 				$this->segments[] = $val;
 			}
 		}
+		log_message('debug', __METHOD__." - ended.");
 	}
 }
