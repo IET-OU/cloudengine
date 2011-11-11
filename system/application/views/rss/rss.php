@@ -25,7 +25,18 @@
               <link><?php echo base_url().'cloud/view/' . $entry->cloud_id; ?></link>
               <guid><?php echo base_url().'cloud/view/' . $entry->cloud_id; ?></guid>
               <description><![CDATA[<?= $entry->body ?>]]></description>
-          <pubDate><?php echo date ('r', $entry->timestamp);?></pubDate>
+          <pubDate><?php
+//#183, 1970 date bug.
+if (isset($entry->timestamp)) {
+  echo date('r', $entry->timestamp);
+}
+elseif (isset($entry->created)) {
+  echo date('r', $entry->created);
+}
+elseif (isset($entry->modified)) {
+  echo date('r', $entry->modified);
+}
+?></pubDate>
             </item>
         <?php endforeach; ?>
     </channel>
