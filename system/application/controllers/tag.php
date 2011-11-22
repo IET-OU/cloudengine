@@ -38,7 +38,7 @@ class Tag extends MY_Controller {
 	    $data['users']       = $this->tag_model->get_users($tag); 
 	    $data['title']       = t("Items tagged !tag", array('!tag'=>$tag));
 	    $data['navigation']  = 'tags';
-	    $data['rss']         = '/tag/rss/'.$tag;
+	    $data['rss']         = site_url('tag/rss/'. urlencode($tag));
 	    $this->layout->view('tag/view.php', $data);
 	}
 	
@@ -49,13 +49,13 @@ class Tag extends MY_Controller {
 	 */
     function rss($tag = '') {
         $tag = urldecode($tag);
-        
+
         $this->load->helper('xml');
 	    $data['tag']              = $tag;
 	    $data['clouds']           = $this->tag_model->get_clouds($tag);
         $data['encoding']         = $this->config->item('charset');
         $data['feed_name']        = $this->config->item('site_name').': '.$tag;
-        $data['feed_url']         = base_url().'tag/rss.'.$tag;
+        $data['feed_url']         = site_url('tag/rss/'. urlencode($tag));
         $data['page_description'] = $this->config->item('site_name').' clouds tagged '.$tag;
         $data['page_language']    = 'en';
         $data['creator_email']    = $this->config->item('site_email');   
