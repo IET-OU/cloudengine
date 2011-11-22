@@ -3,6 +3,7 @@
   echo '<?xml version="1.0" encoding="'.config_item("charset").'"?>'.PHP_EOL;
 ?>
 <rss version="2.0"
+    xmlns:atom="http://www.w3.org/2005/Atom"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
     xmlns:admin="http://webns.net/mvcb/"
@@ -14,6 +15,7 @@
     <title><?php echo $feed_name; ?></title>
 
     <link><?php echo $feed_url; ?></link>
+    <atom:link href="<?php echo $feed_url ?>" rel="self" type="application/rss+xml" />
     <description><?php echo $page_description; ?></description>
     <dc:language><?php echo $page_language; ?></dc:language>
     <dc:creator><?php echo $creator_email; ?></dc:creator>

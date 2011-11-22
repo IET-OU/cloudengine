@@ -5,6 +5,7 @@
   $this->load->helper('xml');
 ?>
 <rss version="2.0"
+    xmlns:atom="http://www.w3.org/2005/Atom"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
     xmlns:admin="http://webns.net/mvcb/"
@@ -13,6 +14,7 @@
     <channel>
         <title><?php echo xml_convert($feed_name); ?></title>
         <link><?php echo $feed_url; ?></link>
+        <atom:link href="<?php echo $feed_url ?>" rel="self" type="application/rss+xml" />
         <description><?php echo xml_convert($page_description); ?></description>
         <dc:language><?php echo $page_language; ?></dc:language>
         <dc:creator><?php echo $creator_email; /*/Translators: In case we want to translate the copyright statement.. */ ?></dc:creator>
