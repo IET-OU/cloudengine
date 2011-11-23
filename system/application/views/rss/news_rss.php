@@ -26,7 +26,7 @@
     <?php foreach($news as $entry): ?>
     
         <item>
-          <title><?php echo xml_convert($entry->title); ?></title>
+          <title><?php echo xml_safe(xml_convert($entry->title)) ?></title>
           <link><?php echo base_url().'blog/view/' . $entry->post_id; ?></link>
           <guid><?php echo base_url().'blog/view/' . $entry->post_id; ?></guid>
           <description><![CDATA[<?= $entry->body ?>]]></description>
