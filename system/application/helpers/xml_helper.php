@@ -1,7 +1,7 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * XML helper functions.
- * Used by views/api/api_render
+ * Used by views/api/api_render, and views/rss.
  */
 require_once BASEPATH.'helpers/xml_helper.php';
 
@@ -23,7 +23,15 @@ function xml_safe($input) {
     $output = str_replace($placeholders, $xml_safe, $output);
 
     return $output;
-}  
+}
+
+/** Strip unsafe attributes, eg. 'style' from RSS entry descriptions (Bug #183).
+ *  See, http://validator.w3.org/feed/docs/warning/DangerousStyleAttr.html
+ */
+function xml_feed_html_safe($input) {
+    return preg_replace('#style="[^"]+">#', 'style="cursor:auto"><!--NO CSS-->', $input);
+}
+
 
 class ArrayToXML {
     /**

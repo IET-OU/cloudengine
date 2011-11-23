@@ -26,7 +26,7 @@
               <title><?php echo xml_safe(xml_convert($entry->title)); ?></title>
               <link><?php echo site_url('cloud/view/'. $entry->cloud_id) ?></link>
               <guid><?php echo site_url('cloud/view/'. $entry->cloud_id) ?></guid>
-              <description><![CDATA[<?= $entry->body ?>]]></description>
+              <description><![CDATA[<?= xml_feed_html_safe($entry->body) ?>]]></description>
           <pubDate><?php
 //Bug #183, 1970 date bug.
 if (isset($entry->timestamp)) {
