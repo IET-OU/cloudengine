@@ -68,7 +68,7 @@ class Blog extends MY_Controller {
 	function archive() {
 	   $data['news_items'] = $this->blog_model->get_blog_posts();
        $data['title']      = $this->config->item('site_name').' '.t("Blog Archive");
-	   $data['rss']        = '/blog/rss';
+	   $data['rss']        = site_url('blog/rss');
 	   $this->layout->view('blog/archive', $data);
 	}
   	
@@ -185,7 +185,7 @@ class Blog extends MY_Controller {
         $data['news']             = $this->blog_model->get_blog_posts(10); 
         $data['encoding']         = $this->config->item('charset');;
         $data['feed_name']        = $this->config->item('site_name').t(' Blog');
-        $data['feed_url']         = base_url().'blog/rss.'.$user_id;
+        $data['feed_url']         = site_url('blog/rss');
         $data['page_description'] = $this->config->item('site_name').' blog';
         $data['page_language']    = 'en';
         $data['creator_email']    = $this->config->item('site_email');   
