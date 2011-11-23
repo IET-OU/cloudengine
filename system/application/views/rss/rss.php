@@ -24,11 +24,11 @@
         <?php foreach($clouds as $entry): ?>
             <item>
               <title><?php echo xml_safe(xml_convert($entry->title)); ?></title>
-              <link><?php echo base_url().'cloud/view/' . $entry->cloud_id; ?></link>
-              <guid><?php echo base_url().'cloud/view/' . $entry->cloud_id; ?></guid>
+              <link><?php echo site_url('cloud/view/'. $entry->cloud_id) ?></link>
+              <guid><?php echo site_url('cloud/view/'. $entry->cloud_id) ?></guid>
               <description><![CDATA[<?= $entry->body ?>]]></description>
           <pubDate><?php
-//#183, 1970 date bug.
+//Bug #183, 1970 date bug.
 if (isset($entry->timestamp)) {
   echo date('r', $entry->timestamp);
 }

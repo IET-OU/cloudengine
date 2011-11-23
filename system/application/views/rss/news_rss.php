@@ -27,8 +27,8 @@
     
         <item>
           <title><?php echo xml_safe(xml_convert($entry->title)) ?></title>
-          <link><?php echo base_url().'blog/view/' . $entry->post_id; ?></link>
-          <guid><?php echo base_url().'blog/view/' . $entry->post_id; ?></guid>
+          <link><?php echo site_url('blog/view/'. $entry->post_id) ?></link>
+          <guid><?php echo site_url('blog/view/'. $entry->post_id) ?></guid>
           <description><![CDATA[<?= $entry->body ?>]]></description>
       <pubDate><?php echo date ('r', $entry->created);?></pubDate>
         </item>
