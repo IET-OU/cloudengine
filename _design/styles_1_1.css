@@ -1140,6 +1140,11 @@ a.dp-choose-date {
 	overflow: hidden;
 	background: url(calendar.png) no-repeat;
 }
+a.dp-choose-date:hover, a.dp-choose-date:focus {
+	outline: 1px dotted #333;
+	-moz-outline-radius: 2px;
+	outline-radius: 2px;
+}
 a.dp-choose-date.dp-disabled {
 	background-position: 0 -20px;
 	cursor: default;
