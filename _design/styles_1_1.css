@@ -571,7 +571,7 @@ div#region1 ul.cloudstream li.extra {background:url(icon-extra.gif) 0 .5em no-re
 div#region1 ul.cloudstream li.reference {background:url(icon-reference.gif) 0 .5em no-repeat;}
 div#region1 ul.cloudstream li.cloud {background:url(icon-cloud.gif) 0 .5em no-repeat;}
 div#region1 ul.cloudstream li.cloudscape {background:url(icon-cloudscape.gif) 0 .5em no-repeat;}
-div#region1 ul.cloudstream li.user {background:url(/_design/avatar-default-16.jpg) 0 .5em no-repeat;}
+div#region1 ul.cloudstream li.user {background:url(avatar-default-16.jpg) 0 .5em no-repeat;}
 
 
 
@@ -958,7 +958,7 @@ margin: 0 0 0 0;
 padding: 0 0 0 0;
 }
 
-ol.users li a, ul.users li a {padding: 4px 0 4px 24px; background:url(/_design/avatar-default-16.jpg) 0 .5em no-repeat; 
+ol.users li a, ul.users li a {padding:4px 0 4px 24px; background:url(avatar-default-16.jpg) 0 .5em no-repeat;
 display:block; text-decoration:none;}
 
 
@@ -1749,7 +1749,7 @@ ol.paging li a.cloudscape-link {
 
 ol.all-results li a.user-link,
 ol.paging li a.user-link {
-    background:url(/_design/avatar-default-16.jpg) 0 .5em no-repeat;
+    background:url(avatar-default-16.jpg) 0 .5em no-repeat;
 }
 
 ol.simplePagerNav,
