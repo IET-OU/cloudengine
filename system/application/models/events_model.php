@@ -37,7 +37,7 @@ class Events_model extends Model {
                                     FROM cloudscape c
                                     INNER JOIN user u on u.id = c.user_id
                                     WHERE 
-                                      ((start_date >= $month_start_date AND start_date < $month_end_date) 
+                                      ((start_date >= $month_start_date AND start_date <= $month_end_date)
                                     OR 
                                       (end_date >= $month_start_date  AND end_date <= $month_end_date))
                                     AND u.banned = 0
