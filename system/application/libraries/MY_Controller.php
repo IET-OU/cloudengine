@@ -11,9 +11,23 @@ class MY_Controller extends Controller {
 
   public function MY_Controller ()  {
     parent::Controller();
-              
+
       //initalise
-      $prevent_access = 0;
+
+    $this->_set_cloudengine_debug();
+
+    $this->_get_message_unread_count();
+
+    $this->_set_maintenance_mode();
+  }
+
+
+  /** Decide whether we're in debug mode, and if so, initialize Fire PHP, set error_reporting etc.
+   *
+   * @return null
+   */
+  protected function _set_cloudengine_debug() {
+      //initalise
       $debug          = false;
       $show_debug     = config_item('debug');      
       
@@ -39,19 +53,19 @@ class MY_Controller extends Controller {
       	error_reporting(0);  	
     	}    
     
-      $this->firephp->fb($_SERVER,'Server info','INFO');   
+      $this->firephp->fb($_SERVER,'Server info','INFO');
+  }
 
-      //get message unread count for the user, this is called on nearly every page and is used to
-      //update the message count in the primary navigation for a user 
-      //(most controllers extend MY_Controller)
-      if ($this->config->item('x_message') && $this->db_session) { 
-        if (is_numeric($this->db_session->userdata('id'))) {
-          $this->load->model('message_model');
-          $user_message_count = $this->message_model->get_user_new_message_count($this->db_session->userdata('id'));
-          $this->db_session->set_userdata('user_message_count', $user_message_count);
-        }
-      }
-      
+
+  /** Decide whether we're in maintenance mode. If we are, set the appropriate message.
+   *
+   * @return null
+   */
+  protected function _set_maintenance_mode() {
+  
+      //initalise
+      $prevent_access = 0;
+
       //*********************************************************************
       // Maintenance mode processing - start
       //*********************************************************************
@@ -92,9 +106,26 @@ class MY_Controller extends Controller {
       //*********************************************************************
       // Maintenance mode processing - end
       //*********************************************************************
-
   }
 
+
+  /**
+   * Get message unread count for the user, this is called on nearly every page
+   * and is used to update the message count in the primary navigation for a user.
+   *
+   * @return null
+   */
+  protected function _get_message_unread_count() {
+      //(most controllers extend MY_Controller)
+      if ($this->config->item('x_message') && $this->db_session) { 
+        if (is_numeric($this->db_session->userdata('id'))) {
+          $this->load->model('message_model');
+          $user_message_count = $this->message_model->get_user_new_message_count($this->db_session->userdata('id'));
+          $this->db_session->set_userdata('user_message_count', $user_message_count);
+        }
+      }
+  }
+  
   /** A wrapper around the Mollom anti-spam library.
    *    Initial use: Cloud::_moderate_cloud, Message::compose.
    */
