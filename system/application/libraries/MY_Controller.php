@@ -9,10 +9,10 @@
 
 class MY_Controller extends Controller {
 
-  public function MY_Controller ()  {
+  /** Initalize the CloudEngine application.
+   */
+  public function MY_Controller() {
     parent::Controller();
-
-      //initalise
 
     $this->_set_cloudengine_debug();
 
@@ -30,7 +30,7 @@ class MY_Controller extends Controller {
       //initalise
       $debug          = false;
       $show_debug     = config_item('debug');      
-      
+
       //debug value of 1 is debug output for admin users
       //debug value of 2 is debug output for all users (emergency use only)
       if (($this->auth_lib && $this->auth_lib->is_admin() && $show_debug == 1) || $show_debug == 2) {
@@ -38,21 +38,18 @@ class MY_Controller extends Controller {
       }
 
       //firephp - should we enable it?
-  		if ($debug)
-  		{
-  			$this->load->library('firephp');
+      if ($debug) {
+        $this->load->library('firephp');
         // This overrides the settings in the index.php file 
       	ini_set("display_errors", 'On');
-      	error_reporting(E_ALL & ~E_NOTICE);        
-  		}
-  		else 
-  		{
-  			$this->load->library('firephp_fake');
-  			$this->firephp =& $this->firephp_fake;
-      	ini_set("display_errors", 'Off');
-      	error_reporting(0);  	
-    	}    
-    
+      	error_reporting(E_ALL & ~E_NOTICE);
+      } else {
+        $this->load->library('firephp_fake');
+        $this->firephp =& $this->firephp_fake;
+        ini_set("display_errors", 'Off');
+        error_reporting(0);
+      }
+
       $this->firephp->fb($_SERVER,'Server info','INFO');
   }
 
@@ -62,7 +59,7 @@ class MY_Controller extends Controller {
    * @return null
    */
   protected function _set_maintenance_mode() {
-  
+
       //initalise
       $prevent_access = 0;
 
@@ -91,21 +88,18 @@ class MY_Controller extends Controller {
           $prevent_access = 1;
         }
       }
-      
+
       //if the site is offline
       if ($prevent_access) {
         //if the page is not one of the auth pages e.g. login
-        if (!($this->uri->segment(1) === 'auth')) {     
+        if (!($this->uri->segment(1) === 'auth')) {
           //call method to show the site offline page
           $error =& load_class('Exceptions');
           $message = nl2br($this->config->item('offline_message_public'));
           echo $error->show_error('Information', $message, 'site_offline', 200);
           exit; 
-        }        
-      }                        
-      //*********************************************************************
-      // Maintenance mode processing - end
-      //*********************************************************************
+        }
+      }
   }
 
 
@@ -125,9 +119,13 @@ class MY_Controller extends Controller {
         }
       }
   }
-  
-  /** A wrapper around the Mollom anti-spam library.
+
+
+  /** Do moderation: a wrapper around the Mollom anti-spam library.
    *    Initial use: Cloud::_moderate_cloud, Message::compose.
+   *    Note: it is up to the specific controller to manage the user interaction.
+   *
+   * @return boolean Whether the item has been moderated.
    */
   protected function _moderate($item_type, $item_id=0, $user_id=0, $title=null, $body=null, $authorName=null, $authorUrl=null, $authorEmail=null, $authorOpenId=null, $authorId=null) {
     $moderate = FALSE;
