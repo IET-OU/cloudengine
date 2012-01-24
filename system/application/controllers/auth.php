@@ -259,17 +259,18 @@ class Auth extends MY_Controller {
         
         $this->form_validation->set_rules('email', t("New Email"), 
           'trim|required|valid_email|callback__email_duplicate_check|max_length[320]');
-        
+        $this->form_validation->set_message('email', 
+                'The e-mail address that you entered was not valid');
         // If the form is submitted and validated, process the form request and 
         // display the page that shows that request has been processed 
         if ($this->input->post('submit') && $this->form_validation->run()) {
-                $email= $this->input->post('email');
-                $this->auth_lib->change_email($user_id, $email);
-                $data['title'] = t("E-mail Change Request Received");
-                $this->layout->view('auth/change_email_success', $data);
-                return;
+            $email= $this->input->post('email');
+            $this->auth_lib->change_email($user_id, $email);
+            $data['title'] = t("E-mail Change Request Received");
+            $this->layout->view('auth/change_email_success', $data);
+            return;
         }
-           
+        
         $data['title'] = t("Change Email");
         $this->layout->view('auth/change_email_form', $data); 
     }

@@ -6,16 +6,18 @@ enter the new e-mail address, an e-mail will be sent to your previous e-mail wit
 link that you will need to click to confirm that you wish to change your e-mail address.") 
 ?></p>
 <?= validation_errors() ?>
-    <label for="user_name"><?=t("New e-mail")?>:</label>
-            <?=form_email(array('name'=>'email',
-                'required' =>true,
-                'maxlength'=>254,
-                'value'    =>set_value('email') )) ?>
-
+<?=form_open($this->uri->uri_string(), array('id' => 'change_email_form'))?>
+<label for="user_name"><?=t("New e-mail")?>:</label>
+            <?=form_email(array('name'=>'email', 
+                                'id'=>'email',
+                                'required' => TRUE,
+                                'maxlength'=> 254,
+                                'value'    => set_value('email'))) ?>
+</p>
     
-    <label>
+<label>
         <input type="submit" name="submit" id="submit" class="submit" value="<?= t("Change e-mail") ?>" />
-    </label>
+</label>
 <?=form_close()?>
 </fieldset>
 
