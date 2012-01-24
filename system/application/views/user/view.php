@@ -10,7 +10,7 @@
              <a href="<?= base_url() ?>user/edit/" class="button" title="<?=t("Edit Profile")?>"><?=t("Edit")?></a>
              <a href="<?= base_url() ?>user/edit_picture/" class="button" title="<?=t("Edit Picture")?>"><?=t("Edit Picture")?></a>
              <a href="<?= base_url() ?>auth/change_password/" class="button" title="<?=t("Change Password")?>"><?=t("Change Password")?></a>
-
+			 <a href="<?= base_url() ?>auth/change_email/" class="button" title="<?=t("Change Email")?>"><?=t("Change Email")?></a>	
     <?php endif;?>
     <?php if($admin): ?>
       <?php if(!$user->deleted): ?>

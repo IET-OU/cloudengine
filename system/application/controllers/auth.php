@@ -3,7 +3,8 @@
 /**
  * Controller for authentication-related functionality
  * 
- * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * @copyright 2009, 2010, 2012 The Open University. 
+ * See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Authentication
  */
@@ -248,6 +249,49 @@ class Auth extends MY_Controller {
         $this->layout->view('auth/change_password_form', $data); 
     }          
     
+    /**
+     * Form for a user to change their email address
+     */
+    function change_email() {
+        $user_id = $this->db_session->userdata('id');
+        $this->auth_lib->check_logged_in();
+        $data['user']= $this->user_model->get_user($user_id);
+        
+        $this->form_validation->set_rules('email', t("New Email"), 
+          'trim|required|valid_email|callback__email_duplicate_check|max_length[320]');
+        
+        // If the form is submitted and validated, process the form request and 
+        // display the page that shows that request has been processed 
+        if ($this->input->post('submit') && $this->form_validation->run()) {
+                $email= $this->input->post('email');
+                $this->auth_lib->change_email($user_id, $email);
+                $data['title'] = t("E-mail Change Request Received");
+                $this->layout->view('auth/change_email_success', $data);
+                return;
+        }
+           
+        $data['title'] = t("Change Email");
+        $this->layout->view('auth/change_email_form', $data); 
+    }
+    
+    /**
+     * Changes a users email - this is the link sent to the user in the 'change 
+     * email' e-mail
+     *
+     * @param integer $user_id The id of the user
+     * @param string $code The code from the email
+     */
+    function new_email($user_id = 0, $code = '') {	
+        $success = $this->auth_lib->new_email($user_id, $code);
+        if ($success) {
+            $data['title'] = t("E-mail Changed");
+            $this->layout->view('auth/new_email_success', $data);  
+        } else {
+            $data['title'] = t("E-mail Change Failed");
+            $this->layout->view('auth/new_email_failed', $data);  
+        }    
+    }
+    
     /*******************************************************************************
      * Form Validation Functions used by this controller
      ********************************************************************************/
@@ -271,7 +315,7 @@ class Auth extends MY_Controller {
     }
        
    /**
-     * Form validation function to check if aan e-mail address is already in use
+     * Form validation function to check if an e-mail address is already in use
      *
      * @param string $username The email address to check
      * @return boolean TRUE if not in use, FALSE otherwise 

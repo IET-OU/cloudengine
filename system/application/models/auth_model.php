@@ -1,7 +1,7 @@
 <?php 
 /**
  * Model file for authentication-related functions
- * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * @copyright 2009, 2010, 2012 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Authentication
  */
@@ -305,6 +305,17 @@ class Auth_model extends Model {
 	    $this->db->update('user', array('password' => $this->_hash_password($password)));
 	}
 
+    /**
+     * Update the email for a user to the email stored as the 'new email'
+     * @param integer $user_id The id of the user
+    */
+    function update_email($user_id) {
+        $user = $this->get_user($user_id);
+        $new_email = $user->new_email;
+        $this->db->where('id', $user_id);
+        $this->db->update('user', array('email' => $new_email));
+    }
+
 	/**
 	 * Updates any data that needs to be updated when a user logs in 
 	 * (e.g. logs, date last visited etc)
@@ -340,7 +351,23 @@ class Auth_model extends Model {
 	    $this->db->where('id', $user_id);
 	    $this->db->update('user', array('forgotten_password_code'=>$forgotten_password_code));
 	}
-	
+
+    /**
+     * Set a change email code for a user
+     *
+     * @param integer $user_id The id of the user
+     * @param string $change_email_code The forgotten password code
+     * @param string $new_email The new email address to store 
+     */
+    function set_change_email_code($user_id, $change_email_code, $new_email) {
+        $this->db->where('id', $user_id);
+        $this->db->update('user', array('change_email_code' => 
+                                        $change_email_code));
+
+        $this->db->where('id', $user_id);
+        $this->db->update('user', array('new_email'=>$new_email));
+    }
+
 	/**
 	 * Check if the forgotten password code for a given user is correct
 	 *
@@ -361,7 +388,28 @@ class Auth_model extends Model {
 	    
         return $code_correct;
 	}	
-	
+
+    /**
+    * Check if the change email code for a given user is correct
+    *
+    * @param integer $user_id
+    * @param ustring $change_email_code
+    * @return boolean TRUE if it is correct, FALSE otherwise 
+    */
+    function change_email_code_valid($user_id, $change_email_code) {
+        $code_correct = FALSE;
+        if ($change_email_code) { // Make sure returns FALSE if no code is set
+            $this->db->where('id', $user_id);
+            $this->db->where('change_email_code', $change_email_code);
+            $query = $this->db->get('user');
+            if ($query->num_rows() == 1) {
+                $code_correct = TRUE;
+            }
+        }
+
+        return $code_correct;
+    }
+
 	/**
 	 * Get the country options possible for a user
 	 *

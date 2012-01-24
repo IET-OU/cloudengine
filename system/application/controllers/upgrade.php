@@ -3,11 +3,16 @@
 /**
  * Controller for site upgrades 
  * 
- * Version numbers have the form "MAJOR.MINOR.REVISION", eg. 1.0.1. 
+ * Version numbers have the form "MAJOR.MINOR.REVISION", 
+ * eg. 1.0.1. 
  * These are converted to an integer with padding e.g.10001
- * The upgrade function for an upgrade to a version is then e.g. _upgrade_NNNNN() 
+ * The upgrade function for an upgrade to a version is then 
+ * e.g. _upgrade_NNNNN()
+ * When adding a new upgrade function to this file, make sure 
+ * that you update APP_VERSION in 
+ * /system/application/libraries/install/install_lib.php 
  * 
- * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * @copyright 2009, 2010, 2012 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Install
  */
@@ -29,18 +34,17 @@ class Upgrade extends MY_Controller {
      * The index methods holds the upgrade logic.
      *
      */
-    public function index() {         
- 
+    public function index() { 
         // Get version numbers both from code and from the database 
         $version_code= APP_VERSION;
         $version_obj = $this->settings_model->get_setting('app_%', TRUE);
         $version_db  = isset($version_obj->app_version) ? $version_obj->app_version : FALSE;        
-        
         //if the user has clicked to proceed with the upgrade
+        
         if ($this->input->post('submit')) {
           
-    			// Start a database transaction.
     			$this->db->trans_start();
+    			// Start a database transaction.
     			
     			// Change the version numbers into integer form (see comment in header)
     			$version_try = $this->parse_version($version_db);
@@ -542,5 +546,79 @@ class Upgrade extends MY_Controller {
           return TRUE;
         }
     }    
+    
+  /**
+    * Add fields to the user table to store information so that
+    * users can change their email address 	
+    * Also increase size of email field to 254, the maximum
+    * length of an email. 
+    */  
+    function _upgrade_114($action) {
+        if ($action == 'get_message') {        
+            $this->message("Add 'change_email_code' column to 
+                            'user' table");
+            $this->message("Add 'new_email' column to 'user' 
+                            table");
+            $this->message("Modify 'email' column in 'user' 
+                            table");
+       
+        } elseif ($action == 'do_update') {
+            // Add the email_change_code column to the user 
+            // table
+            $field_exists = 
+            $this->database_lib->check_field_exists('user',
+                                       'change_email_code');
+            if (!$field_exists) {
+                $fields = array(
+                    'change_email_code' => array(
+                    'type'              => 'VARCHAR',
+                    'constraint'        => 50,                    
+                    ),    
+                );
+                $this->dbforge->add_column('user', $fields);
+                $this->message("OK, altered table 'user' by 
+                                adding column 
+                                'change_email_code'.");
+            } else {
+                $this->message("Did not alter table 'user', 
+                                column 'change_email_code' 
+                                already exists.", 'error');
+            }
+            
+            // Add the new_email column to the user table
+            $field_exists = 
+                $this->database_lib->check_field_exists('user',
+                                           'new_email');
+            if (!$field_exists) {
+                $fields = array(
+                    'new_email'  => array(
+                    'type'       => 'VARCHAR',
+                    'constraint' => 254,                    
+                    ),    
+                );
+                $this->dbforge->add_column('user', $fields);
+                $this->message("OK, altered table 'user' by 
+                                adding column 'new_email'.");
+            } else {
+                $this->message("Did not alter table 'user', 
+                                column 'new_email' already 
+                                exists.", 'error');
+            }
 
+            // Change the number of characters for the email
+            // column of the user table to 254, the maximum 
+            // length of an email address. See 
+            // http://stackoverflow.com/questions/386294/maximum-length-of-a-valid-email-address
+            $fields = array('email' =>
+                            array(
+                           'name' => 'email',
+                            'type'=>'VARCHAR',
+                            'constraint'=> 254));
+            $this->dbforge->modify_column('user', $fields);
+            $this->message("OK, altered table 'user' by 
+                                modifying column 'email'.");
+        }
+
+        return TRUE;   
+    }
 }

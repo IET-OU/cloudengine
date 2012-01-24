@@ -2,7 +2,7 @@
 /**
  * Library for Authentication related functions
  *
- * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * @copyright 2009, 2010, 2012 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Authentication
  */
@@ -166,6 +166,79 @@ class Auth_lib {
                    t('!site-name! - Password reset'), 
                    $message); 
  
+    }
+     
+    /**
+     * Process a request to change the e-mail address of the user by sending
+    * out a confirmation email to the old address and storing the information
+    * so that the email address can be changed when the link in that email is 
+    * clicked
+     * 
+     * @param integer $user_id The id of the user
+     * @param string $new_email The new email address 
+     * @return boolean TRUE if the request was processed successfully, FALSE if an error
+     * occurred. 
+     */
+    public function change_email($user_id, $new_email) {
+        $success = FALSE;
+        $user = $this->CI->auth_model->get_user($user_id);
+        if ($user) {
+            // Generate a change email code, save it for future reference and 
+           // send an e-mail to the user's old email with a link with the code
+           $change_email_code = $this->_generate_random_string(6);
+           $this->CI->auth_model->set_change_email_code($user_id, 
+           	           	           	$change_email_code, $new_email);
+            $this->_send_change_email_email($user, $change_email_code, 
+           	           	               $new_email);	
+            $success = TRUE;
+        }
+        
+        return $success;
+    }
+    
+    /**
+     * Process an email change request
+     *
+     * @param integer $user_id The id of the user
+     * @param string $code The email change code
+     * @return boolean TRUE if the email was successfully changed, FALSE otherwise
+     */
+    public function new_email($user_id, $code) {
+        $success = FALSE;
+        $user = $this->CI->auth_model->get_user($user_id);
+        $code_correct = $this->CI->auth_model->change_email_code_valid(
+                                                              $user_id, $code);
+
+        if ($code_correct) {     
+            $this->CI->auth_model->update_email($user_id);
+            // Remove the change email code 
+            $this->CI->auth_model->set_change_email_code($user->id, '', '');
+            $success = TRUE;
+        }
+        return $success;
+    }
+    
+    /**
+     * Sends the e-mail to a user when they have requested an e-mail change
+     * 
+     * @param object $user Details of the user to send the e-mail to
+     * @param string $code The change email code
+     * @param string $new_email The new email address 
+     */
+    protected function _send_change_email_email($user, $code, $new_email) {
+        $data['code']      = $code;
+        $data['fullname']  = $user->fullname;
+        $data['user_name'] = $user->user_name; 
+        $data['new_email'] = $new_email;
+        $data['user_id']   = $user->id;    
+
+        // displays message to the user on screen
+        $message = $this->CI->load->view('email/change_email_email', $data, 
+                                         true);
+
+        $this->CI->load->plugin('phpmailer');
+        send_email($user->email, config_item('site_email'), 
+                   t('!site-name! - Change Email'), $message); 
     }
 
     /**

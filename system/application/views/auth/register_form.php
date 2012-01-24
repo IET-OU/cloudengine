@@ -35,7 +35,7 @@
             <?=form_email(array('name'=>'email',
                 'required' =>true,
                 'placeholder'=>'you@example.org',
-                'maxlength'=>320,
+                'maxlength'=>254,
                 'value'    =>set_value('email') )) ?>
          </td> 
     </tr>
