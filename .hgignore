@@ -11,4 +11,5 @@ themes/cloudworks
 .DS_Store
 .hgrevision
 *.orig
+* Copy.*
 extensions/*
