@@ -4,7 +4,7 @@
 <h2><?=t("Embedded Content")?></h2>
 <?php if ($embeds): ?>
 <?php foreach($embeds as $idx => $embed): ?>
-
+<div class="embed-wrap-<?= str_replace('.', '-', parse_url($embed->url, PHP_URL_HOST)) ?>">
     <h3><?= $embed->title ?></h3>
   <a id="em<?= $idx ?>" class="em" href="<?=$embed->url ?>"><?=$embed->title ?></a>
 <p><?php if ($embed->accessible_alternative): ?>
@@ -18,6 +18,7 @@
     &nbsp; <small>
     <?= anchor('embed/delete/'.$embed->embed_id, t("delete embedded content")) ?>
 </small>
+</div>
 <?php endif; ?>
 <?php if ($embed->edit_permission): ?>
     &nbsp; <small>

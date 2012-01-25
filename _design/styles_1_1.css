@@ -1178,6 +1178,11 @@ a.cloud {text-decoration: none; background:url(icon-cloud.gif)  no-repeat; paddi
 .oembed{padding:2px; border:1px solid #ddd; border-radius:4px; background:#fafafa;}
 .oembed.youtube{padding:0; border:none;}
 
+.embed-wrap-vimeo-com iframe {
+        width:625px;
+        height: 500px;
+}
+
 iframe {
     max-width:625px;
 }
