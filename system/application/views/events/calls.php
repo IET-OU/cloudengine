@@ -22,6 +22,12 @@
 <?php endif; ?>
 <?php $month++; if ($month == 13) { $month = 1; $year++; } ?>
 <?php } ?>
+
+<p>
+<span class="ical"><?= anchor('events/ical', t("iCal")) ?></span>
+&nbsp;
+<span class="rss"><?= anchor('events/rss', t("RSS feed")) ?></span>
+</p>
 </div> 
 
 <div id="region2">

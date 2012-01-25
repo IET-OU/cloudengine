@@ -17,6 +17,7 @@ class Events extends MY_Controller {
 		$this->load->library('layout', 'layout_main'); 
 		$this->load->model('user_model');
 		$this->load->model('events_model');
+        $this->load->helper('format_helper');
 	}
 	
 	/**
@@ -24,7 +25,6 @@ class Events extends MY_Controller {
 	 *
 	 */
 	function events_list() {
-	    
 	    $current_month = date('m');
 	    $current_year  = date('Y');
 	    
@@ -46,9 +46,36 @@ class Events extends MY_Controller {
 	    $data['current_year']  = $current_year;
 	    $data['navigation']    = 'events';
 	    $data['title']         = 'Current and upcoming events';
-	                
-	    $this->layout->view('events/list', $data);
+          
+        $this->layout->view('events/list', $data);
 	}
+    
+    /**
+     * Display future events as an icalendar file
+     */
+    function ical() {
+        $data['events']= $this->events_model->get_future_events();
+        header("Content-Type: text/Calendar");
+        header("Content-Disposition: inline; filename=calendar.ics");
+        $this->load->view('events/ical', $data);
+    }
+    
+    /**
+     * Display future events as an RSS feed
+     */
+    function rss() {
+        $data['events']         = $this->events_model->get_future_events();
+        
+        $data['encoding']         = $this->config->item('charset');
+        $data['feed_name']        = t('Future Events');
+        $data['feed_url']         = base_url().'events/events_list/';
+        $data['page_description'] = t('Future Events');
+        $data['page_language']    = 'en';
+        $data['creator_email']    = $this->config->item('site_email');        
+
+        header("Content-Type: application/rss+xml");
+        $this->load->view('events/rss', $data);    
+    }
 
 	/**
 	 * Display a list of past events
@@ -118,7 +145,35 @@ class Events extends MY_Controller {
 	    $data['title']         = 'Deadlines';
 	    $this->layout->view('events/calls', $data);   
 	}
-	
+
+    
+    /**
+     * Display future calls as an icalendar file
+     */
+    function calls_ical() {
+        $data['events']= $this->events_model->get_future_calls();
+        header("Content-Type: text/Calendar");
+        header("Content-Disposition: inline; filename=calendar.ics");
+        $this->load->view('events/ical', $data);
+    }
+
+    /**
+     * Display future events as an RSS feed
+     */
+    function calls_rss() {
+        $data['events']         = $this->events_model->get_future_calls();
+        
+        $data['encoding']         = $this->config->item('charset');
+        $data['feed_name']        = t('Future Calls');
+        $data['feed_url']         = base_url().'events/events_list/';
+        $data['page_description'] = t('Future Calls');
+        $data['page_language']    = 'en';
+        $data['creator_email']    = $this->config->item('site_email');        
+
+        header("Content-Type: application/rss+xml");
+        $this->load->view('events/rss', $data);    
+    }
+    
 	/**
 	 * Display a list of old calls (for papers etc.)
 	 *

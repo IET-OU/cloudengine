@@ -36,7 +36,7 @@ class MY_Controller extends Controller {
       if (($this->auth_lib && $this->auth_lib->is_admin() && $show_debug == 1) || $show_debug == 2) {
         $debug = true;
       }
-
+      
       //firephp - should we enable it?
       if ($debug) {
         $this->load->library('firephp');
@@ -49,7 +49,6 @@ class MY_Controller extends Controller {
         ini_set("display_errors", 'Off');
         error_reporting(0);
       }
-
       $this->firephp->fb($_SERVER,'Server info','INFO');
   }
 

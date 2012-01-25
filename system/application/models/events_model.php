@@ -47,6 +47,22 @@ class Events_model extends Model {
     }
     
     /**
+     * Get all future events
+     * @return array Array of cloudscapes that are future events 
+     */
+    function get_future_events() {
+    $today = time();
+        $query = $this->db->query("SELECT * 
+                                    FROM cloudscape c
+                                    INNER JOIN user u on u.id = c.user_id
+                                    WHERE end_date >= $today
+                                    AND u.banned = 0
+                                    ORDER BY start_date");
+        
+        return $query->result();   
+    }
+    
+    /**
      * Get all the clouds that are deadlines in a specifed month
      *
      * @param integer $month The month as a number
@@ -67,6 +83,19 @@ class Events_model extends Model {
         return $query->result();
     }
     
+    /**
+     * Get all the clouds that are deadlines in the future
+     *
+     * @return array Array of clouds that are future deadlines
+     */  
+    function get_future_calls() {
+        $today = time();
+        $query = $this->db->query("SELECT * FROM cloud 
+                                   WHERE call_deadline >= $today
+                                   ORDER BY call_deadline");
+        
+        return $query->result();
+    }
             
     /**
      * Add a user to the attenders of the cloudscape

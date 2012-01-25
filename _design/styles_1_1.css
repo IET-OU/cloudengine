@@ -185,6 +185,12 @@ p.create-cloud a {background-image:url(icon-create-cloud.gif); background-positi
 
 .rss {background-image:url(icon-rss.gif); background-repeat: no-repeat; padding-left: 20px;}
 
+.ical { 
+    background-image:url(icon-ical.gif); 
+    background-repeat: no-repeat; 
+    padding-left: 45px;
+}
+
 
 p.tags a {text-decoration:none;}
 

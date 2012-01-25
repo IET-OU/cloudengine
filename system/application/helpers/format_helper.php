@@ -60,3 +60,19 @@ function time_ago($timestamp) {
 
     return $timeago;
 }
+
+/**
+ * Escapes text so that it can be used in an icalendar file.
+ * See RFC 2445 http://tools.ietf.org/html/rfc5545 for more info
+ * @param string $text The text to escape
+ * @return string The escaped text 
+ */
+function ical_escape_text($text) {
+    $text = strip_tags($text);
+    $text = str_replace("\\", "\\\\", $text);
+    $text = str_replace(",", "\,", $text);
+    $text = str_replace(";", "\;", $text);
+    $text = str_replace("\n", "\n ", $text);
+    $text = trim($text);
+    return $text;
+}
