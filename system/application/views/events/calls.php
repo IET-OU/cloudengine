@@ -24,9 +24,9 @@
 <?php } ?>
 
 <p>
-<span class="ical"><?= anchor('events/ical', t("iCal")) ?></span>
+<span class="ical"><?= anchor('events/calls_ical', t("iCal")) ?></span>
 &nbsp;
-<span class="rss"><?= anchor('events/rss', t("RSS feed")) ?></span>
+<span class="rss"><?= anchor('events/calls_rss', t("RSS feed")) ?></span>
 </p>
 </div> 
 

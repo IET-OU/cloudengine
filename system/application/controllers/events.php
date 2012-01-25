@@ -4,7 +4,7 @@
  * Controller for functionality related to events on the site. 
  * Cloudscapes can be given start and end dates. If a cloudscape is given a start date
  * then it is considered an 'event' and so displays in the events calendar etc. 
- * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * @copyright 2009, 2010, 2012 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Events
  */
@@ -68,10 +68,10 @@ class Events extends MY_Controller {
         
         $data['encoding']         = $this->config->item('charset');
         $data['feed_name']        = t('Future Events');
-        $data['feed_url']         = base_url().'events/events_list/';
+        $data['feed_url']         = base_url().'events/rss/';
         $data['page_description'] = t('Future Events');
         $data['page_language']    = 'en';
-        $data['creator_email']    = $this->config->item('site_email');        
+        $data['creator_email']    = $this->config->item('site_email'); 
 
         header("Content-Type: application/rss+xml");
         $this->load->view('events/rss', $data);    
@@ -165,7 +165,7 @@ class Events extends MY_Controller {
         
         $data['encoding']         = $this->config->item('charset');
         $data['feed_name']        = t('Future Calls');
-        $data['feed_url']         = base_url().'events/events_list/';
+        $data['feed_url']         = base_url().'events/calls_rss';
         $data['page_description'] = t('Future Calls');
         $data['page_language']    = 'en';
         $data['creator_email']    = $this->config->item('site_email');        

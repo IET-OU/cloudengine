@@ -5,28 +5,33 @@
 ?>
 <rss version="2.0"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ev="http://purl.org/rss/1.0/modules/event/"
     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
     xmlns:admin="http://webns.net/mvcb/"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:content="http://purl.org/rss/1.0/modules/content/"
     xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-    <title><?php echo xml_convert($feed_name); ?></title>
-    <link><?php echo base_url() ?></link>
-	<description><?php echo xml_convert($page_description); ?></description>
-	<dc:language><?php echo $page_language; ?></dc:language>
-	<dc:creator><?php echo $creator_email; ?></dc:creator>
+    <title><?= xml_convert($feed_name); ?></title>
+    <link><?= base_url() ?></link>
+	<description><?= xml_convert($page_description); ?></description>
+	<dc:language><?= $page_language; ?></dc:language>
+	<dc:creator><?= $creator_email; ?></dc:creator>
 	<dc:rights><?=t("Copyright !date !organization", array('!date'=>gmdate("Y"), '!organization'=>NULL)) ?></dc:rights>
 	<admin:generatorAgent rdf:resource="http://getcloudengine.org/"/>
-    <atom:link href="<?php echo $feed_url ?>" rel="self" type="application/rss+xml" />
+    <atom:link href="<?= $feed_url ?>" rel="self" type="application/rss+xml" />
 
 	<?php foreach($events as $event): ?>
+    
 	    <item>
-	      <title><?php echo xml_safe(xml_convert(strip_tags($event->title))); ?></title>
-	      <link><?php echo base_url().'cloudscape/view/'.$event->cloudscape_id  ?></link>
-	      <guid><?php echo base_url().'cloudscape/view/'.$event->cloudscape_id  ?></guid>
-	      <description><![CDATA[<?php echo $event->body; ?>]]></description>
-	  	  <pubDate><?php echo date ('r', $event->created);?></pubDate>
+	      <title><?= xml_safe(xml_convert(strip_tags($event->title))); ?></title>
+	      <link><?= base_url().'cloudscape/view/'.$event->cloudscape_id  ?></link>
+	      <guid><?= base_url().'cloudscape/view/'.$event->cloudscape_id  ?></guid>
+	      <description><![CDATA[<?= $event->body ?>]]></description>
+	  	  <pubDate><?= date('D, d M Y H:i:s O', strtotime($event->created)) ?></pubDate>
+          <ev:location><?= xml_safe(xml_convert(strip_tags($event->location))) ?></ev:location>
+          <ev:startdate><?= date('Y-m-d', $event->start_date);?></ev:startdate>
+          <ev:enddate><?= date('Y-m-d', $event->end_date);?></ev:enddate>
         </item>  
 	<?php endforeach; ?>
 </channel>

@@ -2,7 +2,7 @@
 /**
  *  Model file for functions related to events i.e. cloudscapes with a date associated
  * with them
- * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * @copyright 2009, 2010, 2012 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Events
  */
@@ -51,14 +51,13 @@ class Events_model extends Model {
      * @return array Array of cloudscapes that are future events 
      */
     function get_future_events() {
-    $today = time();
+        $today = time();
         $query = $this->db->query("SELECT * 
                                     FROM cloudscape c
                                     INNER JOIN user u on u.id = c.user_id
                                     WHERE end_date >= $today
                                     AND u.banned = 0
-                                    ORDER BY start_date");
-        
+                                    ORDER BY start_date");        
         return $query->result();   
     }
     
