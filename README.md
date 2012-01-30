@@ -1,11 +1,10 @@
-<!-- -*- markdown -*- -->
-
 CloudEngine
 ===========
 
-CloudEngine is a new kind of open participatory and social software for
-discussing and sharing ideas and resources. It is the free, open source
-software that powers Cloudworks.
+CloudEngine is an easy way to create a social web site for discussing
+and aggregating ideas and resources. It is ideal for running events
+and fostering discusison. It is the free, open source software
+that powers Cloudworks <http://cloudworks.ac.uk>.
 
 More information at, <http://getcloudengine.org/>
 
@@ -23,7 +22,7 @@ Installation
 License
 -------
 
-CloudEngine is Copyright (c) 2009-2010, The Open University.
+CloudEngine is Copyright (c) 2009-2012, The Open University.
 
 * License, GNU General Public License version 2,
   <http://gnu.org/licenses/gpl-2.0.html>
