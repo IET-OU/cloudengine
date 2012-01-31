@@ -55,8 +55,6 @@ class Events extends MY_Controller {
      */
     function ical() {
         $data['events']= $this->events_model->get_future_events();
-        header("Content-Type: text/Calendar");
-        header("Content-Disposition: inline; filename=calendar.ics");
         $this->load->view('events/ical', $data);
     }
     
@@ -73,7 +71,6 @@ class Events extends MY_Controller {
         $data['page_language']    = 'en';
         $data['creator_email']    = $this->config->item('site_email'); 
 
-        header("Content-Type: application/rss+xml");
         $this->load->view('events/rss', $data);    
     }
 
@@ -152,8 +149,6 @@ class Events extends MY_Controller {
      */
     function calls_ical() {
         $data['events']= $this->events_model->get_future_calls();
-        header("Content-Type: text/Calendar");
-        header("Content-Disposition: inline; filename=calendar.ics");
         $this->load->view('events/ical', $data);
     }
 
@@ -170,7 +165,6 @@ class Events extends MY_Controller {
         $data['page_language']    = 'en';
         $data['creator_email']    = $this->config->item('site_email');        
 
-        header("Content-Type: application/rss+xml");
         $this->load->view('events/rss', $data);    
     }
     

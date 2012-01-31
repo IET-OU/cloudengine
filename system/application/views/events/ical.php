@@ -1,3 +1,7 @@
+<?php 
+  header("Content-Type: text/Calendar; charset=".config_item("charset"));
+  header("Content-Disposition: inline; filename=calendar.ics");  
+?>
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//CloudEngine/<?= $this->config->item('site_name') ?>//EN
