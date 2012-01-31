@@ -1,7 +1,7 @@
 <?php
 /**
  * Controller for functionality related to site statistics 
- * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * @copyright 2009, 2010, 2012 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Statistics
  */
@@ -47,7 +47,7 @@ class Statistics extends MY_Controller {
         $data['embed_team_total']      = $this->statistics_model->get_total_embeds(true);        
 
         $data['title'] = 'Statistics';
-	    $this->layout->view('statistics/stats', $data);	    
+	    $this->layout->view('statistics/stats', $data);
 	}
 
 	/**
@@ -99,6 +99,25 @@ class Statistics extends MY_Controller {
 	    }
 	}
 
+    /**
+     * Display site statistics related to users
+     */
+    function user_stats() {
+        ini_set('memory_limit','128M');
+        set_time_limit(900);
+        $data['user_total'] = $this->statistics_model->get_total_users(); 
+        $data['contrib']    = $this->statistics_model->get_user_contrib();
+        $data['contrib_last_60_days'] = 
+                        $this->statistics_model->get_user_contrib(time() - 60*24*60*60, time());        
+        $data['contrib_month_after_registration'] = 
+                        $this->statistics_model->get_user_contrib(false, false, 30*24*60*60);        
+        $data['contrib_year_after_registration'] = 
+                        $this->statistics_model->get_user_contrib(false, false, 365*24*60*60);        
+           
+        $data['title'] = 'Statistics';
+        $this->layout->view('statistics/user_stats', $data);
+    }
+    
     /**
      * Show stats for a specified cloudscape
      * 

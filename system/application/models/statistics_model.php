@@ -2,7 +2,7 @@
 /**
  * Functions related to site statistics
  * 
- * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * @copyright 2009, 2010, 2012 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Statistics
  */
@@ -338,5 +338,124 @@ class Statistics_model extends Model {
                         $this->get_cloudscape_cloud_visitors_guest($cloudscape_id, 0, time());
         
         return $cloudscape;
-    }  
+    } 
+
+   /**
+    * Get the total number of contributions that a user has made to the site
+    * where a contribution is a cloud, cloudscape, comment, link,
+    * reference, extra content or embed
+    * @param integer The id of the user 
+    * @param integer $start_timestamp Date before which contributions must have
+    * been made to be included in the count, as a Unix timestamp (optional, 
+    * if not set defaults to current time)
+    * @param integer $after_registration Period of time in seconds after the 
+    * user has registered on the site for contributions to have been made in in
+    * order to  be included in the count. (optional, if not set, no restrictions
+    * made based on registration date) If this is set then $end_timestamp is 
+    * ignored
+    * @param integer The number of contributions 
+    */
+    function get_number_contributions($user_id, 
+                                      $start_timestamp = false, 
+                                      $end_timestamp = false, 
+                                      $after_registration = false) {
+        if (!$start_timestamp) {
+            $start_timestamp = 0;
+        }
+        
+        if (!$end_timestamp) {
+            $end_timestamp = time();
+        }
+        
+        if ($after_registration) {
+            // Get the timestamp for when the user registered and add this to 
+            // that
+            $this->db->where('id', $user_id);
+            $query = $this->db->get('user');
+            $row = $query->row_array();
+            $start_timestamp = strtotime($row['created']) + $after_registration;
+        }
+        
+        $query = $this->db->query(
+        "SELECT
+        (
+        (SELECT COUNT(*) FROM cloud WHERE user_id = $user_id
+           AND created > $start_timestamp AND created < $end_timestamp)
+        +
+        (SELECT COUNT(*) FROM cloudscape WHERE user_id = $user_id 
+        AND created > $start_timestamp AND created < $end_timestamp)
+        + 
+        (SELECT COUNT(*) FROM cloud_content  WHERE user_id = $user_id 
+        AND created > $start_timestamp AND created < $end_timestamp)
+        + 
+        (SELECT COUNT(*) FROM cloud_link WHERE user_id = $user_id 
+        AND timestamp > $start_timestamp AND timestamp< $end_timestamp)
+        + 
+        (SELECT COUNT(*) FROM cloud_reference WHERE user_id = $user_id 
+        AND timestamp> $start_timestamp AND timestamp < $end_timestamp)
+        + 
+        (SELECT COUNT(*) FROM cloud_embed  WHERE user_id = $user_id 
+        AND timestamp > $start_timestamp AND timestamp < $end_timestamp)
+        + 
+        (SELECT COUNT(*) FROM comment WHERE user_id = $user_id 
+        AND timestamp > $start_timestamp AND timestamp < $end_timestamp)
+        )
+        AS no_contributions"
+        );
+        
+        $row = $query->row_array();
+        return $row['no_contributions'];      
+    }
+    
+   /**
+    * Get the distribution of user contributions to the site - this is divided into 
+    * number of users who have made 0 contributions, 1-5 contributions,
+    * 5-9 contributions, 10-49 contribtuions, 50+ contributions 
+    * @param integer $start_timestamp Date after which contributions must have
+    * been made to be included in the count, as a Unix timestamp (optional,
+    * if not set defaults to 0)
+    * @param integer $start_timestamp Date before which contributions must have
+    * been made to be included in the count, as a Unix timestamp (optional, 
+    * if not set defaults to current time)
+    * @param integer $after_registration Period of time in seconds after the 
+    * user has registered on the site for contributions to have been made in in
+    * order to  be included in the count (optional, if not set, no restrictions
+    * made based on registration date) If this is set then $end_timestamp is 
+    * ignored
+    * @param Array. An array containing the number of users with number of
+    * contributions in each of the specified ranges
+    */
+    function get_user_contrib($start_timestamp = false, 
+                              $end_timestamp = false,
+                              $after_registration = false) {
+        $contrib = array();
+        $contrib['0']    = 0;
+        $contrib['1-5']  = 0;
+        $contrib['5-9'] = 0;
+        $contrib['10-49'] = 0;
+        $contrib['50+']  = 0;
+        
+        // Get all the users and loop through them, getting the number of 
+        // contributions for each and then incrementing the appropriate 
+        // variable
+        $query = $this->db->get('user');       
+        foreach ($query->result() as $row) {
+            $num_contrib = $this->get_number_contributions($row->id, 
+                                                           $start_timestamp, 
+                                                           $end_timestamp,
+                                                           $after_registration);
+            if ($num_contrib == 0) {
+                $contrib['0']++;
+            } elseif ($num_contrib < 6) {
+                $contrib['1-5']++;
+            } elseif ($num_contrib < 10) {
+                $contrib['5-9']++;  
+            } elseif ($num_contrib < 50) {
+                $contrib['10-49']++;
+            } else {
+                $contrib['50+']++;
+            }
+        }
+        return $contrib;
+    }
 }

@@ -14,6 +14,7 @@
 <li><?= anchor('event/admin', t("Admin Cloudstream")) ?></li>
 <li><?= anchor('statistics/stats', t("Site Statistics")) ?></li>
 <li><?= anchor('statistics/stats_dates', t("Site Statistics By Date")) ?></li>
+<li><?= anchor('statistics/user_stats', t("Site User Statistics (takes a while)")) ?></li>
 <li><?= anchor('statistics/cloudscape', t("Cloudscape Statistics")) ?></li>
 <li><?= anchor('statistics/cloudscape_date', t("Cloudscape Statistics By Date")) ?></li>
 </ul>
