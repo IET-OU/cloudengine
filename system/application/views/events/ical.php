@@ -3,7 +3,7 @@ VERSION:2.0
 PRODID:-//CloudEngine/<?= $this->config->item('site_name') ?>//EN
 <?php foreach($events as $event): ?>
 BEGIN:VEVENT
-DTSTAMP:<?= date('Ymd\THi00', $event->created) ?>
+DTSTAMP:<?= date('Ymd\THi00', strtotime($event->created)) ?>
 
 DTSTART:<?= date('Ymd\THi00', $event->start_date) ?>
 
