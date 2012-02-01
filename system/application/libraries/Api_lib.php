@@ -368,6 +368,9 @@ class Api_lib {
         if ($data->call_deadline) {
             $response['call_deadline']= $this->_date($data->call_deadline);
         }
+        if ($data->event_date) {
+            $response['event_date']= $this->_date($data->event_date);
+        }        
         if (isset($data->totals)) {
           foreach ($data->totals as $name => $count) {
             $response["total_$name"] = $count;

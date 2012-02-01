@@ -22,12 +22,19 @@ body div#site-nav ul li a:hover {color: #fff; background:url(arrow-down-nav-fff.
 #people #site-nav ul li.people, 
 #support #site-nav ul li.support {color:#fff; background:url(arrow-down-nav-fff.gif) center top no-repeat;}
 
+
+
 /* Aurora */
+
+div#region2 div.box {background: #E0EFFF; border:2px solid #CCE5FF;}
+
+div#region2 div.box h2 {background:#1E466A; font-size:1.2em;}
+
+div#region2 div.box a {color: #003399;}
+
+div#region2 div.box a:hover {color: #003399;}
 
 body div.box {background: #E0EFFF; border: 2px solid #CCE5FF;}
 
-body div#region2 div.box {border:2px solid #FEE0A3;}
-
-body div#region2 div.box h2 {color:#333; background:#FEE0A3;}
 
 .new-message-count{background:transparent; color:#fff; font-weight:bold;}

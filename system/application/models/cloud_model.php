@@ -325,6 +325,24 @@ class Cloud_model extends Model {
         $this->db->update('event', array('omit_from_site_cloudstream'=>1));
     }
 
+   /**
+    * Remove a cloud from the events diary
+    * @param integer $cloud_id The ID of the cloud
+    */
+    function remove_diary($cloud_id) {
+        $this->db->where('cloud_id', $cloud_id);
+        $this->db->update('cloud', array('display_event'=>0));
+    }
+ 
+   /**
+    * Add a cloud to the events diary
+    * @param integer $cloud_id The ID of the cloud
+    */ 
+    function add_diary($cloud_id) {
+        $this->db->where('cloud_id', $cloud_id);
+        $this->db->update('cloud', array('display_event'=>1));
+    }
+    
     /**
      * Delete an existing cloud
      *

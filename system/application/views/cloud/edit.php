@@ -49,8 +49,16 @@ $(function()
 	    <?php if (!$new): ?>
 	    <br />
 	    <br />
+        <p><?=t("If this cloud is for an event such as a workshop, seminar  or talk, please enter the date here. For conferences or other more complex events we recommend using a cloudscape instead.")?></p>
+
+         <label for="event_date" class="text-above"><?=t("Event date")?>: </label>
+ <input type="text" class="date-pick" maxlength="128" name="event_date" id="event_date"  size="95" value="<?php if ($cloud->event_date): ?><?= date('d F Y', $cloud->event_date) ?><?php endif; ?>" />
+ <br />
+<br />  
+ <br />
+<br />
 	    <p><?=t("If this cloud is for a call of papers or for a call for book chapters, please enter the deadline here for it to appear in the diary.")?></p>
-	     <label for="call_deadline"><?=t("Deadline")?>: </label>
+	     <label for="call_deadline" class="text-above"><?=t("Deadline")?>: </label>
  <input type="text" class="date-pick" maxlength="128" name="call_deadline" id="call_deadline"  size="95" value="<?php if ($cloud->call_deadline): ?><?= date('d F Y', $cloud->call_deadline) ?><?php endif; ?>" />
  <br /> <br /> <br />
         <?php endif; ?>

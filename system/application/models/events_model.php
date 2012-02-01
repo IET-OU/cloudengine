@@ -41,10 +41,12 @@ class Events_model extends Model {
                                     OR 
                                       (end_date >= $month_start_date  AND end_date <= $month_end_date))
                                     AND u.banned = 0
+                                    AND c.display_event = 1
                                     ORDER BY start_date");
         
         return $query->result();
     }
+    
     
     /**
      * Get all future events
@@ -57,9 +59,47 @@ class Events_model extends Model {
                                     INNER JOIN user u on u.id = c.user_id
                                     WHERE end_date >= $today
                                     AND u.banned = 0
+                                    AND c.display_event = 1
                                     ORDER BY start_date");        
         return $query->result();   
     }
+    
+   /**
+     * Get all the clouds that are events in a specifed month
+     *
+     * @param integer $month The month as a number
+     * @param integer $year The year
+     * @return array Array of clouds that are events for the month
+     */    
+    function get_cloud_events_for_month($month, $year) {
+        $this->load->helper('date');
+        // strtotime uses US date format with month before day of month
+        $month_start_date = strtotime("$month/1/$year");
+        $last_day_of_month = days_in_month($month, $year);
+        $month_end_date   = strtotime("$month/$last_day_of_month/$year");
+        $query = $this->db->query("SELECT * FROM cloud 
+                                   WHERE (event_date >= $month_start_date 
+                                   AND event_date <= $month_end_date)
+                                   AND cloud.display_event = 1 
+                                   ORDER BY event_date");
+        
+        return $query->result();
+    }  
+
+    /**
+     * Get all the clouds that are events in the future
+     *
+     * @return array Array of clouds that are future events 
+     */  
+    function get_future_cloud_events() {
+        $today = time();
+        $query = $this->db->query("SELECT * FROM cloud 
+                                   WHERE event_date >= $today
+                                   AND display_event = 1 
+                                   ORDER BY event_date");
+        
+        return $query->result();
+    }    
     
     /**
      * Get all the clouds that are deadlines in a specifed month

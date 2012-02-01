@@ -55,8 +55,8 @@
  </fieldset>
  <?php endif; ?>
 <fieldset>
-<legend><?= t("Extra information if your Cloudscape is for an event")?></legend>
-<p><?=t("If this cloudscape is for a conference or other event, please add the following information:")?></p>
+<legend><?= t("Extra information if your Cloudscape is for a conference")?></legend>
+<p><?=t("If this cloudscape is for a conference, please add the following information:")?></p>
  <label for="start_date"><?=t("Start Date e.g. !date", array('!date'=>date('j F Y', time())))?>: </label>
  <input type="text" class="date-pick" maxlength="128" name="start_date" id="start_date"  size="95" value="<?php if ($cloudscape->start_date): ?><?= date('d F Y', $cloudscape->start_date) ?><?php endif; ?>" />
  <br />

@@ -7,6 +7,15 @@
     <?php if ($admin && !$cloud->omit_from_new_list): ?>
         <li class="button"><?= anchor('cloud/hide/'.$cloud->cloud_id, t("Hide")) ?></li>
     <?php endif; ?>
+    
+    <?php if ($admin && $cloud->event_date): ?>
+        <?php if ($cloud->display_event): ?>
+        <li class="button"><?= anchor('cloud/remove_diary/'.$cloud->cloud_id, t("Remove from diary")) ?></li>
+        <?php else: ?>
+        <li class="button"><?= anchor('cloud/add_diary/'.$cloud->cloud_id, t("Add to diary")) ?></li>
+        <?php endif; ?>
+    <?php endif; ?>
+    
      
     <?php if ($this->auth_lib->is_logged_in()): ?>
         <?php if ($following): ?>

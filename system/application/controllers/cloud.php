@@ -201,6 +201,24 @@ class Cloud extends MY_Controller {
         redirect('/cloud/view/'.$cloud_id);
     }
     
+   /**
+    * Remove a cloud from the events diary
+    */
+    function remove_diary($cloud_id = 0) {
+        $this->auth_lib->check_is_admin(); 
+        $this->cloud_model->remove_diary($cloud_id);
+        redirect('/cloud/view/'.$cloud_id);
+    }
+    
+   /**
+    * Add a cloud to the events diary 
+    */
+    function add_diary($cloud_id = 0) {
+        $this->auth_lib->check_is_admin(); 
+        $this->cloud_model->add_diary($cloud_id);
+        redirect('/cloud/view/'.$cloud_id);
+    }
+    
     /**
      * Add a new cloud, either standalone or also add it to a cloudscape if specified 
      *
@@ -314,6 +332,14 @@ class Cloud extends MY_Controller {
             $cloud->body        = $this->input->post('body');
             $cloud->summary     = $this->input->post('summary');
             $cloud->primary_url = $this->input->post('url');
+            
+            $event_date_str  = trim($this->input->post('event_date'));
+            if ($event_date_str) {
+                $cloud->event_date  = strtotime($event_date_str);
+            } else {
+                $cloud->event_date = null;
+            }
+            
             $call_deadline_str  = trim($this->input->post('call_deadline'));
             if ($call_deadline_str) {
                 $cloud->call_deadline  = strtotime($call_deadline_str);

@@ -647,22 +647,22 @@ div.box {background: #F0F8E8; padding: 10px; margin-bottom:1.5em; border-radius:
 
 div.box p:last-child {margin-bottom:.4em;}
 
-div#region2 div.box {background: #FEF9E5; border:2px solid #EBD9C1;}
+div#region2 div.box {background: #E0EFFF; border:2px solid #CCE5FF;}
 
-div#region2 div.box h2 {background:#ebd9c1; font-size:1.2em;}
+div#region2 div.box h2 {background:#1E466A; font-size:1.2em;}
 
-div#region2 div.box a {color: #6B4824;}
+div#region2 div.box a {color: #003399;}
 
-div#region2 div.box a:hover {color: #00822b;}
+div#region2 div.box a:hover {color: #003399;}
 
 
 /* Aurora */
 
 body.aurora div.box {background: #E0EFFF; border: 2px solid #CCE5FF;}
 
-body.aurora div#region2 div.box {border:2px solid #FEE0A3;}
+body.aurora div#region2 div.box {border:2px solid #1E466A;}
 
-body.aurora div#region2 div.box h2 {color:#333; background:#FEE0A3;}
+body.aurora div#region2 div.box h2 {color:#FFFFFF; background:#1E466A;}
 
 
 /* Tables
@@ -806,6 +806,10 @@ input[type="submit"].submit, button[type="submit"].submit {
 label {
     font-weight: bold;
     padding: 20px 0 5px 0;
+}
+
+label.text-above {
+padding: 0px 0 5px 0;
 }
 
 .user-entry {

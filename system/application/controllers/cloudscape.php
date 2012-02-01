@@ -849,6 +849,24 @@ class Cloudscape extends MY_Controller {
         redirect('/cloudscape/view/'.$cloudscape_id);
     }
     
+   /**
+    * Remove a cloudscape from the events diary
+    */
+    function remove_diary($cloudscape_id = 0) {
+        $this->auth_lib->check_is_admin(); 
+        $this->cloudscape_model->remove_diary($cloudscape_id);
+        redirect('/cloudscape/view/'.$cloudscape_id);
+    }
+    
+   /**
+    * Add a cloudscape to the events diary 
+    */
+    function add_diary($cloudscape_id = 0) {
+        $this->auth_lib->check_is_admin(); 
+        $this->cloudscape_model->add_diary($cloudscape_id);
+        redirect('/cloudscape/view/'.$cloudscape_id);
+    }    
+    
     /**
      * Mark as attending a cloudscape that is an event
      *

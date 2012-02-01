@@ -34,6 +34,6 @@
     <div class="box">
 <h2><?=t("Events")?></h2>
 <p><?=t("You can also view [link-ev]current and upcoming events here[/link] and [link-ep]past events[/link].",
-    array('[link-ev]' => t_link('events/events_list'), '[link-ep]' => t_link('events/events_list_past')))?></p>
+    array('[link-ev]' => t_link('events/view'), '[link-ep]' => t_link('events/events_list_past')))?></p>
 </div>
 </div>

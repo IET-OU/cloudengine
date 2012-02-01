@@ -1,5 +1,5 @@
 <div id="events" class="grid">
-    <h2><?=t('Events') ?></h2>
+    <h2><?=t('Conferences') ?></h2>
 
     <ul class="cloudstream-filter">
     <li><?php if ($month == $current_month): ?><strong><?=
@@ -20,7 +20,7 @@
     <?= anchor('/'.($current_month + 2).'/'.$popular_type.'#events',
         format_date(_("!month!"), mktime(0, 0, 0, $current_month + 2, 1))) ?>
     <?php endif; ?></li>
-    <li><?= anchor('events/events_list', t("All").' &#8250;') ?></li>
+    <li><?= anchor('events/view', t("All").' &#8250;') ?></li>
     </ul>
 
 </div>

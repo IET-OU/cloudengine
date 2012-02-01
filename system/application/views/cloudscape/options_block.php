@@ -25,7 +25,15 @@
                 <?php else: ?>
                 <li class="button"><?= anchor('cloudscape/attend/'.$cloudscape->cloudscape_id, $past_event ? t("Mark as attended") : t("Mark as attending")) ?></li>
                 <?php endif; ?>
-            <?php endif; ?>        
+        <?php endif; ?>        
+        
+        <?php if ($admin && $cloudscape->start_date): ?>
+            <?php if ($cloudscape->display_event): ?>
+            <li class="button"><?= anchor('cloudscape/remove_diary/'.$cloudscape->cloudscape_id, t("Remove from diary")) ?></li>
+            <?php else: ?>
+            <li class="button"><?= anchor('cloudscape/add_diary/'.$cloudscape->cloudscape_id, t("Add to diary")) ?></li>
+            <?php endif; ?>
+        <?php endif; ?>        
         
         <?php if($favourite): ?>
             <li class="unfavourite"><?= anchor('cloudscape/unfavourite/'.$cloudscape->cloudscape_id, t("Unfavourite")) ?> </li> 

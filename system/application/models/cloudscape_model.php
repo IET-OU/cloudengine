@@ -244,6 +244,24 @@ class Cloudscape_model extends Model {
         $this->db->where('event_type', 'cloudscape');
         $this->db->update('event', array('omit_from_site_cloudstream'=>1));
     }
+    
+   /**
+    * Remove a cloudscape from the events diary
+    * @param integer $cloudscape_id The ID of the cloudscape
+    */
+    function remove_diary($cloud_id) {
+        $this->db->where('cloudscape_id', $cloud_id);
+        $this->db->update('cloudscape', array('display_event'=>0));
+    }
+ 
+   /**
+    * Add a cloudscape to the events diary
+    * @param integer $cloud_id The ID of the cloudscape
+    */ 
+    function add_diary($cloud_id) {
+        $this->db->where('cloudscape_id', $cloud_id);
+        $this->db->update('cloudscape', array('display_event'=>1));
+    }    
        
     /**
      * Get the new cloudscapes on the site

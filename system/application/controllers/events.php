@@ -11,198 +11,160 @@
 
 class Events extends MY_Controller {
 
-	function Events ()
-	{
-		parent::MY_Controller();	
-		$this->load->library('layout', 'layout_main'); 
-		$this->load->model('user_model');
-		$this->load->model('events_model');
+    function Events ()
+    {
+        parent::MY_Controller();
+        $this->load->library('layout', 'layout_main'); 
+        $this->load->model('user_model');
+        $this->load->model('events_model');
         $this->load->helper('format_helper');
-	}
-	
-	/**
-	 * Display a list of events for this month and upcoming months
-	 *
-	 */
-	function events_list() {
-	    $current_month = date('m');
-	    $current_year  = date('Y');
-	    
-	    // Get the events for the next twelve months a month at a time;
-	    $month = $current_month;
-	    $year  = $current_year;
-	    
-	    for ($i = 0; $i < 12; $i++) {
-	       $events[$month][$year] = $this->events_model->get_events_for_month($month, $year);
+    }
+    
+    /**
+     * Display a list of events for this month and upcoming months
+    *
+     */
+    function view($view = 'cloudscapes') {
+        $current_month = date('m');
+        $current_year  = date('Y');
+        
+        // Get the events for the next twelve months a month at a time;
+        $month = $current_month;
+        $year  = $current_year;
+        
+        for ($i = 0; $i < 12; $i++) {
+           switch ($view) {
+                case 'cloudscapes':
+                    $events[$month][$year] = 
+                      $this->events_model->get_events_for_month($month, $year);
+                    break;
+                case 'clouds':
+                    $events[$month][$year] = 
+                $this->events_model->get_cloud_events_for_month($month, $year);
+                    break;
+                case 'calls':
+                    $events[$month][$year] = 
+                       $this->events_model->get_calls_for_month($month, $year);
+           
+           }
            $month++;
            if ($month == 13) { // At the end of the year, 
                $month = 1;
                $year++;
            }
-	    }
+        }
         
-	    $data['events']        = $events;
-	    $data['current_month'] = $current_month;
-	    $data['current_year']  = $current_year;
-	    $data['navigation']    = 'events';
-	    $data['title']         = 'Current and upcoming events';
+        $data['events']      = $events;
+        $data['view']        = $view;
+        $data['first_month'] = $current_month;
+        $data['first_year']  = $current_year;
+        $data['navigation']  = 'events';
+        $data['title']       = t('Events');
+        $data['archive']     = FALSE;
           
-        $this->layout->view('events/list', $data);
-	}
-    
+        $this->layout->view('events/view', $data);
+    }
+
+    /**
+     * Display a list of past events
+     *
+     */
+    function archive($view = 'cloudscapes') {        
+        $current_month = date('m');
+        $current_year  = date('Y');
+        
+        // Get the events for the last twelve months a month at a time;
+        $month = $current_month;
+        $year  = $current_year;
+        $month--;
+        if ($month == 0) {
+            $month = 12;
+            $year--;
+        }
+        
+        $first_month = $month;
+        $first_year  = $year;
+
+        
+        for ($i = 0; $i < 80; $i++) {
+            switch ($view) {
+                case 'cloudscapes':
+                    $events[$month][$year] = 
+                      $this->events_model->get_events_for_month($month, $year);
+                    break;
+                case 'clouds':
+                    $events[$month][$year] = 
+                $this->events_model->get_cloud_events_for_month($month, $year);
+                    break;
+                case 'calls':
+                    $events[$month][$year] = 
+                       $this->events_model->get_calls_for_month($month, $year);
+           
+           }
+           $month--;
+           if ($month == 0) { // At the end of the year, 
+               $month = 12;
+               $year--;
+           }
+        }
+        
+        $data['events']      = $events;
+        $data['view']        = $view;
+        $data['first_month'] = $first_month;
+        $data['first_year']  = $first_year;
+        $data['navigation']  = 'events';
+        $data['title']       = t('Past events');
+        $data['archive']     = TRUE;
+        $this->layout->view('events/archive', $data);
+    }
+
     /**
      * Display future events as an icalendar file
      */
-    function ical() {
-        $data['events']= $this->events_model->get_future_events();
+    function ical($view = 'cloudscapes') {
+        switch ($view) {
+            case 'cloudscapes':
+                $data['events']= $this->events_model->get_future_events();
+                break;
+            case 'clouds':
+                $data['events']= 
+                            $this->events_model->get_future_cloud_events();
+                break;
+            case 'calls':
+                $data['events']= $this->events_model->get_future_calls();
+        }    
+
         $this->load->view('events/ical', $data);
     }
     
     /**
      * Display future events as an RSS feed
      */
-    function rss() {
-        $data['events']         = $this->events_model->get_future_events();
-        
+    function rss($view = 'cloudscapes') {
+        switch ($view) {
+            case 'cloudscapes':
+                $data['events']= $this->events_model->get_future_events();
+                $data['feed_name']        = t('Conferences');
+                $data['feed_url']         = base_url().'events/rss/';
+                $data['page_description'] = t('Conferences');                
+                break;
+            case 'clouds':
+                $data['events']= 
+                            $this->events_model->get_future_cloud_events();
+                $data['feed_name']        = t('Workshops, seminars and talks');
+                $data['feed_url']         = base_url().'events/rss/clouds';
+                $data['page_description'] = t('Workshops, seminars and talks'); 
+                break;
+            case 'calls':
+                $data['events']= $this->events_model->get_future_calls();
+                $data['feed_name']        = t('Deadlines');
+                $data['feed_url']         = base_url().'events/rss/calls';
+                $data['page_description'] = t('Deadlines'); 
+        }   
         $data['encoding']         = $this->config->item('charset');
-        $data['feed_name']        = t('Future Events');
-        $data['feed_url']         = base_url().'events/rss/';
-        $data['page_description'] = t('Future Events');
         $data['page_language']    = 'en';
         $data['creator_email']    = $this->config->item('site_email'); 
 
         $this->load->view('events/rss', $data);    
-    }
-
-	/**
-	 * Display a list of past events
-	 *
-	 */
-	function events_list_past() {
-	    
-	    $current_month = date('m');
-	    $current_year  = date('Y');
-	    
-	    // Get the events for the last twelve months a month at a time;
-	    $month = $current_month;
-	    $year  = $current_year;
-	    $month--;
-	    if ($month == 0) {
-	        $month = 12;
-	        $year--;
-	    }
-	    
-	    $first_month = $month;
-	    $first_year  = $year;
-
-	    
-	    for ($i = 0; $i < 80; $i++) {
-	       $events[$month][$year] = $this->events_model->get_events_for_month($month, $year);
-           $month--;
-           if ($month == 0) { // At the end of the year, 
-               $month = 12;
-               $year--;
-           }
-	    }
-        
-	    $data['events'] = $events;
-	    $data['first_month'] = $first_month;
-	    $data['first_year']  = $first_year;
-	    $data['navigation']    = 'events';
-	    $data['title']         = 'Past events';
-	    $this->layout->view('events/list_past', $data);
-	}	
-	
-	
-	/**
-	 * Display a list of calls (for papers etc.) for this month and upcoming months
-	 *
-	 */
-	function calls() {
-	    $current_month = date('m');
-	    $current_year  = date('Y');
-	    
-	    // Get the events for the next twelve months a month at a time;
-	    $month = $current_month;
-	    $year  = $current_year;
-	    
-	    for ($i = 0; $i < 12; $i++) {
-	       $events[$month][$year] = $this->events_model->get_calls_for_month($month, $year);
-           $month++;
-           if ($month == 13) { // At the end of the year, 
-               $month = 1;
-               $year++;
-           }
-	    }
-        
-	    $data['events'] = $events;
-	    $data['current_month'] = $current_month;
-	    $data['current_year']  = $current_year;
-	    $data['navigation']    = 'events';
-	    $data['title']         = 'Deadlines';
-	    $this->layout->view('events/calls', $data);   
-	}
-
-    
-    /**
-     * Display future calls as an icalendar file
-     */
-    function calls_ical() {
-        $data['events']= $this->events_model->get_future_calls();
-        $this->load->view('events/ical', $data);
-    }
-
-    /**
-     * Display future events as an RSS feed
-     */
-    function calls_rss() {
-        $data['events']         = $this->events_model->get_future_calls();
-        
-        $data['encoding']         = $this->config->item('charset');
-        $data['feed_name']        = t('Future Calls');
-        $data['feed_url']         = base_url().'events/calls_rss';
-        $data['page_description'] = t('Future Calls');
-        $data['page_language']    = 'en';
-        $data['creator_email']    = $this->config->item('site_email');        
-
-        $this->load->view('events/rss', $data);    
-    }
-    
-	/**
-	 * Display a list of old calls (for papers etc.)
-	 *
-	 */
-	function calls_archive() {
-	    $current_month = date('m');
-	    $current_year  = date('Y');
-	    
-	    // Get the events for the last twelve months a month at a time;
-	    $month = $current_month;
-	    $year  = $current_year;
-	    $month--;
-	    if ($month == 0) {
-	        $month = 12;
-	        $year--;
-	    }
-	    
-	    $first_month = $month;
-	    $first_year  = $year;
-
-	    
-	    for ($i = 0; $i < 80; $i++) {
-	       $events[$month][$year] = $this->events_model->get_calls_for_month($month, $year);
-           $month--;
-           if ($month == 0) { // At the end of the year, 
-               $month = 12;
-               $year--;
-           }
-	    }
-        
-	    $data['events']      = $events;
-	    $data['first_month'] = $first_month;
-	    $data['first_year']  = $first_year;
-	    $data['navigation']  = 'events';
-	    $data['title']       = 'Deadline archive';
-	    $this->layout->view('events/calls_archive', $data); 
-	}
+    }    
 }

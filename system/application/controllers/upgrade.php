@@ -621,4 +621,82 @@ class Upgrade extends MY_Controller {
 
         return TRUE;   
     }
-}
+   /**
+    * Add an event_date and display_event field to the cloud table
+    * and display_event field to the cloudscape table
+    */    
+    function _upgrade_115($action) {
+        if ($action == 'get_message') {        
+            $this->message("Add 'event_date' column to 'cloud' table"); 
+            $this->message("Add 'display_event' column to 'cloud' table"); 
+            $this->message("Add 'display_event' column to 'cloudscape' table");            
+        } elseif ($action == 'do_update') {
+            // Add the event_date column to the cloud table
+            $field_exists = 
+            $this->database_lib->check_field_exists('cloud',
+                                       'event_date');
+            if (!$field_exists) {
+                $fields = array(
+                    'event_date' => array(
+                    'type'              => 'integer',
+                    'constraint'        => 10,                    
+                    ),    
+                );
+                $this->dbforge->add_column('cloud', $fields);
+                $this->message("OK, altered table 'cloud' by 
+                                adding column 
+                                'event_date'.");
+            } else {
+                $this->message("Did not alter table 'cloud', 
+                                column 'event_date' 
+                                already exists.", 'error');
+            }
+            // Add the display_event column to the cloud table
+            $field_exists = 
+            $this->database_lib->check_field_exists('cloud',
+                                       'display_event');
+            if (!$field_exists) {
+                $fields = array(
+                    'display_event' => array(
+                    'type'          => 'tinyint',
+                    'constraint'    => 1, 
+                    'default'       => 1,
+                    ),    
+                );
+                $this->dbforge->add_column('cloud', $fields);
+                $this->message("OK, altered table 'cloud' by 
+                                adding column 
+                                'display_event'.");
+            } else {
+                $this->message("Did not alter table 'cloud', 
+                                column 'display_event' 
+                                already exists.", 'error');
+            }  
+            
+            // Add the display_event column to the cloudscape table
+            $field_exists = 
+            $this->database_lib->check_field_exists('cloudscape',
+                                       'display_event');
+            if (!$field_exists) {
+                $fields = array(
+                    'display_event' => array(
+                    'type'          => 'tinyint',
+                    'constraint'    => 1, 
+                    'default'       => 1,
+                    ),    
+                );
+                $this->dbforge->add_column('cloudscape', $fields);
+                $this->message("OK, altered table 'cloudscape' by 
+                                adding column 
+                                'display_event'.");
+            } else {
+                $this->message("Did not alter table 'cloudscape', 
+                                column 'display_event' 
+                                already exists.", 'error');
+            }              
+          
+        }
+
+        return TRUE;               
+    }
+ }

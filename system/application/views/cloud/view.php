@@ -2,7 +2,9 @@
     <div class="c1of2">
         <h1><?=$cloud->title ?></h1>
         <?php $this->load->view('cloud/options_block'); ?>
-        
+        <?php if ($cloud->event_date): ?>
+            <?=format_date(_("!date"), $cloud->event_date) ?><br /><br />
+        <?php endif; ?>  
         <?php if ($cloud->call_deadline): ?>
             <?=format_date(_("Deadline: !date"), $cloud->call_deadline) ?><br /><br />
         <?php endif; ?>

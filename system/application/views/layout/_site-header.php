@@ -33,8 +33,8 @@
                     <?php endif; ?>
                 </li>
                 <li class="events">
-                    <?php if ($current_page != '/events/events_list'): ?>
-                        <?=anchor('events/events_list', t("Events"), array('class'=>'events')) ?>
+                    <?php if ($current_page != '/events/view'): ?>
+                        <?=anchor('events/view', t("Events"), array('class'=>'events')) ?>
                     <?php else: ?>
                         <?= t("Events") ?>
                     <?php endif; ?>
