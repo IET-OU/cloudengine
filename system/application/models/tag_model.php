@@ -19,6 +19,7 @@ class Tag_model extends Model {
      * @return array Array of tags
      */
     function get_all_tags($num) {
+        $num = (int) $num;
         $query = $this->db->query('SELECT tag, COUNT(*) AS tag_total FROM tag GROUP BY tag 
                                    ORDER BY  tag_total DESC LIMIT '.$num);
         return $query->result();

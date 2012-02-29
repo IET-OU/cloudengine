@@ -20,6 +20,8 @@ class Events_model extends Model {
      * @return array Array of cloudscapes that are events for the month
      */
     function get_events_for_month($month, $year) {
+        $month = (int) $month;
+        $year = (int) $year;
         $this->load->helper('date');
         // Fix a seasonal month-wrap bug [BB #106].
         if (!is_numeric($month) || $month > 24) {

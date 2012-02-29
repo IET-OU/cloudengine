@@ -60,6 +60,7 @@ class Home extends MY_Controller {
           $total_items  += count($this->cloud_model->get_references_for_moderation());
           $total_items  += count($this->content_model->get_content_for_moderation());
           $total_items  += count($this->embed_model->get_embeds_for_moderation());
+          $total_items  += count($this->user_model->get_profiles_for_moderation());
 
           $data['total_items'] = $total_items;
 

@@ -18,6 +18,7 @@ class Settings_model extends Model {
 	* @return object An array containing all the matching settings
 	*/
 	public function get_setting($name, $like = FALSE) {
+        $name = $this->db->escape_str($name);
 		if ($like) {
 			$query = $this->db->query("SELECT * FROM settings WHERE name 
 		                             LIKE '$name'"); 
@@ -67,8 +68,10 @@ class Settings_model extends Model {
 	* @return boolean TRUE if the insert/update was successful. 
 	*/
 	public function replace_setting($name, $value) {
-		
-    $current = $this->get_setting($name);
+        $name = $this->db->escape_str($name);
+        $value = $this->db->escape_str($value);
+
+        $current = $this->get_setting($name);
        
 		if (!is_null($current)) {
 		  	$sql = "UPDATE settings SET value = ? WHERE name = ?";

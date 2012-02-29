@@ -122,6 +122,9 @@ $config['whitelist_domains'] = '.ac.uk:.edu:.ac.jp:.ac.ae:.ac.nz:.edu.au:.ac.za:
 
 $config['expire_temp_users_time'] = 3600*168;
 
+// Maximum number of login attempts in the last ten minutes for a single user
+$config['max_login_attempts'] = 10;
+
 /*-------------------+
 |  CAPTCHA SETTINGS  |
 +-------------------*/

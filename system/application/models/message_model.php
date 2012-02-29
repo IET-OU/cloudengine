@@ -22,7 +22,8 @@ class Message_model extends Model {
    * @return query object of user threads
    */
   function get_user_threads($user_id) {
-    $query = $this->db->query("
+      $user_id = (int) $user_id;
+      $query = $this->db->query("
       SELECT mt.thread_id, 
       	Min(mt.subject) AS subject, 
       	Min(m.created) AS created_date, 
@@ -67,10 +68,10 @@ class Message_model extends Model {
    * @return query object of a thread
    */
   function get_thread($thread_id = 0) {
-    $query = $this->db->query("
-      SELECT *
-      FROM message_thread mt        
-      WHERE mt.thread_id = $thread_id
+      $thread_id = (int) $thread_id;
+        $query = $this->db->query("SELECT *
+            FROM message_thread mt        
+            WHERE mt.thread_id = $thread_id
       ");
     return $query->row();
   }
@@ -83,10 +84,10 @@ class Message_model extends Model {
    * 
    * @return query object of a thread
    */
-  function get_user_thread($user_id, $thread_id = 0) {
-    
+  function get_user_thread($user_id, $thread_id = 0) {  
     $result = 0;
-    
+    $user_id = (int) $user_id;
+    $thread_id = (int) $thread_id;
     $query = $this->db->query("
       SELECT 
       t.subject,
@@ -131,6 +132,8 @@ class Message_model extends Model {
    * @return array of participant data
    */
   function get_thread_participants($thread_id = 0, $user_id = 0) {
+      $thread_id = (int) $thread_id;
+      $user_id   = (int) $user_id;
     $query = $this->db->query("
       SELECT participant_user_id as user_id, fullname as name 
       FROM message_thread_participant mtp
@@ -237,8 +240,10 @@ class Message_model extends Model {
    * 
    * @return message_id integer
    */
-  function get_most_recent_thread_message_id($thread_id,$user_id) {   
-    $query = $this->db->query("
+  function get_most_recent_thread_message_id($thread_id,$user_id) {
+      $user_id = (int) $user_id;
+      $thread_id = (int) $thread_id;
+      $query = $this->db->query("
       SELECT max(mr.message_id) as message_id
       FROM message m
       INNER JOIN message_recipient mr
@@ -257,8 +262,10 @@ class Message_model extends Model {
    * 
    * @return array message_ids integer
    */
-  function get_thread_message_ids($thread_id,$user_id) {   
-    $query = $this->db->query("
+  function get_thread_message_ids($thread_id, $user_id) {   
+      $thread_id = (int) $thread_id;
+      $user_id = (int) $user_id;
+      $query = $this->db->query("
       SELECT mr.message_id
       FROM message m
       INNER JOIN message_recipient mr
@@ -271,7 +278,7 @@ class Message_model extends Model {
         $message_ids[] = $message_id['message_id']; 
       }      
       
-    return $message_ids;      
+      return $message_ids;      
   } 
  
   /**
@@ -282,11 +289,13 @@ class Message_model extends Model {
    * 
    * @return message_id integer
    */
-  function get_recipients($term) {   
-    $query = $this->db->query("
+  function get_recipients($term) {  
+      $term = $this->db->escape_str($term);
+      $query = $this->db->query("
       SELECT u.id,user_name, fullname
       FROM user u
       INNER JOIN user_profile up
+      	ON up.id = u.id
       	ON up.id = u.id
       WHERE fullname like '%$term%'
       ORDER BY fullname
@@ -304,9 +313,10 @@ class Message_model extends Model {
    * 
    * @return message count integer
    */
-  function get_user_new_message_count($user_id) {   
-    $query = $this->db->query("
-    SELECT count(m.message_id) as unread_count
+  function get_user_new_message_count($user_id) { 
+      $user_id = (int) $user_id;
+      $query = $this->db->query("
+            SELECT count(m.message_id) as unread_count
     FROM message_recipient mr
     INNER JOIN message m 
     	ON m.message_id = mr.message_id

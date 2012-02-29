@@ -699,4 +699,37 @@ class Upgrade extends MY_Controller {
 
         return TRUE;               
     }
+    
+   /**
+    * Add an moderate column to user_profile table
+    */    
+    function _upgrade_116($action) {
+        if ($action == 'get_message') {        
+            $this->message("Add 'moderate' column to 'user_profile' table");           
+        } elseif ($action == 'do_update') {
+            // Add the event_date column to the cloud table
+            $field_exists = 
+            $this->database_lib->check_field_exists('moderate',
+                                       'user_profile');
+            if (!$field_exists) {
+                $fields = array(
+                    'moderate' => array(
+                    'type'          => 'tinyint',
+                    'constraint'    => 1, 
+                    'default'       => 0,                  
+                    ),    
+                );
+                $this->dbforge->add_column('user_profile', $fields);
+                $this->message("OK, altered table 'user_profile' by 
+                                adding column 
+                                'moderate'.");
+            } else {
+                $this->message("Did not alter table 'user_profile', 
+                                column 'moderate' 
+                                already exists.", 'error');
+            }
+        }
+        
+        return TRUE;               
+    }    
  }

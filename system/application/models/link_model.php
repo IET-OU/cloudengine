@@ -206,7 +206,7 @@ class Link_model extends Model {
      * @return array Array of links
      */
     function get_links_for_moderation() {
-        $this->db->where('moderate', 1);
+        $this->db->where('cloud_link.moderate', 1);
         $this->db->join('user_profile', 'user_profile.id = cloud_link.user_id');        
         $this->db->order_by('timestamp', 'asc');
         $query = $this->db->get('cloud_link');

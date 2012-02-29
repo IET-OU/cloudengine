@@ -14,6 +14,7 @@ class Admin extends MY_Controller {
 		parent::MY_Controller();
 		$this->load->library('layout', 'layout_main'); 
 		$this->load->model('cloud_model');
+        $this->load->model('user_model');
 		$this->load->model('comment_model');
 		$this->load->model('cloudscape_model');
 		$this->load->model('blog_model');
@@ -106,7 +107,14 @@ class Admin extends MY_Controller {
 	                 } elseif ($action == 'spam') {
 	                     $this->embed_model->delete_embed($id);
 	                 }
-	                break;		                                               
+	                break; 
+	             case 'profile':
+	                 if ($action == 'approve') {
+	                     $this->user_model->approve_profile($id);
+	                 } elseif ($action == 'spam') {
+	                     $this->user_model->delete_profile($id);
+	                 }
+	                break;                     
 	         }
 	     }
 
@@ -119,6 +127,7 @@ class Admin extends MY_Controller {
     	 $data['references']    = $this->cloud_model->get_references_for_moderation();
     	 $data['contents']      = $this->content_model->get_content_for_moderation();
          $data['embeds']        = $this->embed_model->get_embeds_for_moderation();  
+         $data['profiles']      = $this->user_model->get_profiles_for_moderation();  
 
         $data['title'] = t('Moderate');
         $this->layout->view('admin/moderate', $data);

@@ -58,6 +58,7 @@ class Cloud_model extends Model {
      * @return Array of clouds, ordered by number of comments in the time period
      */
     function get_active_clouds($limit = 10) {
+        $limit = (int) $limit; // Make sure $lmit is an integer
         $days = $this->config->item('active_clouds_days') ? 
                     $this->config->item('active_clouds_days') : 10;
         $since = time() - 60*60*24* $days;
@@ -416,7 +417,7 @@ class Cloud_model extends Model {
      * @return Array of clouds
      */
     function get_clouds_for_moderation() {
-        $this->db->where('moderate', 1);
+        $this->db->where('cloud.moderate', 1);
         $this->db->join('user_profile', 'user_profile.id = cloud.user_id');
         $query = $this->db->get('cloud');
         return $query->result();
@@ -457,7 +458,7 @@ class Cloud_model extends Model {
      */
     function get_references($cloud_id) {
         $this->db->where('cloud_id', $cloud_id);
-        $this->db->where('moderate', 0);       
+        $this->db->where('cloud_reference.moderate', 0);       
         $this->db->where('user.banned',0);          
         $this->db->join('user', 'cloud_reference.user_id = user.id');        
         $this->db->join('user_profile', 'user_profile.id = cloud_reference.user_id');        
@@ -547,7 +548,7 @@ class Cloud_model extends Model {
      * @return Array of references
      */
     function get_references_for_moderation() {
-        $this->db->where('moderate', 1);
+        $this->db->where('cloud_reference.moderate', 1);
         $this->db->join('user_profile', 'user_profile.id = cloud_reference.user_id');        
         $this->db->order_by('timestamp', 'asc');
         $query = $this->db->get('cloud_reference');

@@ -60,6 +60,7 @@ class Cloudscape_model extends Model {
      * @return integer The number of views 
      */
     function get_total_views($cloudscape_id) {
+        $cloudscape_id = (int) $cloudscape_id; 
         $total_views = 0;
         if (is_numeric($cloudscape_id)) {
             $query = $this->db->query("SELECT * FROM logs WHERE item_type='cloudscape' 
@@ -80,7 +81,7 @@ class Cloudscape_model extends Model {
      * @return array Array of cloudscapes
      */
     function get_cloudscapes_for_moderation() {
-        $this->db->where('moderate', 1);
+        $this->db->where('cloudscape.moderate', 1);
         $this->db->join('user_profile', 'user_profile.id = cloudscape.user_id');
         $query = $this->db->get('cloudscape');
         return $query->result();
@@ -797,6 +798,7 @@ class Cloudscape_model extends Model {
      * @return array Array of cloudscapes
      */
     function get_cloudscapes_post($user_id) {
+        $user_id = (int) $user_id; // Make sure $user_id is an integer
         $query = $this->db->query("SELECT cloudscape_id, title 
                                     FROM cloudscape WHERE user_id = $user_id
                                     UNION 
@@ -906,7 +908,7 @@ class Cloudscape_model extends Model {
      * @return array Array of cloudscapes
      */
     function search_post_permission($user_id, $search_string) {
-        
+        $user_id = (int) $user_id; // Make sure $user_id is an integer
         $query = $this->db->query("SELECT cloudscape_id, title 
                                     FROM cloudscape WHERE user_id = $user_id
                                     AND title LIKE '%".
@@ -1251,6 +1253,7 @@ class Cloudscape_model extends Model {
      * @return array Array of cloudscape_ids 
      */
     function calculate_popular_cloudscapes($limit = 30) {
+        $limit = (int) $limit;
         $days = $this->config->item('popular_cloudscapes_days') ? 
                     $this->config->item('popular_cloudscapes_days') : 10;
         $since = time() - 60*60*24* $days;

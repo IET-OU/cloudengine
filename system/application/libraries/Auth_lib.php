@@ -273,8 +273,13 @@ class Auth_lib {
         } else {
             $password_valid = $this->CI->auth_model->password_valid($username, $password);
         }
+
+        if ($this->CI->auth_model->too_many_login_attempts($user->id)) {
+            show_error(t("Too many login attempts. Please try again later or contact site support."));
+        }
+         
         if ($password_valid) {
-        	//$user= $this->CI->auth_model->get_user_by_username($username);
+
             // Update the session data
             $userdata['id']         = $user->id;
             $userdata['user_name']  = $user->user_name;
@@ -284,13 +289,15 @@ class Auth_lib {
             $userdata['last_visit'] = $user->last_visit;
             $userdata['created']    = $user->created;
             $userdata['modified']   = $user->modified;
-        	$this->CI->db_session->set_userdata($userdata);
-        	// Update logged information about the log in in the database
-        	$this->CI->auth_model->update_user_login_data($user->id);
-        	$login_success = TRUE;
+            $this->CI->db_session->set_userdata($userdata);
+            // Update logged information about the log in in the database
+            $this->CI->auth_model->update_user_login_data($user->id);
+            $login_success = TRUE;
+        } else {
+            $this->CI->auth_model->update_user_login_attempt_data($user->id);
         }
         return $login_success;
-	}
+    }
 
 	/**
 	 * Generate a captcha

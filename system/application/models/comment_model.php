@@ -55,7 +55,7 @@ class Comment_model extends Model {
      * @return array Array of comments
      */
     function get_comments_for_moderation() {
-        $this->db->where('moderate', 1);
+        $this->db->where('comment.moderate', 1);
         $this->db->join('user_profile', 'user_profile.id = comment.user_id');
         $query = $this->db->get('comment');
         return $query->result();

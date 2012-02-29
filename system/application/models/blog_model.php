@@ -19,6 +19,7 @@ class Blog_model extends Model {
      * @return array Array of blog posts
      */
     function get_blog_posts($num = 100, $offset = 0) {
+        $num = (int) $num; // Make sure $num is an integer
         $query = $this->db->query("SELECT n.post_id, n.title, n.body, 
                   n.created AS created, n.user_id AS user_id,
                   COUNT(nc.comment_id) AS total_comments, 
@@ -142,7 +143,7 @@ class Blog_model extends Model {
      * @return array Array of comments
      */
     function get_comments_for_moderation() {
-        $this->db->where('moderate', 1);
+        $this->db->where('blog_comment.moderate', 1);
         $this->db->join('user_profile', 'user_profile.id = blog_comment.user_id');
         $query = $this->db->get('blog_comment');
         return $query->result();

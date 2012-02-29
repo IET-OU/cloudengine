@@ -340,6 +340,58 @@ class Auth_model extends Model {
         $this->db->set('ip', $this->input->ip_address());
         $this->db->insert('logs');
 	}
+    
+   /**
+    * Records an unsuccessful login attempt
+    * @param integer $user_id The id of the user
+    */
+    function update_user_login_attempt_data($user_id) {
+        // Update the log table
+        $this->db->set('item_id', $user_id);   
+        $this->db->set('item_type', 'login_attempt');
+        // 'logs' is like most tables - it uses Unix timestamp.
+        $this->db->set('timestamp', time());
+        $this->db->set('user_id', $user_id);
+        $this->db->set('ip', $this->input->ip_address());
+        $this->db->insert('logs');
+        // Add an event to the admin cloudstream
+        $this->CI =& get_instance();
+        $this->CI->load->model('event_model');
+        $this->CI->event_model->add_event('admin', 0, 'login_attempt', $user_id);        
+    }
+    
+   /**
+    * Determine if there have been too many unsuccessful login attempts for 
+    * a specified user in the last ten minutes. The number of login attempts
+    * allowed is specified in the cloudengine config file. 
+    *  
+    * @param integer $user_id The id of the user
+    * @return boolean TRUE if too many attempts, FALSE otherwise
+    */
+    function too_many_login_attempts($user_id) {
+        $user_id = (int) $user_id; // Make sure user_id is an integer
+        $too_many_attempts = TRUE;
+        // Maximum number of login attempts in the last ten minutes for a single user
+        $no_attempts_allowed = config_item('max_login_attempts');
+        
+        $end_time = time();
+        $start_time = $end_time - 10*60;
+        $this->CI =& get_instance();
+        
+        $query = $this->CI->db->query("SELECT * FROM logs 
+                              WHERE item_type = 'login_attempt'
+                              AND user_id = $user_id
+                              AND timestamp > $start_time
+                              AND timestamp < $end_time");
+                              
+        $no_attempts = $query->num_rows();
+
+        if ($no_attempts < $no_attempts_allowed) {
+            $too_many_attempts = FALSE;
+        }        
+        
+        return $too_many_attempts;
+    }
 
 	/**
 	 * Set a forgotten password code for a user

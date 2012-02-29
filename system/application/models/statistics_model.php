@@ -60,6 +60,8 @@ class Statistics_model extends Model {
      * @return integer The number of users
      */
     function get_active_users($start_timestamp, $end_timestamp) {
+        $start_timestamp = (int) $startstamp;
+        $end_timestamp   = (int) $endstamp;
         $query = $this->db->query("SELECT DISTINCT user_id FROM logs WHERE 
                                    user_id <> 0 AND timestamp >= $start_timestamp AND 
                                    timestamp <= $end_timestamp");
@@ -262,6 +264,9 @@ class Statistics_model extends Model {
 	 * @return integer The number of guest visitors
 	 */
     function get_cloudscape_cloud_visitors_guest($cloudscape_id, $starttime, $endtime) {
+        $cloudscape_id  = (int) $cloudscape_id;
+        $starttime      = (int) $starttime;
+        $endtime        = (int) $endtime;
         $sql = "SELECT * FROM logs l 
                 INNER JOIN cloudscape_cloud c ON c.cloud_id = l.item_id
                 WHERE l.item_type='cloud' AND l.user_id = 0 
@@ -287,6 +292,10 @@ class Statistics_model extends Model {
 	 * @return integer The number of logged in visitors
 	 */
     function get_cloudscape_cloud_visitors_logged_in($cloudscape_id, $starttime, $endtime) {
+        $cloudscape_id  = (int) $cloudscape_id;
+        $starttime      = (int) $starttime;
+        $endtime        = (int) $endtime;
+        
         $sql = "SELECT * FROM logs l 
                 INNER JOIN cloudscape_cloud c ON c.cloud_id = l.item_id
                 WHERE l.item_type='cloud' AND l.user_id <> 0 
@@ -366,6 +375,10 @@ class Statistics_model extends Model {
         if (!$end_timestamp) {
             $end_timestamp = time();
         }
+        
+        $user_id = (int) $user_id;
+        $start_timestamp = (int) $start_timestamp;
+        $end_timestamp = (int) $end_timestamp;
         
         if ($after_registration) {
             // Get the timestamp for when the user registered and add this to 

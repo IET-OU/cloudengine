@@ -176,3 +176,23 @@
         <?=form_close()?>
     <?php endforeach; ?>
 <?php endif; ?>
+
+<?php if ($profiles): ?>
+<h2>Profiles</h2>
+    <?php foreach ($profiles as $profile): ?>
+        <p><?= $profile->description ?>  by  <?= anchor('user/view/'.$profile->user_id, $profile->fullname) ?></p>
+
+        <?=form_open($this->uri->uri_string(), array('id' => 'profile-approve'))?>
+            <input type="hidden" id="type" name="type" value="profile" ?>
+            <input type="hidden" id="action" name="action" value="approve" ?>
+            <input type="hidden" id="id" name="id" value="<?=$profile->id ?>" ?>      
+            <input type="submit" name="submit" id="submit" class="submit" value="Approve" />
+        <?=form_close()?>
+        <?=form_open($this->uri->uri_string(), array('id' => 'profile-spam'))?>
+            <input type="hidden" id="type" name="type" value="profile" ?>
+            <input type="hidden" id="action" name="action" value="spam" ?>
+            <input type="hidden" id="id" name="id" value="<?=$profile->id ?>" ?>
+            <input type="submit" name="submit" id="submit" class="submit" value="Delete" />
+        <?=form_close()?>
+    <?php endforeach; ?>
+<?php endif; ?>

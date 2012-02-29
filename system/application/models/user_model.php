@@ -33,7 +33,9 @@ class User_model extends Model {
         if (strlen($alpha) != 1) {
             $alpha = 'A';
         }
-
+        // The following should execute the following query:
+        // SELECT id, fullname, institution FROM user_profile 
+        // WHERE fullname LIKE '$alpha%' ORDER BY fullname ASC
         if($only_active) {
           $this->where_active();
         }
@@ -43,8 +45,6 @@ class User_model extends Model {
    	    $this->db->join('user', 'user_profile.id=user.id');
         $query = $this->db->get('user_profile');
 
-        /*$query = $this->db->query("SELECT id, fullname, institution FROM user_profile 
-                                   WHERE fullname LIKE '$alpha%' ORDER BY fullname ASC");*/
         return $query->result();
     }
 
@@ -70,7 +70,7 @@ class User_model extends Model {
 	 * @param integer $user_id The ID of the user
 	 * @return object The details of the user
 	 */
-	function get_user($user_id,$only_active = TRUE) {
+	function get_user($user_id, $only_active = TRUE) {
 		$user = FALSE;
 		if (!is_numeric($user_id)) {
 		    return $this->get_user_by_username($user_id);
@@ -194,9 +194,13 @@ class User_model extends Model {
      */
     function get_clouds($user_id, $num = false) {
         if ($num) {
+            $num = (int) $num;
             $num ="LIMIT $num";
         }
-         $query = $this->db->query("SELECT cl.title as title, cl.body as body, 
+        
+        $user_id = (int) $user_id;
+        
+        $query = $this->db->query("SELECT cl.title as title, cl.body as body, 
                                     cl.created AS timestamp, 
                                    cl.cloud_id AS cloud_id, 
                                    COUNT(co.comment_id) AS total_comments 
@@ -237,7 +241,39 @@ class User_model extends Model {
 
         $this->db->update('user_profile', $user_to_update, array('id'=>$user_id));
         $this->update_in_search_index($user_id);
-	}
+
+        // Add an event to the admin cloudstream
+        $this->CI->event_model->add_event('admin', 0, 'profile_edit', $user_id);   
+    }
+    
+    /**
+     * Approve a profile under moderation
+     *
+     * @param integer $user_id The ID of the user
+     */
+    function approve_profile($user_id) {
+        $this->db->where('id', $user_id);
+        $this->db->update('user_profile', array('moderate'=>0));            
+    }  
+
+   /**
+    * Delete a profile
+    */
+    function delete_profile($user_id) {
+       $this->db->where('id', $user_id);
+       $this->db->update('user_profile', array('deleted' => 1, 'moderate'=>0));    
+    }   
+
+    /**
+     * Get all profiles requiring moderation
+     *
+     * @return array Array of profiles
+     */
+    function get_profiles_for_moderation() {
+        $this->db->where('moderate', 1);     
+        $query = $this->db->get('user_profile');
+        return $query->result();   
+    }     
 
 	/**
 	 * Mark a user as whitelisted (for purposes of moderation/spam)
@@ -444,6 +480,8 @@ class User_model extends Model {
      * @return array Array of the institution names, with total users
      */
     public function suggest_institutions($query, $limit = 5) {
+        $query = $this->db->escape_str($query);
+        $limit = (int) $limit;
         $query = $this->db->query("SELECT
           institution AS name, COUNT(*) AS total
           FROM user_profile
@@ -488,6 +526,8 @@ class User_model extends Model {
      * @return integer The number of users registered
      */
     function get_users_registered($startdate, $enddate) {
+        $startdate = (int) $startdate;
+        $enddate   = (int) $enddate;
         $this->db->query("SELECT * FROM user WHERE created >= $startdate 
                           AND created < $enddate");
         return $query->num_rows();
@@ -547,6 +587,7 @@ class User_model extends Model {
     /** Add database check for users who are 'deleted' or not active.
     */
     protected function where_active() {
+        $this->db->where('user_profile.moderate', 0);
         $this->db->where('user_profile.deleted', 0);
         $this->db->where('user.banned', 0);        
     }

@@ -62,7 +62,7 @@ class Content_model extends Model {
         $this->db->select('cloud_content.*, user_picture.*, user_profile.*');
         $this->db->from('cloud_content');      
         $this->db->where('cloud_id', $cloud_id);
-        $this->db->where('moderate', 0);
+        $this->db->where('cloud_content.moderate', 0);
         $this->db->where('user.banned',0);  
         $this->db->join('user', 'cloud_content.user_id = user.id');        
         $this->db->join('user_picture', 'cloud_content.user_id = user_picture.user_id', 
@@ -142,7 +142,7 @@ class Content_model extends Model {
     * @return array Array of extra content items
     */
    function get_content_for_moderation() {
-        $this->db->where('moderate', 1);
+        $this->db->where('cloud_content.moderate', 1);
         $this->db->join('user_profile', 'user_profile.id = cloud_content.user_id');        
         $query = $this->db->get('cloud_content');
         return $query->result();   

@@ -124,7 +124,7 @@ class Embed_model extends Model {
      */
     function get_embeds($cloud_id) {
         $this->db->where('cloud_id', $cloud_id);
-        $this->db->where('moderate', 0);
+        $this->db->where('cloud_embed.moderate', 0);
         $this->db->where('user.banned',0);          
         $this->db->join('user_profile', 'user_profile.id = cloud_embed.user_id');
         $this->db->join('user', 'user.id = cloud_embed.user_id');                
@@ -158,7 +158,7 @@ class Embed_model extends Model {
      * @return array Array of embeds
      */
     function get_embeds_for_moderation() {
-        $this->db->where('moderate', 1);
+        $this->db->where('cloud_embed.moderate', 1);
         $this->db->join('user_profile', 'user_profile.id = cloud_embed.user_id');        
         $this->db->order_by('timestamp', 'asc');
         $query = $this->db->get('cloud_embed');

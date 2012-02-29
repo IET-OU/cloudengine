@@ -192,6 +192,7 @@ class Favourite_model extends Model {
      * @return array Array of items
      */
     function get_favourites($user_id, $item_type=NULL) {
+        $user_id = (int) $user_id;
         switch ($item_type) {
         case 'cloud': 
             $this->db->order_by('favourite.timestamp', 'desc');
@@ -258,6 +259,7 @@ class Favourite_model extends Model {
      * @return array Array of items
      */
     function get_popular($item_type, $num) {
+        $num = (int) $num;
         switch($item_type) {
             case 'cloud': 
                 $query = $this->db->query("SELECT c.cloud_id AS item_id, c.title, 

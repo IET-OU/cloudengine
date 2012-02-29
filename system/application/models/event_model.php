@@ -24,12 +24,13 @@ class Event_model extends Model {
      */
     function add_event($follow_item_type, $follow_item_id, $event_type, $event_item_id, 
                        $timestamp = false) {
-        
+ 
         $event->follow_item_type     = $follow_item_type;
         $event->follow_item_id       = $follow_item_id;
         $event->event_type    = $event_type;
         $event->event_item_id = $event_item_id;
         $event->timestamp = $timestamp;
+
         if (!$timestamp) {
             $event->timestamp = time();
         }
@@ -355,7 +356,13 @@ class Event_model extends Model {
             	break;
             case 'embed': 
             	$category = 'extra'; 
-            	break;    
+            	break;   
+            case 'profile_edit':
+            	$category = 'user'; 
+            	break;
+            case 'login_attempt':
+            	$category = 'user'; 
+            	break; 
         }
         
          return $category;
@@ -423,9 +430,8 @@ class Event_model extends Model {
                                       $cloudscape->title))).'</em>';
                       }
                   }
-                  #break;
                 }
-                break; //BB bug #166.
+                break; 
 
            case 'cloudscape':
                 // New cloudscape created
@@ -673,6 +679,24 @@ class Event_model extends Model {
                               $cloud->title))).'</em>';
                   }
                 }
+                break;
+                
+            case 'profile_edit': 
+                $this->CI->load->model('user_model');
+                $user_id = $event->event_item_id;
+                $user = $this->CI->user_model->get_user($user_id);
+                $string = '<em>'.t("!person editted their profile",
+                                   array('!person' => 
+                                         anchor('user/view/'.$user_id, $user->fullname) )).'</em>';
+                break;
+            case 'login_attempt': 
+                $this->CI->load->model('user_model');
+                $user_id = $event->event_item_id;
+                $user = $this->CI->user_model->get_user($user_id);
+                $string = '<em>'.t("!person made an unsuccessful login attempt",
+                                   array('!person' => 
+                                         anchor('user/view/'.$user_id, $user->fullname) )).'</em>';
+                break;
                 break;
         }
 
