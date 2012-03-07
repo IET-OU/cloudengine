@@ -459,15 +459,16 @@ class User extends MY_Controller {
             
         if ($this->input->post('submit')) {
             if ($this->form_validation->run()) {
-                $user->moderate         = $this->_moderate_profile(user->description, 
-                                                                     $user_id); 
                 $user->fullname         = ucwords($this->input->post('fullname'));
                 $user->department       = $this->input->post('department');
                 $user->institution      = $this->input->post('institution');
                 $user->description      = $this->input->post('description');
                 $user->twitter_username = $this->input->post('twitter_username');
                 $user->homepage         = $this->input->post('homepage');  
-                
+
+                // Moderate the user-profile after we get the new description etc.
+                $user->moderate = $this->_moderate_profile($user, $user_id);
+
                 // Save the new user profile data and redirect the user to the view page for 
                 // their profile
                 $this->user_model->update_profile($user); 
@@ -515,39 +516,26 @@ class User extends MY_Controller {
         
         $this->layout->view('user/edit', $data); 
     
-    } 
-    
-    /** 
+    }
 
     /**
      * Check if a profile has a high likelihood of containing spam 
      *
-     * @param string $body The profile text
+     * @param object $user A user profile object.
      * @param  integer $user_id The id of the user adding or editting the 
      * profile
      * @return boolean TRUE if the profile is likely to contain spam and should 
      * be moderated, 
      * FALSE otherwise 
      */
-    function _moderate_profile($body, $user_id) {
-    	$moderate = FALSE;
-        if (config_item('x_moderation')) {
-            $user = $this->user_model->get_user($user_id); 
-            if (!$user->whitelist) {
-                $this->load->library('mollom');
-                try {
-                    $spam_status = $this->mollom->checkContent(null, $body);
-                    if ($spam_status['quality'] < 0.5) {
-                        $moderate = TRUE;
-                    }
-                } catch (Exception $e) {
-                    
-                }
-            }
-        }
-        return $moderate;
-    }    
-        
+    // Based on Cloud::_moderate_cloud()
+    protected function _moderate_profile($user, $user_id) {
+		$item_id = $user_id;
+        $body = "$user->department, $user->institution, $user->description, twitter:$user->twitter_username";
+		$item_url= isset($user->homepage) ? $user->homepage : NULL;
+        return $this->_moderate(__CLASS__, $item_id, $user_id, $user->fullname, $body, '', $item_url);
+    }
+
     /**
      * Edit an email preferences user/preferences
      */
