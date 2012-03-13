@@ -114,6 +114,8 @@ class Event_model extends Model {
     function get_all($num = 20) {
         $query = $this->db->query("SELECT * FROM event WHERE event_type <> 'follow' 
                                    AND event_type <> 'new_user' 
+                                   AND event_type <> 'login_attempt'
+                                   AND event_type <> 'profile_edit'
                                    AND omit_from_site_cloudstream = 0 
                                    ORDER BY timestamp DESC LIMIT $num");
         return $query->result();
