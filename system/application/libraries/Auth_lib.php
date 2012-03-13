@@ -265,7 +265,13 @@ class Auth_lib {
 	 */
 	public function login($username, $password) { 
 		$login_success = $password_valid = FALSE;
+        
 		$user= $this->CI->auth_model->get_user_by_username($username);
+        
+        if (!$user) {
+            show_error(t("There is no user registered with this username. If you think this is a mistake, please contact site support."));
+        }
+        
         if (1 == $user->banned) {
             // Log login-attempts by banned users! $attempt=TRUE
             $this->CI->auth_model->update_user_login_data($user->id, TRUE);
