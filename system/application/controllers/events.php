@@ -121,7 +121,7 @@ class Events extends MY_Controller {
     /**
      * Display future events as an icalendar file
      */
-    function ical($view = 'cloudscapes') {
+    function ical($view = 'cloudscapes', $debug=false) {
         switch ($view) {
             case 'cloudscapes':
                 $data['events']= $this->events_model->get_future_events();
@@ -134,6 +134,8 @@ class Events extends MY_Controller {
                 $data['events']= $this->events_model->get_future_calls();
         }    
 
+		$data['debug'] = $debug;
+		$data['view'] = $view;
         $this->load->view('events/ical', $data);
     }
     
