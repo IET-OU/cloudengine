@@ -22,7 +22,8 @@ pre-commit.lint=/var/www/cloudengine2/system/application/cli/lint.php
 if('cli'!=php_sapi_name()) die(basename(__FILE__).": Must run as cli (?)"); #Security.
 
 error_reporting(E_ALL | E_STRICT);
-define('LINT_EXCLUDE', '.hg|.orig|.git|.svn|Zend|php-gettext|.po|.js|.css|.gif|.png');
+define('LINT_EXCLUDE',
+  '.hg|.orig|.git|.svn|.diff|.patch|Zend|php-gettext|.po|.js|.css|.gif|.png');
 define('APP_CLI', basename(__FILE__));
 
 // Parse commandline arguments.
