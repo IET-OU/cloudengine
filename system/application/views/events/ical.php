@@ -14,6 +14,8 @@ PRODID:-//CloudEngine/<?= $site_name ?>//EN
 X-WRCALNAME:<?= ical_escape_text(t('!site-name! events')) ?>
 
 <?php foreach($events as $event): ?>
+<?php
+  #var_dump($event); exit; ?>
 
 BEGIN:VEVENT
 <?php //Bug #206, Clouds use a Unix epoch, Cloudscapes use SQL datetime :(. ?>
@@ -39,13 +41,17 @@ DESCRIPTION:<?=ical_escape_text($event->body) ?>\n\n<?=
   ical_escape_text(t('View on !site-name!')) ?>: <?= site_url('cloud/view/'. $event->cloud_id) ?>
 <?php endif; ?>
 <?php if ($event->location): ?> 
-LOCATION: <?= ical_escape_text($event->location) ?>
+LOCATION:<?= ical_escape_text($event->location) ?>
 <?php endif; ?>
 
 URL;VALUE=URI:<?= isset($event->cloud_id) ? site_url('cloud/view/'.$event->cloud_id) 
   : site_url('cloudscape/view/'. $event->cloudscape_id) ?>
 
 <?php /*X-ORGANIZER:<NAME user=<?= $event->user_id ?> > (author):MAILTO:<?=str_replace('@', '-noreply@', config_item('site_email'))*/ ?>
+<?php if ($extended && isset($event->email)): ?>
+X-CREATOR;CN=unknown:MBOX-SHA1SUM:<?=mbox_sha1sum($event->email) ?>
+
+<?php endif; ?>
 END:VEVENT
 
 <?php endforeach; ?>
