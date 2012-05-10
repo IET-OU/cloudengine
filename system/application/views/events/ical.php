@@ -14,14 +14,9 @@ PRODID:-//CloudEngine/<?= $site_name ?>//EN
 X-WRCALNAME:<?= ical_escape_text(t('!site-name! events')) ?>
 
 <?php foreach($events as $event): ?>
-<?php
-  #var_dump($event); exit; ?>
 
 BEGIN:VEVENT
-<?php //Bug #206, Clouds use a Unix epoch, Cloudscapes use SQL datetime :(. ?>
-DTSTAMP:<?= date('Ymd\THi00',
-  /*isset($event->cloudscape_id) ?*/
-  preg_match('/^\d{4}-\d{2}/', $event->created) ? strtotime($event->created) : $event->created) ?>
+DTSTAMP:<?= date('Ymd\THi00', safe_date($event->created)) ?>
 
 DTSTART:<?= date('Ymd\THi00',
   isset($event->event_date) ? $event->event_date : $event->start_date) ?>
@@ -48,8 +43,9 @@ URL;VALUE=URI:<?= isset($event->cloud_id) ? site_url('cloud/view/'.$event->cloud
   : site_url('cloudscape/view/'. $event->cloudscape_id) ?>
 
 <?php /*X-ORGANIZER:<NAME user=<?= $event->user_id ?> > (author):MAILTO:<?=str_replace('@', '-noreply@', config_item('site_email'))*/ ?>
-<?php if ($extended && isset($event->email)): ?>
-X-CREATOR;CN=unknown:MBOX-SHA1SUM:<?=mbox_sha1sum($event->email) ?>
+<?php if ($extended && isset($event->fullname)): ?>
+X-CREATOR;CN=<?=ical_escape_text($event->fullname)
+    ?>:MBOX-SHA1SUM:<?=mbox_sha1sum($event->email) ?>
 
 <?php endif; ?>
 END:VEVENT

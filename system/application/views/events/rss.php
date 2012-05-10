@@ -10,7 +10,8 @@
     xmlns:admin="http://webns.net/mvcb/"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:content="http://purl.org/rss/1.0/modules/content/"
-    xmlns:atom="http://www.w3.org/2005/Atom">
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
 <channel>
     <title><?= xml_convert($feed_name); ?></title>
     <link><?= base_url() ?></link>
@@ -23,7 +24,7 @@
 
 	<?php foreach($events as $event):
 	    $link = isset($event->cloud_id) ? site_url('cloud/view/'.$event->cloud_id)
-	        : site_url('cloudscape/view'.$event->cloudscape_id); ?>
+	        : site_url('cloudscape/view/'.$event->cloudscape_id); ?>
 
 	<item>
 	      <title><?= xml_safe(xml_convert(strip_tags($event->title))); ?></title>
@@ -38,8 +39,14 @@
             $event->event_date : $event->start_date) ?></ev:startdate>
 <?php if (isset($event->end_date)): ?>          <ev:enddate><?=
     date('Y-m-d', $event->end_date);?></ev:enddate><?php endif; ?>
+<?php if (isset($event->fullname)): ?>
 
-        </item>  
+          <foaf:made rdf:resource="<?= $link ?>" />
+          <foaf:name><?=$event->fullname ?></foaf:name>
+          <foaf:mbox_sha1sum><?=mbox_sha1sum($event->email) ?></foaf:mbox_sha1sum>
+<?php endif; ?>
+        </item>
 	<?php endforeach; ?>
+
 </channel>
 </rss>
