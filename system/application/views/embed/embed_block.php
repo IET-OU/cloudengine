@@ -35,7 +35,7 @@
 <?php endif; ?>
 <script>
 $(document).ready(function() {
-  $('.embed-block a.em').oembed(null, {'oupodcast':{'theme':'ouice-dark'}});
+  $('.embed-block a.em').oembed(null, <?=json_encode($this->config->item('oembed_options')) ?>);
 });
 </script>
 <?php endif; ?>

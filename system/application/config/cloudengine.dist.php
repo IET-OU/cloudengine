@@ -35,7 +35,6 @@ $config['theme_logo']       = 'themes/aurora/cloudengine-logo.gif';
 $config['theme_banner']     = 'themes/aurora/header-bg-aurora.jpg';
 $config['theme_favicon']    = 'themes/aurora/favicon-aurora.ico';
 
-
 // Flag whether this is a LIVE or developer/test install.
 $config['x_live'] = TRUE;
 $config['test_install_message'] = 'This is a test install.'; // Message to display for test install
@@ -124,6 +123,20 @@ $config['expire_temp_users_time'] = 3600*168;
 
 // Maximum number of login attempts in the last ten minutes for a single user
 $config['max_login_attempts'] = 10;
+
+
+// An array of jQuery-oEmbed options, including OU Media Player options.
+$config['oembed_options'] = array(
+  'oupodcast' => array(
+    #'theme' => 'oup-light',  # 2012 'new'
+    'theme' => 'ouice-dark', # 2011 legacy
+  ),
+  'ispot' => array(
+    'count' => 3,
+    'postmessage' => 1,
+  ),
+);
+
 
 /*-------------------+
 |  CAPTCHA SETTINGS  |
