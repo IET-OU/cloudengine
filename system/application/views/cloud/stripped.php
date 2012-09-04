@@ -13,6 +13,12 @@
     div#site-header-content {width:940px;}
     </style>
     <![endif]-->
+    <script type="text/javascript" src="<?=base_url()?>_scripts/jquery/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('a').attr('title', '<?= t('Opens in new window') ?>');
+        });
+    </script>
 </head>
 <body id="<?= $navigation ?>">
 
