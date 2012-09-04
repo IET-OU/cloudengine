@@ -49,7 +49,12 @@ div#page {/*padding:0 1em;*/}
 
 div#site-body {padding:0 0 0 0; }
 
-
+#stripped {
+    max-width:80em; 
+    min-width:55em; 
+    margin: 10px 10px 10px 10px; 
+    
+}
 /* Row and Column Structure
 ----------------------------------------------------------------------------------- */
 
@@ -558,26 +563,26 @@ ul.followers li a {text-decoration:none; padding: 0;}
 
 
 
-div#region1 ul.cloudstream-filter {margin:0 0 0 0; padding:0; background: #eee url(filter-bg.jpg) top left repeat-x; float:left; width:100%;  }
+ul.cloudstream-filter {margin:0 0 0 0; padding:0; background: #eee url(filter-bg.jpg) top left repeat-x; float:left; width:100%;  }
 
-div#region1 ul.cloudstream-filter li {display:inline; background:none; margin:0; padding:0;}
+ul.cloudstream-filter li {display:inline; background:none; margin:0; padding:0;}
 
-div#region1 ul.cloudstream-filter li a,
-div#region1 ul.cloudstream-filter li strong {margin-right: 0; padding:.6em .8em; text-decoration:none; float:left; }
+ul.cloudstream-filter li a,
+ul.cloudstream-filter li strong {margin-right: 0; padding:.6em .8em; text-decoration:none; float:left; }
 
-div#region1 ul.cloudstream-filter li strong {color:#fff; background: #333 url(filter-selected-bg.jpg) top left repeat-x; }
+ul.cloudstream-filter li strong {color:#fff; background: #333 url(filter-selected-bg.jpg) top left repeat-x; }
 
-div#region1 ul.cloudstream-filter li a:hover {color:#00822b; background:#fff; }
+ul.cloudstream-filter li a:hover {color:#00822b; background:#fff; }
 
-div#region1 ul.cloudstream li {padding: 4px 0 4px 25px; margin-left:.8em;}
+ul.cloudstream li {padding: 4px 0 4px 25px; margin-left:.8em;}
 
-div#region1 ul.cloudstream li.comment {background:url(icon-comment.gif) 0 .5em no-repeat;}
-div#region1 ul.cloudstream li.link {background:url(icon-link.gif) 0 .5em no-repeat;}
-div#region1 ul.cloudstream li.extra {background:url(icon-extra.gif) 0 .5em no-repeat;}
-div#region1 ul.cloudstream li.reference {background:url(icon-reference.gif) 0 .5em no-repeat;}
-div#region1 ul.cloudstream li.cloud {background:url(icon-cloud.gif) 0 .5em no-repeat;}
-div#region1 ul.cloudstream li.cloudscape {background:url(icon-cloudscape.gif) 0 .5em no-repeat;}
-div#region1 ul.cloudstream li.user {background:url(avatar-default-16.jpg) 0 .5em no-repeat;}
+ul.cloudstream li.comment {background:url(icon-comment.gif) 0 .5em no-repeat;}
+ul.cloudstream li.link {background:url(icon-link.gif) 0 .5em no-repeat;}
+ul.cloudstream li.extra {background:url(icon-extra.gif) 0 .5em no-repeat;}
+ul.cloudstream li.reference {background:url(icon-reference.gif) 0 .5em no-repeat;}
+ul.cloudstream li.cloud {background:url(icon-cloud.gif) 0 .5em no-repeat;}
+ul.cloudstream li.cloudscape {background:url(icon-cloudscape.gif) 0 .5em no-repeat;}
+ul.cloudstream li.user {background:url(avatar-default-16.jpg) 0 .5em no-repeat;}
 
 
 
