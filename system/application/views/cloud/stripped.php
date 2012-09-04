@@ -21,7 +21,7 @@
     </script>
 </head>
 <body id="<?= $navigation ?>">
-
+<div id="region1">
     <div id="stripped">
 
         <h1><?=$cloud->title ?></h1>
@@ -101,7 +101,9 @@
         default           : $this->load->view('cloud_comment/cloud_comments.php');
     } ?>
         <?php $this->load->view('layout/google_analytics.php') ?>
-    </body>
+</div>
+</div>   
+   </body>
 </html>
 
 
