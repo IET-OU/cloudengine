@@ -6,7 +6,6 @@ config/cloudengine.php
 config/database.php
 config/mollom.php
 language/*/LC_MESSAGES/*.mo
-themes/cloudworks
 */Thumbs.db
 .DS_Store
 .hgrevision
