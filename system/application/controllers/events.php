@@ -121,7 +121,9 @@ class Events extends MY_Controller {
     /**
      * Display future events as an icalendar file
      */
-    function ical($view = 'cloudscapes') {
+    function ical($view = 'cloudscapes', $mode = 'standard', $debug = false) {
+        $this->load->helper('api_helper');
+
         switch ($view) {
             case 'cloudscapes':
                 $data['events']= $this->events_model->get_future_events();
@@ -132,15 +134,23 @@ class Events extends MY_Controller {
                 break;
             case 'calls':
                 $data['events']= $this->events_model->get_future_calls();
+                break;
+            default:
+                show_error("Error, unknown view '$view'.");
         }    
 
+		$data['debug'] = $debug;
+		$data['view'] = $view;
+		$data['extended'] = 'ex'==$mode;
         $this->load->view('events/ical', $data);
     }
-    
+
     /**
      * Display future events as an RSS feed
      */
     function rss($view = 'cloudscapes') {
+        $this->load->helper('api_helper');
+
         switch ($view) {
             case 'cloudscapes':
                 $data['events']= $this->events_model->get_future_events();

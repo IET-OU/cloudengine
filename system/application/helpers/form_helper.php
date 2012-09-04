@@ -43,6 +43,9 @@ require_once BASEPATH.'/helpers/form_helper.php';
 
 
 /** Email input field (HTML5).
+* Maxlength: 254
+* http://rfc-editor.org/errata_search.php?rfc=3696&eid=1690
+* http://stackoverflow.com/questions/386294/maximum-length-of-a-valid-email-address
 */
 if (! function_exists('form_email')) {
 
@@ -52,6 +55,7 @@ if (! function_exists('form_email')) {
 		}
 
 		$data['type'] = 'email';
+		$data['maxlength'] = 254;
 		return form_input($data, $value, $extra);
 	}
 }
@@ -81,6 +85,43 @@ if (! function_exists('form_search')) {
 		}
 
 		$data['type'] = 'search';
+ 		return form_input($data, $value, $extra);
+	}
+}
+
+
+/** Date(-time) input field (HTML5).
+ *
+ * http://w3.org/TR/html-markup/input.date.html
+ * http://w3.org/TR/html-markup/input.datetime-local.html
+ *
+ * We start by doing some
+ * Note: this form helper function assumes that a function like strtotime is used to parse the input on the server.
+ */
+if (! function_exists('form_datetime')) {
+
+	function form_datetime($data = '', $value = '', $extra ='') {
+		if ( ! is_array($data)) {
+			$data = array('name' => $data);
+		}
+		$ci =& get_instance();
+
+        // CodeIgniter 1.7.x - not, is_browser('Opera').
+		if ('Opera' == $ci->agent->browser()) {
+			$data['type'] = 'date';  #'datetime-local';
+			$data['title'] = t('Date format').': yyyy-mm-dd';
+			$value = $value ? date('Y-m-d', $value) : '';
+		} else {
+			///Translators: placeholder-text for date form controls.
+			$data['placeholder'] = t('dd MMMMM yyyy');
+			$data['title'] = t('Date format').': '.t('dd MMMMM yyyy');
+			$data['pattern'] = '\d{1,2} \w{3,} 2\d{3}';
+			$data['class'] = 'date-pick';
+			$value = $value ? date('d F Y', $value) : '';
+		}
+		$data['size'] = 95;
+		$data['maxlength'] = 128;
+
  		return form_input($data, $value, $extra);
 	}
 }

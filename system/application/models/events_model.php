@@ -59,6 +59,7 @@ class Events_model extends Model {
         $query = $this->db->query("SELECT * 
                                     FROM cloudscape c
                                     INNER JOIN user u on u.id = c.user_id
+                                    INNER JOIN user_profile p ON p.id = u.id
                                     WHERE end_date >= $today
                                     AND u.banned = 0
                                     AND c.display_event = 1
@@ -92,14 +93,17 @@ class Events_model extends Model {
      * Get all the clouds that are events in the future
      *
      * @return array Array of clouds that are future events 
-     */  
+     */
     function get_future_cloud_events() {
         $today = time();
-        $query = $this->db->query("SELECT * FROM cloud 
+        $query = $this->db->query("SELECT * FROM cloud AS c
+                                   INNER JOIN user u ON u.id = c.user_id
+                                   INNER JOIN user_profile p ON p.id = u.id
                                    WHERE event_date >= $today
-                                   AND display_event = 1 
+                                   AND u.banned = 0
+                                   AND c.display_event = 1 
                                    ORDER BY event_date");
-        
+#var_dump($query->result()); exit;
         return $query->result();
     }    
     

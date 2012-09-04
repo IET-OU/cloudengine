@@ -28,10 +28,14 @@
 <?php endforeach; ?>
 
 <?php /*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>*/ ?>
+<?php if ($this->config->item('x_live')): ?>
 <script src="<?=base_url() ?>_scripts/jquery.oembed.js"></script>
+<?php else: ?>
+<script src="<?=base_url() ?>_scripts/jquery.oembed.test.js"></script>
+<?php endif; ?>
 <script>
 $(document).ready(function() {
-  $('.embed-block a.em').oembed(null, {'oupodcast':{'theme':'ouice-dark'}});
+  $('.embed-block a.em').oembed(null, <?=json_encode($this->config->item('oembed_options')) ?>);
 });
 </script>
 <?php endif; ?>
