@@ -27,7 +27,7 @@
         <h1><?=$cloud->title ?></h1>
         <p><?= t("[link-cloud]View this cloud on !site_name [/link]", 
         array('!site_name'=>$this->config->item('site_name'),
-                '[link-cloud]'=>t_link('cloud/view/'.$cloud->id) 
+                '[link-cloud]'=>t_link('cloud/view/'.$cloud->cloud_id) 
         )); ?></p>
 
         
