@@ -1,3 +1,4 @@
+<div class="box">
 <h2><?= t("Improve this cloud") ?></h2>
 
 
@@ -14,3 +15,4 @@
 <?php if ($this->config->item('x_gadgets') && $edit_permission): ?>
 <p class="add-link"><?= anchor('gadget/add_to_cloud/'.$cloud->cloud_id, t("Add gadget")) ?></p>
 <?php endif; ?>
+</div>

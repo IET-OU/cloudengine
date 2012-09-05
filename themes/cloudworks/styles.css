@@ -1,12 +1,11 @@
 /* Cloudworks, NDF 7 March 2012.
 */
 
-#_clouds div#region2 h2 {background:#EBD9C1; font-size:1.2em;}
-#_clouds div#region2 div.box h2 {background:#EBD9C1;}
+#region2  h2 {background:#ebd9c1     ;}
 
-div#region2 div.box {background: #FEF9E5; border:2px solid #EBD9C1;}
-div#region2 div.box h2 {background:#ebd9c1;}
+#region2 .box {background: #FEF9E5     ; border:2px solid #EBD9C1     ;}
+#region2 .box h2 {background:#ebd9c1     ;}
 
-div#region2 div.box a{color: #6B4824;}
-div#region2 div.box a:hover {color: #00822b;}
+#region2 .box a{color: #6B4824     ;}
+#region2 .box a:hover {color: #00822b     ;}
 

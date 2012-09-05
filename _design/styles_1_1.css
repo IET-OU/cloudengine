@@ -361,8 +361,8 @@ div#region1 div.featured-links ul li a {text-decoration:none;}
 
 #clouds div.headline div.c2of2 a {text-decoration:none;}
 
-#clouds div#region2 h2 {background:#1E466A; font-size:1.2em;}
-#clouds div#region2 div.box h2 {background:#1E466A;}
+#clouds #region2 h2 {font-size:1.2em;}
+
 
 
 
@@ -409,9 +409,8 @@ a.remove-tag:hover {background-image: url(icon-remove-tag-hover.gif);}
 
 #cloudscapes div.headline div.c2of2 a {text-decoration:none;}
 
-body#cloudscapes div#region2 h2 {background:#EEF5FA; font-size:1.2em;}
 
-body#cloudscapes div#region2 div.box h2 {background:#1E466A;}
+
 
 #cloudscapes .headline .c1of2 {/*background:url(icon-cloudscape-header.gif) top right no-repeat;*/}
 
@@ -673,13 +672,13 @@ div.box {background: #F0F8E8; padding: 10px; margin-bottom:1.5em; border-radius:
 
 div.box p:last-child {margin-bottom:.4em;}
 
-div#region2 div.box {background: #E0EFFF; border:2px solid #CCE5FF;}
+#region2 .box {background: #E0EFFF; border:2px solid #CCE5FF;}
 
-div#region2 div.box h2 {background:#1E466A; font-size:1.2em;}
+#region2 .box h2 {background:#1E466A; font-size:1.2em;}
 
-div#region2 div.box a {color: #003399;}
+#region2 .box a {color: #003399;}
 
-div#region2 div.box a:hover {color: #003399;}
+#region2 .box a:hover {color: #003399;}
 
 
 /* Aurora */
