@@ -1,3 +1,4 @@
+<script type="text/javascript" src="<?=base_url()?>_scripts/iframe_strip.js"></script>
 <div class="grid headline">
     <div class="c1of2">
         <h1><?=$cloud->title ?></h1>

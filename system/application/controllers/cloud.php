@@ -42,11 +42,8 @@ class Cloud extends MY_Controller {
      * (URL-encoded)
      * @param string $view The type of items to display in the tabbed section 
      * i.e. 'comments', 'links' or 'references'. 
-     * @param boolean $stripped If true display a stripped version of the cloud
-     * without the title bar, navigation etc. that can be embedded in other 
-     * web pages
      */
-    function view($cloud = 0, $view = 'comments', $stripped = false) {
+    function view($cloud = 0, $view = 'comments') {
         // The URL may specify either the cloud ID or cloud name, find out which
         $user_id  = $this->db_session->userdata('id');
         $this->load->model('comment_model');
@@ -186,11 +183,9 @@ class Cloud extends MY_Controller {
             $data['admin']            = $this->auth_lib->is_admin();
             $data['following']        = $this->cloud_model->is_following($cloud_id, $user_id);
             $data['view']             = $view;
-            if (!$stripped) {
-                $this->layout->view('cloud/view', $data);
-            } else {
-                $this->load->view('cloud/stripped', $data);
-            }
+
+            $this->layout->view('cloud/view', $data);
+
 
         } else { 
             // If invalid cloud id, display error page
