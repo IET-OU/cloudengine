@@ -16,7 +16,7 @@ background: <?= $cloudscape->colour ?>;
 </style>
 <?php endif; ?>
 
-
+<script type="text/javascript" src="<?=base_url()?>_scripts/iframe_strip.js"></script>
 <div class="grid headline block cloudscape">
     <div class="headline-wrap">
         <div class="c1of2">

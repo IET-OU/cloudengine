@@ -1,3 +1,4 @@
+<script type="text/javascript" src="<?=base_url()?>_scripts/iframe_strip.js"></script>
 <div id="user-profile">
 <div class="grid headline">
     <?php if ($picture): ?>
