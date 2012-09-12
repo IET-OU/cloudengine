@@ -212,6 +212,53 @@ class User_model extends Model {
 
         return $query->result();
     }
+    
+    function get_clouds_with_contributions($user_id) {
+        $user_id = (int) $user_id;
+        
+        $query = $this->db->query("SELECT cl.title AS title, cl.body AS body, 
+                                    cl.cloud_id AS cloud_id 
+                                    FROM  cloud cl 
+                                    WHERE cl.user_id = $user_id AND cl.moderate = 0 
+                                    UNION 
+                                    SELECT cl.title AS title, cl.body AS body, 
+                                    cl.cloud_id AS cloud_id 
+                                    FROM  cloud cl 
+                                    INNER JOIN COMMENT co
+                                    ON co.cloud_id = cl.cloud_id
+                                    WHERE co.user_id = $user_id AND co.moderate = 0 
+                                    UNION 
+                                    SELECT cl.title AS title, cl.body AS body, 
+                                    cl.cloud_id AS cloud_id 
+                                    FROM  cloud cl 
+                                    INNER JOIN cloud_content cc
+                                    ON cc.cloud_id = cl.cloud_id
+                                    WHERE cc.user_id = $user_id AND cc.moderate = 0 
+                                    UNION 
+                                    SELECT cl.title AS title, cl.body AS body, 
+                                    cl.cloud_id AS cloud_id 
+                                    FROM  cloud cl 
+                                    INNER JOIN cloud_embed ce
+                                    ON ce.cloud_id = cl.cloud_id
+                                    WHERE ce.user_id = $user_id AND ce.moderate = 0 
+                                    UNION 
+                                    SELECT cl.title AS title, cl.body AS body, 
+                                    cl.cloud_id AS cloud_id 
+                                    FROM  cloud cl 
+                                    INNER JOIN cloud_reference cr
+                                    ON cr.cloud_id = cl.cloud_id
+                                    WHERE cr.user_id = $user_id AND cr.moderate = 0 
+                                    UNION 
+                                    SELECT cl.title AS title, cl.body AS body, 
+                                    cl.cloud_id AS cloud_id 
+                                    FROM  cloud cl 
+                                    INNER JOIN cloud_link cli
+                                    ON cli.cloud_id = cl.cloud_id
+                                    WHERE cli.user_id = $user_id AND cli.moderate = 0 ");
+
+
+        return $query->result();    
+    }
 
     /**
      * Update the profile for a user

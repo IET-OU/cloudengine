@@ -109,4 +109,21 @@ class Image extends MY_Controller {
 	        show_404();
 	    }
 	}
+    
+    function badge($badge_id) {
+            ini_set("display_errors", 'On');
+        error_reporting(E_ALL);
+        $this->load->model('badge_model');
+        
+        $image_name = $this->badge_model->get_picture($badge_id);
+        $path = $this->config->item('upload_path_badge').$image_name;
+
+        if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches) 
+            && is_readable($path)) {
+            header('Content-Type: image/'.$matches[1]);
+            echo(file_get_contents($path));
+        } else {
+            show_404();
+        }    
+    }
 }

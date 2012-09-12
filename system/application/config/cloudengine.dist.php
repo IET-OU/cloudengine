@@ -26,6 +26,7 @@ $config['data_dir'] = '';
 $config['upload_path']             = $config['data_dir'].'uploads/';
 $config['upload_path_user']        = $config['upload_path'].'user/'; 
 $config['upload_path_cloudscape']  = $config['upload_path'].'cloudscape/'; 
+$config['upload_path_badge']       = $config['upload_path'].'badge/'; 
 $config['search_index_path']       = $config['data_dir'].'search/index';
 
 

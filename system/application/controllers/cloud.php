@@ -186,7 +186,6 @@ class Cloud extends MY_Controller {
 
             $this->layout->view('cloud/view', $data);
 
-
         } else { 
             // If invalid cloud id, display error page
             show_error(t("An error occurred."));
