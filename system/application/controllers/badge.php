@@ -22,12 +22,17 @@ class Badge extends MY_Controller {
         $user_id  = $this->db_session->userdata('id'); 
         $data['badge'] = $this->badge_model->get_badge($badge_id);
         $data['badge']->badge_id = $badge_id;
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('evidence', t("Evidence"), 'required');
         
         if ($this->input->post('submit')) { // Process badge application
             $evidence        = $this->input->post('evidence');
             if ($this->form_validation->run()) { 
                 $this->badge_model->insert_application($badge_id, $user_id, $cloud_id);
                 $this->layout->view('badge/application_accepted', $data); 
+                return;
+            } else {
+                show_error(t("An error occurred."));
             }
         } else {
             if ($data['badge']) {
@@ -41,8 +46,8 @@ class Badge extends MY_Controller {
                 // Also need to check that hasn't already applied for or been 
                 // awarded the badge
                 if ($data['can_apply']) {
-                    $this->load->library('form_validation');
-                    $this->form_validation->set_rules('evidence', t("Evidence"), 'required');
+
+
                     // Put the cloudscapes into a suitable form for a select
                     $clouds = $this->user_model->get_clouds_with_contributions($user_id);
 

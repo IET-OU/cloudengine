@@ -40,7 +40,7 @@ class Badge_model extends Model {
             || !$badge->description|| trim($badge->description) == '' 
             || !$badge->criteria || trim($badge->criteria) == '' 
             || !is_numeric($badge->user_id)) {
-                valid = FALSE;
+                $valid = FALSE;
         }
         
         if ($valid) { 
@@ -169,8 +169,8 @@ class Badge_model extends Model {
         
         // Check that the user_id, title and body have been specified and that the user_id is numeric
         if (!is_numeric($badge_id) || !is_numeric($user_id) || 
-            !is_numeric($cloud_id) {
-            valid = FALSE;
+            !is_numeric($cloud_id)) {
+            $valid = FALSE;
         }
         
         if ($valid) { 
