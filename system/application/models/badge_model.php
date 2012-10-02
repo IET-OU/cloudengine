@@ -33,6 +33,7 @@ class Badge_model extends Model {
      * @return integer $badge_id The ID of the newly created badge
      */
     function insert_badge($badge) {
+    
         $valid = TRUE;;
         
         // Check that the user_id, title and body have been specified and that the user_id is numeric
@@ -47,7 +48,9 @@ class Badge_model extends Model {
 
             $badge->created = time();
             $this->db->insert('badge', $badge);
-            $badge_id =  $this->db->insert_id();             
+            $badge_id =  $this->db->insert_id();      
+
+            $this->add_verifier($badge_id, $badge->user_id);
         } else {
             $badge_id = FALSE;
         }
@@ -132,6 +135,12 @@ class Badge_model extends Model {
         } 
     }    
     
+    function check_verifier($user_id, $badge_id) {
+        if (!$this->is_verifier($badge_id, $user_id)) {
+            show_error(t("You do not have verifier permission for that badge."));   
+        }     
+    }
+    
     /**
      * Get the filename of a badge's picture
      *
@@ -184,5 +193,122 @@ class Badge_model extends Model {
             $application_id = FALSE;
         }
         return $application_id; 
+    }
+    
+    function get_verifiers($badge_id) {
+        $this->db->where('badge_id', $badge_id);
+        $this->db->join('user_profile', 'user_profile.id = badge_verifier.user_id');
+        $query = $this->db->get('badge_verifier');
+        return $query->result();
+    }
+
+    function is_verifier($badge_id, $user_id) {
+        $verifier = false;
+        if ($user_id) {
+            $this->db->where('badge_id', $badge_id);
+            $this->db->where('user_id', $user_id);
+            $query = $this->db->get('badge_verifier');
+            if ($query->num_rows() > 0) {
+                $verifier = TRUE;
+            }
+        }
+        return $verifier;
+    }
+    
+    function add_verifier($badge_id, $user_id) {
+        if ($user_id) {
+            if (!$this->is_verifier($badge_id, $user_id)) {
+                $this->db->set('badge_id', $badge_id);
+                $this->db->set('user_id', $user_id);
+                $this->db->insert('badge_verifier');
+            }
+        }    
+    }
+    
+    function remove_verifier($badge_id, $user_id){
+        $this->db->where('badge_id', $badge_id);
+        $this->db->where('user_id', $user_id);
+        $this->db->delete('badge_verifier'); 
+    }
+
+    function get_badges_with_verification_permission($user_id) {        
+        $user_id = (int) $user_id;
+        $query = $this->db->query("SELECT b.name AS name, 
+                                 b.badge_id AS badge_id,
+                                 COUNT(ba.application_id) AS total_applications
+                                 FROM badge b
+                                 LEFT OUTER JOIN badge_application ba 
+                                 ON ba.badge_id = b.badge_id
+                                 INNER JOIN badge_verifier bv
+                                 ON bv.badge_id = b.badge_id
+                                 WHERE bv.user_id = $user_id
+                                 AND b.type = 'verifier'
+                                 AND ba.status = 'pending'
+                                 GROUP BY badge_id");
+
+        return $query->result();    
+    }
+    
+    function get_crowdsourced_badges() {
+        $query = $this->db->query("SELECT b.name AS name, 
+                                 b.badge_id AS badge_id,
+                                 COUNT(ba.application_id) AS total_applications
+                                 FROM badge b
+                                 LEFT OUTER JOIN badge_application ba 
+                                 ON ba.badge_id = b.badge_id
+                                 WHERE b.type = 'crowdsource'
+                                 AND ba.status = 'pending'
+                                 GROUP BY badge_id");   
+         return $query->result();                           
+    }
+ 
+    function get_applications($badge_id) {
+        $this->db->where('badge_id', $badge_id);
+        $this->db->where('status', 'pending');
+        $this->db->join('user_profile', 'user_profile.id = badge_application.user_id');
+        $this->db->join('cloud', 'cloud.cloud_id = badge_application.cloud_id');
+        $query = $this->db->get('badge_application');
+        return $query->result();    
+    }
+    
+    function add_decision($application_id, $user_id, $decision_made, $feedback) {
+        $decision->application_id = $application_id;
+        $decision->user_id = $user_id;
+        $decision->decision = $decision_made;
+        $decision->feedback = $feedback;
+        $decision->timestamp = time();
+        
+        $this->db->insert('badge_decision', $decision);
+ 
+        // Update badge status 
+        $this->db->where('application_id', $application_id);
+        $this->db->join('badge_application', 'badge_application.badge_id = badge.badge_id');
+        $query = $this->db->get('badge');
+        $badge = $query->row();
+
+        if ($badge->type == 'verifier') {
+            $this->update_application_status($application_id, $decision_made);
+        }
+        
+        if ($badge->type == 'crowdsource') {
+            $num_approves = $this->get_num_approves($application_id);
+            if ($num_approves >= $badge_num_approves) {
+                $this->update_application_status($application_id, 'approved');
+            }
+        }
+
+        // Get the badge id and type
+    }
+    
+    function get_num_approves($application_id) {
+        $this->db->where('application_id', $application_id);
+        $this->db->where('decision', 'approved');
+        $query = $this->db->get('badge_decision');
+        return $query->rows();
+    }
+    
+    function update_application_status($application_id, $status) {
+            $this->db->where('application_id', $application_id);
+            $this->db->update('badge_application', array('status'=>$status));    
     }
 }

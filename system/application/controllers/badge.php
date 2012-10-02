@@ -11,8 +11,8 @@ class Badge extends MY_Controller {
     function Badge() {
         parent::MY_Controller();
         $this->load->helper('url');
-        $this->load->helper('form');
         $this->load->helper('format');
+        $this->load->helper('form');
         $this->load->library('layout', 'layout_main'); 
         $this->load->model('user_model'); 
         $this->load->model('badge_model');
@@ -23,10 +23,10 @@ class Badge extends MY_Controller {
         $data['badge'] = $this->badge_model->get_badge($badge_id);
         $data['badge']->badge_id = $badge_id;
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('evidence', t("Evidence"), 'required');
+        $this->form_validation->set_rules('cloud_id', t("Evidence"), 'required');
         
         if ($this->input->post('submit')) { // Process badge application
-            $evidence        = $this->input->post('evidence');
+            $cloud_id       = $this->input->post('cloud_id');
             if ($this->form_validation->run()) { 
                 $this->badge_model->insert_application($badge_id, $user_id, $cloud_id);
                 $this->layout->view('badge/application_accepted', $data); 
@@ -84,6 +84,8 @@ class Badge extends MY_Controller {
             $badge->name        = $this->input->post('name');
             $badge->description = $this->input->post('description');
             $badge->criteria    = $this->input->post('criteria');
+            $badge->type        = $this->input->post('type');
+            $badge->num_approves = $this->input->post('num_approves');
             $badge->user_id     = $user_id;
             $data['badge'] = $badge;
 
@@ -234,6 +236,7 @@ class Badge extends MY_Controller {
     }    
     
     function edit_image($badge_id = 0) {
+        $this->auth_lib->check_logged_in();
         $user_id  = $this->db_session->userdata('id');        
         $this->badge_model->check_edit_permission($user_id, $badge_id); 
         // Get the badge 
@@ -241,6 +244,45 @@ class Badge extends MY_Controller {
         
         $this->layout->view('badge/edit_image', $data);
     }
+    
+    function manage_verifiers($badge_id = 0) {
+        $this->auth_lib->check_logged_in();
+        $user_id  = $this->db_session->userdata('id');        
+        $this->badge_model->check_edit_permission($user_id, $badge_id); 
+        $badge = $this->badge_model->get_badge($badge_id);
+         
+        
+        // If search form submitted, search for users 
+        if ($this->input->post('submit')) {
+            $user_search_string = $this->input->post('user_search_string', TRUE);
+            $data['users'] = $this->user_model->search($user_search_string);  
+            $data["user_search_string"] = $user_search_string;        
+        } 
+
+        // Get the information to display existing permissions
+        $data['title']     = t("Manage Badge Verifiers");
+        $data['verifiers'] = $this->badge_model->get_verifiers($badge_id);
+        $data['badge']     = $badge;
+
+        $this->layout->view('badge/manage_verifiers', $data);
+    }
+    
+    function verifier_add($badge_id = 0, $add_user_id = 0) {
+        $this->auth_lib->check_logged_in();
+        $user_id  = $this->db_session->userdata('id');        
+        $this->badge_model->check_edit_permission($user_id, $badge_id);   
+
+        $this->badge_model->add_verifier($badge_id, $add_user_id);
+        redirect('badge/manage_verifiers/'.$badge_id);        
+    }
+    
+    function verifier_remove($badge_id, $remove_verifier_id) {
+        $this->auth_lib->check_logged_in();
+        $user_id  = $this->db_session->userdata('id');        
+        $this->badge_model->check_edit_permission($user_id, $badge_id);  
+        $this->badge_model->remove_verifier($badge_id, $remove_verifier_id);
+        redirect('badge/manage_verifiers/'.$badge_id);         
+    }   
     
     /**
      * Display a list of all the badges on the site 
@@ -251,5 +293,33 @@ class Badge extends MY_Controller {
         $data['navigation'] = 'badges';
         $data['badges']     = $this->badge_model->get_badges();
         $this->layout->view('badge/list', $data);
-    }   
+    }  
+
+    function badges_with_applications_list() {
+        $this->auth_lib->check_logged_in();
+        $user_id  = $this->db_session->userdata('id'); 
+        $data['badges'] = $this->badge_model->get_badges_with_verification_permission($user_id);
+        
+        $data['crowdsourced_badges'] = $this->badge_model->get_crowdsourced_badges();
+        
+        $this->layout->view('badge/badges_applications_list', $data);
+        
+    }
+    
+    function applications($badge_id = 0) {
+        $this->auth_lib->check_logged_in();
+        $user_id  = $this->db_session->userdata('id');        
+        $this->badge_model->check_verifier($user_id, $badge_id);
+        
+        if ($this->input->post('submit')) { // Process badge application
+            $application_id = $this->input->post('application_id');
+            $decision = $this->input->post('decision');
+            $feedback = $this->input->post('feedback');
+            $this->badge_model->add_decision($application_id, $user_id, $decision, $feedback); 
+        }    
+        
+        $data['badge'] = $this->badge_model->get_badge($badge_id);
+        $data['applications'] = $this->badge_model->get_applications($badge_id);
+        $this->layout->view('badge/applications', $data);
+    }
 }

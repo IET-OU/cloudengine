@@ -32,7 +32,7 @@
         <h2><?= t("Apply for this badge") ?></h2>
             <?=form_open($this->uri->uri_string(), array('id' => 'badge-apply-form'))?>
         <label for="evidence"><?= t("Evidence - please select cloud which provides evidence") ?>
-        <?= form_dropdown('evidence', $options) ?>
+        <?= form_dropdown('cloud_id', $options) ?>
         <input type="submit" name="submit" id="submit" 
         class="submit" value="<?= t("Apply for badge")?>" />
         <?=form_close()?>

@@ -2398,3 +2398,12 @@ ul.simplePagerNav li a {
 /****************************************/
 /*** Search usability styles - end  ***/
 /****************************************/
+
+input[type="radio"] {
+    display: inline;
+}
+
+label.radio {
+    display:inline;
+    }
+

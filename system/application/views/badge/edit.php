@@ -41,9 +41,17 @@
             <span class="button"><?= anchor('badge/edit_image/'.$badge->badge_id, t("Edit image")) ?></li>
             </p>
          <?php endif; ?>
-        <lab
-        el for="criteria"><?=t("Criteria !required!")?>:</label>
+        <label for="criteria"><?=t("Criteria !required!")?>:</label>
         <textarea cols="61" rows="10" name="criteria" id="criteria"><?= $badge->criteria ?></textarea>
+<fieldset>
+<legend>Badge approval process:</legend>
+<input type="radio" name="type" id="verifier" value="verifier"><label class="radio" for="approve" /><?= t("Specify a set of users who can approve or reject badge applications") ?></label>
+<br />
+<input type="radio" name="type" id="reject" value="crowdsource"><label class="radio" for="crowdsource" /><?= t("The badge is awarded if a specified number of users on the site approve it") ?></label>
+</fieldset>
+ <label for="num_approves"><?=t("If the latter, number of users who must approve the badge for it to be awarded")?>:</label>
+         <input type="text" maxlength="3" name="num_approves" id="num_approves"  size="10" 
+               value="<?= $badge->num_approves ?>" />       
         <input type="submit" name="submit" id="submit" class="submit" value="<?php if ($new):
           ?><?=t("Create Badge")?><?php else:?><?=t("Save Badge")?><?php endif;?>" />
         <?=form_close()?>
