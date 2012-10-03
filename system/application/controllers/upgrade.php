@@ -740,178 +740,178 @@ class Upgrade extends MY_Controller {
             $this->message("Add 'badge_decision' table"); 
             $this->message("Add 'badge_verifier' table");              
         } elseif ($action == 'do_update') {
-          //***** Badge table - start *****
-          $table = 'badge';
-          if ($this->db->table_exists($table)) {
-              $this->message("Woops, '$table' table already exists.", 'error');
-          }
-          else {
-            $fields = array(
-                'badge_id' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                    'auto_increment'  => TRUE
-                ),
-                'name' => array(
-                    'type'            => 'VARCHAR',
-                    'constraint'      => 128,
-                    'null'            => FALSE,
-                ),
-                'image' => array(
-                    'type'            => 'VARCHAR',
-                    'constraint'      => 128,
-                    'null'            => FALSE,
-                ),
-                'description' => array(
-                    'type'            => 'VARCHAR',
-                    'constraint'      => 128,
-                    'null'            => FALSE,
-                ),
-                'criteria' => array(
-                    'type'            => 'TEXT',
-                    'null'            => FALSE,
-                ),
-                'user_id' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                    'null'            => FALSE,
-                ),
-                'created' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                    'null'            => FALSE,
-                ),
-                'modified' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                ),   
-                'type' => array(
-                    'type'            => 'ENUM',
-                    'constraint'      => array('verifier', 'crowdsource'),
-                    'default'         => 'verifier',
-                    'null'            => FALSE,
-                ), 
-                'num_approves' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                ),                 
-            );
-    
-            $this->dbforge->add_field($fields);
-            $this->dbforge->add_key('message_id', TRUE);
-            $this->dbforge->create_table($table);
-            $this->message("OK, created table '$table'.");   
+            //***** Badge table - start *****
+            $table = 'badge';
+            if ($this->db->table_exists($table)) {
+                $this->message("Woops, '$table' table already exists.", 'error');
+            } else {
+                $fields = array(
+                    'badge_id' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'auto_increment'  => TRUE
+                    ),
+                    'name' => array(
+                        'type'            => 'VARCHAR',
+                        'constraint'      => 128,
+                        'null'            => FALSE,
+                    ),
+                    'image' => array(
+                        'type'            => 'VARCHAR',
+                        'constraint'      => 128,
+                        'null'            => FALSE,
+                    ),
+                    'description' => array(
+                        'type'            => 'VARCHAR',
+                        'constraint'      => 128,
+                        'null'            => FALSE,
+                    ),
+                    'criteria' => array(
+                        'type'            => 'TEXT',
+                        'null'            => FALSE,
+                    ),
+                    'user_id' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),
+                    'created' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),
+                    'modified' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                    ),   
+                    'type' => array(
+                        'type'            => 'ENUM',
+                        'constraint'      => "'verifier', 'crowdsource'",
+                        'default'         => 'verifier',
+                        'null'            => FALSE,
+                    ), 
+                    'num_approves' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                    ),                 
+                );
+        
+                $this->dbforge->add_field($fields);
+                $this->dbforge->add_key('badge_id', TRUE);
+                $this->dbforge->create_table($table);
+                $this->message("OK, created table '$table'.");   
+            }
+        
+            //***** Badge Application table - start *****
+            $table = 'badge_application';
+            if ($this->db->table_exists($table)) {
+                $this->message("Woops, '$table' table already exists.", 'error');
+            } else {
+                $fields = array(
+                    'application_id' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'auto_increment'  => TRUE
+                    ),
+                    'evidence_URL' => array(
+                        'type'            => 'VARCHAR',
+                        'constraint'      => 2048,
+                        'null'            => FALSE,
+                    ),
+                    'user_id' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),
+                    'badge_id' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),
+                    'evidence_URL' => array(
+                        'type'            => 'VARCHAR',
+                        'constraint'      => 2048,
+                        'null'            => FALSE,
+                    ),                
+                    'created' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),   
+                    'status' => array(
+                        'type'            => 'ENUM',
+                        'constraint'      => "'pending', 'approved', 'rejected'",
+                        'default'         => 'pending',
+                        'null'            => FALSE,
+                    ),                 
+                );
+        
+                $this->dbforge->add_field($fields);
+                $this->dbforge->add_key('application_id', TRUE);
+                $this->dbforge->create_table($table);
+                $this->message("OK, created table '$table'.");   
+            }
+            
+            //***** Badge Decision table - start *****
+            $table = 'badge_decision';
+            if ($this->db->table_exists($table)) {
+                $this->message("Woops, '$table' table already exists.", 'error');
+            } else {
+                $fields = array(
+                    'application_id' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                    ),
+                    'user_id' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),
+                    'feedback' => array(
+                        'type'            => 'TEXT',
+                        'null'            => FALSE,
+                    ),             
+                    'timestamp' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),   
+                    'decision' => array(
+                        'type'            => 'ENUM',
+                        'constraint'      => "'approved', 'rejected'",
+                        'null'            => FALSE,
+                    ),                 
+                );
 
-          //***** Badge Application table - start *****
-          $table = 'badge_application';
-          if ($this->db->table_exists($table)) {
-              $this->message("Woops, '$table' table already exists.", 'error');
-          }
-          else {
-            $fields = array(
-                'application_id' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                    'auto_increment'  => TRUE
-                ),
-                'evidence_URL' => array(
-                    'type'            => 'VARCHAR',
-                    'constraint'      => 2048,
-                    'null'            => FALSE,
-                ),
-                'user_id' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                    'null'            => FALSE,
-                ),
-                'badge_id' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                    'null'            => FALSE,
-                ),
-                'evidence_URL' => array(
-                    'type'            => 'VARCHAR',
-                    'constraint'      => 2048,
-                    'null'            => FALSE,
-                ),                
-                'created' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                    'null'            => FALSE,
-                ),   
-                'status' => array(
-                    'type'            => 'ENUM',
-                    'constraint'      => array('pending', 'approved', 'rejected')
-                    'default'         => 'pending',
-                    'null'            => FALSE,
-                ),                 
-            );
-    
-            $this->dbforge->add_field($fields);
-            $this->dbforge->add_key('message_id', TRUE);
-            $this->dbforge->create_table($table);
-            $this->message("OK, created table '$table'.");   
-          //***** Badge Decision table - start *****
-          $table = 'badge_decision';
-          if ($this->db->table_exists($table)) {
-              $this->message("Woops, '$table' table already exists.", 'error');
-          }
-          else {
-            $fields = array(
-                'application_id' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                ),
-                'user_id' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                    'null'            => FALSE,
-                ),
-                'feedback' => array(
-                    'type'            => 'TEXT',
-                    'null'            => FALSE,
-                ),             
-                'timestamp' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                    'null'            => FALSE,
-                ),   
-                'decision' => array(
-                    'type'            => 'ENUM',
-                    'constraint'      => array('approved', 'rejected'),
-                    'default'         => 'pending',
-                    'null'            => FALSE,
-                ),                 
-            );
-    
-            $this->dbforge->add_field($fields);
-            $this->dbforge->add_key('message_id', TRUE);
-            $this->dbforge->create_table($table);
-            $this->message("OK, created table '$table'.");  
+                $this->dbforge->add_field($fields);
+                $this->dbforge->create_table($table);
+                $this->message("OK, created table '$table'.");
+            }       
 
-          //***** Badge Verifier table - start *****
-          $table = 'badge_verifier';
-          if ($this->db->table_exists($table)) {
-              $this->message("Woops, '$table' table already exists.", 'error');
-          }
-          else {
-            $fields = array(
-                'user_id' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                    'null'            => FALSE,
-                ),
-                'badge_id' => array(
-                    'type'            => 'INT',
-                    'constraint'      => 11,
-                    'null'            => FALSE,
-                ),                
-            );
-    
-            $this->dbforge->add_field($fields);
-            $this->dbforge->add_key('message_id', TRUE);
-            $this->dbforge->create_table($table);
-            $this->message("OK, created table '$table'.");               
+            //***** Badge Verifier table - start *****
+            $table = 'badge_verifier';
+            if ($this->db->table_exists($table)) {
+                $this->message("Woops, '$table' table already exists.", 'error');
+            } else {
+                $fields = array(
+                    'user_id' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),
+                    'badge_id' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),                
+                );
+
+                $this->dbforge->add_field($fields);
+                $this->dbforge->create_table($table);
+                $this->message("OK, created table '$table'.");               
+            }
         }
+        
+        return TRUE;
     }
  }
