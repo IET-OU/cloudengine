@@ -74,6 +74,15 @@
       <?php if ($user->twitter_username): ?><p><strong>Twitter</strong>: <a href="http://www.twitter.com/<?=$user->twitter_username ?>"><?=$user->twitter_username ?></a></p><?php endif;?>
       <?php if ($user->homepage): ?><p><strong><?=t("Webpage")?></strong>: <a href="<?=$user->homepage ?>"><?=$user->homepage ?></a></p><?php endif;?>   
       <?php if ($display_email): ?><p><strong><?=t("Email")?></strong>: <?= $user->email ?></a></p><?php endif;?> 
+      <?php if (count($badges) > 0): ?>
+      <h2><?= t("Badges") ?></h2>
+      <?php foreach($badges as $badge): ?>
+      <a href="<?= base_url().'badge/view/'.$badge->badge_id ?>"><img src="<?= base_url() ?>image/badge/<?= $badge->badge_id ?>" alt="" style="float: left;"/></a> 
+      
+
+      <?php endforeach; ?>
+      <?php endif; ?>      
+        
         </div>
 
 

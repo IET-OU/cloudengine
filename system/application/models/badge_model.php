@@ -22,7 +22,7 @@ class Badge_model extends Model {
         $query = $this->db->query(" SELECT * 
                                   FROM badge b
                                   INNER JOIN user u on u.id = b.user_id 
-                                  AND u.banned = 0");
+                                  AND u.banned = 0 ORDER BY name ASC");
         return $query->result();
     }
     
@@ -36,7 +36,7 @@ class Badge_model extends Model {
     
         $valid = TRUE;;
         
-        // Check that the user_id, title and body have been specified and that the user_id is numeric
+        // Check that the user_id, name and body have been specified and that the user_id is numeric
         if (!$badge->user_id || !$badge->name || trim($badge->name) == '' 
             || !$badge->description|| trim($badge->description) == '' 
             || !$badge->criteria || trim($badge->criteria) == '' 
@@ -49,8 +49,9 @@ class Badge_model extends Model {
             $badge->created = time();
             $this->db->insert('badge', $badge);
             $badge_id =  $this->db->insert_id();      
-
-            $this->add_verifier($badge_id, $badge->user_id);
+            if ($badge->type == 'verifier') {
+                $this->add_verifier($badge_id, $badge->user_id);
+            }
         } else {
             $badge_id = FALSE;
         }
@@ -96,6 +97,14 @@ class Badge_model extends Model {
             $badge->owner = $this->has_edit_permission($user_id, $badge_id);
 
         } 
+        
+        $query = $this->db->query("SELECT bv.user_id AS user_id,
+                                  u.fullname AS fullname
+                                  FROM badge_verifier bv
+                                  INNER JOIN user_profile u 
+                                  ON bv.user_id = u.id
+                                  WHERE bv.badge_id = $badge_id");
+        $badge->verifiers = $query->result();                          
         
         return $badge;
     }
@@ -173,20 +182,18 @@ class Badge_model extends Model {
         return $owner_user_id;
     }    
     
-    function insert_application($badge_id, $user_id, $cloud_id) {
+    function insert_application($badge_id, $user_id, $evidence_url) {
         $valid = TRUE;
         
-        // Check that the user_id, title and body have been specified and that the user_id is numeric
-        if (!is_numeric($badge_id) || !is_numeric($user_id) || 
-            !is_numeric($cloud_id)) {
+        if (!is_numeric($badge_id) || !is_numeric($user_id)) {
             $valid = FALSE;
         }
         
-        if ($valid) { 
+        if ($valid && $this->can_apply($user_id, $badge_id)) { 
             $application->created = time();
             $application->badge_id = $badge_id;
             $application->user_id = $user_id;
-            $application->cloud_id = $cloud_id;
+            $application->evidence_url = $evidence_url;
             $this->db->insert('badge_application', $application);
             $application_id =  $this->db->insert_id();             
         } else {
@@ -266,9 +273,14 @@ class Badge_model extends Model {
         $this->db->where('badge_id', $badge_id);
         $this->db->where('status', 'pending');
         $this->db->join('user_profile', 'user_profile.id = badge_application.user_id');
-        $this->db->join('cloud', 'cloud.cloud_id = badge_application.cloud_id');
         $query = $this->db->get('badge_application');
         return $query->result();    
+    }
+    
+    function get_application($application_id) {
+        $this->db->where('application_id', $application_id);
+        $query = $this->db->get('badge_application');
+        return $query->row();
     }
     
     function add_decision($application_id, $user_id, $decision_made, $feedback) {
@@ -304,11 +316,40 @@ class Badge_model extends Model {
         $this->db->where('application_id', $application_id);
         $this->db->where('decision', 'approved');
         $query = $this->db->get('badge_decision');
-        return $query->rows();
+        return $query->num_rows();
     }
     
     function update_application_status($application_id, $status) {
             $this->db->where('application_id', $application_id);
             $this->db->update('badge_application', array('status'=>$status));    
+    }
+    
+    function get_badges_for_user($user_id) {
+        $user_id = (int) $user_id;
+        $query = $this->db->query("SELECT * FROM 
+                                  badge b INNER JOIN badge_application ba
+                                  ON b.badge_id = ba.badge_id
+                                  WHERE ba.user_id = $user_id
+                                  AND ba.status = 'approved'");
+        return $query->result();
+    }
+    
+    function can_apply($user_id, $badge_id) {
+        $can_apply = TRUE;
+        $badge_id = (int) $badge_id;
+        $user_id = (int) $user_id;
+        $query = $this->db->query("SELECT * FROM badge_application
+                          WHERE user_id = $user_id
+                          AND badge_id = $badge_id
+                          AND (status = 'pending' OR status = 'approved')"); 
+        if ($query->num_rows() > 0) {
+            $can_apply = FALSE;
+        }  
+
+        if ($user_id == 0) {
+            $can_apply = FALSE;
+        }
+        
+        return $can_apply;
     }
 }

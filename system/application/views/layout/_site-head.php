@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=<?=config_item("charset") ?>" />
 <?=$this->lang->content_lang() ?>
 
-    <title><?= $title ?> - <?= $this->config->item('site_name') ?></title>
+    <title><?= isset($title) ? $title : '' ?> - <?= $this->config->item('site_name') ?></title>
     <link rel="stylesheet" href="<?=base_url() ?>_design/styles_1_1.css" type="text/css" />
     <?php if(config_item('theme_stylesheet')): ?>
     <link rel="stylesheet" href="<?=base_url().config_item('theme_stylesheet') ?>" type="text/css" />

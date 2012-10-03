@@ -21,48 +21,44 @@ class Badge extends MY_Controller {
     function view($badge_id = 0) {
         $user_id  = $this->db_session->userdata('id'); 
         $data['badge'] = $this->badge_model->get_badge($badge_id);
-        $data['badge']->badge_id = $badge_id;
+
+        if ($data['badge']) {
+            $data['edit_permission']  = $this->badge_model->has_edit_permission($user_id, 
+                                                                    $badge_id);
+            $data['admin']            = $this->auth_lib->is_admin();
+            $data['can_apply'] = $this->badge_model->can_apply($user_id, $badge_id);
+
+            $this->layout->view('badge/view', $data); 
+        } else {
+            // If invalid badge id, display error page
+            show_error(t("An error occurred."));
+        }
+    }
+    
+    function apply($badge_id = 0) {
+        $user_id  = $this->db_session->userdata('id'); 
+        $can_apply = $this->badge_model->can_apply($user_id, $badge_id);
+        $data['badge'] = $this->badge_model->get_badge($badge_id);
+        
+
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('cloud_id', t("Evidence"), 'required');
+        $this->form_validation->set_rules('evidence_url', t("Evidence"), 'required');
         
         if ($this->input->post('submit')) { // Process badge application
-            $cloud_id       = $this->input->post('cloud_id');
+            $evidence_url       = $this->input->post('evidence_url');
             if ($this->form_validation->run()) { 
-                $this->badge_model->insert_application($badge_id, $user_id, $cloud_id);
+                $this->badge_model->insert_application($badge_id, $user_id, $evidence_url);
                 $this->layout->view('badge/application_accepted', $data); 
                 return;
-            } else {
-                show_error(t("An error occurred."));
-            }
+            } 
         } else {
             if ($data['badge']) {
-                $data['edit_permission']  = $this->badge_model->has_edit_permission($user_id, 
-                                                                        $badge_id);
-                $data['admin']            = $this->auth_lib->is_admin();
-                $data['can_apply'] = true;
-                if (!$user_id) {
-                    $data['can_apply'] = false;
-                }
-                // Also need to check that hasn't already applied for or been 
-                // awarded the badge
-                if ($data['can_apply']) {
-
-
-                    // Put the cloudscapes into a suitable form for a select
-                    $clouds = $this->user_model->get_clouds_with_contributions($user_id);
-
-                    foreach ($clouds as $cloud) {
-                       $options[$cloud->cloud_id] = $cloud->title;
-                    }
-                    
-                    $data['options'] = $options;
-                }
-                $this->layout->view('badge/view', $data); 
+                $this->layout->view('badge/apply_form', $data); 
             } else {
                 // If invalid badge id, display error page
                 show_error(t("An error occurred."));
             }
-        }
+        }    
     }
     
     /**
@@ -295,30 +291,38 @@ class Badge extends MY_Controller {
         $this->layout->view('badge/list', $data);
     }  
 
-    function badges_with_applications_list() {
+    function pending_applications() {
         $this->auth_lib->check_logged_in();
         $user_id  = $this->db_session->userdata('id'); 
         $data['badges'] = $this->badge_model->get_badges_with_verification_permission($user_id);
         
         $data['crowdsourced_badges'] = $this->badge_model->get_crowdsourced_badges();
         
-        $this->layout->view('badge/badges_applications_list', $data);
+        $this->layout->view('badge/pending_applications', $data);
         
     }
     
     function applications($badge_id = 0) {
         $this->auth_lib->check_logged_in();
-        $user_id  = $this->db_session->userdata('id');        
-        $this->badge_model->check_verifier($user_id, $badge_id);
+        $user_id  = $this->db_session->userdata('id'); 
+        $badge = $this->badge_model->get_badge($badge_id);
+        if ($badge_type == 'verifier') {
+            $this->badge_model->check_verifier($user_id, $badge_id);
+        }
         
         if ($this->input->post('submit')) { // Process badge application
             $application_id = $this->input->post('application_id');
             $decision = $this->input->post('decision');
             $feedback = $this->input->post('feedback');
-            $this->badge_model->add_decision($application_id, $user_id, $decision, $feedback); 
+            $application = $this->badge_model->get_application($application_id);
+            if ($user_id != $application->user_id) {            
+                $this->badge_model->add_decision($application_id, $user_id, $decision, $feedback);
+            }            
         }    
         
-        $data['badge'] = $this->badge_model->get_badge($badge_id);
+        $data['title'] = t("Applications for badge");
+        $data['user_id'] = $user_id;
+        $data['badge'] = $badge;
         $data['applications'] = $this->badge_model->get_applications($badge_id);
         $this->layout->view('badge/applications', $data);
     }

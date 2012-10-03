@@ -29,7 +29,7 @@
                 </tbody>
             </table>
             
-            <p><?= anchor('badge/badges_with_applications_list', t("Badges with applications to verify")) ?>
+            <p><?= anchor('badge/pending_applications', t("Pending badge applications")) ?>
         </div>
     </div>
 </div> 

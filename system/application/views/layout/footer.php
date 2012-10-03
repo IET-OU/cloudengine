@@ -1,4 +1,5 @@
-				    <div id="site-footer">
+				    </div>
+                    <div id="site-footer">
 				        <div class="grid">
 				        <p class="left">
 				        <?= anchor('about/about', t("About")) ?> | 

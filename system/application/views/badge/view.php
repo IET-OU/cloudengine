@@ -6,6 +6,19 @@
         <h1><?= t('Badge: ') ?><?=$badge->name ?></h1>
         <?php $this->load->view('badge/options_block'); ?>
         <p><?= $badge->description ?></p>
+        <?php if ($badge->verifiers): ?>
+            <p>
+            <strong><?= t("Verifiers:") ?></strong>
+            <?php foreach($badge->verifiers as $verifier): ?>
+            <?= anchor('user/view/'.$verifier->user_id, $verifier->fullname) ?>
+            <?php endforeach;?>
+            </p>
+        <?php elseif ($badge->type == 'crowdsource'): ?>
+           <p><?= t("This badge will be awarded when !num_approves users have 
+                  approved the badge application", 
+                  array('!num_approves' => $badge->num_approves)) ?></p>           
+
+        <?php endif; ?>
     </div>
 
     <div class="c2of2">
@@ -29,13 +42,7 @@
         <?=$badge->criteria?>
         
         <?php if ($can_apply): ?>
-        <h2><?= t("Apply for this badge") ?></h2>
-            <?=form_open($this->uri->uri_string(), array('id' => 'badge-apply-form'))?>
-        <label for="evidence"><?= t("Evidence - please select cloud which provides evidence") ?>
-        <?= form_dropdown('cloud_id', $options) ?>
-        <input type="submit" name="submit" id="submit" 
-        class="submit" value="<?= t("Apply for badge")?>" />
-        <?=form_close()?>
+        <?= anchor('badge/apply/'.$badge->badge_id, t("Apply for badge")) ?>
 
         <?php endif; ?>
     </div>    
