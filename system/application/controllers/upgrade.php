@@ -766,6 +766,7 @@ class Upgrade extends MY_Controller {
                         'constraint'      => 128,
                         'null'            => FALSE,
                     ),
+                    
                     'criteria' => array(
                         'type'            => 'TEXT',
                         'null'            => FALSE,
@@ -793,7 +794,11 @@ class Upgrade extends MY_Controller {
                     'num_approves' => array(
                         'type'            => 'INT',
                         'constraint'      => 11,
-                    ),                 
+                    ),    
+                    'issuer_name' => array(
+                        'type'            => 'VARCHAR',
+                        'constraint'      => 128,
+                    ),                    
                 );
         
                 $this->dbforge->add_field($fields);
@@ -837,7 +842,11 @@ class Upgrade extends MY_Controller {
                         'type'            => 'INT',
                         'constraint'      => 11,
                         'null'            => FALSE,
-                    ),   
+                    ), 
+                    'issued' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                    ),                     
                     'status' => array(
                         'type'            => 'ENUM',
                         'constraint'      => "'pending', 'approved', 'rejected'",

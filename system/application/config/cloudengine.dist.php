@@ -26,7 +26,6 @@ $config['data_dir'] = '';
 $config['upload_path']             = $config['data_dir'].'uploads/';
 $config['upload_path_user']        = $config['upload_path'].'user/'; 
 $config['upload_path_cloudscape']  = $config['upload_path'].'cloudscape/'; 
-$config['upload_path_badge']       = $config['upload_path'].'badge/'; 
 $config['search_index_path']       = $config['data_dir'].'search/index';
 
 
@@ -47,6 +46,7 @@ $config['hg_path'] = '';
 // Set a proxy here if you want to use features that use external services
 // and your network requires one.
 $config['proxy'] = '';
+$config['proxy_port'] = '';
 
 // A list of devices for which the rich editor (Tiny MCE) should be disabled
 // (pipe | separated).  EXPERIMENTAL.
@@ -195,3 +195,11 @@ $config['FAL_captcha_image_path'] = $config['data_dir'].'tmp/';
 
 //name of the generated image (leave it blank!!!!!!)
 $config['FAL_captcha_image'] = '';
+
+// Feature flag and config for badges
+$config['x_badge']          = TRUE;
+$config['upload_path_badge']       = $config['upload_path'].'badge/'; 
+$config['badge_salt']          = 'cloudengine'; 
+$config['badge_issuer_name']  = 'Cloudworks';
+$config['badge_issuer_org'] = '';
+$config['badge_issuer_contact'] = '';

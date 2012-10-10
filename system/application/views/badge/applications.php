@@ -13,6 +13,7 @@
 <li><strong><?= t("Evidence:") ?></strong> <?= anchor($application->evidence_url, $application->evidence_url) ?>
 </ul>
 </li>
+  <?='<b>'.validation_errors().'</b>'; ?>
 <?=form_open($this->uri->uri_string(), array('id' => 'application-approve-form-'.$application->application_id))?>
 <input type="hidden" id="application_id" name="application_id" value="<?= $application->application_id ?>" />
 <fieldset>

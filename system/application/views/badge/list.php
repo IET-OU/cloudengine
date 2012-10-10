@@ -7,8 +7,11 @@
 <div id="region1">
     <div class="grid g1">
         <div class="c1of1">
-<p><?= anchor("badge/add", t("Create a badge")) ?></p>
-            <table>
+<p><?= anchor("badge/add", t("Create a badge")) ?> <?= anchor('badge/pending_applications', t("Pending badge applications")) ?>
+ <?= anchor('badge/user_applications', t("Your badge applications")) ?>
+</p>
+<?php if (count($badges ) > 0): ?>          
+          <table>
                 <caption class="hidden">List of Badges</caption>
                 <thead>            
                     <tr>
@@ -28,8 +31,9 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            
-            <p><?= anchor('badge/pending_applications', t("Pending badge applications")) ?>
+<?php else: ?>
+<?= t("There are no badges yet.") ?>
+<?php endif; ?>
         </div>
     </div>
 </div> 

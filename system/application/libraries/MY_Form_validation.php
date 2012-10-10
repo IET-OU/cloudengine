@@ -7,11 +7,20 @@
  * @package I8ln
  */
 
-class My_Form_validation extends CI_Form_validation {
+class MY_Form_validation extends CI_Form_validation {
 
   public function __construct($rules = array()) {
 	parent::__construct($rules);
   }
+  
+    function valid_url($url) {
+        if(preg_match("/^http(|s):\/{2}(.*)\.([a-z]){2,}(|\/)(.*)$/i", $url)) {
+            if(filter_var($url, FILTER_VALIDATE_URL)) return TRUE;
+        }
+        $this->CI->form_validation->set_message('valid_url', 'The %s must be a valid URL.');
+        return FALSE;
+    }
+  
 
 	/**
 	 * Set validation Rules - calls parent::set_message() after parent::set_rules().
@@ -97,6 +106,8 @@ t("The URL you have specified uses a URL shortener. Please give the original URL
     }
     return $return;
   }
+  
+
 
 }
 

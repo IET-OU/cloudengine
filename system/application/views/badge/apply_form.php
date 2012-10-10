@@ -15,6 +15,7 @@
         
 
         <h2><?= t("Apply for this badge") ?></h2>
+            <?='<b>'.validation_errors().'</b>'; ?>
             <?=form_open($this->uri->uri_string(), array('id' => 'badge-apply-form'))?>
         <label for="evidence_url"><?= t("Evidence - please provide a URL with evidence that you
         meet the criteria for this badge.") ?>

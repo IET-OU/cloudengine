@@ -58,6 +58,12 @@ class Badge_model extends Model {
         return $badge_id;
     } 
     
+    function update_badge($badge) {
+        $badge_id       = $badge->badge_id;
+        $badge->modified = time();
+        $this->db->update('badge', $badge, array('badge_id'=>$badge_id)); 
+    }    
+    
     /**
      * Delete an existing badge
      *
@@ -65,7 +71,15 @@ class Badge_model extends Model {
      */
     function delete_badge($badge_id) {
         $this->db->delete('badge', array('badge_id' => $badge_id));   
+        $this->db->delete('badge_application', array('badge_id' => $badge_id));  
+        $this->db->delete('badge_verifier', array('badge_id' => $badge_id));  
+// Need to delete decisions too        
     } 
+    
+    function delete_application($application_id) {
+        $this->db->delete('badge_application', array('application_id' => $application_id)); 
+        // Need to delete decisions too 
+    }
     
     /**
      * Get the details of a badge for a given badge id 
@@ -142,7 +156,25 @@ class Badge_model extends Model {
         if (!$this->has_edit_permission($user_id, $badge_id)) {
             show_error(t("You do not have edit permission for that badge."));   
         } 
+    }   
+
+    function has_application_edit_permission($user_id, $application_id) {
+        $permission = FALSE;
+        if ($user_id) {
+            $owner_user_id = $this->get_application_owner($badge_id);
+            if ($user_id == $owner_user_id || $this->auth_lib->is_admin()) {
+                $permission = TRUE;
+            }
+        }
+        
+        return $permission;
     }    
+    
+    function check_application_edit_permission($user_id, $application__id) {
+        if (!$this->has_application_edit_permission($user_id, $application__id)) {
+            show_error(t("You do not have edit permission for that application_."));   
+        } 
+    }      
     
     function check_verifier($user_id, $badge_id) {
         if (!$this->is_verifier($badge_id, $user_id)) {
@@ -180,7 +212,18 @@ class Badge_model extends Model {
         }
 
         return $owner_user_id;
-    }    
+    }   
+
+     function get_application_owner($application_id) {
+        $this->db->where('application_id', $application_id);
+        $query = $this->db->get('badge_application');
+        if ($query->num_rows() > 0) {
+            $application = $query->row();
+            $owner_user_id = $application->user_id;
+        }
+
+        return $owner_user_id;
+    }      
     
     function insert_application($badge_id, $user_id, $evidence_url) {
         $valid = TRUE;
@@ -278,12 +321,25 @@ class Badge_model extends Model {
     }
     
     function get_application($application_id) {
-        $this->db->where('application_id', $application_id);
-        $query = $this->db->get('badge_application');
+        $query = $this->db->query("SELECT 
+        ba.application_id AS application_id,
+        ba.evidence_URL AS evidence_URL,
+        ba.badge_id AS badge_id,
+        ba.status AS status,
+        b.name AS name,
+        b.description AS description,
+        b.criteria AS criteria,
+        ba.user_id AS user_id, 
+        u.email AS email 
+        FROM badge_application ba
+        INNER JOIN badge b ON b.badge_id = ba.badge_id
+        INNER JOIN user u ON ba.user_id = u.id
+        WHERE application_id = $application_id");
         return $query->row();
     }
     
     function add_decision($application_id, $user_id, $decision_made, $feedback) {
+        $badge_awarded = FALSE;
         $decision->application_id = $application_id;
         $decision->user_id = $user_id;
         $decision->decision = $decision_made;
@@ -300,16 +356,24 @@ class Badge_model extends Model {
 
         if ($badge->type == 'verifier') {
             $this->update_application_status($application_id, $decision_made);
+            $this->db->where('application_id', $application_id);
+            $this->db->update('badge_application', array('issued'=>time()));  
+            if ($decision_made == 'approved') {
+                $badge_awarded = TRUE;
+            }
         }
         
         if ($badge->type == 'crowdsource') {
             $num_approves = $this->get_num_approves($application_id);
             if ($num_approves >= $badge_num_approves) {
                 $this->update_application_status($application_id, 'approved');
+                $this->db->where('application_id', $application_id);
+                $this->db->update('badge_application', array('issued'=>time()));
+                $badge_awarded = TRUE;
             }
         }
 
-        // Get the badge id and type
+        return $badge_awarded;
     }
     
     function get_num_approves($application_id) {
@@ -351,5 +415,22 @@ class Badge_model extends Model {
         }
         
         return $can_apply;
+    }
+    
+    function get_applications_for_user($user_id, $status) {
+        // Check status is one of 'pending', 'approved', 'rejected'
+        $user_id = (int) $user_id;
+        $this->db->where('badge_application.user_id', $user_id);
+        $this->db->where('status', $status);
+        $this->db->join('badge', 'badge.badge_id = badge_application.badge_id');
+        $query = $this->db->get('badge_application');
+        return $query->result();
+    }
+    
+    function get_decisions($application_id) {
+        $this->db->where('application_id', $application_id);
+        $this->db->join('user_profile' , 'badge_decision.user_id = user_profile.id');
+        $query = $this->db->get('badge_decision');
+        return $query->result();
     }
 }

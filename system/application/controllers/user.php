@@ -358,7 +358,9 @@ class User extends MY_Controller {
         $this->load->model('events_model');
         $this->load->model('cloudscape_model');
         $this->load->model('tag_model');
-        $this->load->model('badge_model');
+        if ($this->config->item('x_badge')) {
+            $this->load->model('badge_model');
+        }
         
         $current_user_id = $this->db_session->userdata('id');    
         
@@ -421,8 +423,11 @@ class User extends MY_Controller {
         $data['past_events']      = $this->events_model->get_past_events_attended($user_id);
         $data['current_events']   = $this->events_model->get_current_events_attended($user_id);
         $data['tags']             = $this->tag_model->get_tags('user', $user_id);
-        $data['badges']           = $this->badge_model->get_badges_for_user($user_id);
-        
+        if ($this->config->item('x_badge')) {
+            $data['badges']           = $this->badge_model->get_badges_for_user($user_id);
+        } else {
+            $data['badges'] = '';
+        }
         // Determine if the user is the current user 
         $data['current_user'] = FALSE;
         if ($user_id == $current_user_id) {     
