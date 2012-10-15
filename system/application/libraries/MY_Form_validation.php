@@ -14,11 +14,13 @@ class MY_Form_validation extends CI_Form_validation {
   }
   
     function valid_url($url) {
+        $url_valid = FALSE;
         if(preg_match("/^http(|s):\/{2}(.*)\.([a-z]){2,}(|\/)(.*)$/i", $url)) {
-            if(filter_var($url, FILTER_VALIDATE_URL)) return TRUE;
+            $url_valid = TRUE;
+        } else {
+            $this->CI->form_validation->set_message('valid_url', 'The %s must be a valid URL.');
         }
-        $this->CI->form_validation->set_message('valid_url', 'The %s must be a valid URL.');
-        return FALSE;
+        return $url_valid;
     }
   
 
