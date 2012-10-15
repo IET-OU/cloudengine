@@ -426,14 +426,6 @@ class Badge extends MY_Controller {
         redirect('badge/manage_verifiers/'.$badge_id);         
     }   
     
-    /** 
-     * Display a list of badges with pending applications
-     */
-    function pending_applications() {
-
-    }
-    
-
     /**
      * Display pending applications for a specified badge
      * @param integer $badge_id The ID of the badge
