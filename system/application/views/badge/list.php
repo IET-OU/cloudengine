@@ -7,7 +7,7 @@
 <div id="region1">
     <div class="grid g1">
         <div class="c1of1">
-<p><?= anchor("badge/add", t("Create a badge")) ?> <?= anchor('badge/pending_applications', t("Pending badge applications")) ?>
+<p><?= anchor("badge/add", t("Create a badge")) ?> <?= anchor('badge/applications', t("Pending badge applications")) ?>
  <?= anchor('badge/user_applications', t("Your badge applications")) ?>
 </p>
 <?php if (count($badges ) > 0): ?>          
@@ -15,6 +15,7 @@
                 <caption class="hidden">List of Badges</caption>
                 <thead>            
                     <tr>
+                        <th>&nbsp;</th>
                         <th scope="col"><?=t("Name")?></th>
                         <th scope="col"><?=t("Description")?></th>
                     </tr>     
@@ -23,6 +24,10 @@
                     <?php $row = 1; ?>
                     <?php  foreach ($badges as $badge):?>
                         <tr <?php if ($row % 2 == 0): ?>class="even"<?php endif; ?>>
+                            <td>
+                                  <a class="badge" href="<?= base_url().'badge/view/'.$badge->badge_id ?>"><img src="<?= base_url() ?>image/badge/<?= $badge->badge_id ?>" width="45px" height="45px" alt="" /></a> 
+     
+                            </td>
                             <td><?=anchor("badge/view/$badge->badge_id", $badge->name) ?></td>
                             <td><?= $badge->description ?></td>
                             

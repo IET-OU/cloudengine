@@ -115,7 +115,7 @@ class Image extends MY_Controller {
         error_reporting(E_ALL);
         $this->load->model('badge_model');
         
-        $image_name = $this->badge_model->get_picture($badge_id);
+        $image_name = $this->badge_model->get_image($badge_id);
         $path = $this->config->item('upload_path_badge').$image_name;
 
         if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches) 
