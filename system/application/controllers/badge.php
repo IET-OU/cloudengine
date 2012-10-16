@@ -121,11 +121,11 @@ class Badge extends MY_Controller {
         $this->form_validation->set_rules('criteria', t("Criteria"), 
                                           'required'); 
         $this->form_validation->set_rules('type', 
-                              t("Type of Badge approval process"), 'required');
+                              t("Type of Badge approval process"), 'required');      
         if ($this->input->post('type') == 'crowdsource') {
             $this->form_validation->set_rules('num_approves', 
                   t("number of users who need to approve a badge application"),
-                  'is_natural_no_zero');
+                  'required|is_natural_no_zero');
         }
                               
         $upload_path = $this->config->item('upload_path_badge');
