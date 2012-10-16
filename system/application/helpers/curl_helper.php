@@ -7,15 +7,16 @@
  */
  
  function send_request($url) {
+    $CI =& get_instance();
     $ch = curl_init();
     curl_setopt($ch, CURL_OPT_URL, $url);
-    if ($this->config->item('proxy')) {
-    curl_set_op($ch, CURLOPT_PROXY, $this->config->item('proxy'));
+    if ($CI->config->item('proxy')) {
+    curl_set_op($ch, CURLOPT_PROXY, $CI->config->item('proxy'));
     } 
 
-    if ($this->config->item('proxy_port')) {
+    if ($CI->config->item('proxy_port')) {
     curl_set_op($ch, CURLOPT_PROXYPORT, 
-                    $this->config->item('proxy_port'));
+                    $CI->config->item('proxy_port'));
     }
     curl_exec($ch);
     curl_close($ch);
