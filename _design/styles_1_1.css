@@ -111,6 +111,16 @@ body {
     margin-bottom:1.5em;
 }
 
+.grid-badge {
+    width:100%;
+    height:auto;
+    margin-bottom:1.5em;
+}
+
+.grid-badge ul.options {
+    float: none;
+}
+
 .c1of1 {
     width:100%;
     height:auto;

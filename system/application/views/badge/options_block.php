@@ -1,4 +1,5 @@
-<div class="grid">
+
+<div class="grid-badge" >
     <ul class="options">
     <?php if ($edit_permission): ?>
           <li class="button"><?= anchor('badge/edit/'.$badge->badge_id, t("Edit")) ?></li>
