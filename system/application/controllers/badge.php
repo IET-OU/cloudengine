@@ -443,7 +443,7 @@ class Badge extends MY_Controller {
         // If no badge ID specified, produce list for all badges
         if (!$badge_id) {         
             $data['badges']              = $this->badge_model->get_badges_with_verification_permission($user_id);       
-            $data['crowdsourced_badges'] = $this->badge_model->get_crowdsourced_badges();
+            $data['crowdsourced_badges'] = $this->badge_model->get_crowdsourced_badges($user_id);
             $data['title']               = t('Pending badge applications');
             $this->layout->view('badge/applications_all_pending', $data);  
             return;        

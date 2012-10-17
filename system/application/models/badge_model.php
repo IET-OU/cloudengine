@@ -281,6 +281,7 @@ class Badge_model extends Model {
                                    WHERE bv.user_id = $user_id
                                    AND b.type = 'verifier'
                                    AND ba.status = 'pending'
+                                   AND ba.user_id <> $user_id
                                    GROUP BY badge_id");
         return $query->result();    
     }
@@ -288,7 +289,7 @@ class Badge_model extends Model {
     /** 
      * Get all the crowdsourced badges and number of applications for each
      */
-    function get_crowdsourced_badges() {
+    function get_crowdsourced_badges($user_id) {
         $query = $this->db->query("SELECT b.name AS name, 
                                    b.badge_id AS badge_id,
                                    COUNT(ba.application_id) AS total_applications
@@ -297,6 +298,11 @@ class Badge_model extends Model {
                                    ON ba.badge_id = b.badge_id
                                    WHERE b.type = 'crowdsource'
                                    AND ba.status = 'pending'
+                                   AND ba.user_id <> $user_id
+                                   AND NOT EXISTS
+                                   (SELECT * FROM badge_decision bd 
+                                   WHERE bd.application_id = ba.application_id
+                                   AND bd.user_id = $user_id)
                                    GROUP BY badge_id");   
          return $query->result();                           
     }   
