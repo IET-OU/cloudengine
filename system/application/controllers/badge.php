@@ -51,8 +51,14 @@ class Badge extends MY_Controller {
      */    
     function view($badge_id = 0) {
         $user_id  = $this->db_session->userdata('id'); 
-        $data['badge'] = $this->badge_model->get_badge($badge_id);
-        if ($data['badge']->name) {
+        $badgeid_valid = FALSE;
+        if (is_numeric($badge_id)) {
+            $data['badge'] = $this->badge_model->get_badge($badge_id);
+            if ($data['badge']->name) {
+                $badgeid_valid = TRUE;
+            }            
+        }
+        if ($badgeid_valid) {
             $data['edit_permission']  = $this->badge_model->has_edit_permission($user_id, 
                                                                     $badge_id);
             $data['admin']            = $this->auth_lib->is_admin();
@@ -62,7 +68,7 @@ class Badge extends MY_Controller {
             $this->layout->view('badge/view', $data); 
         } else {
             // If invalid badge id, display error page
-            show_error(t("An error occurred."));
+            show_404();
         }
     }
     
@@ -501,18 +507,26 @@ class Badge extends MY_Controller {
      * awarded badge
      */
     function assertion($application_id) {
-        $application = $this->badge_model->get_application($application_id);
+        $applicationid_valid = FALSE;
+        if (is_numeric($application_id)) {
+            $application = $this->badge_model->get_application($application_id);
+            if ($application) {
+                $applicationid_valid = TRUE;
+            }            
+        }    
         
-        $data['application']          = $application;
-        $data['badge_issuer_origin']  = base_url();
-        $data['salt']                 = $this->config->item('badge_salt');
-        $data['recipient']            = 'sha256$'.hash('sha256', 
-                                        $application->email.$data['salt']);
-        $data['badge_issuer_org']     = $this->config->item('badge_issuer_org');
-        $data['badge_issuer_contact'] = $this->config->item('badge_issuer_contact');
-        if ($application->status == 'approved') {
+        if ($applicationid_valid && $application->status == 'approved') {
+            $data['application']          = $application;
+            $data['badge_issuer_origin']  = base_url();
+            $data['salt']                 = $this->config->item('badge_salt');
+            $data['recipient']            = 'sha256$'.hash('sha256', 
+                                            $application->email.$data['salt']);
+            $data['badge_issuer_org']     = $this->config->item('badge_issuer_org');
+            $data['badge_issuer_contact'] = $this->config->item('badge_issuer_contact');
             header('Content-Type: application/json');
             $this->load->view('badge/assertion', $data);
+        } else {
+            show_404();
         }
     }    
     
