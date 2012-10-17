@@ -79,10 +79,10 @@ class Badge_model extends Model {
         
         $this->db->delete('badge', array('badge_id' => $badge_id));   
         
-        $this->db->query('DELETE bd.* FROM badge_decision AS bd 
+        $this->db->query("DELETE bd.* FROM badge_decision AS bd 
                           LEFT JOIN badge_application AS ba
                           ON ba.application_id = bd.application_id
-                          WHERE ba.badge_id = $badge_id');                          
+                          WHERE ba.badge_id = $badge_id");                          
         
         $this->db->delete('badge_application', array('badge_id' => $badge_id));  
         $this->db->delete('badge_verifier', array('badge_id' => $badge_id));    
