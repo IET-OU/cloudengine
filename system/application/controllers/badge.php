@@ -228,7 +228,7 @@ class Badge extends MY_Controller {
             $updated_badge->name        = $this->input->post('name');
             $updated_badge->description = $this->input->post('description');
             $updated_badge->criteria    = $this->input->post('criteria');
-            $badge->issuer_name         = $this->input->post('issuer_name');
+            $updated_badge->issuer_name = $this->input->post('issuer_name');
 
             $data['badge'] = $updated_badge;
 
