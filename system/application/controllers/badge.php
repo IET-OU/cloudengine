@@ -517,18 +517,37 @@ class Badge extends MY_Controller {
         }    
         
         if ($applicationid_valid && $application->status == 'approved') {
-            $data['application']          = $application;
-            $data['badge_issuer_origin']  = base_url();
-            $data['salt']                 = $this->config->item('badge_salt');
-            $data['recipient']            = 'sha256$'.hash('sha256', 
-                                            $application->email.$data['salt']);
-            $data['badge_issuer_org']     = $this->config->item('badge_issuer_org');
-            $data['badge_issuer_contact'] = $this->config->item('badge_issuer_contact');
-            $data['issuer_name'] = $application->issuer_name ? 
-                                              $application->issuer_name : 
-                                              $this->config->item('site_name');
+
+            $salt  = $this->config->item('badge_salt');
+
+            $assertion = array(
+                'recipient'   => 'sha256$'.hash('sha256', 
+                                              $application->email.$salt),
+                'salt'        => $salt,
+                'evidence'    => $application->evidence_URL,
+                'issued_on'   => $application->issued,
+                'badge'       => array(
+                    'version'     => "0.5.0",
+                    'name'        => $application->name,
+                    'image'       => base_url().'image/badge/'.$application->badge_id,
+                    'description' => $application->description,
+                    'criteria'    => base_url().'badge/view/'.$application->badge_id,
+                    'issuer'      => array(
+                        'origin' => base_url(),
+                        'name'   => $application->issuer_name ? 
+                                    $application->issuer_name : 
+                                    $this->config->item('site_name'),
+                        'org' => $this->config->item('badge_issuer_org'),
+                        'contact' => $this->config->item('badge_issuer_contact')                       
+                    )
+                )
+            );
+
             header('Content-Type: application/json; charset=utf8');
-            $this->load->view('badge/assertion', $data);
+            //$this->load->view('badge/assertion', $data);
+            
+            $json = json_encode($assertion);
+            echo $json;
         } else {
             show_404();
         }

@@ -352,6 +352,7 @@ class Badge_model extends Model {
                                    ba.badge_id AS badge_id,
                                    ba.status AS status,
                                    b.name AS name,
+                                   ba.issued AS issued,
                                    b.description AS description,
                                    b.criteria AS criteria,
                                    ba.user_id AS user_id, 
