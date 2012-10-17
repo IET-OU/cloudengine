@@ -7,8 +7,8 @@
 <div id="region1">
     <div class="grid g1">
         <div class="c1of1">
-<p><?= anchor("badge/add", t("Create a badge")) ?> <?= anchor('badge/applications', t("Pending badge applications")) ?>
- <?= anchor('badge/user_applications', t("Your badge applications")) ?>
+<p><?= anchor("badge/add", t("Create a badge"), array('class' =>'buttonlink')) ?> <?= anchor('badge/applications', t("Pending badge applications"), array('class' =>'buttonlink')) ?>
+ <?= anchor('badge/user_applications', t("Your badge applications"), array('class' =>'buttonlink')) ?>
 </p>
 <?php if (count($badges ) > 0): ?>          
           <table>

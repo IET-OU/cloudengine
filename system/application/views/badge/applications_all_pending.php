@@ -56,6 +56,8 @@
             <?php else: ?>
             <p><?= t("There are no pending applications") ?></p>
             <?php endif; ?>
+            
+            <p><a href="<?= base_url() ?>badge/badge_list" class="buttonlink"><?=t("Back to all badges")?></a></p>
         </div>
     </div>
 </div> 

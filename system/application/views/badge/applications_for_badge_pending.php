@@ -35,5 +35,5 @@ $application->fullname) ?></li>
 <?php else: ?>
 <h2><?= t("Applications") ?></h2>
 <p><?= t("No more pending applications for this badge.") ?></p>
-<p><?= anchor('badge/applications', t("Back to all pending applications.")) ?>
+<p><?= anchor('badge/applications', t("Back to all pending applications."), array('class' =>'buttonlink')) ?>
 <?php endif;?>
