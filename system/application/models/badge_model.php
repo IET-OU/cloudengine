@@ -192,7 +192,7 @@ class Badge_model extends Model {
      */
     function check_edit_permission($user_id, $badge_id) {
         if (!$this->has_edit_permission($user_id, $badge_id)) {
-            show_error(t("You do not have edit permission for that badge."));   
+            show_error(t("You do not have permissiont to edit this badge."));   
         } 
     }   
 
@@ -303,14 +303,24 @@ class Badge_model extends Model {
 
     /**
      * Get all the applications for a badge
+     * This needs to not include any applications by the current user or which
+     * have already had decisions made by the current user
      * @param integer $badge_id The ID of the badge
      */     
-    function get_applications($badge_id) {
-        $this->db->where('badge_id', $badge_id);
-        $this->db->where('status', 'pending');
-        $this->db->join('user_profile', 
-                        'user_profile.id = badge_application.user_id');
-        $query = $this->db->get('badge_application');
+    function get_applications($badge_id, $current_user_id) {
+        $current_user_id = (int) $current_user_id;
+        $query = $this->db->query("SELECT * 
+                                   FROM badge_application ba
+                                   INNER JOIN user_profile up
+                                   ON up.id = ba.user_id 
+                                   WHERE ba.badge_id = $badge_id
+                                   AND ba.status = 'pending'
+                                   AND ba.user_id <> $current_user_id
+                                   AND NOT EXISTS
+                                   (SELECT * FROM badge_decision bd 
+                                   WHERE bd.application_id = ba.application_id
+                                   AND bd.user_id = $current_user_id)
+                                   ");
         return $query->result();    
     }
     
@@ -345,10 +355,12 @@ class Badge_model extends Model {
                                    b.description AS description,
                                    b.criteria AS criteria,
                                    ba.user_id AS user_id, 
-                                   u.email AS email 
+                                   u.email AS email,
+                                   up.fullname AS fullname                                   
                                    FROM badge_application ba
                                    INNER JOIN badge b ON b.badge_id = ba.badge_id
                                    INNER JOIN user u ON ba.user_id = u.id
+                                   INNER JOIN user_profile up ON ba.user_id = up.id
                                    WHERE application_id = $application_id");
         return $query->row();
     }    
@@ -444,7 +456,7 @@ class Badge_model extends Model {
     function check_application_edit_permission($user_id, $application__id) {
         if (!$this->has_application_edit_permission($user_id, 
                                                     $application__id)) {
-            show_error(t("You do not have edit permission for that application_."));   
+            show_error(t("You do not have permission to view this application."));   
         } 
     }      
     
@@ -523,7 +535,7 @@ class Badge_model extends Model {
         
         if ($badge->type == 'crowdsource') {
             $num_approves = $this->get_num_approves($application_id);
-            if ($num_approves >= $badge_num_approves) {
+            if ($num_approves >= $badge->num_approves) {
                 $this->update_application_status($application_id, 'approved');
                 $this->db->where('application_id', $application_id);
                 $this->db->update('badge_application', 
@@ -533,6 +545,23 @@ class Badge_model extends Model {
         }
 
         return $badge_awarded;
+    }
+    
+    /** 
+     * Determine if a user has made a decision on an application
+     * @param integer $application_id The ID of the application 
+     * @param integer $user_id The ID of the user
+     */
+    function has_made_decision($application_id, $user_id) {
+        $has_made_decision = FALSE;
+        $this->db->where('user_id', $user_id);
+        $this->db->where('application_id', $application_id);
+        $query = $this->db->get('badge_decision');
+        if ($query->num_rows() > 0) {
+            $has_made_decision  = TRUE;
+        }
+        
+        return $has_made_decision ;
     }
     
     /** 

@@ -462,7 +462,8 @@ class Badge extends MY_Controller {
                 $decision = $this->input->post('decision');
                 $feedback = $this->input->post('feedback');
                 $application = $this->badge_model->get_application($application_id);
-                if ($user_id != $application->user_id) { 
+                if ($user_id != $application->user_id 
+                    && !$this->badge_model->has_made_decision($application_id, $user_id)) { 
                     $badge_awarded = $this->badge_model->add_decision($application_id, 
                                                    $user_id, $decision, $feedback);
                     if ($badge_awarded) {
@@ -479,7 +480,7 @@ class Badge extends MY_Controller {
             $data['title']        = t("Applications for badge");
             $data['user_id']      = $user_id;
             $data['badge']        = $badge;
-            $data['applications'] = $this->badge_model->get_applications($badge_id);
+            $data['applications'] = $this->badge_model->get_applications($badge_id, $user_id);
             $this->layout->view('badge/applications_for_badge_pending', $data);
         }
     }

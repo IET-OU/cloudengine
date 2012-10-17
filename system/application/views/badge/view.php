@@ -12,7 +12,7 @@
             <?php foreach($badge->verifiers as $verifier): ?>
             <?= anchor('user/view/'.$verifier->user_id, $verifier->fullname) ?>
             <?php endforeach;?>
-            </p>
+            </p> 
         <?php elseif ($badge->type == 'crowdsource'): ?>
            <p><?= t("This badge will be awarded when !num_approves users have 
                   approved the badge application", 
@@ -42,7 +42,7 @@
         <?=$badge->criteria?>
         
         <?php if ($can_apply): ?>
-        <?= anchor('badge/apply/'.$badge->badge_id, t("Apply for badge")) ?>
+        <?= anchor('badge/apply/'.$badge->badge_id, t("Apply for badge"), array('class'=>'buttonlink')) ?>
 
         <?php endif; ?>
     </div>    
