@@ -523,7 +523,10 @@ class Badge extends MY_Controller {
                                             $application->email.$data['salt']);
             $data['badge_issuer_org']     = $this->config->item('badge_issuer_org');
             $data['badge_issuer_contact'] = $this->config->item('badge_issuer_contact');
-            header('Content-Type: application/json');
+            $data['issuer_name'] = $application->issuer_name ? 
+                                              $application->issuer_name : 
+                                              $this->config->item('site_name');
+            header('Content-Type: application/json; charset=utf8');
             $this->load->view('badge/assertion', $data);
         } else {
             show_404();

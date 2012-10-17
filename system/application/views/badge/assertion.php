@@ -10,7 +10,7 @@
     "criteria": "http://<?= base_url() ?>badge/view/<?= $application->badge_id ?>",
     "issuer": {
       "origin": "<?= $badge_issuer_origin ?>",
-      "name": "<?= $badge->issuer_name ?>",
+      "name": "<?= $issuer_name ?>"
    }
   }
 }
