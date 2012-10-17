@@ -2417,5 +2417,8 @@ label.radio {
     display:inline;
 }
 
+img.badge {
+    padding: 5px;
+}
     
 
