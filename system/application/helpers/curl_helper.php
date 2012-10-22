@@ -11,11 +11,11 @@
     $ch = curl_init();
     curl_setopt($ch, CURL_OPT_URL, $url);
     if ($CI->config->item('proxy')) {
-    curl_set_op($ch, CURLOPT_PROXY, $CI->config->item('proxy'));
+    curl_setopt($ch, CURLOPT_PROXY, $CI->config->item('proxy'));
     } 
 
     if ($CI->config->item('proxy_port')) {
-    curl_set_op($ch, CURLOPT_PROXYPORT, 
+    curl_setopt($ch, CURLOPT_PROXYPORT, 
                     $CI->config->item('proxy_port'));
     }
     curl_exec($ch);
