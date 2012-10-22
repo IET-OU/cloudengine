@@ -12,6 +12,7 @@
 </p>
 <p><?= anchor('badge/application/'.$application->application_id, t("View application status and feedback")) ?>
 <p>
+<p><?= anchor('badge/issue/'.$application->application_id, t("Add to your Mozilla Backpack")); ?>
 <br />    
 <?php endforeach; ?>
 <?php else: ?>

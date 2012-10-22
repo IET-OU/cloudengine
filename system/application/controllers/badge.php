@@ -556,6 +556,7 @@ class Badge extends MY_Controller {
         
     function issue($application_id = 0) {
         $data['application_id'] = $application_id;
+        $data['title'] = t("Badge Issued");
         $this->layout->view('badge/issue', $data);
     }
     
