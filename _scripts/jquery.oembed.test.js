@@ -1,4 +1,4 @@
-/*auto-generated: 2012-05-18T21:15:57+01:00 - TEST */
+/*auto-generated: 2012-10-22T09:41:19+01:00 */
 /*!
  * jquery oembed plugin
  *
@@ -341,18 +341,22 @@
 		new $.fn.oembed.OEmbedProvider('xtranormal', 'video', ["xtranormal\.com"]),
 		new $.fn.oembed.OEmbedProvider('timetoast', 'rich', ["timetoast\.com"]),
 		new $.fn.oembed.OEmbedProvider('github', 'rich', ["gist\.github\.com"]),
+		new $.fn.oembed.OEmbedProvider('speakerdeck', 'rich', ["speakerdeck\.com"], 'http://speakerdeck.com/oembed.json'),
 		new $.fn.oembed.OEmbedProvider('cacoo', 'rich', ["cacoo\.com"], 'http://cacoo.com/oembed.json'),
-		new $.fn.oembed.OEmbedProvider('olnet', 'rich', ["cohere\.open\.ac\.uk"], 'http://olnet.org/oembed'),
-		new $.fn.oembed.OEmbedProvider('olnet', 'rich', ["mathtran\.org"], 'http://olnet.org/oembed'),
+		new $.fn.oembed.OEmbedProvider('ispot', 'rich', ["ispot\.org\.uk"], 'http://www.ispot.org.uk/oembed'),
 		new $.fn.oembed.OEmbedProvider('oupodcast', 'video', ["podcast\.open\.ac\.uk"], 'http://iet-embed-acct.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('ispot', 'rich', ["ispot-approval\.open\.ac\.uk"], 'http://ispot-approval.open.ac.uk/oembed'),
-		//new $.fn.oembed.OEmbedProvider('ispot', 'rich', ["ispot\.org\.uk"], 'http://www.ispot.org.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('dev8d', 'rich', ["data\.dev8d\.org"], 'http://embed.open.ac.uk/dev8d/oembed/'),
 		new $.fn.oembed.OEmbedProvider('lams', 'rich', ["lamscommunity\.org"], 'http://embed.open.ac.uk/oembed'),
 		new $.fn.oembed.OEmbedProvider('youtube', 'video', ["youtube\.com"], 'http://embed.open.ac.uk/oembed'),
 		new $.fn.oembed.OEmbedProvider('youtube', 'video', ["youtu\.be"], 'http://embed.open.ac.uk/oembed'),
 		new $.fn.oembed.OEmbedProvider('prezi', 'rich', ["prezi\.com"], 'http://embed.open.ac.uk/oembed'),
 		new $.fn.oembed.OEmbedProvider('googledoc', 'rich', ["docs\.google\.com"], 'http://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('googlegroups', 'rich', ["groups\.google\.com"], 'http://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('sharepoint', 'rich', ["intranet7\.open\.ac\.uk"], 'http://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('mathtran', 'photo', ["mathtran\.org"], 'http://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('cohere', 'rich', ["cohere\.open\.ac\.uk"], 'http://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('trackoer', 'rich', ["openlearn\.open\.ac\.uk"], 'http://track.olnet.org/oembed'),
+		new $.fn.oembed.OEmbedProvider('trackoer', 'rich', ["labspace\.open\.ac\.uk"], 'http://track.olnet.org/oembed'),
+		new $.fn.oembed.OEmbedProvider('ispot', 'rich', ["ispot\.org\.uk"], 'http://www.ispot.org.uk/oembed'),
 
 		//new $.fn.oembed.OEmbedProvider("youtube", "video", ["youtube\\.com/watch.+v=[\\w-]+&?"]), // "http://www.youtube.com/oembed"	(no jsonp)
 //ou-specific ends.
