@@ -519,7 +519,11 @@ class Badge extends MY_Controller {
         if ($applicationid_valid && $application->status == 'approved') {
 
             $salt  = $this->config->item('badge_salt');
-
+            $issuer_name =  $this->config->item('site_name');
+            if (property_exists($application, 'issuer_name')) {
+                $issuer_name  = $application->issuer_name;
+            }
+            
             $assertion = array(
                 'recipient'   => 'sha256$'.hash('sha256', 
                                               $application->email.$salt),
@@ -527,16 +531,14 @@ class Badge extends MY_Controller {
                 'evidence'    => $application->evidence_URL,
                 'issued_on'   => $application->issued,
                 'badge'       => array(
-                    'version'     => "0.5.0",
+                   'version'     => "0.5.0",
                     'name'        => $application->name,
                     'image'       => base_url().'image/badge/'.$application->badge_id,
                     'description' => $application->description,
                     'criteria'    => base_url().'badge/view/'.$application->badge_id,
-                    'issuer'      => array(
+                   'issuer'      => array(
                         'origin' => base_url(),
-                        'name'   => $application->issuer_name ? 
-                                    $application->issuer_name : 
-                                    $this->config->item('site_name'),
+                        'name'   => $issuer_name, 
                         'org' => $this->config->item('badge_issuer_org'),
                         'contact' => $this->config->item('badge_issuer_contact')                       
                     )
@@ -544,7 +546,6 @@ class Badge extends MY_Controller {
             );
 
             header('Content-Type: application/json; charset=utf8');
-            //$this->load->view('badge/assertion', $data);
             
             $json = json_encode($assertion);
             echo $json;
@@ -552,11 +553,10 @@ class Badge extends MY_Controller {
             show_404();
         }
     } 
-
         
     function issue($application_id = 0) {
         $data['application_id'] = $application_id;
-        $this->load->view('badge/issue', $data);
+        $this->layout->view('badge/issue', $data);
     }
     
     /**
