@@ -551,7 +551,13 @@ class Badge extends MY_Controller {
         } else {
             show_404();
         }
-    }    
+    } 
+
+        
+    function issue($application_id = 0) {
+        $data['application_id'] = $application_id;
+        $this->load->view('badge/issue', $data);
+    }
     
     /**
      * Send an email to a user who has been awarded a badge

@@ -6,8 +6,8 @@
  * @package Badge
  */
 class Badge_model extends Model {
-
     function Badge_model() {
+
         error_reporting(E_ALL);
         parent::Model();
     }
