@@ -46,4 +46,24 @@
 <div id="region2">
     <?php $this->load->view('search/search_box'); ?>
     <?php $this->load->view('user/user_block'); ?>
+    <div class="box">
+    <h2><?= t("What is a badge?") ?></h2>
+    <p><?= t("A badge is a way of recognising skills and achievements. Any registered 
+    Cloudworks user can issue, earn and display a badge in their profile page.") ?> 
+    </p>
+<p>
+<?= t("The badges used in Cloudworks support [link-openbadges]Mozilla Open Badges[/link]
+and can be added to your [link-backpack]Mozilla Open Badge Backpack[/link].", 
+array('[link-openbadges]'=>t_link('http://openbadges.org/en-US/faq.html', FALSE), 
+'[link-backpack]'=>t_link('http://beta.openbadges.org', FALSE))) ?>
+</p>
+<h2><?= t("What do I have to do?") ?></h2>
+<p><?= t("Click on a badge title to find out what criteria has been set for any 
+one of the badges in the list.</p><p>Once you have decided that you want to work 
+towards a particular badge, you need to start work to meet these criteria - and 
+gathering together your evidence. Depending on the criteria set, your evidence 
+might consist of a reflective blog post, or a photo, a document, a diagram, a 
+screen shot, or an activity stream and you will need to be able to link to all 
+your evidence via one URL - so it will need to be held online somewhere.") ?></p>
+    </div>
 </div>

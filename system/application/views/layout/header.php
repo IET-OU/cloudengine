@@ -17,7 +17,7 @@
 <div id="site">
     <div id="site-body">
         <div id="page">
-        <div id="content"></div>
+        <div id="content">
         <?php if (!config_item('x_live')): ?>
             <p class="test_install warn"> <?= $this->config->item('test_install_message') ?></p>
         <?php endif; ?>

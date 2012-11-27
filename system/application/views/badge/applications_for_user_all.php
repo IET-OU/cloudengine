@@ -1,3 +1,4 @@
+<div id="region1">
 <h1><?= t("Your Badge Applications") ?></h1>
 <h2><?= t("Awarded badges") ?></h2>
 <?php if (count($approved_applications) >0 ): ?>
@@ -60,5 +61,35 @@
             
 <p><a href="<?= base_url() ?>badge/badge_list" class="buttonlink"><?=t("Back to all badges")?></a></p>
   
+</div>
+<div id="region2">
+<div class="box">
+<h2><?= t("What if my badge application is rejected?") ?></h2>
+<p>
+<?= t("If your badge application has been rejected, you should have received 
+feedback to let you know what you need to do to improve your application. You 
+can reapply as many times as you need to.") ?>
+</p>
+<h2>
+<?= t("What happens when I am awarded a badge?") ?>
+</h2>
+<p>
+<?= t("You can add any badge you have been awarded to your [link-backpack]Mozilla Open Badge Backpack[/link] 
+if you have one or want to set one up. You will need to use the same 
+ mail address when you set up your Backpack as you used to set up your Cloudworks profile.",
+ array('[link-backpack]'=>t_link("http://beta.openbadges.org", FALSE))) ?>
+ 
+</p>
+<h2><?= t("Displaying your badge") ?></h2>
+<p><?= t("Your badge will automatically be displayed on your Cloudworks profile 
+page. You can also add your badge to your [link-backpack]Mozilla Open Badge Backpack[/link]. 
+Mozilla Open Badges is quite a new concept but in the future there are likely to be far more places you 
+can display your badges",
+ array('[link-backpack]'=>t_link("http://beta.openbadges.org", FALSE))) ?>
+</p>
+</div>
+
+</div>
+
 
 

@@ -51,4 +51,21 @@
 <div id="region2">
     <?php $this->load->view('search/search_box'); ?>
     <?php $this->load->view('user/user_block'); ?>  
+<div class="box">
+<h2><?= t("Applying for a badge") ?></h2>
+<p><?= t("Once you have decided that you want to work towards a particular 
+badge, make a note of the criteria and begin work.") ?></p>
+<p>
+<?= t("This may mean engaging in a course or activity. The badge issuer may have 
+been quite specific about how you could provide evidence, but if they haven't, 
+you must decide how best to do it. Your evidence might consist of a reflective 
+blog post, or a photo, a document, a diagram, a screen shot, or an activity 
+stream and you will need to be able to link to all your evidence via one URL - 
+so it needs to be held online somewhere.") ?> </p>
+<p><?= t("If you have a number of different pieces of evidence that you want to 
+submit, the easiest way of doing this is to set up a Cloud. Use the text box to 
+describe your evidence and how it meets the criteria and then 'Add content', 
+'Add embedded content' or 'Add link' for as many pieces of evidence as you 
+need. Then copy and paste the URL for you evidence Cloud into this page.") ?></p>
+</div>
 </div>

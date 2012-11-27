@@ -65,4 +65,17 @@
 <div id="region2">
     <?php $this->load->view('search/search_box'); ?>
     <?php $this->load->view('user/user_block'); ?>
+    <div class="box">
+    <h2><?= t("The role of the verifier") ?></h2>
+    <p>
+    <?= t("The role of the verifier is a really important one. When you verify 
+    an application, make sure that you carefully check that the evidence 
+    provided by the applicant really does meet the badge criteria. If the 
+    evidence does not yet meet the criteria you must ensure that you give the 
+    applicant constructive feedback so that they are able to resubmit 
+    successfully should they want to. Even if the application is successful, 
+    it is good practice to give feedback.") ?>
+    </p>
+    
+    </div<
 </div>

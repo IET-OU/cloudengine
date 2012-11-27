@@ -61,6 +61,47 @@
         <?=form_close()?>
 </div>
 <div id="region2">
+<div class="box">
+<h2><?= t("First steps") ?></h2>
+<p><?= t("Begin by giving your badge a name and describing it. Then add the 
+name of the issuer (this might be your name, the name of your course or 
+institution but make sure you have permission to use the course or institution's 
+name on your badge). The default issuer is !site_name.",
+array('!site_name' => config_item('site_name'))) ?>
+</p>
+<h2><?= t("Choosing an image") ?></h2>
+<p><?= t("Badges need to be a particular size and format; these restrictions 
+are based on the Mozilla Open Badges requirements. You will also need to make sure that you have permission 
+to use the image. Once someone has been awarded a badge, the badge image it 
+will appear on their Cloudworks profile page, and may also be added to a 
+Mozilla Open Badge Backpack. Remember that badges should look worth having!") ?>
+</p>
+<h2><?= t("Setting badge criteria") ?></h2>
+<p>
+<?= t("Setting the right criteria for your badge is really important. All the 
+rules you might normally apply to setting clear, achievable and demonstrable 
+assessment criteria apply here too but with open-badges you also need to be 
+careful not to overburden the verifiers - remember there is a chance that 
+hundreds of people might apply for you badge! As you set the criteria, also 
+remember that applicants will need to be able to prove that they have achieved 
+the criteria by linking to one URL as 'evidence' (which of course might be a 
+Cloud or blog post linking to other URL evidence but essentially all evidence 
+will have to sit online). It is up to the applicant to decide how to 
+demonstrate they have met the criteria but it is helpful if you are able to 
+make suggestions about how they might do this.") ?>
+</p>
+<h2><?= t("Choosing a badge approval process") ?>
+</h2>
+<p><?= t("You can either choose a specified verifier or group of verifiers who 
+will check evidence meets criteria and approve or reject applications, or you 
+can leave it to the !site_name community to judge whether the badge should be 
+awarded. If you use the latter process then you need to say how many of the 
+community need to agree that criteria have been met. There are pros and cons to 
+each process so think about what will work best in your case.",
+array('!site_name' => config_item('site_name')) ) ?>
+</p>
 
+
+</div>
 </div>
 

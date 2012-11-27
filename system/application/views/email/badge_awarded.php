@@ -13,5 +13,5 @@
 
 <p>The <?= config_item('site_name') ?> Team</p>
 <p><small>You can turn off these e-mails at 
-<?= anchor('user/preferences', base_url().'user/preferences') ?></small></p>
 </font>
+<?= anchor('user/preferences', base_url().'user/preferences') ?></small></p>
