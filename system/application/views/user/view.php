@@ -1,13 +1,17 @@
 <script type="text/javascript" src="<?=base_url()?>_scripts/iframe_strip.js"></script>
 <div id="user-profile">
+
 <div class="grid headline">
+
     <?php if ($picture): ?>
         <img src="<?= base_url() ?>image/user/<?= $user->id ?>" class="go2" alt="" />
     <?php else: ?>
         <img src="<?=base_url() ?>_design/avatar-default-32.jpg" class="go2" alt="" />
     <?php endif; ?>
     <h1><?= $user->fullname ?>
-    <?php if($current_user): ?>
+   
+
+   <?php if($current_user): ?>
              <a href="<?= base_url() ?>user/edit/" class="button" title="<?=t("Edit Profile")?>"><?=t("Edit")?></a>
              <a href="<?= base_url() ?>user/edit_picture/" class="button" title="<?=t("Edit Picture")?>"><?=t("Edit Picture")?></a>
              <a href="<?= base_url() ?>auth/change_password/" class="button" title="<?=t("Change Password")?>"><?=t("Change Password")?></a>
