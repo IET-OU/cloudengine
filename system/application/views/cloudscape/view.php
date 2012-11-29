@@ -50,7 +50,12 @@ background: <?= $cloudscape->colour ?>;
             <?php else: ?>
                 <img src="<?=base_url() ?>_design//avatar-default-32.jpg" alt="" class="go2" />
             <?php endif; ?>
-                <p><a href="<?=base_url() ?>user/view/<?= $cloudscape->id ?>"><?= $cloudscape->fullname ?></a><br />
+            <p><?=anchor('user/view/'. $cloudscape->id, $cloudscape->fullname, array(
+                        'class' => 'author rdfa',
+                        'xmlns:cc' =>'http://creativecommons.org/ns#',
+                        'property' => 'cc:attributionName',
+                        'rel' => 'cc:attributionURL',
+            )) ?></a><br />
             <?= format_date("!date!", $cloudscape->created) ?></p>
     
         </div>

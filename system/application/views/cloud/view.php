@@ -33,7 +33,12 @@
             <?php else: ?>
                 <img src="<?=base_url() ?>_design/avatar-default-32.jpg" class="go2" alt=""/>
             <?php endif; ?>
-        <p><?=anchor("user/view/$cloud->id", $cloud->fullname) ?><br />
+        <p><?=anchor("user/view/$cloud->id", $cloud->fullname, array(
+                    'class' => 'author rdfa',
+                    'xmlns:cc' =>'http://creativecommons.org/ns#',
+                    'property' => 'cc:attributionName',
+                    'rel' => 'cc:attributionURL',
+        )) ?><br />
         <?= format_date("!date!", $cloud->created); ?></p>
     </div>
 </div>
