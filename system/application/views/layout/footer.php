@@ -4,7 +4,11 @@
 				        <p class="left">
 				        <?= anchor('about/about', t("About")) ?> | 
 				        <?= anchor('blog/archive', t("Blog")) ?> | 
-				        <?= anchor('about/tandc', t("Terms and Conditions")) ?> |
+				        <?= anchor('about/tandc', t("Terms and Conditions"), array(
+				                'class' => 'rdfa',
+				                'rel' => 'license',
+				        )) ?> |
+				    <?php $this->load->view('layout/capret') ?>
 				        <?php $powered = t('Powered by !name, open-source social software', array('!name'=>'CloudEngine')); ?>
 				        <a href="http://getcloudengine.org/" rel="bookmark"
 				          class="poweredby" title="<?= $powered ?>"
