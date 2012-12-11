@@ -69,6 +69,13 @@ $config['use_password_hash'] = TRUE;
 $config['x_google_analytics'] = FALSE;
 $config['google_analytics'] = ''; // Set this to your google analytics code 
 
+
+// CaPRéT/ Track OER. EXPERIMENTAL.
+$config['x_capret'] = FALSE;
+$config['capret_variant'] = 'piwik';  // Or 'ga', or 'classic'
+$config['capret_analytics_id'] = 6;   // Or 'UA-12345-6'
+$config['capret_about_url'] = 'support/capret'; // Relative/absolute URL fed to CodeIgniter 'anchor()' function.
+
 // Feature flag for internationalisation.
 $config['x_translate'] =FALSE;
 
