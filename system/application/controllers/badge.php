@@ -371,6 +371,7 @@ class Badge extends MY_Controller {
         $data['application'] = $this->badge_model->get_application($application_id);
         if ($data['application']) {
             $data['decisions'] = $this->badge_model->get_decisions($application_id);
+            $data['is_admin'] = $this->auth_lib->is_admin();
             $data['title'] = t('Badge application');
             $this->layout->view('badge/application', $data);
         } else {
@@ -501,6 +502,25 @@ class Badge extends MY_Controller {
                                                                    'rejected');
         $data['title'] = t('Your badge applications');                                                           
         $this->layout->view('badge/applications_for_user_all', $data);        
+    }
+    
+    /**
+     * Display all an admin view of all badge applications, pending or otherwise
+     */
+    function admin() {
+        $this->auth_lib->check_logged_in();
+        $this->auth_lib->check_is_admin();
+        
+        $data['pending_applications'] = $this->badge_model->get_all_applications( 
+                                                                    'pending'); 
+        $data['approved_applications'] = 
+                        $this->badge_model->get_all_applications('approved');
+        $data['rejected_applications'] = 
+                        $this->badge_model->get_all_applications('rejected');
+        $data['title'] = t('All badge applications');                                                           
+        $this->layout->view('badge/applications_all', $data);                         
+        
+        
     }
     
     /**

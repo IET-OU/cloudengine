@@ -343,7 +343,22 @@ class Badge_model extends Model {
                         'badge.badge_id = badge_application.badge_id');
         $query = $this->db->get('badge_application');
         return $query->result();
-    }    
+    }   
+
+    /** 
+     * Get all badge applications (for all users) with a given status
+     * @param string $status The new application status: one of 
+     * 'pending', 'approved', 'rejected'
+     */     
+    function get_all_applications($status) {
+        $this->db->where('status', $status);
+        $this->db->join('user_profile' , 
+                        'badge_application.user_id = user_profile.id');        
+        $this->db->join('badge', 
+                        'badge.badge_id = badge_application.badge_id');
+        $query = $this->db->get('badge_application');
+        return $query->result();    
+    }
     
     /**
      * Get the details of a badge application

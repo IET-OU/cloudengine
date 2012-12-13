@@ -12,7 +12,7 @@
 <?= $application->evidence_URL ?>
 </p>
 <p><?= anchor('badge/application/'.$application->application_id, t("View application status and feedback")) ?>
-<p>
+</p>
 <p><?= anchor('badge/issue/'.$application->application_id, t("Add to your Mozilla Backpack")); ?>
 <br />    
 <?php endforeach; ?>
@@ -30,7 +30,7 @@
 <?= anchor($application->evidence_URL, $application->evidence_URL) ?>
 </p>
 <p><?= anchor('badge/application/'.$application->application_id, t("View application status and feedback")) ?>
-<p>
+</p>
 <?= anchor('badge/delete_application/'.$application->application_id, t('Delete application')) ?>
 </p>
 <br />
@@ -47,7 +47,7 @@
 <?= anchor('badge/view/'.$application->badge_id, $application->name) ?> 
 </p>
 <p><?= anchor('badge/application/'.$application->application_id, t("View application status and feedback")) ?>
-<p>
+</p>
 <p>
 <strong><?= t("Evidence URL") ?>: </strong>
 <?= $application->evidence_URL ?>
