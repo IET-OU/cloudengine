@@ -47,6 +47,16 @@ class User_model extends Model {
 
         return $query->result();
     }
+    
+    /**
+     * Get all admin users 
+     * @return array Array of the admin users
+     */
+    function get_admins() {
+        $this->db->where('role', 'admin');
+        $query = $this->db->get('user');
+        return $query->result();
+    }
 
    /**
 	 * Get the details of a user given their username
