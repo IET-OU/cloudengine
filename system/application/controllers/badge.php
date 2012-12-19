@@ -464,16 +464,11 @@ class Badge extends MY_Controller {
                 $feedback = $this->input->post('feedback');
                 $application = $this->badge_model->get_application($application_id);
                 if ($user_id != $application->user_id 
-                    && !$this->badge_model->has_made_decision($application_id, $user_id)) { 
+                    && !$this->badge_model->has_made_decision($application_id, $user_id)) {                  
                     $badge_awarded = $this->badge_model->add_decision($application_id, 
                                                    $user_id, $decision, $feedback);
                     if ($badge_awarded) {
                         $this->_send_badge_awarded_email($application_id);
-                        // If the badge has been approved then issue it via 
-                        // the Mozilla Open Badges infrastructure by doing an 
-                        // HTTP request to badge/issue/<$application_id>
-                        $this->load->helper('curl');
-                        send_request(base_url().'/badge/issue/'.$application_id);
                     }
                 }            
             }    
