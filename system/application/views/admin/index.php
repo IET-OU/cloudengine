@@ -11,6 +11,7 @@
 
 <h2><?= t("Statistics and Admin Data") ?> </h2>
 <ul class="arrows">
+<li><?= anchor('user/people', t("People")) ?></li>
 <li><?= anchor('event/admin', t("Admin Cloudstream")) ?></li>
 <li><?= anchor('statistics/stats', t("Site Statistics")) ?></li>
 <li><?= anchor('statistics/stats_dates', t("Site Statistics By Date")) ?></li>

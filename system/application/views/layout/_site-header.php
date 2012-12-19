@@ -58,11 +58,11 @@
                     <?php endif; ?>       
                 </li>                  
                 <?php endif; ?>
-                <li class="people">
-                    <?php if ($current_page != '/user/people'): ?>
-                        <?=anchor('user/people', t("People"), array('class'=>'people')) ?>
+                <li class="badges">
+                    <?php if ($current_page != '/badge/badge_list'): ?>
+                        <?=anchor('badge/badge_list', t("Badges"), array('class'=>'badges')) ?>
                     <?php else: ?>
-                        <?=  t("People")?>
+                        <?=  t("Badges")?>
                     <?php endif; ?>
                 </li>
                 <li class="support">

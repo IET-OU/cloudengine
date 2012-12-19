@@ -608,7 +608,7 @@ ul li a.survey {
 #clouds #site-nav ul li.clouds, 
 #events #site-nav ul li.events, 
 #tags #site-nav ul li.tags, 
-#people #site-nav ul li.people, 
+#people #site-nav ul li.badges, 
 #support #site-nav ul li.support {
     font-weight:bold;
     color:#003366;
@@ -636,7 +636,7 @@ body.aurora #site-nav ul li a:hover {
 #clouds.aurora #site-nav ul li.clouds, 
 #events.aurora #site-nav ul li.events, 
 #tags.aurora #site-nav ul li.tags, 
-#people.aurora #site-nav ul li.people, 
+#people.aurora #site-nav ul li.badges, 
 #support.aurora #site-nav ul li.support {
     color:#fff;
     background:url(arrow-down-nav-fff.gif) center top no-repeat;
