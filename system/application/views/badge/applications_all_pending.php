@@ -77,5 +77,5 @@
     it is good practice to give feedback.") ?>
     </p>
     
-    </div<
+    </div>
 </div>
