@@ -7,7 +7,7 @@
 $(document).ready(function() {
     if (top !== self) { // If the current page is in an iframe
         // Add a link to the full page
-        $('.headline').before('<p><a href="'+window.location+'">View full page</a></p>');
+        $('.headline').before('<p><a href="'+window.location+'">View full page on original site</a></p>');
         // Remove parts of the page that we don't want
         $('#site-header').remove();
         $('#region2').remove();
