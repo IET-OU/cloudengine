@@ -20,6 +20,8 @@ if (!function_exists('send_mail')) {
             $CI =& get_instance();
             $CI->load->plugin('phpmailer');
             $result = phpmailer_email($recipient, $sender, $subject, $message);
+            log_message('info', 
+                        "MAIL: $result $recipient $sender $subject $message");
         }
         else {
             // Or use the default PHP mail function.

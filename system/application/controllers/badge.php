@@ -482,6 +482,7 @@ class Badge extends MY_Controller {
             $data['user_id']      = $user_id;
             $data['badge']        = $badge;
             $data['applications'] = $this->badge_model->get_applications($badge_id, $user_id);
+            
             $this->layout->view('badge/applications_for_badge_pending', $data);
         }
     }

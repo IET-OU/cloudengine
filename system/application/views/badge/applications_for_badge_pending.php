@@ -11,7 +11,7 @@
 <ul class="arrows">
 <li><strong><?= t("Submitted by:") ?></strong> <?= anchor('user/view'.$application->user_id, 
 $application->fullname) ?></li>
-<li><strong><?= t("Evidence:") ?></strong> <?= anchor($application->evidence_url, $application->evidence_url) ?>
+<li><strong><?= t("Evidence:") ?></strong><?= anchor($application->evidence_URL, $application->evidence_URL); ?>
 </ul>
 </li>
   <?='<b>'.validation_errors().'</b>'; ?>
