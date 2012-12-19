@@ -60,8 +60,9 @@ class Statistics_model extends Model {
      * @return integer The number of users
      */
     function get_active_users($start_timestamp, $end_timestamp) {
-        $start_timestamp = (int) $startstamp;
-        $end_timestamp   = (int) $endstamp;
+        $start_timestamp = (int) $start_timestamp;
+        $end_timestamp   = (int) $end_timestamp;
+
         $query = $this->db->query("SELECT DISTINCT user_id FROM logs WHERE 
                                    user_id <> 0 AND timestamp >= $start_timestamp AND 
                                    timestamp <= $end_timestamp");

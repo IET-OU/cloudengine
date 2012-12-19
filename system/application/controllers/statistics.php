@@ -67,6 +67,7 @@ class Statistics extends MY_Controller {
                                                                             $end_timestamp);
              $data['active_total'] = 
              	$this->statistics_model->get_active_users($start_timestamp, $end_timestamp);
+  
 	         $data['cloud_total']  = $this->statistics_model->get_total_clouds(false, 
 	                                                        $start_timestamp, $end_timestamp);
              $data['cloudscape_total'] = $this->statistics_model->get_total_cloudscapes(false,
