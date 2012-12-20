@@ -10,19 +10,15 @@
 <table>
     <tr>
         <td>
-        	<?=form_label(t("Username"), 'user_name') ?>
+            <?=form_label(t("Username"), 'user_name') ?>
         </td>
         <td>
             <?=form_input(array('name'=>'user_name',
                 'required'=>true,
-                // Need to move dup. data to controller/config. (cf. installer/login).
-                'pattern' =>'[a-zA-Z][\w-]{3,44}\s?',
-                //Was: 'Minimum !N characters, letters and numbers (no spaces)'
                 'title'=>t('Minimum !N characters, letters, numbers, dash and underscore (no spaces)',
                           array('!N'=> 4 )),
                 'maxlength'=>45,
                 'value'=>set_value('user_name'),
-              #'value'   =>isset($user->user_name) ? $user->user_name :'',
             ))?>
         </td>
 
@@ -34,7 +30,6 @@
         <td>
             <?=form_email(array('name'=>'email',
                 'required' =>true,
-                'placeholder'=>'you@example.org',
                 'maxlength'=>254,
                 'value'    =>set_value('email') )) ?>
          </td> 
@@ -46,12 +41,6 @@
         <td>
             <?=form_input(array('name'=>'fullname',
                 'required' =>true,
-                #'pattern'  =>"\w[\w-']* [\w-' ]+",
-                /*ECMAScript: Unicode Basic Latin + Latin-1 Sup. + Latin extended-A,
-                  http://regexlib.com/CheatSheet.aspx
-                  http://en.wikipedia.org/wiki/List_of_Unicode_characters#Latin_extended-A
-                */
-                'pattern'  =>"\w[\w-'\u00c0-\u017f]* [\w-' \u00c0-\u017f]+",
                 'title'    =>t('Minimum !N words, letters, apostrophe, dash and accents', array('!N'=>2)),
                 'maxlength'=>140,
                 'value'    =>set_value('fullname') ))?>
@@ -63,7 +52,6 @@
         <td>
             <?=form_input(array('name'=>'institution',
                 'required'=>true,
-                'pattern' =>'\w[\w- ]+',
                 'value'   =>set_value('institution') ))?>
 
         <?php
@@ -93,7 +81,6 @@
     	<td>
     	   <?=form_password(array('name'=>'password',
     	       'required'=>true,
-    	       'pattern' =>'\w[^\s\c]{4,49}',
     	       'title'=>t('Minimum !N characters, letters, numbers and symbols (no spaces)',
     	                 array('!N' => 5 )),
     	                       'maxlength'=>'16',
@@ -125,7 +112,6 @@
             <?=$this->load->view('auth/html_for_captcha', null, true)?><br />
     	   <?=form_input(array('name'=>'captcha',
     	         'required'=>true,
-    	         'pattern'=>'\w{'.config_item('FAL_captcha_min').',}',
     	         'autocomplete'=>false,
     	                       'maxlength'=>'45', 
     	                       'size'=>'45',

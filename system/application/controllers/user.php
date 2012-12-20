@@ -390,8 +390,9 @@ class User extends MY_Controller {
         // Get this user's cloudstream 
         $this->load->model('event_model');   
         $events = $this->event_model->get_events_for_user($user_id, 20, $type);
+        $simple = FALSE;
         if ($type) {
-            $simple = true;
+            $simple = TRUE;;
         }  
         $events = $this->event_model->display_format($events, $simple); 
         if ($events) {
