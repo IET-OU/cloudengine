@@ -72,7 +72,7 @@ class Cloudscape extends MY_Controller {
             $data['post_permission']  = FALSE;
             $data['owner']            = FALSE; 
             $data['section_id']       = FALSE;  
-            $data['tweets'] =         = FALSE;   
+            $data['tweets']           = FALSE;   
             
             // Figure out what permissions the current user has for this cloudscape         
             if ($user_id) {

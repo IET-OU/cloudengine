@@ -23,6 +23,7 @@ class Admin extends MY_Controller {
 		$this->load->model('tag_model');
 		$this->load->model('link_model');
 		$this->load->model('embed_model');
+        $this->auth_lib->check_logged_in();
 		$this->auth_lib->check_is_admin(); 
 	}
 
@@ -293,6 +294,23 @@ class Admin extends MY_Controller {
             $data["title"] = t("Add Page");
             $this->layout->view('admin/pages/add', $data);
         }
+    }
+    /**
+     * Display users whose accounts have not been activated, and allow the 
+     * admin to activate them
+     */
+    function unactivated_users() {
+        if ($this->input->post('submit')) {
+            $temp_user_id = $this->input->post('temp_user_id');
+            $activation_code = $this->input->post('activation_code');
+            $new_user_id = $this->auth_model->activate_user($temp_user_id, $activation_code);
+        }
+        
+        // Get the list of unactivated users
+        $data['users'] = $this->user_model->get_unactivated_users();
+        // Display the list
+        $data['title'] = t("Unactivated users");
+        $this->layout->view('admin/unactivated_users', $data);
     }
 
 

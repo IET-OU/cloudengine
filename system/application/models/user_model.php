@@ -679,6 +679,12 @@ class User_model extends Model {
 
         return array_slice($rand_users, 0, $target);
     }
+    
+    function get_unactivated_users() {
+       $this->db->order_by('created', 'desc');
+        $query = $this->db->get('user_temp');
+        return $query->result();
+    }
 
     protected function _read_csv($csv_file) {
         $csv = array();
