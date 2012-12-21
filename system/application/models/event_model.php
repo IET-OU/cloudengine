@@ -717,6 +717,7 @@ class Event_model extends Model {
         $this->load->helper('format');
         $last_event_item_id = false;
         $last_event_type    = false;
+        $new_events = array();
         if ($events) {
             foreach ($events as $event) {
             	// If somebody is following e.g. both a cloud and user that the item

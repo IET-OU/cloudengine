@@ -110,7 +110,8 @@ class Event extends MY_Controller {
 
         $data['type']   = $type; 
         
-        $user = $this->user_model->get_user($user_id);        
+        $user = $this->user_model->get_user($user_id);
+        $simple = FALSE;
         $data['user'] = $user;
             if ($type) {
                 $simple = true;

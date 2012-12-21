@@ -104,6 +104,7 @@ class Cloud extends MY_Controller {
             // For each comment figure out if the current user has edit permission for that
             // comment and add the information to the comment 
             $comments = $this->comment_model->get_comments($cloud_id);
+            $modified_comments = array();
             if ($comments) {
                 foreach ($comments as $comment) {
                     $comment->edit_permission = 
@@ -115,6 +116,7 @@ class Cloud extends MY_Controller {
             
             // Do the same for content 
             $contents = $this->content_model->get_content($cloud_id);
+            $modified_contents = array();
             if ($contents) {
                 foreach ($contents as $content) {
                     $content->edit_permission = 
@@ -126,6 +128,7 @@ class Cloud extends MY_Controller {
             
             // Do the same for links 
             $links = $this->link_model->get_links($cloud_id);
+             $modified_links = array();
             if ($links) {
                 foreach ($links as $link) {
                     $link->edit_permission = 
@@ -140,6 +143,7 @@ class Cloud extends MY_Controller {
 
             // Do the same for links 
             $embeds = $this->embed_model->get_embeds($cloud_id);
+            $modified_embeds = array();
             if ($embeds) {
                 foreach ($embeds as $embed) {
                     $embed->edit_permission = $this->embed_model->has_edit_permission($user_id,                                                                             $embed->embed_id);

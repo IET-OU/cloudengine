@@ -59,13 +59,20 @@ class Cloudscape extends MY_Controller {
                                                                     urldecode($cloudscape)); 
            $cloudscape_id = $data['cloudscape']->cloudscape_id;
         }
-        $cloudscape = $data['cloudscape'];    
+        $cloudscape = $data['cloudscape'];   
+
         if ($data['cloudscape']) {
             // Get tags, followers with images and number of followers for the cloudscapes 
             $data['tags'] = $this->tag_model->get_tags('cloudscape',  $cloudscape_id);
             $data['followers'] = $this->cloudscape_model->get_followers($cloudscape_id);
             $data['total_followers'] = $this->cloudscape_model->get_total_followers(
                                                                              $cloudscape_id);
+            $data['admin_permission'] = FALSE;
+            $data['edit_permission']  = FALSE;
+            $data['post_permission']  = FALSE;
+            $data['owner']            = FALSE; 
+            $data['section_id']       = FALSE;  
+            $data['tweets'] =         = FALSE;   
             
             // Figure out what permissions the current user has for this cloudscape         
             if ($user_id) {

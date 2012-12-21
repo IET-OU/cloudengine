@@ -604,8 +604,8 @@ class Cloudscape_model extends Model {
      * @return boolean TRUE if the user is the owner, FALSE otherwise
      */
     function is_owner($cloudscape_id, $user_id) {
+        $owner = FALSE;
         if ($user_id) {
-            $owner = FALSE;
             $this->db->where('cloudscape_id', $cloudscape_id);
             $this->db->where('user_id', $user_id);
             $query = $this->db->get('cloudscape');

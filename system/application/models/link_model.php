@@ -188,6 +188,7 @@ class Link_model extends Model {
      * @return object The details of the link
      */
     function get_link($link_id) {
+        $link = FALSE;
         $this->db->where('link_id', $link_id);
         $this->db->where('user.banned',0);  
         $this->db->join('user', 'user.id = cloud_link.user_id');        

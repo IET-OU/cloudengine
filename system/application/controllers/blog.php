@@ -69,6 +69,7 @@ class Blog extends MY_Controller {
 	   $data['news_items'] = $this->blog_model->get_blog_posts();
        $data['title']      = $this->config->item('site_name').' '.t("Blog Archive");
 	   $data['rss']        = site_url('blog/rss');
+       $data['admin'] = $this->auth_lib->is_admin();
 	   $this->layout->view('blog/archive', $data);
 	}
   	
