@@ -19,7 +19,7 @@
 	<dc:rights><?=t("Copyright !date !organization", array('!date'=>gmdate("Y"), '!organization'=>NULL)) ?></dc:rights>
 	<admin:generatorAgent rdf:resource="http://getcloudengine.org/"/>
     <atom:link href="<?php echo $feed_url ?>" rel="self" type="application/rss+xml" />
-
+    <?php if ($events) : ?>
 	<?php foreach($events as $event): ?>
 	    <item>
 	      <title><?php echo xml_safe(xml_convert(strip_tags($event->title))); ?></title>
@@ -30,5 +30,6 @@
           <category domain="<?php echo base_url().'#event-'.$event->category ?>"><?php echo $event->category ?></category>
 	    </item>  
 	<?php endforeach; ?>
+    <?php endif; ?>
 </channel>
 </rss>

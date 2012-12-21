@@ -58,7 +58,9 @@ class Cloud extends MY_Controller {
             $cloud_id      = $cloud;
         } else {           
             $data['cloud'] = $this->cloud_model->get_cloud_by_title(urldecode($cloud));
-            $cloud_id      = $data['cloud']->cloud_id;
+            if ($data['cloud']) {
+                $cloud_id      = $data['cloud']->cloud_id;
+            }
         }
 
         $cloud = $data['cloud'];
@@ -99,7 +101,7 @@ class Cloud extends MY_Controller {
         }
         
         // If the cloud exists, get all the other information needed for the page
-        if ($data['cloud']->cloud_id) {
+        if ($data['cloud']) {
             
             // For each comment figure out if the current user has edit permission for that
             // comment and add the information to the comment 

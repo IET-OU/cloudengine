@@ -847,7 +847,7 @@ class Cloudscape_model extends Model {
             if ($this->is_open($cloudscape_id) || 
                 $this->has_owner_permissions($cloudscape_id, $user_id) ||
                 $this->is_admin($cloudscape_id, $user_id) || 
-                $this->is_poster($cloudscape_iud, $user_id) || $this->auth_lib->is_admin()) {
+                $this->is_poster($cloudscape_id, $user_id) || $this->auth_lib->is_admin()) {
                 $permission = TRUE;
             }
         }

@@ -145,9 +145,11 @@ class Cloudscape extends MY_Controller {
             $data['attended']            = $this->events_model->is_attending($cloudscape_id,
                                                                                    $user_id);
             $data['navigation']          = 'cloudscapes';
+            
 
             // If this cloudscape is an event, determine if it is a past event
             if ($cloudscape->start_date) {
+                $data['past_event'] = FALSE;
    
                 if (($cloudscape->end_date && $cloudscape->end_date < time()) ||
                      (!$cloudscape->end_date && $cloudscape->start_date < time())) {
