@@ -1815,7 +1815,7 @@ legend {
     display:inline-block;    vertical-align:top;    margin:-11px 0 0 2px;}
 
 /*Form errors.. */
-.error, .warn, .test_install {
+.error, .warn, .test_install, .form_errors {
     background:#fdd;    color:#222;    border:1px solid #c00;
     -moz-border-radius:4px;    border-radius:4px;
     padding:6px;    margin:1em;    text-align:center;    font-size:medium;

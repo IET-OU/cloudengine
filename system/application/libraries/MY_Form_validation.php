@@ -11,6 +11,8 @@ class MY_Form_validation extends CI_Form_validation {
 
   public function __construct($rules = array()) {
 	parent::__construct($rules);
+    $this->_error_prefix = '<p class="form_errors">';
+    $this->_error_suffix = '</p>';
   }
   
     function valid_url($url) {

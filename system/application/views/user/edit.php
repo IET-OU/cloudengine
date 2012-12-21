@@ -3,7 +3,7 @@
 <h1><?=t("Edit Profile")?></h1>
 
 <?=form_open($this->uri->uri_string(), array('id' => 'user-edit-form'))?>
-<p class="form_errors"> <?= validation_errors() ?></p>
+<?= validation_errors() ?>
 
 	<p>
 	    <label for="fullname"><?=t("Name !required", array('!required'=>form_required(t('required - please include your surname'))))?>:</label>
