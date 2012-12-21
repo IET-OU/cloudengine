@@ -156,10 +156,11 @@ class MY_Controller extends Controller {
                     $moderate = TRUE;
                     // Send an email to all admins that there is an item for 
                     // moderation 
-                    $data['item_type'] = $item_type;
-                    $data['title']     = $title;
-                    $data['body']      = $body;
+                    $data['item_type']  = $item_type;
+                    $data['title']      = $title;
+                    $data['body']       = $body;
                     $data['authorName'] = $authorName;
+                    $data['user']       = $user;
                     $message = $this->load->view('email/moderation_required', 
                                        $data, TRUE);                  
                     $this->load->plugin('phpmailer');

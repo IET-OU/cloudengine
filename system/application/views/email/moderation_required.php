@@ -4,7 +4,8 @@
 </p>
 <p>
 <?= anchor('admin/moderate', 'Moderation Panel') ?> 
-<h1><?= $title ?></h1>
+<h2><?= $title ?></h2>
+<p><?= anchor('user/view/'.$user->id, $user->fullname) ?></p>
 <?= $body ?>
 
 </font>
