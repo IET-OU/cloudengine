@@ -69,6 +69,13 @@ $config['use_password_hash'] = TRUE;
 $config['x_google_analytics'] = FALSE;
 $config['google_analytics'] = ''; // Set this to your google analytics code 
 
+
+// CaPRéT/ Track OER. EXPERIMENTAL.
+$config['x_capret'] = FALSE;
+$config['capret_variant'] = 'piwik';  // Or 'ga', or 'classic'
+$config['capret_analytics_id'] = 6;   // Or 'UA-12345-6'
+$config['capret_about_url'] = 'support/capret'; // Relative/absolute URL fed to CodeIgniter 'anchor()' function.
+
 // Feature flag for internationalisation.
 $config['x_translate'] =FALSE;
 
@@ -126,16 +133,24 @@ $config['expire_temp_users_time'] = 3600*168;
 $config['max_login_attempts'] = 10;
 
 
-// An array of jQuery-oEmbed options, including OU Media Player options.
+// An array of jQuery-oEmbed options.
+// @link http://code.google.com/p/jquery-oembed/
 $config['oembed_options'] = array(
+
+  // OU Podcasts/ OU Media Player.
   'oupodcast' => array(
-    #'theme' => 'oup-light',  # 2012 'new'
-    'theme' => 'ouice-dark', # 2011 legacy
+    //('theme' => 'ouice-dark'), # 2011 legacy
+    'theme' => 'oup-light',
   ),
+
+  // @link http://iSpot.org.uk
   'ispot' => array(
     'count' => 3,
     'postmessage' => 1,
   ),
+
+  // Global configuration.
+  'maxWidth' => 800,
 );
 
 
