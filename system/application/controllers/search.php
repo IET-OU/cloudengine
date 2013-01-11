@@ -15,15 +15,18 @@ class Search extends MY_Controller {
 		$this->zend->load('Zend/Search/Lucene');
 		$this->load->library('layout', 'layout_main');
 		$this->load->model('search_model');  
-		if (!config_item('x_search')) {
-			show_404();
-		}
+		//if (!config_item('x_search')) {
+		//	show_404();
+		//}
 	}
 
     /**
      * Display the search form
      */
 	function index() {
+		if (!config_item('x_search')) {
+			show_404();
+		}    
     $data['title'] = t("Search");  
 		$this->layout->view('search/search_form', $data);
 	}
@@ -33,7 +36,9 @@ class Search extends MY_Controller {
 	 *
 	 */
 	function result() {
-   
+   		if (!config_item('x_search')) {
+			show_404();
+		} 
 	    // Increase the memory limit as Zend Lucene sometimes struggles 
 	    ini_set('memory_limit','128M');
 
@@ -103,7 +108,9 @@ class Search extends MY_Controller {
 	 *
 	 */
 	function all_results($type) {
-	    
+		if (!config_item('x_search')) {
+			show_404();
+		}     
       // Increase the memory limit as Zend Lucene sometimes struggles 
 	    ini_set('memory_limit','128M');
       
@@ -201,6 +208,7 @@ class Search extends MY_Controller {
 	 * @param string $item_type The type of item e.g. 'cloud', cloudscape
 	 */
 	function delete_item($item_id, $item_type) {
+    
 	    $this->auth_lib->check_is_admin(); 
 	    $this->search_model->delete_item_from_index($item_id, $item_type);
 	    echo "Deleted item with item_id $item_id item type $item_type";
