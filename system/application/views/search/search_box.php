@@ -1,4 +1,4 @@
-<?php if(config_item('x_search')):
+<?php if(config_item('x_search') || config_item('x_google_site_search')):
   $query = isset($query_string) ? $query_string : '';
 ?>
 <div id="search-site">

@@ -81,6 +81,8 @@ $config['x_translate'] =FALSE;
 
 // Feature flag for search.
 $config['x_search'] = FALSE;
+$config['x_google_site_search'] = FALSE;
+$config['x_google_site_search_cx'] = '';
 
 // Feature flag for event e-mails from admins for events.
 $config['x_email_events_attending'] = FALSE;
