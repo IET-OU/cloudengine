@@ -146,7 +146,7 @@ class Search extends MY_Controller {
    
       $this->auth_lib->check_is_admin(); 
       // This takes a while, so make sure the php script doesn't timeout.
-	    set_time_limit(60*60);  
+	    set_time_limit(60*1000);  
       
       //set start time variable
       $time = microtime();
