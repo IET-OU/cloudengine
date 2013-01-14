@@ -8,7 +8,7 @@
 
 <script>
   (function() {
-    var cx = '001222343498871500969:bjlranmxp8c';
+    var cx = '<?= config_item('x_google_site_search_cx') ?>';
     var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
     gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
         '//www.google.com/cse/cse.js?cx=' + cx;
