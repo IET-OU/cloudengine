@@ -1,8 +1,6 @@
 
 
 <link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
-<style>body{font:1em sans-serif; color:#333; background:#fafafa;}</style>
-<style>a[role=button]{display:inline-block; padding:.5em; text-decoration:none; color:#117; -moz-appearance:button; -webkit-appearance:button;/*neat!*/} #X-search-btn{margin:8px 0;}</style>
 
 
 
