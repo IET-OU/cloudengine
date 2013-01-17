@@ -10,10 +10,10 @@
 <div id="region1">
     <div class="grid g1">
         <div class="c1of1">
-            <h2 id="badges-named">Badges for which  you are a named verifier</h2>
+            <h2 id="badges-named"><?=t("Badges for which you are a named verifier")?></h2>
             <?php if(count($badges) >0): ?>
             <table>
-                <caption class="hidden">List of Badges</caption>
+                <caption class="hidden"><?=t("List of Badges")?></caption>
                 <thead>            
                     <tr>
                         <th scope="col"><?=t("Name")?></th>
@@ -38,7 +38,7 @@
             <h2 id="badges-number"><?= t("Badges which require a specified number of approvals from users of the site") ?></h2>
             <?php if(count($crowdsourced_badges) >0): ?>
             <table>
-                <caption class="hidden">List of Badges</caption>
+                <caption class="hidden"><?=t("List of Badges")?></caption>
                 <thead>            
                     <tr>
                         <th scope="col"><?=t("Name")?></th>
@@ -60,7 +60,7 @@
             <p><?= t("There are no pending applications") ?></p>
             <?php endif; ?>
             
-            <p><a href="<?= base_url() ?>badge/badge_list" class="buttonlink"><?=t("Back to all badges")?></a></p>
+            <p><a href="<?= site_url('badge/badge_list') ?>" class="buttonlink"><?=t("Back to all badges")?></a></p>
         </div>
     </div>
 </div> 

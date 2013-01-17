@@ -76,7 +76,7 @@
 <?php endif; ?>
 
             
-<p><a href="<?= base_url() ?>badge/badge_list" class="buttonlink"><?=t("Back to all badges")?></a></p>
+<p><a href="<?= site_url('badge/badge_list') ?>" class="buttonlink"><?=t("Back to all badges")?></a></p>
   
 </div>
 <div id="region2">
