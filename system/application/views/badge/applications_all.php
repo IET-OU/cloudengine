@@ -1,6 +1,10 @@
 <div id="region1">
 <h1><?= t("All Badge Applications") ?></h1>
-<h2><?= t("Awarded badges") ?></h2>
+<p><a href="#awarded-badges"><?= t('Awarded badges') ?></a>
+ | <a href="#pending-applications"><?= t('Pending applications') ?></a>
+ | <a href="#rejected-applications"><?= t('Rejected applications') ?></a></p>
+
+<h2 id="awarded-badges"><?= t("Awarded badges") ?></h2>
 <?php if (count($approved_applications) >0 ): ?>
 <?php foreach($approved_applications as $application): ?>
 <img src="<?= base_url() ?>image/badge/<?= $application->badge_id ?>" alt=""/> 
@@ -23,10 +27,10 @@
 <p><?= t("You have not been awarded any badges yet") ?>
 <?php endif; ?>
 
-<h2><?= t("Pending Applications") ?></h2>
+<h2 id="pending-applications"><?= t("Pending Applications") ?></h2>
 <?php if (count($pending_applications) >0 ): ?>
 <?php foreach($pending_applications as $application): ?>
-<img src="<?= base_url() ?>image/badge/<?= $application->badge_id ?>" alt
+<img src="<?= site_url("image/badge/$application->badge_id") ?>" alt=""/>
 
 <?= anchor('badge/view/'.$application->badge_id, $application->name) ?> 
 <p><strong><?= t("Applicant") ?>: </strong>
@@ -36,6 +40,10 @@
 <?= anchor($application->evidence_URL, $application->evidence_URL) ?>
 </p>
 <p><?= anchor('badge/application/'.$application->application_id, t("View application status and feedback")) ?>
+ | <span class="time" datetime="<?= date('c', $application->created) ?>"
+    >Created <?=format_date('!date-time-abbr!', $application->created) ?></span>
+ | <span class="time" datetime="<?= date('c', $application->issued) ?>"
+    >Issued <?=format_date('!date-time-abbr!', $application->issued) ?></span><?php /* #323, Should be HTML5 <time> element. */ ?>
 <p>
 <?= anchor('badge/delete_application/'.$application->application_id, t('Delete application')) ?>
 </p>
@@ -45,7 +53,7 @@
 <p><?= t("You have no pending applications.") ?>
 <?php endif; ?>
 
-<h2><?= t("Rejected Applications") ?></h2>
+<h2 id="rejected-applications"><?= t("Rejected Applications") ?></h2>
 <?php if (count($rejected_applications) >0 ): ?>
 <?php foreach($rejected_applications as $application): ?>
 <img src="<?= base_url() ?>image/badge/<?= $application->badge_id ?>" alt="" style="float: left;"/> 

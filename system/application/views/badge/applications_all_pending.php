@@ -1,13 +1,16 @@
 <div class="grid headline">
         <h1><?=t("Pending badge applications")?></h1>
     <div class="c1of2">
+  <p><a href="#badges-named" ><?= t('Named verifier badges') ?></a>
+   | <a href="#badges-number"><?= t('Crowdsourced badges') ?></a>
+
  </div>
 </div>
 
 <div id="region1">
     <div class="grid g1">
         <div class="c1of1">
-            <h2>Badges for which  you are a named verifier</h2>
+            <h2 id="badges-named">Badges for which  you are a named verifier</h2>
             <?php if(count($badges) >0): ?>
             <table>
                 <caption class="hidden">List of Badges</caption>
@@ -32,7 +35,7 @@
             <p><?= t("There are no pending applications.") ?></p>
             <?php endif; ?>
             <br />
-            <h2><?= t("Badges which require a specified number of approvals from users of the site") ?></h2>
+            <h2 id="badges-number"><?= t("Badges which require a specified number of approvals from users of the site") ?></h2>
             <?php if(count($crowdsourced_badges) >0): ?>
             <table>
                 <caption class="hidden">List of Badges</caption>
