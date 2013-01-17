@@ -20,6 +20,10 @@
 <?= $application->evidence_URL ?>
 </p>
 <p><?= anchor('badge/application/'.$application->application_id, t("View application status and feedback")) ?>
+ | <span class="time" datetime="<?= date('c', $application->created) ?>"
+    >Created <?=format_date('!date-time-abbr!', $application->created) ?></span>
+ | <span class="time" datetime="<?= date('c', $application->issued) ?>"
+    >Issued <?=format_date('!date-time-abbr!', $application->issued) ?></span><?php /* #323, Should be HTML5 <time> element. */ ?>
 </p>
 <br />    
 <?php endforeach; ?>
@@ -41,9 +45,7 @@
 </p>
 <p><?= anchor('badge/application/'.$application->application_id, t("View application status and feedback")) ?>
  | <span class="time" datetime="<?= date('c', $application->created) ?>"
-    >Created <?=format_date('!date-time-abbr!', $application->created) ?></span>
- | <span class="time" datetime="<?= date('c', $application->issued) ?>"
-    >Issued <?=format_date('!date-time-abbr!', $application->issued) ?></span><?php /* #323, Should be HTML5 <time> element. */ ?>
+    >Created <?=format_date('!date-time-abbr!', $application->created) ?></span><?php /* #323, Should be HTML5 <time> element. */ ?>
 <p>
 <?= anchor('badge/delete_application/'.$application->application_id, t('Delete application')) ?>
 </p>
@@ -61,6 +63,8 @@
 <?= anchor('badge/view/'.$application->badge_id, $application->name) ?> 
 </p>
 <p><?= anchor('badge/application/'.$application->application_id, t("View application status and feedback")) ?>
+ | <span class="time" datetime="<?= date('c', $application->created) ?>"
+    >Created <?=format_date('!date-time-abbr!', $application->created) ?></span><?php /* #323, Should be HTML5 <time> element. */ ?>
 </p>
 <p><strong><?= t("Applicant") ?>: </strong>
 <?= anchor('user/view/'.$application->user_id, $application->fullname) ?>
