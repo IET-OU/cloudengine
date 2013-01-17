@@ -27,7 +27,7 @@ $application->fullname) ?></li>
 <textarea cols="117" rows="3" name="feedback" id="feedback"></textarea>
 </p>
 <p><button type="submit" name="submit" class="submit" value="Submit"><?=t("Submit")?></button></p>
-<?php form_close(); ?>
+<?= form_close() ?>
 <?php $application_number++ ?>
 
 <?php endif; ?>
