@@ -5,13 +5,14 @@
 <?php if (count($applications) >0): ?>
 
 <?php $application_number = 1 ?>
-<?php foreach($applications as $application): ?>
+<?php foreach($applications as $application):
+        $app_id = $application->application_id; ?>
 <?php if ($application->user_id != $user_id): ?>
 <h2><?= t("Application !application_number", array('!application_number'=>$application_number)) ?></h2>
 <ul class="arrows">
 <li><strong><?= t("Submitted by:") ?></strong> <?= anchor('user/view'.$application->user_id, 
 $application->fullname) ?></li>
-<li><strong><?= t("Evidence:") ?></strong><?= anchor($application->evidence_URL, $application->evidence_URL); ?>
+<li><strong><?= t("Evidence:") ?></strong> <?= anchor($application->evidence_URL, $application->evidence_URL); ?>
 </ul>
 </li>
   <?='<b>'.validation_errors().'</b>'; ?>
@@ -19,12 +20,12 @@ $application->fullname) ?></li>
 <input type="hidden" id="application_id" name="application_id" value="<?= $application->application_id ?>" />
 <fieldset>
 <legend>Decision:</legend>
-<input type="radio" name="decision" id="accept" value="approved"><label class="radio" for="approve" /><?= t("Approve") ?></label>
-<input type="radio" name="decision" id="reject" value="rejected"><label class="radio" for="reject" /><?= t("Reject") ?></label>
+<input type="radio" name="decision" id="accept-<?=$app_id ?>" value="approved"><label class="radio" for="accept-<?=$app_id ?>" /> <?= t("Approve") ?></label>
+<input type="radio" name="decision" id="reject-<?=$app_id ?>" value="rejected"><label class="radio" for="reject-<?=$app_id ?>" /> <?= t("Reject") ?></label>
 </fieldset>
 <p>
-<label for="body"><?=t("Feedback")?>:</label>
-<textarea cols="117" rows="3" name="feedback" id="feedback"></textarea>
+<label for="feedback-<?=$app_id ?>"><?=t("Feedback")?>:</label>
+<textarea cols="117" rows="3" name="feedback" id="feedback-<?=$app_id ?>"></textarea>
 </p>
 <p><button type="submit" name="submit" class="submit" value="Submit"><?=t("Submit")?></button></p>
 <?= form_close() ?>
