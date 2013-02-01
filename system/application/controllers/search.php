@@ -27,7 +27,7 @@ class Search extends MY_Controller {
 		if (!config_item('x_search')) {
 			show_404();
 		}    
-    $data['title'] = t("Search");  
+		$data['title'] = t("Search");
 		$this->layout->view('search/search_form', $data);
 	}
 
@@ -38,8 +38,11 @@ class Search extends MY_Controller {
 	function result() {
    		if (!config_item('x_search') && !config_item('x_google_site_search')) {
 			show_404();
-		} 
-        
+		}
+
+        $data['title' = t('Search');
+        $data['navigation']   = 'search';
+
         if (config_item('x_search')) {
             // Increase the memory limit as Zend Lucene sometimes struggles 
             ini_set('memory_limit','128M');
@@ -88,8 +91,8 @@ class Search extends MY_Controller {
                   
                   //total hits
                   $data['total_hits']       = $data['cloud_hits'] + $data['cloudscape_hits'] + $data['user_hits'];
-                                              
-                  }
+
+                }
               catch (Exception $e) {
                 $data['error'] = $e->getMessage();
               }
@@ -98,12 +101,14 @@ class Search extends MY_Controller {
 
           $data['title']        = t("Search results for '!query'", array('!query'=>$query_string));
           $data['query_string'] = $query_string;
-          $data['navigation']   = 'search';
+
 
           $this->search_model->log_search($query_string);
           $this->layout->view('search/results', $data);
-      } elseif (config_item('x_google_site_search')) {
+      }
+      elseif (config_item('x_google_site_search')) {
         $data['search_term'] = $this->input->get('q');
+        $data['title'] = t("Search results for '!query'", array('!query'=>$search_term));
         $this->layout->view('search/google_site_search', $data);   
       }
       
