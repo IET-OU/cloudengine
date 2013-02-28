@@ -120,7 +120,7 @@ class Image extends MY_Controller {
 
         if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches) 
             && is_readable($path)) {
-            header('Content-Type: image/'.$matches[1]);
+            header('Content-Type: image/'.strtolower($matches[1]));
             echo(file_get_contents($path));
         } else {
             show_404();
