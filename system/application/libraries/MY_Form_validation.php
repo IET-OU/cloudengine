@@ -14,10 +14,27 @@ class MY_Form_validation extends CI_Form_validation {
     $this->_error_prefix = '<p class="form_errors">';
     $this->_error_suffix = '</p>';
   }
-  
-    function valid_url($url) {
+
+    function valid_url($url) {	
+		// The following is from http://stackoverflow.com/questions/161738/what-is-the-best-regular-expression-to-check-if-a-string-is-a-valid-url
+		$url_format =  
+		'/^(https?):\/\/'.                                         // protocol
+		'(([a-z0-9$_\.\+!\*\'\(\),;\?&=-]|%[0-9a-f]{2})+'.         // username
+		'(:([a-z0-9$_\.\+!\*\'\(\),;\?&=-]|%[0-9a-f]{2})+)?'.      // password
+		'@)?(?#'.                                                  // auth requires @
+		')((([a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*'.                      // domain segments AND
+		'[a-z][a-z0-9-]*[a-z0-9]'.                                 // top level domain  OR
+		'|((\d|[1-9]\d|1\d{2}|2[0-4][0-9]|25[0-5])\.){3}'.
+		'(\d|[1-9]\d|1\d{2}|2[0-4][0-9]|25[0-5])'.                 // IP address
+		')(:\d+)?'.                                                // port
+		')(((\/+([a-z0-9$_\.\+!\*\'\(\),;:@&=-]|%[0-9a-f]{2})*)*'. // path
+		'(\?([a-z0-9$_\.\+!\*\'\(\),;:@&=-]|%[0-9a-f]{2})*)'.      // query string
+		'?)?)?'.                                                   // path and query string optional
+		'(#([a-z0-9$_\.\+!\*\'\(\),;:@&=-]|%[0-9a-f]{2})*)?'.      // fragment
+		'$/i';
+
         $url_valid = FALSE;
-        if(preg_match("/^http(|s):\/{2}(.*)\.([a-z]){2,}(|\/)(.*)$/i", $url)) {
+        if(preg_match($url_format, $url)) {
             $url_valid = TRUE;
         } else {
             $this->CI->form_validation->set_message('valid_url', 'The %s must be a valid URL.');
