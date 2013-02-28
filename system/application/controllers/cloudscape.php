@@ -165,6 +165,17 @@ class Cloudscape extends MY_Controller {
             $this->layout->view('notfound');            
         }
     }
+	
+	function view_favourites($cloudscape_id) {
+        $user_id = $this->db_session->userdata('id');
+        
+		$data['cloudscape'] = $this->cloudscape_model->get_cloudscape($cloudscape_id);
+
+        $cloudscape = $data['cloudscape'];  
+
+        $data['clouds'] = $this->cloudscape_model->get_clouds_favourites($cloudscape_id); 	
+		$this->layout->view('cloudscape/view_favourites', $data);		
+	}
     
     /**
      * Display the RSS feed for a cloudscape

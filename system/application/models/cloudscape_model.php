@@ -412,6 +412,37 @@ class Cloudscape_model extends Model {
          
         return $clouds;
     }
+	
+	/**
+	 * Get the clouds in a cloudscapes, with information on number of favourites for each cloud
+	 * 
+     * @param integer $cloudscape_id The ID of the cloudscape
+     * @return array Array of clouds	 
+	 */
+	function get_clouds_favourites($cloudscape_id) {
+        $valid = false;
+        if (is_numeric($cloudscape_id)) {
+            $valid = TRUE;
+        }
+
+         if ($valid) {  
+            $query = $this->db->query("SELECT cl.title as title, cl.body as body, 
+            cl.cloud_id as cloud_id, COUNT(f.user_id) AS total_favourites, 
+            cl.created AS timestamp, cl.created AS created, cl.modified AS modified
+            FROM  cloud cl 
+            LEFT OUTER JOIN favourite f ON cl.cloud_id = f.item_id
+			AND f.item_type = 'cloud'
+            INNER JOIN cloudscape_cloud cc ON cc.cloud_id = cl.cloud_id 
+            INNER JOIN user u on u.id = cl.user_id
+            WHERE cc.cloudscape_id = $cloudscape_id 
+            AND cl.moderate = 0 
+            AND u.banned = 0
+            GROUP BY cl.cloud_id ORDER BY  total_favourites DESC");
+            $clouds = $query->result();
+         }
+         
+        return $clouds;
+    }
     
     /**
      * Get the number of clouds in a cloudscape
