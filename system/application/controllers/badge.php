@@ -499,6 +499,15 @@ class Badge extends MY_Controller {
         $data['title'] = t('Your badge applications');                                                           
         $this->layout->view('badge/applications_for_user_all', $data);        
     }
+	
+	/**
+	 * Display all users who have been awarded a specific badge
+	 */
+	function users($badge_id = 0) {
+		$data['users'] = $this->badge_model->get_users_awarded_badge($badge_id);
+		$data['badge'] = $this->badge_model->get_badge($badge_id);
+		$this->layout->view('badge/users_for_badge', $data);
+	}
     
     /**
      * Display all an admin view of all badge applications, pending or otherwise
@@ -581,6 +590,7 @@ class Badge extends MY_Controller {
      */
     protected function _send_badge_awarded_email($application_id) {
         $data['application'] = $this->badge_model->get_application($application_id);
+		$data['has_feedback'] = $this->badge_model->has_feedback($application_id);
         $message = $this->load->view('email/badge_awarded', $data, true);
         $this->load->plugin('phpmailer');
         send_email($data['application']->email, config_item('site_email'), 

@@ -5,6 +5,7 @@
 <img src="<?= base_url() ?>image/badge/<?= $badge->badge_id ?>" alt="" style="float: left;" class="badge"/> 
         <h1><?= t('Badge: ') ?><?=$badge->name ?></h1>
         <?php $this->load->view('badge/options_block'); ?>
+		<p><?= anchor('badge/view/'.$badge->badge_id, t("Back to badge")) ?></p>
         <p><?= $badge->description ?></p>
         <?php if ($badge->verifiers): ?>
             <p>
@@ -19,6 +20,7 @@
                   array('!num_approves' => $badge->num_approves)) ?></p>           
 
         <?php endif; ?>
+
     </div>
 
     <div class="c2of2">
@@ -38,35 +40,24 @@
 </div>
 
 <div id="region1">
-    <div class="user-entry">
-		<p><?= anchor('badge/users/'.$badge->badge_id, t('Who has been awarded this badge?')); ?>
-        <?=$badge->criteria?>
-        
-        <?php if ($can_apply): ?>
-        <?= anchor('badge/apply/'.$badge->badge_id, t("Apply for badge"), array('class'=>'buttonlink')) ?>
+<h2><?= t("The following people have been awarded this badge:") ?></h2>
+<?php if ($users): ?>
+<?php foreach ($users as $user): ?>
+<p>
+            <?php if ($user->picture): ?>
+                <img src="<?= base_url() ?>image/user_32/<?= $user->user_id ?>" class="go2" alt=""/>
+            <?php else: ?>
+                <img src="<?=base_url() ?>_design/avatar-default-32.jpg" class="go2" alt=""/>
+            <?php endif; ?>
+       &nbsp; <?=anchor("user/view/$user->id", $user->fullname) ?><br />
+</p>
+		<?php endforeach; ?>
+<?php else: ?>
+<?= t("Nobody has been awarded this badge yet") ?>
+<?php endif; ?>
 
-        <?php endif; ?>
-    </div>    
+    
 </div> 
 
-<div id="region2">
-    <?php $this->load->view('search/search_box'); ?>
-    <?php $this->load->view('user/user_block'); ?>  
-<div class="box">
-<h2><?= t("Applying for a badge") ?></h2>
-<p><?= t("Once you have decided that you want to work towards a particular 
-badge, make a note of the criteria and begin work.") ?></p>
-<p>
-<?= t("This may mean engaging in a course or activity. The badge issuer may have 
-been quite specific about how you could provide evidence, but if they haven't, 
-you must decide how best to do it. Your evidence might consist of a reflective 
-blog post, or a photo, a document, a diagram, a screen shot, or an activity 
-stream and you will need to be able to link to all your evidence via one URL - 
-so it needs to be held online somewhere.") ?> </p>
-<p><?= t("If you have a number of different pieces of evidence that you want to 
-submit, the easiest way of doing this is to set up a Cloud. Use the text box to 
-describe your evidence and how it meets the criteria and then 'Add content', 
-'Add embedded content' or 'Add link' for as many pieces of evidence as you 
-need. Then copy and paste the URL for you evidence Cloud into this page.") ?></p>
-</div>
+
 </div>

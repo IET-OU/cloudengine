@@ -584,7 +584,7 @@ class Badge_model extends Model {
         
         return $has_made_decision ;
     }
-    
+	    
     /** 
      * Get the number of 'approved' decisions for a badge application
      * @param integer $application_id The ID of the application 
@@ -609,4 +609,19 @@ class Badge_model extends Model {
                                   AND ba.status = 'approved'");
         return $query->result();
     } 
+	
+	/**
+	 * Get the list of users awarded a specific badge
+	 * @param integer $badge_id The ID of the badge
+	 * @return array The list of users 
+	 */
+	function get_users_awarded_badge($badge_id) {
+		$this->db->where('badge_id', $badge_id);
+		$this->db->where('status', 'approved');    
+        $this->db->join('user_picture', 'badge_application.user_id = user_picture.user_id', 
+                        'left');
+        $this->db->join('user_profile', 'user_profile.id = badge_application.user_id');  		
+		$query = $this->db->get('badge_application');
+		return $query->result();
+	}
 }
