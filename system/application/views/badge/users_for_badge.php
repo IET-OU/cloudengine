@@ -7,19 +7,7 @@
         <?php $this->load->view('badge/options_block'); ?>
 		<p><?= anchor('badge/view/'.$badge->badge_id, t("Back to badge")) ?></p>
         <p><?= $badge->description ?></p>
-        <?php if ($badge->verifiers): ?>
-            <p>
-            <strong><?= t("Verifiers:") ?></strong>
-            <?php foreach($badge->verifiers as $verifier): ?>
-            <?= anchor('user/view/'.$verifier->user_id, $verifier->fullname) ?>
-            <?php endforeach;?>
-            </p> 
-        <?php elseif ($badge->type == 'crowdsource'): ?>
-           <p><?= t("This badge will be awarded when !num_approves users have 
-                  approved the badge application", 
-                  array('!num_approves' => $badge->num_approves)) ?></p>           
 
-        <?php endif; ?>
 
     </div>
 
