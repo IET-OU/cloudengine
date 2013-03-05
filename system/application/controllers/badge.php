@@ -506,6 +506,7 @@ class Badge extends MY_Controller {
 	function users($badge_id = 0) {
 		$data['users'] = $this->badge_model->get_users_awarded_badge($badge_id);
 		$data['badge'] = $this->badge_model->get_badge($badge_id);
+		$data['title'] = "Users awarded '".$data['badge']->name."' badge";
 		$this->layout->view('badge/users_for_badge', $data);
 	}
     
