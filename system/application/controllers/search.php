@@ -40,7 +40,7 @@ class Search extends MY_Controller {
 			show_404();
 		}
 
-        $data['title' = t('Search');
+        $data['title'] = t('Search');
         $data['navigation']   = 'search';
 
         if (config_item('x_search')) {
