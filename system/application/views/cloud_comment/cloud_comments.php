@@ -28,6 +28,9 @@
 	                   <?= anchor('comment/move_to_content/'.$comment->comment_id,t("Move to content"))?>
 	                   
 	            		<?php endif; ?> 
+						<?php if ($this->auth_lib->is_logged_in()): ?>
+						<?= anchor('flag/item/cloud_comment/'.$comment->comment_id, t("Flag as spam")) ?>
+						<?php endif; ?>
                     </p>
                     </div>
                     <br />

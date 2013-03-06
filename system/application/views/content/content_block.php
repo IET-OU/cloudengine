@@ -25,6 +25,9 @@
 						
 					<?= anchor('content/move_to_comment/'.$content->content_id, t("Move to comment")) ?>
 					<?php endif; ?>
+					<?php if ($this->auth_lib->is_logged_in()): ?>
+						<?= anchor('flag/item/content/'.$content->content_id, t("Flag as spam")) ?>
+				    <?php endif; ?>
 					</p>
 			</div>
 			

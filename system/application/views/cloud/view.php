@@ -19,7 +19,7 @@
             
                 <a href="<?= $cloud->primary_url ?>"><?= $cloud->primary_url ?></a>
             </div>
-        <? endif; ?>
+        <?php endif; ?>
     </div>
 
     <div class="c2of2">

@@ -52,6 +52,7 @@ class Cloud extends MY_Controller {
         $this->load->model('embed_model');
         $this->load->model('favourite_model');
 
+
         // Get the cloud
         if (is_numeric($cloud)) {
             $data['cloud'] = $this->cloud_model->get_cloud($cloud);
@@ -102,7 +103,13 @@ class Cloud extends MY_Controller {
         
         // If the cloud exists, get all the other information needed for the page
         if ($data['cloud']) {
-            
+		
+			// Has this user flagged this cloud as spam?
+			if ($user_id) {
+				$this->load->model('flag_model');
+				$data['flagged'] = $this->flag_model->is_flagged('cloud', $cloud_id, $user_id);		
+            }
+			
             // For each comment figure out if the current user has edit permission for that
             // comment and add the information to the comment 
             $comments = $this->comment_model->get_comments($cloud_id);
@@ -112,7 +119,10 @@ class Cloud extends MY_Controller {
                     $comment->edit_permission = 
                                          $this->comment_model->has_edit_permission($user_id, 
                                                                         $comment->comment_id);
-                    $modified_comments[] = $comment;
+                    if ($user_id) {					
+						$comment->flagged = $this->flag_model->is_flagged('cloud_comment', $comment->comment_id, $user_id);
+					}
+					$modified_comments[] = $comment;
                 }
             }
             
@@ -124,7 +134,11 @@ class Cloud extends MY_Controller {
                     $content->edit_permission = 
                                           $this->content_model->has_edit_permission($user_id, 
                                                                         $content->content_id);
-                    $modified_contents[] = $content;
+                    if ($user_id) {					
+						$content->flagged = $this->flag_model->is_flagged('content', 
+						                    $content->content_id, $user_id);
+					}                    
+					$modified_contents[] = $content;
                 }
             }
             
@@ -138,7 +152,10 @@ class Cloud extends MY_Controller {
                     $link->show_favourite_link  = 
                                         $this->favourite_model->can_favourite_item($user_id, 
                                                                       $link->link_id, 'link');
-
+                    if ($user_id) {					
+						$link->flagged = $this->flag_model->is_flagged('link', 
+						                    $link->link_id, $user_id);
+					}  
                     $modified_links[] = $link;
                 }
             }  
@@ -149,7 +166,12 @@ class Cloud extends MY_Controller {
             if ($embeds) {
                 foreach ($embeds as $embed) {
                     $embed->edit_permission = $this->embed_model->has_edit_permission($user_id,                                                                             $embed->embed_id);
-                    $modified_embeds[] = $embed;
+                    if ($user_id) {					
+						$embed->flagged = $this->flag_model->is_flagged('embed', 
+						                    $embed->embed_id, $user_id);
+					}                      
+					
+					$modified_embeds[] = $embed;
                 }
             }   
             
@@ -164,7 +186,9 @@ class Cloud extends MY_Controller {
                                                                               $cloud->user_id);
                 $data['current_user_id'] = $user_id;      
             }
-            
+			
+
+			
             // We need to log the view before we calculate the number of views 
             $this->cloud_model->log_view($cloud_id);  
             

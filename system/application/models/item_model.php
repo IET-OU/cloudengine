@@ -12,6 +12,7 @@ class Item_model extends Model {
     protected $ci;
 
     function Item_model() {
+		$this->ci = & get_instance();
         parent::Model();
     }
     
@@ -34,10 +35,30 @@ class Item_model extends Model {
            case 'user': 
                $url = 'user/view/'.$item_id; 
                break;
+		   case 'cloud_comment':
+			  $this->ci->load->model('comment_model');
+			  $comment = $this->ci->comment_model = get_comment($item_id);
+			  $url = 'cloud/view/'.$comment->cloud_id; 
+			  break;
+		   case 'embed':
+			  $this->ci->load->model('embed_model');
+			  $embed = $this->ci->embed_model->get_embed($item_id);
+			  $url = 'cloud/view/'.$embed->cloud_id; 
+			  break;
+		   case 'link':
+		      $this->ci->load->model('link_model');
+			  $link = $this->ci->link_model->get_embed($link_id);
+			  $url = 'cloud/view/'.$link->cloud_id; 
+			  break;		   
+		   case 'content':
+		      $this->ci->load->model('content_model');
+		   	  $content = $this->ci->content_model->get_content($item_id);
+			  $url = 'cloud/view/'.$content->cloud_id; 
+			  break;
        } 
        return $url; 
     }
-    
+	    
     /**
      * Determine if a user has edit permission for an item and if not redirect to
      * an error page. 
@@ -47,7 +68,6 @@ class Item_model extends Model {
      * @param integer $item_id The ID of the item
      */
     function check_edit_permission($user_id, $item_type, $item_id) {
-        $this->ci = & get_instance();
        switch ($item_type) {
            case 'cloud' : 
                 $this->ci->load->model('cloud_model');
@@ -74,7 +94,6 @@ class Item_model extends Model {
      */
     function get_title($item_type, $item_id) {
        $title = FALSE;
-       $this->ci = & get_instance();
        switch ($item_type) {
            case 'cloud' :
                $this->ci->load->model('cloud_model');

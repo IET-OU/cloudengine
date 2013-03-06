@@ -18,6 +18,9 @@
     &nbsp; <small>
     <?= anchor('embed/delete/'.$embed->embed_id, t("delete embedded content")) ?>
 </small>
+<?php if ($this->auth_lib->is_logged_in()): ?>
+	<small><?= anchor('flag/embed/'.$embed->embed_id, t("Flag as spam")) ?></small>
+<?php endif; ?>
 </div>
 <?php endif; ?>
 <?php if ($embed->edit_permission): ?>

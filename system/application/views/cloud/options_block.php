@@ -23,6 +23,7 @@
         <?php else: ?>
             <li class="button"><?= anchor('cloud/follow/'.$cloud->cloud_id, t("Follow")) ?></li>
         <?php endif; ?>
+					<li class="button"><?= anchor('flag/item/cloud/'.$cloud->cloud_id, t("Flag as spam")) ?></li>
     <?php endif; ?>
     
     <?php if($favourite): ?>

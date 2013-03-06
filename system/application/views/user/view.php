@@ -78,6 +78,9 @@
           <p><strong><?=t("Username")?></strong>: <?= $user->user_name ?> </p>
       <?php endif;?>
       <?= $user->description ?>
+		<?php if ($this->auth_lib->is_logged_in()): ?>
+		<small><?= anchor('flag/item/user/'.$user->id, t("Flag as spam")) ?></small>
+		<?php endif; ?>
       <?php if ($user->institution): ?>
           <p><strong><?=t("Institution")?></strong>: 
           <?= anchor('user/institution/'.urlencode(trim($user->institution)),$user->institution) ?></p>

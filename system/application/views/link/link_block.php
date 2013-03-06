@@ -15,6 +15,9 @@
 	              &nbsp; 
 	              <small><?= anchor('cloud/edit_link/'.$link->link_id, t("edit")) ?></small>
 	            <?php endif; ?>
+					<?php if ($this->auth_lib->is_logged_in()): ?>
+						<small><?= anchor('flag/item/link/'.$link->link_id, t("Flag as spam")) ?></small>
+				    <?php endif; ?>				
 	            <?php if ($admin && !$cloud->primary_url): ?>
 	            &nbsp; <small>
 	            <?= anchor('cloud/make_link_primary/'.$cloud->cloud_id.'/'.$link->link_id, t("make primary")) ?></small>

@@ -83,6 +83,10 @@ class Cloudscape extends MY_Controller {
                                                                    $cloudscape_id, $user_id);
                 $data['owner'] = $this->cloudscape_model->has_owner_permissions(
                                                                    $cloudscape_id, $user_id);
+
+				// Has this user flagged this cloud as spam?
+				$this->load->model('flag_model');
+				$data['flagged'] = $this->flag_model->is_flagged('cloudscape', $cloudscape_id, $user_id);		
             }
     
             // Get the clouds to display
