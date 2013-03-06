@@ -4,7 +4,6 @@
     
 <img src="<?= base_url() ?>image/badge/<?= $badge->badge_id ?>" alt="" style="float: left;" class="badge"/> 
         <h1><?= t('Badge: ') ?><?=$badge->name ?></h1>
-        <?php $this->load->view('badge/options_block'); ?>
 		<p><?= anchor('badge/view/'.$badge->badge_id, t("Back to badge")) ?></p>
         <p><?= $badge->description ?></p>
 
