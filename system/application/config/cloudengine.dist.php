@@ -220,3 +220,6 @@ $config['badge_salt']          = 'cloudengine';
 $config['badge_issuer_name']  = 'Cloudworks';
 $config['badge_issuer_org'] = '';
 $config['badge_issuer_contact'] = '';
+
+// Feature flag for flagging items as spam
+$config['x_flag'] = TRUE;

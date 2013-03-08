@@ -3,6 +3,7 @@
 <?php if(count($contents) > 0):?>
     <?php foreach ($contents as $content):?>
 		<div class="extra-content">
+			<a name="content-<?= $content->content_id ?>"></a>
 			<?= $content->body ?>
 			<div class="posted-by">
 					<?php if ($content->picture): ?>
@@ -26,8 +27,14 @@
 					<?= anchor('content/move_to_comment/'.$content->content_id, t("Move to comment")) ?>
 					<?php endif; ?>
 					<?php if ($this->auth_lib->is_logged_in()): ?>
-						<?= anchor('flag/item/content/'.$content->content_id, t("Flag as spam")) ?>
-				    <?php endif; ?>
+						<?php if ($this->config->item('x_flag')): ?>
+							<?php if ($content->flagged): ?>
+							<?= t("Flagged as spam")  ?>
+							<?php else: ?>
+							<?= anchor('flag/item/content/'.$content->content_id, t("Flag as spam")) ?>
+							<?php endif; ?>
+						<?php endif; ?>
+					<?php endif; ?>
 					</p>
 			</div>
 			

@@ -16,9 +16,14 @@
             <?php else: ?>
                 <li class="button"><?= anchor('cloudscape/follow/'.$cloudscape->cloudscape_id, t("Follow")) ?></li>
             <?php endif; ?>
-			<li class="button"><?= anchor('flag/cloudscape/'.$cloudscape->cloudscape_id, t("Flag as spam")) ?></li>
+			<?php if ($this->config->item('x_flag')): ?>
+				<?php if ($flagged): ?>
+					<?= t("Flagged as spam")  ?>
+				<?php else: ?>
+					<li class="button"><?= anchor('flag/cloudscape/'.$cloudscape->cloudscape_id, t("Flag as spam")) ?></li>
+				<?php endif; ?>
+			<?php endif; ?>
    
-        
             <!-- Attend or unattend button if the cloudscape is an event -->
         <?php if ($cloudscape->start_date): ?>
                 <?php if ($attended): ?>

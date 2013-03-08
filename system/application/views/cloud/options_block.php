@@ -23,8 +23,14 @@
         <?php else: ?>
             <li class="button"><?= anchor('cloud/follow/'.$cloud->cloud_id, t("Follow")) ?></li>
         <?php endif; ?>
-					<li class="button"><?= anchor('flag/item/cloud/'.$cloud->cloud_id, t("Flag as spam")) ?></li>
-    <?php endif; ?>
+		<?php if ($this->config->item('x_flag')): ?>
+			<?php if ($flagged): ?>
+				<?= t("Flagged as spam")  ?>
+			<?php else: ?>	
+				<li class="button"><?= anchor('flag/item/cloud/'.$cloud->cloud_id, t("Flag as spam")) ?></li>
+			<?php endif; ?>
+		<?php endif; ?>
+	<?php endif; ?>
     
     <?php if($favourite): ?>
         <li class="unfavourite"><?= anchor('cloud/unfavourite/'.$cloud->cloud_id, t("Unfavourite")) ?> </li> 

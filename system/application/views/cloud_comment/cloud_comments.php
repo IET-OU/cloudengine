@@ -5,6 +5,7 @@
     <?php foreach ($comments as $comment):?>
               <h3 class="hidden"><?= t('Comment ').$i.t(' by ').$comment->fullname ?></h3>
                 <div class="user-comment">
+				<a name="cloud_comment-<?= $comment->comment_id ?>"></a>
 
                 <div class="posted-by">
                     <?php if ($comment->picture): ?>
@@ -29,7 +30,13 @@
 	                   
 	            		<?php endif; ?> 
 						<?php if ($this->auth_lib->is_logged_in()): ?>
-						<?= anchor('flag/item/cloud_comment/'.$comment->comment_id, t("Flag as spam")) ?>
+							<?php if ($this->config->item('x_flag')): ?>
+								<?php if ($comment->flagged): ?>
+									<?= t("Flagged as spam")  ?>
+								<?php else: ?>
+									<?= anchor('flag/item/cloud_comment/'.$comment->comment_id, t("Flag as spam")) ?>
+								<?php endif; ?>
+							<?php endif; ?>
 						<?php endif; ?>
                     </p>
                     </div>

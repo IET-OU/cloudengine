@@ -4,6 +4,7 @@
 <h2><?=t("Embedded Content")?></h2>
 <?php if ($embeds): ?>
 <?php foreach($embeds as $idx => $embed): ?>
+<a name="embed-<?= $embed->embed_id ?>"></a>
 <div class="embed-wrap-<?= str_replace('.', '-', parse_url($embed->url, PHP_URL_HOST)) ?>">
     <h3><?= $embed->title ?></h3>
   <a id="em<?= $idx ?>" class="em" href="<?=$embed->url ?>"><?=$embed->title ?></a>
@@ -19,7 +20,13 @@
     <?= anchor('embed/delete/'.$embed->embed_id, t("delete embedded content")) ?>
 </small>
 <?php if ($this->auth_lib->is_logged_in()): ?>
-	<small><?= anchor('flag/embed/'.$embed->embed_id, t("Flag as spam")) ?></small>
+	<?php if ($this->config->item('x_flag')): ?>
+		<?php if ($embed->flagged): ?>
+			<?= t("Flagged as spam")  ?>
+		<?php else: ?>
+			<small><?= anchor('flag/embed/'.$embed->embed_id, t("Flag as spam")) ?></small>
+		<?php endif; ?>
+	<?php endif; ?>
 <?php endif; ?>
 </div>
 <?php endif; ?>

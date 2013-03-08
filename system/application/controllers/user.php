@@ -398,10 +398,11 @@ class User extends MY_Controller {
         if ($events) {
             $events = array_slice($events , 0, 10); 
         }
-		
-		if ($current_user_id) {
-			$this->load->model('flag_model');
-			$data['flagged'] = $this->flag_model->is_flagged('user', $user_id, $current_user_id);
+		if ($this->config->item('x_flag')) {
+			if ($current_user_id) {
+				$this->load->model('flag_model');
+				$data['flagged'] = $this->flag_model->is_flagged('user', $user_id, $current_user_id);
+			}
 		}
         
         $data['type']             = $type;

@@ -79,8 +79,14 @@
       <?php endif;?>
       <?= $user->description ?>
 		<?php if ($this->auth_lib->is_logged_in()): ?>
-		<small><?= anchor('flag/item/user/'.$user->id, t("Flag as spam")) ?></small>
-		<?php endif; ?>
+			<?php if ($this->config->item('x_flag')): ?>
+				<?php if ($user->flagged): ?>
+					<?= t("Flagged as spam")  ?>
+				<?php else: ?>
+					<small><?= anchor('flag/item/user/'.$user->id, t("Flag as spam")) ?></small>
+				<?php endif; ?>	
+			<?php endif; ?>
+    	<?php endif; ?>
       <?php if ($user->institution): ?>
           <p><strong><?=t("Institution")?></strong>: 
           <?= anchor('user/institution/'.urlencode(trim($user->institution)),$user->institution) ?></p>

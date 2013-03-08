@@ -38,22 +38,22 @@ class Item_model extends Model {
 		   case 'cloud_comment':
 			  $this->ci->load->model('comment_model');
 			  $comment = $this->ci->comment_model = get_comment($item_id);
-			  $url = 'cloud/view/'.$comment->cloud_id; 
+			  $url = 'cloud/view/'.$comment->cloud_id.'/comments#cloud_comment-'.$item_id; 
 			  break;
 		   case 'embed':
 			  $this->ci->load->model('embed_model');
 			  $embed = $this->ci->embed_model->get_embed($item_id);
-			  $url = 'cloud/view/'.$embed->cloud_id; 
+			  $url = 'cloud/view/'.$embed->cloud_id.'#embedt-'.$item_id; 
 			  break;
 		   case 'link':
 		      $this->ci->load->model('link_model');
 			  $link = $this->ci->link_model->get_embed($link_id);
-			  $url = 'cloud/view/'.$link->cloud_id; 
+			  $url = 'cloud/view/'.$link->cloud_id.'/links#link-'.$item_id; 
 			  break;		   
 		   case 'content':
 		      $this->ci->load->model('content_model');
 		   	  $content = $this->ci->content_model->get_content($item_id);
-			  $url = 'cloud/view/'.$content->cloud_id; 
+			  $url = 'cloud/view/'.$content->cloud_id.'#content-'.$item_id; 
 			  break;
        } 
        return $url; 
