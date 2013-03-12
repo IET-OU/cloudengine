@@ -923,4 +923,48 @@ class Upgrade extends MY_Controller {
         
         return TRUE;
     }
+
+   /**
+    * Add an moderate column to user_profile table
+    */    
+    function _upgrade_118($action) {
+        if ($action == 'get_message') {        
+            $this->message("Add 'flagged spam' table");           
+        } elseif ($action == 'do_update') {
+            $table = 'flagged_spam';
+            if ($this->db->table_exists($table)) {
+                $this->message("Woops, '$table' table already exists.", 'error');
+            } else {
+                $fields = array(
+                    'user_id' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),
+                    'item_id' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),      
+                    'item_type' => array(
+                        'type'            => 'VARCHAR',
+                        'constraint'      => 50,
+                        'null'            => FALSE,
+                    ),   
+                    'timestamp' => array(
+                        'type'            => 'INT',
+                        'constraint'      => 11,
+                        'null'            => FALSE,
+                    ),   					
+                );
+
+                $this->dbforge->add_field($fields);
+                $this->dbforge->create_table($table);
+                $this->message("OK, created table '$table'.");               
+            }
+        }
+        
+        return TRUE;               
+    }   	
+	
  }
