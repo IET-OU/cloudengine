@@ -37,7 +37,7 @@ class Item_model extends Model {
                break;
 		   case 'cloud_comment':
 			  $this->ci->load->model('comment_model');
-			  $comment = $this->ci->comment_model = get_comment($item_id);
+			  $comment = $this->ci->comment_model->get_comment($item_id);
 			  $url = 'cloud/view/'.$comment->cloud_id.'/comments#cloud_comment-'.$item_id; 
 			  break;
 		   case 'embed':

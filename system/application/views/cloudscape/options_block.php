@@ -20,7 +20,7 @@
 				<?php if ($flagged): ?>
 					<?= t("Flagged as spam")  ?>
 				<?php else: ?>
-					<li class="button"><?= anchor('flag/cloudscape/'.$cloudscape->cloudscape_id, t("Flag as spam")) ?></li>
+					<li class="button"><?= anchor('flag/item/cloudscape/'.$cloudscape->cloudscape_id, t("Flag as spam")) ?></li>
 				<?php endif; ?>
 			<?php endif; ?>
    

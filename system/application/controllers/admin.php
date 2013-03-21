@@ -135,6 +135,28 @@ class Admin extends MY_Controller {
 
 	}
 	
+	function flagged() {
+		if (!config_item('x_flag')) {
+			show_404();
+		}
+		
+		// Get all items flagged as spam
+		$this->load->model('flag_model');
+		$this->load->model('item_model');
+		$flagged = $this->flag_model->get_flagged();
+		if ($flagged) {
+		    foreach ($flagged as $item) {
+		        $item->url = $this->item_model->view($item->item_type, $item->item_id);
+		    }
+		}
+
+        
+        $data['flagged'] = $flagged;
+        $data['title'] = t("Items flagged as spam");		
+		// Display them
+		$this->layout->view('admin/flagged', $data);
+	}
+	
 	/**
 	 * Edit the featured cloudscapes
 	 */

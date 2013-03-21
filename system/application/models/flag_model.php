@@ -12,6 +12,12 @@ class Flag_model extends Model {
         parent::Model();
     }
 	
+	/** 
+	 * Record that an item has been flagged as spam 
+	 * @param string $item_type The item type e.g. 'cloud', 'cloudscape'
+	 * @param int $item_id The ID of the item
+	 * @param int $user_id The ID of the user who flagged the item as spam
+	 */
 	function add($item_type, $item_id, $user_id) {
 		if (!$this->is_flagged($item_type, $item_id, $user_id)) {
 			$flagged->item_id = $item_id;
@@ -22,6 +28,13 @@ class Flag_model extends Model {
 		}
 	}
 	
+	/** 
+	 * Determines if a user has flagged an item as spam
+	 * @param string $item_type The item type e.g. 'cloud', 'cloudscape'
+	 * @param int $item_id The ID of the item
+	 * @param int $user_id The ID of the user who flagged the item as spam
+	 * @param boolean TRUE if the user has flagged the item as spam, FALSE otherwise
+	 */
 	function is_flagged($item_type, $item_id, $user_id) {
         $flagged = FALSE;
         $this->db->where('item_type', $item_type);
@@ -32,7 +45,21 @@ class Flag_model extends Model {
             $flagged = TRUE;
         }
 
-        return $flagged;
-		
+        return $flagged;	
+	}
+	
+	/**
+	 * Get all items that have been flagged as spammed together with the details of the user who flagged the item as spam
+	 * @return array of incidences of items being flagged as spam
+	 */
+	function get_flagged() {
+        
+	    $this->db->join('user_profile', 'user_profile.id = flagged_spam.user_id');
+	    $query = $this->db->get('flagged_spam');
+	    // Join with user table
+	    // Order by data flagged
+	    // Remove deleted items?
+	    return $query->result();
 	}
 }
+

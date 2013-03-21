@@ -24,7 +24,7 @@
 		<?php if ($embed->flagged): ?>
 			<?= t("Flagged as spam")  ?>
 		<?php else: ?>
-			<small><?= anchor('flag/embed/'.$embed->embed_id, t("Flag as spam")) ?></small>
+			<small><?= anchor('flag/item/embed/'.$embed->embed_id, t("Flag as spam")) ?></small>
 		<?php endif; ?>
 	<?php endif; ?>
 <?php endif; ?>

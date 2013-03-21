@@ -6,6 +6,9 @@
 <li><?= anchor('admin/featured_cloudscapes', t("Manage featured cloudscapes")) ?></li>
 <li><?= anchor('admin/update_site_news', t("Update Site News")) ?></li>
 <li><?= anchor('admin/manage_pages', t("Manage Pages")) ?></li>
+<?php if ($this->config->item('x_flag')): ?>
+<li><?= anchor('admin/flagged', t("Items flagged as spam")) ?></li>
+<?php endif; ?>
 </ul>
 
 

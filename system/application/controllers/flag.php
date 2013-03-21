@@ -19,7 +19,9 @@ class Flag extends MY_Controller {
 	}
 
 	/** 
-	 * Flag item as spam 
+	 * Flag item as spam and redirects to original page
+	 * @param string $item_type The item type e.g. 'cloud', 'cloudscape'
+	 * @param int $item_id The ID of the item
 	 */
 	function item($item_type, $item_id) {
 		$user_id  = $this->db_session->userdata('id');
@@ -35,6 +37,9 @@ class Flag extends MY_Controller {
 	
 	/**
 	 * Send email to admins to indicate that item has been flagged as spam
+	 * @param string $item_type The item type e.g. 'cloud', 'cloudscape'
+	 * @param int $item_id The ID of the item
+	 * @param int $user_id The ID of the user who flagged the item as spam
 	 */
 	protected function _send_flagged_email($item_type, $item_id, $user_id) {
 
