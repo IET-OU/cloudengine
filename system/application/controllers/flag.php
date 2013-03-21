@@ -32,7 +32,7 @@ class Flag extends MY_Controller {
 			$this->flag_model->add($item_type, $item_id, $user_id);
 			$this->_send_flagged_email($item_type, $item_id, $user_id);
 		}
-		redirect($_SERVER['HTTP_REFERER']); // Return to the original page
+		redirect($this->item_model->view($item_type, $item_id)); // Return to the original page
 	}		
 	
 	/**
