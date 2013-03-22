@@ -591,7 +591,6 @@ class Badge extends MY_Controller {
      */
     protected function _send_badge_awarded_email($application_id) {
         $data['application'] = $this->badge_model->get_application($application_id);
-		$data['has_feedback'] = $this->badge_model->has_feedback($application_id);
         $message = $this->load->view('email/badge_awarded', $data, true);
         $this->load->plugin('phpmailer');
         send_email($data['application']->email, config_item('site_email'), 
