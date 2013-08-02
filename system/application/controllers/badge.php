@@ -578,14 +578,19 @@ class Badge extends MY_Controller {
         } else {
             show_404();
         }
-    } 
-        
+    }
+
     function issue($application_id = 0) {
+        if (! is_numeric($application_id) || 0 == $application_id) {
+            // If invalid application id, display error page
+            show_error("The badge application ID was missing or invalid.");
+        }
+        $data['no_javascript'] = TRUE;
         $data['application_id'] = $application_id;
         $data['title'] = t("Badge Issued");
         $this->layout->view('badge/issue', $data);
     }
-    
+
     /**
      * Send an email to a user who has been awarded a badge
      */

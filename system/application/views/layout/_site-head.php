@@ -1,5 +1,6 @@
 <?php $rss = isset($rss) ? $rss : false; ?>
 
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
 <?php if (!config_item('x_live') || strrpos(current_url(),'search_view') ) : ?>
 <meta name="ROBOTS" content="noindex,nofollow" />
 <?php endif; ?>
@@ -26,6 +27,7 @@
     </style>
     <![endif]-->
 
+<?php if (! isset($no_javascript)): ?>
 	<script type="text/javascript" src="<?=base_url()?>_scripts/jquery/js/jquery-1.4.2.min.js"></script>
     <?php if ($this->config->item('x_message')): ?>
         <script type="text/javascript" src="<?=base_url()?>_scripts/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
@@ -36,3 +38,4 @@
       <script type="text/javascript" src="<?=base_url()?>_scripts/search.js"></script>
     <?php endif; ?>    
   <script src="<?=base_url()?>_scripts/custom.js" type="text/javascript"></script>
+<?php endif; ?>
