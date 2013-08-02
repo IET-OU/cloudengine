@@ -17,18 +17,18 @@
 
     
         <label for="name"><?=t("Name !required!")?>:</label>
-        <input type="text" maxlength="128" name="name" id="name"  size="80" 
+        <input type="text" maxlength="128" name="name" id="name" required="" size="80"
                value="<?= $badge->name ?>" />
         <label for="description"><?=t("Description !required!")?>:</label>
-        <input type="text" maxlength="128" name="description" id="description"  size="80" 
+        <input type="text" maxlength="128" name="description" id="description" required="" size="80"
                value="<?= $badge->description ?>" />
-        <label for="description"><?=t("Issuer Name (optional, if left blank will default to
+        <label for="issuer_name"><?=t("Issuer Name (optional, if left blank will default to
         '!site_name')", array('!site_name'=>$this->config->item('site_name')))?>:</label>       
         <input type="text" maxlength="128" name="issuer_name" id="issuer_name"  size="80" 
                value="<?= $badge->issuer_name ?>" />               
         <?php if ($new): ?>       
-        <label for="file"><?=t("Image File !required!")?>:</label>
-         <input type="file" id="filename" name="filename" size="30" maxlength="139" /></p>
+        <label for="filename"><?=t("Image File !required!")?>:</label>
+         <input type="file" id="filename" name="filename" size="30" maxlength="128" required="" /></p>
         <ul class="arrows">
             <li><?=t("Must be square - !dimensions pixels",
                   array('!dimensions' => '90 &times; 90'))
@@ -39,7 +39,7 @@
          </ul>         
          <?php endif; ?>
         <label for="criteria"><?=t("Criteria !required!")?>:</label>
-        <textarea cols="61" rows="10" name="criteria" id="criteria"><?= $badge->criteria ?></textarea>
+        <textarea cols="61" rows="10" name="criteria" id="criteria" required=""><?= $badge->criteria ?></textarea>
 <?php if ($new): ?>   
         <fieldset>
 <legend>Badge approval process:</legend>

@@ -18,7 +18,7 @@
             <?=form_open($this->uri->uri_string(), array('id' => 'badge-apply-form'))?>
         <label for="evidence_url"><?= t("Evidence - please provide a single URL with evidence that you
         meet the criteria for this badge.") ?>
-        <input type="text" name="evidence_url" size="80" />
+        <input type="url" id="evidence_url" name="evidence_url" required="" size="80" />
         <input type="submit" name="submit" id="submit" 
         class="submit" value="<?= t("Apply for badge")?>" />
         <?=form_close()?>

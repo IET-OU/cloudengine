@@ -8,7 +8,7 @@
             <input type="hidden" id="badge_id" name="badge_id" value="<?=$badge->badge_id?>" />
         <?php endif; ?>
 
-        <label for="file"><?=t("New image !required!")?>:</label>
+        <label for="filename"><?=t("New image !required!")?>:</label>
          <input type="file" id="filename" name="filename" size="30" maxlength="139" /></p>
         <ul class="arrows">
             <li><?=t("Must be square - !dimensions pixels",
