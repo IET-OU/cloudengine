@@ -11,4 +11,7 @@ language/*/LC_MESSAGES/*.mo
 .hgrevision
 *.orig
 * Copy.*
+*.diff
+*.patch
+_scratch/*
 extensions/*

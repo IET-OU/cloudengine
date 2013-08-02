@@ -4,13 +4,13 @@
 <?php if (!config_item('x_live') || strrpos(current_url(),'search_view') ) : ?>
 <meta name="ROBOTS" content="noindex,nofollow" />
 <?php endif; ?>
-<meta http-equiv="Content-Type" content="text/html; charset=<?=config_item("charset") ?>" />
+<meta charset="<?=config_item("charset") ?>" />
 <?=$this->lang->content_lang() ?>
 
     <title><?= isset($title) ? $title : '' ?> - <?= $this->config->item('site_name') ?></title>
-    <link rel="stylesheet" href="<?=base_url() ?>_design/styles_1_1.css" type="text/css" />
+    <link rel="stylesheet" href="<?=base_url() ?>_design/styles_1_1.css" />
     <?php if(config_item('theme_stylesheet')): ?>
-    <link rel="stylesheet" href="<?=base_url().config_item('theme_stylesheet') ?>" type="text/css" />
+    <link rel="stylesheet" href="<?=base_url().config_item('theme_stylesheet') ?>" />
     <?php endif; ?>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
@@ -28,14 +28,14 @@
     <![endif]-->
 
 <?php if (! isset($no_javascript)): ?>
-	<script type="text/javascript" src="<?=base_url()?>_scripts/jquery/js/jquery-1.4.2.min.js"></script>
+	<script src="<?=base_url()?>_scripts/jquery/js/jquery-1.4.2.min.js"></script>
     <?php if ($this->config->item('x_message')): ?>
-        <script type="text/javascript" src="<?=base_url()?>_scripts/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
-        <link type="text/css" href="<?=base_url()?>_scripts/jquery/css/redmond/jquery-ui-1.8.6.custom.css" rel="stylesheet" />
+        <script src="<?=base_url()?>_scripts/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
+        <link href="<?=base_url()?>_scripts/jquery/css/redmond/jquery-ui-1.8.6.custom.css" rel="stylesheet" />
     <?php endif; ?>
     <?php if ($this->uri->segment(1) == 'search'): ?>
-      <script type="text/javascript" src="<?=base_url()?>_scripts/buildpager.jquery.js"></script>
-      <script type="text/javascript" src="<?=base_url()?>_scripts/search.js"></script>
+      <script src="<?=base_url()?>_scripts/buildpager.jquery.js"></script>
+      <script src="<?=base_url()?>_scripts/search.js"></script>
     <?php endif; ?>    
-  <script src="<?=base_url()?>_scripts/custom.js" type="text/javascript"></script>
+  <script src="<?=base_url()?>_scripts/custom.js"></script>
 <?php endif; ?>
