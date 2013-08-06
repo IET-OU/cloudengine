@@ -9,6 +9,7 @@ language/*/LC_MESSAGES/*.mo
 */Thumbs.db
 .DS_Store
 .hgrevision
+*[.-]bak
 *.orig
 * Copy.*
 *.diff
