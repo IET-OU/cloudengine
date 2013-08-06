@@ -1,26 +1,26 @@
-<?php 
+<?php
 /**
- * Controller for badge-related functionality 
- * 
+ * Controller for badge-related functionality
+ *
  * @copyright 2012 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Badge
- * 
- * Two types of badges can be created: 'verifier' or 'crowdsource'. 
- * For verifier badges, a set of verifiers can be specified for the badge. 
- * Badge applications can be approved or rejected by any verifier from that 
- * set. 
+ *
+ * Two types of badges can be created: 'verifier' or 'crowdsource'.
+ * For verifier badges, a set of verifiers can be specified for the badge.
+ * Badge applications can be approved or rejected by any verifier from that
+ * set.
  * For crowdsource badges, any member of the site may approve or reject badge
  * applications but a certain number (specified when the badge is created) of
- * approvals are needed for the badge to be approved overall. (Rejecting a 
+ * approvals are needed for the badge to be approved overall. (Rejecting a
  * badge does not have any effect but does remove the application from the list
- * of applications for that user). 
+ * of applications for that user).
  *
- * Badges awarded to a user are displayed on their profile. 
- *  
- * The Mozilla Open Badges Infrastructure is also supported in that an 
- * assertion is created for each badge awarded and the Issuer API is used to 
- * issue the badge.  See https://wiki.mozilla.org/Badges for more on Mozilla 
+ * Badges awarded to a user are displayed on their profile.
+ *
+ * The Mozilla Open Badges Infrastructure is also supported in that an
+ * assertion is created for each badge awarded and the Issuer API is used to
+ * issue the badge.  See https://wiki.mozilla.org/Badges for more on Mozilla
  * Open Badges
  */
 class Badge extends MY_Controller {
@@ -30,13 +30,13 @@ class Badge extends MY_Controller {
         $this->load->helper('url');
         $this->load->helper('format');
         $this->load->helper('form');
-        $this->load->library('layout', 'layout_main'); 
-        $this->load->model('user_model'); 
+        $this->load->library('layout', 'layout_main');
+        $this->load->model('user_model');
         $this->load->model('badge_model');
     }
-    
+
     /**
-     * Display a list of all the badges on the site 
+     * Display a list of all the badges on the site
      */
     function badge_list() {
         $data['title']      = 'Badges';
@@ -44,98 +44,98 @@ class Badge extends MY_Controller {
         $data['badges']     = $this->badge_model->get_badges();
         $this->layout->view('badge/list', $data);
     }
-    
+
     /**
      * Display the information about a badge
      * @param integer $alpha The ID of the badge to display
-     */    
+     */
     function view($badge_id = 0) {
-        $user_id  = $this->db_session->userdata('id'); 
+        $user_id  = $this->db_session->userdata('id');
         $badgeid_valid = FALSE;
         if (is_numeric($badge_id)) {
             $data['badge'] = $this->badge_model->get_badge($badge_id);
             if ($data['badge']->name) {
                 $badgeid_valid = TRUE;
-            }            
+            }
         }
         if ($badgeid_valid) {
-            $data['edit_permission']  = $this->badge_model->has_edit_permission($user_id, 
+            $data['edit_permission']  = $this->badge_model->has_edit_permission($user_id,
                                                                     $badge_id);
             $data['admin']            = $this->auth_lib->is_admin();
-            $data['can_apply']        = $this->badge_model->can_apply($user_id, 
+            $data['can_apply']        = $this->badge_model->can_apply($user_id,
                                                                     $badge_id);
-            $data['title']            = $data['badge']->name;                                                        
-            $this->layout->view('badge/view', $data); 
+            $data['title']            = $data['badge']->name;
+            $this->layout->view('badge/view', $data);
         } else {
             // If invalid badge id, display error page
             show_404();
         }
     }
-    
+
     /**
      * Make an application to be awarded a badge
      * @param integer $badge_id The ID of the badge that the application is for
      */
     function apply($badge_id = 0) {
-        $user_id  = $this->db_session->userdata('id'); 
+        $user_id  = $this->db_session->userdata('id');
         $can_apply = $this->badge_model->can_apply($user_id, $badge_id);
-        
+
         if (!$can_apply) {
-            show_error(t("You cannot apply for this badge, either because you 
-            already have a pending application for it or because you have 
+            show_error(t("You cannot apply for this badge, either because you
+            already have a pending application for it or because you have
             already been awarded it."));
         }
         $data['badge'] = $this->badge_model->get_badge($badge_id);
-        
+
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('evidence_url', t("Evidence URL"), 
+        $this->form_validation->set_rules('evidence_url', t("Evidence URL"),
                                           'valid_url|required');
-        
+
         if ($this->input->post('submit')) { // Process badge application
             $evidence_url       = $this->input->post('evidence_url');
-            if ($this->form_validation->run()) { 
-                $this->badge_model->insert_application($badge_id, $user_id, 
+            if ($this->form_validation->run()) {
+                $this->badge_model->insert_application($badge_id, $user_id,
                                                        $evidence_url);
-                $data['title'] = t('Application received');                                       
-                $this->layout->view('badge/application_received', $data); 
+                $data['title'] = t('Application received');
+                $this->layout->view('badge/application_received', $data);
                 return;
-            } 
-        } 
-                
+            }
+        }
+
         if ($data['badge']->name) {
-            $data['title'] = t('Apply for badge');     
-            $this->layout->view('badge/apply_form', $data); 
+            $data['title'] = t('Apply for badge');
+            $this->layout->view('badge/apply_form', $data);
         } else {
             // If invalid badge id, display error page
             show_error(t("An error occurred."));
         }
     }
-    
+
     /**
      * Add a new badge
      */
     function add() {
         $this->auth_lib->check_logged_in();
-        $user_id  = $this->db_session->userdata('id'); 
-        
-        // Set up form validation 
+        $user_id  = $this->db_session->userdata('id');
+
+        // Set up form validation
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', t("Badge Name"), 'required');
 
-        $this->form_validation->set_rules('description', 
-                                          t("Badge Description"), 'required'); 
-        $this->form_validation->set_rules('criteria', t("Criteria"), 
-                                          'required'); 
-        $this->form_validation->set_rules('type', 
-                              t("Type of Badge approval process"), 'required');      
+        $this->form_validation->set_rules('description',
+                                          t("Badge Description"), 'required');
+        $this->form_validation->set_rules('criteria', t("Criteria"),
+                                          'required');
+        $this->form_validation->set_rules('type',
+                              t("Type of Badge approval process"), 'required');
         if ($this->input->post('type') == 'crowdsource') {
-            $this->form_validation->set_rules('num_approves', 
+            $this->form_validation->set_rules('num_approves',
                   t("number of users who need to approve a badge application"),
                   'required|is_natural_no_zero');
         }
-                              
+
         $upload_path = $this->config->item('upload_path_badge');
-        
+
         if ($this->input->post('submit')) {
             $badge->name        = $this->input->post('name');
             $badge->description = $this->input->post('description');
@@ -162,22 +162,22 @@ class Badge extends MY_Controller {
                     $upload_data = $this->upload->data();
                     $data = array('upload_data' => $upload_data);
                     $data['error']      = NULL;
-                    $data['image_path'] = $upload_data['file_name'];            
-                    // Check the width and height 
+                    $data['image_path'] = $upload_data['file_name'];
+                    // Check the width and height
                     $dimensions_valid = true;
-                    
+
                     if ($upload_data["image_height"] != 90) {
                         $dimensions_valid = false;
-                    }  
+                    }
                     if ($upload_data["image_width"] != 90) {
                         $dimensions_valid = false;
-                    }        
-                    
+                    }
+
                     if ($dimensions_valid) {
                         $badge->image = $data['image_path'];
-                    
+
                         $badge_id = $this->badge_model->insert_badge($badge);
-                        
+
                         if ($badge_id) {
                             $badge->badge_id = $badge_id;
                             $data['badge'] = $badge;
@@ -185,45 +185,45 @@ class Badge extends MY_Controller {
                             $this->layout->view('badge/badge_added', $data);
                             return;
                         } else {
-                            show_error(t("An error occurred creating the badge.")); 
+                            show_error(t("An error occurred creating the badge."));
                         }
                     } else {
                         $data['error'] = t('The image must be 90x90 pixels');
                     }
-                } 
-            } 
-        }  
+                }
+            }
+        }
 
         $data['new']   = true;
         $data['title'] = t("Create Badge");
         $data['navigation'] = 'badges';
 
         // Display the form for creating a badge
-        $this->layout->view('badge/edit', $data);  
+        $this->layout->view('badge/edit', $data);
     }
-    
+
     /**
      * Edit a badge
-     * @param integer $badge_id The ID of the badge 
+     * @param integer $badge_id The ID of the badge
      */
     function edit($badge_id = 0) {
-        $user_id  = $this->db_session->userdata('id');        
-        $this->badge_model->check_edit_permission($user_id, $badge_id); 
-        // Get the badge 
+        $user_id  = $this->db_session->userdata('id');
+        $this->badge_model->check_edit_permission($user_id, $badge_id);
+        // Get the badge
         $badge = $this->badge_model->get_badge($badge_id);
         $badge->badge_id = $badge_id;
-        $data['badge'] = $badge;   
-        // Set up form validation 
+        $data['badge'] = $badge;
+        // Set up form validation
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('name', t("Badge Name"), 
+        $this->form_validation->set_rules('name', t("Badge Name"),
                                           'required');
-        $this->form_validation->set_rules('description', 
-                                          t("Badge Description"), 
-                                          'required'); 
-        $this->form_validation->set_rules('criteria', t("Criteria"), 
-                                          'required');  
-        
-        if ($this->input->post('submit')) {            
+        $this->form_validation->set_rules('description',
+                                          t("Badge Description"),
+                                          'required');
+        $this->form_validation->set_rules('criteria', t("Criteria"),
+                                          'required');
+
+        if ($this->input->post('submit')) {
             $updated_badge->badge_id    = $badge_id;
             $updated_badge->name        = $this->input->post('name');
             $updated_badge->description = $this->input->post('description');
@@ -232,30 +232,30 @@ class Badge extends MY_Controller {
 
             $data['badge'] = $updated_badge;
 
-            if ($this->form_validation->run()) {                   
+            if ($this->form_validation->run()) {
                 $this->badge_model->update_badge($updated_badge);
                 redirect('/badge/view/'.$badge_id);
-            } 
-        }  
+            }
+        }
 
         $data['new']   = false;
         $data['title'] = t("Edit Badge");
         $data['navigation'] = 'badges';
 
         // Display the form for creating a badge
-        $this->layout->view('badge/edit', $data);          
+        $this->layout->view('badge/edit', $data);
     }
-    
-    
+
+
     /**
      * Edit the image associated with a badge
      * @param integer $badge_id The ID of the badge
      */
     function edit_image($badge_id = 0) {
         $this->auth_lib->check_logged_in();
-        $user_id  = $this->db_session->userdata('id');        
-        $this->badge_model->check_edit_permission($user_id, $badge_id); 
-        // Get the badge 
+        $user_id  = $this->db_session->userdata('id');
+        $this->badge_model->check_edit_permission($user_id, $badge_id);
+        // Get the badge
         $data['badge'] = $this->badge_model->get_badge($badge_id);
         if ($this->input->post('submit')) {
             $upload_path = $this->config->item('upload_path_badge');
@@ -273,16 +273,16 @@ class Badge extends MY_Controller {
                 $upload_data = $this->upload->data();
                 $data = array('upload_data' => $upload_data);
                 $data['error']      = NULL;
-                $data['image_path'] = $upload_data['file_name'];            
-                // Check the width and height 
+                $data['image_path'] = $upload_data['file_name'];
+                // Check the width and height
                 $dimensions_valid = true;
 
                 if ($upload_data["image_height"] != 90) {
                     $dimensions_valid = false;
-                }  
+                }
                 if ($upload_data["image_width"] != 90) {
                     $dimensions_valid = false;
-                }        
+                }
 
                 if ($dimensions_valid) {
                     $badge->image = $data['image_path'];
@@ -293,28 +293,28 @@ class Badge extends MY_Controller {
                     $data['title'] = t('Badge image changed');
                     $this->layout->view('badge/edit_image_success', $data);
                     return;
-                    
-                }            
+
+                }
             }
         }
         $data['title'] = t('Edit Badge Image');
         $this->layout->view('badge/edit_image', $data);
-    }    
-    
+    }
+
     /**
      * Delete a badge
      *
      * @param integer $badge_id The ID of the badge
      */
-    function delete($badge_id = 0) {        
-        // Check permissions 
+    function delete($badge_id = 0) {
+        // Check permissions
         $this->auth_lib->check_logged_in();
-        $user_id  = $this->db_session->userdata('id');      
+        $user_id  = $this->db_session->userdata('id');
 
         $this->badge_model->check_edit_permission($user_id, $badge_id);
-        
-        // If confirmation form submitted delete the badge, otherwise display 
-        // the confirmation form 
+
+        // If confirmation form submitted delete the badge, otherwise display
+        // the confirmation form
         if ($this->input->post('submit')) {
             $data['badge'] = $this->badge_model->get_badge($badge_id);
             $data['title'] = t('Badge deleted');
@@ -327,23 +327,23 @@ class Badge extends MY_Controller {
             $data['title']      = t('Confirm badge deletion');
             $this->layout->view('badge/delete_confirm', $data);
         }
-    }  
+    }
 
     /**
      * Delete a badge application
      *
      * @param integer $badge_id The ID of the badge
      */
-    function delete_application($application_id = 0) {        
-        // Check permissions 
+    function delete_application($application_id = 0) {
+        // Check permissions
         $this->auth_lib->check_logged_in();
-        $user_id  = $this->db_session->userdata('id');      
+        $user_id  = $this->db_session->userdata('id');
 
-        $this->badge_model->check_application_edit_permission($user_id, 
+        $this->badge_model->check_application_edit_permission($user_id,
                                                               $application_id);
-        
-        // If confirmation form submitted delete the application, otherwise 
-        // display  the confirmation form 
+
+        // If confirmation form submitted delete the application, otherwise
+        // display  the confirmation form
         if ($this->input->post('submit')) {
             $data['badge'] = $this->badge_model->get_application($application_id);
             $this->badge_model->delete_application($application_id);
@@ -355,8 +355,8 @@ class Badge extends MY_Controller {
             $data['title'] = t('Confirm application deletion');
             $this->layout->view('badge/application_delete_confirm', $data);
         }
-    }     
-    
+    }
+
     /**
      * View a badge application and the decisions on it
      * @param integer $application_id The ID of the application
@@ -364,10 +364,10 @@ class Badge extends MY_Controller {
     function application($application_id = 0) {
         $this->auth_lib->check_logged_in();
         $user_id  = $this->db_session->userdata('id');
-        // Only the person who has applied for badges and admins can see the 
+        // Only the person who has applied for badges and admins can see the
         // application
-        $this->badge_model->check_application_edit_permission($user_id, 
-                                                              $application_id);        
+        $this->badge_model->check_application_edit_permission($user_id,
+                                                              $application_id);
         $data['application'] = $this->badge_model->get_application($application_id);
         if ($data['application']) {
             $data['decisions'] = $this->badge_model->get_decisions($application_id);
@@ -378,7 +378,7 @@ class Badge extends MY_Controller {
             show_error(t("An error occurred."));
         }
     }
-    
+
 
     /**
      * Display page for managing the verifiers of a badge
@@ -386,18 +386,18 @@ class Badge extends MY_Controller {
      */
     function manage_verifiers($badge_id = 0) {
         $this->auth_lib->check_logged_in();
-        $user_id  = $this->db_session->userdata('id');        
-        $this->badge_model->check_edit_permission($user_id, $badge_id); 
+        $user_id  = $this->db_session->userdata('id');
+        $this->badge_model->check_edit_permission($user_id, $badge_id);
         $badge = $this->badge_model->get_badge($badge_id);
-         
-        
-        // If search form submitted, search for users 
+
+
+        // If search form submitted, search for users
         if ($this->input->post('submit')) {
-            $user_search_string = $this->input->post('user_search_string', 
+            $user_search_string = $this->input->post('user_search_string',
                                                      TRUE);
-            $data['users'] = $this->user_model->search($user_search_string);  
-            $data["user_search_string"] = $user_search_string;        
-        } 
+            $data['users'] = $this->user_model->search($user_search_string);
+            $data["user_search_string"] = $user_search_string;
+        }
 
         // Get the information to display existing permissions
         $data['title']     = t("Manage Badge Verifiers");
@@ -406,7 +406,7 @@ class Badge extends MY_Controller {
 
         $this->layout->view('badge/manage_verifiers', $data);
     }
-    
+
     /**
      * Add a verifier to a badge
      * @param integer $badge_id The ID of the badge
@@ -414,12 +414,12 @@ class Badge extends MY_Controller {
      */
     function verifier_add($badge_id = 0, $add_user_id = 0) {
         $this->auth_lib->check_logged_in();
-        $user_id  = $this->db_session->userdata('id');        
-        $this->badge_model->check_edit_permission($user_id, $badge_id);   
+        $user_id  = $this->db_session->userdata('id');
+        $this->badge_model->check_edit_permission($user_id, $badge_id);
         $this->badge_model->add_verifier($badge_id, $add_user_id);
-        redirect('badge/manage_verifiers/'.$badge_id);        
+        redirect('badge/manage_verifiers/'.$badge_id);
     }
-    
+
     /**
      * Remove a verifier to a badge
      * @param integer $badge_id The ID of the badge
@@ -427,12 +427,12 @@ class Badge extends MY_Controller {
      */
     function verifier_remove($badge_id, $remove_verifier_id) {
         $this->auth_lib->check_logged_in();
-        $user_id  = $this->db_session->userdata('id');        
-        $this->badge_model->check_edit_permission($user_id, $badge_id);  
+        $user_id  = $this->db_session->userdata('id');
+        $this->badge_model->check_edit_permission($user_id, $badge_id);
         $this->badge_model->remove_verifier($badge_id, $remove_verifier_id);
-        redirect('badge/manage_verifiers/'.$badge_id);         
-    }   
-    
+        redirect('badge/manage_verifiers/'.$badge_id);
+    }
+
     /**
      * Display pending applications for a specified badge
      * @param integer $badge_id The ID of the badge
@@ -440,66 +440,66 @@ class Badge extends MY_Controller {
     function applications($badge_id = FALSE) {
         $this->auth_lib->check_logged_in();
         $user_id  = $this->db_session->userdata('id');
-        
+
         // If no badge ID specified, produce list for all badges
-        if (!$badge_id) {         
-            $data['badges']              = $this->badge_model->get_badges_with_verification_permission($user_id);       
+        if (!$badge_id) {
+            $data['badges']              = $this->badge_model->get_badges_with_verification_permission($user_id);
             $data['crowdsourced_badges'] = $this->badge_model->get_crowdsourced_badges($user_id);
             $data['title']               = t('Pending badge applications');
-            $this->layout->view('badge/applications_all_pending', $data);  
-            return;        
+            $this->layout->view('badge/applications_all_pending', $data);
+            return;
         } else { // Otherwise get the applications for the specified badge
             $badge = $this->badge_model->get_badge($badge_id);
             if ($badge_type == 'verifier') {
                 $this->badge_model->check_verifier($user_id, $badge_id);
             }
-            
+
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('decision', t("Decision"), 
+            $this->form_validation->set_rules('decision', t("Decision"),
                                               'required');
-            
-            if ($this->input->post('submit') && $this->form_validation->run()) { 
+
+            if ($this->input->post('submit') && $this->form_validation->run()) {
                 $application_id = $this->input->post('application_id');
                 $decision = $this->input->post('decision');
                 $feedback = $this->input->post('feedback');
                 $application = $this->badge_model->get_application($application_id);
-                if ($user_id != $application->user_id 
-                    && !$this->badge_model->has_made_decision($application_id, $user_id)) {                  
-                    $badge_awarded = $this->badge_model->add_decision($application_id, 
+                if ($user_id != $application->user_id
+                    && !$this->badge_model->has_made_decision($application_id, $user_id)) {
+                    $badge_awarded = $this->badge_model->add_decision($application_id,
                                                    $user_id, $decision, $feedback);
                     if ($badge_awarded) {
                         $this->_send_badge_awarded_email($application_id);
                     }
-                }            
-            }    
-            
+                }
+            }
+
             $data['title']        = t("Applications for badge");
             $data['user_id']      = $user_id;
             $data['badge']        = $badge;
             $data['applications'] = $this->badge_model->get_applications($badge_id, $user_id);
-            
+
             $this->layout->view('badge/applications_for_badge_pending', $data);
         }
     }
-    
+
     /**
      * Display all the applications of the current user
      */
     function user_applications() {
         $this->auth_lib->check_logged_in();
         $user_id  = $this->db_session->userdata('id');
-        $data['pending_applications'] = $this->badge_model->get_applications_for_user($user_id, 
-                                                                    'pending'); 
-        $data['approved_applications'] = 
-                        $this->badge_model->get_applications_for_user($user_id, 
+        $data['pending_applications'] = $this->badge_model->get_applications_for_user($user_id,
+                                                                    'pending');
+        $data['approved_applications'] =
+                        $this->badge_model->get_applications_for_user($user_id,
                                                                    'approved');
-        $data['rejected_applications'] = 
-                        $this->badge_model->get_applications_for_user($user_id, 
+        $data['rejected_applications'] =
+                        $this->badge_model->get_applications_for_user($user_id,
                                                                    'rejected');
-        $data['title'] = t('Your badge applications');                                                           
-        $this->layout->view('badge/applications_for_user_all', $data);        
+        $data['title'] = t('Your badge applications');
+        $this->layout->view('badge/applications_for_user_all', $data);
     }
-	
+
 	/**
 	 * Display all users who have been awarded a specific badge
 	 */
@@ -509,28 +509,28 @@ class Badge extends MY_Controller {
 		$data['title'] = "Users awarded '".$data['badge']->name."' badge";
 		$this->layout->view('badge/users_for_badge', $data);
 	}
-    
+
     /**
      * Display all an admin view of all badge applications, pending or otherwise
      */
     function admin() {
         $this->auth_lib->check_logged_in();
         $this->auth_lib->check_is_admin();
-        
-        $data['pending_applications'] = $this->badge_model->get_all_applications( 
-                                                                    'pending'); 
-        $data['approved_applications'] = 
+
+        $data['pending_applications'] = $this->badge_model->get_all_applications(
+                                                                    'pending');
+        $data['approved_applications'] =
                         $this->badge_model->get_all_applications('approved');
-        $data['rejected_applications'] = 
+        $data['rejected_applications'] =
                         $this->badge_model->get_all_applications('rejected');
-        $data['title'] = t('All badge applications');                                                           
-        $this->layout->view('badge/applications_all', $data);                         
-        
-        
+        $data['title'] = t('All badge applications');
+        $this->layout->view('badge/applications_all', $data);
+
+
     }
-    
+
     /**
-     * Display the json file for an Mozilla Open Badges assertion for an 
+     * Display the json file for an Mozilla Open Badges assertion for an
      * awarded badge
      */
     function assertion($application_id) {
@@ -539,9 +539,9 @@ class Badge extends MY_Controller {
             $application = $this->badge_model->get_application($application_id);
             if ($application) {
                 $applicationid_valid = TRUE;
-            }            
-        }    
-        
+            }
+        }
+
         if ($applicationid_valid && $application->status == 'approved') {
 
             $salt  = $this->config->item('badge_salt');
@@ -549,9 +549,9 @@ class Badge extends MY_Controller {
             if (property_exists($application, 'issuer_name')) {
                 $issuer_name  = $application->issuer_name;
             }
-            
+
             $assertion = array(
-                'recipient'   => 'sha256$'.hash('sha256', 
+                'recipient'   => 'sha256$'.hash('sha256',
                                               $application->email.$salt),
                 'salt'        => $salt,
                 'evidence'    => $application->evidence_URL,
@@ -564,15 +564,15 @@ class Badge extends MY_Controller {
                     'criteria'    => base_url().'badge/view/'.$application->badge_id,
                    'issuer'      => array(
                         'origin' => base_url(),
-                        'name'   => $issuer_name, 
+                        'name'   => $issuer_name,
                         'org' => $this->config->item('badge_issuer_org'),
-                        'contact' => $this->config->item('badge_issuer_contact')                       
+                        'contact' => $this->config->item('badge_issuer_contact')
                     )
                 )
             );
 
             header('Content-Type: application/json; charset=utf8');
-            
+
             $json = json_encode($assertion);
             echo $json;
         } else {
@@ -598,7 +598,7 @@ class Badge extends MY_Controller {
         $data['application'] = $this->badge_model->get_application($application_id);
         $message = $this->load->view('email/badge_awarded', $data, true);
         $this->load->plugin('phpmailer');
-        send_email($data['application']->email, config_item('site_email'), 
-                   t('!site-name! - Badge Awarded'), $message); 
-    }    
+        send_email($data['application']->email, config_item('site_email'),
+                   t('!site-name! - Badge Awarded'), $message);
+    }
 }
