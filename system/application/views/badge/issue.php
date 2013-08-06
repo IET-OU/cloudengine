@@ -32,14 +32,16 @@
           cls = "error";
         }
       } else {
-        msg = "Success, badge issued OK.";
+        msg = "OK, badge issued successfully.";
         cls = "ok";
       }
       p.innerHTML = msg;
       p.className = cls;
 
-      console.log(errors);
-      console.log(successes);
+      if (typeof console === "object") {
+        console.log(errors);
+        console.log(successes);
+      }
     });
   } catch (ex) {
     if (typeof console === "object") {

@@ -352,6 +352,7 @@ class Badge_model extends Model {
      */     
     function get_all_applications($status) {
         $this->db->where('status', $status);
+        $this->db->select('*, badge_application.created AS created');
         $this->db->join('user_profile' , 
                         'badge_application.user_id = user_profile.id');        
         $this->db->join('badge', 
