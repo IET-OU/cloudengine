@@ -35,6 +35,7 @@
     <?= anchor('embed/edit/'.$embed->embed_id, t("edit embedded content")) ?></small>
 <?php endif; ?>
 </p>
+</div>
 <?php endforeach; ?>
 
 <?php /*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>*/ ?>
