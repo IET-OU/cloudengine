@@ -1761,7 +1761,8 @@ a.cloud {
 #form-lang select{ 
     margin-right:1em;}
 
-/* Embedding. */
+/* Embedding.
+*/
 .oembed, .oembed iframe{
     display:block;    min-width:420px;    width:100% !important;}
 
@@ -1770,13 +1771,14 @@ a.cloud {
 .oembed.youtube{
     padding:0;    border:none;}
 
-.embed-wrap-vimeo-com iframe {
+.embed-wrap.em-vimeo-com iframe {
     width:625px;
     height: 500px;
 }
 
-iframe {
-    max-width:625px;
+iframe, .embed-block img, .embed-block iframe {
+    max-width: 100%; /*625px*/
+    display: block;
 }
 
 

@@ -3,11 +3,12 @@
 <div id="embeds" class="embed-block">
 <h2><?=t("Embedded Content")?></h2>
 <?php if ($embeds): ?>
+
 <?php foreach($embeds as $idx => $embed): ?>
-<a name="embed-<?= $embed->embed_id ?>"></a>
-<div class="embed-wrap-<?= str_replace('.', '-', parse_url($embed->url, PHP_URL_HOST)) ?>">
+<a id="embed-<?= $embed->embed_id ?>"></a>
+<div class="embed-wrap em-<?= str_replace('.', '-', parse_url($embed->url, PHP_URL_HOST)) ?>">
     <h3><?= $embed->title ?></h3>
-  <a id="em<?= $idx ?>" class="em" href="<?=$embed->url ?>"><?=$embed->title ?></a>
+  <a id="em-n<?= $idx ?>" class="em" href="<?=$embed->url ?>"><?=$embed->title ?></a>
 <p><?php if ($embed->accessible_alternative): ?>
    <?= anchor('embed/accessible_alternative/'.$embed->embed_id, t('Accessible Alternative')); ?><br />
   <?php endif; ?>
@@ -38,7 +39,8 @@
 </div>
 <?php endforeach; ?>
 
-<?php /*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>*/ ?>
+
+<?php /*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>*/ ?>
 <?php if ($this->config->item('x_live')): ?>
 <script src="<?=base_url() ?>_scripts/jquery.oembed.js"></script>
 <?php else: ?>
