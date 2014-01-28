@@ -5,7 +5,7 @@
 <meta name="ROBOTS" content="noindex,nofollow" />
 <?php endif; ?>
 <meta charset="<?=config_item("charset") ?>" />
-<?=$this->lang->content_lang() ?>
+<?php /*$this->lang->content_lang()*/ ?>
 
     <title><?= isset($title) ? $title : '' ?> - <?= $this->config->item('site_name') ?></title>
     <link rel="stylesheet" href="<?=base_url() ?>_design/styles_1_1.css" />

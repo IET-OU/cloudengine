@@ -5,6 +5,8 @@
   // We are using the HTML5 Doctype below, but not ready to use all HTML5 
   // elements yet as have not included javascript shim for IE fallback
 
+  $this->lang->content_lang($header = TRUE);
+
 ?><!DOCTYPE html><html <?=$this->lang->lang_tag()?>><head>
 <?php $this->load->view('layout/_site-head.php'); ?>
 </head>
