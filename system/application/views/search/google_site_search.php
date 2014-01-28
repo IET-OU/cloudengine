@@ -2,6 +2,10 @@
 
 <link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
 
+<link
+  rel="search" title="<?= $this->config->item('site_name') ?> search"
+  href="<?=base_url() ?>/search/opensearch_desc.xml"
+  type="application/opensearchdescription+xml"/>
 
 
 <script>
@@ -17,6 +21,7 @@
  class="gcse-search"
  data-enableAutoComplete="true"
  data-resultSetSize="large"
+ data-linkTarget=""
 ></div>
 
 
