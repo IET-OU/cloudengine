@@ -1,5 +1,5 @@
 
-<p id="badge-issue-stat" class="loading" >Issuing badge. Loading...</p>
+<p id="badge-issue-stat" class="loading" ><?=t('Issuing badge. Loading...') ?></p>
 
 <script src="http://beta.openbadges.org/issuer.js"></script>
 <script>
@@ -9,11 +9,11 @@
   var p = document.querySelector("#badge-issue-stat"),
     // https://github.com/mozilla/openbadges/wiki/Issuer-API#error-constant-strings
     ers = {
-      "DENIED":  "User cancelled",
-      "EXISTS":  "Badge already exists",
-      "INACCESSIBLE": "Assertion URL can not be retrieved. Maybe 404 'Not Found'",
-      "MALFORMED": "Assertion URL is malformed",
-      "INVALID": "Assertion URL is not valid. Maybe not logged in"
+      "DENIED":  "<?=t('User cancelled') ?>",
+      "EXISTS":  "<?=t('Badge already exists') ?>",
+      "INACCESSIBLE": "<?=t('Assertion URL can not be retrieved. Maybe 404 \'Not Found\'') ?>",
+      "MALFORMED": "<?=t('Assertion URL is malformed') ?>",
+      "INVALID": "<?=t('Assertion URL is not valid. Maybe not logged in') ?>"
     };
 
   try {
@@ -25,14 +25,14 @@
         reason = errors[0].reason;
         rsn_tx = ers[reason];
         if ("DENIED" === reason) {
-          msg = "Warning, badge not issued. <small>[ " + rsn_tx +" - "+ reason + " ]</small>";
+          msg = "<?=t('Warning, badge not issued.') ?> <small>[ " + rsn_tx +" - "+ reason + " ]</small>";
           cls = "warn";
         } else {
-          msg = "Error, badge not issued. <small>[ " + rsn_tx +" - "+ reason + " ]</small>";
+          msg = "<?=t('Error, badge not issued.') ?> <small>[ " + rsn_tx +" - "+ reason + " ]</small>";
           cls = "error";
         }
       } else {
-        msg = "OK, badge issued successfully.";
+        msg = "<?=t('OK, badge issued successfully.') ?>";
         cls = "ok";
       }
       p.innerHTML = msg;
@@ -47,7 +47,7 @@
     if (typeof console === "object") {
       console.log(ex);
     }
-    p.innerHTML = "Error (exception), badge not issued. <small>(Internet Explorer 8?) [" + ex.message + "]</small>";
+    p.innerHTML = "<?=t('Error (exception), badge not issued.') ?> <small>(Internet Explorer 8?) [" + ex.message + "]</small>";
     p.className = "error ex";
   }
 })();
