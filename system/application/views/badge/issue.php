@@ -1,7 +1,7 @@
 
 <p id="badge-issue-stat" class="loading" ><?=t('Issuing badge. Loading...') ?></p>
 
-<script src="http://beta.openbadges.org/issuer.js"></script>
+<script src="https://backpack.openbadges.org/issuer.js"></script>
 <script>
 (function () {
   'use strict';
