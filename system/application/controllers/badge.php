@@ -537,11 +537,11 @@ class Badge extends MY_Controller {
      */
     protected function _legacy_assertion($application) {
         $assertion = NULL;
+		$config = $this->config;
         if ($application->status == 'approved') {
-            $salt  = $this->config->item('badge_salt');
 
-            $salt  = $this->config->item('badge_salt');
-            $issuer_name =  $this->config->item('site_name');
+            $salt  = $config->item('badge_salt');
+            $issuer_name =  $config->item('site_name');
             if (property_exists($application, 'issuer_name')) {
                 $issuer_name  = $application->issuer_name;
             }
@@ -555,14 +555,14 @@ class Badge extends MY_Controller {
                 'badge'       => array(
                    'version'     => "0.5.0",
                     'name'        => $application->name,
-                    'image'       => base_url().'image/badge/'.$application->badge_id,
+                    'image'       => site_url('image/badge/'. $application->badge_id),
                     'description' => $application->description,
-                    'criteria'    => base_url().'badge/view/'.$application->badge_id,
+                    'criteria'    => base_url('badge/view/'. $application->badge_id),
                    'issuer'      => array(
                         'origin' => base_url(),
                         'name'   => $issuer_name,
-                        'org' => $this->config->item('badge_issuer_org'),
-                        'contact' => $this->config->item('badge_issuer_contact')
+                        'org' => $config->item('badge_issuer_org'),
+                        'contact' => $config->item('badge_issuer_contact')
                     )
                 )
             );
@@ -571,16 +571,13 @@ class Badge extends MY_Controller {
     }
 
 
-
     /** JSON: BadgeAssertion.
      */
     public function assertion($application_id, $version = 1) {  //'0.5.0') {
         $applicationid_valid = FALSE;
         if (is_numeric($application_id)) {
             $application = $this->badge_model->get_application($application_id);
-            if ($application) {
-                $applicationid_valid = TRUE;
-            }
+            $applicationid_valid = (bool) $application;
         }
 
         if ($applicationid_valid && $application->status == 'approved') {
@@ -613,10 +610,8 @@ class Badge extends MY_Controller {
                 );
             }
 
-            header('Content-Type: application/json; charset=utf8');
+            $this->_echo_json($assertion, 'cloudworks-badge-assertion');
 
-            $json = json_encode($assertion);
-            echo $json;
         } else {
             show_404();
         }
@@ -630,9 +625,7 @@ class Badge extends MY_Controller {
         $badgeid_valid = FALSE;
         if (is_numeric($badge_id)) {
             $badge = $this->badge_model->get_badge($badge_id);
-            if ($badge->name) {
-                $badgeid_valid = TRUE;
-            }
+            $badgeid_valid = (bool) $badge->name;
         }
         if ($badgeid_valid) {
             $badge_class = array(
