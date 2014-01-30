@@ -526,23 +526,19 @@ class Badge extends MY_Controller {
         $data['title'] = t('All badge applications');
         $this->layout->view('badge/applications_all', $data);
 
-
     }
 
     /**
      * Display the json file for an Mozilla Open Badges assertion for an
      * awarded badge
+     *
+     * LEGACY: https://github.com/mozilla/openbadges/wiki/Assertion-Specification-Changes#backwards-compatibility
+     * Validator: http://validator.openbadges.org
      */
-    function assertion($application_id) {
-        $applicationid_valid = FALSE;
-        if (is_numeric($application_id)) {
-            $application = $this->badge_model->get_application($application_id);
-            if ($application) {
-                $applicationid_valid = TRUE;
-            }
-        }
-
-        if ($applicationid_valid && $application->status == 'approved') {
+    protected function _legacy_assertion($application) {
+        $assertion = NULL;
+        if ($application->status == 'approved') {
+            $salt  = $this->config->item('badge_salt');
 
             $salt  = $this->config->item('badge_salt');
             $issuer_name =  $this->config->item('site_name');
@@ -570,6 +566,52 @@ class Badge extends MY_Controller {
                     )
                 )
             );
+        }
+        return $assertion;
+    }
+
+
+
+    /** JSON: BadgeAssertion.
+     */
+    public function assertion($application_id, $version = 1) {  //'0.5.0') {
+        $applicationid_valid = FALSE;
+        if (is_numeric($application_id)) {
+            $application = $this->badge_model->get_application($application_id);
+            if ($application) {
+                $applicationid_valid = TRUE;
+            }
+        }
+
+        if ($applicationid_valid && $application->status == 'approved') {
+
+            $salt  = $this->config->item('badge_salt');
+
+            if ('v050' == $version || 'v0_5_0' == $version || '0.5.0' == $version) {
+                $assertion = $this->_legacy_assertion($application);
+            }
+            else {
+                // NEW: https://github.com/mozilla/openbadges/wiki/Assertions
+                $assertion = array(
+                    'uid'   => 'badge-application-'. $application->application_id,  //$application->badge_id,
+                    'recipient' => array(
+                        'type'  => 'email',
+                        'hashed'=> true,
+                        'salt'  => $salt,
+                        # https://github.com/mozilla/openbadges/wiki/How-to-hash-&-salt-in-various-languages.#wiki-php
+                        'identity' => 'sha256$' . hash('sha256',
+                                        $application->email . $salt),
+                    ),
+                    'badge'     => site_url('badge/badge_class/'. $application->badge_id .'.json'),  #JSON.
+                    'evidence'  => $application->evidence_URL,
+                    #'expires'   => '<date>',
+                    'issuedOn'  => date('Y-m-d', $application->issued),  #ISO 8601 date-only.
+                    'verify'    => array(
+                        'type'  => 'hosted',
+                        'url'   => site_url('badge/assertion/'. $application->application_id .'.json'),  #JSON.
+                    ),
+                );
+            }
 
             header('Content-Type: application/json; charset=utf8');
 
@@ -579,6 +621,50 @@ class Badge extends MY_Controller {
             show_404();
         }
     }
+
+
+    /** JSON: BadgeClass.
+     */
+    public function badge_class($badge_id = 0) {
+        $user_id  = $this->db_session->userdata('id');
+        $badgeid_valid = FALSE;
+        if (is_numeric($badge_id)) {
+            $badge = $this->badge_model->get_badge($badge_id);
+            if ($badge->name) {
+                $badgeid_valid = TRUE;
+            }
+        }
+        if ($badgeid_valid) {
+            $badge_class = array(
+                'name'  => $badge->name,
+                'image' => site_url('image/badge/'. $badge->badge_id),
+                # 128 chars max.: http://wordpress.org/support/topic/plugin-wpbadger-unexpected-token-u
+                'description' => substr(preg_replace('/[[:^print:]]/', '', $badge->description), 0, 128),
+                'criteria'  => site_url('badge/view/'. $badge->badge_id),
+                'issuer'    => site_url('badge/organization.json'),  #JSON.
+                # Options: alignment (Array), tags (Array).
+            );
+            $this->_echo_json($badge_class, 'cloudworks-badge-class');
+        }
+        else {
+            // If invalid badge id, display error page
+            show_404();
+        }
+    }
+
+    /** JSON: IssuerOrganization.
+     */
+    public function organization() {
+        $config = $this->config;
+        $issuer = array(
+            'name'  => $config->item('site_name') .': '. $config->item('badge_issuer_org'),
+            'url'   => base_url(),
+            'email' => $config->item('badge_issuer_contact') ? $config->item('badge_issuer_contact') : $config->item('site_email'),
+            # Options: description, image, revocationList (JSON URL).
+        );
+        $this->_echo_json($issuer, 'cloudworks-organization');
+    }
+
 
     function issue($application_id = 0) {
         if (! is_numeric($application_id) || 0 == $application_id) {
@@ -601,4 +687,14 @@ class Badge extends MY_Controller {
         send_email($data['application']->email, config_item('site_email'),
                    t('!site-name! - Badge Awarded'), $message);
     }
+
+
+    protected function _echo_json($data, $disposition = NULL) {
+        header('Content-Type: application/json; charset=utf-8');
+        if ($disposition) {
+            @header('Content-Disposition: inline; filename="'. $disposition .'.json"');
+        }
+        echo json_encode($data);
+    }
+
 }
