@@ -29,7 +29,7 @@
 		<?php endif; ?>
 	<?php endif; ?>
 <?php endif; ?>
-</div>
+
 <?php endif; ?>
 <?php if ($embed->edit_permission): ?>
     &nbsp; <small>
