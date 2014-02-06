@@ -39,7 +39,8 @@
          </ul>         
          <?php endif; ?>
         <label for="criteria"><?=t("Criteria !required!")?>:</label>
-        <textarea cols="61" rows="10" name="criteria" id="criteria" required=""><?= $badge->criteria ?></textarea>
+        <?php /* Bug #348: 'required' attribute causes a problem with TinyMCE (new badges). */ ?>
+        <textarea cols="61" rows="10" name="criteria" id="criteria" aria-required="true"><?= $badge->criteria ?></textarea>
 <?php if ($new): ?>   
         <fieldset>
 <legend>Badge approval process:</legend>
