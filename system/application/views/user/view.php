@@ -44,16 +44,20 @@
 	<?php endif; ?>
     </h1>
     <?php if ($reputation): ?>
-    <p><strong><?=t('Reputation: !count', array('!count'=> $reputation)) ?></strong></p>
+    <p class="reputation"><strong><?=t('Reputation: !count', array('!count'=> $reputation)) ?></strong></p>
     <?php endif; ?>
     <p><?= $user->institution ?>
     
  
     </p>
     <?php if (count($badges) > 0 && $this->config->item('x_badge')): ?>
+	<div class="open-badges">
       <?php foreach($badges as $badge): ?>
-      <a class="badge" href="<?= base_url().'badge/view/'.$badge->badge_id ?>"><img src="<?= base_url() ?>image/badge/<?= $badge->badge_id ?>" width="45px" height="45px" alt="" /></a> 
+      <a class="badge" href="<?=site_url('badge/view/'.$badge->badge_id) ?>"><img src="<?=site_url('image/badge/'. $badge->badge_id) ?>"
+        width="45px" height="45px" title="<?=t('Badge: !name', array('!name' => $badge->name)) ?>"
+        alt="<?=t('Badge: !name', array('!name' => $badge->name)) ?>" /></a>
       <?php endforeach; ?>
+	  </div>
       <?php endif; ?> 
 
 </div>
