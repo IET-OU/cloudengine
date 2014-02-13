@@ -1,10 +1,10 @@
-<div class="grid">
+<div class="grid" id="comments">
 
 <?php if(count($comments) > 0):?>
 <?php $i = 1; ?>
     <?php foreach ($comments as $comment):?>
               <h3 class="hidden"><?= t('Comment ').$i.t(' by ').$comment->fullname ?></h3>
-                <div class="user-comment">
+                <div class="user-comment" id="comment-<?= $comment->comment_id ?>">
 				<a name="cloud_comment-<?= $comment->comment_id ?>"></a>
 
                 <div class="posted-by">
@@ -38,6 +38,7 @@
 								<?php endif; ?>
 							<?php endif; ?>
 						<?php endif; ?>
+                    <a href="#comment-<?= $comment->comment_id ?>" class="permalink"><?=t('Permalink') ?></a>
                     </p>
                     </div>
                     <br />

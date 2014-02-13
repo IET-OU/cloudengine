@@ -51,7 +51,7 @@
  
     </p>
     <?php if (count($badges) > 0 && $this->config->item('x_badge')): ?>
-	<div class="open-badges">
+	<div id="open-badges">
       <?php foreach($badges as $badge): ?>
       <a class="badge" href="<?=site_url('badge/view/'.$badge->badge_id) ?>"><img src="<?=site_url('image/badge/'. $badge->badge_id) ?>"
         width="45px" height="45px" title="<?=t('Badge: !name', array('!name' => $badge->name)) ?>"
