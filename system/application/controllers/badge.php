@@ -23,6 +23,10 @@
  * issue the badge.  See https://wiki.mozilla.org/Badges for more on Mozilla
  * Open Badges
  */
+
+define('BADGE_DESC_CHARS', 128); //128?
+
+
 class Badge extends MY_Controller {
 
     function Badge() {
@@ -39,7 +43,7 @@ class Badge extends MY_Controller {
      * Display a list of all the badges on the site
      */
     function badge_list() {
-        $data['title']      = 'Badges';
+        $data['title']      = t('Open Badges');
         $data['navigation'] = 'badges';
         $data['badges']     = $this->badge_model->get_badges();
         $this->layout->view('badge/list', $data);
@@ -630,9 +634,9 @@ class Badge extends MY_Controller {
         if ($badgeid_valid) {
             $badge_class = array(
                 'name'  => $badge->name,
-                'image' => site_url('image/badge/'. $badge->badge_id),
+                'image' => site_url('image/badge/'. $badge->badge_id .'.png'),
                 # 128 chars max.: http://wordpress.org/support/topic/plugin-wpbadger-unexpected-token-u
-                'description' => substr(preg_replace('/[[:^print:]]/', '', $badge->description), 0, 128),
+                'description' => substr(preg_replace('/[[:^print:]]/', '', $badge->description), 0, BADGE_DESC_CHARS),
                 'criteria'  => site_url('badge/view/'. $badge->badge_id),
                 'issuer'    => site_url('badge/organization.json'),  #JSON.
                 # Options: alignment (Array), tags (Array).
