@@ -3,7 +3,7 @@
 <h2><?= t("Awarded badges") ?></h2>
 <?php if (count($approved_applications) >0 ): ?>
 <?php foreach($approved_applications as $application): ?>
-<img src="<?= base_url() ?>image/badge/<?= $application->badge_id ?>" alt=""/> 
+<img src="<?= site_url('image/badge/'. $application->badge_id) ?>" alt=""/> 
 <p>
 <?= anchor('badge/view/'.$application->badge_id, $application->name) ?> 
 </p>
@@ -23,7 +23,7 @@
 <h2><?= t("Pending Applications") ?></h2>
 <?php if (count($pending_applications) >0 ): ?>
 <?php foreach($pending_applications as $application): ?>
-<img src="<?= base_url() ?>image/badge/<?= $application->badge_id ?>" alt
+<img src="<?= site_url('image/badge/'. $application->badge_id) ?>" alt=""/>
 
 <?= anchor('badge/view/'.$application->badge_id, $application->name) ?>    
 <p><?= t("Evidence URL: ") ?>:  
@@ -42,7 +42,7 @@
 <h2><?= t("Rejected Applications") ?></h2>
 <?php if (count($rejected_applications) >0 ): ?>
 <?php foreach($rejected_applications as $application): ?>
-<img src="<?= base_url() ?>image/badge/<?= $application->badge_id ?>" alt="" style="float: left;"/> 
+<img src="<?= site_url('image/badge/'. $application->badge_id) ?>" alt="" style="float: left;"/> 
 <p>
 <?= anchor('badge/view/'.$application->badge_id, $application->name) ?> 
 </p>
@@ -59,7 +59,7 @@
 <?php endif; ?>
 
             
-<p><a href="<?= base_url() ?>badge/badge_list" class="buttonlink"><?=t("Back to all badges")?></a></p>
+<p><a href="<?= site_url('badge/badge_list') ?>" class="buttonlink"><?=t("Back to all badges")?></a></p>
   
 </div>
 <div id="region2">
@@ -75,9 +75,10 @@ can reapply as many times as you need to.") ?>
 </h2>
 <p>
 <?= t("You can add any badge you have been awarded to your [link-backpack]Mozilla Open Badge Backpack[/link] 
-if you have one or want to set one up. You will need to use the same 
- mail address when you set up your Backpack as you used to set up your Cloudworks profile.",
- array('[link-backpack]'=>t_link("http://beta.openbadges.org", FALSE))) ?>
+if you have one or want to set one up.",
+ array('[link-backpack]'=>t_link(BADGE_BACKPACK_URL, FALSE))) ?>
+<?= t(
+'You will need to use the same email address when you set up your Backpack as you used to set up your Cloudworks profile.') ?>
  
 </p>
 <h2><?= t("Displaying your badge") ?></h2>
@@ -85,7 +86,7 @@ if you have one or want to set one up. You will need to use the same
 page. You can also add your badge to your [link-backpack]Mozilla Open Badge Backpack[/link]. 
 Mozilla Open Badges is quite a new concept but in the future there are likely to be far more places you 
 can display your badges",
- array('[link-backpack]'=>t_link("http://beta.openbadges.org", FALSE))) ?>
+ array('[link-backpack]'=>t_link(BADGE_BACKPACK_URL, FALSE))) ?>
 </p>
 </div>
 

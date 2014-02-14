@@ -25,7 +25,8 @@
                     <?php  foreach ($badges as $badge):?>
                         <tr <?php if ($row % 2 == 0): ?>class="even"<?php endif; ?>>
                             <td>
-                                  <a class="badge" href="<?= base_url().'badge/view/'.$badge->badge_id ?>"><img src="<?= base_url() ?>image/badge/<?= $badge->badge_id ?>" width="45px" height="45px" alt="" /></a> 
+                                <a class="badge" href="<?= site_url('badge/view/'.$badge->badge_id) ?>"><img
+                                src="<?= site_url('image/badge/'. $badge->badge_id) ?>" width="45px" height="45px" alt="<?= $badge->name ?>" /></a>
      
                             </td>
                             <td><?=anchor("badge/view/$badge->badge_id", $badge->name) ?></td>
@@ -54,8 +55,8 @@
 <p>
 <?= t("The badges used in Cloudworks support [link-openbadges]Mozilla Open Badges[/link]
 and can be added to your [link-backpack]Mozilla Open Badge Backpack[/link].", 
-array('[link-openbadges]'=>t_link('http://openbadges.org/en-US/faq.html', FALSE), 
-'[link-backpack]'=>t_link('http://beta.openbadges.org', FALSE))) ?>
+array('[link-openbadges]'=>t_link('http://openbadges.org/faq/', FALSE), 
+'[link-backpack]'=>t_link(BADGE_BACKPACK_URL, FALSE))) ?>
 </p>
 <h2><?= t("What do I have to do?") ?></h2>
 <p><?= t("Click on a badge title to find out what criteria has been set for any 

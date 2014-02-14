@@ -25,6 +25,7 @@
  */
 
 define('BADGE_DESC_CHARS', 128); //128?
+define('BADGE_BACKPACK_URL', 'http://backpack.openbadges.org/'); //Was: 'http://beta.openbadges.org/'
 
 
 class Badge extends MY_Controller {
