@@ -450,15 +450,15 @@ class Badge extends MY_Controller {
 
         // If no badge ID specified, produce list for all badges
         if (!$badge_id) {
-            $data['badges']              = $this->badge_model->get_badges_with_verification_permission($user_id);
-            $data['crowdsourced_badges'] = $this->badge_model->get_crowdsourced_badges($user_id);
+            $data['badges']              = $badge_model->get_badges_with_verification_permission($user_id);
+            $data['crowdsourced_badges'] = $badge_model->get_crowdsourced_badges($user_id);
             $data['title']               = t('Pending badge applications');
             $this->layout->view('badge/applications_all_pending', $data);
             return;
         } else { // Otherwise get the applications for the specified badge
-            $badge = $this->badge_model->get_badge($badge_id);
+            $badge = $badge_model->get_badge($badge_id);
             if ($badge_type == 'verifier') {
-                $this->badge_model->check_verifier($user_id, $badge_id);
+                $badge_model->check_verifier($user_id, $badge_id);
             }
 
             $this->load->library('form_validation');
@@ -469,10 +469,10 @@ class Badge extends MY_Controller {
                 $application_id = $this->input->post('application_id');
                 $decision = $this->input->post('decision');
                 $feedback = $this->input->post('feedback');
-                $application = $this->badge_model->get_application($application_id);
+                $application = $badge_model->get_application($application_id);
                 if ($user_id != $application->user_id
-                    && !$this->badge_model->has_made_decision($application_id, $user_id)) {
-                    $badge_awarded = $this->badge_model->add_decision($application_id,
+                    && !$badge_model->has_made_decision($application_id, $user_id)) {
+                    $badge_awarded = $badge_model->add_decision($application_id,
                                                    $user_id, $decision, $feedback);
                     if ($badge_awarded) {
                         $this->_send_badge_awarded_email($application_id);
@@ -487,7 +487,7 @@ class Badge extends MY_Controller {
             $data['title']        = t("Applications for badge");
             $data['user_id']      = $user_id;
             $data['badge']        = $badge;
-            $data['applications'] = $this->badge_model->get_applications($badge_id, $user_id);
+            $data['applications'] = $badge_model->get_applications($badge_id, $user_id);
 
             $this->layout->view('badge/applications_for_badge_pending', $data);
         }
@@ -499,14 +499,14 @@ class Badge extends MY_Controller {
     function user_applications() {
         $this->auth_lib->check_logged_in();
         $user_id  = $this->db_session->userdata('id');
-        $data['pending_applications'] = $this->badge_model->get_applications_for_user($user_id,
+        $model = $this->badge_model;
+
+        $data['pending_applications'] = $model->get_applications_for_user($user_id,
                                                                     'pending');
         $data['approved_applications'] =
-                        $this->badge_model->get_applications_for_user($user_id,
-                                                                   'approved');
+                        $model->get_applications_for_user($user_id, 'approved');
         $data['rejected_applications'] =
-                        $this->badge_model->get_applications_for_user($user_id,
-                                                                   'rejected');
+                        $model->get_applications_for_user($user_id, 'rejected');
         $data['title'] = t('Your badge applications');
         $this->layout->view('badge/applications_for_user_all', $data);
     }
@@ -517,7 +517,7 @@ class Badge extends MY_Controller {
 	function users($badge_id = 0) {
 		$data['users'] = $this->badge_model->get_users_awarded_badge($badge_id);
 		$data['badge'] = $this->badge_model->get_badge($badge_id);
-		$data['title'] = "Users awarded '".$data['badge']->name."' badge";
+		$data['title'] = t("Users awarded '!name' badge", array('!name' => $data['badge']->name));
 		$this->layout->view('badge/users_for_badge', $data);
 	}
 
