@@ -446,6 +446,8 @@ class Badge extends MY_Controller {
         $this->auth_lib->check_logged_in();
         $user_id  = $this->db_session->userdata('id');
 
+        $badge_model = $this->badge_model;
+
         // If no badge ID specified, produce list for all badges
         if (!$badge_id) {
             $data['badges']              = $this->badge_model->get_badges_with_verification_permission($user_id);
@@ -474,6 +476,10 @@ class Badge extends MY_Controller {
                                                    $user_id, $decision, $feedback);
                     if ($badge_awarded) {
                         $this->_send_badge_awarded_email($application_id);
+                    }
+                    // Rejected? Extra check for crowdsourced badges.
+                    elseif ($badge_model->has_made_decision($application_id, $user_id)) {
+                        $this->_send_badge_rejected_email($application_id, $feedback);
                     }
                 }
             }
@@ -686,6 +692,17 @@ class Badge extends MY_Controller {
                    t('!site-name! - Badge Awarded'), $message);
     }
 
+    /**
+     * Send an email to a user when their application has failed.
+     */
+    protected function _send_badge_rejected_email($application_id, $feedback) {
+        $data['application'] = $this->badge_model->get_application($application_id);
+        $data['feedback'] = $feedback;
+        $message = $this->load->view('email/badge_rejected', $data, true);
+        $this->load->plugin('phpmailer');
+        send_email($data['application']->email, config_item('site_email'),
+                   t('!site-name! - Badge Rejected'), $message);
+    }
 
     protected function _echo_json($data, $disposition = NULL) {
         header('Content-Type: application/json; charset=utf-8');
