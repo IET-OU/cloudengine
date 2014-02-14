@@ -443,6 +443,7 @@ class Badge_model extends Model {
      * @param integer $application_id The ID of the application
      */
     function get_application_owner($application_id) {
+        $owner_user_id = FALSE;
         $this->db->where('application_id', $application_id);
         $query = $this->db->get('badge_application');
         if ($query->num_rows() > 0) {
@@ -462,7 +463,7 @@ class Badge_model extends Model {
     function has_application_edit_permission($user_id, $application_id) {
         $permission = FALSE;
         if ($user_id) {
-            $owner_user_id = $this->get_application_owner($badge_id);
+            $owner_user_id = $this->get_application_owner($application_id);
             if ($user_id == $owner_user_id || $this->auth_lib->is_admin()) {
                 $permission = TRUE;
             }
