@@ -3,7 +3,7 @@
 <?php else: ?>
 <h1><?= t("Your Application for '!name' Badge ", array('!name'=>$application->name)) ?></h1>
 <?php endif; ?>
-<img src="<?= base_url() ?>image/badge/<?= $application->badge_id ?>" alt="" />
+<img src="<?= site_url('image/badge/'. $application->badge_id) ?>" alt="" />
 
 <?= anchor('badge/view/'.$application->badge_id, $application->name) ?>   
 
@@ -13,7 +13,7 @@
 <p><?= t("Evidence URL") ?>:  
 <?= anchor($application->evidence_URL, $application->evidence_URL) ?>
 </p>
-<p><strong><?= t('Application status') ?>: <?= $application->status ?>
+<p><strong><?= t('Application status') ?>: <?= $application->status ?></strong>
 </p>
 <p>
 <?= anchor('badge/delete_application/'.$application->application_id, t('Delete application')) ?>
