@@ -709,7 +709,8 @@ class Badge extends MY_Controller {
         if ($disposition) {
             @header('Content-Disposition: inline; filename="'. $disposition .'.json"');
         }
-        echo json_encode($data);
+        // https://github.com/mozilla/openbadges/issues/1005# (PHP > 5.4, JSON_UNESCAPED_SLASHES)
+        echo str_replace('\/', '/', json_encode($data));
     }
 
 }
