@@ -22,6 +22,6 @@
 	</label>
 <?=form_close()?>
 </fieldset>
-<p><?= anchor('user/forgotten_password',t("Forgotten Password"))?>&nbsp;
+<p><?= anchor('auth/forgotten_password',t("Forgotten Password"))?>&nbsp;
  &nbsp; 
- <?= anchor('user/register', t("Register")) ?></p>
+ <?= anchor('auth/register', t("Register")) ?></p>
