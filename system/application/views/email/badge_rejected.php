@@ -8,7 +8,7 @@
 <div class="cloudengine-email">
 <p><?=t('Dear !fullname,', array('!fullname' => $application->fullname))?></p>
 
-<p><?=t('On this ocassion, you have not been awarded the following badge on !site-name!.')?></p>
+<p><?=t('On this occasion, you have not been awarded the following badge on !site-name!.')?></p>
 
 <p><img src="<?= site_url('image/badge/'. $application->badge_id) ?>" alt="" /></p>
 
