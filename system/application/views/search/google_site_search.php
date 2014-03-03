@@ -17,13 +17,19 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
   })();
 </script>
+
+
+<div class="grid headline">
+  <div class=c1of2 >
+    <h1><label for=gsc-i-id1 ><?= $title ?></label></h1>
+  </div>
+</div>
+
+
 <div
  class="gcse-search"
  data-enableAutoComplete="true"
  data-resultSetSize="large"
  data-linkTarget=""
 ></div>
-
-
-
 

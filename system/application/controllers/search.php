@@ -42,6 +42,7 @@ class Search extends MY_Controller {
 
         $data['title'] = t('Search');
         $data['navigation']   = 'search';
+        $data['query_string'] = NULL;
 
         if (config_item('x_search')) {
             // Increase the memory limit as Zend Lucene sometimes struggles 
@@ -96,7 +97,6 @@ class Search extends MY_Controller {
               catch (Exception $e) {
                 $data['error'] = $e->getMessage();
               }
-
           }
 
           $data['title']        = t("Search results for '!query'", array('!query'=>$query_string));
@@ -107,8 +107,11 @@ class Search extends MY_Controller {
           $this->layout->view('search/results', $data);
       }
       elseif (config_item('x_google_site_search')) {
-        $data['search_term'] = $this->input->get('q');
-        $data['title'] = t("Search results for '!query'", array('!query'=>$search_term));
+        $query_string = $this->input->get('q');
+        if ($query_string) {
+          $data['title'] = t("Search results for '!query'", array('!query' => $query_string));
+          $data['query_string'] = $query_string;
+        }
         $this->layout->view('search/google_site_search', $data);   
       }
       
