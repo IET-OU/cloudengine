@@ -2427,5 +2427,22 @@ label.radio {
 img.badge {
     padding: 5px;
 }
-    
 
+
+/* Google custom search.
+*/
+body .gsc-control-cse,
+body .gsc-control-cse .gsc-table-result,
+body form.gsc-search-box {
+    font-size: 1.07em;
+}
+body .gsc-control-cse .gs-result .gs-title *,
+form.gsc-search-box input {
+    font-size: 1.1em;
+}
+.gsc-result td, .gsc-result table {
+    padding: 0; margin: 0;
+}
+
+
+/*End. */
