@@ -9,7 +9,7 @@
 <ul class="events">
 <?php foreach($events[$month][$year] as $event): ?>
 <li>
-  <?php 
+  <?php
     $link_text = '<em>';
     $link_text .= format_date("!date!", $event->start_date);
     if ($event->end_date && ($event->end_date != $event->start_date)) {
@@ -30,7 +30,7 @@
 <?php if ($archive) {
         $month--; if ($month == 0) { $month = 12; $year--; }
       } else {
-        $month++; if ($month == 13) { $month = 1; $year++; } 
+        $month++; if ($month == 13) { $month = 1; $year++; }
       }
 ?>
 <?php } ?>
@@ -43,4 +43,4 @@
 &nbsp;
 <span class="rss"><?= anchor('events/rss', t("RSS feed")) ?></span>
 </p>
-<? endif; ?>
+<?php endif; ?>

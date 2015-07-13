@@ -1,5 +1,5 @@
 
-<pre><? //print_r($this->_ci_cached_vars); ?></pre>
+<pre><?php //print_r($this->_ci_cached_vars); ?></pre>
 <div class="grid headline">
         <h1><?=t("Users")?></h1>
 </div>
@@ -20,21 +20,21 @@
             <tbody>
                 <?php $row = 1; ?>
                 <?php  foreach ($users as $user):?>
-                    
+
                     <tr <?php if ($row % 2 == 0): ?>class="even"<?php endif; ?>>
                       <td <?php if ($user->banned || $user->deleted): ?>class="inactive"<?php endif; ?>>
                         <a href="<?= base_url() ?>user/view/<?= $user->id?>"><?= $user->fullname ?></a>
                         <?php if($admin) : ?>
                           <span class="user-info"> (<?= $user->user_name .' - ' .$user->email ?>)</span>
                         <?php endif; ?>
-                        <?php if ($user->banned): ?> 
+                        <?php if ($user->banned): ?>
                           <?= t('(Banned)') ?>
                         <?php endif; ?>
-                        <?php if ($user->deleted): ?> 
+                        <?php if ($user->deleted): ?>
                           <?= t('(Deleted)') ?>
                         <?php endif; ?>
-                      </td>                        
-                      <td><?= $user->institution ?></td> 
+                      </td>
+                      <td><?= $user->institution ?></td>
                     </tr>
                     <?php $row++; ?>
                 <?php endforeach; ?>
@@ -44,5 +44,5 @@
 
         </div>
     </div>
-</div> 
+</div>
 

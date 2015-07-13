@@ -5,6 +5,6 @@
 <div class="grid">
     <?php $this->load->view('event/event_stream'); ?>
     <p>
-    <?= anchor('event/cloudscape/'.$cloudscape->cloudscape_id.'/'.$type, t("More activity")) ?> 
-    | <a class="rss" href="<?= $rss ?>"><? /*/Translators: RSS Really simple syndication.*/ ?><?=t("RSS")?></a></p>
+    <?= anchor('event/cloudscape/'.$cloudscape->cloudscape_id.'/'.$type, t("More activity")) ?>
+    | <a class="rss" href="<?= $rss ?>"><?php /*/Translators: RSS Really simple syndication.*/ ?><?=t("RSS")?></a></p>
 </div>

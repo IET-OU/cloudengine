@@ -10,20 +10,20 @@
   <div id="message-region-1">
       <div class="grid g1">
           <div class="c1of1">
-              <pre><? /*print_r($this->db_session->userdata);*/ /*print_r($this->_ci_cached_vars);*/ ?></pre>
+              <pre><?php /*print_r($this->db_session->userdata);*/ /*print_r($this->_ci_cached_vars);*/ ?></pre>
               <?=form_open($this->uri->uri_string(), array('id' => 'thread-list-action-form'))?>
 
                 <div class="message-actions-envelope">
-                  <input type="hidden" value="submit" name="submit" /> 
+                  <input type="hidden" value="submit" name="submit" />
                   <button value="message/compose"     name="location"  id="compose"   type="submit" onclick="window.location='message/compose'; return false;" ><span class="button-message/compose"></span><?= t("Compose") ?></button>
                   <button value="set_unread"  name="thread-action"  id="set-unread"   type="submit" ><span class="button-set_unread"></span><?= t("Mark unread") ?></button>
-                  <button value="set_read"    name="thread-action"  id="set-read"     type="submit" ><span class="button-set_read"></span><?= t("Mark read") ?></button> 
-                  <button value="set_deleted" name="thread-action"  id="set-deleted"  type="submit" ><span class="button-set_deleted"></span><?= t("Delete") ?></button>    
+                  <button value="set_read"    name="thread-action"  id="set-read"     type="submit" ><span class="button-set_read"></span><?= t("Mark read") ?></button>
+                  <button value="set_deleted" name="thread-action"  id="set-deleted"  type="submit" ><span class="button-set_deleted"></span><?= t("Delete") ?></button>
                 </div>
 
                 <?php if($message_display_content) : ?>
                   <div id="message-info-area" class="<?= $message_display_type ?>">
-                    <?= $message_display_content; ?>               
+                    <?= $message_display_content; ?>
                   </div>
                 <?php endif; ?>
 
@@ -58,7 +58,7 @@
                                 <?php if ($thread->picture): ?>
                                     <?=anchor("user/view/$thread->last_message_author_id", img(array('src'=>base_url().'image/user/'.$thread->last_message_author_id, 'height' => '50', 'width' => '50', 'alt' => $thread->last_message_author_name))) ?>
                                 <?php else: ?>
-                                    <?=anchor("user/view/$thread->last_message_author_id", img(array('src'=>base_url().'_design/avatar-default-32.jpg', 'alt' => $thread->last_message_author_name, 'class' => 'go2 message-pic-anon'))) ?>                                    
+                                    <?=anchor("user/view/$thread->last_message_author_id", img(array('src'=>base_url().'_design/avatar-default-32.jpg', 'alt' => $thread->last_message_author_name, 'class' => 'go2 message-pic-anon'))) ?>
                                 <?php endif; ?>
                               </div>
                               <div class="last-message-author message-list-top-line">

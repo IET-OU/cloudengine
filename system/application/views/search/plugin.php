@@ -35,4 +35,4 @@ $('#search-plugin-btn').click(function addOpenSearch(<?php /*name,ext,meth*/ ?>)
   return false;
 });
 </script>
-<? endif; ?>
+<?php endif; ?>

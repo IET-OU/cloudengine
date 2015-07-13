@@ -12,25 +12,25 @@
 <div class="upgrade">
 
   <h1><?=$title ?></h1>
-    
-  <? if($continue): ?>
+
+  <?php if($continue): ?>
     <p><?= t("Upgrade from <strong>v$version_old</strong> to <strong>v$version_new</strong> will perform the following steps:") ?></p>
     <p class="test_install warn"><?= t("We recommend you back up your database before performing any upgrade.") ?></p>
-  <? endif; ?>
-    
+  <?php endif; ?>
+
   <ol class="messages">
   <?php foreach ($messages as $message): ?>
       <li class="<?=$message->class ?>"><?=$message->text ?> <?= ('index'!==$message->context) ? "<code>[function $message->context]</code>" :'' ?></li>
   <?php endforeach; ?>
   </ol>
 
-  <? if($continue): ?>
+  <?php if($continue): ?>
     <?=form_open($this->uri->uri_string(), array('id' => 'upgrade-confirm-form'))?>
       <br />
       <input type="submit" value="Proceed" name="submit" class="submit" />
-      <br /> 
-    <?=form_close()?>    
-  <? endif; ?>
+      <br />
+    <?=form_close()?>
+  <?php endif; ?>
 
 </div>
 
