@@ -6,9 +6,6 @@ and aggregating ideas and resources. It is ideal for running events
 and fostering discusison. It is the free, open source software
 that powers Cloudworks <http://cloudworks.ac.uk>.
 
-More information at, <http://getcloudengine.org/>
-
-
 Installation
 ------------ 
 
