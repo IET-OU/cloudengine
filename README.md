@@ -15,6 +15,8 @@ Installation
 * Installation guide,
   <http://bitbucket.org/cloudengine/cloudengine/wiki/Install>
 
+Requires php-gd, php-curl, php-mbstring, php-mysql (or other DB driver)
+
 
 License
 -------
