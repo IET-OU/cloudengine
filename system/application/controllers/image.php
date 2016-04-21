@@ -1,8 +1,8 @@
 <?php
 /**
  * Controller for serving images used by the site
- * 
- * Images for the site are not necessarily kept in the webroot, so this controller is used to 
+ *
+ * Images for the site are not necessarily kept in the webroot, so this controller is used to
  * retrieve and server specified images as HTTP requests
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
@@ -13,11 +13,11 @@ class Image extends MY_Controller {
 
 	function Image()
 	{
-        parent::MY_Controller();  
+        parent::MY_Controller();
 	}
 
 	/**
-	 * Send a http response containing the image for a specified cloudscape 
+	 * Send a http response containing the image for a specified cloudscape
 	 *
 	 * @param integer $cloudscape_id The ID of the cloudscape
 	 */
@@ -27,7 +27,7 @@ class Image extends MY_Controller {
 	    $cloudscape = $this->cloudscape_model->get_cloudscape($cloudscape_id);
 	    $path       = $this->config->item('upload_path_cloudscape').$cloudscape->image_path;
 
-	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $cloudscape->image_path, $matches) 
+	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $cloudscape->image_path, $matches)
 	        && is_readable($path)) {
             header('Content-Type: image/'.$matches[1]);
             echo(file_get_contents($path));
@@ -43,10 +43,10 @@ class Image extends MY_Controller {
 	 */
 	function user($user_id) {
 	    $this->load->model('user_model');
-	    
+
 	    $image_name = $this->user_model->get_picture($user_id);
 	    $path = $this->config->item('upload_path_user').$image_name;
-	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches) 
+	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches)
 	        && is_readable($path)) {
             header('Content-Type: image/'.$matches[1]);
             echo(file_get_contents($path));
@@ -62,10 +62,10 @@ class Image extends MY_Controller {
 	 */
 	function user_32($user_id) {
 	    $this->load->model('user_model');
-	    
+
 	    $image_name = '32-'.$this->user_model->get_picture($user_id);
 	    $path = $this->config->item('upload_path_user').$image_name;
-	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches) 
+	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches)
 	        && is_readable($path)) {
             header('Content-Type: image/'.$matches[1]);
             echo(file_get_contents($path));
@@ -73,18 +73,18 @@ class Image extends MY_Controller {
 	        show_404();
 	    }
 	}
-	
+
 	/**
 	 * Send a http response containing the 16x16 image for a specified user
 	 *
 	 * @param integer $user_id The ID of the user
-	 */	
+	 */
     function user_16($user_id) {
 	    $this->load->model('user_model');
-	    
+
 	    $image_name = '16-'.$this->user_model->get_picture($user_id);
 	    $path = $this->config->item('upload_path_user').$image_name;
-	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches) 
+	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches)
 	        && is_readable($path)) {
             header('Content-Type: image/'.$matches[1]);
             echo(file_get_contents($path));
@@ -92,7 +92,7 @@ class Image extends MY_Controller {
 	        show_404();
 	    }
 	}
-	
+
 	/**
 	 * Send a http response containing a captch image
 	 *
@@ -101,7 +101,8 @@ class Image extends MY_Controller {
 	 * add it back on ourselves)
 	 */
 	function captcha($image_name) {
-		$path = config_item('FAL_captcha_image_path').$image_name.'.jpg';
+		$path = config_item('FAL_captcha_image_path').str_replace('_', '.', $image_name);
+
 	    if (is_readable($path)) {
             header('Content-Type: image/jpeg');
             echo(file_get_contents($path));
@@ -109,21 +110,21 @@ class Image extends MY_Controller {
 	        show_404();
 	    }
 	}
-    
+
     function badge($badge_id) {
             ini_set("display_errors", 'On');
         error_reporting(E_ALL);
         $this->load->model('badge_model');
-        
+
         $image_name = $this->badge_model->get_image($badge_id);
         $path = $this->config->item('upload_path_badge').$image_name;
 
-        if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches) 
+        if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches)
             && is_readable($path)) {
             header('Content-Type: image/'.strtolower($matches[1]));
             echo(file_get_contents($path));
         } else {
             show_404();
-        }    
+        }
     }
 }
