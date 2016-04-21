@@ -20,6 +20,7 @@ $xgettext = array(
     'mac' => "/Applications/Poedit.app/Contents/MacOS/xgettext",
     'win' => "C:/apps/GnuWin32/bin/xgettext.exe",   
     #'win' => "C:/Program Files/Poedit/bin/xgettext.exe",
+    'win' => "/usr/bin/xgettext.exe", // for Windows/Cygwin
 );
 $OS = NULL;
 foreach ($xgettext as $label => $path) {
@@ -94,6 +95,8 @@ EOF;
 
 
 function win_dir($input, $quotes=TRUE) {
+  //return $input; // For Windows/Cygwin
+
   global $OS;
   if ('win'==$OS) {
     $quotes = /*($quotes) ? '"' :*/ '';

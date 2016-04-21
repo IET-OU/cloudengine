@@ -6,9 +6,6 @@ and aggregating ideas and resources. It is ideal for running events
 and fostering discusison. It is the free, open source software
 that powers Cloudworks <http://cloudworks.ac.uk>.
 
-More information at, <http://getcloudengine.org/>
-
-
 Installation
 ------------ 
 
@@ -17,6 +14,8 @@ Installation
 
 * Installation guide,
   <http://bitbucket.org/cloudengine/cloudengine/wiki/Install>
+
+Requires php-gd, php-curl, php-mbstring, php-mysql (or other DB driver)
 
 
 License
