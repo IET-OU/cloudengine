@@ -17,6 +17,7 @@ class Cloud extends MY_Controller {
         $this->load->model('tag_model');
         $this->load->library('layout', 'layout_main'); 
         $this->load->model('user_model'); 
+
     }
     
     /**
@@ -741,10 +742,10 @@ already favourited it or you do not have high enough reputation on the site to a
      * FALSE otherwise 
      */
     function _moderate_cloud($cloud, $user_id) {
-    	$item_id = isset($cloud->cloud_id) ? $cloud->cloud_id : 0;
-        $summary = isset($cloud->summary) ? $cloud->summary : NULL;
-        $item_url= isset($cloud->url) ? $cloud->url : NULL;
-        return $this->_moderate(__CLASS__, $item_id, $user_id, $cloud->title, "$summary $cloud->body", '', $item_url);
+        $summary = isset($cloud->summary) ? $cloud->summary : '';
+        $item_url= isset($cloud->url) ? $cloud->url : '';
+        $user = $this->user_model->get_user($user_id); 
+        return $this->_moderate($user, "$summary $cloud->body $item_url");
     }
     
     /**
@@ -756,22 +757,8 @@ already favourited it or you do not have high enough reputation on the site to a
      * FALSE otherwise 
      */
     function _moderate_comment($body, $user_id) {
-    	$moderate = FALSE;
-        if (config_item('x_moderation')) {
-            $user = $this->user_model->get_user($user_id); 
-            if (!$user->whitelist) {
-                $this->load->library('mollom');
-                try {
-                    $spam_status = $this->mollom->checkContent(null, $body);
-                    if ($spam_status['quality'] < 0.5) {
-                        $moderate = TRUE;
-                    }
-                } catch (Exception $e) {
-                    
-                }
-            }
-        }
-        return $moderate;
+        $user = $this->user_model->get_user($user_id); 
+        return $this->_moderate($user, $body);
     }
     
     /**
@@ -784,22 +771,8 @@ already favourited it or you do not have high enough reputation on the site to a
      * FALSE otherwise 
      */
     function _moderate_link($title, $url, $user_id) {
-    	$moderate = FALSE;
-        if (config_item('x_moderation')) {
-            $user = $this->user_model->get_user($user_id); 
-            if (!$user->whitelist) {
-                $this->load->library('mollom');
-                try {  
-                	$spam_status = $this->mollom->checkContent($title, false, false, $url);
-                    if ($spam_status['quality'] < 0.5) {
-                        $moderate = TRUE;
-                    }
-                } catch (Exception $e) {
-                    
-                }
-            }
-       	}
-        return $moderate;
+        $user = $this->user_model->get_user($user_id); 
+        return $this->_moderate($user,  $title.' '.$url);
     }
     
     /**
@@ -811,24 +784,8 @@ already favourited it or you do not have high enough reputation on the site to a
      * moderated, FALSE otherwise 
      */
     function _moderate_reference($reference_text, $user_id) {	
-    	$moderate = FALSE;
-        if (config_item('x_moderation')) {
-            $user = $this->user_model->get_user($user_id); 
-            if (!$user->whitelist) {
-                $this->load->library('mollom');
-                try {
-                    $spam_status = $this->mollom->checkContent($reference_text);
-             	 
-                    if ($spam_status['quality'] < 0.5) {
-                        $moderate = TRUE;
-                    }
-                } catch (Exception $e) {
-                    
-                }
-            }
-       	}
-       	
-        return $moderate;
+        $user = $this->user_model->get_user($user_id); 
+        return $this->_moderate($user,  $reference_text);
     }
     
 

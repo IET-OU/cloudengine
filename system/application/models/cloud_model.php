@@ -288,6 +288,7 @@ class Cloud_model extends Model {
                 $cloud->moderate = 0;
             }
             $cloud->created = time();
+            $cloud->modified = time();
             $this->db->insert('cloud', $cloud);
             $cloud_id =  $this->db->insert_id();
             

@@ -50,6 +50,13 @@ class Badge extends MY_Controller {
         $this->layout->view('badge/list', $data);
     }
 
+     function badge_list_test() {
+        $data['title']      = t('Open Badges');
+        $data['navigation'] = 'badges';
+        $data['badges']     = $this->badge_model->get_badges();
+        $this->layout->view('badge/list_test', $data);
+    }   
+
     /**
      * Display the information about a badge
      * @param integer $alpha The ID of the badge to display

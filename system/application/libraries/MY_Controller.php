@@ -120,68 +120,23 @@ class MY_Controller extends Controller {
   }
 
 
-  /** Do moderation: a wrapper around the Mollom anti-spam library.
-   *    Initial use: Cloud::_moderate_cloud, Message::compose.
+  /** Do moderation: a wrapper around appropriate anit-spam moderation library
    *    Note: it is up to the specific controller to manage the user interaction.
    *
-   * @return boolean Whether the item has been moderated.
+   * @return boolean Whether the item has been flagged for moderation.
    */
-  protected function _moderate($item_type, $item_id=0, $user_id=0, $title=null, $body=null, $authorName=null, $authorUrl=null, $authorEmail=null, $authorOpenId=null, $authorId=null) {
-    $moderate = FALSE;
-    if (config_item('x_moderation')) {
-         
-        $threshold = 0.5;
-        $thres_raw = config_item('moderation_less_than');
-        // Sanity checks.
-        if ($thres_raw && is_float($thres_raw) && $thres_raw > 0 && $thres_raw < 0.9) {
-            $threshold = $thres_raw;
-        }
-        
-        $this->load->model('user_model');
-        
-        if ($user_id) {           
-            $user = $this->user_model->get_user($user_id);
-        }
-        
-        if (!is_object($user) || !$user->whitelist) {
-            $this->load->library('mollom');
-            try {
-                // The Mollom library call.
-                $status = (object)$this->mollom->checkContent($title, $body, 
-                                  $authorName, $authorUrl, $authorEmail, 
-                                  $authorOpenId, $authorId);
-                                 
-                if ($status->quality < $threshold) {
-                  
-                    $moderate = TRUE;
-                    // Send an email to all admins that there is an item for 
-                    // moderation 
-                    $data['item_type']  = $item_type;
-                    $data['title']      = $title;
-                    $data['body']       = $body;
-                    $data['authorName'] = $authorName;
-                    $data['user']       = $user;
-                    $message = $this->load->view('email/moderation_required', 
-                                       $data, TRUE);                  
-                    $this->load->plugin('phpmailer');
-                    
-                    $admins = $this->user_model->get_admins();       
-                    foreach ($admins as $admin) {
-                        send_email($admin->email, 
-                                   config_item('site_email'), 
-                                   t('!site-name! - Item requires moderation'), 
-                                   $message);         
-                    }               
 
-                }
-                // Data-logging: should be 'debug' or 'important'!
-                log_message('error', "Anti-spam check. $item_type:$item_id '$title'; $status->spam, $status->quality (threshold:$threshold)");
-            } catch (Exception $e) {
-                log_message('error', 'Anti-spam exception, Mollom: '.$e->getMessage());
-            } 
-        }
-	}
-	return $moderate;
+  protected function _moderate($user, $message) {
+    $is_spam = FALSE;
+    if (config_item('x_moderation')) {
+      $this->load->model('user_model');
+      $this->load->library('ModerationProvider');
+      $moderation_provider = new ModerationProvider(config_item('moderation_provider'));
+      if (is_object($moderation_provider)) {
+        $is_spam = $moderation_provider->checkSpam($user, $message);
+      } 
+    }
+    return  $is_spam;
   }
 
 }

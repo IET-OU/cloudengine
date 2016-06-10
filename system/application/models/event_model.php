@@ -29,11 +29,7 @@ class Event_model extends Model {
         $event->follow_item_id       = $follow_item_id;
         $event->event_type    = $event_type;
         $event->event_item_id = $event_item_id;
-        $event->timestamp = $timestamp;
-
-        if (!$timestamp) {
-            $event->timestamp = time();
-        }
+        $event->timestamp = time();
 
         $this->db->insert('event', $event);
         $event_id =  $this->db->insert_id();

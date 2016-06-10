@@ -54,7 +54,7 @@
 	<div id="open-badges">
       <?php foreach($badges as $badge): ?>
       <a class="badge" href="<?=site_url('badge/view/'.$badge->badge_id) ?>"><img src="<?=site_url('image/badge/'. $badge->badge_id) ?>"
-        width="45px" height="45px" title="<?=t('Badge: !name', array('!name' => $badge->name)) ?>"
+        width="45" height="45" title="<?=t('Badge: !name', array('!name' => $badge->name)) ?>"
         alt="<?=t('Badge: !name', array('!name' => $badge->name)) ?>" /></a>
       <?php endforeach; ?>
 	  </div>

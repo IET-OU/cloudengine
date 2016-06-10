@@ -137,23 +137,7 @@ class Embed extends MY_Controller {
      * FALSE otherwise
      */
     function _moderate_embed($title, $url, $user_id) {
-    	$moderate = FALSE;
-        if (config_item('x_moderation')) {
-        	$this->load->model('user_model');
-            $user = $this->user_model->get_user($user_id); 
-            if (!$user->whitelist) {
-                $this->load->library('mollom');
-                try {               
-                        $spam_status = $this->mollom->checkContent($title, false, false, $url);
-                 	 
-                        if ($spam_status['quality'] < 0.5) {
-                            $moderate = TRUE;
-                        }
-                    } catch (Exception $e) {
-                        
-                    }
-            }
-       	}
-        return $moderate;
+        $user = $this->user_model->get_user($user_id); 
+        return $this->_moderate($user,  $title.' '.$url);
     }
 }

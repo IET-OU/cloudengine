@@ -50,7 +50,6 @@ class Admin extends MY_Controller {
 	         $action = $this->input->post('action');
 	         $type   = $this->input->post('type');
 	         $id     = $this->input->post('id');
-	         $this->load->library('mollom');
             
 	         switch($type) {
 	             case "cloud":

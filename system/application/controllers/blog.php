@@ -256,30 +256,14 @@ class Blog extends MY_Controller {
     }   
     
     /**
-     * Check a comment for moderation using Mollom if moderation has been enabled
+     * Check a comment for moderation
      *
      * @param string $body The body of the comment
      * @param integer $user_id The ID of the user
      * @return boolean TRUE if the item should be moderated, FALSE otherwise
      */
     function _moderate_comment($body, $user_id) {
-    	$moderate = FALSE;
-        if (config_item('x_moderation')) {
-            $user = $this->user_model->get_user($user_id); 
-            if (!$user->whitelist) {
-                $this->load->library('mollom');
-                try { 
-                        $spam_status = $this->mollom->checkContent(null, $body); 	 
-                        	 
-                        if ($spam_status['quality'] < 0.5) {
-                            $moderate = TRUE;
-                        }  
-                } catch (Exception $e) {
-                    
-                }
-            }
-       	}
-       	
-        return $moderate;                          
+        $user = $this->user_model->get_user($user_id); 
+        return $this->_moderate($user,  $body);                        
     }
 }

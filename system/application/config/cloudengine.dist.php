@@ -112,10 +112,7 @@ $config['x_gadgets_gfc_key'] = ''; // Google Friend Connect key to use for gadge
 // Config variable containing IDs of users regarded as 'team' for stats purposes. 
 $config['team'] = '';
 
-// Feature flag for spam-checking of new items added to the site using Mollom
-// If you want to use this you need to copy mollom.dist.php in the config
-// directory to mollom.php and put in your Mollom settings there.
-$config['x_moderation'] = FALSE;
+
 
 // Feature flag and config for twitter hash tag and displaying tweets for a cloudscape.
 $config['x_twitter']          = FALSE;
@@ -223,3 +220,11 @@ $config['badge_issuer_contact'] = '';
 
 // Feature flag for flagging items as spam
 $config['x_flag'] = TRUE;
+
+// Feature flag for spam-checking of new items added to the site using the moderation provider specified by the 'moderation_provider' config. This can currently be 'akismet' 
+// or 'none'
+$config['x_moderation'] = FALSE;
+$config['x_moderation'] = TRUE;
+$config['moderation_provider'] = 'none';
+$config['akismet_key'] = '';
+$config['akismet_url'] = '';
