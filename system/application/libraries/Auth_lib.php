@@ -358,6 +358,26 @@ class Auth_lib {
         return $is_admin;
 	}
 
+
+    /**
+     * Get the details of a user given the user's ID. 
+     *
+     * @param integer $user_id The ID of the user
+     * @return object The details of the user
+     */
+    function get_profile($user_id) {
+        $user = FALSE;
+ 
+        $this->CI->db->where('user.id', $user_id);
+        $this->CI->db->join('user', 'user.id = user_profile.id');
+        $query = $this->CI->db->get('user_profile');
+        if ($query->num_rows() !=  0 ) {
+            $user = $query->row();
+            $user->user_id = $user->id;
+        }
+        return $user;
+    }
+
 	/**
 	 * Check if the current user is logged on and is an admin. If not, 
 	 * redirects to an error page. 
