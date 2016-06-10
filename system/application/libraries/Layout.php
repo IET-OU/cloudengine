@@ -7,7 +7,7 @@ class Layout
     var $obj;
     var $layout;
     
-    function Layout($layout = "layout_main")
+    function __construct($layout = "layout_main")
     {
 	# CloudEngine-specific bug fix 
         if (is_array($layout)) {

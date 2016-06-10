@@ -10,7 +10,7 @@ class Auth_lib {
 
     protected $CI;
 
-    public function Auth_lib() {
+    public function __construct() {
         $this->CI =& get_instance();
         $this->CI->load->model('auth_model');
         $this->CI->load->library('Db_session');

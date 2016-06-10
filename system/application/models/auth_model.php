@@ -7,7 +7,7 @@
  */
 class Auth_model extends Model {
 
-    function Auth_model() {
+    function __construct() {
         parent::Model();
     }
     

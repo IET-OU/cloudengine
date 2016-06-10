@@ -8,7 +8,7 @@
  */
 class Flag_model extends Model {   
     
-	function Flag_model() {
+	function __construct() {
         parent::Model();
     }
 	

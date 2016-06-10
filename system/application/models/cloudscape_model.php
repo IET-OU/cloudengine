@@ -7,7 +7,7 @@
  */
 class Cloudscape_model extends Model {
     
-    function Cloudscape_model() {
+    function __construct() {
         parent::Model();
         $current_user_id = $this->db_session->userdata('id');
     }

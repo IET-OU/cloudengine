@@ -7,7 +7,7 @@
  */
 class Blog_model extends Model {
     
-    function Blog_model() {
+    function __construct() {
         parent::Model();
     }
     

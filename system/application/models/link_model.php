@@ -8,7 +8,7 @@
  */
 class Link_model extends Model {
 
-    function Link_model() {
+    function __construct() {
         parent::Model();
     }
     

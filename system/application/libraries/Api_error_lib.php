@@ -8,7 +8,7 @@
  */
 class Api_error_lib {
 	
-    function Api_error_lib() {
+    function __construct() {
         $this->CI =& get_instance();
     }
     

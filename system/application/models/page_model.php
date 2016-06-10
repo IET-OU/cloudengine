@@ -8,7 +8,7 @@
  */
 class Page_model extends Model {   
     
-	function Page_model() {
+	function __construct() {
         parent::Model();
     }
     

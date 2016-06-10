@@ -7,7 +7,7 @@
  */
 class Favourite_model extends Model {
     
-    function Favourite_model() {
+    function __construct() {
         parent::Model();
     }
 

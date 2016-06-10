@@ -8,7 +8,7 @@
  */
 class Shortcut_model extends Model {   
 	
-    function Shortcut_model() {
+    function __construct() {
         parent::Model();
     }
     

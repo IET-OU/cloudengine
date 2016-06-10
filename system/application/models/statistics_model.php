@@ -8,7 +8,7 @@
  */
 class Statistics_model extends Model {
 
-    function Statistics_model() {
+    function __construct() {
         parent::Model();
     }
     

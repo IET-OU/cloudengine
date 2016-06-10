@@ -34,7 +34,7 @@ class Db_session {
 	 * The constructor runs the session routines automatically
 	 * whenever the class is instantiated.
 	 */		
-	function DB_Session()
+	function __construct()
 	{
 		$this->object =& get_instance();
 

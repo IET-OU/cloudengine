@@ -8,7 +8,7 @@
  */
 class Tag_model extends Model {
     
-    function Tag_model() {
+    function __construct() {
         parent::Model();
     }
 

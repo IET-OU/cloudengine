@@ -7,7 +7,7 @@
  */
 class Embed_model extends Model {
 
-    function Embed_model() {
+    function __construct() {
         parent::Model();
     }
     

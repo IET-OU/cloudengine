@@ -14,7 +14,7 @@ class Api_lib {
     // A username derived when we validate the API key.
     protected $api_client = NULL;
 
-    public function Api_lib() {
+    public function __construct() {
         $this->CI =& get_instance();
         $this->CI->load->model('api_client_model');
     }

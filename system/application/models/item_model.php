@@ -11,7 +11,7 @@ class Item_model extends Model {
 
     protected $ci;
 
-    function Item_model() {
+    function __construct() {
 		$this->ci = & get_instance();
         parent::Model();
     }

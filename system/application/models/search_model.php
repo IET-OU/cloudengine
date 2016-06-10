@@ -8,7 +8,7 @@
  */
 class Search_model extends Model {
 
-    function Search_model() {
+    function __construct() {
         parent::Model();
         $this->CI=& get_instance();      
         $this->CI->load->library('zend');

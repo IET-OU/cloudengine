@@ -7,7 +7,7 @@
  */
 class User_model extends Model {
 
-    function User_model()
+    function __construct()
     {     
         parent::Model();
     }

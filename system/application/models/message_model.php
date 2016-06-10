@@ -9,7 +9,7 @@
 
 class Message_model extends Model {
 
-	function Message_model ()
+	function __construct()
 	{
 		parent::Model();
 	}

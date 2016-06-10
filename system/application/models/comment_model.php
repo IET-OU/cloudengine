@@ -7,7 +7,7 @@
  */
 class Comment_model extends Model {
     
-    function Comment_model() {
+    function __construct() {
         parent::Model();
     }
     

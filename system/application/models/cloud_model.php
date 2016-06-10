@@ -7,7 +7,7 @@
  */
 class Cloud_model extends Model {
 
-    function Cloud_model() {
+    function  __construct() {
         parent::Model();
     }
     

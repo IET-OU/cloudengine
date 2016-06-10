@@ -8,7 +8,7 @@
  */
 class Site_news_model extends Model {
     
-    function Site_news_model() {
+    function __construct() {
         parent::Model();
     }
 

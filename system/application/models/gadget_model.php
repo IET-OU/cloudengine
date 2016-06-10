@@ -7,7 +7,7 @@
  */
 class Gadget_model extends Model {
 
-    function Gadget_model() {
+    function __construct() {
         parent::Model();
     }
 

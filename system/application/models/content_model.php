@@ -7,7 +7,7 @@
  */
 class Content_model extends Model {
     
-    function Content_model() {
+    function __construct() {
         parent::Model();
     }
     

@@ -8,7 +8,7 @@
  */
 class Events_model extends Model {
     
-    function Events_model() {
+    function __construct() {
         parent::Model();
     }
 
