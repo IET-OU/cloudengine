@@ -35,7 +35,7 @@ class content extends MY_Controller {
                 $body = $this->input->post('body');
                 
                 // Moderate for spam
-				$moderate = $this->_moderate_content($body, $user_id);
+				$moderate = $this->_moderate($body);
 
                 $this->content_model->insert_content($cloud_id, $body, $user_id, $moderate);
                               
@@ -140,15 +140,4 @@ class content extends MY_Controller {
         redirect('/cloud/view/'.$content->cloud_id); // Return to the main cloud view page 
     }
     
-    /**
-     * Check if an extra content item has a high likelihood of containing spam 
-     * @param string $body The body of the extra content item
-     * @param  integer $user_id The id of the user adding or editting the extra content item
-     * @return boolean TRUE if the extra content item is likely to contain spam and should be 
-     * moderated, FALSE otherwise
-     */
-    function _moderate_content($body, $user_id) {
-        $user = $this->user_model->get_user($user_id); 
-        return $this->_moderate($user,  $title.' '.$link);
-    }
 }

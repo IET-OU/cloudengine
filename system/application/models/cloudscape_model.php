@@ -301,6 +301,7 @@ class Cloudscape_model extends Model {
         if (!$cloudscape->moderate) {
             $cloudscape->moderate = 0;
         }
+        $cloudscape->modified = time();
         $this->db->insert('cloudscape', $cloudscape);
         $cloudscape_id =  $this->db->insert_id(); 
 

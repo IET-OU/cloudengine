@@ -126,10 +126,11 @@ class MY_Controller extends Controller {
    * @return boolean Whether the item has been flagged for moderation.
    */
 
-  protected function _moderate($user, $message) {
+  protected function _moderate($message) {
     $is_spam = FALSE;
     if (config_item('x_moderation')) {
       $this->load->model('user_model');
+      $user = $this->user_model->get_user($user_id); 
       $this->load->library('ModerationProvider');
       $moderation_provider = new ModerationProvider(config_item('moderation_provider'));
       if (is_object($moderation_provider)) {

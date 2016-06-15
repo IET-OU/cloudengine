@@ -40,7 +40,7 @@ class Blog extends MY_Controller {
             if ($this->form_validation->run()) {
                 $body = $this->input->post('body');
 
-                $moderate = $this->_moderate_comment($body, $user_id);  // Moderate for spam  
+                $moderate = $this->_moderate($body);  // Moderate for spam  
 
                 $comment_id = $this->blog_model->insert_comment($post_id, $user_id, $body, 
                                                                 $moderate);
@@ -254,16 +254,4 @@ class Blog extends MY_Controller {
             $this->layout->view('blog_comment/delete_confirm', $data);
         }
     }   
-    
-    /**
-     * Check a comment for moderation
-     *
-     * @param string $body The body of the comment
-     * @param integer $user_id The ID of the user
-     * @return boolean TRUE if the item should be moderated, FALSE otherwise
-     */
-    function _moderate_comment($body, $user_id) {
-        $user = $this->user_model->get_user($user_id); 
-        return $this->_moderate($user,  $body);                        
-    }
 }

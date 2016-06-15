@@ -253,7 +253,7 @@ class Cloudscape extends MY_Controller {
             if (!$end_date_but_not_start_date && !$start_date_after_end_date 
                 && $this->form_validation->run()) {
                 // Moderate for spam   
-                $cloudscape->moderate = $this->_moderate_cloudscape($cloudscape, $user_id);       
+                $cloudscape->moderate = $this->_moderate($cloudscape->title, $cloudscape->summary.' '.$cloudscape->body);       
            
                 $cloudscape_id = $this->cloudscape_model->insert_cloudscape($cloudscape);
                 if (config_item('x_moderation') && $cloudscape->moderate) {
@@ -332,7 +332,7 @@ class Cloudscape extends MY_Controller {
             if (!$end_date_but_not_start_date && !$start_date_after_end_date 
                 && $this->form_validation->run()) {
                 // Moderate for spam 
-                $cloudscape->moderate = $this->_moderate_cloudscape($cloudscape, $user_id);
+                $cloudscape->moderate = $this->_moderate($cloudscape->title, $cloudscape->summary.' '.$cloudscape->body);
                                
                 $this->cloudscape_model->update_cloudscape($cloudscape);
                 
@@ -1044,20 +1044,6 @@ class Cloudscape extends MY_Controller {
             $data['cloudscape']      = $cloudscape;
             $this->layout->view('cloudscape/email_attendees', $data);
         }
-    }
-    
-    /**
-     * Check if a cloudscape has a high likelihood of containing spam 
-     *
-     * @param object$cloudscape The cloudscape
-     * @param  integer $user_id The id of the user adding or editting the cloudscape
-     * @return boolean TRUE if the cloudscape is likely to contain spam and should be 
-     * moderated, FALSE otherwise
-     */
-    function _moderate_cloudscape($cloudscape, $user_id) {
-    	$moderate = FALSE;
-        $user = $this->user_model->get_user($user_id); 
-        return $this->_moderate($user, $cloudscape->title, $cloudscape->summary.' '.$cloudscape->body);		
     }
     
     /**

@@ -481,7 +481,7 @@ class User extends MY_Controller {
                 $user->homepage         = $this->input->post('homepage');  
 
                 // Moderate the user-profile after we get the new description etc.
-                $user->moderate = $this->_moderate_profile($user, $user_id);
+                $user->moderate = $this->_moderate("$user->department, $user->institution, $user->description, twitter:$user->twitter_username $item_url");
 
                 // Save the new user profile data and redirect the user to the view page for 
                 // their profile
@@ -530,24 +530,6 @@ class User extends MY_Controller {
         
         $this->layout->view('user/edit', $data); 
     
-    }
-
-    /**
-     * Check if a profile has a high likelihood of containing spam 
-     *
-     * @param object $user A user profile object.
-     * @param  integer $user_id The id of the user adding or editting the 
-     * profile
-     * @return boolean TRUE if the profile is likely to contain spam and should 
-     * be moderated, 
-     * FALSE otherwise 
-     */
-    // Based on Cloud::_moderate_cloud()
-    protected function _moderate_profile($user, $user_id) {
-		$item_id = $user_id;
-        $body = "$user->department, $user->institution, $user->description, twitter:$user->twitter_username";
-		$item_url= isset($user->homepage) ? $user->homepage : NULL;
-        return $this->_moderate(__CLASS__, $item_id, $user_id, $user->fullname, $body, '', $item_url);
     }
 
     /**

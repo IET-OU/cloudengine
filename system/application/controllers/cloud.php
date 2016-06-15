@@ -85,7 +85,7 @@ class Cloud extends MY_Controller {
                 $body     = $this->input->post('body');
                 
                 // Moderate for spam
-                $moderate = $this->_moderate_comment($body, $user_id); 
+                $moderate = $this->_moderate($body); 
 
                 // Add the comment
                 $comment_id = $this->comment_model->insert_comment($cloud_id, $user_id, $body,                                                                   $moderate);
@@ -289,7 +289,10 @@ class Cloud extends MY_Controller {
           
             if ($this->form_validation->run()) {
 	            // Moderate for spam 
-	            $cloud->moderate = $this->_moderate_cloud($cloud, $user_id);
+
+                 $summary = isset($cloud->summary) ? $cloud->summary : '';
+                 $item_url= isset($cloud->url) ? $cloud->url : '';
+	            $cloud->moderate = $this->_moderate("$summary $cloud->body $item_url");
 	                 
                 // Add the cloud 
                 $cloud_id = $this->cloud_model->insert_cloud($cloud);
@@ -393,7 +396,11 @@ class Cloud extends MY_Controller {
             // otherwise keep the submitted ata to repopulate the form
             if ($this->form_validation->run()) {
             	// Moderate for spam
-            	$cloud->moderate = $this->_moderate_cloud($cloud, $user_id);  
+
+                $summary = isset($cloud->summary) ? $cloud->summary : '';
+                $item_url= isset($cloud->url) ? $cloud->url : '';
+
+            	$cloud->moderate = $this->_moderate("$summary $cloud->body $item_url");  
             	                  
                 $this->cloud_model->update_cloud($cloud);
                 
@@ -473,8 +480,8 @@ class Cloud extends MY_Controller {
                 $title = $this->input->post('title');
                 
                 // Moderate for spam
-                $moderate = $this->_moderate_link($title, $url, $user_id);   
-                
+                $moderate = $this->_moderate($title.' '.$url);   
+
                 $duplicate = $this->link_model->is_duplicate($cloud_id, $url);
                 
                 if (!$duplicate) {
@@ -592,7 +599,7 @@ instead since URLs from URL shorteners may not exist forever."));
             if ($this->form_validation->run()) {
                 $reference_text = $this->input->post('reference_text');
                 // Moderate for spam and then add
-                $moderate = $this->_moderate_reference($reference_text, $user_id);
+                $moderate = $this->_moderate($reference_text);
                 $this->cloud_model->add_reference($cloud_id, $reference_text, $user_id, 
                                                   $moderate);
                               
@@ -734,62 +741,6 @@ already favourited it or you do not have high enough reputation on the site to a
     }   
     
     /**
-     * Check if a cloud has a high likelihood of containing spam 
-     *
-     * @param object $cloud The cloud
-     * @param  integer $user_id The id of the user adding or editting the cloud
-     * @return boolean TRUE if the cloud is likely to contain spam and should be moderated, 
-     * FALSE otherwise 
-     */
-    function _moderate_cloud($cloud, $user_id) {
-        $summary = isset($cloud->summary) ? $cloud->summary : '';
-        $item_url= isset($cloud->url) ? $cloud->url : '';
-        $user = $this->user_model->get_user($user_id); 
-        return $this->_moderate($user, "$summary $cloud->body $item_url");
-    }
-    
-    /**
-     * Check if a comment has a high likelihood of containing spam 
-     *
-     * @param string $body The body of the comment
-     * @param  integer $user_id The id of the user adding or editting the comment
-     * @return boolean TRUE if the commentis likely to contain spam and should be moderated, 
-     * FALSE otherwise 
-     */
-    function _moderate_comment($body, $user_id) {
-        $user = $this->user_model->get_user($user_id); 
-        return $this->_moderate($user, $body);
-    }
-    
-    /**
-     * Check if a link has a high likelihood of containing spam  
-     *
-     * @param string $title The link title
-     * @param string $url The URL of the link
-     * @param  integer $user_id The id of the user adding or editting the link
-     * @return boolean TRUE if the link is likely to contain spam and should be moderated, 
-     * FALSE otherwise 
-     */
-    function _moderate_link($title, $url, $user_id) {
-        $user = $this->user_model->get_user($user_id); 
-        return $this->_moderate($user,  $title.' '.$url);
-    }
-    
-    /**
-     * Check if a reference has a high likelihood of containing spam 
-     *
-     * @param string $reference_text The reference text 
-     * @param  integer $user_id The id of the user adding or editting the reference
-     * @return boolean TRUE if the reference is likely to contain spam and should be 
-     * moderated, FALSE otherwise 
-     */
-    function _moderate_reference($reference_text, $user_id) {	
-        $user = $this->user_model->get_user($user_id); 
-        return $this->_moderate($user,  $reference_text);
-    }
-    
-
-    /**
      * View a specific cloud (search layout)
      *
      * @param mixed $cloud Either the ID of the cloud or the title of the cloud (URL-encoded)
@@ -834,7 +785,7 @@ already favourited it or you do not have high enough reputation on the site to a
                 $body     = $this->input->post('body');
                 
                 // Moderate for spam
-                $moderate = $this->_moderate_comment($body, $user_id); 
+                $moderate = $this->_moderate($body); 
 
                 // Add the comment
                 $comment_id = $this->comment_model->insert_comment($cloud_id, $user_id, $body,                                                                   $moderate);

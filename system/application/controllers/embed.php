@@ -39,7 +39,7 @@ class Embed extends MY_Controller {
                 $accessible_alternative = $this->input->post('accessible_alternative');
                 
                 // Moderate for spam
-                $moderate = $this->_moderate_embed($title, $url, $user_id);
+                $moderate = $this->_moderate($title.' '.$url);
 
                 $this->embed_model->add_embed($cloud_id, $url, $title, $user_id, 
                                               $accessible_alternative , $moderate);
@@ -126,18 +126,4 @@ class Embed extends MY_Controller {
         $data['embed'] = $this->embed_model->get_embed($embed_id);
         $this->layout->view('embed/accessible_alternative', $data);
     }   
-    
-    /**
-     * Check if an embed has a high likelihood of containing spam 
-     *
-     * @param string $title The title of the embed
-     * @param string $url The URL of the embed
-     * @param  integer $user_id The id of the user adding or editting the embed
-     * @return boolean TRUE if the embed is likely to contain spam and should be moderated, 
-     * FALSE otherwise
-     */
-    function _moderate_embed($title, $url, $user_id) {
-        $user = $this->user_model->get_user($user_id); 
-        return $this->_moderate($user,  $title.' '.$url);
-    }
 }
