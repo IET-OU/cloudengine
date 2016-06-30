@@ -14,42 +14,43 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   font-size: 100%;
   font-family: inherit;
   vertical-align: baseline;
-} 
+}
 
-body { 
+body {
   line-height: 1.5;
 }
 
 /* Tables still need 'cellspacing="0"' in the markup. */
-table { 
+table {
     border-collapse: separate;
     border-spacing: 0;
+    table-layout: fixed;
 }
 
-caption, th, td { 
+caption, th, td {
     text-align: left;
     font-weight: normal;
 }
 
-table, td, th { 
+table, td, th {
     vertical-align: middle;
 }
 
 /* Remove possible quote marks (") from <q>, <blockquote>. */
-blockquote:before, blockquote:after, q:before, q:after { 
+blockquote:before, blockquote:after, q:before, q:after {
     content: "";
 }
 
-blockquote, q { 
+blockquote, q {
     quotes: "" "";
 }
 
 /* Remove annoying border on linked images. */
-img, a img { 
+img, a img {
     border: none;
 }
 
-abbr[title]{ 
+abbr[title]{
     cursor: help;
     border-bottom:1px dotted gray;
 }
@@ -70,7 +71,7 @@ body {
     min-width:55em;
     margin:0 auto;
     padding:0 1em;
-} 
+}
 
 #site-body, #site-footer {
     float:left;
@@ -86,7 +87,7 @@ body {
 #stripped {
     max-width:80em;
     min-width:55em;
-    margin: 10px 10px 10px 10px;    
+    margin: 10px 10px 10px 10px;
 }
 /* Row and Column Structure
 ----------------------------------------------------------------------------------- */
@@ -133,12 +134,12 @@ body {
     height:auto;
     float:left;
 }
- 
+
 .c2of2 {
     width:48%;
     height:auto;
     float:right;
-} 
+}
 
 .headline .c1of2 {
     width: 65%;
@@ -189,7 +190,7 @@ a {
 a:visited {
     color:#003366;
 }
- 
+
 a:hover {
     color: #00822b;
 }
@@ -393,7 +394,7 @@ p.tags {
     text-decoration:none;
 }
 
-p.rss a { 
+p.rss a {
     padding:4px 0px 4px 0px;
     text-decoration:none;
 }
@@ -435,7 +436,7 @@ p.create-cloud a {
     padding-left: 20px;
 }
 
-.ical { 
+.ical {
     background-image:url(icon-ical.gif);
     background-repeat: no-repeat;
     padding-left: 45px;
@@ -549,7 +550,7 @@ body.aurora #site-header {
     max-width:80em;
     min-width:55em;
     margin:0 auto;
-} 
+}
 
 ul li a.survey {
     padding-left: 24px;
@@ -582,7 +583,7 @@ ul li a.survey {
 
 #site-nav ul li  {
     display: inline;
-    margin:0 0 0 0;  
+    margin:0 0 0 0;
     padding: 16px 0 0 0;
     font-size:1.3em;
     font-weight:bold;
@@ -604,11 +605,11 @@ ul li a.survey {
 }
 
 #home  #site-nav ul li.home,
-#cloudscapes #site-nav ul li.cloudscapes, 
-#clouds #site-nav ul li.clouds, 
-#events #site-nav ul li.events, 
-#tags #site-nav ul li.tags, 
-#people #site-nav ul li.badges, 
+#cloudscapes #site-nav ul li.cloudscapes,
+#clouds #site-nav ul li.clouds,
+#events #site-nav ul li.events,
+#tags #site-nav ul li.tags,
+#people #site-nav ul li.badges,
 #support #site-nav ul li.support {
     font-weight:bold;
     color:#003366;
@@ -632,11 +633,11 @@ body.aurora #site-nav ul li a:hover {
 }
 
 #home.aurora #site-nav ul li.home,
-#cloudscapes.aurora #site-nav ul li.cloudscapes, 
-#clouds.aurora #site-nav ul li.clouds, 
-#events.aurora #site-nav ul li.events, 
-#tags.aurora #site-nav ul li.tags, 
-#people.aurora #site-nav ul li.badges, 
+#cloudscapes.aurora #site-nav ul li.cloudscapes,
+#clouds.aurora #site-nav ul li.clouds,
+#events.aurora #site-nav ul li.events,
+#tags.aurora #site-nav ul li.tags,
+#people.aurora #site-nav ul li.badges,
 #support.aurora #site-nav ul li.support {
     color:#fff;
     background:url(arrow-down-nav-fff.gif) center top no-repeat;
@@ -651,7 +652,7 @@ body.aurora #site-nav ul li a:hover {
     color:#666;
 }
 
-#site-footer .grid { 
+#site-footer .grid {
     padding:1.5em 0 0 0;
     color:#555;
 }
@@ -667,7 +668,7 @@ body.aurora #site-nav ul li a:hover {
 /* Home page
 ----------------------------------------------------------------------------------- */
 
-#home #region1 .c1of2, 
+#home #region1 .c1of2,
 #home #region1 .c2of2 {
     width:47%;
 }
@@ -1065,7 +1066,7 @@ ul.followers li a {
     padding:0;
     background: #eee url(filter-bg.jpg) top left repeat-x;
     float:left;
-    width:100%; 
+    width:100%;
 }
 
 #region1 ul.cloudstream-filter li {
@@ -1356,7 +1357,7 @@ form#site-settings-form p {
     border:0;    padding:.5em 0 .5em 1.2em;}
 
 #site #about ul {
-    margin: 0 0 1.0em 0;} 
+    margin: 0 0 1.0em 0;}
 
 #site #about h1 {
     margin: 0 0 .5em 0;}
@@ -1364,7 +1365,7 @@ form#site-settings-form p {
 #site #about h2 {
     margin: 0.5em 0 .8em 0;}
 
-input[type="submit"].submit, button[type="submit"].submit { 
+input[type="submit"].submit, button[type="submit"].submit {
     background-color:#D63333;
     padding:4px 10px 4px 5px;
     color: white;
@@ -1372,7 +1373,7 @@ input[type="submit"].submit, button[type="submit"].submit {
     border: 0;
     display: block;
     cursor:  pointer;
-} 
+}
 
 .checkbox {
     display: inline;
@@ -1397,7 +1398,7 @@ a.cloudscape {
 }
 
 .user img {
-    float: left;   
+    float: left;
 }
 
 .user p {
@@ -1524,7 +1525,7 @@ ul.arrows li {
     border:0;    padding:.5em 0 .5em 1.2em;}
 
 ul.arrows {
-    margin: 0 0 1.0em 0;} 
+    margin: 0 0 1.0em 0;}
 
 ul.clouds li small a {
     background: none;
@@ -1754,11 +1755,11 @@ a.cloud {
 #form-lang {
     margin: 0;    padding: 0;}
 
-#form-lang h3 { 
+#form-lang h3 {
     margin:0;    color:#444;    font-size:100%;}
 
 #form-lang label { }
-#form-lang select{ 
+#form-lang select{
     margin-right:1em;}
 
 /* Embedding.
@@ -1783,7 +1784,7 @@ iframe, .embed-block img, .embed-block iframe {
 
 
 /* Accessibility. Text hidden off-screen - only visible to screen readers. */
-.accesshide { 
+.accesshide {
     position:absolute;    top:-999px;}
 
 legend {
@@ -1875,16 +1876,16 @@ html[lang=el]  #site-nav, [lang=da]  #site-nav{
   color: #666;
 }
 
-.ui-autocomplete-loading { 
+.ui-autocomplete-loading {
     background: white url('ui-anim_basic_16x16.gif') right center no-repeat;}
 
-#message-page .ui-button { 
+#message-page .ui-button {
     margin-right: .5em;}
- 
-#message-page .ui-button .ui-button-text { 
+
+#message-page .ui-button .ui-button-text {
     display: block;    line-height: 1.1em;}
 
-#message-page input.ui-button { 
+#message-page input.ui-button {
     display: block;    line-height: 1em;    padding: 5px 6px;    font-size: 12px;}
 
 .new-message-count {
@@ -1901,7 +1902,7 @@ html[lang=el]  #site-nav, [lang=da]  #site-nav{
     top:-1em;
     vertical-align:baseline;
     width:15px;
-} 
+}
 
 #message-info-area {
     min-height: 20px;
@@ -1967,7 +1968,7 @@ img.message-pic-anon {
     font-size: 11px;
     height: 25px;
 }
-  
+
 .thread-list-head th.replied {
     width:  17px;
 }
@@ -2150,7 +2151,7 @@ width:  20px;
     margin:0 0 8px;
     overflow:hidden;
     padding:10px 0 5px 10px;
-    border-radius: 5px;    -webkit-border-radius: 5px;    -moz-border-radius: 5px;   
+    border-radius: 5px;    -webkit-border-radius: 5px;    -moz-border-radius: 5px;
 }
 
 .thread-message-profile-pic {
@@ -2403,12 +2404,12 @@ ul.simplePagerNav li {
     background: none !important;
 }
 
-ol.simplePagerNav li.currentPage a, 
+ol.simplePagerNav li.currentPage a,
 ul.simplePagerNav li.currentPage a {
     color: red;
 }
 
-ol.simplePagerNav li a, 
+ol.simplePagerNav li a,
 ul.simplePagerNav li a {
     color: #333;
 }
