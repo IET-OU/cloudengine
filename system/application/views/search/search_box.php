@@ -2,7 +2,7 @@
   $query = isset($query_string) ? $query_string : '';
 ?>
 <div id="search-site">
-    <form id="form-search" action="<?=site_url('search/result') ?>" method="get">
+    <form id="form-search" action="<?=site_url('search/result') ?>/" method="get">
       <p>
         <label for="query"><?=t("Search")?></label>
         <input id="query" name="q" type="search" value="<?=$query; ?>" maxlength="30" />

@@ -6,18 +6,18 @@
 <div class="grid headline">
 	<h1><?= $title ?></h1>
   <p><?=t("Your search produced a total of !results results", array('!results'=>$total_hits))?></p>
-  <p><a href="<?= base_url() .'search/result?q=' .$query_string ?>" class="back-link" >Back to results</a></p>  
+  <p><a href="<?= base_url() .'search/result/?q=' .$query_string ?>" class="back-link" >Back to results</a></p>  
 </div>
 
 <div id="region1">
     <div class="grid g1">
-        <div id="results"> 
+        <div id="results">
           <?php if (count($type_plural) > 0): ?>
           <ol class="all-results <?= $type_plural ?>">
           <?php $counter = 0 ?>
-          <?php foreach($$type_plural as $result): ?>        
+          <?php foreach($$type_plural as $result): ?>
               <li>
-                  <a class="<?= $type_single ?>-link"  href="<?= $result->url ?>"><?= str_replace('- '.$this->config->item('site_name'), '', $result->title) 
+                  <a class="<?= $type_single ?>-link"  href="<?= $result->url ?>"><?= str_replace('- '.$this->config->item('site_name'), '', $result->title)
                        .'(' .round(($result->score * 100),1) .'%)'?></a>
               </li>
           <?php ++$counter ?>
@@ -35,5 +35,5 @@
     <?php $this->load->view('user/user_block'); ?>
     <p><?=t("You can also search for [link-up]people[/link] and [link-ui]institutions[/link]",
     array('[link-up]' => t_link('user/people'), '[link-ui]' => t_link('user/institution_list')))?></p>
- </div> 
+ </div>
 <?php endif; ?>
