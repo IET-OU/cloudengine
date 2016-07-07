@@ -1,13 +1,13 @@
-<?php 
+<?php
 /**
  * Functions related to tags
- * 
+ *
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Tags
  */
 class Tag_model extends Model {
-    
+
     function __construct() {
         parent::Model();
     }
@@ -20,11 +20,11 @@ class Tag_model extends Model {
      */
     function get_all_tags($num) {
         $num = (int) $num;
-        $query = $this->db->query('SELECT tag, COUNT(*) AS tag_total FROM tag GROUP BY tag 
+        $query = $this->db->query('SELECT tag, COUNT(*) AS tag_total FROM tag GROUP BY tag
                                    ORDER BY  tag_total DESC LIMIT '.$num);
         return $query->result();
     }
-    
+
     /**
      * Get the total number of tags used on the site
      *
@@ -34,7 +34,7 @@ class Tag_model extends Model {
         $query = $this->db->get('tag');
         return $query->num_rows();
     }
-    
+
     /**
      * Get the tags for a specific item
      *
@@ -48,8 +48,8 @@ class Tag_model extends Model {
         $this->db->order_by('tag', 'asc');
         $query = $this->db->get('tag');
         return $query->result();
-    }	
-      
+    }
+
     /**
      * Determine if an item is already tagged with a particular term i.e. if a tag is a
      * duplicate of an existing tag
@@ -61,18 +61,18 @@ class Tag_model extends Model {
      */
     function is_duplicate($item_type, $item_id, $tag) {
         $duplicate = false;
-        
+
         $this->db->where('item_type', $item_type);
         $this->db->where('item_id', $item_id);
         $this->db->where('tag', $tag);
         $query = $this->db->get('tag');
-        
+
         if ($query->num_rows() > 0) {
             $duplicate = true;
         }
         return $duplicate;
     }
-    
+
     /**
      * Delete all the tags for an item.
      *
@@ -82,26 +82,26 @@ class Tag_model extends Model {
     function delete_tags($item_type, $item_id) {
         $this->db->where('item_id', $item_id);
         $this->db->where('item_type', $item_type);
-        $this->db->delete('tag');        
+        $this->db->delete('tag');
     }
 
     /**
-     * Add a set of tags to an item 
+     * Add a set of tags to an item
      *
      *
      * @param string $item_type The item type e.g. 'cloud', 'cloudscape', 'user'
      * @param integer $item_id The id of the item e.g. the cloud_id, cloudscape_id or user_id
-     * @param string $tags comma-separated string of tags 
+     * @param string $tags comma-separated string of tags
      */
     function add_tags($item_type, $item_id, $tags, $user_id) {
-        $tags = split(",", $tags);
+        $tags = explode(',', $tags);
         if ($tags) {
             foreach ($tags as $tag) {
                 $this->add_tag($item_type, $item_id, $tag, $user_id);
             }
-        }        
-    }      
-    
+        }
+    }
+
     /**
      * Add a tag to an item
      *
@@ -118,21 +118,21 @@ class Tag_model extends Model {
             $tag_to_insert->tag       = $tag;
             $tag_to_insert->user_id   = $user_id;
             $tag_to_insert->timestamp = time();
-            $this->db->insert('tag', $tag_to_insert);      
+            $this->db->insert('tag', $tag_to_insert);
         }
     }
-    
+
     /**
-     * Delete a specified tag 
+     * Delete a specified tag
      * @param integer $tag_id The id of the tag to delete
      */
     function delete_tag($tag_id) {
         $this->db->where('tag_id', $tag_id);
-        $this->db->delete('tag');          
+        $this->db->delete('tag');
     }
-    
+
     /**
-     * Get a tag specified by the id for a tag 
+     * Get a tag specified by the id for a tag
      *
      * @param integer $tag_id The id of the tag
      * @return object
@@ -144,10 +144,10 @@ class Tag_model extends Model {
         if ($query->num_rows() > 0) {
             $tag = $query->row();
         }
-        
+
         return $tag;
     }
-    
+
     /**
      * Get all clouds with a specific tag
      *
@@ -162,7 +162,7 @@ class Tag_model extends Model {
 	    $this->db->where('item_type', 'cloud');
 	    $this->db->where('moderate', 0);
 	    $this->db->where('tag', $tag);
-	    $query = $this->db->get('tag', $num, $offset); 
+	    $query = $this->db->get('tag', $num, $offset);
 	    return $query->result();
 	}
 
@@ -179,10 +179,10 @@ class Tag_model extends Model {
 	    $this->db->where('item_type', 'cloudscape');
 	    $this->db->where('moderate', 0);
 	    $this->db->where('tag', $tag);
-	    $query = $this->db->get('tag', $num, $offset); 
+	    $query = $this->db->get('tag', $num, $offset);
 	    return $query->result();
 	}
-	
+
 	/**
 	 * Get all users with a specific tag
 	 *
@@ -196,7 +196,7 @@ class Tag_model extends Model {
 	    $this->db->join('user_profile', 'user.id=user_profile.id');
 	    $this->db->where('item_type', 'user');
 	    $this->db->where('tag', $tag);
-	    $query = $this->db->get('tag', $num, $offset); 
+	    $query = $this->db->get('tag', $num, $offset);
 	    return $query->result();
 	}
 }
