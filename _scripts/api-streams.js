@@ -4,7 +4,12 @@
  *
  * @package    api
  */
-Cloudworks.Streams = function() {
+
+//var Cloudworks = Cloudworks || {};
+
+window.Cloudworks.Streams = function() {
+    'use strict';
+
     return {
 
         //! Default options used for render()
@@ -24,8 +29,10 @@ Cloudworks.Streams = function() {
          *
          */
         writeln: function(o, posts) {
-            //if (typeof posts != )
+            //if (typeof posts !== )
+            /* jshint -W060 */
             document.write(this.render(o, posts));
+            /* jshint +W060 */
         },
 
         /**
@@ -46,15 +53,17 @@ Cloudworks.Streams = function() {
         render: function(o, posts) {
 
             var out = [];
-            w = function (s) { out.push(s); }
+            var w = function (s) { out.push(s); };
 
-            if (o.icon === true) o.icon = 'm';
+            if (o.icon === true) { o.icon = 'm'; }
 
             // Apply default options to incoming options.
-            for (k in this.defaults)
-                if (typeof o[k] == 'undefined')
+            for (var k in this.defaults) {
+                if (typeof o[k]  ===  'undefined') {
                     o[k] = this.defaults[k];
-                
+                }
+            }
+
             // Do some HTML escaping to avoid formatting probs and XSS
             o.title_h    = this.htmlEscape(o.title);
             o.user_h     = this.htmlEscape(o.user);
@@ -62,10 +71,10 @@ Cloudworks.Streams = function() {
             o.usertags_q = encodeURIComponent(o.usertags);
 
             // Sort the posts alphabetically if necessary.
-            if (o.sort == 'alpha') {
-                posts.sort(function(a,b) {
-                    var ad = (''+a.d).toLowerCase();
-                    var bd = (''+b.d).toLowerCase();
+            if (o.sort === 'alpha') {
+                posts.sort(function (a, b) {
+                    var ad = ('' + a.d).toLowerCase();
+                    var bd = ('' + b.d).toLowerCase();
                     return ( (ad > bd) ? 1 : ( (ad < bd) ? -1 : 0) );
                 });
             } else {
@@ -75,7 +84,7 @@ Cloudworks.Streams = function() {
             }
 
             // Include the blob of CSS if not disabled.
-            if (o.style != 'none') {
+            if (o.style !== 'none') {
                 w('<style type="text/css"> .cloudworks-posts ul {list-style-type:none; margin:0 0 1em 0; padding:0} .__cloudworks-posts [rel=author],.cloudworks-end {font-size:smaller} .cw-item-link{background:url('+o.BASE_URL+'_design/icon-link.gif)top left no-repeat;padding-left:20px} .cw-item-cloud{background:url('+o.BASE_URL+'_design/icon-cloud.gif)top left no-repeat;padding-left:20px}</style>');
             }
             //id="cloudworks-posts-'+o.user+'"
@@ -85,7 +94,7 @@ Cloudworks.Streams = function() {
             // linkroll, generate it.
             if (o.icon && (o.title || !(o.name || o.showadd))) {
                 o.logo = this.getIcon(o, 'logo', o.icon, 'cloudworks',
-                    (o.icon != 'rss') ? '' : 'rss/'+o.user+(o.usertags?'/'+o.usertags_q:'')
+                    (o.icon !== 'rss') ? '' : 'rss/' + o.user + (o.usertags ? '/' + o.usertags_q : '')
                 );
             }
 
@@ -93,9 +102,9 @@ Cloudworks.Streams = function() {
             // title, unless it's the RSS icon.
             if (o.title) {
                 w('<h2 class="cloudworks-banner sidebar-title">');
-                if (o.icon && o.icon != 'rss') { w(o.logo+' '); }
-                w('<a href="'+o.html_url+'">'+o.title_h+'</a>');
-                if (o.icon == 'rss') { w(' '+o.logo); }
+                if (o.icon && o.icon !== 'rss') { w(o.logo+' '); }
+                w('<a href="' + o.html_url + '">' + o.title_h + '</a>');
+                if (o.icon === 'rss') { w(' ' + o.logo); }
                 w('</h2>');
             }
 
@@ -104,12 +113,12 @@ Cloudworks.Streams = function() {
             // Iterate through all the posts and build the linkroll main body.
             //class="cloudworks-post cloudworks-even/odd "
             for(var i=0,p;( i<o.count ) && ( p=posts[i] );i++){
-                w('\n<li class="'+(i%2?'even':'odd')+' cw-item-'+p.item_type+' ">');
-                if (o.bullet) { w(o.bullet+'&#160;'); }
+                w('\n<li class="' + (i%2 ? 'even' : 'odd') + ' cw-item-' + p.item_type + ' ">');
+                if (o.bullet) { w(o.bullet + '&#160;'); }
                 if (p.status) {
                     w(p.status);
                 } else {
-                    w('<a href="'+p.html_url+'">'+p.title+'</a>');
+                    w('<a href="' + p.html_url + '">' + p.title + '</a>');
                 }
                 w('</li>');
             }
@@ -118,7 +127,7 @@ Cloudworks.Streams = function() {
             // nor network add options to come, then insert the logo now so it
             // appears somewhere at least.
             if (o.icon && !(o.title || o.name || o.showadd)) {
-                w('\n<li class="cloudworks-endlogo">'+o.logo+'</li>');
+                w('\n<li class="cloudworks-endlogo">' + o.logo + '</li>');
             }
             w('\n</ul>');
 
@@ -127,8 +136,8 @@ Cloudworks.Streams = function() {
             if (o.html_url) {
                 w('<span class="cloudworks-end">' +
                   this.getIcon(o, 'name', o.icon, '')+
-                  ' <a href="'+o.html_url+'">'+o.title_h+'</a> '+
-                    'on <a href="'+o.BASE_URL+'">Cloudworks</a></span>');
+                  ' <a href="' + o.html_url + '">' + o.title_h + '</a> ' +
+                    'on <a href="' + o.BASE_URL + '">Cloudworks</a></span>');
             }
 
             //(Include the 'add me to your network' link if needed.)
@@ -169,8 +178,8 @@ Cloudworks.Streams = function() {
             if (!ic) {
                 return '';
             } else {
-                var out = '<img src="'+o.BASE_URL+'_design/'+ic[0]+'" '+
-                    'width="'+ic[1]+'" height="'+ic[2]+'" '+
+                var out = '<img src="' + o.BASE_URL + '_design/' + ic[0] + '" '+
+                    'width="' + ic[1] + '" height="' + ic[2] + '" '+
                     'alt="" border="0">';
                 return out;
             }
@@ -180,7 +189,7 @@ Cloudworks.Streams = function() {
          * Apply rough HTML escaping to a string.
          */
         htmlEscape: function(s) {
-            return (''+s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            return (''+s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         },
 
         EOF: null

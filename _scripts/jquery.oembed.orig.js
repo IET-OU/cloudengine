@@ -1,23 +1,23 @@
 (function($) {
-    $.fn.oembed = function(url, options) {		
-	
+    $.fn.oembed = function(url, options) {
+
 		options = $.extend({}, $.fn.oembed.defaults, options);
-		
-        return this.each(function() {      
-			
-			var container = $(this), 
-				target = (url != null) ? url : container.attr("href"), 
-				provider;		
-			
-			if (target != null) {			
-				
+
+        return this.each(function() {
+
+			var container = $(this),
+				target = (url !== null) ? url : container.attr("href"), 
+				provider;
+
+			if (target !== null) {
+
 				provider = getOEmbedProvider(target);
 
-				if (provider != null) {
+				if (provider !== null) {
 					provider.maxWidth = options.maxWidth;
-					provider.maxHeight = options.maxHeight;               
-					
-					provider.embedCode(target, function(code) { container.html(code); });		
+					provider.maxHeight = options.maxHeight;
+
+					provider.embedCode(target, function(code) { container.html(code); });
 				}
 			}
         });
@@ -50,8 +50,8 @@
     };
 
     $.fn.oembed.getGenericCode = function(url, data) {
-        var title = (data.title != null) ? data.title : url,
-			code = '<a href="' + url + '">' + title + '</a>';			
+        var title = (data.title !== null) ? data.title : url,
+			code = '<a href="' + url + '">' + title + '</a>';
         if (data.html)
             code += "<div>" + data.html + "</div>";
 		return code;
@@ -59,9 +59,9 @@
 
     $.fn.oembed.isAvailable = function(url) {
         var provider = getOEmbedProvider(url);
-        return (provider != null);
+        return (provider !== null);
     };
-	
+
     /* Private Methods */
     function getOEmbedProvider(url) {
         for (var i = 0; i < providers.length; i++) {
@@ -108,11 +108,11 @@
         this.name = name;
         this.urlPattern = urlPattern;
 //ou-specific -- http://code.google.com/p/oohembed/issues/detail?id=14
-        this.oEmbedUrl = (oEmbedUrl != null) ? oEmbedUrl :
+        this.oEmbedUrl = (oEmbedUrl !== null) ? oEmbedUrl :
         //"http://oohembed.com/oohembed/";
         "http://api.embed.ly/v1/api/oembed";
 //ou-specific ends.
-        this.callbackparameter = (callbackparameter != null) ? callbackparameter : "callback";
+        this.callbackparameter = (callbackparameter !== null) ? callbackparameter : "callback";
         this.maxWidth = 500;
         this.maxHeight = 400;
 
@@ -128,19 +128,19 @@
             if (url.indexOf("?") <= 0)
                 url = url + "?";
 
-            url += "maxwidth=" + this.maxWidth + 
+            url += "maxwidth=" + this.maxWidth +
 
 //ou-specific
                 "&maxheight=" + this.maxHeight +
-                //#todo Bug "&maxHeight=" + this.maxHeight + 
+                //#todo Bug "&maxHeight=" + this.maxHeight +
 
                 "&client=" + "org.maltwiki:jquery.oembed.js" +
                 "&ref=" + escape(location) +
 //ou-specific ends.
- 
-						"&format=json" + 
-						"&url=" + escape(externalUrl) + 
-						"&" + this.callbackparameter + "=?";						
+
+						"&format=json" +
+						"&url=" + escape(externalUrl) +
+						"&" + this.callbackparameter + "=?";
             return url;
         }
 
@@ -149,7 +149,7 @@
             var request = this.getRequestUrl(externalUrl);
 
             $.getJSON(request, function(data) {
-                
+
 				var code, type = data.type;
 
                 switch (type) {
@@ -172,4 +172,3 @@
         }
     }
 })(jQuery);
-

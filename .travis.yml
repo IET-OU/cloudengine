@@ -1,0 +1,15 @@
+# CloudEngine.
+language: php
+
+php:
+  - 7.0
+  - 5.6
+
+install:
+    - travis_retry composer install --no-interaction --prefer-source
+    - composer npm-install
+
+script:
+    - composer test
+
+#End.

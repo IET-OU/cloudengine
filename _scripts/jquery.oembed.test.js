@@ -4,8 +4,8 @@
  *
  * Copyright (c) 2009 Richard Chamorro
  * Licensed under the MIT license
- * 
- * Author: Richard Chamorro 
+ *
+ * Author: Richard Chamorro
  */
 //Revision #23 on Google Code (was #20).
 
@@ -19,7 +19,7 @@
         return this.each(function () {
 
             var container = $(this),
-				resourceURL = (url != null) ? url : container.attr("href"),
+				resourceURL = (url !== null) ? url : container.attr("href"),
 				provider;
 
             if (embedAction) {
@@ -30,10 +30,10 @@
                 };
             }
 
-            if (resourceURL != null) {
+            if (resourceURL !== null) {
                 provider = $.fn.oembed.getOEmbedProvider(resourceURL);
 
-                if (provider != null) {
+                if (provider !== null) {
                     provider.params = getNormalizedParams(settings[provider.name]) || {};
                     provider.maxWidth = settings.maxWidth;
                     provider.maxHeight = settings.maxHeight;
@@ -55,11 +55,11 @@
     $.fn.oembed.defaults = {
         maxWidth: null,
         maxHeight: null,
-        embedMethod: "replace",  	// "auto", "append", "fill"		
+        embedMethod: "replace",  	// "auto", "append", "fill"
         defaultOEmbedProvider: "embed.ly", 	// "oohembed", "embed.ly", "none"
         allowedProviders: null,
         disallowedProviders: null,
-        customProviders: null, // [ new $.fn.oembed.OEmbedProvider("customprovider", null, ["customprovider\\.com/watch.+v=[\\w-]+&?"]) ]	
+        customProviders: null, // [ new $.fn.oembed.OEmbedProvider("customprovider", null, ["customprovider\\.com/watch.+v=[\\w-]+&?"]) ]
         defaultProvider: null,
         greedy: true,
         onProviderNotFound: function () { },
@@ -80,19 +80,19 @@
         else
             url = url + "&";
 
-        if (provider.maxWidth != null && provider.params["maxwidth"] == null)
+        if (provider.maxWidth !== null && provider.params["maxwidth"] === null)
             provider.params["maxwidth"] = provider.maxWidth;
 
-        if (provider.maxHeight != null && provider.params["maxheight"] == null)
+        if (provider.maxHeight !== null && provider.params["maxheight"] === null)
             provider.params["maxheight"] = provider.maxHeight;
 
         for (i in provider.params) {
             // We don't want them to jack everything up by changing the callback parameter
-            if (i == provider.callbackparameter)
+            if (i === provider.callbackparameter)
                 continue;
 
             // allows the options to be set to null, don't send null values to the server as parameters
-            if (provider.params[i] != null)
+            if (provider.params[i] !== null)
                 qs += "&" + escape(i) + "=" + provider.params[i];
         }
 
@@ -105,7 +105,7 @@
 
     function embedCode(container, externalUrl, embedProvider) {
 
-        var requestUrl = getRequestUrl(embedProvider, externalUrl), 		
+        var requestUrl = getRequestUrl(embedProvider, externalUrl),
 			ajaxopts = $.extend({
 				url: requestUrl,
 				type: 'get',
@@ -133,8 +133,8 @@
 				},
 				error: settings.onError.call(container, externalUrl, embedProvider)
 			}, settings.ajaxOptions || { } );
-		
-		$.ajax( ajaxopts );        
+
+		$.ajax( ajaxopts );
     };
 
     function initializeProviders() {
@@ -181,52 +181,52 @@
 
         // If in greedy mode, we add the default provider
         defaultProvider = getDefaultOEmbedProvider(settings.defaultOEmbedProvider);
-        if (settings.greedy == true) {
+        if (settings.greedy === true) {
             activeProviders.push(defaultProvider);
 		}
         // If any provider has no apiendpoint, we use the default provider endpoint
         for (i = 0; i < activeProviders.length; i++) {
-            if (activeProviders[i].apiendpoint == null)
+            if (activeProviders[i].apiendpoint === null)
                 activeProviders[i].apiendpoint = defaultProvider.apiendpoint;
         }
     }
 
     function getDefaultOEmbedProvider(defaultOEmbedProvider) {
         var url = "http://oohembed.com/oohembed/";
-        if (defaultOEmbedProvider == "embed.ly")
+        if (defaultOEmbedProvider === "embed.ly")
             url = "http://api.embed.ly/v1/api/oembed?";
         return new $.fn.oembed.OEmbedProvider(defaultOEmbedProvider, null, null, url, "callback");
     }
 
     function getNormalizedParams(params) {
-        if (params == null)
+        if (params === null)
             return null;
         var key, normalizedParams = {};
         for (key in params) {
-            if (key != null)
+            if (key !== null)
                 normalizedParams[key.toLowerCase()] = params[key];
         }
         return normalizedParams;
     }
 
     function isNullOrEmpty(object) {
-        if (typeof object == "undefined")
+        if (typeof object === "undefined")
             return true;
-        if (object == null)
+        if (object === null)
             return true;
-        if ($.isArray(object) && object.length == 0)
+        if ($.isArray(object) && object.length === 0)
             return true;
         return false;
     }
 
     /* Public functions */
     $.fn.oembed.insertCode = function (container, embedMethod, oembedData) {
-        if (oembedData == null)
+        if (oembedData === null)
             return;
 
         switch (embedMethod) {
             case "auto":
-                if (container.attr("href") != null) {
+                if (container.attr("href") !== null) {
                     $.fn.oembed.insertCode(container, "append", oembedData);
                 }
                 else {
@@ -241,11 +241,11 @@
                 break;
             case "append":
                 var oembedContainer = container.next();
-                if (oembedContainer == null || !oembedContainer.hasClass("oembed-container")) {
+                if (oembedContainer === null || !oembedContainer.hasClass("oembed-container")) {
                     oembedContainer = container
 						.after('<div class="oembed-container"></div>')
 						.next(".oembed-container");
-                    if (oembedData != null && oembedData.provider_name != null)
+                    if (oembedData !== null && oembedData.provider_name !== null)
                         oembedContainer.toggleClass("oembed-container-" + oembedData.provider_name);
                 }
                 oembedContainer.html(oembedData.code);
@@ -275,7 +275,7 @@
     };
 
     $.fn.oembed.getGenericCode = function (url, oembedData) {
-        var title = (oembedData.title != null) ? oembedData.title : url,
+        var title = (oembedData.title !== null) ? oembedData.title : url,
 			code = '<a href="' + url + '">' + title + '</a>';
         if (oembedData.html)
             code += "<div>" + oembedData.html + "</div>";
@@ -284,7 +284,7 @@
 
     $.fn.oembed.isProviderAvailable = function (url) {
         var provider = getOEmbedProvider(url);
-        return (provider != null);
+        return (provider !== null);
     };
 
     $.fn.oembed.getOEmbedProvider = function (url) {
@@ -308,7 +308,7 @@
         this.matches = function (externalUrl) {
             for (i = 0; i < this.urlschemes.length; i++) {
                 regExp = new RegExp(this.urlschemes[i], "i");
-                if (externalUrl.match(regExp) != null)
+                if (externalUrl.match(regExp) !== null)
                     return true;
             }
             return false;
@@ -316,7 +316,7 @@
 
         this.fromJSON = function (json) {
             for (property in json) {
-                if (property != "urlschemes")
+                if (property !== "urlschemes")
                     this[property] = json[property];
                 else
                     this[property] = getUrlSchemes(json[property]);
@@ -382,13 +382,13 @@
 		new $.fn.oembed.OEmbedProvider("hulu", "video", ["hulu\\.com/watch/.*"], "http://www.hulu.com/api/oembed.json"),
 		new $.fn.oembed.OEmbedProvider("vimeo", "video", ["http:\/\/www\.vimeo\.com\/groups\/.*\/videos\/.*", "http:\/\/www\.vimeo\.com\/.*", "http:\/\/vimeo\.com\/groups\/.*\/videos\/.*", "http:\/\/vimeo\.com\/.*"], "http://vimeo.com/api/oembed.json"),
 		new $.fn.oembed.OEmbedProvider("dailymotion", "video", ["dailymotion\\.com/.+"]), // "http://www.dailymotion.com/api/oembed/" (callback parameter does not return jsonp)
-		new $.fn.oembed.OEmbedProvider("scribd", "rich", ["scribd\\.com/.+"]), // ", "http://www.scribd.com/services/oembed"" (no jsonp)		
+		new $.fn.oembed.OEmbedProvider("scribd", "rich", ["scribd\\.com/.+"]), // ", "http://www.scribd.com/services/oembed"" (no jsonp)
 //ou-specific - 1 line, V2 api.
 		new $.fn.oembed.OEmbedProvider("slideshare", "rich", ["slideshare\.net"], "http://www.slideshare.net/api/oembed/2"),
 		new $.fn.oembed.OEmbedProvider("photobucket", "photo", ["photobucket\\.com/(albums|groups)/.*"], "http://photobucket.com/oembed/")
 		// new $.fn.oembed.OEmbedProvider("vids.myspace.com", "video", ["vids\.myspace\.com"]), // "http://vids.myspace.com/index.cfm?fuseaction=oembed" (not working)
-		// new $.fn.oembed.OEmbedProvider("screenr", "rich", ["screenr\.com"], "http://screenr.com/api/oembed.json") (error)		
-		// new $.fn.oembed.OEmbedProvider("qik", "video", ["qik\\.com/\\w+"], "http://qik.com/api/oembed.json"),		
+		// new $.fn.oembed.OEmbedProvider("screenr", "rich", ["screenr\.com"], "http://screenr.com/api/oembed.json") (error)
+		// new $.fn.oembed.OEmbedProvider("qik", "video", ["qik\\.com/\\w+"], "http://qik.com/api/oembed.json"),
 		// new $.fn.oembed.OEmbedProvider("revision3", "video", ["revision3\.com"], "http://revision3.com/api/oembed/")
 	];
 })(jQuery);

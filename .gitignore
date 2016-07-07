@@ -4,3 +4,10 @@ system/application/config/database.php
 system/application/config/mollom.php
 system/application/language/*/LC_MESSAGES/*.mo
 favicon.ico
+
+*BAK*
+composer.lock
+vendor/*
+node_modules/*
+
+#End.

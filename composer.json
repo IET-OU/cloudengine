@@ -1,0 +1,60 @@
+{
+    "name": "iet-ou/cloudengine",
+    "description": "CloudEngine powers Cloudworks <http://cloudworks.ac.uk>. ©The Open University (IET).",
+    "keywords": [ "OULDI", "Jisc", "Cloudworks", "IET-OU", "OpenUniversity" ],
+    "homepage": "http://cloudworks.ac.uk",
+    "type": "project",
+    "license": "GPL-2.0",
+    "time": "2010-10-06",
+    "authors": [
+        {
+            "name": "Juliette Culver",
+            "role": "Lead developer"
+        },
+        {
+            "name": "Institute of Educational Technology",
+            "homepage": "http://iet.open.ac.uk",
+            "role": "CloudEngine / Cloudworks developers"
+        }
+    ],
+    "support": {
+        "email": "IET-Webmaster@open.ac.uk",
+        "source": "https://github.com/IET-OU/cloudengine"
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "ext-gd": "*",
+        "ext-curl": "*",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "2.5.1",
+        "jakub-onderka/php-parallel-lint": "^0.9.2",
+        "phpmd/phpmd": "^2.4.3"
+    },
+    "scripts": {
+        "copy-config": [
+            "cp -n system/application/config/config.dist.php system/application/config/config.php",
+            "cp -n system/application/config/cloudengine.dist.php system/application/config/cloudengine.php",
+            "cp -n system/application/config/database.dist.php system/application/config/database.php"
+        ],
+        "npm-install": [
+            "npm install grunt-cli -g",
+            "npm install grunt grunt-contrib-validate-xml grunt-contrib-jshint"
+        ],
+        "test": [
+            "composer validate --no-interaction",
+            "vendor/bin/parallel-lint index.php system/application",
+            "grunt"
+        ],
+        "phpcs": "vendor/bin/phpcs --standard=PSR2 --extensions=php system/application/libraries/Api*",
+        "fix": "vendor/bin/phpcbf --standard=PSR2 --extensions=php system/application/libraries/Api*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "//": [
+            "https://github.com/IET-OU/cloudengine/commit/65782fa095e7155401aaaab694ea597b7e88f709"
+        ]
+    }
+}

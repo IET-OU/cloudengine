@@ -6,7 +6,7 @@
 if(!defined('BASEPATH'))
         exit('No direct script access allowed');
 
-        
+
 function json_init() {
         // Load Services_JSON code
         if(!class_exists('Services_JSON'))
@@ -20,6 +20,8 @@ function json_init() {
         return $GLOBALS['JSON_SERVICE_INSTANCE'];
 } # end json_init
 
+if (! function_exists('json_encode')):
+
 function json_encode($data = null) {
         if($data == null) return false;
         $json = json_init();
@@ -31,3 +33,5 @@ function json_decode($data = null) {
         $json = json_init();
         return $json->decode($data);
 } # end json_decode
+
+endif;
