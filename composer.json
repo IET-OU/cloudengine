@@ -54,6 +54,8 @@
     "prefer-stable": true,
     "extra": {
         "//": [
+            "https://bitbucket.org/cloudengine/cloudengine/commits/all?page=17",
+            "https://bitbucket.org/cloudengine/cloudengine/commits/38d061a046b8b246a905cf1018cef8a595aeae25",
             "https://github.com/IET-OU/cloudengine/commit/65782fa095e7155401aaaab694ea597b7e88f709"
         ]
     }

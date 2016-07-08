@@ -5,11 +5,17 @@ php:
   - 7.0
   - 5.6
 
+git:
+  depth: 8
+
+before_install:
+  - composer self-update --preview
+
 install:
-    - travis_retry composer install --no-interaction --prefer-source
-    - composer npm-install
+  - travis_retry composer install --no-interaction --prefer-source
+  - composer npm-install
 
 script:
-    - composer test
+  - composer test
 
 #End.

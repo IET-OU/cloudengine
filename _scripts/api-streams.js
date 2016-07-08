@@ -31,7 +31,7 @@ window.Cloudworks.Streams = function() {
         writeln: function(o, posts) {
             //if (typeof posts !== )
             /* jshint -W060 */
-            document.write(this.render(o, posts));
+            window.document.write(this.render(o, posts));
             /* jshint +W060 */
         },
 

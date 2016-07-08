@@ -22,8 +22,10 @@ module.exports = function (grunt) {
 				// https://github.com/jshint/jshint/blob/master/src/messages.js#L80
 				//'-W030': true,    // Ignore Expected an assignment or function call and instead saw an expression;
 				//'-W069': true,    // Ignore {a} is better written in dot notation;
-				//'-W116': true,    // Ignore Expected '{a}' and instead saw '{b}';
-				globals: { jQuery: false, window: false, document: false, escape: false, ga: false, getOEmbedProvider: false }
+				//'-W116': true,    // Ignore Expected '{a}' and instead saw '{b}' -- brackets;
+				//'-W060': true,    // Ignore document.write can be a form of eval;
+				//'-W061': true,    // Ignore eval can be harmful;
+				globals: { jQuery: false, window: false, escape: false, ga: false, getOEmbedProvider: false }
 			},
 			JS: [ '_scripts/*.js', '!_scripts/jquery*', '!_scripts/buildpager.*', '!_scripts/date.*', '!_scripts/tiny_mce/*', '_scripts/*oembed.js' ],
 			Grunt: {
@@ -31,6 +33,7 @@ module.exports = function (grunt) {
 				files: { src: 'Gruntfile.js' }
 			}
 		},
+		// 'validate XML' doesn't work with CodeIgniter views :(!
 		validate_xml: {
 			views: {
 				src: [ 'system/application/views/auth/*.php' ]
