@@ -1,7 +1,7 @@
 # *** EXPERIMENTAL ***
 # Translate/ localize dynamic support and about pages (<?="$count $section" ?> pages)
 #
-# The CloudEngine project (http://getcloudengine.org/)
+# The CloudEngine project 
 # @copyright Copyright 2010 The Open University. See CREDITS.txt
 # @license http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
 #
@@ -22,4 +22,3 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SourceCharset: utf-8\n"
 "--X-Poedit-Base-URL: <?php echo base_url(); ?>\n"
-

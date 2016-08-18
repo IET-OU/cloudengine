@@ -19,7 +19,7 @@
         <dc:language><?php echo $page_language; ?></dc:language>
         <dc:creator><?php echo $creator_email; /*/Translators: In case we want to translate the copyright statement.. */ ?></dc:creator>
         <dc:rights><?=t("Copyright !date !organization", array('!date'=>gmdate("Y"), '!organization'=>NULL)) ?></dc:rights>
-        <admin:generatorAgent rdf:resource="http://getcloudengine.org/"/>
+        <admin:generatorAgent/>
 
         <?php foreach($clouds as $entry): ?>
             <item>

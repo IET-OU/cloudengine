@@ -1,7 +1,7 @@
 <?php // need to be separately enclosed like this
   header("Content-Type: application/rss+xml; charset=".config_item("charset"));
   echo '<?xml version="1.0" encoding="'.config_item("charset").'"?>'.PHP_EOL;
-  $this->load->helper('xml');  
+  $this->load->helper('xml');
 ?>
 <rss version="2.0"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -19,7 +19,7 @@
 	<dc:language><?= $page_language; ?></dc:language>
 	<dc:creator><?= $creator_email; ?></dc:creator>
 	<dc:rights><?=t("Copyright !date !organization", array('!date'=>gmdate("Y"), '!organization'=>NULL)) ?></dc:rights>
-	<admin:generatorAgent rdf:resource="http://getcloudengine.org/"/>
+	<admin:generatorAgent/>
     <atom:link href="<?= $feed_url ?>" rel="self" type="application/rss+xml" />
 
 	<?php foreach($events as $event):

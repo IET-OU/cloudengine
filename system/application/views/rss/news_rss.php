@@ -21,10 +21,10 @@
     <dc:creator><?php echo $creator_email; ?></dc:creator>
 
     <dc:rights><?=t("Copyright !date !organization", array('!date'=>gmdate("Y"), '!organization'=>NULL)) ?></dc:rights>
-    <admin:generatorAgent rdf:resource="http://getcloudengine.org/"/>
+    <admin:generatorAgent/>
 
     <?php foreach($news as $entry): ?>
-    
+
         <item>
           <title><?php echo xml_safe(xml_convert($entry->title)) ?></title>
           <link><?php echo site_url('blog/view/'. $entry->post_id) ?></link>
@@ -32,7 +32,7 @@
           <description><![CDATA[<?= $entry->body ?>]]></description>
       <pubDate><?php echo date ('r', $entry->created);?></pubDate>
         </item>
-        
+
     <?php endforeach; ?>
 
-    </channel></rss>  
+    </channel></rss>
