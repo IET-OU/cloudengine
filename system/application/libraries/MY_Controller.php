@@ -29,18 +29,18 @@ class MY_Controller extends Controller {
   protected function _set_cloudengine_debug() {
       //initalise
       $debug          = false;
-      $show_debug     = config_item('debug');      
+      $show_debug     = config_item('debug');
 
       //debug value of 1 is debug output for admin users
       //debug value of 2 is debug output for all users (emergency use only)
       if (($this->auth_lib && $this->auth_lib->is_admin() && $show_debug == 1) || $show_debug == 2) {
         $debug = true;
       }
-      
+
       //firephp - should we enable it?
       if ($debug) {
         $this->load->library('firephp');
-        // This overrides the settings in the index.php file 
+        // This overrides the settings in the index.php file
       	ini_set("display_errors", 'On');
       	error_reporting(E_ALL & ~E_NOTICE);
       } else {
@@ -96,7 +96,7 @@ class MY_Controller extends Controller {
           $error =& load_class('Exceptions');
           $message = nl2br($this->config->item('offline_message_public'));
           echo $error->show_error('Information', $message, 'site_offline', 200);
-          exit; 
+          exit;
         }
       }
   }
@@ -110,7 +110,7 @@ class MY_Controller extends Controller {
    */
   protected function _get_message_unread_count() {
       //(most controllers extend MY_Controller)
-      if ($this->config->item('x_message') && $this->db_session) { 
+      if ($this->config->item('x_message') && $this->db_session) {
         if (is_numeric($this->db_session->userdata('id'))) {
           $this->load->model('message_model');
           $user_message_count = $this->message_model->get_user_new_message_count($this->db_session->userdata('id'));
@@ -130,12 +130,14 @@ class MY_Controller extends Controller {
     $is_spam = FALSE;
     if (config_item('x_moderation')) {
       $this->load->model('user_model');
-      $user = $this->user_model->get_user($user_id); 
+
+      $user = $this->user_model->get_user($this->db_session->userdata('id'));
+
       $this->load->library('ModerationProvider');
-      $moderation_provider = new ModerationProvider(config_item('moderation_provider'));
+      $moderation_provider = new ModerationProvider();
       if (is_object($moderation_provider)) {
         $is_spam = $moderation_provider->checkSpam($user, $message);
-      } 
+      }
     }
     return  $is_spam;
   }
