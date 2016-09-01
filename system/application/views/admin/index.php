@@ -14,7 +14,7 @@
 
 <h2><?= t("Statistics and Admin Data") ?> </h2>
 <ul class="arrows">
-<li><?= anchor('user/people', t("People")) ?></li>
+<li><?= anchor('user/people', t("Users")) ?></li>
 <li><?= anchor('admin/unactivated_users', t("Unactivated Users")) ?></li>
 <li><?= anchor('event/admin', t("Admin Cloudstream")) ?></li>
 <li><?= anchor('statistics/stats', t("Site Statistics")) ?></li>
@@ -33,5 +33,3 @@
 <li><?= anchor('admin/site_settings', t('Site settings and status')) ?></li>
 <li><?= anchor('admin/phpinfo', t('Display PHP configuration info')) ?></li>
 </ul>
-
-

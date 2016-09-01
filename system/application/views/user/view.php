@@ -9,28 +9,29 @@
         <img src="<?=base_url() ?>_design/avatar-default-32.jpg" class="go2" alt="" />
     <?php endif; ?>
     <h1><?= $user->fullname ?>
-   
+
 
    <?php if($current_user): ?>
              <a href="<?= base_url() ?>user/edit/" class="button" title="<?=t("Edit Profile")?>"><?=t("Edit")?></a>
              <a href="<?= base_url() ?>user/edit_picture/" class="button" title="<?=t("Edit Picture")?>"><?=t("Edit Picture")?></a>
              <a href="<?= base_url() ?>auth/change_password/" class="button" title="<?=t("Change Password")?>"><?=t("Change Password")?></a>
-			 <a href="<?= base_url() ?>auth/change_email/" class="button" title="<?=t("Change Email")?>"><?=t("Change Email")?></a>	
+			 <a href="<?= base_url() ?>auth/change_email/" class="button" title="<?=t("Change Email")?>"><?=t("Change Email")?></a>
     <?php endif;?>
     <?php if($admin): ?>
+      <?=anchor("auth/admin_change_password/$user->user_id", t('Change Password'), array('title'=>t('Change Password'), 'class'=>'button')) ?>
       <?php if(!$user->deleted): ?>
         <?=anchor("user/delete/$user->user_id", t('Delete'), array('title'=>t('Delete'), 'class'=>'button')) ?>
-      <?php else: ?>        
-        <?=anchor("user/undelete/$user->user_id", t('Undelete'), array('title'=>t('Undelete'), 'class'=>'button')) ?>      
+      <?php else: ?>
+        <?=anchor("user/undelete/$user->user_id", t('Undelete'), array('title'=>t('Undelete'), 'class'=>'button')) ?>
       <?php endif; ?>
     <?php endif; ?>
     <?php if($admin): ?>
       <?php if(!$user->banned): ?>
         <?=anchor("user/ban/$user->user_id", t('Ban'), array('title'=>t('Ban'), 'class'=>'button')) ?>
-      <?php else: ?>        
-        <?=anchor("user/unban/$user->user_id", t('Unban'), array('title'=>t('Unban'), 'class'=>'button')) ?>      
+      <?php else: ?>
+        <?=anchor("user/unban/$user->user_id", t('Unban'), array('title'=>t('Unban'), 'class'=>'button')) ?>
       <?php endif; ?>
-    <?php endif; ?>    
+    <?php endif; ?>
     <?php if($admin && config_item('x_moderation') && !$user->whitelist): ?>
 	     <?=anchor("user/whitelist/$user->user_id", t('Whitelist'), array('title'=>t('Whitelist'), 'class'=>'button')) ?>
     <?php endif; ?>
@@ -38,7 +39,7 @@
         <a href="<?= base_url() ?>user/follow/<?= $user->id ?>" class="button"><?=t("Follow")?></a>
     <?php elseif(!$current_user): ?>
         <a href="<?= base_url() ?>user/unfollow/<?= $user->id ?>" class="button"><?=t("Unfollow")?></a>
-    <?php endif; ?>        
+    <?php endif; ?>
     <?php if(!$current_user && $this->config->item('x_message')): ?>
         <?= anchor("message/compose/$user->id", t('Send message'), 'class="button"') ?>
 	<?php endif; ?>
@@ -47,8 +48,8 @@
     <p class="reputation"><strong><?=t('Reputation: !count', array('!count'=> $reputation)) ?></strong></p>
     <?php endif; ?>
     <p><?= $user->institution ?>
-    
- 
+
+
     </p>
     <?php if (count($badges) > 0 && $this->config->item('x_badge')): ?>
 	<div id="open-badges">
@@ -58,7 +59,7 @@
         alt="<?=t('Badge: !name', array('!name' => $badge->name)) ?>" /></a>
       <?php endforeach; ?>
 	  </div>
-      <?php endif; ?> 
+      <?php endif; ?>
 
 </div>
 
@@ -68,15 +69,15 @@
       <p id="profile-inactive">
         <?php if($user->banned): ?>
        	  <?= t('User has been banned.') ?>
-        <?php endif; ?> 
+        <?php endif; ?>
         <?php if($user->deleted): ?>
        	  <?= t("User has been 'deleted.'") ?>
-        <?php endif; ?>         
+        <?php endif; ?>
       </p>
    	<?php endif; ?>
 
-    <div class="user-entry">   
-      
+    <div class="user-entry">
+
       <?php if ($admin || $is_own_profile): ?>
           <p><strong><?=t("Email")?></strong>: <?= $user->email ?> </p>
           <p><strong><?=t("Username")?></strong>: <?= $user->user_name ?> </p>
@@ -88,31 +89,31 @@
 					<?= t("Flagged as spam")  ?>
 				<?php else: ?>
 					<small><?= anchor('flag/item/user/'.$user->id, t("Flag as spam")) ?></small>
-				<?php endif; ?>	
+				<?php endif; ?>
 			<?php endif; ?>
     	<?php endif; ?>
       <?php if ($user->institution): ?>
-          <p><strong><?=t("Institution")?></strong>: 
+          <p><strong><?=t("Institution")?></strong>:
           <?= anchor('user/institution/'.urlencode(trim($user->institution)),$user->institution) ?></p>
       <?php endif;?>
       <?php if ($user->department): ?><p><strong><?=t("Department")?></strong>: <?=$user->department ?></p><?php endif;?>
       <?php if ($user->twitter_username): ?><p><strong>Twitter</strong>: <a href="http://www.twitter.com/<?=$user->twitter_username ?>"><?=$user->twitter_username ?></a></p><?php endif;?>
-      <?php if ($user->homepage): ?><p><strong><?=t("Webpage")?></strong>: <a href="<?=$user->homepage ?>"><?=$user->homepage ?></a></p><?php endif;?>   
-      <?php if ($display_email): ?><p><strong><?=t("Email")?></strong>: <?= $user->email ?></a></p><?php endif;?>       
-        
+      <?php if ($user->homepage): ?><p><strong><?=t("Webpage")?></strong>: <a href="<?=$user->homepage ?>"><?=$user->homepage ?></a></p><?php endif;?>
+      <?php if ($display_email): ?><p><strong><?=t("Email")?></strong>: <?= $user->email ?></a></p><?php endif;?>
+
         </div>
 
 
     <div class="grid">
         <div class="c1of2">
-            <?php $this->load->view('user/clouds_block.php'); ?>     
-        </div>  
+            <?php $this->load->view('user/clouds_block.php'); ?>
+        </div>
         <div class="c2of2">
             <?php $this->load->view('user/cloudscapes_block.php'); ?>
         </div>
     </div>
     <?php $this->load->view('event/user_block'); ?>
-</div> 
+</div>
 
 <div id="region2">
     <?php $this->load->view('search/search_box.php'); ?>
@@ -131,9 +132,9 @@
     <?=anchor("user/favourites/$user->user_id",
          t("!person's favourites (!count)", array('!person' => $user->fullname,
              '!count' => $total_favourites))) ?>
-    <?php endif; ?>   
+    <?php endif; ?>
     <?php $this->load->view('user/following_block.php'); ?>
     <?php $this->load->view('user/followers_block.php'); ?>
-    <?php $this->load->view('events/current_events_block'); ?>    
+    <?php $this->load->view('events/current_events_block'); ?>
     <?php $this->load->view('events/past_events_block'); ?>
 </div>
