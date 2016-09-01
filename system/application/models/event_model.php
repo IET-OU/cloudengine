@@ -699,6 +699,9 @@ class Event_model extends Model {
                 $this->CI->load->model('user_model');
                 $user_id = $event->event_item_id;
                 $user = $this->CI->user_model->get_user($user_id);
+                if (!$user) {
+                  return false;
+                }
                 $string = '<em>'.t("!person editted their profile",
                                    array('!person' =>
                                          anchor('user/view/'.$user_id, $user->fullname) )).'</em>';
