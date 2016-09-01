@@ -206,7 +206,9 @@ class Blog_model extends Model {
         $this->db->join('blog_post', 'blog_post.post_id= blog_comment.post_id');
         $this->db->join('user_profile', 'user_profile.id = blog_comment.user_id',
                         'left');
+        $this->db->join('user', 'user.id= user_profile.id');
         $this->db->where('comment_id', $comment_id);
+        $this->db->where('user.banned', 0);
         $query = $this->db->get('blog_comment');
         if ($query->num_rows() !=  0 ) {
             $comment = $query->row();
