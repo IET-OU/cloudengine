@@ -702,7 +702,10 @@ class Event_model extends Model {
                 if (!$user) {
                   return false;
                 }
-                $string = '<em>'.t("!person editted their profile",
+
+                $truncated_content = truncate_content(strip_tags($user->description));
+                $string = '<strong>""'.$truncated_content.'..."'.$user->homepage.'</strong><br />';
+                $string .= '<em>'.t("!person editted their profile",
                                    array('!person' =>
                                          anchor('user/view/'.$user_id, $user->fullname) )).'</em>';
                 break;
@@ -806,7 +809,7 @@ class Event_model extends Model {
 
                     $new_events[] = $new_event;
                     unset($new_event);
-                    $last_event_item_id = $event->event_item_id;
+                    $last_event_ite_id = $event->event_item_id;
                     $last_event_type = $event->event_type;
                 }
             }
