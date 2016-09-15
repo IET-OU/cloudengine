@@ -8,7 +8,7 @@
 class User_model extends Model {
 
     function __construct()
-    {     
+    {
         parent::Model();
     }
 
@@ -34,7 +34,7 @@ class User_model extends Model {
             $alpha = 'A';
         }
         // The following should execute the following query:
-        // SELECT id, fullname, institution FROM user_profile 
+        // SELECT id, fullname, institution FROM user_profile
         // WHERE fullname LIKE '$alpha%' ORDER BY fullname ASC
         if($only_active) {
           $this->where_active();
@@ -47,9 +47,9 @@ class User_model extends Model {
 
         return $query->result();
     }
-    
+
     /**
-     * Get all admin users 
+     * Get all admin users
      * @return array Array of the admin users
      */
     function get_admins() {
@@ -71,11 +71,11 @@ class User_model extends Model {
 	    $query = $this->db->get('user');
 	    $result = $query->result();
 	    $user = $result[0];
-	    return $user; 
+	    return $user;
 	}
-	
+
 	/**
-	 * Get the details of a user given the user's ID. 
+	 * Get the details of a user given the user's ID.
 	 *
 	 * @param integer $user_id The ID of the user
 	 * @return object The details of the user
@@ -99,10 +99,10 @@ class User_model extends Model {
     	    $user->tags = $this->CI->tag_model->get_tags('user', $user_id);
         }
 	    return $user;
-	}	
-	
+	}
+
 	/**
-	 * Get the full name of a user given the user's ID. 
+	 * Get the full name of a user given the user's ID.
 	 *
 	 * @param integer $user_id The ID of the user
 	 * @return object The details of the user
@@ -117,10 +117,10 @@ class User_model extends Model {
             $user = $query->row();
         }
 	    return $user->fullname;
-	}	  
-      
+	}
+
     /**
-     * Search the list of users' full name for a query string and return the details of 
+     * Search the list of users' full name for a query string and return the details of
      * any users that match that string
      *
      * @param string $query_string The query string
@@ -130,11 +130,11 @@ class User_model extends Model {
         // Need to check the query string
         $this->db->like('fullname', $query_string);
         $this->db->join('user_picture', 'user_profile.id = user_picture.user_id', 'left');
-       
+
         $query = $this->db->get('user_profile');
-        return $query->result();        
+        return $query->result();
     }
-        
+
     /**
      * Get a user's e-mail address
      *
@@ -147,15 +147,15 @@ class User_model extends Model {
         if ($query->num_rows() !=  0 ) {
             $user = $query->row();
         }
-        
-        return $user->email;         
-    }	
+
+        return $user->email;
+    }
 
     /**
      * Get the details of whether a user wants to be e-mailed with follow-up comments
      *
 	 * @param integer $user_id The ID of the user
-     * @return boolean TRUE if they have specified that they would like to be 
+     * @return boolean TRUE if they have specified that they would like to be
      * e-mailed follow-up comments, FALSE otherwise
      */
     function email_comment($user_id) {
@@ -164,10 +164,10 @@ class User_model extends Model {
         if ($query->num_rows() !=  0 ) {
             $profile = $query->row();
         }
-        
-        return $profile->email_comment;        
+
+        return $profile->email_comment;
     }
-    
+
     /**
      * Get the filename of a user's picture
      *
@@ -180,8 +180,8 @@ class User_model extends Model {
         $query = $this->db->get('user_picture');
         $result = $query->result();
         return isset($result[0]->picture) ? $result[0]->picture : null;
-    }    
-     
+    }
+
     /**
      * Get number of clouds owned by a user
      *
@@ -194,9 +194,9 @@ class User_model extends Model {
          $cloud_total = $this->db->count_all_results();
          return $cloud_total;
     }
-    
+
     /**
-     * Get the clouds for a user 
+     * Get the clouds for a user
      *
 	 * @param integer $user_id The ID of the user
      * @param  integer $num The number of clouds to get
@@ -207,67 +207,67 @@ class User_model extends Model {
             $num = (int) $num;
             $num ="LIMIT $num";
         }
-        
+
         $user_id = (int) $user_id;
-        
-        $query = $this->db->query("SELECT cl.title as title, cl.body as body, 
-                                    cl.created AS timestamp, 
-                                   cl.cloud_id AS cloud_id, 
-                                   COUNT(co.comment_id) AS total_comments 
-                                   FROM  cloud cl 
-                                   LEFT OUTER JOIN comment co ON cl.cloud_id = co.cloud_id 
-                                   WHERE cl.user_id = $user_id AND cl.moderate = 0 
+
+        $query = $this->db->query("SELECT cl.title as title, cl.body as body,
+                                    cl.created AS timestamp,
+                                   cl.cloud_id AS cloud_id,
+                                   COUNT(co.comment_id) AS total_comments
+                                   FROM  cloud cl
+                                   LEFT OUTER JOIN comment co ON cl.cloud_id = co.cloud_id
+                                   WHERE cl.user_id = $user_id AND cl.moderate = 0
                                    GROUP BY cl.cloud_id ORDER BY title ASC $num");
 
 
         return $query->result();
     }
-    
+
     function get_clouds_with_contributions($user_id) {
         $user_id = (int) $user_id;
-        
-        $query = $this->db->query("SELECT cl.title AS title, cl.body AS body, 
-                                    cl.cloud_id AS cloud_id 
-                                    FROM  cloud cl 
-                                    WHERE cl.user_id = $user_id AND cl.moderate = 0 
-                                    UNION 
-                                    SELECT cl.title AS title, cl.body AS body, 
-                                    cl.cloud_id AS cloud_id 
-                                    FROM  cloud cl 
+
+        $query = $this->db->query("SELECT cl.title AS title, cl.body AS body,
+                                    cl.cloud_id AS cloud_id
+                                    FROM  cloud cl
+                                    WHERE cl.user_id = $user_id AND cl.moderate = 0
+                                    UNION
+                                    SELECT cl.title AS title, cl.body AS body,
+                                    cl.cloud_id AS cloud_id
+                                    FROM  cloud cl
                                     INNER JOIN COMMENT co
                                     ON co.cloud_id = cl.cloud_id
-                                    WHERE co.user_id = $user_id AND co.moderate = 0 
-                                    UNION 
-                                    SELECT cl.title AS title, cl.body AS body, 
-                                    cl.cloud_id AS cloud_id 
-                                    FROM  cloud cl 
+                                    WHERE co.user_id = $user_id AND co.moderate = 0
+                                    UNION
+                                    SELECT cl.title AS title, cl.body AS body,
+                                    cl.cloud_id AS cloud_id
+                                    FROM  cloud cl
                                     INNER JOIN cloud_content cc
                                     ON cc.cloud_id = cl.cloud_id
-                                    WHERE cc.user_id = $user_id AND cc.moderate = 0 
-                                    UNION 
-                                    SELECT cl.title AS title, cl.body AS body, 
-                                    cl.cloud_id AS cloud_id 
-                                    FROM  cloud cl 
+                                    WHERE cc.user_id = $user_id AND cc.moderate = 0
+                                    UNION
+                                    SELECT cl.title AS title, cl.body AS body,
+                                    cl.cloud_id AS cloud_id
+                                    FROM  cloud cl
                                     INNER JOIN cloud_embed ce
                                     ON ce.cloud_id = cl.cloud_id
-                                    WHERE ce.user_id = $user_id AND ce.moderate = 0 
-                                    UNION 
-                                    SELECT cl.title AS title, cl.body AS body, 
-                                    cl.cloud_id AS cloud_id 
-                                    FROM  cloud cl 
+                                    WHERE ce.user_id = $user_id AND ce.moderate = 0
+                                    UNION
+                                    SELECT cl.title AS title, cl.body AS body,
+                                    cl.cloud_id AS cloud_id
+                                    FROM  cloud cl
                                     INNER JOIN cloud_reference cr
                                     ON cr.cloud_id = cl.cloud_id
-                                    WHERE cr.user_id = $user_id AND cr.moderate = 0 
-                                    UNION 
-                                    SELECT cl.title AS title, cl.body AS body, 
-                                    cl.cloud_id AS cloud_id 
-                                    FROM  cloud cl 
+                                    WHERE cr.user_id = $user_id AND cr.moderate = 0
+                                    UNION
+                                    SELECT cl.title AS title, cl.body AS body,
+                                    cl.cloud_id AS cloud_id
+                                    FROM  cloud cl
                                     INNER JOIN cloud_link cli
                                     ON cli.cloud_id = cl.cloud_id
                                     WHERE cli.user_id = $user_id AND cli.moderate = 0 ");
 
 
-        return $query->result();    
+        return $query->result();
     }
 
     /**
@@ -300,9 +300,9 @@ class User_model extends Model {
         $this->update_in_search_index($user_id);
 
         // Add an event to the admin cloudstream
-        $this->CI->event_model->add_event('admin', 0, 'profile_edit', $user_id);   
+        $this->CI->event_model->add_event('admin', 0, 'profile_edit', $user_id);
     }
-    
+
     /**
      * Approve a profile under moderation
      *
@@ -310,16 +310,16 @@ class User_model extends Model {
      */
     function approve_profile($user_id) {
         $this->db->where('id', $user_id);
-        $this->db->update('user_profile', array('moderate'=>0));            
-    }  
+        $this->db->update('user_profile', array('moderate'=>0));
+    }
 
    /**
     * Delete a profile
     */
     function delete_profile($user_id) {
        $this->db->where('id', $user_id);
-       $this->db->update('user_profile', array('deleted' => 1, 'moderate'=>0));    
-    }   
+       $this->db->update('user_profile', array('deleted' => 1, 'moderate'=>0));
+    }
 
     /**
      * Get all profiles requiring moderation
@@ -327,10 +327,12 @@ class User_model extends Model {
      * @return array Array of profiles
      */
     function get_profiles_for_moderation() {
-        $this->db->where('moderate', 1);     
+        $this->db->where('moderate', 1);
+        $this->db->where('user.banned', 0);
+        $this->db->join('user', 'user.id = user_profile.id'); 
         $query = $this->db->get('user_profile');
-        return $query->result();   
-    }     
+        return $query->result();
+    }
 
 	/**
 	 * Mark a user as whitelisted (for purposes of moderation/spam)
@@ -339,28 +341,28 @@ class User_model extends Model {
 	 */
     function whitelist($user_id) {
        $this->db->where('id', $user_id);
-       $this->db->update('user_profile', array('whitelist' => 1));    
+       $this->db->update('user_profile', array('whitelist' => 1));
     }
-    
+
 	/**
-	 * Mark a user as deleted 
+	 * Mark a user as deleted
 	 *
 	 * @param integer $user_id The ID of the user
 	 */
     function delete($user_id) {
        $this->db->where('id', $user_id);
-       $this->db->update('user_profile', array('deleted' => 1));    
-    }    
+       $this->db->update('user_profile', array('deleted' => 1));
+    }
 
 	/**
-	 * Unmark a user as deleted 
+	 * Unmark a user as deleted
 	 *
 	 * @param integer $user_id The ID of the user
 	 */
     function undelete($user_id) {
        $this->db->where('id', $user_id);
-       $this->db->update('user_profile', array('deleted' => 0));    
-    }  
+       $this->db->update('user_profile', array('deleted' => 0));
+    }
 
     /**
      * Update the filename of a users picture
@@ -372,18 +374,18 @@ class User_model extends Model {
 
         if ($this->get_picture($user_id)) {
             $this->db->where('user_id', $user_id);
-            $this->db->update('user_picture', array('picture' => $filename)); 
+            $this->db->update('user_picture', array('picture' => $filename));
         } else {
             $this->db->set('user_id', $user_id);
             $this->db->set('picture', $filename);
             $this->db->insert('user_picture');
         }
-    }    
+    }
 
     /***************************************************************************************
      * FOLLOWING
      * *************************************************************************************/
-         
+
     /**
      * Get the cloudscapes that a user is following
      *
@@ -394,12 +396,12 @@ class User_model extends Model {
         $this->db->order_by('title',  'asc');
         $this->db->from('cloudscape');
         $this->db->where('cloudscape_followed.user_id', $user_id);
-        $this->db->join('cloudscape_followed', 
+        $this->db->join('cloudscape_followed',
                         'cloudscape.cloudscape_id = cloudscape_followed.cloudscape_id');
         $query = $this->db->get();
         return $query->result();
     }
-    
+
     /**
      * Get the clouds that a user is following
      *
@@ -413,7 +415,7 @@ class User_model extends Model {
         $this->db->join('cloud_followed', 'cloud.cloud_id = cloud_followed.cloud_id');
         $query = $this->db->get();
         return $query->result();
-    }    
+    }
 
     /**
      * Get the total number of cloudscapes that a user is following
@@ -424,12 +426,12 @@ class User_model extends Model {
     function get_cloudscape_total($user_id) {
         $this->db->from('cloudscape');
         $this->db->where('cloudscape_followed.user_id', $user_id);
-        $this->db->join('cloudscape_followed', 
+        $this->db->join('cloudscape_followed',
                         'cloudscape.cloudscape_id = cloudscape_followed.cloudscape_id');
         $cloudscape_total = $this->db->count_all_results();
-        return $cloudscape_total;        
-    }    
-    
+        return $cloudscape_total;
+    }
+
     /**
      * Get the users that a user if following
      *
@@ -439,13 +441,13 @@ class User_model extends Model {
     function get_following($user_id) {
         $this->db->from('user_profile');
         $this->db->where('user_followed.following_user_id', $user_id);
-        $this->db->join('user_followed', 
+        $this->db->join('user_followed',
                        'user_profile.id = user_followed.followed_user_id');
         $this->db->join('user_picture', 'user_profile.id = user_picture.user_id', 'left');
         $query = $this->db->get();
-        return $query->result();        
+        return $query->result();
     }
-    
+
     /**
      * Get the followers for a user
      *
@@ -455,34 +457,34 @@ class User_model extends Model {
     function get_followers($user_id) {
         $this->db->from('user_profile');
         $this->db->where('user_followed.followed_user_id', $user_id);
-        $this->db->join('user_followed', 
+        $this->db->join('user_followed',
                         'user_profile.id = user_followed.following_user_id');
         $this->db->join('user_picture', 'user_profile.id = user_picture.user_id', 'left');
         $query = $this->db->get();
-        return $query->result();         
+        return $query->result();
     }
-    
+
     /**
      * Determine if one user is following another
      *
      * @param integer $followed_user_id The user ID of the user being followed
      * @param integer $following_user_id The user ID of the possible follower
-     * @return boolean TRUE if the follower is following the first user specified, 
+     * @return boolean TRUE if the follower is following the first user specified,
      * FALSE otherwise
      */
-    function is_following($followed_user_id, $following_user_id) {             
+    function is_following($followed_user_id, $following_user_id) {
         $following = false;
         $this->db->where('followed_user_id', $followed_user_id);
         $this->db->where('following_user_id', $following_user_id);
         $query = $this->db->get('user_followed');
-        
+
         if ($query->num_rows() > 0) {
             $following = true;
         }
-        
+
         return $following;
     }
-    
+
     /**
      * Add a user as as follower of another
      *
@@ -495,9 +497,9 @@ class User_model extends Model {
             $this->db->set('following_user_id', $following_user_id);
             $this->db->set('timestamp', time());
             $this->db->insert('user_followed');
-        }  
+        }
     }
-    
+
     /**
      * Remove a user as a follower of another
      *
@@ -507,9 +509,9 @@ class User_model extends Model {
     function unfollow($followed_user_id, $following_user_id) {
         $this->db->where('followed_user_id', $followed_user_id);
         $this->db->where('following_user_id', $following_user_id);
-        $this->db->delete('user_followed'); 
-    }    
-   
+        $this->db->delete('user_followed');
+    }
+
     /***************************************************************************************
      * FIND PEOPLE AND INSTITIONS
      * *************************************************************************************/
@@ -525,9 +527,9 @@ class User_model extends Model {
         if (strlen($alpha) != 1) {
             $alpha = 'A';
         }
-        
-        $query = $this->db->query("SELECT institution, COUNT(*) AS total_users 
-                                   FROM user_profile WHERE institution LIKE '$alpha%' 
+
+        $query = $this->db->query("SELECT institution, COUNT(*) AS total_users
+                                   FROM user_profile WHERE institution LIKE '$alpha%'
                                    GROUP BY TRIM(institution) ORDER BY institution ASC");
         return $query->result();
     }
@@ -542,7 +544,7 @@ class User_model extends Model {
         $query = $this->db->query("SELECT
           institution AS name, COUNT(*) AS total
           FROM user_profile
-          WHERE institution LIKE '%$query%' 
+          WHERE institution LIKE '%$query%'
           GROUP BY TRIM(name) ORDER BY total DESC LIMIT $limit");
           return $query->result();
     }
@@ -568,15 +570,15 @@ class User_model extends Model {
     /**
      * Get the total number of activated users on the site
      *
-     * @return integer The total number of users 
+     * @return integer The total number of users
      */
     function get_total_users() {
         $query = $this->db->get('user');
         return $query->num_rows();
-    }  	    
+    }
 
     /**
-     * Get the number of users registered between two dates 
+     * Get the number of users registered between two dates
      *
      * @param integer $startdate The start date as a unix timestamp
      * @param integer $enddate The end date as a unix time stamp
@@ -585,7 +587,7 @@ class User_model extends Model {
     function get_users_registered($startdate, $enddate) {
         $startdate = (int) $startdate;
         $enddate   = (int) $enddate;
-        $this->db->query("SELECT * FROM user WHERE created >= $startdate 
+        $this->db->query("SELECT * FROM user WHERE created >= $startdate
                           AND created < $enddate");
         return $query->num_rows();
     }
@@ -603,7 +605,7 @@ class User_model extends Model {
     	if (config_item('x_search')) {
         $this->CI=& get_instance();
         $this->CI->load->model('search_model');
-		$this->CI->search_model->update_item_in_index(base_url().'user/view/'.$user_id, 
+		$this->CI->search_model->update_item_in_index(base_url().'user/view/'.$user_id,
 		                                              $user_id, 'user');
     	}
      }
@@ -628,7 +630,7 @@ class User_model extends Model {
 	 */
     function ban($user_id) {
        $this->db->where('id', $user_id);
-       $this->db->update('user', array('banned' => 1));    
+       $this->db->update('user', array('banned' => 1));
     }
 
 	/**
@@ -638,7 +640,7 @@ class User_model extends Model {
 	 */
     function unban($user_id) {
        $this->db->where('id', $user_id);
-       $this->db->update('user', array('banned' => 0));    
+       $this->db->update('user', array('banned' => 0));
     }
 
     /** Add database check for users who are 'deleted' or not active.
@@ -646,7 +648,7 @@ class User_model extends Model {
     protected function where_active() {
         $this->db->where('user_profile.moderate', 0);
         $this->db->where('user_profile.deleted', 0);
-        $this->db->where('user.banned', 0);        
+        $this->db->where('user.banned', 0);
     }
 
     /**Get array of random users, filtered by existing CSV file(s).
@@ -679,7 +681,7 @@ class User_model extends Model {
 
         return array_slice($rand_users, 0, $target);
     }
-    
+
     function get_unactivated_users() {
        $this->db->order_by('created', 'desc');
         $query = $this->db->get('user_temp');

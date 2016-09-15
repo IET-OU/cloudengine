@@ -146,6 +146,8 @@ class Blog_model extends Model {
      */
     function get_comments_for_moderation() {
         $this->db->where('blog_comment.moderate', 1);
+        $this->db->where('user.banned', 0);
+        $this->db->join('user', 'user.id = blog_comment.user_id');
         $this->db->join('user_profile', 'user_profile.id = blog_comment.user_id');
         $query = $this->db->get('blog_comment');
         return $query->result();

@@ -419,6 +419,8 @@ class Cloud_model extends Model {
      */
     function get_clouds_for_moderation() {
         $this->db->where('cloud.moderate', 1);
+        $this->db->where('user.banned', 0);
+        $this->db->join('user', 'user.id = cloud.user_id');
         $this->db->join('user_profile', 'user_profile.id = cloud.user_id');
         $query = $this->db->get('cloud');
         return $query->result();
@@ -550,6 +552,8 @@ class Cloud_model extends Model {
      */
     function get_references_for_moderation() {
         $this->db->where('cloud_reference.moderate', 1);
+        $this->db->where('user.banned', 0);
+        $this->db->join('user', 'user.id = cloud_reference.user_id');
         $this->db->join('user_profile', 'user_profile.id = cloud_reference.user_id');
         $this->db->order_by('timestamp', 'asc');
         $query = $this->db->get('cloud_reference');

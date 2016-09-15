@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  *  Model file for functions related to embedson clouds
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
@@ -10,7 +10,7 @@ class Embed_model extends Model {
     function __construct() {
         parent::Model();
     }
-    
+
     /**
      * Add an embed to a cloud
      *
@@ -23,7 +23,7 @@ class Embed_model extends Model {
      * @param boolean $moderate TRUE if the embed needs moderation, FALSE otherwise
      * @return integer The ID of the new embed
      */
-    function add_embed($cloud_id, $url, $title, $user_id, $accessible_alternative, 
+    function add_embed($cloud_id, $url, $title, $user_id, $accessible_alternative,
                        $moderate) {
         $embed->cloud_id               = $cloud_id;
         $embed->url                    = $url;
@@ -32,16 +32,16 @@ class Embed_model extends Model {
         $embed->accessible_alternative = $accessible_alternative;
         $embed->timestamp              = time();
         $embed->moderate               = $moderate;
-        $this->db->insert('cloud_embed', $embed); 
+        $this->db->insert('cloud_embed', $embed);
         $embed_id = $this->db->insert_id();
-        
+
         if (!$moderate) {
             $this->approve_embed($embed_id);
         }
-        
-        return $embed_id;   
+
+        return $embed_id;
     }
-    
+
     /**
      * Update the information about an embed
      *
@@ -55,9 +55,9 @@ class Embed_model extends Model {
         $embed->url = $url;
         $embed->title = $title;
         $embed->accessible_alternative = $accessible_alternative;
-        $this->db->update('cloud_embed', $embed, array('embed_id'=>$embed_id)); 
+        $this->db->update('cloud_embed', $embed, array('embed_id'=>$embed_id));
     }
-    
+
     /**
      * Determine if a specified user has permission to edit a specified embed
      *
@@ -77,7 +77,7 @@ class Embed_model extends Model {
     }
 
     /**
-     * Display an error if specified user does not have permission to edit the 
+     * Display an error if specified user does not have permission to edit the
      * specified embed
      *
      * @param integer $user_id The ID of the user
@@ -85,10 +85,10 @@ class Embed_model extends Model {
      */
     function check_edit_permission($user_id, $embed_id) {
         if (!$this->has_edit_permission($user_id, $embed_id)) {
-            show_error(t("You do not have edit permission for that embed."));   
-        } 
+            show_error(t("You do not have edit permission for that embed."));
+        }
     }
-    
+
     /**
      * Delete an embed
      *
@@ -97,10 +97,10 @@ class Embed_model extends Model {
     function delete_embed($embed_id) {
         $this->db->delete('cloud_embed', array('embed_id' => $embed_id));
         $this->load->model('event_model');
-        $event_model = new event_model();  
-        $event_model->delete_events('embed', $embed_id);     
-    }    
-    
+        $event_model = new event_model();
+        $event_model->delete_events('embed', $embed_id);
+    }
+
     /**
      * Approve an embed
      *
@@ -108,12 +108,12 @@ class Embed_model extends Model {
      */
     function approve_embed($embed_id) {
         $this->db->where('embed_id', $embed_id);
-        $this->db->update('cloud_embed', array('moderate'=>0)); 
+        $this->db->update('cloud_embed', array('moderate'=>0));
         $embed = $this->get_embed($embed_id);
         $this->load->model('event_model');
         $event_model = new event_model();
-        $event_model->add_event('cloud', $embed->cloud_id, 'embed', $embed_id);  
-        $event_model->add_event('user', $embed->user_id, 'embed', $embed_id);            
+        $event_model->add_event('cloud', $embed->cloud_id, 'embed', $embed_id);
+        $event_model->add_event('user', $embed->user_id, 'embed', $embed_id);
     }
 
    /**
@@ -125,13 +125,13 @@ class Embed_model extends Model {
     function get_embeds($cloud_id) {
         $this->db->where('cloud_id', $cloud_id);
         $this->db->where('cloud_embed.moderate', 0);
-        $this->db->where('user.banned',0);          
+        $this->db->where('user.banned',0);
         $this->db->join('user_profile', 'user_profile.id = cloud_embed.user_id');
-        $this->db->join('user', 'user.id = cloud_embed.user_id');                
+        $this->db->join('user', 'user.id = cloud_embed.user_id');
         $this->db->order_by('timestamp', 'asc');
         $query = $this->db->get('cloud_embed');
-        return $query->result(); 
-    }  
+        return $query->result();
+    }
 
     /**
      * Get an embed
@@ -141,17 +141,17 @@ class Embed_model extends Model {
      */
     function get_embed($embed_id) {
         $this->db->where('embed_id', $embed_id);
-        $this->db->where('user.banned',0);  
-        $this->db->join('user', 'user.id = cloud_embed.user_id');        
-        $this->db->join('user_profile', 'user_profile.id = cloud_embed.user_id');                      
+        $this->db->where('user.banned',0);
+        $this->db->join('user', 'user.id = cloud_embed.user_id');
+        $this->db->join('user_profile', 'user_profile.id = cloud_embed.user_id');
         $query = $this->db->get('cloud_embed');
-        
+
         if ($query->num_rows() !=  0 ) {
             $embed = $query->row();
         }
         return $embed;
     }
-      
+
     /**
      * Get all embeds requiring moderation
      *
@@ -159,10 +159,12 @@ class Embed_model extends Model {
      */
     function get_embeds_for_moderation() {
         $this->db->where('cloud_embed.moderate', 1);
-        $this->db->join('user_profile', 'user_profile.id = cloud_embed.user_id');        
+        $this->db->where('user.banned', 0);
+        $this->db->join('user', 'user.id = cloud_embed.user_id');
+        $this->db->join('user_profile', 'user_profile.id = cloud_embed.user_id');
         $this->db->order_by('timestamp', 'asc');
         $query = $this->db->get('cloud_embed');
-        return $query->result();   
-    } 
-         
+        return $query->result();
+    }
+
 }
