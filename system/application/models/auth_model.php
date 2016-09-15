@@ -210,24 +210,30 @@ class Auth_model extends Model {
     	 // before calling this function is ok for the moment
 
     	 // Add the data as appropriate to the user and user_profile tables
-        $user->user_name  = $user_data->user_name;
-    	$user->country_id = $user_data->country_id;
-    	$user->password   = $user_data->password;
-    	$user->email      = $user_data->email;
-    	//Bug #69, 'user' table is a historic exception - it uses MySQL datetime/timestamp.
-    	$user->created    = date('Y-m-d H:i:s');
-    	$this->db->set($user);
-    	$this->db->insert('user');
+       $user = $this->get_user_by_username($user_data->user_name);
 
-    	$profile->id          = $this->db->insert_id();
-    	$profile->fullname    = $user_data->fullname;
-    	$profile->institution = $user_data->institution;
-    	$profile->whitelist   = $this->_white_list($user->email);
+       if (!$user) {
+          $user->user_name  = $user_data->user_name;
+        	$user->country_id = $user_data->country_id;
+        	$user->password   = $user_data->password;
+        	$user->email      = $user_data->email;
+        	//Bug #69, 'user' table is a historic exception - it uses MySQL datetime/timestamp.
+        	$user->created    = date('Y-m-d H:i:s');
+        	$this->db->set($user);
+        	$this->db->insert('user');
 
-    	$this->db->set($profile);
-    	$this->db->insert('user_profile');
+        	$profile->id          = $this->db->insert_id();
+        	$profile->fullname    = $user_data->fullname;
+        	$profile->institution = $user_data->institution;
+        	$profile->whitelist   = $this->_white_list($user->email);
 
-    	return $profile->id;
+        	$this->db->set($profile);
+        	$this->db->insert('user_profile');
+
+        	return $profile->id;
+      } else {
+        return $user->id;
+      }
     }
 
     /**
