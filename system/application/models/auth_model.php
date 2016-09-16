@@ -96,17 +96,22 @@ class Auth_model extends Model {
      * @return integer The new (permanent) id of the user if they were activated
      * successfully, FALSE if the activation was unsuccessful.
      */
-    function activate_user($temp_user_id, $activation_code) {
-    	$user_id = FALSE;
-    	$user = $this->_get_temp_user($temp_user_id, $activation_code);
-    	// Add the temporary user as a full activated user and delete the
-    	// temporary user
-	    if ($user) {
-	    	$user_id = $this->_insert_user($user);
-	    	if ($user_id) {
-		    	$this->_delete_temp_user($temp_user_id);
-	    	}
-	    }
+    function activate_user($temp_user_id, $activation_code, $username) {
+      $user = $this->get_user_by_username($username);
+      if (!$user) {
+      	$user_id = FALSE;
+      	$user = $this->_get_temp_user($temp_user_id, $activation_code);
+      	// Add the temporary user as a full activated user and delete the
+      	// temporary user
+  	    if ($user) {
+  	    	$user_id = $this->_insert_user($user);
+  	    	if ($user_id) {
+  		    	$this->_delete_temp_user($temp_user_id);
+  	    	}
+  	    }
+      } else {
+        $user_id = $user->id;
+      }
 
 	    return $user_id;
     }

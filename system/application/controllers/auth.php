@@ -158,8 +158,8 @@ class Auth extends MY_Controller {
      * @param integer $temp_user_id The temporary id assigned to the user before activation
      * @param string $code The activation code
      */
-    function activation($temp_user_id = 0, $code = '') {
-		$success = $this->auth_lib->activate($temp_user_id, $code);
+    function activation($temp_user_id = 0, $code = '', $username_encoded = '') {
+		$success = $this->auth_lib->activate($temp_user_id, $code, urldecode($username_encoded));
 
 		if ($success) {
 			$data['title'] = t("Activation Successful");
