@@ -1,19 +1,19 @@
-<?php 
+<?php
 /**
  *  Model file for functions related to flagging items as spam
- * 
+ *
  * @copyright 2013 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Flag
  */
-class Flag_model extends Model {   
-    
+class Flag_model extends Model {
+
 	function __construct() {
         parent::Model();
     }
-	
-	/** 
-	 * Record that an item has been flagged as spam 
+
+	/**
+	 * Record that an item has been flagged as spam
 	 * @param string $item_type The item type e.g. 'cloud', 'cloudscape'
 	 * @param int $item_id The ID of the item
 	 * @param int $user_id The ID of the user who flagged the item as spam
@@ -27,8 +27,8 @@ class Flag_model extends Model {
 			$this->db->insert('flagged_spam', $flagged);
 		}
 	}
-	
-	/** 
+
+	/**
 	 * Determines if a user has flagged an item as spam
 	 * @param string $item_type The item type e.g. 'cloud', 'cloudscape'
 	 * @param int $item_id The ID of the item
@@ -45,21 +45,23 @@ class Flag_model extends Model {
             $flagged = TRUE;
         }
 
-        return $flagged;	
+        return $flagged;
 	}
-	
+
 	/**
 	 * Get all items that have been flagged as spammed together with the details of the user who flagged the item as spam
 	 * @return array of incidences of items being flagged as spam
 	 */
 	function get_flagged() {
-        
+
+      
+     
 	    $this->db->join('user_profile', 'user_profile.id = flagged_spam.user_id');
+	    $this->db->join('user', 'user_profile.id = user.id');
+	     $this->db->where('user.banned <>', '1');
+      $this->db->order_by('timestamp', 'desc');
 	    $query = $this->db->get('flagged_spam');
-	    // Join with user table
-	    // Order by data flagged
-	    // Remove deleted items?
+
 	    return $query->result();
 	}
 }
-
