@@ -82,24 +82,13 @@
           <p><strong><?=t("Email")?></strong>: <?= $user->email ?> </p>
           <p><strong><?=t("Username")?></strong>: <?= $user->user_name ?> </p>
       <?php endif;?>
-      <?= $user->description ?>
-		<?php if ($this->auth_lib->is_logged_in()): ?>
-			<?php if ($this->config->item('x_flag')): ?>
-				<?php if ($user->flagged): ?>
-					<?= t("Flagged as spam")  ?>
-				<?php else: ?>
-					<small><?= anchor('flag/item/user/'.$user->id, t("Flag as spam")) ?></small>
-				<?php endif; ?>
-			<?php endif; ?>
-    	<?php endif; ?>
+
       <?php if ($user->institution): ?>
           <p><strong><?=t("Institution")?></strong>:
           <?= anchor('user/institution/'.urlencode(trim($user->institution)),$user->institution) ?></p>
       <?php endif;?>
       <?php if ($user->department): ?><p><strong><?=t("Department")?></strong>: <?=$user->department ?></p><?php endif;?>
-      <?php if ($user->twitter_username): ?><p><strong>Twitter</strong>: <a href="http://www.twitter.com/<?=$user->twitter_username ?>"><?=$user->twitter_username ?></a></p><?php endif;?>
-      <?php if ($user->homepage): ?><p><strong><?=t("Webpage")?></strong>: <a href="<?=$user->homepage ?>"><?=$user->homepage ?></a></p><?php endif;?>
-      <?php if ($display_email): ?><p><strong><?=t("Email")?></strong>: <?= $user->email ?></a></p><?php endif;?>
+  <?php if ($display_email): ?><p><strong><?=t("Email")?></strong>: <?= $user->email ?></a></p><?php endif;?>
 
         </div>
 

@@ -465,35 +465,16 @@ class User extends MY_Controller {
                                           'required|max_length[140]|callback_fullname_check');
         $this->form_validation->set_rules('institution', t("Institution"), 'required');
         $this->form_validation->set_rules('department', t("Department"), 'max_length[140]');
-        $this->form_validation->set_rules('twitter_username', t("Twitter Username"),
-                                          'max_length[140]');
-        $this->form_validation->set_rules('homepage', t("Homepage"),
-                                          'valid_url|max_length[140]');
-        $this->form_validation->set_rules('description', t("Description"), '');
 
         if ($this->input->post('submit')) {
             if ($this->form_validation->run()) {
                 $user->fullname         = ucwords($this->input->post('fullname'));
                 $user->department       = $this->input->post('department');
                 $user->institution      = $this->input->post('institution');
-                $user->description      = $this->input->post('description');
-                $user->twitter_username = $this->input->post('twitter_username');
-                $user->homepage         = $this->input->post('homepage');
-
-                // Moderate the user-profile after we get the new description etc.
-                $user->moderate = $this->_moderate($user->description.' <a href="'.$user->homepage.'">'.$user->fullname.'</a>');
 
                 // Save the new user profile data and redirect the user to the view page for
                 // their profile
                 $this->user_model->update_profile($user);
-
-               if (config_item('x_moderation') && $user->moderate) {
-                    $data['title']= t('Your profile is being moderated');
-                    $data['item'] = 'profile';
-                    $data['continuelink'] = site_url('/');
-                    $this->layout->view('moderate', $data);
-                    return;
-                }
 
                 redirect(base_url().'user/view/'.$user_id);
             }
@@ -505,9 +486,6 @@ class User extends MY_Controller {
             $user->fullname = set_value('fullname');
         }
 
-        if (set_value('homepage')) {
-            $user->homepage = set_value('homepage');
-        }
 
         if (set_value('department')) {
             $user->department = set_value('department');
@@ -515,14 +493,6 @@ class User extends MY_Controller {
 
         if (set_value('institution')) {
             $user->institution = set_value('institution');
-        }
-
-        if (set_value('twitter_username')) {
-            $user->twitter_username = set_value('twitter_username');
-        }
-
-        if (set_value('description')) {
-            $user->description = set_value('description');
         }
 
         $data['title']= t("Edit Profile");
