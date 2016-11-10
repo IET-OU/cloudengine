@@ -89,6 +89,24 @@ class Api extends MY_Controller {
             $supported_formats = explode('|', $supported_formats);
         }
         $this->format = $this->uri->file_extension() ? $this->uri->file_extension() : 'json';
+
+        //-------------------------------------------------------------------------------------------------
+        // RichLove 10/11/2016 - Fix - Start (to get appropriate file format with a query string in the URL)
+        //-------------------------------------------------------------------------------------------------
+        // Construct the full path and query string
+        $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];     
+        // Get the components of the full path as an array
+        $new_url = parse_url($url);
+        // Get the path without query string
+        $path = $new_url['path'];
+        // Get detailed info of path components as array
+        $pathinfo = pathinfo($path);
+        // Get the file format from the path info array (e.g. json)
+        $this->format = $pathinfo['extension'];
+        //---------------------------------------------------------------------------------------------------
+        // RichLove 10/11/2016 - Fix - Finish (to get appropriate file format with a query string in the URL)
+        //----------------------------------------------------------------------------------------------------
+
         if (!$supported_formats || !in_array($this->format, $supported_formats)) {
             $bad_format = $this->format;
             $this->format = 'json';
