@@ -26,9 +26,9 @@ class Cloudscape_model extends Model {
        if (strlen($alpha) != 1) {
           $alpha = 'A';
        }
-       $query = $this->db->query("SELECT c.cloudscape_id, c.title, COUNT(*) AS no_clouds,
+       $query = $this->db->query("SELECT c.cloudscape_id, c.title, COUNT(cc.cloud_id) AS no_clouds,
                                   c.summary, c.cloudscape_id, c.created FROM cloudscape c
-                                  INNER JOIN cloudscape_cloud cc
+                                  LEFT JOIN cloudscape_cloud cc
                                   ON c.cloudscape_id = cc.cloudscape_id
                                   INNER JOIN user u on u.id = c.user_id
                                   WHERE ltrim(c.title) LIKE'$alpha%'
