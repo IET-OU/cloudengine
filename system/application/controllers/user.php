@@ -442,6 +442,10 @@ class User extends MY_Controller {
             $data['edit_permission'] = TRUE;
         }
 
+				$data[ 'show_description' ] = function () use ($user_id) {
+            return $this->_show_description($user_id);
+        };
+
         // Determine if the current user is following this user
         $data['isfollowing'] = $this->user_model->is_following($user_id, $current_user_id);
         $this->layout->view('user/view', $data);
@@ -466,11 +470,16 @@ class User extends MY_Controller {
         $this->form_validation->set_rules('institution', t("Institution"), 'required');
         $this->form_validation->set_rules('department', t("Department"), 'max_length[140]');
 
+				if ($this->_show_description($user_id)) {
+            $this->form_validation->set_rules('description', t("Description"), '');
+        }
+
         if ($this->input->post('submit')) {
             if ($this->form_validation->run()) {
                 $user->fullname         = ucwords($this->input->post('fullname'));
                 $user->department       = $this->input->post('department');
                 $user->institution      = $this->input->post('institution');
+								$user->description      = $this->input->post('description');
 
                 // Save the new user profile data and redirect the user to the view page for
                 // their profile
@@ -495,8 +504,17 @@ class User extends MY_Controller {
             $user->institution = set_value('institution');
         }
 
+				if (set_value('description') && $this->_show_description($user_id)) {
+            $user->description = set_value('description');
+        }
+
         $data['title']= t("Edit Profile");
         $data['user'] = $user;
+
+				// $data[ 'controller' ] = $this;
+        $data[ 'show_description' ] = function () use ($user_id) {
+            return $this->_show_description($user_id);
+        };
 
         $this->layout->view('user/edit', $data);
 
@@ -638,5 +656,9 @@ class User extends MY_Controller {
         $this->layout->view('user/search_view', $data);
     }
 
+		protected function _show_description($user_id = null) {
+		    $users_show_desc = config_item('users_show_description');
 
+		    return in_array($user_id,  $users_show_desc);
+		}
 }
