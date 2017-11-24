@@ -17,7 +17,7 @@
         <?php if ($cloud->primary_url): ?>
             <div class="box" style="margin:30px 0 10px 0">
 
-                <a href="<?= $cloud->primary_url ?>"><?= $cloud->primary_url ?></a>
+                <a href="<?= $cloud->primary_url ?>" <?= Nofollow::attr() ?>><?= $cloud->primary_url ?></a>
             </div>
         <?php endif; ?>
     </div>
