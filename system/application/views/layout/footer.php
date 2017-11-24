@@ -20,5 +20,7 @@
 			</div>
 		</div>
 		<?php $this->load->view('layout/google_analytics.php') ?>
+
+    <script> console.warn('nofollow:', <?= Nofollow::get_count() ?>); </script>
 	</body>
 </html>

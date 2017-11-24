@@ -5,18 +5,18 @@
         <?php $this->load->view('cloud/options_block'); ?>
         <?php if ($cloud->event_date): ?>
             <?=format_date(_("!date"), $cloud->event_date) ?><br /><br />
-        <?php endif; ?>  
+        <?php endif; ?>
         <?php if ($cloud->call_deadline): ?>
             <?=format_date(_("Deadline: !date"), $cloud->call_deadline) ?><br /><br />
         <?php endif; ?>
-        
+
         <?php if($cloud->summary): ?>
             <p><?=$cloud->summary ?></p>
         <?php endif; ?>
-        
+
         <?php if ($cloud->primary_url): ?>
             <div class="box" style="margin:30px 0 10px 0">
-            
+
                 <a href="<?= $cloud->primary_url ?>"><?= $cloud->primary_url ?></a>
             </div>
         <?php endif; ?>
@@ -25,7 +25,7 @@
     <div class="c2of2">
         <p class="created-by">
         <?=t("<abbr title='!definition'>Cloud</abbr> created by: !person-date",
-          array('!person-date'=>NULL /*Hint - recurse. */, 
+          array('!person-date'=>NULL /*Hint - recurse. */,
                 '!definition' =>t("Clouds can be anything of relevance to learning and teaching"))) ?></p>
 
             <?php if ($cloud->picture): ?>
@@ -47,51 +47,51 @@
 
     <div class="user-entry">
 
-        <?=$cloud->body?>
-    </div> 
+        <?= Nofollow::f($cloud->body) ?>
+    </div>
 
     <?php $this->load->view('content/content_block.php'); ?>
     <?php $this->load->view('embed/embed_block.php'); ?>
-    
+
 
     <div class="grid">
         <h2><?= t("Contribute") ?></h2>
-        <a name="contribute"></a> 
+        <a name="contribute"></a>
         <ul class="cloudstream-filter">
             <li>
             <?php if ($view == 'comments'): ?>
                 <strong><?= t("Discussion") ?> (<?= count($comments) ?>)</strong>
             <?php else: ?>
-                <?= anchor('cloud/view/'.$cloud->cloud_id.'/comments#contribute', 
+                <?= anchor('cloud/view/'.$cloud->cloud_id.'/comments#contribute',
                        t("Discussion").' ('.count($comments).')')?>
             <?php endif; ?>
             </li>
-            <li>            
+            <li>
             <?php if ($view == 'links'): ?>
                 <strong><?= t("Links") ?> (<?= count($links) ?>)</strong>
             <?php else: ?>
-                <?= anchor('cloud/view/'.$cloud->cloud_id.'/links#contribute', 
+                <?= anchor('cloud/view/'.$cloud->cloud_id.'/links#contribute',
                        t("Links").' ('.count($links).')')?>
             <?php endif; ?>
             </li>
             <li>            <?php if ($view == 'references'): ?>
                 <strong><?= t("Academic References") ?> (<?= count($references) ?>)</strong>
             <?php else: ?>
-                <?= anchor('cloud/view/'.$cloud->cloud_id.'/references#contribute', 
+                <?= anchor('cloud/view/'.$cloud->cloud_id.'/references#contribute',
                        t("Academic References").' ('.count($references).')')?>
             <?php endif; ?></li>
         </ul>
     </div>
 
-    <?php 
+    <?php
     switch ($view) {
         case 'comments'   : $this->load->view('cloud_comment/cloud_comments.php'); break;
         case 'links'      : $this->load->view('link/link_block.php'); break;
-        case 'references' : $this->load->view('reference/references_block.php'); break; 
+        case 'references' : $this->load->view('reference/references_block.php'); break;
         default           : $this->load->view('cloud_comment/cloud_comments.php');
     } ?>
-    
-</div> 
+
+</div>
 
 <div id="region2">
     <?php $this->load->view('search/search_box'); ?>
@@ -101,6 +101,6 @@
     <?php $this->load->view('cloud/cloudscapes_block'); ?>
     <?php $this->load->view('cloud/improve_this_cloud_block'); ?>
     <?php if ($this->config->item('x_gadgets')): ?>
-        <?php $this->load->view('gadget/gadget_block.php'); ?> 
-    <?php endif; ?>    
+        <?php $this->load->view('gadget/gadget_block.php'); ?>
+    <?php endif; ?>
 </div>

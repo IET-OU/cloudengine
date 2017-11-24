@@ -12,9 +12,9 @@
                         <img src="<?= base_url() ?>image/user_32/<?= $comment->user_id?>" alt="" style="float:left; margin-right: 5px"/>
                     <?php else: ?>
                         <img src="<?=base_url() ?>_design//avatar-default-32.jpg" alt="" style="float:left; margin-right: 5px"/>
-                    <?php endif; ?> 
-                   
-                     
+                    <?php endif; ?>
+
+
                     <p class="date-stamp">
                        <?= anchor('user/view/'.$comment->user_id, $comment->fullname) ?>
 	                    <br />
@@ -27,8 +27,8 @@
 	                   <?php endif; ?>
 	                   <?php if ($admin): ?>
 	                   <?= anchor('comment/move_to_content/'.$comment->comment_id,t("Move to content"))?>
-	                   
-	            		<?php endif; ?> 
+
+	            		<?php endif; ?>
 						<?php if ($this->auth_lib->is_logged_in()): ?>
 							<?php if ($this->config->item('x_flag')): ?>
 								<?php if ($comment->flagged): ?>
@@ -42,8 +42,8 @@
                     </p>
                     </div>
                     <br />
-                    
-                   <?= $comment->body ?>
+
+                   <?= Nofollow::f($comment->body) ?>
         </div>
         <?php $i++; ?>
     <?php endforeach; ?>

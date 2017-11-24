@@ -46,7 +46,7 @@ if ('install' != $CI->uri->segment(1)) {
     array_push($autoload['libraries'], 'Layout');
     array_push($autoload['libraries'], 'database');
     array_push($autoload['libraries'], 'Auth_lib');
-    array_push($autoload['libraries'], 'Settings');            
+    array_push($autoload['libraries'], 'Settings');
 }
 
 
@@ -59,7 +59,7 @@ if ('install' != $CI->uri->segment(1)) {
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'form', 'array', 'html', 'mail');
+$autoload['helper'] = array('url', 'form', 'array', 'html', 'mail', 'nofollow');
 
 if (!function_exists('json_encode')) {
     array_push($autoload['helper'], 'json');
@@ -101,7 +101,7 @@ $autoload['config'] = array('cloudengine', );
 |
 |	$autoload['language'] = array('lang1', 'lang2');
 |
-| NOTE: Do not include the "_lang" part of your file.  For example 
+| NOTE: Do not include the "_lang" part of your file.  For example
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
@@ -117,5 +117,3 @@ $autoload['language'] = array();
 |
 */
 // $autoload['core'] = array();
-
-

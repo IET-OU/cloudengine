@@ -1,6 +1,6 @@
 <?php if(count($comments) > 0):?>
     <h2 id="comments"><?=t("Comments")?></h2>
-    <?php  foreach ($comments as $row):?>	
+    <?php  foreach ($comments as $row):?>
         <div class="grid comment">
             <div class="c1of2">
                 <?php if ($row->picture): ?>
@@ -10,16 +10,16 @@
                 <?php endif; ?>
             </div>
             <div class="c2of2">
-                <div class="comment-body"> 
+                <div class="comment-body">
                     <h3><a href="<?= base_url() ?>user/view/<?= $row->id ?>"><?= $row->fullname ?></a> says...</h3>
-                    <?= $row->body ?>
+                    <?= Nofollow::f($row->body) ?>
                     <p class="date-stamp"><?= date("j F Y", $row->timestamp) ?>
                     <?php if ($admin): ?>
                     	<a href="<?= base_url() ?>blog/comment_edit/<?= $row->comment_id ?>" class="button" title="Edit this Comment">Edit</a>
                 	<?php endif; ?>
                     </p>
                 </div>
-            </div> 
+            </div>
         </div>
     <?php endforeach; ?>
 <?php endif; ?>

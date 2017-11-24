@@ -8,7 +8,7 @@
 <a id="embed-<?= $embed->embed_id ?>"></a>
 <div class="embed-wrap em-<?= str_replace('.', '-', parse_url($embed->url, PHP_URL_HOST)) ?>">
     <h3><?= $embed->title ?></h3>
-  <a id="em-n<?= $idx ?>" class="em" href="<?=$embed->url ?>"><?=$embed->title ?></a>
+  <a id="em-n<?= $idx ?>" class="em" href="<?=$embed->url ?>" rel="nofollow"><?=$embed->title ?></a>
 <p><?php if ($embed->accessible_alternative): ?>
    <?= anchor('embed/accessible_alternative/'.$embed->embed_id, t('Accessible Alternative')); ?><br />
   <?php endif; ?>
