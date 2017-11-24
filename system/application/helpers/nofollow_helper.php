@@ -18,21 +18,21 @@ class Nofollow {
    * @return string HTML
    */
   public static function f($html, $skip = null) {
-    $count = 0;
-
-    $result = preg_replace_callback(
+    return preg_replace_callback(
         "/(<a[^>]+?)>/is", function ($matches) use ($skip) {
             return (
                 !($skip && strpos($matches[ 1 ], $skip) !== false)
                 // && strpos($matches[1], 'rel=') === false
-            ) ? $matches[ 1 ] . ' rel="nofollow">' : $matches[ 0 ];
+            ) ? $matches[ 1 ] . self::attr() . '>' : $matches[ 0 ];
         },
-        $html, -1, $count
+        $html
     );
+  }
 
-    self::$total += $count;
+  public static function attr() {
+    self::$total += 1;
 
-    return $result;
+    return ' rel="nofollow"';
   }
 
   public static function get_count() {
