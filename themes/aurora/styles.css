@@ -1,5 +1,7 @@
+/*!
+  Aurora stylesheet | ©The Open University | License: GPL-2.0.
+*/
 
-/* Aurora */
 
 body h2 {color: #fff; background:#1E466A;}
 .user-entry h2, .extra-content h2, .user-comment h2{color: #333; background:transparent;}
@@ -15,11 +17,11 @@ body div#site-nav ul li a {color:#99ccff;}
 body div#site-nav ul li a:hover {color: #fff; background:url(arrow-down-nav-fff.gif) center top no-repeat;}
 
 #home #site-nav ul li.home,
-#cloudscapes #site-nav ul li.cloudscapes, 
-#clouds #site-nav ul li.clouds, 
-#events #site-nav ul li.events, 
-#tags #site-nav ul li.tags, 
-#people #site-nav ul li.people, 
+#cloudscapes #site-nav ul li.cloudscapes,
+#clouds #site-nav ul li.clouds,
+#events #site-nav ul li.events,
+#tags #site-nav ul li.tags,
+#people #site-nav ul li.people,
 #support #site-nav ul li.support {color:#fff; background:url(arrow-down-nav-fff.gif) center top no-repeat;}
 
 

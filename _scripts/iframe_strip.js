@@ -1,3 +1,7 @@
+/*!
+  CloudEngine | ©The Open University | License: GPL-2.0.
+*/
+
 /*
  * Script used on the cloud view page - if the page is in an iframe, strip
  * out part of the page and make other tweaks to make the page work better

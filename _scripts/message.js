@@ -1,3 +1,7 @@
+/*!
+  CloudEngine | ©The Open University | License: GPL-2.0.
+*/
+
 	jQuery(function ($) {
 	  'use strict';
 

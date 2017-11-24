@@ -1,4 +1,11 @@
 <?php
+/**
+ * CloudEngine front controller.
+ *
+ * @copyright 2009-2017 The Open University. See CREDITS.txt
+ * @license GNU General Public License version 2. See LICENCE.txt
+ */
+
 /*
 |---------------------------------------------------------------
 | PHP ERROR REPORTING LEVEL
@@ -68,7 +75,7 @@ if (defined('ENVIRONMENT'))
 |---------------------------------------------------------------
 |
 | If you want this front controller to use a different "application"
-| folder then the default one you can set its name here. The folder 
+| folder then the default one you can set its name here. The folder
 | can also be renamed or relocated anywhere on your server.
 | For more info please see the user guide:
 | http://codeigniter.com/user_guide/general/managing_apps.html
@@ -93,7 +100,7 @@ if (defined('ENVIRONMENT'))
 |
 | Let's attempt to determine the full-server path to the "system"
 | folder in order to reduce the possibility of path problems.
-| Note: We only attempt this if the user hasn't specified a 
+| Note: We only attempt this if the user hasn't specified a
 | full server path.
 |
 */
@@ -107,7 +114,7 @@ if (strpos($system_folder, '/') === FALSE)
 else
 {
 	// Swap directory separators to Unix style for consistency
-	$system_folder = str_replace("\\", "/", $system_folder); 
+	$system_folder = str_replace("\\", "/", $system_folder);
 }
 
 /*
