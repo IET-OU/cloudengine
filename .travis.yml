@@ -1,15 +1,17 @@
-# CloudEngine.
+# CloudEngine ~ PHP + Node.JS
 language: php
 
 php:
   - 7.0
-  - 5.6
+  #- 5.6
 
 git:
   depth: 8
 
 before_install:
-  - composer self-update --preview
+  #- composer self-update --preview
+  - nvm install v6
+  - npm -v
 
 install:
   - travis_retry composer install --no-interaction --prefer-source

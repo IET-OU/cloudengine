@@ -39,16 +39,16 @@
             "cp -n system/application/config/database.dist.php system/application/config/database.php"
         ],
         "npm-install": [
-            "npm install grunt-cli -g",
-            "npm install grunt grunt-contrib-validate-xml grunt-contrib-jshint"
+            "npm i grunt-cli@^1.2 grunt@^1.0",
+            "npm i grunt-contrib-validate-xml@^0.0.1 grunt-contrib-jshint@^1.1"
         ],
         "test": [
             "composer validate --no-interaction",
-            "vendor/bin/parallel-lint index.php system/application",
-            "grunt"
+            "parallel-lint index.php system",
+            "node_modules/.bin/grunt"
         ],
-        "phpcs": "vendor/bin/phpcs --standard=PSR2 --extensions=php system/application/libraries/Api*",
-        "fix": "vendor/bin/phpcbf --standard=PSR2 --extensions=php system/application/libraries/Api*"
+        "phpcs": "phpcs --standard=PSR2 --extensions=php system/application/libraries/Api*",
+        "fix": "phpcbf --standard=PSR2 --extensions=php system/application/libraries/Api*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

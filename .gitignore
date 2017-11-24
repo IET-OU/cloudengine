@@ -10,4 +10,8 @@ composer.lock
 vendor/*
 node_modules/*
 
-#End.
+/application
+/dropbox*
+.DS_Store
+
+# End.
