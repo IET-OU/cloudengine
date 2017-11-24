@@ -35,6 +35,7 @@ module.exports = function (grunt) {
 		},
 		csslint: {
 			options: {
+				'outline-none': true, // Accessibility:
 				ids: false,
 				'qualified-headings': false,
 				'order-alphabetical': false,
@@ -55,7 +56,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 	// 'grunt-contrib-validate-xml' gives MUCH better feedback than 'grunt-xml-validator'!
-	grunt.loadNpmTasks('grunt-contrib-validate-xml');
+	// grunt.loadNpmTasks('grunt-contrib-validate-xml');
 
 	grunt.registerTask('default', [ 'jshint', 'csslint:themes' ]);
 

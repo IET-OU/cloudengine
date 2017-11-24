@@ -9,16 +9,16 @@ git:
   depth: 8
 
 before_install:
-  #- composer self-update --preview
   - nvm install v6
+  - node -v
   - npm -v
 
 install:
-  - travis_retry composer install --no-interaction --prefer-source
-  - composer npm-install
+  - travis_retry composer install --no-interaction
+  - travis_retry composer npm-install
 
 script:
   - composer validate --no-interaction
   - composer test
 
-#End.
+# End.
