@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +24,12 @@ $config['smtp_host'] = '';
 $config['data_dir'] = '';
 
 $config['upload_path']             = $config['data_dir'].'uploads/';
-$config['upload_path_user']        = $config['upload_path'].'user/'; 
-$config['upload_path_cloudscape']  = $config['upload_path'].'cloudscape/'; 
+$config['upload_path_user']        = $config['upload_path'].'user/';
+$config['upload_path_cloudscape']  = $config['upload_path'].'cloudscape/';
 $config['search_index_path']       = $config['data_dir'].'search/index';
 
 
-// Locations of files to customise the theme 
+// Locations of files to customise the theme
 $config['theme_stylesheet'] = 'themes/aurora/styles.css';
 $config['theme_logo']       = 'themes/aurora/cloudengine-logo.gif';
 $config['theme_banner']     = 'themes/aurora/header-bg-aurora.jpg';
@@ -65,9 +65,9 @@ $config['use_password_hash'] = TRUE;
 |--------------------------------------------------------------------------
 */
 
-// Google Analystics 
+// Google Analystics
 $config['x_google_analytics'] = FALSE;
-$config['google_analytics'] = ''; // Set this to your google analytics code 
+$config['google_analytics'] = ''; // Set this to your google analytics code
 
 
 // CaPRéT/ Track OER. EXPERIMENTAL.
@@ -89,7 +89,7 @@ $config['x_email_events_attending'] = FALSE;
 $config['email_event_attending_limit_per_hour'] = 2; // Maximum number of e-mails
 // an admin may send to attendees of a particular event per hour.
 
-// Enable and configure the API 
+// Enable and configure the API
 $config['x_api']                = FALSE;
 $config['x_api_suggest']        = FALSE;
 $config['x_api_debug']          = TRUE;
@@ -109,7 +109,7 @@ $config['x_gadgets_gfc_key'] = ''; // Google Friend Connect key to use for gadge
 // this key needs to be obtained for the site from Google Friend Connect and entered
 // here for Google Gadgets to work on the site. Expect a string of approx 20 digits.
 
-// Config variable containing IDs of users regarded as 'team' for stats purposes. 
+// Config variable containing IDs of users regarded as 'team' for stats purposes.
 $config['team'] = '';
 
 
@@ -122,7 +122,8 @@ $config['x_twitter_password'] = '';
 // Feature flag for direct messaging (Beta default: FALSE).
 $config['x_message'] = FALSE;
 
-// Feature flag for captchas on registration form (colon : separated). 
+$config['x_registration'] = true;
+// Feature flag for captchas on registration form (colon : separated).
 $config['x_captcha'] = FALSE;
 $config['whitelist_domains'] = '.ac.uk:.edu:.ac.jp:.ac.ae:.ac.nz:.edu.au:.ac.za:.ac.be';
 
@@ -212,8 +213,8 @@ $config['FAL_captcha_image'] = '';
 
 // Feature flag and config for badges
 $config['x_badge']          = TRUE;
-$config['upload_path_badge']       = $config['upload_path'].'badge/'; 
-$config['badge_salt']          = 'cloudengine'; 
+$config['upload_path_badge']       = $config['upload_path'].'badge/';
+$config['badge_salt']          = 'cloudengine';
 $config['badge_issuer_name']  = 'Cloudworks';
 $config['badge_issuer_org'] = '';
 $config['badge_issuer_contact'] = '';
@@ -221,7 +222,7 @@ $config['badge_issuer_contact'] = '';
 // Feature flag for flagging items as spam
 $config['x_flag'] = TRUE;
 
-// Feature flag for spam-checking of new items added to the site using the moderation provider specified by the 'moderation_provider' config. This can currently be 'akismet' 
+// Feature flag for spam-checking of new items added to the site using the moderation provider specified by the 'moderation_provider' config. This can currently be 'akismet'
 // or 'none'
 $config['x_moderation'] = FALSE;
 $config['x_moderation'] = TRUE;

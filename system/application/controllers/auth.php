@@ -146,7 +146,14 @@ class Auth extends MY_Controller {
 		if ($display_form) {
 			$data['countries'] = $this->auth_model->get_countries();
 			$data['user']      = $user;
-			$this->layout->view('auth/register_form', $data);
+
+			if ($this->config->item('x_registration')) {
+			  $this->layout->view('auth/register_form', $data);
+		  }
+			else {
+				header('HTTP/1.1 503 Service Unavailable', true, 503);
+				echo 'Registration disabled.';
+			}
 		}
     }
 
