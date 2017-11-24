@@ -1,17 +1,20 @@
 <?php
 /**
- * Controller for serving images used by the site
+ * Controller to serve images used by the site.
  *
  * Images for the site are not necessarily kept in the webroot, so this controller is used to
- * retrieve and server specified images as HTTP requests
- * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * retrieve and server specified images as HTTP requests.
+ *
+ * @copyright 2009, 2010, 2017 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package Image
  */
 
 class Image extends MY_Controller {
 
-	function Image()
+  const IMAGE_REGEX = '/^.+\.(?P<ext>gif|jpe?g|JPE?G|png|PNG)$/';
+
+	public function Image()
 	{
         parent::MY_Controller();
 	}
@@ -21,19 +24,13 @@ class Image extends MY_Controller {
 	 *
 	 * @param integer $cloudscape_id The ID of the cloudscape
 	 */
-	function cloudscape($cloudscape_id) {
+	public function cloudscape($cloudscape_id) {
 	    $this->load->model('cloudscape_model');
 
 	    $cloudscape = $this->cloudscape_model->get_cloudscape($cloudscape_id);
 	    $path       = $this->config->item('upload_path_cloudscape').$cloudscape->image_path;
 
-	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $cloudscape->image_path, $matches)
-	        && is_readable($path)) {
-            header('Content-Type: image/'.$matches[1]);
-            echo(file_get_contents($path));
-	    } else {
-	        show_404();
-	    }
+      $this->_print_image($image_name, $path);
 	}
 
 	/**
@@ -41,18 +38,13 @@ class Image extends MY_Controller {
 	 *
 	 * @param integer $user_id The ID of the user
 	 */
-	function user($user_id) {
+	public function user($user_id) {
 	    $this->load->model('user_model');
 
 	    $image_name = $this->user_model->get_picture($user_id);
 	    $path = $this->config->item('upload_path_user').$image_name;
-	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches)
-	        && is_readable($path)) {
-            header('Content-Type: image/'.$matches[1]);
-            echo(file_get_contents($path));
-	    } else {
-	        show_404();
-	    }
+
+      $this->_print_image($image_name, $path);
 	}
 
 	/**
@@ -60,18 +52,13 @@ class Image extends MY_Controller {
 	 *
 	 * @param integer $user_id The ID of the user
 	 */
-	function user_32($user_id) {
+	public function user_32($user_id) {
 	    $this->load->model('user_model');
 
 	    $image_name = '32-'.$this->user_model->get_picture($user_id);
 	    $path = $this->config->item('upload_path_user').$image_name;
-	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches)
-	        && is_readable($path)) {
-            header('Content-Type: image/'.$matches[1]);
-            echo(file_get_contents($path));
-	    } else {
-	        show_404();
-	    }
+
+      $this->_print_image($image_name, $path);
 	}
 
 	/**
@@ -79,18 +66,13 @@ class Image extends MY_Controller {
 	 *
 	 * @param integer $user_id The ID of the user
 	 */
-    function user_16($user_id) {
+    public function user_16($user_id) {
 	    $this->load->model('user_model');
 
 	    $image_name = '16-'.$this->user_model->get_picture($user_id);
 	    $path = $this->config->item('upload_path_user').$image_name;
-	    if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches)
-	        && is_readable($path)) {
-            header('Content-Type: image/'.$matches[1]);
-            echo(file_get_contents($path));
-	    } else {
-	        show_404();
-	    }
+
+      $this->_print_image($image_name, $path);
 	}
 
 	/**
@@ -111,18 +93,33 @@ class Image extends MY_Controller {
 	    }
 	}
 
-    function badge($badge_id) {
-            ini_set("display_errors", 'On');
+    public function badge($badge_id) {
+        ini_set("display_errors", 'On');
         error_reporting(E_ALL);
         $this->load->model('badge_model');
 
         $image_name = $this->badge_model->get_image($badge_id);
         $path = $this->config->item('upload_path_badge').$image_name;
 
-        if (preg_match('/^.+\.(gif|jpe?g|JP?G|png|PNG)$/', $image_name, $matches)
+        $this->_print_image($image_name, $path);
+    }
+
+    /** Output an image file, with the correct HTTP header(s).
+     *
+     * @param string $image_name
+     * @param string $path
+		 * @return void
+     */
+    protected function _print_image($image_name, $path) {
+
+        if (preg_match(self::IMAGE_REGEX, $image_name, $matches)
             && is_readable($path)) {
-            header('Content-Type: image/'.strtolower($matches[1]));
-            echo(file_get_contents($path));
+
+            $mimetype = str_replace('jpg', 'jpeg', strtolower($matches[ 'ext' ]));
+
+            header('Content-Type: image/' . $mimetype);
+            echo file_get_contents($path);
+
         } else {
             show_404();
         }
