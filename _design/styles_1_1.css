@@ -54,7 +54,7 @@ img, a img {
     border: none;
 }
 
-abbr[title]{
+abbr[ title ] {
     cursor: help;
     border-bottom:1px dotted gray;
 }
@@ -62,7 +62,7 @@ abbr[title]{
 body {
     margin:0 0 1em 0;
     line-height:1.5em;
-    font-size: 75%;
+    font-size: 78%;  /* font-size: 75%; */
     color: #444;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -1479,7 +1479,9 @@ ul.front_tags li a:hover {
 }
 
 #register_form input {
+    border: 1px solid #bbb;
     display: inline;
+    width: 12rem;
 }
 
 #register_form label {
@@ -1492,9 +1494,10 @@ ul.front_tags li a:hover {
     display:inline;
 }
 
-#login input[type="submit"], #form-lang [type="submit"] {
+#login input[ type = submit ],
+#form-lang input[ type = submit ] {
   -moz-appearance: button;
-  padding: 0px 6px 0px 6px;
+  /* padding: 0px 6px 0px 6px; */
   margin: 0;
   border: 2px outset ButtonFace;
   background-color: ButtonFace;
@@ -1512,6 +1515,19 @@ ul.front_tags li a:hover {
 
 form#login-form {
     display: inline;
+}
+
+/* #form-lang, register_form etc. */
+input,
+button,
+select {
+    font-size: .85rem;
+    padding: .2rem .4rem;
+}
+
+button,
+input[ type = submit ] {
+    padding: .3rem 1rem;
 }
 
 a.buttonlink {
