@@ -18,6 +18,7 @@ install:
   - composer npm-install
 
 script:
+  - composer validate --no-interaction
   - composer test
 
 #End.

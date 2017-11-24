@@ -28,10 +28,21 @@ module.exports = function (grunt) {
 				globals: { jQuery: false, window: false, escape: false, ga: false, getOEmbedProvider: false }
 			},
 			JS: [ '_scripts/*.js', '!_scripts/jquery*', '!_scripts/buildpager.*', '!_scripts/date.*', '!_scripts/tiny_mce/*', '_scripts/*oembed.js' ],
-			Grunt: {
+			Gruntfile: {
 				options: { node: true },
 				files: { src: 'Gruntfile.js' }
 			}
+		},
+		csslint: {
+			options: {
+				ids: false,
+				'qualified-headings': false,
+				'order-alphabetical': false,
+				'unique-headings': false,
+				important: false
+			},
+			design: [ '_design/style*.css' ],
+			themes: [ 'themes/**/*.css' ]
 		},
 		// 'validate XML' doesn't work with CodeIgniter views :(!
 		validate_xml: {
@@ -42,9 +53,10 @@ module.exports = function (grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-csslint');
 	// 'grunt-contrib-validate-xml' gives MUCH better feedback than 'grunt-xml-validator'!
 	grunt.loadNpmTasks('grunt-contrib-validate-xml');
 
-	grunt.registerTask('default', [ 'jshint' ]);
+	grunt.registerTask('default', [ 'jshint', 'csslint:themes' ]);
 
 };
