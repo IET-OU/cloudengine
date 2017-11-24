@@ -12,7 +12,7 @@
 
 class Image extends MY_Controller {
 
-  const IMAGE_REGEX = '/^.+\.(?P<ext>gif|jpe?g|JPE?G|png|PNG)$/';
+  const IMAGE_REGEX = '/^.+\.(?P<ext>gif|jpe?g|png)$/i';
 
 	public function Image()
 	{
@@ -96,6 +96,7 @@ class Image extends MY_Controller {
     public function badge($badge_id) {
         ini_set("display_errors", 'On');
         error_reporting(E_ALL);
+
         $this->load->model('badge_model');
 
         $image_name = $this->badge_model->get_image($badge_id);
@@ -118,6 +119,8 @@ class Image extends MY_Controller {
             $mimetype = str_replace('jpg', 'jpeg', strtolower($matches[ 'ext' ]));
 
             header('Content-Type: image/' . $mimetype);
+						// https://tools.ietf.org/html/rfc6266#section-5
+						header('Content-Disposition: inline; filename="' . $image_name . '"');
             echo file_get_contents($path);
 
         } else {
