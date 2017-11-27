@@ -1,5 +1,5 @@
 <script type="text/javascript" src="<?=base_url()?>_scripts/iframe_strip.js"></script>
-<div id="user-profile">
+<div id="user-profile" class="<?= $show_description() ? 'show-desc' : 'hide-desc' ?>" >
 
 <div class="grid headline">
 
@@ -82,6 +82,8 @@
           <p><strong><?=t("Email")?></strong>: <?= $user->email ?> </p>
           <p><strong><?=t("Username")?></strong>: <?= $user->user_name ?> </p>
       <?php endif;?>
+
+      <?= $show_description() ? $user->description : '' ?>
 
       <?php if ($user->institution): ?>
           <p><strong><?=t("Institution")?></strong>:

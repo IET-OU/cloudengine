@@ -112,6 +112,8 @@ $config['x_gadgets_gfc_key'] = ''; // Google Friend Connect key to use for gadge
 // Config variable containing IDs of users regarded as 'team' for stats purposes.
 $config['team'] = '';
 
+// User IDs for people whose description should be shown. (Eg. deceased users)
+$config['users_show_description'] = [ /* 1230, 6789 */ ];
 
 
 // Feature flag and config for twitter hash tag and displaying tweets for a cloudscape.
@@ -122,7 +124,10 @@ $config['x_twitter_password'] = '';
 // Feature flag for direct messaging (Beta default: FALSE).
 $config['x_message'] = FALSE;
 
+<<<<<<< HEAD
 $config['x_registration'] = true;
+=======
+>>>>>>> description
 // Feature flag for captchas on registration form (colon : separated).
 $config['x_captcha'] = FALSE;
 $config['whitelist_domains'] = '.ac.uk:.edu:.ac.jp:.ac.ae:.ac.nz:.edu.au:.ac.za:.ac.be';
