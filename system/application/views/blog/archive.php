@@ -9,9 +9,9 @@
 
         <?php foreach($news_items as $news): ?>
 <h2>
-    <?= $news->title ?>            
+    <?= $news->title ?>
     <?php if ($admin): ?>
-        <a href="<?= base_url() ?>blog/edit/<?= $news->post_id ?>" class="button" 
+        <a href="<?= base_url() ?>blog/edit/<?= $news->post_id ?>" class="button"
                      title="<?=t("Edit this Blog Post")?>"><?=t("edit")?></a>
     <?php endif; ?>
 </h2>
@@ -21,15 +21,20 @@
             <?php else: ?>
                 <img src="<?=base_url() ?>_design/avatar-default-32.jpg" class="go2" alt=""/>
             <?php endif; ?>
-       
+
 &nbsp;<?=t("Posted by !person on !date",
     array('!person'=>"<a href='".base_url()."user/view/$news->user_id'>$news->fullname</a>", '!date'=>date("j F Y", $news->created)))?></p>
-<p><a href="<?=base_url() ?>blog/view/<?= $news->post_id ?>"><?php
+<p><a href="<?=base_url() ?>blog/view/<?= $news->post_id ?>" title="<?= $news->title ?>"><?php
+if ($comments_enabled):
+
   $total = 0;
   if ($news->total_comments) {
     $total = $news->total_comments;
   }
-?><?=plural(_("!count comment"), _("!count comments"), $total) ?></a></p>
+?><?=plural(_("!count comment"), _("!count comments"), $total) ?>
+<?php else: ?>
+<?= t('View blog post') ?>
+<?php endif; ?><i class="accesshide"><?= $news->title ?></i></a></p>
 <br />
 
 
@@ -43,5 +48,5 @@
 <?=t("You can also search for [link-up]people[/link] and [link-ui]institutions[/link]",
     array('[link-up]' => t_link('user/people'), '[link-ui]' => t_link('user/institution_list')))?></p>
 
-</div> 
+</div>
 </div>

@@ -124,10 +124,7 @@ $config['x_twitter_password'] = '';
 // Feature flag for direct messaging (Beta default: FALSE).
 $config['x_message'] = FALSE;
 
-<<<<<<< HEAD
 $config['x_registration'] = true;
-=======
->>>>>>> description
 // Feature flag for captchas on registration form (colon : separated).
 $config['x_captcha'] = FALSE;
 $config['whitelist_domains'] = '.ac.uk:.edu:.ac.jp:.ac.ae:.ac.nz:.edu.au:.ac.za:.ac.be';
@@ -226,6 +223,8 @@ $config['badge_issuer_contact'] = '';
 
 // Feature flag for flagging items as spam
 $config['x_flag'] = TRUE;
+
+$config['x_blog_comments'] = false;
 
 // Feature flag for spam-checking of new items added to the site using the moderation provider specified by the 'moderation_provider' config. This can currently be 'akismet'
 // or 'none'

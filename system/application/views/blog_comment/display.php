@@ -1,4 +1,11 @@
-<?php if(count($comments) > 0):?>
+<?php if (! $comments_enabled): ?>
+    <p class="blog-comments-disabled"><?= t('Blog comments are disabled.') ?></p>
+
+    <?php return ?>
+<?php endif; ?>
+
+
+<?php if ($comments_enabled && count($comments) > 0):?>
     <h2 id="comments"><?=t("Comments")?></h2>
     <?php  foreach ($comments as $row):?>
         <div class="grid comment">
