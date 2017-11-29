@@ -59,8 +59,23 @@ class CI_URI {
 	 */
 	function _fetch_uri_string()
 	{
+# CloudEngine-specific
+#ou-specific
+		// Is the request coming from the command line?
+		if (php_sapi_name() === 'cli' or defined('STDIN'))
+		{
+			$this->uri_string = $this->_parse_cli_args();
+			// $this->_set_uri_string($this->_parse_cli_args());
+			return;
+		}
+#ou-specific ends.
+
 		if (strtoupper($this->config->item('uri_protocol')) == 'AUTO')
 		{
+#ou-specific
+			// Is the request coming from the command line?
+			// ...
+
 			// If the URL has a question mark then it's simplest to just
 			// build the URI string from the zero index of the $_GET array.
 			// This avoids having to deal with $_SERVER variables, which
@@ -173,6 +188,24 @@ class CI_URI {
 		return $parsed_uri;
 	}
 
+	// --------------------------------------------------------------------
+# CloudEngine-specific
+#ou-specific
+	/**
+	 * Parse cli arguments
+	 *
+	 * Take each command line argument and assume it is a URI segment.
+	 *
+	 * @access	private
+	 * @return	string
+	 */
+	private function _parse_cli_args()
+	{
+		$args = array_slice($_SERVER['argv'], 1);
+
+		return $args ? '/' . implode('/', $args) : '';
+	}
+#ou-specific ends.
 	// --------------------------------------------------------------------
 
 	/**
