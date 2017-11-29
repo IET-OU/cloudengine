@@ -30,7 +30,9 @@ class Image extends MY_Controller {
 	    $cloudscape = $this->cloudscape_model->get_cloudscape($cloudscape_id);
 	    $path       = $this->config->item('upload_path_cloudscape').$cloudscape->image_path;
 
-      $this->_print_image($image_name, $path);
+        $image_name = 'cloudscape-' . $cloudscape_id;
+
+        $this->_print_image($image_name, $path);
 	}
 
 	/**
@@ -58,7 +60,7 @@ class Image extends MY_Controller {
 	    $image_name = '32-'.$this->user_model->get_picture($user_id);
 	    $path = $this->config->item('upload_path_user').$image_name;
 
-      $this->_print_image($image_name, $path);
+        $this->_print_image($image_name, $path);
 	}
 
 	/**
@@ -72,7 +74,7 @@ class Image extends MY_Controller {
 	    $image_name = '16-'.$this->user_model->get_picture($user_id);
 	    $path = $this->config->item('upload_path_user').$image_name;
 
-      $this->_print_image($image_name, $path);
+        $this->_print_image($image_name, $path);
 	}
 
 	/**
@@ -109,18 +111,21 @@ class Image extends MY_Controller {
      *
      * @param string $image_name
      * @param string $path
-		 * @return void
+     * @return void
      */
     protected function _print_image($image_name, $path) {
+        $safe_path = preg_replace('/\/var\/\w+/', '', $path);
+        header('X-print-image-00: '. json_encode([ $image_name, $safe_path ]));
 
-        if (preg_match(self::IMAGE_REGEX, $image_name, $matches)
+        // Use $path, especially for cloudscapes!
+        if (preg_match(self::IMAGE_REGEX, $path, $matches)
             && is_readable($path)) {
 
             $mimetype = str_replace('jpg', 'jpeg', strtolower($matches[ 'ext' ]));
 
             header('Content-Type: image/' . $mimetype);
-						// https://tools.ietf.org/html/rfc6266#section-5
-						header('Content-Disposition: inline; filename="' . $image_name . '"');
+            // https://tools.ietf.org/html/rfc6266#section-5
+            header('Content-Disposition: inline; filename="' . $image_name . '"');
             echo file_get_contents($path);
 
         } else {
