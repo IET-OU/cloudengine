@@ -42,7 +42,7 @@ $autoload['libraries'] = array();
 
 // Installer - don't autoload these libraries.
 $CI =& get_instance();
-if ('install' != $CI->uri->segment(1)) {
+if ('install' !== $CI->uri->segment(1)) {
     array_push($autoload['libraries'], 'Layout');
     array_push($autoload['libraries'], 'database');
     array_push($autoload['libraries'], 'Auth_lib');
@@ -59,7 +59,7 @@ if ('install' != $CI->uri->segment(1)) {
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'form', 'array', 'html', 'mail', 'nofollow');
+$autoload['helper'] = [ 'url', 'form', 'array', 'html', 'mail', 'nofollow', 'cli' ];
 
 if (!function_exists('json_encode')) {
     array_push($autoload['helper'], 'json');

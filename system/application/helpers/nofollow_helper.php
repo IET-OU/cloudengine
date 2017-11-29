@@ -2,9 +2,9 @@
 /**
  * Helper to add anti-spam 'rel="nofollow"' to links.
  *
- * @copyright 2009, 2017 The Open University. See CREDITS.txt
+ * @copyright 2017 The Open University. See CREDITS.txt
  * @license GNU General Public License version 2. See LICENCE.txt
- *
+ * @author  Nick Freear, 2017-11-24.
  * @link  http://www.barattalo.it/coding/how-to-add-rel-nofollow-to-links-with-preg_replace/
  */
 
