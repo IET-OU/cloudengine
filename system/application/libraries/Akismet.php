@@ -1,6 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
+ * @copyright (ou-specific) 2017 The Open University. See CREDITS.txt
+ * @author    (ou-specific) Nick Freear, 2017-11-30.
+ * @link https://github.com/philsturgeon/codeigniter-akismet/blob/master/application/third_party/haughin/codeigniter-akismet/libraries/akismet.php
+ */
+
+/**
  * CodeIgniter Akismet Class
  *
  * Protect your CodeIgniter applications from comment spam.
@@ -26,6 +32,9 @@ class Akismet {
         CURLOPT_TIMEOUT        => 60,
         CURLOPT_USERAGENT      => 'codeigniter-akismet-2.0',
         CURLOPT_FOLLOWLOCATION => '1'
+        ,
+        CURLOPT_HEADER => true,
+        CURLINFO_HEADER_OUT => true,
     );
 
     function __construct($params = array())
@@ -44,24 +53,62 @@ class Akismet {
      * @return  void
      */
     public function initialize($params = array())
-    {    
+    {
         $this->_api_key = '';
         $this->_blog_url = '';
         isset($params['api_key']) AND $this->_api_key = $params['api_key'];
         isset($params['blog_url']) AND $this->_blog_url = $params['blog_url'];
- 
+
         if ($params && isset($params['proxy'])) {
             self::$_curl_opts[CURLOPT_PROXY] = $params['proxy'];
-        }       
+        }
 
         $this->_valid_key = $this->_verify_key();
 
         if ( ! $this->_valid_key && $params)
-        { 
+        {
             log_message('error', 'Akismet could not verify the api key: '.$this->_api_key.' for blog: '.$this->_blog_url);
-        } 
-
+        }
     }
+
+#ou-specific
+    private $_curl_info = [];
+
+    private function process_response($ch, $response) {
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $headers = substr($response, 0, $header_size);
+        $result = substr($response, $header_size);
+        $headers = $this->parse_headers($headers);
+        $this->_curl_info = (object) [
+            'headers' => $headers->headers,
+            'akismet_hdr' => $headers->akismet,
+            'result' => $result,
+            'info' => curl_getinfo($ch),
+            'error' => curl_error($ch),
+        ];
+        return $result;
+    }
+
+    private function parse_headers($headers) {
+        $headers_r = explode("\r\n", $headers);
+        $akismet_headers = [];
+        foreach ($headers_r as $header) {
+            // [5] => X-akismet-guid: bbbde121e1131a2d82e4c5384055aaf7
+            if (preg_match( '/X-akismet-(?P<key>.+): (?P<val>.+)/i', $header, $matches )) {
+                $akismet_headers[] = $matches[ 'key' ] .':'. $matches[ 'val' ];
+                $akismet_headers[ $matches[ 'key' ]] = $matches[ 'val' ];
+            }
+        }
+        return (object) [
+            'headers' => $headers_r,
+            'akismet' => $akismet_headers,
+        ];
+    }
+
+    public function get_info() {
+        return $this->_curl_info;
+    }
+#ou-specific ends.
 
     private function _post($url, $data)
     {
@@ -72,9 +119,10 @@ class Akismet {
 
         curl_setopt_array($ch, $opts);
 
-        $result = curl_exec($ch);
-        curl_close($ch);
+        $response = curl_exec($ch);
+        $result = $this->proccess_reponse($ch, $response);
 
+        curl_close($ch);
         return $result;
     }
 
