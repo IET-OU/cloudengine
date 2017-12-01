@@ -120,7 +120,7 @@ class Akismet {
         curl_setopt_array($ch, $opts);
 
         $response = curl_exec($ch);
-        $result = $this->proccess_reponse($ch, $response);
+        $result = $this->process_response($ch, $response);
 
         curl_close($ch);
         return $result;
