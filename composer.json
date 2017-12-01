@@ -49,7 +49,9 @@
             "node_modules/.bin/grunt"
         ],
         "phpcs": "phpcs --standard=PSR2 --extensions=php system/application/libraries/Api*",
-        "fix": "phpcbf --standard=PSR2 --extensions=php system/application/libraries/Api*"
+        "fix": "phpcbf --standard=PSR2 --extensions=php system/application/libraries/Api*",
+        "cli-help": "php index.php CLI help",
+        "banned-user-comments": "php index.php CLI banned_user_comments 2017-01-01 1000"
     },
     "minimum-stability": "beta",
     "prefer-stable": true,

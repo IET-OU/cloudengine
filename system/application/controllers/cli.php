@@ -19,11 +19,10 @@
 class CLI extends MY_Controller {
 
     const SLEEP = 2;
-    const LIMIT = 2;
+    const LIMIT = 5;
+    const SQL_FROM_DATE = '2017-01-01';
 
     const SPAM_WORDS_REGEX = '(pirate|cyberlink|escort|essay|movers)';
-
-    const SQL_FROM_DATE = '2017-01-01';
 
     const SQL_COUNT_REGEX_COMMENT =
     'SELECT count(*) AS num FROM comment WHERE (SELECT FROM_unixtime(timestamp)) >= ? AND body REGEXP ?';
@@ -32,11 +31,10 @@ class CLI extends MY_Controller {
     'SELECT u.*, c.* FROM user u JOIN comment AS c ON c.user_id = u.id WHERE (SELECT FROM_unixtime(c.timestamp)) >= ? AND u.banned = 1 LIMIT ?';
 
     const SQL_WHITELIST_USER_CLOUDS =
-    'SELECT u.*, c.* FROM user u JOIN cloud AS c ON c.user_id = u.id JOIN user_profile AS p ON p.id = u.id WHERE (SELECT FROM_unixtime(c.created)) >= ? AND p.whitelist = 1';
+    'SELECT u.*, c.* FROM user u JOIN cloud AS c ON c.user_id = u.id JOIN user_profile AS p ON p.id = u.id WHERE (SELECT FROM_unixtime(c.created)) >= ? AND p.whitelist = 1 LIMIT ?';
 
     public function __construct() {
         parent::MY_Controller();
-        // $this->load->model('user_model');
 
         if ( ! is_cli()) {
             show_404();
@@ -45,8 +43,6 @@ class CLI extends MY_Controller {
         error_reporting( E_ALL );
         ini_set( 'display_errors', 1 );
         ini_set( 'error_log', 'syslog' );
-
-        // print_r( $_SERVER[ 'argv' ]);
     }
 
     public function index() { return $this->help(); }
@@ -61,13 +57,9 @@ class CLI extends MY_Controller {
             if ($md->class == __CLASS__ && $md->name != '__construct') { $names[] = $md->name; }
         }
         echo implode( "\n * ", $names ) . "\n";
-
-        log_message( 'debug', __METHOD__ );
-        // log_message( 'error', __METHOD__ . '-codeigniter' );
-        // error_log( __METHOD__ . '-error_log' );
     }
 
-    // ------------------------------------------------------------------
+    // ----------------------------------------------------------------------
 
 	/** Count the number of spam comments after a certain date.
 	 *
@@ -92,29 +84,49 @@ class CLI extends MY_Controller {
     public function banned_user_comments( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT ) {
         echo __METHOD__ . PHP_EOL;
 
+        $this->db->_compile_select();
         $result = $this->db->query( self::SQL_BANNED_USER_COMMENTS, [ $sql_from_date, $limit ] );
 
-        print_r( $result->num_rows );
-        echo PHP_EOL;
+        printf( "Count of comments: %s\n", $result->num_rows );
         // var_dump( $result->first_row() );
+
+        $this->_sql_log($result, __METHOD__);
 
         return $result;
     }
 
     /** Get clouds from whitelisted users after a date.
     */
-    public function whitelisted_user_clouds( $sql_from_date = self::SQL_FROM_DATE ) {
+    public function whitelisted_user_clouds( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT ) {
         echo __METHOD__ . PHP_EOL;
 
-        $result = $this->db->query( self::SQL_WHITELIST_USER_CLOUDS, [ $sql_from_date ] );
+        $this->db->_compile_select();
+        $result = $this->db->query( self::SQL_WHITELIST_USER_CLOUDS, [ $sql_from_date, $limit ] );
 
-        print_r( $result->num_rows );
-        echo PHP_EOL;
+        printf( "Count of clouds: %s\n", $result->num_rows );
+
+        $this->_sql_log($result, __METHOD__);
 
         return $result;
     }
 
-    // ------------------------------------------------------------------
+    // ----------------------------------------------------------------------
+
+    protected function _sql_log($query, $method, $label = null) {
+        $file = config_item( 'log_path' ) . 'akismet-' . date( 'Y-m-d') . '.log';
+        $sql = $this->db->last_query();
+        $log = date( 'c' ) . sprintf( " u: %s r: %s m: %s L: %s SQL: %s;\n", '//db', $query->num_rows(), $method, $label, $sql );
+        return file_put_contents( $file, $log, FILE_APPEND );
+    }
+
+    protected static function _akismet_log($akismet, $method, $label = null) {
+        $inf = $akismet->get_info();
+        $file = config_item( 'log_path' ) . 'akismet-' . date( 'Y-m-d') . '.log';
+        $log = date( 'c' ) . sprintf( " u: %s r: %s m: %s L: %s (%s)\n", $inf->info[ 'url' ], $inf->result, $method, $label, $inf->akismet_hdr[ 0 ] );
+        return file_put_contents( $file, $log, FILE_APPEND );
+    }
+
+    // ----------------------------------------------------------------------
 
     protected function _init_akismet() {
         $this->load->library( 'Akismet' );
@@ -138,12 +150,6 @@ class CLI extends MY_Controller {
         return $akismet;
     }
 
-    protected static function _log($inf, $method, $label = null) {
-        $file = config_item( 'log_path' ) . 'akismet-' . date( 'Y-m-d') . '.log';
-        $log = date( 'c' ) . sprintf( " u: %s r: %s m: %s L: %s (%s)\n", $inf->info[ 'url' ], $inf->result, $method, $label, $inf->akismet_hdr[ 0 ] );
-        return file_put_contents( $file, $log, FILE_APPEND );
-    }
-
     public function test_spam( $author = 'viagra-test-123', $content = 'Hello world!' ) {
         echo __METHOD__ . PHP_EOL;
 
@@ -155,17 +161,16 @@ class CLI extends MY_Controller {
             'comment_content' => $content,
         ]);
 
-        echo 'Result: ';
-        print_r( $result );
+        printf( "Akismet result: %s\n", $result );
         print_r( $akismet->get_info() );
         echo PHP_EOL;
-        self::_log($akismet->get_info(), __METHOD__);
+        self::_akismet_log($akismet, __METHOD__);
     }
 
-    public function learn_spam( $sql_from_date = self::SQL_FROM_DATE ) {
+    public function learn_spam( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT ) {
         echo __METHOD__ . PHP_EOL;
 
-        $comments = $this->banned_user_comments( $sql_from_date );
+        $comments = $this->banned_user_comments( $sql_from_date, $limit );
 
         $akismet = $this->_init_akismet();
 
@@ -183,29 +188,31 @@ class CLI extends MY_Controller {
                 'user_ip' => '127.0.0.1',  // Unknown :(.
                 'user_agent' => 'unknown',
             ]);
-            echo "$comment_label: $result\n";
-            self::_log($akismet->get_info(), __METHOD__, $comment_label);
+            echo '.';
+            // echo "$comment_label: $result\n";
+            self::_akismet_log($akismet, __METHOD__, $comment_label);
             sleep( self::SLEEP );
         }
     }
 
-    public function learn_ham( $sql_from_date = self::SQL_FROM_DATE ) {
+    public function learn_ham( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT  ) {
         echo __METHOD__ . PHP_EOL;
 
-        $clouds = $this->whitelisted_user_clouds( $sql_from_date );
+        $clouds = $this->whitelisted_user_clouds( $sql_from_date, $limit );
 
         $akismet = $this->_init_akismet();
 
         foreach ($clouds->result_array as $cloud) {
-            result = $akismet->submit_ham(self::_assemble_cloud( $cloud ));
+            $result = $akismet->submit_ham(self::_assemble_cloud( $cloud ));
 
-            echo "cloud-$cloud->cloud_id: $result\n";
-            self::_log($akismet->get_info(), __METHOD__, 'cloud-' . $cloud->cloud_id);
+            echo '.';
+            // echo "cloud-$cloud->cloud_id: $result\n";
+            self::_akismet_log($akismet, __METHOD__, 'cloud-' . $cloud->cloud_id);
             sleep( self::SLEEP );
         }
     }
 
-    // ------------------------------------------------------------------
+    // ----------------------------------------------------------------------
 
     protected static function _assemble_cloud( $cloud ) {
         $cloud_content = <<<EOT
