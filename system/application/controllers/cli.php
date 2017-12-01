@@ -18,18 +18,21 @@
 
 class CLI extends MY_Controller {
 
+    const SLEEP = 2;
+    const LIMIT = 2;
+
     const SPAM_WORDS_REGEX = '(pirate|cyberlink|escort|essay|movers)';
 
     const SQL_FROM_DATE = '2017-01-01';
 
     const SQL_COUNT_REGEX_COMMENT =
-    'SELECT count(*) FROM comment WHERE (SELECT FROM_unixtime(timestamp)) >= ? AND body REGEXP ?';
+    'SELECT count(*) AS num FROM comment WHERE (SELECT FROM_unixtime(timestamp)) >= ? AND body REGEXP ?';
 
     const SQL_BANNED_USER_COMMENTS =
-    'SELECT u.*, c.* FROM user u JOIN comment AS c ON c.user_id = u.id WHERE (SELECT FROM_unixtime(c.timestamp)) >= ? AND u.banned = 1';
+    'SELECT u.*, c.* FROM user u JOIN comment AS c ON c.user_id = u.id WHERE (SELECT FROM_unixtime(c.timestamp)) >= ? AND u.banned = 1 LIMIT ?';
 
     const SQL_WHITELIST_USER_CLOUDS =
-    'SELECT u.*, c.* FROM user u JOIN cloud AS c ON c.user_id = u.id JOIN user_profile AS p ON p.id = user.id WHERE (SELECT FROM_unixtime(c.created)) >= ? AND p.whitelist = 1';
+    'SELECT u.*, c.* FROM user u JOIN cloud AS c ON c.user_id = u.id JOIN user_profile AS p ON p.id = u.id WHERE (SELECT FROM_unixtime(c.created)) >= ? AND p.whitelist = 1';
 
     public function __construct() {
         parent::MY_Controller();
@@ -38,8 +41,12 @@ class CLI extends MY_Controller {
         if ( ! is_cli()) {
             show_404();
         }
+
         error_reporting( E_ALL );
         ini_set( 'display_errors', 1 );
+        ini_set( 'error_log', 'syslog' );
+
+        // print_r( $_SERVER[ 'argv' ]);
     }
 
     public function index() { return $this->help(); }
@@ -54,6 +61,10 @@ class CLI extends MY_Controller {
             if ($md->class == __CLASS__ && $md->name != '__construct') { $names[] = $md->name; }
         }
         echo implode( "\n * ", $names ) . "\n";
+
+        log_message( 'debug', __METHOD__ );
+        // log_message( 'error', __METHOD__ . '-codeigniter' );
+        // error_log( __METHOD__ . '-error_log' );
     }
 
     // ------------------------------------------------------------------
@@ -66,20 +77,26 @@ class CLI extends MY_Controller {
         echo __METHOD__ . PHP_EOL;
 
         // CI_DB_mysql_result
+        $this->db->_compile_select();
         $result = $this->db->query( self::SQL_COUNT_REGEX_COMMENT, [ $sql_from_date, self::SPAM_WORDS_REGEX ] );
+        // $this->output->enable_profiler(TRUE);
+        $count = $result->first_row()->num;
 
         print_r( $result );
+        var_dump($this->db->last_query(), $count);
+        return $count;
     }
 
     /** Get comments from banned users after a date.
     */
-    public function banned_user_comments( $sql_from_date = self::SQL_FROM_DATE ) {
+    public function banned_user_comments( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT ) {
         echo __METHOD__ . PHP_EOL;
 
-        $result = $this->db->query( self::SQL_BANNED_USER_COMMENTS, [ $sql_from_date ] );
+        $result = $this->db->query( self::SQL_BANNED_USER_COMMENTS, [ $sql_from_date, $limit ] );
 
         print_r( $result->num_rows );
         echo PHP_EOL;
+        // var_dump( $result->first_row() );
 
         return $result;
     }
@@ -99,12 +116,40 @@ class CLI extends MY_Controller {
 
     // ------------------------------------------------------------------
 
+    protected function _init_akismet() {
+        $this->load->library( 'Akismet' );
+        $this->CI =& get_instance();
+        $config = $this->CI->config;
+
+        $akismet = new Akismet([
+             'api_key' => $config->item('akismet_key'),
+             'blog_url' => $config->item('akismet_url'),
+             'proxy' => $config->item('proxy'),
+             /*'blog_lang' => 'en,en_gb',
+             'user_ip' => '127.0.0.1',  // Unknown :(.
+             'user_agent' => 'unknown',
+             */
+        ]);
+
+        $info = $akismet->get_info();
+        $result = $info->result || 'false';
+        echo "Init:$result\n";
+
+        return $akismet;
+    }
+
+    protected static function _log($inf, $method, $label = null) {
+        $file = config_item( 'log_path' ) . 'akismet-' . date( 'Y-m-d') . '.log';
+        $log = date( 'c' ) . sprintf( " u: %s r: %s m: %s L: %s (%s)\n", $inf->info[ 'url' ], $inf->result, $method, $label, $inf->akismet_hdr[ 0 ] );
+        return file_put_contents( $file, $log, FILE_APPEND );
+    }
+
     public function test_spam( $author = 'viagra-test-123', $content = 'Hello world!' ) {
         echo __METHOD__ . PHP_EOL;
 
-        $this->load->library( 'Akismet' );
+        $akismet = $this->_init_akismet();
 
-        $result = $this->akismet->is_spam([
+        $result = $akismet->is_spam([
             'comment_type' => 'comment',
             'comment_author' => $author,
             'comment_content' => $content,
@@ -112,7 +157,9 @@ class CLI extends MY_Controller {
 
         echo 'Result: ';
         print_r( $result );
+        print_r( $akismet->get_info() );
         echo PHP_EOL;
+        self::_log($akismet->get_info(), __METHOD__);
     }
 
     public function learn_spam( $sql_from_date = self::SQL_FROM_DATE ) {
@@ -120,12 +167,25 @@ class CLI extends MY_Controller {
 
         $comments = $this->banned_user_comments( $sql_from_date );
 
-        $this->load->library( 'Akismet' );
+        $akismet = $this->_init_akismet();
 
-        foreach ($comments->result_array as $comment) {
-            $api_result = $this->akismet->submit_spam([
+        foreach ($comments->result() as $comment) {
+            $comment_label = "comment-$comment->comment_id";
+            $result = $akismet->submit_spam([
+                'permalink' => config_item('akismet_url') . '/cloud/view/' . $comment->cloud_id . '#' . $comment_label,
                 'comment_type' => 'comment',
+                'comment_content' => $comment->body,
+                'comment_author' => $comment->user_name,
+                'comment_author_email' => $comment->email,
+                'comment_date_gmt' => date( 'c', $comment->timestamp ),
+                'user_role' => $comment->role, // 'user'
+                'blog_lang' => 'en,en_gb',
+                'user_ip' => '127.0.0.1',  // Unknown :(.
+                'user_agent' => 'unknown',
             ]);
+            echo "$comment_label: $result\n";
+            self::_log($akismet->get_info(), __METHOD__, $comment_label);
+            sleep( self::SLEEP );
         }
     }
 
@@ -134,10 +194,14 @@ class CLI extends MY_Controller {
 
         $clouds = $this->whitelisted_user_clouds( $sql_from_date );
 
-        $akismet = $this->load->library( 'Akismet' );
+        $akismet = $this->_init_akismet();
 
         foreach ($clouds->result_array as $cloud) {
-            $api_result = $this->akismet->submit_ham(self::_assemble_cloud( $cloud ));
+            result = $akismet->submit_ham(self::_assemble_cloud( $cloud ));
+
+            echo "cloud-$cloud->cloud_id: $result\n";
+            self::_log($akismet->get_info(), __METHOD__, 'cloud-' . $cloud->cloud_id);
+            sleep( self::SLEEP );
         }
     }
 
@@ -152,8 +216,16 @@ class CLI extends MY_Controller {
         $cloud->body
 EOT;
         return [
+            'permalink' => config_item('akismet_url') . '/cloud/view/' . $cloud->cloud_id,
             'comment_type' => 'blog-post',
             'comment_content' => $cloud_content,
+            'comment_author' => $cloud->user_name,
+            'comment_author_email' => $cloud->email,
+            'comment_date_gmt' => date( 'c', $cloud->timestamp ),
+            // 'user_role' => $cloud->role, // 'user'
+            'blog_lang' => 'en,en_gb',
+            'user_ip' => '127.0.0.1',  // Unknown :(.
+            'user_agent' => 'unknown',
         ];
     }
 }
