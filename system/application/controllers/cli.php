@@ -2,6 +2,9 @@
 /**
  * CLI. Commandline tools, particularly to analyse and process spam/ ham.
  *
+ * @example Usage $$  php index.php CLI -h
+ * @example Usage $$  php index.php CLI banned_user_comments 2017-01-01 --limit:-1  # Un-limited.
+ *
  * @copyright 2017 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package   CLI
@@ -10,8 +13,6 @@
  * @link  https://codeigniter.com/userguide2/database/queries.html
  * @link  https://docs.akismet.com/general/teach-akismet/
  * @link  https://akismet.com/development/api/#comment-check
- *
- * @example Usage >  php index.php CLI count_spam_comments
  *
  * ~/cloudengine-clean/_BAK/cloudworks-live-lindir-schema-29-nov-2017.sql
  */
@@ -45,7 +46,7 @@ class CLI extends MY_Controller {
         ini_set( 'error_log', 'syslog' );
     }
 
-    public function index() { return $this->help(); }
+    // public function index() { return $this->help(); }
 
     public function help() {
         echo __METHOD__ . " ~ List sub-commands: \n * ";
@@ -85,7 +86,7 @@ class CLI extends MY_Controller {
         echo __METHOD__ . PHP_EOL;
 
         $this->db->_compile_select();
-        $result = $this->db->query( self::SQL_BANNED_USER_COMMENTS, [ $sql_from_date, $limit ] );
+        $result = $this->db->query( self::SQL_BANNED_USER_COMMENTS, [ $sql_from_date, self::_limit($limit) ] );
 
         printf( "Count of comments: %s\n", $result->num_rows );
         // var_dump( $result->first_row() );
@@ -101,7 +102,7 @@ class CLI extends MY_Controller {
         echo __METHOD__ . PHP_EOL;
 
         $this->db->_compile_select();
-        $result = $this->db->query( self::SQL_WHITELIST_USER_CLOUDS, [ $sql_from_date, $limit ] );
+        $result = $this->db->query( self::SQL_WHITELIST_USER_CLOUDS, [ $sql_from_date, self::_limit($limit) ] );
 
         printf( "Count of clouds: %s\n", $result->num_rows );
 
@@ -234,5 +235,10 @@ EOT;
             'user_ip' => '127.0.0.1',  // Unknown :(.
             'user_agent' => 'unknown',
         ];
+    }
+
+    protected static function _limit($limit) {
+        $limit = (int) preg_replace('/(--)?limit[:=]/', '', (string) $limit);
+        return $limit === -1 ? 10000 : $limit;
     }
 }

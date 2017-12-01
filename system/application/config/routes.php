@@ -52,3 +52,10 @@ $route[':num/:any'] = "home";
 
 $route['uptime.txt'] = 'uptime';
 
+// Commandline routes.
+$route[ 'cli' ] =
+$route[ 'CLI' ] =
+$route[ 'cli/-h' ] =
+$route[ 'CLI/-h' ] = 'CLI/help';
+
+// End.

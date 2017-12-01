@@ -50,8 +50,8 @@
         ],
         "phpcs": "phpcs --standard=PSR2 --extensions=php system/application/libraries/Api*",
         "fix": "phpcbf --standard=PSR2 --extensions=php system/application/libraries/Api*",
-        "cli-help": "php index.php CLI help",
-        "banned-user-comments": "php index.php CLI banned_user_comments 2017-01-01 1000"
+        "cli-help": "php index.php CLI -h",
+        "banned-user-comments": "php index.php CLI banned_user_comments 2017-01-01 --limit:-1  # Un-limited."
     },
     "minimum-stability": "beta",
     "prefer-stable": true,
