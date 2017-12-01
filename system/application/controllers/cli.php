@@ -19,8 +19,10 @@
 
 class CLI extends MY_Controller {
 
+    const HELP = "Usage:\n    php index.php CLI banned_user_comments 2017-01-01 --limit:-1\n\n";
+
     const SLEEP = 2;
-    const LIMIT = 5;
+    const LIMIT = 2;
     const SQL_FROM_DATE = '2017-01-01';
 
     const SPAM_WORDS_REGEX = '(pirate|cyberlink|escort|essay|movers)';
@@ -46,10 +48,8 @@ class CLI extends MY_Controller {
         ini_set( 'error_log', 'syslog' );
     }
 
-    // public function index() { return $this->help(); }
-
     public function help() {
-        echo __METHOD__ . " ~ List sub-commands: \n * ";
+        echo __METHOD__ . " ~ List sub-commands: \n  * ";
 
         $class = new ReflectionClass( $this );
         $methods = $class->getMethods( ReflectionMethod::IS_PUBLIC );
@@ -57,31 +57,38 @@ class CLI extends MY_Controller {
         foreach ($methods as $md) {
             if ($md->class == __CLASS__ && $md->name != '__construct') { $names[] = $md->name; }
         }
-        echo implode( "\n * ", $names ) . "\n";
+        echo implode( "\n  * ", $names ) . "\n\n";
+        echo self::HELP;
     }
 
     // ----------------------------------------------------------------------
 
-	/** Count the number of spam comments after a certain date.
-	 *
-	 * @param string $sql_from_date  From date, e.g. '2017-01-01'
-	 */
-	public function count_spam_comments( $sql_from_date = self::SQL_FROM_DATE ) {
+    /** Count the number of spam comments after a certain date.
+     *
+     * @param string $sql_from_date  From date, e.g. '2017-01-01'
+     * @return int   Count.
+     */
+    public function count_spam_comments( $sql_from_date = self::SQL_FROM_DATE ) {
         echo __METHOD__ . PHP_EOL;
 
-        // CI_DB_mysql_result
         $this->db->_compile_select();
         $result = $this->db->query( self::SQL_COUNT_REGEX_COMMENT, [ $sql_from_date, self::SPAM_WORDS_REGEX ] );
         // $this->output->enable_profiler(TRUE);
         $count = $result->first_row()->num;
 
-        print_r( $result );
-        var_dump($this->db->last_query(), $count);
+        printf( "Count of comments: %s\n", $result->num_rows );
+
+        $this->_sql_log($result, __METHOD__);
+
         return $count;
     }
 
     /** Get comments from banned users after a date.
-    */
+     *
+     * @param string $sql_from_date From date, e.g. '2017-01-01'
+     * @param int|string $limit     SQL limit, e.g. 20, or '--limit:-1' (-1 means 'unlimited')
+     * @return object CI_DB_mysql_result
+     */
     public function banned_user_comments( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT ) {
         echo __METHOD__ . PHP_EOL;
 
@@ -89,7 +96,6 @@ class CLI extends MY_Controller {
         $result = $this->db->query( self::SQL_BANNED_USER_COMMENTS, [ $sql_from_date, self::_limit($limit) ] );
 
         printf( "Count of comments: %s\n", $result->num_rows );
-        // var_dump( $result->first_row() );
 
         $this->_sql_log($result, __METHOD__);
 
@@ -97,7 +103,8 @@ class CLI extends MY_Controller {
     }
 
     /** Get clouds from whitelisted users after a date.
-    */
+     * @return object CI_DB_mysql_result
+     */
     public function whitelisted_user_clouds( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT ) {
         echo __METHOD__ . PHP_EOL;
 
@@ -113,44 +120,9 @@ class CLI extends MY_Controller {
 
     // ----------------------------------------------------------------------
 
-    protected function _sql_log($query, $method, $label = null) {
-        $file = config_item( 'log_path' ) . 'akismet-' . date( 'Y-m-d') . '.log';
-        $sql = $this->db->last_query();
-        $log = date( 'c' ) . sprintf( " u: %s r: %s m: %s L: %s SQL: %s;\n", '//db', $query->num_rows(), $method, $label, $sql );
-        return file_put_contents( $file, $log, FILE_APPEND );
-    }
-
-    protected static function _akismet_log($akismet, $method, $label = null) {
-        $inf = $akismet->get_info();
-        $file = config_item( 'log_path' ) . 'akismet-' . date( 'Y-m-d') . '.log';
-        $log = date( 'c' ) . sprintf( " u: %s r: %s m: %s L: %s (%s)\n", $inf->info[ 'url' ], $inf->result, $method, $label, $inf->akismet_hdr[ 0 ] );
-        return file_put_contents( $file, $log, FILE_APPEND );
-    }
-
-    // ----------------------------------------------------------------------
-
-    protected function _init_akismet() {
-        $this->load->library( 'Akismet' );
-        $this->CI =& get_instance();
-        $config = $this->CI->config;
-
-        $akismet = new Akismet([
-             'api_key' => $config->item('akismet_key'),
-             'blog_url' => $config->item('akismet_url'),
-             'proxy' => $config->item('proxy'),
-             /*'blog_lang' => 'en,en_gb',
-             'user_ip' => '127.0.0.1',  // Unknown :(.
-             'user_agent' => 'unknown',
-             */
-        ]);
-
-        $info = $akismet->get_info();
-        $result = $info->result || 'false';
-        echo "Init:$result\n";
-
-        return $akismet;
-    }
-
+    /** Test Akismet call - 'comment-check'.
+     * @return void
+     */
     public function test_spam( $author = 'viagra-test-123', $content = 'Hello world!' ) {
         echo __METHOD__ . PHP_EOL;
 
@@ -168,6 +140,8 @@ class CLI extends MY_Controller {
         self::_akismet_log($akismet, __METHOD__);
     }
 
+    /** Call Akismet 'submit-spam' multiple times, based on 'banned_user_comments' DB query.
+     */
     public function learn_spam( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT ) {
         echo __METHOD__ . PHP_EOL;
 
@@ -191,11 +165,15 @@ class CLI extends MY_Controller {
             ]);
             echo '.';
             // echo "$comment_label: $result\n";
-            self::_akismet_log($akismet, __METHOD__, $comment_label);
+            self::_akismet_log($akismet, __METHOD__, $comment_label, $comment->user_name, $comment->body);
             sleep( self::SLEEP );
         }
+
+        printf( "\nCount of Akismet calls: %s\n", $comments->num_rows );
     }
 
+    /** Call Akismet 'submit-spam' multiple times, based on 'whitelisted_user_clouds' DB query.
+     */
     public function learn_ham( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT  ) {
         echo __METHOD__ . PHP_EOL;
 
@@ -208,9 +186,11 @@ class CLI extends MY_Controller {
 
             echo '.';
             // echo "cloud-$cloud->cloud_id: $result\n";
-            self::_akismet_log($akismet, __METHOD__, 'cloud-' . $cloud->cloud_id);
+            self::_akismet_log($akismet, __METHOD__, 'cloud-' . $cloud->cloud_id, $cloud->user_name, $cloud->body);
             sleep( self::SLEEP );
         }
+
+        printf( "\nCount of Akismet calls: %s\n", $clouds->num_rows );
     }
 
     // ----------------------------------------------------------------------
@@ -240,5 +220,51 @@ EOT;
     protected static function _limit($limit) {
         $limit = (int) preg_replace('/(--)?limit[:=]/', '', (string) $limit);
         return $limit === -1 ? 10000 : $limit;
+    }
+
+    // ----------------------------------------------------------------------
+
+    protected function _sql_log($query, $method, $label = null) {
+        $sql = $this->db->last_query();
+
+        return self::_log(sprintf( "u:%s r:%s m:%s L:%s sql:%s;", '//db', $query->num_rows(), $method, $label, $sql ));
+    }
+
+    protected static function _akismet_log($akismet, $method, $label = null, $author = null, $comment = null) {
+        $comment = $comment ? substr($comment, 0, 16) : '';
+        $inf = $akismet->get_info();
+        $result = str_replace( 'Thanks for making the web a better place.', 'Thanks..', $inf->result );
+        $hdr = $inf->akismet_hdr[ 0 ];
+
+        return self::_log(sprintf( "u:%s r:%s m:%s L:%s a:%s c:%s k:%s", $inf->info[ 'url' ], $result, $method, $label, $author, $comment, $hdr ));
+    }
+
+    protected static function _log($text) {
+        $file = config_item( 'log_path' ) . 'akismet-' . date( 'Y-m-d') . '.log';
+        return file_put_contents( $file, date( 'c' ) . sprintf( " %s\n", $text ), FILE_APPEND );
+    }
+
+    // ----------------------------------------------------------------------
+
+    protected function _init_akismet() {
+        $this->load->library( 'Akismet' );
+        $this->CI =& get_instance();
+        $config = $this->CI->config;
+
+        $akismet = new Akismet([
+             'api_key' => $config->item('akismet_key'),
+             'blog_url' => $config->item('akismet_url'),
+             'proxy' => $config->item('proxy'),
+             /*'blog_lang' => 'en,en_gb',
+             'user_ip' => '127.0.0.1',  // Unknown :(.
+             'user_agent' => 'unknown',
+             */
+        ]);
+
+        $info = $akismet->get_info();
+        $result = $info->result || 'false';
+        echo "Init:$result\n";
+
+        return $akismet;
     }
 }
