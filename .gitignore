@@ -1,5 +1,6 @@
 system/application/config/config.php
 system/application/config/cloudengine.php
+system/application/config/cli-config.php
 system/application/config/database.php
 system/application/config/mollom.php
 system/application/language/*/LC_MESSAGES/*.mo
@@ -13,5 +14,11 @@ node_modules/*
 /application
 /dropbox*
 .DS_Store
+
+*.gz
+*.gzip
+*.sql
+*.log
+_cloudworks_data/
 
 # End.

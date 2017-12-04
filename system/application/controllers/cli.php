@@ -24,6 +24,7 @@ use Dariuszp\CliProgressBar;
 class CLI extends MY_Controller {
 
     const HELP = "Usage:\n    php index.php CLI banned_user_comments 2017-01-01 now --limit:-1\n\n";
+    const ADD_CONFIG_FILE = 'cli-config';
 
     const SLEEP = 0.5; // (float) Seconds.
     const LIMIT = 2;
@@ -134,22 +135,57 @@ class CLI extends MY_Controller {
     /** Test Akismet call - 'comment-check'.
      * @return void
      */
-    public function test_spam( $author = 'viagra-test-123', $content = 'Hello world!' ) {
+    public function test_spam( $author = null, $email = null, $user_role = null, $content = null ) {
         echo __METHOD__ . PHP_EOL;
 
+        $config = $this->config;
+        $config->load( self::ADD_CONFIG_FILE );
+
+        $test_comment = [
+            'comment_type'    => 'comment',
+            'comment_author'  => $author ? $author : $config->item( 'spam_test_author' ),
+            'comment_author_email' => $email ? $email : $config->item( 'spam_test_email' ),
+            'comment_content' => $content ? $content : $config->item( 'spam_test_content' ),
+            'user_role' => $user_role ? $user_role : $config->item( 'spam_test_role' ),
+            'is_test'   => true,
+        ];
+
         $akismet = $this->_init_akismet();
+        $result = $akismet->is_spam( $test_comment );
 
-        $result = $akismet->is_spam([
-            'comment_type' => 'comment',
-            'comment_author' => $author,
-            'comment_content' => $content,
-        ]);
-
+        printf( "Test comment: %s\n", print_r( $test_comment, true ) );
         printf( "Akismet result: %s\n", $result );
         print_r( $akismet->get_info() );
         echo PHP_EOL;
-        self::_akismet_log($akismet, __METHOD__);
+        //self::_akismet_log($akismet, __METHOD__, 'test-0123' );
     }
+
+    public function compare_spam( $example_num = '0', $submit = false ) {
+        echo __METHOD__ . PHP_EOL;
+
+        $config = $this->config;
+        $config->load( self::ADD_CONFIG_FILE );
+
+        $test_akismet = $this->_init_akismet();
+        $live_akismet = $this->_init_akismet($config->item('akismet_key_live'), $config->item('akismet_url_live'));
+
+        $comment = $config->item( 'spam_comment_ex_' . (int) $example_num );
+        $assembled_comment = self::_assemble_comment( $comment );
+
+        print_r( $assembled_comment );
+
+        if ( ! $submit ) { return; }
+
+        $results = (object) [
+            'test' => $test_akismet->is_spam( $assembled_comment ),
+            'live' => $live_akismet->is_spam( $assembled_comment ),
+        ];
+        self::_akismet_log( $test_akismet, __METHOD__, $comment->label, $comment->user_name, $comment->body);
+        self::_akismet_log( $live_akismet, __METHOD__, $comment->label, $comment->user_name, $comment->body);
+        print_r( $results );
+    }
+
+
 
     /** Call Akismet 'submit-spam' multiple times, based on 'banned_user_comments' DB query.
      * @return void
@@ -164,18 +200,8 @@ class CLI extends MY_Controller {
 
         foreach ($comments->result() as $comment) {
             $comment_label = "comment-$comment->comment_id";
-            $result = $akismet->submit_spam([
-                'permalink' => config_item('akismet_url') . '/cloud/view/' . $comment->cloud_id . '#' . $comment_label,
-                'comment_type' => 'comment',
-                'comment_content' => $comment->body,
-                'comment_author' => $comment->user_name,
-                'comment_author_email' => $comment->email,
-                'comment_date_gmt' => date( 'c', $comment->timestamp ),
-                'user_role' => $comment->role, // 'user'
-                'blog_lang' => 'en,en_gb',
-                'user_ip' => self::UNKNOWN_IP,
-                'user_agent' => 'unknown',
-            ]);
+            $result = $akismet->submit_spam(self::_assemble_comment( $comment ));
+
             $bar->progress();
             self::_akismet_log($akismet, __METHOD__, $comment_label, $comment->user_name, $comment->body);
             usleep( self::SLEEP * 1000000 );
@@ -230,6 +256,22 @@ EOT;
         ];
     }
 
+    protected static function _assemble_comment( $comment ) {
+        $comment_label = "comment-$comment->comment_id";
+        return [
+            'permalink' => config_item('akismet_url') . '/cloud/view/' . $comment->cloud_id . '#' . $comment_label,
+            'comment_type' => 'comment',
+            'comment_content' => $comment->body,
+            'comment_author' => $comment->user_name,
+            'comment_author_email' => $comment->email,
+            'comment_date_gmt' => date( 'c', $comment->timestamp ),
+            'user_role' => $comment->role, // 'user'
+            'blog_lang' => 'en,en_gb',
+            'user_ip' => self::UNKNOWN_IP,
+            'user_agent' => 'unknown',
+        ];
+    }
+
     protected static function _limit($limit) {
         $limit = (int) preg_replace('/(--)?limit[:=]/', '', (string) $limit);
         return $limit === -1 ? 10000 : $limit;
@@ -244,18 +286,6 @@ EOT;
         $bar->{ 'setColorTo' . ucfirst(self::PROGRESS_COLOR) }();  // E.g. ->setColorToMagenta();
         $bar->display();
         return $bar;
-    }
-
-    public function progress_bar( $from_date = self::FROM_DATE, $to_date = self::NOW, $limit = 17 /* self::NO_LIMIT */ ) {
-
-        $query = $this->db->query( self::SQL_BANNED_USER_COMMENTS, [ $from_date, self::_to_date($to_date), self::_limit($limit) ] );
-
-        $progress = self::_start_progress_bar( $query->num_rows );
-        foreach ( $query->result() as $cloud ) {
-            usleep( self::SLEEP * 1000000 );
-            $progress->progress();
-        }
-        $progress->end();
     }
 
     // ----------------------------------------------------------------------
@@ -277,19 +307,21 @@ EOT;
 
     protected static function _log($text) {
         $file = config_item( 'log_path' ) . 'akismet-' . date( 'Y-m-d') . '.log';
-        return file_put_contents( $file, date( 'c' ) . sprintf( " %s\n", $text ), FILE_APPEND );
+        // DEBUG - 2017-11-30 16:39:58 --> Total execution time: 5.4667
+        $log = sprintf( "DEBUG - %s --> %s\n", date( 'Y-m-d H:i:s' ), $text );
+        return file_put_contents( $file, $log, FILE_APPEND );
     }
 
     // ----------------------------------------------------------------------
 
-    protected function _init_akismet() {
+    protected function _init_akismet( $akismet_key = null, $akismet_url = null ) {
         $this->load->library( 'Akismet' );
         $this->CI =& get_instance();
         $config = $this->CI->config;
 
         $akismet = new Akismet([
-             'api_key' => $config->item('akismet_key'),
-             'blog_url' => $config->item('akismet_url'),
+             'api_key' => $akismet_key ? $akismet_key : $config->item('akismet_key'),
+             'blog_url' => $akismet_url ? $akismet_url : $config->item('akismet_url'),
              'proxy' => $config->item('proxy'),
              /* 'blog_lang' => 'en,en_gb',
              'user_ip' => '127.0.0.1',  // Unknown :(.
