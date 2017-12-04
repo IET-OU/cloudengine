@@ -3,7 +3,7 @@
  * CLI. Commandline tools, particularly to analyse and process spam/ ham.
  *
  * @example Usage $$  php index.php CLI -h
- * @example Usage $$  php index.php CLI banned_user_comments 2017-01-01 --limit:-1  # Un-limited.
+ * @example Usage $$  php index.php CLI banned_user_comments 2017-01-01 now --limit:-1  # Un-limited.
  *
  * @copyright 2017 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
@@ -17,13 +17,23 @@
  * ~/cloudengine-clean/_BAK/cloudworks-live-lindir-schema-29-nov-2017.sql
  */
 
+require __DIR__ . '/../../../vendor/autoload.php';
+
+use Dariuszp\CliProgressBar;
+
 class CLI extends MY_Controller {
 
-    const HELP = "Usage:\n    php index.php CLI banned_user_comments 2017-01-01 --limit:-1\n\n";
+    const HELP = "Usage:\n    php index.php CLI banned_user_comments 2017-01-01 now --limit:-1\n\n";
 
-    const SLEEP = 2;
+    const SLEEP = 0.5; // (float) Seconds.
     const LIMIT = 2;
-    const SQL_FROM_DATE = '2017-01-01';
+    const NO_LIMIT = '--limit:-1';
+    const FROM_DATE = '2017-01-01';
+    const NOW = 'now';
+    const UNKNOWN_IP = '0.0.0.0';
+
+    // https://github.com/dariuszp/cli-progress-bar/blob/master/src/Dariuszp/CliProgressBar.php#L141-L143
+    const PROGRESS_COLOR = 'magenta';  // Magenta: [ 35, 39 ]
 
     const SPAM_WORDS_REGEX = '(pirate|cyberlink|escort|essay|movers)';
 
@@ -31,10 +41,10 @@ class CLI extends MY_Controller {
     'SELECT count(*) AS num FROM comment WHERE (SELECT FROM_unixtime(timestamp)) >= ? AND body REGEXP ?';
 
     const SQL_BANNED_USER_COMMENTS =
-    'SELECT u.*, c.* FROM user u JOIN comment AS c ON c.user_id = u.id WHERE (SELECT FROM_unixtime(c.timestamp)) >= ? AND u.banned = 1 LIMIT ?';
+    'SELECT u.*, c.* FROM user u JOIN comment AS c ON c.user_id = u.id WHERE (SELECT FROM_unixtime(c.timestamp)) >= ? AND (SELECT FROM_unixtime(c.timestamp)) <= ? AND u.banned = 1 LIMIT ?';
 
     const SQL_WHITELIST_USER_CLOUDS =
-    'SELECT u.*, c.* FROM user u JOIN cloud AS c ON c.user_id = u.id JOIN user_profile AS p ON p.id = u.id WHERE (SELECT FROM_unixtime(c.created)) >= ? AND p.whitelist = 1 LIMIT ?';
+    'SELECT u.*, c.* FROM user u JOIN cloud AS c ON c.user_id = u.id JOIN user_profile AS p ON p.id = u.id WHERE (SELECT FROM_unixtime(c.created)) >= ? AND (SELECT FROM_unixtime(c.created)) <= ? AND p.whitelist = 1 LIMIT ?';
 
     public function __construct() {
         parent::MY_Controller();
@@ -68,7 +78,7 @@ class CLI extends MY_Controller {
      * @param string $sql_from_date  From date, e.g. '2017-01-01'
      * @return int   Count.
      */
-    public function count_spam_comments( $sql_from_date = self::SQL_FROM_DATE ) {
+    public function count_spam_comments( $sql_from_date = self::FROM_DATE ) {
         echo __METHOD__ . PHP_EOL;
 
         $this->db->_compile_select();
@@ -85,15 +95,16 @@ class CLI extends MY_Controller {
 
     /** Get comments from banned users after a date.
      *
-     * @param string $sql_from_date From date, e.g. '2017-01-01'
-     * @param int|string $limit     SQL limit, e.g. 20, or '--limit:-1' (-1 means 'unlimited')
+     * @param string $from_date  MySQL from date, e.g. '2017-01-01'
+     * @param string $to_date    MySQL to date, e.g. '2017-12-04' or 'now'
+     * @param int|string $limit  SQL limit, e.g. 20, or '--limit:-1' (-1 means 'unlimited')
      * @return object CI_DB_mysql_result
      */
-    public function banned_user_comments( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT ) {
+    public function banned_user_comments( $from_date = self::FROM_DATE, $to_date = self::NOW, $limit = self::NO_LIMIT ) {
         echo __METHOD__ . PHP_EOL;
 
         $this->db->_compile_select();
-        $result = $this->db->query( self::SQL_BANNED_USER_COMMENTS, [ $sql_from_date, self::_limit($limit) ] );
+        $result = $this->db->query( self::SQL_BANNED_USER_COMMENTS, [ $from_date, self::_to_date($to_date), self::_limit($limit) ] );
 
         printf( "Count of comments: %s\n", $result->num_rows );
 
@@ -105,11 +116,11 @@ class CLI extends MY_Controller {
     /** Get clouds from whitelisted users after a date.
      * @return object CI_DB_mysql_result
      */
-    public function whitelisted_user_clouds( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT ) {
+    public function whitelisted_user_clouds( $from_date = self::FROM_DATE, $to_date = self::NOW, $limit = self::NO_LIMIT ) {
         echo __METHOD__ . PHP_EOL;
 
         $this->db->_compile_select();
-        $result = $this->db->query( self::SQL_WHITELIST_USER_CLOUDS, [ $sql_from_date, self::_limit($limit) ] );
+        $result = $this->db->query( self::SQL_WHITELIST_USER_CLOUDS, [ $from_date, self::_to_date($to_date), self::_limit($limit) ] );
 
         printf( "Count of clouds: %s\n", $result->num_rows );
 
@@ -141,13 +152,15 @@ class CLI extends MY_Controller {
     }
 
     /** Call Akismet 'submit-spam' multiple times, based on 'banned_user_comments' DB query.
+     * @return void
      */
-    public function learn_spam( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT ) {
+    public function learn_spam( $from_date = self::FROM_DATE, $to_date = self::NOW, $limit = self::NO_LIMIT ) {
         echo __METHOD__ . PHP_EOL;
 
-        $comments = $this->banned_user_comments( $sql_from_date, $limit );
+        $comments = $this->banned_user_comments( $from_date, $to_date, $limit );
 
         $akismet = $this->_init_akismet();
+        $bar = self::_start_progress_bar( $comments->num_rows );
 
         foreach ($comments->result() as $comment) {
             $comment_label = "comment-$comment->comment_id";
@@ -160,37 +173,37 @@ class CLI extends MY_Controller {
                 'comment_date_gmt' => date( 'c', $comment->timestamp ),
                 'user_role' => $comment->role, // 'user'
                 'blog_lang' => 'en,en_gb',
-                'user_ip' => '127.0.0.1',  // Unknown :(.
+                'user_ip' => self::UNKNOWN_IP,
                 'user_agent' => 'unknown',
             ]);
-            echo '.';
-            // echo "$comment_label: $result\n";
+            $bar->progress();
             self::_akismet_log($akismet, __METHOD__, $comment_label, $comment->user_name, $comment->body);
-            sleep( self::SLEEP );
+            usleep( self::SLEEP * 1000000 );
         }
-
-        printf( "\nCount of Akismet calls: %s\n", $comments->num_rows );
+        $bar->end();
+        printf( "Count of Akismet calls: %s\n", $comments->num_rows );
     }
 
     /** Call Akismet 'submit-spam' multiple times, based on 'whitelisted_user_clouds' DB query.
+     * @return void
      */
-    public function learn_ham( $sql_from_date = self::SQL_FROM_DATE, $limit = self::LIMIT  ) {
+    public function learn_ham( $from_date = self::FROM_DATE, $to_date = self::NOW, $limit = self::NO_LIMIT ) {
         echo __METHOD__ . PHP_EOL;
 
-        $clouds = $this->whitelisted_user_clouds( $sql_from_date, $limit );
+        $clouds = $this->whitelisted_user_clouds( $from_date, $to_date, $limit );
 
         $akismet = $this->_init_akismet();
+        $bar = self::_start_progress_bar( $clouds->num_rows );
 
-        foreach ($clouds->result_array as $cloud) {
+        foreach ($clouds->result() as $cloud) {
             $result = $akismet->submit_ham(self::_assemble_cloud( $cloud ));
 
-            echo '.';
-            // echo "cloud-$cloud->cloud_id: $result\n";
+            $bar->progress();
             self::_akismet_log($akismet, __METHOD__, 'cloud-' . $cloud->cloud_id, $cloud->user_name, $cloud->body);
-            sleep( self::SLEEP );
+            usleep( self::SLEEP * 1000000 );
         }
-
-        printf( "\nCount of Akismet calls: %s\n", $clouds->num_rows );
+        $bar->end();
+        printf( "Count of Akismet calls: %s\n", $clouds->num_rows );
     }
 
     // ----------------------------------------------------------------------
@@ -212,7 +225,7 @@ EOT;
             'comment_date_gmt' => date( 'c', $cloud->timestamp ),
             // 'user_role' => $cloud->role, // 'user'
             'blog_lang' => 'en,en_gb',
-            'user_ip' => '127.0.0.1',  // Unknown :(.
+            'user_ip' => self::UNKNOWN_IP,
             'user_agent' => 'unknown',
         ];
     }
@@ -220,6 +233,29 @@ EOT;
     protected static function _limit($limit) {
         $limit = (int) preg_replace('/(--)?limit[:=]/', '', (string) $limit);
         return $limit === -1 ? 10000 : $limit;
+    }
+
+    protected static function _to_date($sql_to_date) {
+        return $sql_to_date === self::NOW ? date( 'Y-m-d 23:59:00' ) : $sql_to_date;
+    }
+
+    protected static function _start_progress_bar( $steps = 100 ) {
+        $bar = new CliProgressBar( $steps );
+        $bar->{ 'setColorTo' . ucfirst(self::PROGRESS_COLOR) }();  // E.g. ->setColorToMagenta();
+        $bar->display();
+        return $bar;
+    }
+
+    public function progress_bar( $from_date = self::FROM_DATE, $to_date = self::NOW, $limit = 17 /* self::NO_LIMIT */ ) {
+
+        $query = $this->db->query( self::SQL_BANNED_USER_COMMENTS, [ $from_date, self::_to_date($to_date), self::_limit($limit) ] );
+
+        $progress = self::_start_progress_bar( $query->num_rows );
+        foreach ( $query->result() as $cloud ) {
+            usleep( self::SLEEP * 1000000 );
+            $progress->progress();
+        }
+        $progress->end();
     }
 
     // ----------------------------------------------------------------------
@@ -231,7 +267,7 @@ EOT;
     }
 
     protected static function _akismet_log($akismet, $method, $label = null, $author = null, $comment = null) {
-        $comment = $comment ? substr($comment, 0, 16) : '';
+        $comment = $comment ? preg_replace( '/([\r\n]|<\/?p>|&nbsp;)/', ' ', substr($comment, 0, 20)) : '';
         $inf = $akismet->get_info();
         $result = str_replace( 'Thanks for making the web a better place.', 'Thanks..', $inf->result );
         $hdr = $inf->akismet_hdr[ 0 ];
@@ -255,10 +291,9 @@ EOT;
              'api_key' => $config->item('akismet_key'),
              'blog_url' => $config->item('akismet_url'),
              'proxy' => $config->item('proxy'),
-             /*'blog_lang' => 'en,en_gb',
+             /* 'blog_lang' => 'en,en_gb',
              'user_ip' => '127.0.0.1',  // Unknown :(.
-             'user_agent' => 'unknown',
-             */
+             'user_agent' => 'unknown', */
         ]);
 
         $info = $akismet->get_info();
