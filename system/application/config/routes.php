@@ -57,5 +57,7 @@ $route[ 'cli' ] =
 $route[ 'CLI' ] =
 $route[ 'cli/-h' ] =
 $route[ 'CLI/-h' ] = 'CLI/help';
+$route[ 'cli/-v' ] =
+$route[ 'CLI/-v' ] = 'CLI/version';
 
 // End.

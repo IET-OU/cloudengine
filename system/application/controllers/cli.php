@@ -50,15 +50,26 @@ class CLI extends MY_Controller {
     public function __construct() {
         parent::MY_Controller();
 
-        if ( ! is_cli()) {
+        if ( ! is_cli() ) {
             show_404();
         }
-
         error_reporting( E_ALL );
         ini_set( 'display_errors', 1 );
         ini_set( 'error_log', 'syslog' );
     }
 
+    /** Re-map "-"" in CLI sub-commends to "_".
+    */
+    public function _remap( $method, $params = [] ) {
+        $method = str_replace( '-', '_', $method );
+        if (method_exists( $this, $method )) {
+            return call_user_func_array([ $this, $method ], $params );
+        }
+        show_404();
+    }
+
+    /** Output a list of sub-commands, and usage example(s).
+    */
     public function help() {
         echo __METHOD__ . " ~ List sub-commands: \n  * ";
 
@@ -70,6 +81,12 @@ class CLI extends MY_Controller {
         }
         echo implode( "\n  * ", $names ) . "\n\n";
         echo self::HELP;
+    }
+
+    /** Output the CloudEngine version ~ git-describe.
+    */
+    public function version() {
+        echo str_replace( '-g', '+g', exec( 'git describe --always --long' )) . "\n";
     }
 
     // ----------------------------------------------------------------------
@@ -160,6 +177,9 @@ class CLI extends MY_Controller {
         //self::_akismet_log($akismet, __METHOD__, 'test-0123' );
     }
 
+    /** Compare results from live and test Akismet accounts.
+     * @return void
+     */
     public function compare_spam( $example_num = '0', $submit = false ) {
         echo __METHOD__ . PHP_EOL;
 
