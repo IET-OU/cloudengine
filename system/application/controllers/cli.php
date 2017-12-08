@@ -9,7 +9,7 @@
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package   CLI
  *
- * @author Nick Freear, 2017-11-29.
+ * @author Nick Freear, 2017-11-29, 2017-12-04.
  * @link  https://codeigniter.com/userguide2/database/queries.html
  * @link  https://docs.akismet.com/general/teach-akismet/
  * @link  https://akismet.com/development/api/#comment-check
@@ -58,9 +58,9 @@ class CLI extends MY_Controller {
         ini_set( 'error_log', 'syslog' );
     }
 
-    /** Re-map "-"" in CLI sub-commends to "_".
+    /** DISABLED - does NOT work :(. (Re-map "-"" in CLI sub-commends to "_".)
     */
-    public function _remap( $method, $params = [] ) {
+    public function _x_disable_remap( $method, $params = [] ) {
         $method = str_replace( '-', '_', $method );
         if (method_exists( $this, $method )) {
             return call_user_func_array([ $this, $method ], $params );
@@ -83,10 +83,10 @@ class CLI extends MY_Controller {
         echo self::HELP;
     }
 
-    /** Output the CloudEngine version ~ git-describe.
+    /** Output the CloudEngine version ~ via: git-describe.
     */
     public function version() {
-        echo str_replace( '-g', '+g', exec( 'git describe --always --long' )) . "\n";
+        echo preg_replace( '/-([\dg])/', '+$1', exec( 'git describe --always --long --tags' )) . "\n";
     }
 
     // ----------------------------------------------------------------------
