@@ -9,9 +9,6 @@
 
 class MY_Form_validation extends CI_Form_validation {
 
-    const EMAIL_NOSPAM_FILE = __DIR__ . '/../../../vendor/wesbos/burner-email-providers/emails.txt';
-    // const EMAIL_NOSPAM_FILE = __DIR__ . '/../config/email-nospam.php';
-
   public function __construct($rules = array()) {
 	parent::__construct($rules);
     $this->_error_prefix = '<p class="form_errors">';
@@ -48,36 +45,21 @@ class MY_Form_validation extends CI_Form_validation {
     /**
      * Custom rule. Check if an email address is disposable.
      *
-     * @author Nick Freear, 06-December-2017.
-     * @link https://codeigniter.com/userguide2/libraries/form_validation.html#validationrules
-     * @link https://gist.github.com/adamloving/4401361#-temporary-email-address-domains
-     *
-     * @param string $email  Email address.
-     * @return bool          Is the email address acceptable?
+     * @param  string $email  Email address.
+     * @return object         $result->ok ~~ Is the email address acceptable?
      */
     public function email_nospam( $email ) {
         log_message( 'debug', __FUNCTION__ . '::start, ' . $email );
 
-        $email_server_list = file_get_contents( self::EMAIL_NOSPAM_FILE );
-        $lines = substr_count( $email_server_list );
+        $is_email = $this->CI->nospam->check_email( $email );
 
-        $email_parts = explode( '@', $email );
-        $email_host = strtolower($email_parts[ 1 ]);
-
-        // $email_pattern = "\n" . $email_host;
-
-        // If there is no match, the email server is NOT in the list of burner providers.
-        $pos = strpos( $email_server_list, $email_host );
-        $email_ok = ( false === $pos );
-
-        if ( ! $email_ok ) {
+        if ( ! $is_email->ok ) {
             $this->CI->form_validation->set_message( 'email_nospam', t('The %s must not be a disposable email address.' ));
         }
 
-        log_message( 'debug', __FUNCTION__ . '::end::' . json_encode([
-            'lines' => $lines, 'host' => $email_host, 'pos' => $pos, 'ok' => $email_ok ]));
+        log_message( 'debug', __FUNCTION__ . '::end::' . json_encode( $is_email ));
 
-        return $email_ok;
+        return $is_email->ok;
     }
 
 

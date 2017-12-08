@@ -31,6 +31,7 @@
     },
     "require-dev": {
         "dariuszp/cli-progress-bar": "^1.0.2",
+        "phpunit/phpunit": "^6.5",
         "squizlabs/php_codesniffer": "3.1.1",
         "jakub-onderka/php-parallel-lint": "^0.9.2"
     },
@@ -48,14 +49,19 @@
             "# npm i grunt-contrib-validate-xml@^0.0.1"
         ],
         "test": [
-            "parallel-lint index.php system",
-            "node_modules/.bin/grunt"
+            "parallel-lint index.php system tests",
+            "node_modules/.bin/grunt",
+            "phpunit -c tests/phpunit.xml"
         ],
+        "unit": "phpunit -c tests/phpunit.xml",
         "phpcs": "phpcs --standard=PSR2 --extensions=php system/application/libraries/Api*",
         "fix": "phpcbf --standard=PSR2 --extensions=php system/application/libraries/Api*",
         "cli-help": "php index.php CLI -h",
         "cli-version": "php index.php CLI -v",
         "banned-user-comments": "php index.php CLI banned_user_comments 2017-01-01 --limit:-1  # Un-limited."
+    },
+    "autoload": {
+        "classmap": [ "application/libraries/" ]
     },
     "repositories": [ {
         "type": "package",

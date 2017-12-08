@@ -47,6 +47,7 @@ if ('install' !== $CI->uri->segment(1)) {
     array_push($autoload['libraries'], 'database');
     array_push($autoload['libraries'], 'Auth_lib');
     array_push($autoload['libraries'], 'Settings');
+    array_push($autoload['libraries'], 'Nospam');
 }
 
 
