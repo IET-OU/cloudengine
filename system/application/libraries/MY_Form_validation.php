@@ -1,7 +1,7 @@
 <?php
 /**
  * Extends the Form_validation class
- * 
+ *
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package I8ln
@@ -9,15 +9,18 @@
 
 class MY_Form_validation extends CI_Form_validation {
 
+    const EMAIL_NOSPAM_FILE = __DIR__ . '/../../../vendor/wesbos/burner-email-providers/emails.txt';
+    // const EMAIL_NOSPAM_FILE = __DIR__ . '/../config/email-nospam.php';
+
   public function __construct($rules = array()) {
 	parent::__construct($rules);
     $this->_error_prefix = '<p class="form_errors">';
     $this->_error_suffix = '</p>';
   }
 
-    function valid_url($url) {	
+    function valid_url($url) {
 		// The following is from http://stackoverflow.com/questions/161738/what-is-the-best-regular-expression-to-check-if-a-string-is-a-valid-url
-		$url_format =  
+		$url_format =
 		'/^(https?):\/\/'.                                         // protocol
 		'(([a-z0-9$_\.\+!\*\'\(\),;\?&=-]|%[0-9a-f]{2})+'.         // username
 		'(:([a-z0-9$_\.\+!\*\'\(\),;\?&=-]|%[0-9a-f]{2})+)?'.      // password
@@ -41,7 +44,42 @@ class MY_Form_validation extends CI_Form_validation {
         }
         return $url_valid;
     }
-  
+
+    /**
+     * Custom rule. Check if an email address is disposable.
+     *
+     * @author Nick Freear, 06-December-2017.
+     * @link https://codeigniter.com/userguide2/libraries/form_validation.html#validationrules
+     * @link https://gist.github.com/adamloving/4401361#-temporary-email-address-domains
+     *
+     * @param string $email  Email address.
+     * @return bool          Is the email address acceptable?
+     */
+    public function email_nospam( $email ) {
+        log_message( 'debug', __FUNCTION__ . '::start, ' . $email );
+
+        $email_server_list = file_get_contents( self::EMAIL_NOSPAM_FILE );
+        $lines = substr_count( $email_server_list );
+
+        $email_parts = explode( '@', $email );
+        $email_host = strtolower($email_parts[ 1 ]);
+
+        // $email_pattern = "\n" . $email_host;
+
+        // If there is no match, the email server is NOT in the list of burner providers.
+        $pos = strpos( $email_server_list, $email_host );
+        $email_ok = ( false === $pos );
+
+        if ( ! $email_ok ) {
+            $this->CI->form_validation->set_message( 'email_nospam', t('The %s must not be a disposable email address.' ));
+        }
+
+        log_message( 'debug', __FUNCTION__ . '::end::' . json_encode([
+            'lines' => $lines, 'host' => $email_host, 'pos' => $pos, 'ok' => $email_ok ]));
+
+        return $email_ok;
+    }
+
 
 	/**
 	 * Set validation Rules - calls parent::set_message() after parent::set_rules().
@@ -74,11 +112,12 @@ class MY_Form_validation extends CI_Form_validation {
 	  'alpha_dash' => t("The !field-name field can contain letters, numbers, dash and underscore (no space).", $substitute),
 	  'alpha_numeric'=>t("The !field-name field can contain letters and numbers only.", $substitute),
       'matches'    => t("The !field-name field does not match the !field-name field.", $substitute),
+      'email_nospam' => t("The !field-name must not be a disposable email address.", $substitute),
       'callback_fullname_check'=> t("Your fullname must contain a space"),  # Used by controllers/user.php
       'callback_does_not_use_url_shortener'=>  # Used by controllers/cloud.php
 t("The URL you have specified uses a URL shortener. Please give the original URL instead since URLs from URL shorteners may not exist forever."),
     );
-    
+
     # views/user.php : edit() uses '|' delimited rules-list.
     if (is_string($rules)) {
       $rules_r = explode('|', $rules);
@@ -101,12 +140,12 @@ t("The URL you have specified uses a URL shortener. Please give the original URL
 
 	/**
 	 * IE7 Button Fix
-   * 
+   *
    * IE7 passes the display value of a button rather than the value parameter.
    * Use this function by adding <span class="button-xxxxxx"></span> as the opening part
    * of the display value of your button and replace xxxxxx with the actual value for the button.
    * Do keep the actual value="xxxxxx" attribute of the button as all other browsers will use this.
-   * 
+   *
    * Note: this does not work with IE6 and less because they send all button values in the POST submission
    * rather than the value of the button that was pressed.
 	 *
@@ -127,7 +166,7 @@ t("The URL you have specified uses a URL shortener. Please give the original URL
     }
     return $return;
   }
-  
+
 
 
 }

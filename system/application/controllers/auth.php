@@ -108,7 +108,7 @@ class Auth extends MY_Controller {
         $this->form_validation->set_rules('fullname', t("Full name"),
                                          'trim|required|max_length[140]|callback__fullname_check');
         $this->form_validation->set_rules('email', t("Email"),
-                                  'trim|required|valid_email|callback__email_duplicate_check|max_length[320]');
+            'trim|required|valid_email|callback__email_duplicate_check|max_length[320]|email_nospam');
         $this->form_validation->set_rules('institution', t("Institution"),
                                          'trim|required|max_length[140]');
         $this->form_validation->set_rules('country_id', t("Country"), 'required');

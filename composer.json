@@ -25,7 +25,9 @@
         "php": ">=5.5.9",
         "ext-gd": "*",
         "ext-curl": "*",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "ext-simplexml": "*",
+        "wesbos/burner-email-providers": "^1.0"
     },
     "require-dev": {
         "dariuszp/cli-progress-bar": "^1.0.2",
@@ -55,6 +57,17 @@
         "cli-version": "php index.php CLI -v",
         "banned-user-comments": "php index.php CLI banned_user_comments 2017-01-01 --limit:-1  # Un-limited."
     },
+    "repositories": [ {
+        "type": "package",
+        "package": {
+            "name": "wesbos/burner-email-providers",
+            "version": "1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/wesbos/burner-email-providers/archive/edbf21994f78c23d9bab244973249ba68f9ede85.zip"
+            }
+        }
+    } ],
     "minimum-stability": "beta",
     "prefer-stable": true,
     "extra": {
@@ -62,6 +75,8 @@
             "https://bitbucket.org/cloudengine/cloudengine/commits/all?page=17",
             "https://bitbucket.org/cloudengine/cloudengine/commits/38d061a046b8b246a905cf1018cef8a595aeae25",
             "https://github.com/IET-OU/cloudengine/commit/65782fa095e7155401aaaab694ea597b7e88f709"
+
+            , "https://github.com/wesbos/burner-email-providers#edbf21994f"
         ]
     }
 }
