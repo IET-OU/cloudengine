@@ -1,4 +1,4 @@
-<?php namespace IET_OU\CloudEngine\Tests;
+<?php namespace IET_OU\CloudEngine\Tests\Libraries;
 
 /**
  * Test the Anti-spam library.
