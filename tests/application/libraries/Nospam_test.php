@@ -35,8 +35,8 @@ class Nospam_test extends TestCase {
     {
         $server_list = $this->nospam->load_nospam_file();
 
-        $this->assertContains( '.com', $server_list );
-        $this->assertContains( '.ru', $server_list );
+        $this->assertContains( ".com\n", $server_list );
+        $this->assertContains( ".ru\n", $server_list );
     }
 
     public function test_is_disposable()
@@ -49,8 +49,23 @@ class Nospam_test extends TestCase {
 
     public function test_not_disposable()
     {
-      $this->assertTrue( $this->nospam->check_email( 'joe.blogs@open.ac.uk' )->email_ok );
-      $this->assertTrue( $this->nospam->check_email( 'joe.blogs@gmail.com' )->ok );
-      $this->assertTrue( $this->nospam->check_email( 'joe.blogs@yahoo.co.uk' )->ok );
+        $this->assertTrue( $this->nospam->check_email( 'joe.bloggs@gmail.com' )->email_ok );
+        $this->assertTrue( $this->nospam->check_email( 'jane.bloggs@yahoo.co.uk' )->ok );
+        $this->assertTrue( $this->nospam->check_email( 'jane.bloggs@outlook.com' )->ok );
+    }
+
+    public function test_academic_openuniv()
+    {
+        $this->assertTrue( $this->nospam->check_email( 'jane.bloggs@open.ac.uk' )->ok );
+    }
+
+    public function test_academic_world()
+    {
+        $this->assertTrue( $this->nospam->check_email( 'joe.bloggs@u-tokyo.ac.jp' )->ok );
+        $this->assertTrue( $this->nospam->check_email( 'joe.bloggs@ouchn.edu.cn' )->ok );
+        $this->assertTrue( $this->nospam->check_email( 'joe.bloggs@open.edu.au' )->ok );
+        $this->assertTrue( $this->nospam->check_email( 'joe.bloggs@out.ac.tz' )->ok );
+        $this->assertTrue( $this->nospam->check_email( 'joe.bloggs@mit.edu' )->ok );
+        $this->assertTrue( $this->nospam->check_email( 'joe.bloggs@ou.nl' )->ok );
     }
 }
