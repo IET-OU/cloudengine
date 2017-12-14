@@ -56,6 +56,7 @@
         "unit": "phpunit -c tests/phpunit.xml",
         "phpcs": "phpcs --standard=PSR2 --extensions=php system/application/libraries/Api*",
         "fix": "phpcbf --standard=PSR2 --extensions=php system/application/libraries/Api*",
+        "version.json": "(printf '{ \"describe\": \"'; git describe --long --dirty | tr -d '\n' ; printf '\" }') > version.json",
         "cli-help": "php index.php CLI -h",
         "cli-version": "php index.php CLI -v",
         "banned-user-comments": "php index.php CLI banned_user_comments 2017-01-01 --limit:-1  # Un-limited."

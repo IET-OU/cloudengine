@@ -20,5 +20,9 @@ node_modules/*
 *.sql
 *.log
 _cloudworks_data/
+version.json
+tests/codeigniter/
+
+/google*.html
 
 # End.

@@ -86,7 +86,7 @@ class CLI extends MY_Controller {
     /** Output the CloudEngine version ~ via: git-describe.
     */
     public function version() {
-        echo preg_replace( '/-([\dg])/', '+$1', exec( 'git describe --always --long --tags' )) . "\n";
+        echo preg_replace( '/-([\dg])/', '+$1', exec( 'git describe --always --long --tags --dirty' )) . "\n";
     }
 
     // ----------------------------------------------------------------------
