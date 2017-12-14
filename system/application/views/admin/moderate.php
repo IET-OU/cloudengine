@@ -5,6 +5,7 @@
 <?php if ($clouds): ?>
 <h2>Clouds</h2>
     <?php foreach ($clouds as $cloud): ?>
+        Cloud ID:  <?= $cloud->cloud_id ?>
         <p><?= anchor('cloud/view/'.$cloud->cloud_id, $cloud->title) ?></p>
         <p>Cloud created  by <a href="<?= base_url() ?>user/view/<?= $cloud->user_id ?>"><?= $cloud->fullname ?></a></p>
         <p><?= $cloud->summary ?></p>
@@ -26,6 +27,7 @@
 
 <h2>Comments</h2>
     <?php foreach ($comments as $comment): ?>
+        Cloud ID: <?= $comment->cloud_id ?> / comment ID: <?= $comment->comment_id ?>
         <p>Comment  by <a href="<?= base_url() ?>user/view/<?= $comment->user_id ?>"><?= $comment->fullname ?></a></p>
         <?= $comment->body ?>
         <p class="login">
@@ -118,6 +120,7 @@
 <?php if ($contents): ?>
 <h2>Content</h2>
     <?php foreach ($contents as $content): ?>
+        Cloud ID: <?= $content->cloud_id ?> / content ID: <?= $content->content_id ?>
         <p><?= $content->body ?>  by  <?= anchor('user/view/'.$content->user_id, $content->fullname) ?></p>
         <p class="login">
         <?=anchor("user/ban/$content->user_id", t('Ban User'), array('title'=>t('Ban User'), 'class'=>'button')) ?>

@@ -552,6 +552,11 @@ body.aurora #site-header {
     margin:0 auto;
 }
 
+#site-header-content a img {
+    display: inline-block;
+    margin-left: 2px;
+}
+
 ul li a.survey {
     padding-left: 24px;
     background:url(li-email.gif) 0 .3em no-repeat;
