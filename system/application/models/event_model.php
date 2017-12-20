@@ -380,6 +380,8 @@ class Event_model extends Model {
 
         switch ($event->event_type) {
             case 'cloud':
+                $cloud->user_id = $cloud->id;
+
                 if ($event->follow_item_type == 'user') {
                     // New cloud created by user
                     $cloud_id = $event->event_item_id;
@@ -745,7 +747,7 @@ class Event_model extends Model {
                     $new_event    = $this->event_model->to_string($event, $simple);
                     if ($new_event) {
                       $new_events[] = '<li class="'.$this->event_category($event->event_type).
-                                      '">'.$new_event.' <em>'.time_ago($event->timestamp).'</em></li>';
+                                      '">'.$new_event.' <em>'.time_ago($event->timestamp).'</em>';  // '</li>';
                                     }
                     $last_event_item_id = $event->event_item_id;
                     $last_event_type    = $event->event_type;

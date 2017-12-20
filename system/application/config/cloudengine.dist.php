@@ -228,8 +228,12 @@ $config['x_blog_comments'] = false;
 
 // Feature flag for spam-checking of new items added to the site using the moderation provider specified by the 'moderation_provider' config. This can currently be 'akismet'
 // or 'none'
-$config['x_moderation'] = FALSE;
+$config['x_moderation'] = FALSE;  // ??
 $config['x_moderation'] = TRUE;
 $config['moderation_provider'] = 'none';
 $config['akismet_key'] = '';
 $config['akismet_url'] = '';
+$config[ 'moderation_debug' ] = true;  // Logging ?!
+// $config[ 'moderation_log' ] = true;
+
+$config['egg'] = 'Welcome!';

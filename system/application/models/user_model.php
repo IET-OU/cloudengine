@@ -223,6 +223,14 @@ class User_model extends Model {
         return $query->result();
     }
 
+    function get_comments($user_id) {
+        $user_id = (int) $user_id;
+
+        $query = $this->db->query("SELECT * FROM  comment
+                                   WHERE comment.user_id = $user_id");
+        return $query->result();
+    }
+
     function get_clouds_with_contributions($user_id) {
         $user_id = (int) $user_id;
 
@@ -329,7 +337,7 @@ class User_model extends Model {
     function get_profiles_for_moderation() {
         $this->db->where('moderate', 1);
         $this->db->where('user.banned', 0);
-        $this->db->join('user', 'user.id = user_profile.id'); 
+        $this->db->join('user', 'user.id = user_profile.id');
         $query = $this->db->get('user_profile');
         return $query->result();
     }

@@ -79,6 +79,45 @@ class User extends MY_Controller {
         redirect(base_url().'user/view/'.$user_id);
     }
 
+		/**
+		 * Ban a user, and train the anti-spam system.
+		 *
+		 * @param integer $user_id The ID of the user to whitelist
+		 */
+		public function ban_and_train($user_id = 0) {
+				$this->auth_lib->check_is_admin();
+				$this->user_model->ban($user_id);
+				///TODO:
+				$this->_learnSpam($user_id);
+
+				redirect(base_url().'user/view/'.$user_id);
+		}
+
+		protected function _learnSpam($user_id) {
+			  // if (config_item('x_moderation')) {
+			  $this->load->library('ModerationProvider');
+			  $moderation_provider = new ModerationProvider();
+
+        $user = $this->user_model->get_user($user_id);
+
+			  $clouds = $this->user_model->get_clouds($user_id);
+				if ($clouds) {
+					  foreach ($clouds as $cloud) {
+						    $moderation_provider->learnSpam($user, $cloud->body, 'cloud');
+					  }
+				}
+
+				$comments = $this->user_model->get_comments($user_id);
+        if ($comments) {
+					  foreach ($comments as $comment) {
+							  $moderation_provider->learnSpam($user, $comment->body, 'comment');
+						}
+				}
+
+				// TODO: comments, "extra" content ...
+				// ??
+		}
+
     /**
      * Unban a user
      *
