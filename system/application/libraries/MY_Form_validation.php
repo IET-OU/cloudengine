@@ -72,13 +72,13 @@ class MY_Form_validation extends CI_Form_validation {
         log_message( 'debug', __FUNCTION__ . '::start, ' . $recap_response );
 
         $recaptcha = $this->CI->recaptcha->verify( $recap_response );
-        if ( ! $recaptcha->ok ) {
+        if ( ! $recaptcha->success ) {
             $this->CI->form_validation->set_message( 'recaptcha', t('The reCAPTCHA was invalid.' ));
         }
 
-        log_message( 'debug', __FUNCTION__ . '::end::' . json_encode( $reptcha ));
+        log_message( 'debug', __FUNCTION__ . '::end::' . json_encode( $recaptcha ));
 
-        return $recaptcha->ok;
+        return $recaptcha->success;
     }
 
 	/**

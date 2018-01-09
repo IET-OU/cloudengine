@@ -17,16 +17,16 @@ class Recaptcha {
     public static function verify( $recap_response = null ) {
 
         $recap_response = $recap_response ? $recap_response : filter_input( INPUT_POST, 'g-recaptcha-response' );
-        $secret = config_item( 'recaptcha_secret_key' );
+        $recap_secret = config_item( 'recaptcha_secret_key' );
 
         $server_response = json_decode(file_get_contents( self::URL, false, self::httpPostContext([
-            'secret' => $secret,
+            'secret' => $recap_secret,
             'response' => $recap_response,
             // 'remoteip' => ?
         ]) ));
-        $server_response->ok = $server_response->success;
+        // $server_response->ok = $server_response->success;
 
-        header( 'X-recaptcha-verify: ' . json_encode([ 'key' => $secret, 're_resp' => $recap_response, 'srv_resp' => $server_response ]));
+        header( 'X-recaptcha-verify: ' . json_encode([ 'rc_resp' => $recap_response, 'srv_resp' => $server_response ]));
 
         return $server_response;
     }

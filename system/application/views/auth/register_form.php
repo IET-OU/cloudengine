@@ -107,10 +107,10 @@
     <tr>
         <td>
             <label for="recaptcha"><?=t('Please complete the re-Captcha test.')?>
-<?=t('If you are unable to complete it, please e-mail !email! so that we can register you manually.') ?></label>
+ <?=t('If you are unable to complete it, please e-mail !email! so that we can register you manually.') ?></label>
         </td>
         <td>
-            <script src="https://www.google.com/recaptcha/api.js"></script>
+            <script src="https://www.google.com/recaptcha/api.js?hl=<?= $this->lang->lang_code() ?>"></script>
 
             <div class="g-recaptcha" data-sitekey="<?= config_item('recaptcha_site_key') ?>"></div>
         </td>
