@@ -46,7 +46,7 @@ class MY_Form_validation extends CI_Form_validation {
      * Custom rule. Check if an email address is disposable.
      *
      * @param  string $email  Email address.
-     * @return object         $result->ok ~~ Is the email address acceptable?
+     * @return boolean        $result->ok ~~ Is the email address acceptable?
      */
     public function email_nospam( $email ) {
         log_message( 'debug', __FUNCTION__ . '::start, ' . $email );
@@ -62,6 +62,24 @@ class MY_Form_validation extends CI_Form_validation {
         return $is_email->ok;
     }
 
+    /**
+     * Custom rule. reCAPTCHA.
+     *
+     * @param  string  $recap_response  The 'g-recaptcha-response' POST paramater.
+     * @return boolean $result->success ~~ Was the reCAPTCHA valid?
+     */
+    public function recaptcha( $recap_response ) {
+        log_message( 'debug', __FUNCTION__ . '::start, ' . $recap_response );
+
+        $recaptcha = $this->CI->recaptcha->verify( $recap_response );
+        if ( ! $recaptcha->ok ) {
+            $this->CI->form_validation->set_message( 'recaptcha', t('The reCAPTCHA was invalid.' ));
+        }
+
+        log_message( 'debug', __FUNCTION__ . '::end::' . json_encode( $reptcha ));
+
+        return $recaptcha->ok;
+    }
 
 	/**
 	 * Set validation Rules - calls parent::set_message() after parent::set_rules().
@@ -95,6 +113,7 @@ class MY_Form_validation extends CI_Form_validation {
 	  'alpha_numeric'=>t("The !field-name field can contain letters and numbers only.", $substitute),
       'matches'    => t("The !field-name field does not match the !field-name field.", $substitute),
       'email_nospam' => t("The !field-name must not be a disposable email address.", $substitute),
+      'recaptcha'  => t('The reCAPTCHA was invalid.', $substitute),
       'callback_fullname_check'=> t("Your fullname must contain a space"),  # Used by controllers/user.php
       'callback_does_not_use_url_shortener'=>  # Used by controllers/cloud.php
 t("The URL you have specified uses a URL shortener. Please give the original URL instead since URLs from URL shorteners may not exist forever."),

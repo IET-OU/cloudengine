@@ -160,6 +160,11 @@ $config['oembed_options'] = array(
 |  CAPTCHA SETTINGS  |
 +-------------------*/
 
+$config[ 'recaptcha' ] = true;
+$config[ 'recaptcha_site_key' ] = '';
+$config[ 'recaptcha_secret_key' ] = '';
+
+
 /*
 |-------------------------------------------------------------------------------
 | Should the visitor input check be case sensitive or not

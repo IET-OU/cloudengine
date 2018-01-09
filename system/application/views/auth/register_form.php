@@ -3,7 +3,7 @@
 
 <p>
 <?=t("By creating an account, you agree to our [link-at]Terms and Conditions of Use[/link].",
-    array('[link-at]' => t_link('about/tandc')))?> 
+    array('[link-at]' => t_link('about/tandc')))?>
 </p>
 <?=form_open($this->uri->uri_string(), array('id'=>'register_form', 'class'=>'__h5fm')); /*Uses HTML5 form attributes (BB #115).*/ ?>
 <?= validation_errors() ?>
@@ -32,7 +32,7 @@
                 'required' =>true,
                 'maxlength'=>254,
                 'value'    =>set_value('email') )) ?>
-         </td> 
+         </td>
     </tr>
     <tr>
         <td>
@@ -64,7 +64,7 @@
             );
         ?>
         </td>
-    </tr>   
+    </tr>
     <tr>
     <td>
         <label for="country_id"><?=t("Country")?></label>
@@ -73,7 +73,7 @@
     	<?=form_dropdown('country_id', $countries,
     	                 (isset($user->country_id) ? $user->country_id : 0 ), 'id="country_id"')?>
         </td>
-    </tr>    
+    </tr>
     <tr>
         <td>
             <label for="password"><?=t("Password")?></label>
@@ -97,11 +97,26 @@
                  'required'=>true,
                  'oninput'=>"setCustomValidity(value!=password.value ? '"
                      .t('Error, the passwords should match')."' : '')",
-    	                       'maxlength'=>'16', 
+    	                       'maxlength'=>'16',
     	                       'size'=>'16',
     	                       'value'=>''))?>
         </td>
     </tr>
+
+    <?php if (config_item('recaptcha')): ?>
+    <tr>
+        <td>
+            <label for="recaptcha"><?=t('Please complete the re-Captcha test.')?>
+<?=t('If you are unable to complete it, please e-mail !email! so that we can register you manually.') ?></label>
+        </td>
+        <td>
+            <script src="https://www.google.com/recaptcha/api.js"></script>
+
+            <div class="g-recaptcha" data-sitekey="<?= config_item('recaptcha_site_key') ?>"></div>
+        </td>
+    </tr>
+    <?php endif; ?>
+
     <?php if (config_item('x_captcha')): ?>
     <tr>
         <td>
@@ -113,7 +128,7 @@
     	   <?=form_input(array('name'=>'captcha',
     	         'required'=>true,
     	         'autocomplete'=>false,
-    	                       'maxlength'=>'45', 
+    	                       'maxlength'=>'45',
     	                       'size'=>'45',
     	                       'value'=>''))?>
             </td>

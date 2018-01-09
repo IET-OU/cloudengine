@@ -48,6 +48,7 @@ if ('install' !== $CI->uri->segment(1)) {
     array_push($autoload['libraries'], 'Auth_lib');
     array_push($autoload['libraries'], 'Settings');
     array_push($autoload['libraries'], 'Nospam');
+    array_push($autoload['libraries'], 'Recaptcha');
 }
 
 
@@ -60,7 +61,7 @@ if ('install' !== $CI->uri->segment(1)) {
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = [ 'url', 'form', 'array', 'html', 'mail', 'nofollow', 'cli' ];
+$autoload['helper'] = [ 'url', 'form', 'array', 'html', 'mail', 'nofollow', 'cli', /*'recaptcha'*/ ];
 
 if (!function_exists('json_encode')) {
     array_push($autoload['helper'], 'json');

@@ -121,6 +121,10 @@ class Auth extends MY_Controller {
        		                                  'trim|required|callback__captcha_check');
         }
 
+		if (config_item( 'recaptcha' )) {
+			$this->form_validation->set_rules( 'g-recaptcha-response', t('reCAPTCHA'), 'required|recaptcha' );
+		}
+
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
     	if ($this->input->post('submit')) {
