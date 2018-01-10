@@ -47,6 +47,8 @@ $config['hg_path'] = '';
 // and your network requires one.
 $config['proxy'] = '';
 $config['proxy_port'] = '';
+// HTTP proxy, without the "http://" part.
+$config['http_proxy'] = '';
 
 // A list of devices for which the rich editor (Tiny MCE) should be disabled
 // (pipe | separated).  EXPERIMENTAL.

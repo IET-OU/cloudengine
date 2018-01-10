@@ -19,16 +19,20 @@ class Recaptcha {
         $recap_response = $recap_response ? $recap_response : filter_input( INPUT_POST, 'g-recaptcha-response' );
         $recap_secret = config_item( 'recaptcha_secret_key' );
 
-        $server_response = json_decode(file_get_contents( self::URL, false, self::httpPostContext([
-            'secret' => $recap_secret,
-            'response' => $recap_response,
-            // 'remoteip' => ?
-        ]) ));
-        // $server_response->ok = $server_response->success;
+        $raw_response = file_get_contents( self::URL, false, self::httpPostContext([
+             'secret' => $recap_secret,
+             'response' => $recap_response,
+             // 'remoteip' => ?
+        ]) );
+        $srv_response = $raw_response ? json_decode( $raw_response ) : $raw_response;
 
-        header( 'X-recaptcha-verify: ' . json_encode([ 'rc_resp' => $recap_response, 'srv_resp' => $server_response ]));
+        if ( ! $srv_response || ! isset( $srv_response->success ) ) {
+            header( 'X-recaptcha-v-error: ' . json_encode([ $srv_response, $http_response_header ]));
+        }
 
-        return $server_response;
+        header( 'X-recaptcha-verify: ' . json_encode([ 'rc_resp' => $recap_response, 'srv_resp' => $srv_response ]));
+
+        return $srv_response;
     }
 
     protected static function httpPostContext( $postdata ) {
@@ -38,7 +42,7 @@ class Recaptcha {
             'http' => [
                 'method' => 'POST',
                 'user_agent' => 'CloudEngine/1.0-beta +https://github.com/nfreear',
-                'proxy' => config_item( 'proxy' ), // . config_item( 'proxy_port' ),
+                'proxy' => config_item( 'http_proxy' ),
                 'header' => [
                     'Content-Type: application/x-www-form-urlencoded',
                     'Content-Length: ' . strlen( $postdata ),
