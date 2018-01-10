@@ -17,9 +17,11 @@
 
             <?php foreach ($events as $idx => $event): ?>
                 <?php $raw = $events_raw[ $idx ]; ?>
+                <?php if ($raw->event_type === 'login_attempt') { continue; } ?>
+
                 <?= $event ?>
                 <a href="<?= base_url() ?>user/ban/<?= $raw->user_id ?>?from=admin-stream-ban"
-                  title="Ban user and learn spam" class="button user-ban">Ban user and learn spam</a></li>
+                  title="Ban user and learn spam" class="button link-arrow user-ban">Ban user and learn spam</a></li>
             <?php endforeach; ?>
 
             </ul>
@@ -30,8 +32,29 @@
      <!-- <p><a href=""><?=t("Back to cloudscape")?></a> | <a class="rss" href="<?= $rss ?>"><?=t("RSS")?></a></p> -->
 </div>
 <div id="region2">
-    <?php $this->load->view('search/search_box'); ?>
-    <?php $this->load->view('user/user_block'); ?>
+    <?php // $this->load->view('search/search_box'); ?>
+    <?php // $this->load->view('user/user_block'); ?>
     <p>You can also search for <?= anchor('user/people', 'people') ?> and <?= anchor('user/institution_list', 'institutions') ?></p>
 
 </div>
+
+
+<script>
+jQuery(function ($) {
+
+    $ban_links = $('.admin-stream-ban a.user-ban');
+
+    $ban_links.each(function () {
+
+      $(this).on('click', function (ev) {
+        var result = window.confirm("Are you sure you want to ban this user?");
+        if (! result) {
+          ev.preventDefault();
+        }
+        console('ban click:', $(this), result);
+      });
+    });
+
+    console.warn('ban links:', $ban_links);
+});
+</script>

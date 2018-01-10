@@ -2448,6 +2448,16 @@ img.badge {
     padding: 5px;
 }
 
+.admin-stream-ban a.button {
+  background-color: #d63333;
+  color: #fff;
+  display: inline-block;
+  margin-top: 1px;
+  padding: 3px 5px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
 
 /* Google custom search.
 */
@@ -2465,4 +2475,4 @@ form.gsc-search-box input {
 }
 
 
-/*End. */
+/* End. */

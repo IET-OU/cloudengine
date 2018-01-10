@@ -5,6 +5,7 @@
 <?php if ($this->config->item('x_flag')): ?>
 <li><?= anchor('admin/flagged', t("Items flagged as spam by users")) ?></li>
 <li><?= anchor('event/admin', t("Admin Cloudstream (check occasionally for spam)")) ?></li>
+<li><?= anchor('event/admin_ban', t('Admin Cloudstream, with banning') . ' (beta)') ?></li>
 <?php endif; ?>
 </ul>
 
