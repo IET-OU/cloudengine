@@ -75,8 +75,8 @@ class User extends MY_Controller {
      */
     function ban($user_id = 0) {
         $this->auth_lib->check_is_admin();
-        $this->user_model->ban($user_id);
-        redirect(base_url().'user/view/'.$user_id);
+        $this->user_model->ban((int) $user_id);
+        redirect('user/view/' . (int) $user_id);
     }
 
 		/**
@@ -84,13 +84,13 @@ class User extends MY_Controller {
 		 *
 		 * @param integer $user_id The ID of the user to whitelist
 		 */
-		public function ban_and_train($user_id = 0) {
+		public function ban_and_learn($user_id = 0) {
 				$this->auth_lib->check_is_admin();
-				$this->user_model->ban($user_id);
+				$this->user_model->ban((int) $user_id);
 				///TODO:
-				$this->_learnSpam($user_id);
+				$this->_learnSpam((int) $user_id);
 
-				redirect(base_url().'user/view/'.$user_id);
+				redirect('user/view/' . (int) $user_id);
 		}
 
 		protected function _learnSpam($user_id) {
@@ -125,8 +125,8 @@ class User extends MY_Controller {
      */
     function unban($user_id = 0) {
         $this->auth_lib->check_is_admin();
-        $this->user_model->unban($user_id);
-        redirect(base_url().'user/view/'.$user_id);
+        $this->user_model->unban((int) $user_id);
+        redirect('user/view/' . (int) $user_id);
     }
 
     /**
@@ -139,8 +139,8 @@ class User extends MY_Controller {
     		show_404();
     	}
         $this->auth_lib->check_is_admin();
-        $this->user_model->whitelist($user_id);
-        redirect(base_url().'user/view/'.$user_id);
+        $this->user_model->whitelist((int) $user_id);
+        redirect('user/view/' . (int) $user_id);
     }
 
 	/**
@@ -149,8 +149,8 @@ class User extends MY_Controller {
 	 * @param integer $user_id The ID of the user whose clouds to display
 	 */
     function clouds($user_id = 0) {
-        $data['clouds'] = $this->user_model->get_clouds($user_id);
-        $data['profile'] = $this->user_model->get_user($user_id);
+        $data['clouds'] = $this->user_model->get_clouds((int) $user_id);
+        $data['profile'] = $this->user_model->get_user((int) $user_id);
         $data['title']  = t("!person's clouds", array('!person'=>$data['profile']->fullname));
         $this->layout->view('user/cloud_list', $data);
     }
@@ -177,7 +177,7 @@ class User extends MY_Controller {
     /**
      * Display list of users that a person is following
      *
-	 * @param intger $user_id The ID of the user
+	 * @param integer $user_id The ID of the user
      */
     function following($user_id = 0) {
        $data['profile'] = $this->user_model->get_user($user_id);
