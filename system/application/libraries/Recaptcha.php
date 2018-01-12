@@ -39,6 +39,11 @@ class Recaptcha {
         } else {
             log_message('error', 'reCAPTCHA: ' . json_encode([ $srv_response, $http_response_header ]));
             header( 'X-recaptcha-v-error: ' . json_encode([ $srv_response, $http_response_header ]));
+            $srv_response = (object) [
+                'success' => false,
+                'error-codes' => 'x-unknown-error',
+                'raw_response' => $raw_response,
+            ];
         }
 
         return $srv_response;
@@ -57,7 +62,7 @@ class Recaptcha {
                     'Content-Length: ' . strlen( $postdata ),
                 ],
                 'content' => $postdata,
-                'timeout' => 5, // Seconds.
+                'timeout' => 6, // Seconds.
             ]
         ]);
     }
