@@ -202,8 +202,8 @@ class Event extends MY_Controller {
      */
     function admin() {
         $this->auth_lib->check_is_admin();
-        $events = $this->event_model->get_events_for_admin(500);
-        $data['events'] = $this->event_model->display_format($events);
+        $events_raw = $this->event_model->get_events_for_admin(500);
+        $data['events'] = $this->event_model->display_format($events_raw);
         $data['title'] = t("Admin cloudstream");
         $this->layout->view('event/admin', $data);
     }
@@ -211,7 +211,9 @@ class Event extends MY_Controller {
 		public function admin_ban() {
 				$this->auth_lib->check_is_admin();
 				$events_raw = $this->event_model->get_events_for_admin(500);
-				$data['events'] = $this->event_model->display_format($events_raw);
+				$events_user_ids = [];
+				$this->event_model->display_format($events_raw, false, $events_user_ids);
+				$data['events'] = $events_user_ids;
 				$data['events_raw'] = $events_raw;
 				$data['title'] = t("Admin cloudstream (banning)");
 				$this->layout->view('event/admin_ban', $data);

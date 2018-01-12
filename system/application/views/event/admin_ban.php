@@ -19,8 +19,8 @@
                 <?php $raw = $events_raw[ $idx ]; ?>
                 <?php if ($raw->event_type === 'login_attempt') { continue; } ?>
 
-                <?= $event ?>
-                <a href="<?= base_url() ?>user/ban/<?= $raw->user_id ?>?from=admin-stream-ban"
+                <?= $event->event ?>
+                <a href="<?= base_url() ?>user/ban/<?= $event->user_id ?>?from=admin-stream-ban"
                   title="Ban user and learn spam" class="button link-arrow user-ban">Ban user and learn spam</a></li>
             <?php endforeach; ?>
 

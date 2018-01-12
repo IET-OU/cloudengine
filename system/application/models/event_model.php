@@ -369,10 +369,12 @@ class Event_model extends Model {
     /**
      * Turn an event into an HTML string that can be displayed in a cloudstream
      *
-     * @param obejct $event Details of the event
-     * @return string The HTML string
+     * @param object $event  Details of the event
+     * @param bool   $simple
+     * @param int    & $user_id
+     * @return string  The HTML string
      */
-    function to_string($event, $simple = false) {
+    function to_string($event, $simple = false, &$user_id = null) {
 
         $this->load->helper('format');
         $this->CI = &get_instance();
@@ -380,7 +382,7 @@ class Event_model extends Model {
 
         switch ($event->event_type) {
             case 'cloud':
-                $cloud->user_id = $cloud->id;
+                $user_id = $cloud->user_id = $cloud->id;
 
                 if ($event->follow_item_type == 'user') {
                     // New cloud created by user
@@ -461,6 +463,9 @@ class Event_model extends Model {
                                           $cloudscape->fullname,
                                               $attr_author))).'</em>';
                 }
+
+                $user_id = $cloudscape->user_id;
+
                 break; // Always break last - defensive.
 
             case 'comment':
@@ -492,6 +497,8 @@ class Event_model extends Model {
                                        $comment->fullname, $attr_author))).'</em>';
                   }
                 }
+                $user_id = $comment->user_id;
+
                 break;
 
             case 'news':
@@ -540,6 +547,9 @@ class Event_model extends Model {
                                     '!title' =>
                                         anchor('blog/view/'.$comment->post_id,
                                         $comment->news_title))).'</em>';
+
+                $user_id = $comment->user_id;
+
                 break;
 
             case 'new_user':
@@ -591,6 +601,9 @@ class Event_model extends Model {
                                                     $cloud->title))).'</em>';
                  }
                }
+
+               $user_id = $link->user_id;
+
                break;
 
             case 'reference':
@@ -626,6 +639,9 @@ class Event_model extends Model {
                                                    $cloud->title))).'</em>';
                   }
                 }
+
+                $user_id = $reference->user_id;
+
                 break;
 
             case 'content':
@@ -660,6 +676,9 @@ class Event_model extends Model {
                                                       $cloud->title))).'</em>';
                   }
                 }
+
+                $user_id = $content->user_id;
+
                 break;
 
             case 'embed':
@@ -695,6 +714,9 @@ class Event_model extends Model {
                               $cloud->title))).'</em>';
                   }
                 }
+
+                $user_id = $embed->user_id;
+
                 break;
 
             case 'profile_edit':
@@ -719,7 +741,6 @@ class Event_model extends Model {
                                    array('!person' =>
                                          anchor('user/view/'.$user_id, $user->fullname) )).'</em>';
                 break;
-                break;
         }
 
         return $string;
@@ -730,10 +751,11 @@ class Event_model extends Model {
 	 * Strictly this code ought to be handled by views somehow.
 	 *
 	 * @param array $events The array of cloudstream events
-	 * @param boolean $simple Use the 'simple' format for events
-	 * @return string The formatted events
+	 * @param boolean   $simple Use the 'simple' format for events.
+   * @param object[]  & $events_user_ids  Array of event strings, and user IDs.
+	 * @return string[] Array of the formatted event strings.
 	 */
-    function display_format($events, $simple = false) {
+    function display_format($events, $simple = false, &$events_user_ids = []) {
         $this->load->helper('format');
         $last_event_item_id = false;
         $last_event_type    = false;
@@ -744,11 +766,18 @@ class Event_model extends Model {
             	// pertains to then don't display the item twice
                 if ($event->event_item_id != $last_event_item_id ||
                     $event->event_type != $last_event_type) {
-                    $new_event    = $this->event_model->to_string($event, $simple);
+
+                    $user_id = null;
+                    $new_event    = $this->event_model->to_string($event, $simple, $user_id);
                     if ($new_event) {
-                      $new_events[] = '<li class="'.$this->event_category($event->event_type).
-                                      '">'.$new_event.' <em>'.time_ago($event->timestamp).'</em>';  // '</li>';
-                                    }
+                      $the_event = '<li class="' . $this->event_category($event->event_type).
+                                   '">' . $new_event . ' <em>' . time_ago($event->timestamp) . '</em>';  // '</li>';
+                      $new_events[] = $the_event;
+                      $events_user_ids[] = (object) [
+                        'event' => $the_event,
+                        'user_id' => $user_id,
+                      ];
+                    }
                     $last_event_item_id = $event->event_item_id;
                     $last_event_type    = $event->event_type;
                 }
