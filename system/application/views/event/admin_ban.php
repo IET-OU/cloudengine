@@ -8,7 +8,7 @@
     <h1><?= $title ?></h1>
 
     <div class="grid">
-        <?php $this->load->view('event/header'); ?>
+        <?php // $this->load->view('event/header'); ?>
         </div>
         <div class="grid">
         <?php if ($events): ?>
@@ -29,7 +29,7 @@
             <p><?=t("No events in this cloudstream.")?></p>
         <?php endif; ?>
     </div>
-     <!-- <p><a href=""><?=t("Back to cloudscape")?></a> | <a class="rss" href="<?= $rss ?>"><?=t("RSS")?></a></p> -->
+     <?php /* <p><a href=""><?=t("Back to cloudscape")?></a> | <a class="rss" href="<?= $rss ?>"><?=t("RSS")?></a></p> */ ?>
 </div>
 <div id="region2">
     <?php // $this->load->view('search/search_box'); ?>

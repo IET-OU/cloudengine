@@ -382,7 +382,7 @@ class Event_model extends Model {
 
         switch ($event->event_type) {
             case 'cloud':
-                $user_id = $cloud->user_id = $cloud->id;
+                // Why?: $user_id = $cloud->user_id = $cloud->id;
 
                 if ($event->follow_item_type == 'user') {
                     // New cloud created by user
@@ -394,6 +394,8 @@ class Event_model extends Model {
                     if (!$cloud) {
                       return false;
                     }
+                    $cloud->user_id = $cloud->id;
+
                     $string = anchor("cloud/view/$cloud_id", $cloud->title).'<br />';
                     if ($simple) {
                         /*@i18n: Simplified/modified logic. */
@@ -413,6 +415,8 @@ class Event_model extends Model {
                     $cloudscape_id = $event->follow_item_id;
                     $this->CI->load->model('cloud_model');
                     $cloud = $this->CI->cloud_model->get_cloud($cloud_id);
+
+                    $cloud->user_id = $cloud->id;
                     if (!$cloud->user_id) {
                       return false;
                     }
@@ -438,6 +442,8 @@ class Event_model extends Model {
                       }
                   }
                 }
+                $user_id = $cloud->user_id;
+
                 break;
 
            case 'cloudscape':
