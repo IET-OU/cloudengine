@@ -15,9 +15,10 @@
         <td>
             <?=form_input(array('name'=>'user_name',
                 'required'=>true,
-                'title'=>t('Minimum !N characters, letters, numbers, dash and underscore (no spaces)',
-                          array('!N'=> 4 )),
+                'title'=>t('Minimum !N characters, letters, numbers, dash and underscore (no spaces)', [ '!N' => 4 ]),
+                'minlength' => 4,
                 'maxlength'=>45,
+                'autocomplete' => 'username',
                 'value'=>set_value('user_name'),
             ))?>
         </td>
@@ -31,6 +32,7 @@
             <?=form_email(array('name'=>'email',
                 'required' =>true,
                 'maxlength'=>254,
+                'autocomplete' => 'email',
                 'value'    =>set_value('email') )) ?>
          </td>
     </tr>
@@ -42,7 +44,9 @@
             <?=form_input(array('name'=>'fullname',
                 'required' =>true,
                 'title'    =>t('Minimum !N words, letters, apostrophe, dash and accents', array('!N'=>2)),
+                'minlength' => 3,
                 'maxlength'=>140,
+                'autocomplete' => 'name',
                 'value'    =>set_value('fullname') ))?>
     </tr>
     <tr>
@@ -52,6 +56,7 @@
         <td>
             <?=form_input(array('name'=>'institution',
                 'required'=>true,
+                'autocomplete' => 'organization',
                 'value'   =>set_value('institution') ))?>
 
         <?php
@@ -81,10 +86,11 @@
     	<td>
     	   <?=form_password(array('name'=>'password',
     	       'required'=>true,
-    	       'title'=>t('Minimum !N characters, letters, numbers and symbols (no spaces)',
-    	                 array('!N' => 5 )),
-    	                       'maxlength'=>'16',
-    	                       'size'=>'16',
+             'title'=>t('Minimum !N characters, letters, numbers and symbols (no spaces)', [ '!N' => 5 ]),
+                             'minlength' => 5,
+                             'maxlength' => 16,
+                             'size' => 16,
+                             'autocomplete' => 'new-password',
     	                       'value'=>''))?>
         </td>
     </tr>
@@ -97,8 +103,9 @@
                  'required'=>true,
                  'oninput'=>"setCustomValidity(value!=password.value ? '"
                      .t('Error, the passwords should match')."' : '')",
-    	                       'maxlength'=>'16',
-    	                       'size'=>'16',
+                             'maxlength' => 16,
+                             'size' => 16,
+                             'autocomplete' => 'new-password',
     	                       'value'=>''))?>
         </td>
     </tr>
@@ -128,8 +135,8 @@
     	   <?=form_input(array('name'=>'captcha',
     	         'required'=>true,
     	         'autocomplete'=>false,
-    	                       'maxlength'=>'45',
-    	                       'size'=>'45',
+                             'maxlength' => 45,
+                             'size' => 45,
     	                       'value'=>''))?>
             </td>
     </tr>
