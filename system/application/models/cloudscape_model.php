@@ -520,7 +520,7 @@ class Cloudscape_model extends Model {
         $this->db->join('user_profile', 'user_profile.id = cloudscape_cloud.user_id');
         $query = $this->db->get('cloudscape_cloud');
         $result = $query->result();
-        $user= $result[0];
+        $user = $result ? $result[ 0 ] : false;
         return $user;
     }
 

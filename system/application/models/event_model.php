@@ -813,7 +813,7 @@ class Event_model extends Model {
                     $modified_description = preg_replace('/<a[^>]+href[^>]+>/', '',
                                                          $modified_description);
 
-                    $new_event->title = $modified_description;
+                    $new_event = (object) [ 'title' => $modified_description ];
 
                     if ($api) { //API-specific.
                         $new_event->title = strip_tags($new_event->title);
