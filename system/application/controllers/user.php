@@ -95,14 +95,14 @@ class User extends MY_Controller {
 
 		protected function _learnSpam($user_id) {
 			  // if (config_item('x_moderation')) {
-			  $this->load->library('ModerationProvider');
-			  $moderation_provider = new ModerationProvider();
+			  $moderation_provider = $this->_getModerationProvider();
 
         $user = $this->user_model->get_user($user_id);
 
 			  $clouds = $this->user_model->get_clouds($user_id);
 				if ($clouds) {
 					  foreach ($clouds as $cloud) {
+                $this->_debug([ 'learnSpam', 'cloud', $cloud->cloud_id, $cloud->title ]);
 						    $moderation_provider->learnSpam($user, $cloud->body, 'cloud');
 					  }
 				}
@@ -110,11 +110,12 @@ class User extends MY_Controller {
 				$comments = $this->user_model->get_comments($user_id);
         if ($comments) {
 					  foreach ($comments as $comment) {
+                $this->_debug([ 'learnSpam', 'comment', $comment->cloud_id, substr( $comment->body, 0,  25 ) ]);
 							  $moderation_provider->learnSpam($user, $comment->body, 'comment');
 						}
 				}
 
-				// TODO: comments, "extra" content ...
+				// TODO: "extra" content ...
 				// ??
 		}
 

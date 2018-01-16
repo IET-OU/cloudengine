@@ -9,6 +9,8 @@
 
 class MY_Controller extends Controller {
 
+  protected $moderation_provider;
+
   /** Initalize the CloudEngine application.
    */
   public function MY_Controller() {
@@ -120,12 +122,21 @@ class MY_Controller extends Controller {
   }
 
 
+  protected function _getModerationProvider() {
+    if (! $this->moderation_provider) {
+      $this->load->library('ModerationProvider');
+
+      $this->moderation_provider = new ModerationProvider();
+      $this->_debug(get_class( $this->moderation_provider ));
+    }
+    return $this->moderation_provider;
+  }
+
   /** Do moderation: a wrapper around appropriate anit-spam moderation library
    *    Note: it is up to the specific controller to manage the user interaction.
    *
    * @return boolean Whether the item has been flagged for moderation.
    */
-
   protected function _moderate($message) {
     $is_spam = FALSE;
     if (config_item('x_moderation')) {
@@ -133,8 +144,7 @@ class MY_Controller extends Controller {
 
       $user = $this->user_model->get_user($this->db_session->userdata('id'));
 
-      $this->load->library('ModerationProvider');
-      $moderation_provider = new ModerationProvider();
+      $moderation_provider = $this->_getModerationProvider();
       if (is_object($moderation_provider)) {
         $is_spam = $moderation_provider->checkSpam($user, $message);
       }
@@ -142,4 +152,12 @@ class MY_Controller extends Controller {
     return  $is_spam;
   }
 
+  /** Output a HTTP header with debug information.
+   * @param mixed $obj  Object (stdClass), array, string etc.
+   */
+  public function _debug( $obj ) {
+    static $count = 0;
+    header(sprintf( 'X-my-controller-%02d: %s', $count, json_encode( $obj )));
+    $count++;
+  }
 }
