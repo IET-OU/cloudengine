@@ -9,6 +9,7 @@
  */
 
 class ModerationProvider {
+
 	private $moderation = NULL;
 	protected $CI;
 	private $debug;
@@ -90,12 +91,14 @@ class AkismetProvider implements ModerationInterface {
 		$this->CI =& get_instance();
 		$debug = $this->CI->config->item('moderation_debug');
 
+		if ( ! is_object($user) || ! $user->email ) {
+			$this->CI->_debug([ 'ERROR', __METHOD__, 'Invalid user' ]);
+			log_message('error', 'Moderation: $user is not object' . " [$method]");
+			show_error( 'Invalid user object.', 500 );
+			return;
+		}
 		if ($debug) {
-			if (! is_object($user)) {
-				log_message('debug', 'Moderation: $user is not object' . " [$method]");
-			} else {
-		 	  log_message('debug', 'Moderation: Akismet '. $label .' for User: '.$user->user_name.' Message Start:'.substr($message, 0, 20) . " [$method]");
-	  	}
+      log_message('debug', 'Moderation: Akismet '. $label .' for User: '.$user->user_name.' Message Start:'.substr($message, 0, 20) . " [$method]");
 		}
 
 		$is_spam = false;
@@ -123,6 +126,7 @@ class AkismetProvider implements ModerationInterface {
 				}
 			}
 
+      $this->CI->_debug([ __METHOD__, $method, $is_spam, $user->user_name, $message ]);
 			self::_akismet_log($akismet, $method, $label, $user->user_name, $message);
 
 			if ($is_spam === NULL) {

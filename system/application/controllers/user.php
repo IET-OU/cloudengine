@@ -86,20 +86,20 @@ class User extends MY_Controller {
 		 */
 		public function ban_and_learn($user_id = 0) {
 				$this->auth_lib->check_is_admin();
+
+        $user_obj = $this->user_model->get_user((int) $user_id, $only_active = false);
 				$this->user_model->ban((int) $user_id);
 				///TODO:
-				$this->_learnSpam((int) $user_id);
+				$this->_learnSpam($user_obj);
 
 				redirect('user/view/' . (int) $user_id);
 		}
 
-		protected function _learnSpam($user_id) {
+		protected function _learnSpam($user) {
 			  // if (config_item('x_moderation')) {
 			  $moderation_provider = $this->_getModerationProvider();
 
-        $user = $this->user_model->get_user($user_id);
-
-			  $clouds = $this->user_model->get_clouds($user_id);
+			  $clouds = $this->user_model->get_clouds($user->id);
 				if ($clouds) {
 					  foreach ($clouds as $cloud) {
                 $this->_debug([ 'learnSpam', 'cloud', $cloud->cloud_id, $cloud->title ]);
@@ -107,7 +107,7 @@ class User extends MY_Controller {
 					  }
 				}
 
-				$comments = $this->user_model->get_comments($user_id);
+				$comments = $this->user_model->get_comments($user->id);
         if ($comments) {
 					  foreach ($comments as $comment) {
                 $this->_debug([ 'learnSpam', 'comment', $comment->cloud_id, substr( $comment->body, 0,  25 ) ]);

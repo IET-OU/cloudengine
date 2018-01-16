@@ -24,5 +24,6 @@ version.json
 tests/codeigniter/
 
 /google*.html
+/*test.php
 
 # End.
