@@ -1,10 +1,13 @@
 <?php
+/**
+ * Library to enable checking of content for spam.
+ * Uses strategy pattern to allow us to change moderation provider easily if necessary.
+ *
+ * @copyright 2009, 2016 The Open University. See CREDITS.txt
+ * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
+ * @author    Juliette Culver, 10-Jun-2016.
+ */
 
-/*
-
-Library to enable checking of content for spam. Uses strategy pattern to allow us to change moderation provider easily if necessary.
-
-*/
 class ModerationProvider {
 	private $moderation = NULL;
 	protected $CI;
@@ -118,9 +121,9 @@ class AkismetProvider implements ModerationInterface {
 				} else {
 					log_message('debug', 'Moderation: Akismet returned NOT SPAM' . " [$method]");
 				}
-
-				self::_akismet_log($akismet, $method, $label, $user->user_name, $message);
 			}
+
+			self::_akismet_log($akismet, $method, $label, $user->user_name, $message);
 
 			if ($is_spam === NULL) {
 				log_message('error', 'Akismet - not checking spam correctly. NULL result returned' . " [$method]");

@@ -42,7 +42,7 @@
 <script>
 jQuery(function ($) {
 
-    $ban_links = $('.admin-stream-ban a.user-ban');
+    var $ban_links = $('.admin-stream-ban a.user-ban');
 
     $ban_links.each(function () {
 
@@ -51,7 +51,8 @@ jQuery(function ($) {
         if (! result) {
           ev.preventDefault();
         }
-        console('ban click:', $(this), result);
+
+        console.warn('ban click:', $(this), result);
       });
     });
 
