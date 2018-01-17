@@ -89,7 +89,13 @@ class User extends MY_Controller {
 
         $user_obj = $this->user_model->get_user((int) $user_id, $only_active = false);
 				$this->user_model->ban((int) $user_id);
-				///TODO:
+
+        $seconds = $this->config->item( 'admin_slow_time_limit' );
+        if ($seconds > 30) {
+            $bok = set_time_limit( $second );
+            $this->_debug([ 'set_time_limit', $seconds, $bok ]);
+        }
+
 				$this->_learnSpam($user_obj);
 
 				redirect('user/view/' . (int) $user_id);
@@ -115,8 +121,7 @@ class User extends MY_Controller {
 						}
 				}
 
-				// TODO: "extra" content ...
-				// ??
+				// TODO: "extra" content ...?
 		}
 
     /**

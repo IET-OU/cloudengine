@@ -1,10 +1,10 @@
 {
     "name": "iet-ou/cloudengine",
-    "description": "CloudEngine powers Cloudworks <http://cloudworks.ac.uk>. ©The Open University (IET).",
+    "description": "CloudEngine powers Cloudworks <http://cloudworks.ac.uk>. © The Open University (IET).",
     "keywords": [ "OULDI", "Jisc", "Cloudworks", "IET-OU", "OpenUniversity" ],
     "homepage": "http://cloudworks.ac.uk",
     "type": "project",
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-only",
     "time": "2010-10-06",
     "authors": [
         {
@@ -13,12 +13,12 @@
         },
         {
             "name": "Institute of Educational Technology",
-            "homepage": "http://iet.open.ac.uk",
+            "homepage": "https://iet.open.ac.uk",
             "role": "CloudEngine / Cloudworks developers"
         }
     ],
     "support": {
-        "email": "IET-Webmaster@open.ac.uk",
+        "email": "cloudworks-techsupport@open.ac.uk",
         "source": "https://github.com/IET-OU/cloudengine"
     },
     "require": {

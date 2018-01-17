@@ -243,4 +243,6 @@ $config['akismet_url'] = '';
 $config[ 'moderation_debug' ] = true;  // Logging ?!
 // $config[ 'moderation_log' ] = true;
 
+$config['admin_slow_time_limit'] = 60; // Seconds.
+
 $config['egg'] = 'Welcome!';
