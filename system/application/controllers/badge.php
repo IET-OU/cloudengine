@@ -55,7 +55,7 @@ class Badge extends MY_Controller {
         $data['navigation'] = 'badges';
         $data['badges']     = $this->badge_model->get_badges();
         $this->layout->view('badge/list_test', $data);
-    }   
+    }
 
     /**
      * Display the information about a badge
@@ -648,7 +648,7 @@ class Badge extends MY_Controller {
         if ($badgeid_valid) {
             $badge_class = array(
                 'name'  => $badge->name,
-                'image' => site_url('image/badge/'. $badge->badge_id .'.png'),
+                'image' => site_url('image/badge/'. $badge->badge_id),
                 # 128 chars max.: http://wordpress.org/support/topic/plugin-wpbadger-unexpected-token-u
                 'description' => substr(preg_replace('/[[:^print:]]/', '', $badge->description), 0, BADGE_DESC_CHARS),
                 'criteria'  => site_url('badge/view/'. $badge->badge_id),
