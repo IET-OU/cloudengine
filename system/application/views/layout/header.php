@@ -2,7 +2,7 @@
   $navigation = isset($navigation) ? $navigation : false;
 
   @header("Content-Type: text/html; charset=".config_item("charset"));
-  // We are using the HTML5 Doctype below, but not ready to use all HTML5 
+  // We are using the HTML5 Doctype below, but not ready to use all HTML5
   // elements yet as have not included javascript shim for IE fallback
 
   $this->lang->content_lang($header = TRUE);
@@ -13,7 +13,7 @@
 <body id="<?= $navigation ?>">
 <?php $page = $_SERVER['REQUEST_URI']; ?>
 <div id="site-header">
-<?php $this->load->view('layout/_site-header'); ?>   
+<?php $this->load->view('layout/_site-header'); ?>
 </div>
 
 <div id="site">
@@ -26,5 +26,8 @@
         <?php //if the site is in offline mode, show a message to remind admin users ?>
         <?php if (!config_item('site_live')): ?>
             <p class="test_install warn"> <strong><?= $this->config->item('offline_message_admin') ?></strong></p>
-        <?php endif; ?>        
-        
+        <?php endif; ?>
+
+        <?php if (config_item( 'gaad_widget' )): ?>
+            <div id="id-gaad-widget"></div>
+        <?php endif; ?>

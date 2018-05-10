@@ -136,6 +136,13 @@ $config['expire_temp_users_time'] = 3600*168;
 // Maximum number of login attempts in the last ten minutes for a single user
 $config['max_login_attempts'] = 10;
 
+// GAAD-widget ~ "Global accessibility awareness day"
+$config['gaad_widget'] = [
+  'analytics' => false, // Incompatible with CloudEngine analytics.
+  'debug' => true,
+  'days_before' => 14,
+  // 'lang' => 'en',
+];
 
 // An array of jQuery-oEmbed options.
 // @link http://code.google.com/p/jquery-oembed/
