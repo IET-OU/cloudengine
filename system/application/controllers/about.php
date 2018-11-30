@@ -34,7 +34,7 @@ class About extends MY_Controller {
     // Static pages are only available in English! /* GDPR/privacy */
 		$file_path = __DIR__ . '/../../../static_pages/' . $name . /* '.en' */ '.html';
 
-		if (! $page && file_exists( $file_path )) {
+		if ((! $page || ! $page->body) && file_exists( $file_path )) {
 			$page = (object) [
 				'title' => ucwords( $name ),
 				'body' => file_get_contents( $file_path ),

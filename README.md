@@ -27,9 +27,13 @@ composer npm-install
 composer test
 ```
 
+## GDPR
+
+Details of GDPR / privacy fixes can be found in [Bug #377][].
+
 ## License
 
-[CloudEngine][gh] is Copyright © 2009-2017, [The Open University][ou]. ([Institute of Educational Technology][iet])
+[CloudEngine][gh] is Copyright © 2009-2019, [The Open University][ou]. ([Institute of Educational Technology][iet])
 
 * License: [GNU General Public License version 2][gpl].
 
@@ -50,6 +54,8 @@ composer test
 [credits.txt]: https://github.com/IET-OU/cloudengine/blob/master/CREDITS.txt
 [cloudworks]: http://cloudworks.ac.uk/
 [iet]: https://iet.open.ac.uk/ "Developed by the Institute of Educational Technology"
-[ou]: http://www.open.ac.uk/
+[ou]: https://www.open.ac.uk/
+
+[Bug #377]: https://github.com/IET-OU/cloudengine/issues/377
 
 [End]: //end.

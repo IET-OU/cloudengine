@@ -37,7 +37,7 @@ This information is held by the OU LTT team, and will be stored separately to an
 
 ### Information that we collect automatically ###
 
-We collect anonymised data and create cookies via Google Analytics to understand usage patterns on the  website.
+We collect anonymised data and create cookies via a service _(e.g. Google Analytics)_ to understand usage patterns on the website.
 
 We log IP addresses and browser information in an anonymised manner<del> [?? ]</del>.
 
