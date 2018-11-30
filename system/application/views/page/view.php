@@ -6,7 +6,7 @@
 </div>
 <div id="region1">
     <div class="grid g1">
-        <div class="c1of1">
+        <div class="c1of1 <?= $page->class_name ?>">
             <?= $page->body ?>
         </div>
     </div>
@@ -19,4 +19,4 @@
 array('[link-up]' => t_link('user/people'), '[link-ui]' => t_link('user/institution_list')))?>
 </p>
 
-</div> 
+</div>

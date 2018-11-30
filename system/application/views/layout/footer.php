@@ -8,7 +8,8 @@
 				                'class' => 'rdfa',
 				                'rel' => 'license',
 				        )) ?> |
-				        <a href="https://www.open.ac.uk/privacy">Privacy and cookies</a> |
+				        <?= anchor('about/privacy', t('Privacy notice')) /* GDPR/privacy */ ?> |
+				        <?php /* <a href="https://www.open.ac.uk/privacy">Privacy and cookies</a> | */ ?>
 				    <?php $this->load->view('layout/capret') ?>
 				        <?php $powered = t('Powered by !name, open-source social software', array('!name'=>'CloudEngine')); ?>
 				        <img src="<?= base_url()?>/_design/cloudengine-sm.gif" alt="<?= $powered ?>" />

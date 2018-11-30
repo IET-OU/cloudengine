@@ -1,4 +1,6 @@
 
+<!-- /* GDPR/privacy */ -->
+
  * SOURCE :~ <https://docs.google.com/document/d/1P3AuhxhHnoH8DxKKLcXOrKi1zEtgHDACQlxxrGg8enI/#>
 
 # Cloudworks Privacy notice #

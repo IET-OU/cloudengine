@@ -31,9 +31,10 @@ class About extends MY_Controller {
 
 		$page->body = preg_replace('@([\[\( ])(https?:\/\/[\w\.\/]+)@', '$1<a href="$2">$2</a>', $page->body);
 
-		$file_path = __DIR__ . '/../../../static_pages/' . $name . '.html';
+    // Static pages are only available in English! /* GDPR/privacy */
+		$file_path = __DIR__ . '/../../../static_pages/' . $name . /* '.en' */ '.html';
 
-		if (file_exists( $file_path )) {
+		if (! $page && file_exists( $file_path )) {
 			$page = (object) [
 				'title' => ucwords( $name ),
 				'body' => file_get_contents( $file_path ),
@@ -43,6 +44,8 @@ class About extends MY_Controller {
 		if (! $page || ! $page->body) {
 			return show_404();
 		}
+
+		$page->class_name = 'page-' . $name;
 
 		$data['title']      = $page->title;
 		$data['navigation'] = 'about';

@@ -7,7 +7,7 @@
 html, body, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, code,
-del, dfn, em, img, q, dl, dt, dd, ol, ul, li,
+dfn, em, img, q, dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
   border:0;
@@ -54,10 +54,17 @@ img, a img {
     border: none;
 }
 
+time[ datetime ],
 abbr[ title ] {
     cursor: help;
     border-bottom:1px dotted gray;
 }
+
+address {
+  display: inline-block; }
+
+del {
+  display: none; }
 
 body {
   color:#444;
@@ -963,6 +970,15 @@ body#tags .c1of2 {
 body#tags .c2of2 {
     width:60%;}
 
+/* About / privacy pages.
+----------------------------------------------------------------------------------- */
+/* GDPR/privacy */
+
+.page-privacy .revised {
+  font-style: italic; margin: 3rem 0 0; }
+.page-privacy .doc-link {
+  display: none; }
+
 /* Dang old lists
 ----------------------------------------------------------------------------------- */
 
@@ -1285,7 +1301,7 @@ tr.even td {
     width: 9%;}
 
 .comment .c2of2 {
-    width: 90%;    background: #FEF9E5;    border-radius: 10px; }
+    width: 90%;    background: #FEF9E5;    border-radius: 10px;}
 
 .comment {
     margin-bottom:1.5em;}
@@ -1850,7 +1866,7 @@ legend {
 /*HTML5 forms/ form validation. */
 ._h5 input {
     border-radius:2px;
-    border:1px solid rgb(127, 157, 185); }
+    border:1px solid rgb(127, 157, 185);}
 
 .h5 input:focus{
     background:#ffd;}
