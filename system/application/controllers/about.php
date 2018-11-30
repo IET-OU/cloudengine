@@ -11,7 +11,7 @@
  */
 class About extends MY_Controller {
 
-	function About ()
+	public function About ()
 	{
 		parent::MY_Controller();
 		$this->load->library('layout', 'layout_main');
@@ -24,15 +24,30 @@ class About extends MY_Controller {
 	 *
 	 * @param string $name The page name
 	 */
-	function _remap($name) {
-	    $page = $this->page_model->get_page('about', $name, $this->lang->lang_code());
+	public function _remap($name) {
+		$this->_debug([ 'remap' => $name ]); // Was: 'X-about-remap-00: '
 
-			$page->body = preg_replace('@([\[\( ])(https?:\/\/[\w\.\/]+)@', '$1<a href="$2">$2</a>', $page->body);
+		$page = $this->page_model->get_page('about', $name, $this->lang->lang_code());
 
-	    $data['title']      = $page->title;
-	    $data['navigation'] = 'about';
-	    $data['page']       = $page;
+		$page->body = preg_replace('@([\[\( ])(https?:\/\/[\w\.\/]+)@', '$1<a href="$2">$2</a>', $page->body);
 
-        $this->layout->view('page/view', $data);
+		$file_path = __DIR__ . '/../../../static_pages/' . $name . '.html';
+
+		if (file_exists( $file_path )) {
+			$page = (object) [
+				'title' => ucwords( $name ),
+				'body' => file_get_contents( $file_path ),
+			];
+		}
+
+		if (! $page || ! $page->body) {
+			return show_404();
+		}
+
+		$data['title']      = $page->title;
+		$data['navigation'] = 'about';
+		$data['page']       = $page;
+
+		$this->layout->view('page/view', $data);
 	}
 }
