@@ -2,8 +2,8 @@
 <div id="register">
 
 <p>
-<?=t("By creating an account, you agree to our [link-at]Terms and Conditions of Use[/link].",
-    array('[link-at]' => t_link('about/tandc')))?>
+<?=t("By creating an account, you agree to our [link-at]Terms and Conditions of Use[/link], and you confirm that you've read and understood the [link-p]Privacy notice[/link].",
+    array( '[link-at]' => t_link('about/tandc'), '[link-p]' => t_link('about/privacy') ))?>
 </p>
 <?=form_open($this->uri->uri_string(), array('id'=>'register_form', 'class'=>'__h5fm')); /*Uses HTML5 form attributes (BB #115).*/ ?>
 <?= validation_errors() ?>

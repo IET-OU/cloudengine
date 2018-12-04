@@ -128,4 +128,13 @@
     <?php $this->load->view('user/followers_block.php'); ?>
     <?php $this->load->view('events/current_events_block'); ?>
     <?php $this->load->view('events/past_events_block'); ?>
+
+<?php if ($admin && $user->statistics): ?>
+<script type="application/json">
+{
+"user": <?= json_encode($user, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK); ?>
+
+}
+</script>
+<?php endif; ?>
 </div>

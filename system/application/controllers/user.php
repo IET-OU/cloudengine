@@ -421,8 +421,10 @@ class User extends MY_Controller {
 
         if($this->auth_lib->is_admin()) {
           $only_active = FALSE;
+					$user_statistics = $this->favourite_model->get_user_statistics( $user_id );
         } else {
           $only_active = TRUE;
+					$user_statistics = null;
         }
 
         $user = $this->user_model->get_user($user_id, $only_active);
@@ -450,7 +452,10 @@ class User extends MY_Controller {
 			}
 		}
 
-        $data['type']             = $type;
+        $user->password = null;
+        $user->tags = array();
+        $user->statistics = $user_statistics;
+
         $data['events']           = $events;
         $data['type']             = $type;
         $data['basepath']         = $this->config->site_url('user/view/'.$user_id);
@@ -482,7 +487,7 @@ class User extends MY_Controller {
         }
         // Determine if the user is the current user
         $data['current_user'] = FALSE;
-        if ($user_id == $current_user_id) {
+        if ($user_id === $current_user_id) {
             $data['current_user']    = TRUE;
             $data['edit_permission'] = TRUE;
         }

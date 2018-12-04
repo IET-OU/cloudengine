@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  *  Model file for functions related to favourites
  * @copyright 2009, 2010 The Open University. See CREDITS.txt
@@ -6,7 +6,7 @@
  * @package Favourites
  */
 class Favourite_model extends Model {
-    
+
     function __construct() {
         parent::Model();
     }
@@ -20,13 +20,13 @@ class Favourite_model extends Model {
      */
     function add_favourite($user_id, $item_id, $item_type) {
         if ($user_id && $item_id && $this->can_favourite_item($user_id, $item_id, $item_type)) {
-            $this->db->insert('favourite', array('user_id' => $user_id, 
-                                                 'item_id' => $item_id, 
-                                                 'item_type' => $item_type, 
+            $this->db->insert('favourite', array('user_id' => $user_id,
+                                                 'item_id' => $item_id,
+                                                 'item_type' => $item_type,
                                                  'timestamp'=>time()));
         }
     }
-    
+
     /**
      * Remove a favourite for an item and specifed user
      *
@@ -35,11 +35,11 @@ class Favourite_model extends Model {
      * @param string $item_type e.g. 'cloud', 'cloudscape' or 'link'
      */
     function remove_favourite($user_id, $item_id, $item_type) {
-        $this->db->delete('favourite', array('user_id' => $user_id, 'item_id' => $item_id, 
+        $this->db->delete('favourite', array('user_id' => $user_id, 'item_id' => $item_id,
                                              'item_type' => $item_type));
 
     }
-    
+
     /**
      * Determine if a user has favourited a specific item
      *
@@ -59,53 +59,53 @@ class Favourite_model extends Model {
         }
         return $favourite;
     }
-    
+
     /**
      * Get the number of favourites for a specified item
      *
      * @param integer $item_id The ID of the item
-     * @param integer The number of favourites 
+     * @param integer The number of favourites
      */
     function get_total_favourites($item_id, $item_type) {
         $this->db->where('item_id', $item_id);
         $this->db->where('item_type', $item_type);
-        $this->db->where('user.banned',0);  
-        $this->db->join('user', 'favourite.user_id = user.id');        
-        $query = $this->db->get('favourite'); 
+        $this->db->where('user.banned',0);
+        $this->db->join('user', 'favourite.user_id = user.id');
+        $query = $this->db->get('favourite');
         return $query->num_rows();
     }
-    
+
     /**
-     * Get the reputation for a user - this is equal to the total number of favourites on a 
+     * Get the reputation for a user - this is equal to the total number of favourites on a
      * user's clouds, cloudscapes and links
      *
      * @param integer $user_id The ID of the user
-     * @return integer The total number of votes 
+     * @return integer The total number of votes
      */
     function get_reputation($user_id) {
         $user_id = (int) $user_id;
         $reputation = 0;
         // Get all the cloud favourites
-        $query = $this->db->query("SELECT * FROM cloud c INNER JOIN favourite f 
-                                   ON f.item_id = c.cloud_id 
+        $query = $this->db->query("SELECT * FROM cloud c INNER JOIN favourite f
+                                   ON f.item_id = c.cloud_id
                                    WHERE c.user_id = $user_id AND f.item_type = 'cloud'");
         $reputation += $query->num_rows();
         // Get all the cloudscape favourites
-        $query = $this->db->query("SELECT * FROM cloudscape c INNER JOIN favourite f 
-                                   ON f.item_id = c.cloudscape_id 
-                                   WHERE c.user_id = $user_id 
+        $query = $this->db->query("SELECT * FROM cloudscape c INNER JOIN favourite f
+                                   ON f.item_id = c.cloudscape_id
+                                   WHERE c.user_id = $user_id
                                    AND f.item_type = 'cloudscape'");
         $reputation += $query->num_rows();
 
         // Get all the link favourites
-        $query = $this->db->query("SELECT * FROM cloud_link l INNER JOIN favourite f 
-                                   ON f.item_id = l.link_id 
+        $query = $this->db->query("SELECT * FROM cloud_link l INNER JOIN favourite f
+                                   ON f.item_id = l.link_id
                                    WHERE l.user_id = $user_id AND f.item_type = 'link'");
-        $reputation += $query->num_rows();      
+        $reputation += $query->num_rows();
 
-        return $reputation;    
+        return $reputation;
     }
-    
+
     /**
      * Determine if the user in question can vote i.e. if they are generally allowed to vote
      *
@@ -118,14 +118,14 @@ class Favourite_model extends Model {
         if ($this->get_reputation($user_id) > -1) {
             $can_favourite = true;
         }
-        
+
         $this->CI = & get_instance();
         if ($this->CI->auth_lib->is_admin()) {
              $can_favourite = true;
         }
         return $can_favourite;
     }
-    
+
     /**
      * Determine if the user in question is allowed to vote on this particular item
      *
@@ -139,18 +139,18 @@ class Favourite_model extends Model {
         if (!$this->can_favourite($user_id)) {
             $can_favourite = false;
         }
-        
+
         // If the user has already voted on this item, they can't vote again
         if ($this->is_favourite($user_id, $item_id, $item_type)) {
             $can_favourite = false;
         }
-        
+
         if ($this->is_owner($user_id, $item_id, $item_type)) {
             $can_favourite = false;
         }
-        return $can_favourite; 
+        return $can_favourite;
     }
-    
+
     /**
      * Determine if a user is the owner of a particular item
      *
@@ -174,16 +174,16 @@ class Favourite_model extends Model {
                     $is_owner = true;
                 }
                 break;
-            case 'link': 
+            case 'link':
                 $this->CI->load->model('link_model');
                 if ($this->CI->link_model->is_owner($item_id, $user_id)) {
                     $is_owner = true;
-                }                
+                }
                 break;
-        }   
+        }
         return $is_owner;
     }
-    
+
     /**
      * Get the items of a particular type that a user has favourited
      *
@@ -194,7 +194,7 @@ class Favourite_model extends Model {
     function get_favourites($user_id, $item_type=NULL) {
         $user_id = (int) $user_id;
         switch ($item_type) {
-        case 'cloud': 
+        case 'cloud':
             $this->db->order_by('favourite.timestamp', 'desc');
             $this->db->where('favourite.user_id', $user_id);
             $this->db->where('favourite.item_type', 'cloud');
@@ -203,13 +203,13 @@ class Favourite_model extends Model {
             $items = $query->result();
             break;
 
-        case 'cloudscape': 
+        case 'cloudscape':
             $this->db->order_by('favourite.timestamp', 'desc');
             $this->db->where('favourite.user_id', $user_id);
             $this->db->where('favourite.item_type', 'cloudscape');
             $this->db->join('cloudscape', 'cloudscape.cloudscape_id = favourite.item_id');
-            $query = $this->db->get('favourite');     
-            $items = $query->result();    
+            $query = $this->db->get('favourite');
+            $items = $query->result();
             break;
 
         case NULL: //Recommended links are in the 'favourite' table - we don't want them.
@@ -225,13 +225,13 @@ class Favourite_model extends Model {
               JOIN cloud AS c ON f.item_id = c.cloud_id
               WHERE f.user_id = $user_id
               AND (f.item_type = 'cloud')
-              ORDER BY timestamp");    
-            $items = $query->result();    
+              ORDER BY timestamp");
+            $items = $query->result();
             break;
         }
         return $items;
     }
-    
+
     /**
      * Get a list of the users who have favourited a particular item
      *
@@ -243,14 +243,14 @@ class Favourite_model extends Model {
         $this->db->order_by('favourite.timestamp', 'desc');
         $this->db->where('item_id', $item_id);
         $this->db->where('item_type', $item_type);
-        $this->db->where('user.banned',0);  
-        $this->db->join('user', 'favourite.user_id = user.id');        
+        $this->db->where('user.banned',0);
+        $this->db->join('user', 'favourite.user_id = user.id');
         $this->db->join('user_picture', 'favourite.user_id = user_picture.user_id', 'left');
         $this->db->join('user_profile', 'user_profile.id = favourite.user_id');
         $query = $this->db->get('favourite');
         return $query->result();
     }
-    
+
     /**
      * Get the most favourited items of a particular type
      *
@@ -261,25 +261,58 @@ class Favourite_model extends Model {
     function get_popular($item_type, $num) {
         $num = (int) $num;
         switch($item_type) {
-            case 'cloud': 
-                $query = $this->db->query("SELECT c.cloud_id AS item_id, c.title, 
-                                           COUNT(*) AS total_favourites 
-                                           FROM cloud c INNER JOIN favourite f 
-                                           ON f.item_id = c.cloud_id 
+            case 'cloud':
+                $query = $this->db->query("SELECT c.cloud_id AS item_id, c.title,
+                                           COUNT(*) AS total_favourites
+                                           FROM cloud c INNER JOIN favourite f
+                                           ON f.item_id = c.cloud_id
                                            WHERE item_type = 'cloud'
-                                           GROUP BY c.cloud_id 
-                                           ORDER BY total_favourites DESC LIMIT $num"); 
+                                           GROUP BY c.cloud_id
+                                           ORDER BY total_favourites DESC LIMIT $num");
                 break;
             case 'cloudscape':
-                $query = $this->db->query("SELECT c.cloudscape_id AS item_id, c.title, 
-                                          COUNT(*) AS total_favourites 
-                                          FROM cloudscape c INNER JOIN favourite f 
-                                          ON f.item_id = c.cloudscape_id 
+                $query = $this->db->query("SELECT c.cloudscape_id AS item_id, c.title,
+                                          COUNT(*) AS total_favourites
+                                          FROM cloudscape c INNER JOIN favourite f
+                                          ON f.item_id = c.cloudscape_id
                                           WHERE item_type = 'cloudscape'
-                                          GROUP BY c.cloudscape_id 
-                                          ORDER BY total_favourites DESC LIMIT $num"); 
+                                          GROUP BY c.cloudscape_id
+                                          ORDER BY total_favourites DESC LIMIT $num");
         }
-  
+
         return $query->result();
+    }
+
+    /** Get the number of badges, clouds and other content for a user.
+     *
+     * @see https://github.com/IET-OU/cloudengine/blob/master/system/application/models/statistics_model.php#L368-L422
+     * @param integer $use_id
+     * @return array Array of counts.
+     */
+    public function get_user_statistics($user_id) {
+        $user_id = (int) $user_id;
+
+        $counts = array(
+            'badges' => $this->select_count_from("badge c WHERE c.user_id = $user_id"),
+            'clouds' => $this->select_count_from("cloud c WHERE c.user_id = $user_id"),
+            'cloudscapes' => $this->select_count_from("cloudscape c WHERE c.user_id = $user_id"),
+            'comments' => $this->select_count_from("comment c WHERE c.user_id = $user_id"),
+            'cloud_content' => $this->select_count_from("cloud_content c WHERE c.user_id = $user_id"),
+            'cloud_embed' => $this->select_count_from("cloud_embed c WHERE c.user_id = $user_id"),
+            'cloud_content' => $this->select_count_from("cloud_content c WHERE c.user_id = $user_id"),
+        );
+
+        $counts[ 'total' ] = array_sum( $counts );
+        $counts[ 'reputation' ] = $this->get_reputation( $user_id );
+        $counts[ 'user_id' ] = $user_id;
+
+        return $counts;
+    }
+
+    protected function select_count_from($mysql) {
+        $query = $this->db->query('SELECT COUNT(*) AS num FROM ' . $mysql);
+        $row = $query->first_row();
+
+        return (int) $row->num;
     }
 }
