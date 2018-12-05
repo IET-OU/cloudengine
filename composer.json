@@ -59,9 +59,10 @@
         "version.json": [
           "(printf '{ \"v\": \"'; printf `git describe --long --dirty`; printf '\", \"t\": \"'; date | tr -d '\n'; printf '\" }') > version.json  # date -Is"
         ],
-        "cli-help": "php index.php CLI -h",
-        "cli-version": "php index.php CLI -v",
-        "banned-user-comments": "php index.php CLI banned_user_comments 2017-01-01 --limit:-1  # Un-limited."
+        "cli-help": "php index.php cli/help",
+        "cli-version": "php index.php cli/version",
+        "banned-user-comments": "php index.php cli/banned_user_comments 2017-01-01 --limit:-1  # Un-limited.",
+        "delete-inactive-users": "php index.php cli/delete_inactive_users 2017-01-01 --limit:10"
     },
     "autoload": {
         "classmap": [ "system/application/helpers/", "system/application/libraries/" ]

@@ -2,8 +2,8 @@
 /**
  * CLI. Commandline tools, particularly to analyse and process spam/ ham.
  *
- * @example Usage $$  php index.php CLI -h
- * @example Usage $$  php index.php CLI banned_user_comments 2017-01-01 now --limit:-1  # Un-limited.
+ * @example Usage $$  php index.php cli/help
+ * @example Usage $$  php index.php cli/banned_user_comments 2017-01-01 now --limit:-1  # Un-limited.
  *
  * @copyright 2017 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
@@ -46,6 +46,12 @@ class CLI extends MY_Controller {
 
     const SQL_WHITELIST_USER_CLOUDS =
     'SELECT u.*, c.* FROM user u JOIN cloud AS c ON c.user_id = u.id JOIN user_profile AS p ON p.id = u.id WHERE (SELECT FROM_unixtime(c.created)) >= ? AND (SELECT FROM_unixtime(c.created)) <= ? AND p.whitelist = 1 LIMIT ?';
+
+    const SQL_QUERY_INACTIVE_USERS = 'SELECT id,user_name FROM user WHERE last_visit IS NULL OR last_visit < ? LIMIT ? ';
+
+    const SQL_DELETE_INACTIVE_USERS = 'DELETE FROM user WHERE id IN ( %s ) LIMIT ?';
+
+    const SQL_Q2_INACTIVE_USERS = 'SELECT * FROM user WHERE id IN ( %s ) LIMIT ?';
 
     public function __construct() {
         parent::MY_Controller();
@@ -353,5 +359,65 @@ EOT;
         echo "Init:$result\n";
 
         return $akismet;
+    }
+
+    protected static function _sql_prepare_in( $sql, $the_array ) {
+        $question_marks = implode( ',', array_fill( 0, count( $the_array ), '?' ));
+
+        return sprintf( $sql, $question_marks );
+    }
+
+    // ----------------------------------------------------------------------
+
+    /* GDPR/privacy */
+
+    /** Delete users who haven't logged in for a while, and have no Clouds or other content.
+     * @return void
+     */
+    public function delete_inactive_users( $sql_from_data = self::FROM_DATE, $limit = self::NO_LIMIT ) {
+        echo __METHOD__ . PHP_EOL;
+
+        $this->db->_compile_select();
+        $inactive_users = $this->db->query( self::SQL_QUERY_INACTIVE_USERS, [ $from_date, self::_limit($limit) ] );
+
+        printf( "Count of inactive users: %s\n", $inactive_users->num_rows );
+
+        $this->_sql_log( $inactive_users, __METHOD__ );
+
+        $this->load->model( 'favourite_model' );
+
+        $user_no_content = [];
+        $user_with_content = [];
+
+        $bar = self::_start_progress_bar( $inactive_users->num_rows );
+
+        foreach ($inactive_users->result() as $user) {
+            $user_stats = $this->favourite_model->get_user_statistics( $user->id );
+
+            if ($user_stats->total > 0) {
+                $user_with_content[] = $user->id;
+            } else {
+                $user_no_content[] = $user->id;
+            }
+
+            usleep( 0.01 * 1000000 );
+
+            $bar->progress();
+        }
+        echo PHP_EOL;
+
+        printf( "Users no content: %d\n * User IDs: %s\n", count( $user_no_content ), join( ',', $user_no_content ) );
+        printf( "Users with content: %d\n * User IDs:  %s\n", count( $user_with_content ), join( ',', $user_with_content ) );
+
+        $sql = self::_sql_prepare_in( self::SQL_Q2_INACTIVE_USERS, $user_no_content );
+        $sql_param_r = $user_no_content;
+        $sql_param_r[] = self::_limit( $limit );
+
+        $this->db->_compile_select();
+        $result_q2 = $this->db->query( $sql, $sql_param_r );
+
+        printf( "Count users Q2: %d\n * Sql:  %s\n", $result_q2->num_rows, $sql );
+
+        $this->_sql_log( $result_q2, __METHOD__ );
     }
 }
