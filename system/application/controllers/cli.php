@@ -47,11 +47,11 @@ class CLI extends MY_Controller {
     const SQL_WHITELIST_USER_CLOUDS =
     'SELECT u.*, c.* FROM user u JOIN cloud AS c ON c.user_id = u.id JOIN user_profile AS p ON p.id = u.id WHERE (SELECT FROM_unixtime(c.created)) >= ? AND (SELECT FROM_unixtime(c.created)) <= ? AND p.whitelist = 1 LIMIT ?';
 
-    const SQL_QUERY_INACTIVE_USERS = 'SELECT id,user_name FROM user WHERE last_visit IS NULL OR last_visit < ? LIMIT ? ';
+    const SQL_QUERY_INACTIVE_USERS = 'SELECT id,user_name FROM user WHERE ( last_visit IS NULL OR last_visit < ? ) AND do_not_delete = 0 LIMIT ? ';
 
-    const SQL_DELETE_INACTIVE_USERS = 'DELETE FROM user WHERE id IN ( %s ) LIMIT ?';
+    const SQL_DELETE_INACTIVE_USERS = 'DELETE FROM user WHERE id IN ( %s ) AND do_not_delete = 0 LIMIT ?';
 
-    const SQL_Q2_INACTIVE_USERS = 'SELECT * FROM user WHERE id IN ( %s ) LIMIT ?';
+    const SQL_Q2_INACTIVE_USERS = 'SELECT * FROM user WHERE id IN ( %s )AND do_not_delete = 0 LIMIT ?';
 
     public function __construct() {
         parent::MY_Controller();
@@ -361,15 +361,16 @@ EOT;
         return $akismet;
     }
 
+    // ----------------------------------------------------------------------
+
+    /* GDPR/privacy */
+
+
     protected static function _sql_prepare_in( $sql, $the_array ) {
         $question_marks = implode( ',', array_fill( 0, count( $the_array ), '?' ));
 
         return sprintf( $sql, $question_marks );
     }
-
-    // ----------------------------------------------------------------------
-
-    /* GDPR/privacy */
 
     /** Delete users who haven't logged in for a while, and have no Clouds or other content.
      * @return void

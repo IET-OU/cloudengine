@@ -1,4 +1,6 @@
-<script type="text/javascript" src="<?=base_url()?>_scripts/iframe_strip.js"></script>
+
+<script src="<?=base_url()?>_scripts/iframe_strip.js"></script>
+
 <div id="user-profile" class="<?= $show_description() ? 'show-desc' : 'hide-desc' ?>" >
 
 <div class="grid headline">
@@ -47,8 +49,11 @@
     <?php if ($reputation): ?>
     <p class="reputation"><strong><?=t('Reputation: !count', array('!count'=> $reputation)) ?></strong></p>
     <?php endif; ?>
-    <p><?= $user->institution ?>
+    <?php if ($admin && $user->do_not_delete): ?>
+      <p class="do-not-delete" title="<?=t('Emeritus, admins & significant Cloudworks users')?>"><i><?=t('Do not delete')?></i></p>
+    <?php endif; ?>
 
+    <p class="institution"><?= $user->institution ?>
 
     </p>
     <?php if (count($badges) > 0 && $this->config->item('x_badge')): ?>

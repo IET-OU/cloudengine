@@ -944,7 +944,13 @@ table#userlist .user-info {
     margin-right:10px;}
 
 #user-profile h1 {
-    padding-top:5px;}
+  padding-top: 0; /* Was: 5px; */
+}
+
+#user-profile .headline p {
+  margin: 0 0 .7em;
+  zoom: 104%;
+}
 
 .avatars {
     margin:2em 0;}
