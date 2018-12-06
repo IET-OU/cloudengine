@@ -56,6 +56,6 @@ Details of GDPR / privacy fixes can be found in [Bug #377][].
 [iet]: https://iet.open.ac.uk/ "Developed by the Institute of Educational Technology"
 [ou]: https://www.open.ac.uk/
 
-[Bug #377]: https://github.com/IET-OU/cloudengine/issues/377
+[Bug #377]: https://github.com/IET-OU/cloudengine/issues/377 "GDPR/data privacy"
 
 [End]: //end.

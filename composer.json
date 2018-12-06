@@ -62,7 +62,7 @@
         "cli-help": "php index.php cli/help",
         "cli-version": "php index.php cli/version",
         "banned-user-comments": "php index.php cli/banned_user_comments 2017-01-01 --limit:-1  # Un-limited.",
-        "delete-inactive-users": "php index.php cli/delete_inactive_users 2017-01-01 --limit:10"
+        "delete-inactive-users": "php index.php cli/delete_inactive_users 2017-01-01 --limit=10 --dry-run"
     },
     "autoload": {
         "classmap": [ "system/application/helpers/", "system/application/libraries/" ]

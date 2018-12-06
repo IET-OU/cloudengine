@@ -23,6 +23,8 @@ use Dariuszp\CliProgressBar;
 
 class CLI extends MY_Controller {
 
+    protected static $dry_run = false;
+
     const HELP = "Usage:\n    php index.php CLI banned_user_comments 2017-01-01 now --limit:-1\n\n";
     const ADD_CONFIG_FILE = 'cli-config';
 
@@ -47,11 +49,12 @@ class CLI extends MY_Controller {
     const SQL_WHITELIST_USER_CLOUDS =
     'SELECT u.*, c.* FROM user u JOIN cloud AS c ON c.user_id = u.id JOIN user_profile AS p ON p.id = u.id WHERE (SELECT FROM_unixtime(c.created)) >= ? AND (SELECT FROM_unixtime(c.created)) <= ? AND p.whitelist = 1 LIMIT ?';
 
-    const SQL_QUERY_INACTIVE_USERS = 'SELECT id,user_name FROM user WHERE ( last_visit IS NULL OR last_visit < ? ) AND do_not_delete = 0 LIMIT ? ';
+    const SQL_QUERY_INACTIVE_USERS = 'SELECT id,user_name FROM user WHERE last_visit < ? AND do_not_delete = 0 ORDER BY id ASC LIMIT ?';
 
     const SQL_DELETE_INACTIVE_USERS = 'DELETE FROM user WHERE id IN ( %s ) AND do_not_delete = 0 LIMIT ?';
+    const SQL_DELETE_INACTIVE_PROFILE = 'DELETE FROM user_profile WHERE id IN ( %s ) LIMIT ?';
 
-    const SQL_Q2_INACTIVE_USERS = 'SELECT * FROM user WHERE id IN ( %s )AND do_not_delete = 0 LIMIT ?';
+    const SQL_Q2_INACTIVE_USERS = 'SELECT * FROM user WHERE id IN ( %s ) AND do_not_delete = 0 LIMIT ?';
 
     public function __construct() {
         parent::MY_Controller();
@@ -365,7 +368,13 @@ EOT;
 
     /* GDPR/privacy */
 
+    protected static function _is_dry_run() {
+        return self::$dry_run === '--dry-run';
+    }
 
+    /** Fix for CodeIgniter 1.7.x (2.x)
+     * @link https://codeigniter.com/userguide2/database/queries.html#!-query-bindings
+     */
     protected static function _sql_prepare_in( $sql, $the_array ) {
         $question_marks = implode( ',', array_fill( 0, count( $the_array ), '?' ));
 
@@ -375,8 +384,12 @@ EOT;
     /** Delete users who haven't logged in for a while, and have no Clouds or other content.
      * @return void
      */
-    public function delete_inactive_users( $sql_from_data = self::FROM_DATE, $limit = self::NO_LIMIT ) {
+    public function delete_inactive_users( $sql_from_data = self::FROM_DATE, $limit = self::NO_LIMIT, $dry_run = false ) {
+        self::$dry_run = $dry_run;
+
         echo __METHOD__ . PHP_EOL;
+
+        $this->load->model( 'favourite_model' );
 
         $this->db->_compile_select();
         $inactive_users = $this->db->query( self::SQL_QUERY_INACTIVE_USERS, [ $from_date, self::_limit($limit) ] );
@@ -384,8 +397,6 @@ EOT;
         printf( "Count of inactive users: %s\n", $inactive_users->num_rows );
 
         $this->_sql_log( $inactive_users, __METHOD__ );
-
-        $this->load->model( 'favourite_model' );
 
         $user_no_content = [];
         $user_with_content = [];
@@ -402,7 +413,6 @@ EOT;
             }
 
             usleep( 0.01 * 1000000 );
-
             $bar->progress();
         }
         echo PHP_EOL;
@@ -410,15 +420,31 @@ EOT;
         printf( "Users no content: %d\n * User IDs: %s\n", count( $user_no_content ), join( ',', $user_no_content ) );
         printf( "Users with content: %d\n * User IDs:  %s\n", count( $user_with_content ), join( ',', $user_with_content ) );
 
-        $sql = self::_sql_prepare_in( self::SQL_Q2_INACTIVE_USERS, $user_no_content );
+        $sql_template = self::_is_dry_run() ? self::SQL_Q2_INACTIVE_USERS : self::SQL_DELETE_INACTIVE_USERS;
+        $sql_p_template = self::_is_dry_run() ? self::SQL_Q2_INACTIVE_USERS : self::SQL_DELETE_INACTIVE_PROFILE;
+
+        $sql_delete_users = self::_sql_prepare_in( $sql_template, $user_no_content );
+        $sql_delete_profile = self::_sql_prepare_in( $sql_template, $user_no_content );
+
         $sql_param_r = $user_no_content;
         $sql_param_r[] = self::_limit( $limit );
 
         $this->db->_compile_select();
-        $result_q2 = $this->db->query( $sql, $sql_param_r );
+        $res_delete_users = $this->db->query( $sql_delete_users, $sql_param_r );
+        $user_affected_rows = $this->db->affected_rows();
 
-        printf( "Count users Q2: %d\n * Sql:  %s\n", $result_q2->num_rows, $sql );
+        $this->db->_compile_select();
+        $res_delete_profile = $this->db->query( $sql_delete_profile, $sql_param_r );
 
-        $this->_sql_log( $result_q2, __METHOD__ );
+        if (self::_is_dry_run()) {
+            printf( "Dry run. Count of affected users Q2: %d\n * Sql:  %s\n", $res_delete_users->num_rows, $sql_delete_users );
+
+        } else {
+            printf( "Count of deleted users: %d\n * Sql:  %s\n", $user_affected_rows, $sql_delete_users );
+            printf( "\nCount of deleted profiles: %d\n * Sql:  %s\n", $this->db->affected_rows(), $sql_delete_profile );
+        }
+
+        $this->_sql_log( $res_delete_users, __METHOD__ );
+        $this->_sql_log( $res_delete_profile, __METHOD__ );
     }
 }
