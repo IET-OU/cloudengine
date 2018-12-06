@@ -198,7 +198,7 @@
     function getDefaultOEmbedProvider(defaultOEmbedProvider) {
         var url = "http://oohembed.com/oohembed/";
         if (defaultOEmbedProvider === "embed.ly")
-            url = "http://api.embed.ly/v1/api/oembed?";
+            url = "https://api.embed.ly/v1/api/oembed?";
         return new $.fn.oembed.OEmbedProvider(defaultOEmbedProvider, null, null, url, "callback");
     }
 
@@ -346,55 +346,54 @@
 		new $.fn.oembed.OEmbedProvider('twitter', 'rich', ["twitter\.com"]),
 		new $.fn.oembed.OEmbedProvider('xtranormal', 'video', ["xtranormal\.com"]),
 		new $.fn.oembed.OEmbedProvider('timetoast', 'rich', ["timetoast\.com"]),
-		new $.fn.oembed.OEmbedProvider('speakerdeck', 'rich', ["speakerdeck\.com"], 'http://speakerdeck.com/oembed.json'),
+		new $.fn.oembed.OEmbedProvider('speakerdeck', 'rich', ["speakerdeck\.com"], 'https://speakerdeck.com/oembed.json'),
 		new $.fn.oembed.OEmbedProvider('cacoo', 'rich', ["cacoo\.com"], 'http://cacoo.com/oembed.json'),
-		new $.fn.oembed.OEmbedProvider('ispot', 'rich', ["ispot\.org\.uk"], 'http://www.ispot.org.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('github gist', 'rich', ["gist\.github\.com"], 'http://noembed.com/embed'),
-		new $.fn.oembed.OEmbedProvider('github commit', 'rich', ["github\.com"], 'http://noembed.com/embed'),
-		new $.fn.oembed.OEmbedProvider('spotify', 'rich', ["open\.spotify\.com"], 'http://noembed.com/embed'),
-		new $.fn.oembed.OEmbedProvider('wikipedia', 'rich', ["wikipedia\.org"], 'http://noembed.com/embed'),
-		new $.fn.oembed.OEmbedProvider('oupodcast', 'video', ["podcast\.open\.ac\.uk"], 'http://embed.open.ac.uk/oembed'), /*IMPORTANT: This endpoint will be deprecated in favour of http://mediaplayer.open.ac.uk [live] */
-		new $.fn.oembed.OEmbedProvider('lams', 'rich', ["lamscommunity\.org"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('youtube', 'video', ["youtube\.com"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('youtube', 'video', ["youtu\.be"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('prezi', 'rich', ["prezi\.com"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('googledoc', 'rich', ["docs\.google\.com"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('googlegroups', 'rich', ["groups\.google\.com"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('sharepoint', 'rich', ["intranet7\.open\.ac\.uk"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('mathtran', 'photo', ["mathtran\.org"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('cohere', 'rich', ["cohere\.open\.ac\.uk"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["dl\.dropbox\.com"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["ubuntuone\.com"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["openclipart\.org"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["upload\.wikimedia\.org"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["openlearn\.open\.ac\.uk"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["labspace\.open\.ac\.uk"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["compendiumld\.open\.ac\.uk"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["kn\.open\.ac\.uk"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["oro\.open\.ac\.uk"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["www\.open\.edu"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["www\.open\.ac\.uk"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('ispot', 'rich', ["ispot\.org\.uk"], 'http://www.ispot.org.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('bibsonomy', 'rich', ["www\.bibsonomy\.org"], 'http://embed.open.ac.uk/oembed'),
-		new $.fn.oembed.OEmbedProvider('bibsonomy', 'rich', ["bibsonomy\.org"], 'http://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('github gist', 'rich', ["gist\.github\.com"], 'https://noembed.com/embed'),
+		new $.fn.oembed.OEmbedProvider('github commit', 'rich', ["github\.com"], 'https://noembed.com/embed'),
+		new $.fn.oembed.OEmbedProvider('spotify', 'rich', ["open\.spotify\.com"], 'https://noembed.com/embed'),
+		new $.fn.oembed.OEmbedProvider('wikipedia', 'rich', ["wikipedia\.org"], 'https://noembed.com/embed'),
+		new $.fn.oembed.OEmbedProvider('oupodcast', 'video', ["podcast\.open\.ac\.uk"], 'https://embed.open.ac.uk/oembed'), /*IMPORTANT: This endpoint will be deprecated in favour of http://mediaplayer.open.ac.uk [live] */
+		new $.fn.oembed.OEmbedProvider('lams', 'rich', ["lamscommunity\.org"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('youtube', 'video', ["youtube\.com"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('youtube', 'video', ["youtu\.be"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('prezi', 'rich', ["prezi\.com"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('googledoc', 'rich', ["docs\.google\.com"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('googlegroups', 'rich', ["groups\.google\.com"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('sharepoint', 'rich', ["intranet7\.open\.ac\.uk"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('mathtran', 'photo', ["mathtran\.org"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('cohere', 'rich', ["cohere\.open\.ac\.uk"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["dl\.dropbox\.com"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["ubuntuone\.com"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["openclipart\.org"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["upload\.wikimedia\.org"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["openlearn\.open\.ac\.uk"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["labspace\.open\.ac\.uk"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["compendiumld\.open\.ac\.uk"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["kn\.open\.ac\.uk"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["oro\.open\.ac\.uk"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["www\.open\.edu"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('fileviewer', 'rich', ["www\.open\.ac\.uk"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('ispot', 'rich', ["ispot\.org\.uk", "ispotnature\.org"], 'https://www.ispotnature.org/oembed'),
+		new $.fn.oembed.OEmbedProvider('bibsonomy', 'rich', ["www\.bibsonomy\.org"], 'https://embed.open.ac.uk/oembed'),
+		new $.fn.oembed.OEmbedProvider('bibsonomy', 'rich', ["bibsonomy\.org"], 'https://embed.open.ac.uk/oembed'),
 
 		//new $.fn.oembed.OEmbedProvider("youtube", "video", ["youtube\\.com/watch.+v=[\\w-]+&?"]), // "http://www.youtube.com/oembed"	(no jsonp)
 //ou-specific ends.
-		new $.fn.oembed.OEmbedProvider("flickr", "photo", ["flickr\\.com/photos/[-.\\w@]+/\\d+/?"], "http://flickr.com/services/oembed", "jsoncallback"),
+		new $.fn.oembed.OEmbedProvider("flickr", "photo", ["flickr\\.com/photos/[-.\\w@]+/\\d+/?"], "https://flickr.com/services/oembed", "jsoncallback"),
 		new $.fn.oembed.OEmbedProvider("viddler", "video", ["viddler\.com"]), // "http://lab.viddler.com/services/oembed/" (no jsonp)
 		new $.fn.oembed.OEmbedProvider("blip", "video", ["blip\\.tv/.+"], "http://blip.tv/oembed/"),
-		new $.fn.oembed.OEmbedProvider("hulu", "video", ["hulu\\.com/watch/.*"], "http://www.hulu.com/api/oembed.json"),
-		new $.fn.oembed.OEmbedProvider("vimeo", "video", ["http:\/\/www\.vimeo\.com\/groups\/.*\/videos\/.*", "http:\/\/www\.vimeo\.com\/.*", "http:\/\/vimeo\.com\/groups\/.*\/videos\/.*", "http:\/\/vimeo\.com\/.*"], "http://vimeo.com/api/oembed.json"),
+		new $.fn.oembed.OEmbedProvider("hulu", "video", ["hulu\\.com/watch/.*"], "https://www.hulu.com/api/oembed.json"),
+		new $.fn.oembed.OEmbedProvider("vimeo", "video", ["http:\/\/www\.vimeo\.com\/groups\/.*\/videos\/.*", "http:\/\/www\.vimeo\.com\/.*", "http:\/\/vimeo\.com\/groups\/.*\/videos\/.*", "http:\/\/vimeo\.com\/.*"], "https://vimeo.com/api/oembed.json"),
 		new $.fn.oembed.OEmbedProvider("dailymotion", "video", ["dailymotion\\.com/.+"]), // "http://www.dailymotion.com/api/oembed/" (callback parameter does not return jsonp)
 		new $.fn.oembed.OEmbedProvider("scribd", "rich", ["scribd\\.com/.+"]), // ", "http://www.scribd.com/services/oembed"" (no jsonp)
 //ou-specific - 1 line, V2 api.
-		new $.fn.oembed.OEmbedProvider("slideshare", "rich", ["slideshare\.net"], "http://www.slideshare.net/api/oembed/2"),
-		new $.fn.oembed.OEmbedProvider("photobucket", "photo", ["photobucket\\.com/(albums|groups)/.*"], "http://photobucket.com/oembed/")
+		new $.fn.oembed.OEmbedProvider("slideshare", "rich", ["slideshare\.net"], "https://www.slideshare.net/api/oembed/2"),
+		new $.fn.oembed.OEmbedProvider("photobucket", "photo", ["photobucket\\.com/(albums|groups)/.*"], "https://photobucket.com/oembed/")
 		// new $.fn.oembed.OEmbedProvider("vids.myspace.com", "video", ["vids\.myspace\.com"]), // "http://vids.myspace.com/index.cfm?fuseaction=oembed" (not working)
 		// new $.fn.oembed.OEmbedProvider("screenr", "rich", ["screenr\.com"], "http://screenr.com/api/oembed.json") (error)
 		// new $.fn.oembed.OEmbedProvider("qik", "video", ["qik\\.com/\\w+"], "http://qik.com/api/oembed.json"),
 		// new $.fn.oembed.OEmbedProvider("revision3", "video", ["revision3\.com"], "http://revision3.com/api/oembed/")
 	];
-})(jQuery);
+})(window.jQuery);
 
 /* jshint +W116 *//* jshint +W069 */
