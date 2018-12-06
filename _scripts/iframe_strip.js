@@ -8,7 +8,7 @@
  * in that context
  */
 
-jQuery(function ($) {
+window.jQuery(function ($) {
     'use strict';
 
     if (window.top !== window.self) { // If the current page is in an iframe

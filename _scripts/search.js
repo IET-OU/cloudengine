@@ -2,8 +2,8 @@
   CloudEngine | ©The Open University | License: GPL-2.0.
 */
 
- jQuery(function ($) {
-   'use strict';
+window.jQuery(function ($) {
+  'use strict';
 
   //search interface tab sections
   $("#cloud").hover(function() {
@@ -119,4 +119,4 @@
     return false;
   });
 
- });
+});

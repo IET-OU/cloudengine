@@ -18,7 +18,7 @@ window.Cloudworks.Streams = function() {
 
         //! Default options used for render()
         defaults: {
-            'BASE_URL':   'http://cloudworks.ac.uk/',
+            'BASE_URL':   'https://cloudworks.ac.uk/',
             'title':      'My Cloudstream',
             'count':      10, //15,
             'sort':       'date',

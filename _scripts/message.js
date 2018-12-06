@@ -2,7 +2,7 @@
   CloudEngine | ©The Open University | License: GPL-2.0.
 */
 
-	jQuery(function ($) {
+  window.jQuery(function ($) {
 	  'use strict';
 
     //fade the information message in and out

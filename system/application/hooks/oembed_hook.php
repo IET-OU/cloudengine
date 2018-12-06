@@ -61,12 +61,12 @@ class oembed {
 
           $embed = <<<EOF
 
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>  
-  <script type="text/javascript" src="$js_oembed"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="$js_oembed"></script>
 EOF;
         }
         $embed .= <<<EOF
-  <script type="text/javascript">
+  <script>
     \$(document).ready(function() {
        \$("#$id").oembed("$url");
     });

@@ -1,23 +1,23 @@
 ﻿(function($) {
-    $.fn.oembed = function(url, options) {		
-	
+    $.fn.oembed = function(url, options) {
+
 		options = $.extend({}, $.fn.oembed.defaults, options);
-		
-        return this.each(function() {      
-			
-			var container = $(this), 
-				target = (url != null) ? url : container.attr("href"), 
-				provider;		
-			
-			if (target != null) {			
-				
+
+        return this.each(function() {
+
+			var container = $(this),
+				target = (url != null) ? url : container.attr("href"),
+				provider;
+
+			if (target != null) {
+
 				provider = getOEmbedProvider(target);
 
 				if (provider != null) {
 					provider.maxWidth = options.maxWidth;
-					provider.maxHeight = options.maxHeight;               
-					
-					provider.embedCode(target, function(code) { container.html(code); });		
+					provider.maxHeight = options.maxHeight;
+
+					provider.embedCode(target, function(code) { container.html(code); });
 				}
 			}
         });
@@ -51,7 +51,7 @@
 
     $.fn.oembed.getGenericCode = function(url, data) {
         var title = (data.title != null) ? data.title : url,
-			code = '<a href="' + url + '">' + title + '</a>';			
+			code = '<a href="' + url + '">' + title + '</a>';
         if (data.html)
             code += "<div>" + data.html + "</div>";
 		return code;
@@ -61,7 +61,7 @@
         var provider = getOEmbedProvider(url);
         return (provider != null);
     };
-	
+
     /* Private Methods */
     function getOEmbedProvider(url) {
         for (var i = 0; i < providers.length; i++) {
@@ -74,7 +74,7 @@
     var providers = [
         new OEmbedProvider("fivemin", "5min.com"),
         new OEmbedProvider("amazon", "amazon.com"),
-        new OEmbedProvider("flickr", "flickr", "http://flickr.com/services/oembed", "jsoncallback"),
+        new OEmbedProvider("flickr", "flickr", "https://flickr.com/services/oembed", "jsoncallback"),
         new OEmbedProvider("googlevideo", "video.google."),
         new OEmbedProvider("hulu", "hulu.com"),
         new OEmbedProvider("imdb", "imdb.com"),
@@ -84,7 +84,7 @@
         new OEmbedProvider("slideshare", "5min.com"),
         new OEmbedProvider("twitpic", "twitpic.com"),
         new OEmbedProvider("viddler", "viddler.com"),
-        new OEmbedProvider("vimeo", "vimeo.com", "http://vimeo.com/api/oembed.json"),
+        new OEmbedProvider("vimeo", "vimeo.com", "https://vimeo.com/api/oembed.json"),
         new OEmbedProvider("wikipedia", "wikipedia.org"),
         new OEmbedProvider("wordpress", "wordpress.com"),
         new OEmbedProvider("youtube", "youtube.com")
@@ -95,8 +95,8 @@
         this.urlPattern = urlPattern;
 //ou-specific
         this.oEmbedUrl = (oEmbedUrl != null) ? oEmbedUrl :
-        //"http://oohembed.com/oohembed/";
-        "http://api.embed.ly/v1/api/oembed";
+        // "http://oohembed.com/oohembed/";
+        "https://api.embed.ly/v1/api/oembed";
 //ou-specific ends.
         this.callbackparameter = (callbackparameter != null) ? callbackparameter : "callback";
         this.maxWidth = 500;
@@ -114,11 +114,11 @@
             if (url.indexOf("?") <= 0)
                 url = url + "?";
 
-            url += "maxwidth=" + this.maxWidth + 
-						"&maxHeight=" + this.maxHeight + 
-						"&format=json" + 
-						"&url=" + escape(externalUrl) + 
-						"&" + this.callbackparameter + "=?";						
+            url += "maxwidth=" + this.maxWidth +
+						"&maxHeight=" + this.maxHeight +
+						"&format=json" +
+						"&url=" + escape(externalUrl) +
+						"&" + this.callbackparameter + "=?";
             return url;
         }
 
@@ -127,7 +127,7 @@
             var request = this.getRequestUrl(externalUrl);
 
             $.getJSON(request, function(data) {
-                
+
 				var code, type = data.type;
 
                 switch (type) {
@@ -149,5 +149,4 @@
             });
         }
     }
-})(jQuery);
-
+})(window.jQuery);

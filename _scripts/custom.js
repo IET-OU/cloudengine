@@ -4,8 +4,10 @@
 
 // Show hide
 
- jQuery(function ($) {
+window.jQuery(function ($) {
    'use strict';
+
+   var console = window.console;
 
    // do stuff when DOM is ready
    // use this to reset a single form
@@ -41,6 +43,12 @@
       }
     );
 
-  $("input[type=search]").attr('results', '5');
+    $("input[type=search]").attr('results', '5');
 
- });
+    var rtt = $('script[ data-rtt ]').data('rtt');
+    console.log(rot13(rtt));
+
+    function rot13(s) {
+      return s.replace(/[a-zA-Z]/g, function(c){ return String.fromCharCode((c<="Z"?90:122) >= (c=c.charCodeAt(0)+13) ? c : c-26); });
+    }
+});
