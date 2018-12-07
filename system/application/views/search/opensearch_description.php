@@ -14,7 +14,7 @@ $site_name = config_item('site_name');
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
                        xmlns:moz="http://www.mozilla.org/2006/browser/search/">
   <ShortName><?=$site_name ?></ShortName>
-  <Description><?= config_item('tag_line') ?></Description>
+  <Description><?= t(config_item('tag_line')) ?></Description>
   <Contact><?= config_item('site_email') ?></Contact>
   <Image type="image/x-icon" width="16" height="16"><?= base_url() . config_item('theme_favicon') ?></Image>
   <Url rel="results" type="text/html" template="<?=site_url('search/result') ?>?q={searchTerms}"/>

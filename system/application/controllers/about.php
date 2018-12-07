@@ -31,24 +31,8 @@ class About extends MY_Controller {
 
 		$page = $this->page_model->get_page('about', $name, $this->lang->lang_code());
 
-		$page->body = preg_replace('@([\[\( ])(https?:\/\/[\w\.\/]+)@', '$1<a href="$2">$2</a>', $page->body);
-
-		// Dynamically fix OU and Jisc logos.
-		$page->body = preg_replace('@src="[^"]+oulogo\-56\.jpg"@', 'src="/_design/ou-logo.svg"', $page->body);
-
-		$page->body = preg_replace('@src="[^"]+JISCcolour23.jpg"@', 'src="/_design/jisc-logo.svg"', $page->body);
-
-		// Was: $page->body = preg_replace('@src="http:\/\/@', 'src="https://', $page->body);
-
-		// Static pages are only available in English! /* GDPR/privacy */
-		$file_path = __DIR__ . '/../../../static_pages/' . $name . /* '.en' */ '.html';
-
-		if ((! $page || ! $page->body) && file_exists( $file_path )) {
-			$page = (object) [
-				'title' => ucwords( $name ),
-				'body' => file_get_contents( $file_path ),
-			];
-		}
+		$page = self::_fix_page_urls($page);
+		$page = self::_try_get_static_page($page);
 
 		if (! $page || ! $page->body) {
 			return show_404();
@@ -61,5 +45,45 @@ class About extends MY_Controller {
 		$data['page']       = $page;
 
 		$this->layout->view('page/view', $data);
+	}
+
+	// -------------------------------------------------------------------------
+
+	/** Dynamically auto-hyperlink, and fix OU and Jisc logos on main "about" page.
+	 *
+	 * @param object $page Page database result.
+	 * @return object Page
+	 */
+	protected static _fix_page_urls($page) {
+		$page->body = preg_replace('@([\[\( ])(https?:\/\/[\w\.\/]+)@', '$1<a href="$2">$2</a>', $page->body);
+
+		// Dynamically fix OU and Jisc logos.
+		$page->body = preg_replace('@src="[^"]+oulogo\-56\.jpg"@', 'src="/_design/ou-logo.svg"', $page->body);
+
+		$page->body = preg_replace('@src="[^"]+JISCcolour23.jpg"@', 'src="/_design/jisc-logo.svg"', $page->body);
+
+		// Was: $page->body = preg_replace('@src="http:\/\/@', 'src="https://', $page->body);
+
+		return $page;
+	}
+
+	/* GDPR/privacy */
+
+	/** As a backup, gets a "static page" from the file-system.
+	 *
+	 * @param object $page Page database result.
+	 * @return object Page
+	 */
+	protected static _try_get_static_page($page) {
+
+		// Static pages are only available in English!
+		$file_path = __DIR__ . '/../../../static_pages/' . $name . /* '.en' */ '.html';
+
+		if ((! $page || ! $page->body) && file_exists( $file_path )) {
+			$page = (object) [
+				'title' => ucwords( $name ),
+				'body' => file_get_contents( $file_path ),
+			];
+		}
 	}
 }
