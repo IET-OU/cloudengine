@@ -31,6 +31,8 @@ composer test
 
 Details of GDPR / privacy fixes can be found in [Bug #377][].
 
+ * SQL :~ [`../gdpr-anonymise-delete.sql`][gdpr-sql]
+
 ## License
 
 [CloudEngine][gh] is Copyright © 2009-2019, [The Open University][ou]. ([Institute of Educational Technology][iet])
@@ -57,5 +59,6 @@ Details of GDPR / privacy fixes can be found in [Bug #377][].
 [ou]: https://www.open.ac.uk/
 
 [Bug #377]: https://github.com/IET-OU/cloudengine/issues/377 "GDPR/data privacy"
+[gdpr-sql]: https://github.com/IET-OU/cloudengine/blob/master/system/application/cli/gdpr-anonymize-delete.sql
 
 [End]: //end.

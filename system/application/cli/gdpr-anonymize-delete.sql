@@ -48,20 +48,39 @@ SET @do_not_delete = '1,3,5,6,7,8,9,10,13,15,23,28,32,66,99,103,104,110,356,358,
 -- UPDATE cloudworks_live.`user` SET role = 'user' WHERE id IN ( 3 ); -- GC.
 -- UPDATE cloudworks_live.`user` SET do_not_delete = 0 WHERE id IN ( 14, 21, 24 ); -- Woops, undo!
 
+-- UPDATE cloudworks_live.`user` SET do_not_delete = 1 WHERE id IN ( 105, 109, 163, 258, 466, 863, 967, 1292, 1712, 1943, 3078, 4020, 5094, 8011 ); -- 07-Dec-2018 rows = 13;
+
+-- 4 B. View the do NOT delete (Emeritus) list.
+SELECT id,user_name,email,created,last_visit,role FROM user WHERE do_not_delete = 1 ORDER BY id ASC; -- 07-Dec-2018 rows = 54;
+
 
 -- 5. Delete in-active users.
 
 -- DELETE FROM cloudworks_live.user WHERE last_visit IS NULL AND created < '2018-01-01' AND do_not_delete = 0; -- DONE. rows = 2024;
 
 -- 6. Delete old temporary user accounts.
+
 -- DELETE FROM cloudworks_live.user_temp WHERE created < '2018-09-01';
 
 SELECT count(*) FROM user AS u JOIN user_profile AS p ON p.id = u.id WHERE p.moderate = 1; -- rows = 0; ??
 
+
 -- 7. Hard delete previously "soft deleted" users.
+
 SELECT count(*) FROM user AS u JOIN user_profile AS p ON p.id = u.id WHERE p.deleted = 1; -- rows = 233;
 SELECT GROUP_CONCAT(id ORDER BY id ASC SEPARATOR ',') AS User_IDs FROM cloudworks_live.user_profile WHERE deleted = 1;
 -- DELETE user FROM user JOIN user_profile AS p ON p.id = user.id WHERE p.deleted = 1; -- DONE.
 -- DELETE FROM cloudworks_live.user_profile WHERE deleted = 1; -- DONE.
+
+
+-- 8. Delete "orphaned" records in "user_profile"
+
+SELECT p.id,fullname,institution,whitelist FROM cloudworks_live.user_profile AS p WHERE NOT EXISTS( SELECT id FROM user AS u WHERE u.id = p.id ) ORDER BY id ASC; -- 07-Dec-2018 rows = 1095;
+
+SELECT p.id,LEFT(fullname, 35),LEFT(institution, 40),whitelist FROM cloudworks_live.user_profile AS p WHERE NOT EXISTS( SELECT id FROM user AS u WHERE u.id = p.id ) ORDER BY id ASC;
+
+-- DELETE user_profile FROM user_profile AS p WHERE NOT EXISTS( SELECT id FROM user AS u WHERE u.id = p.id ); -- 07-Dec-2018. DONE. rows = 1095;
+
+-- ...
 
 -- End.
