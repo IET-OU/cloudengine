@@ -22,6 +22,8 @@ class About extends MY_Controller {
 	 * Takes the page name specified in the URL and retrieves from the database the appropriate
 	 * page for the about section in the current language and then displays it.
 	 *
+	 * As a backup, gets a "static page" from the file-system.
+	 *
 	 * @param string $name The page name
 	 */
 	public function _remap($name) {
@@ -31,7 +33,14 @@ class About extends MY_Controller {
 
 		$page->body = preg_replace('@([\[\( ])(https?:\/\/[\w\.\/]+)@', '$1<a href="$2">$2</a>', $page->body);
 
-    // Static pages are only available in English! /* GDPR/privacy */
+		// Dynamically fix OU and Jisc logos.
+		$page->body = preg_replace('@src="[^"]+oulogo\-56\.jpg"@', 'src="/_design/ou-logo.svg"', $page->body);
+
+		$page->body = preg_replace('@src="[^"]+JISCcolour23.jpg"@', 'src="/_design/jisc-logo.svg"', $page->body);
+
+		// Was: $page->body = preg_replace('@src="http:\/\/@', 'src="https://', $page->body);
+
+		// Static pages are only available in English! /* GDPR/privacy */
 		$file_path = __DIR__ . '/../../../static_pages/' . $name . /* '.en' */ '.html';
 
 		if ((! $page || ! $page->body) && file_exists( $file_path )) {

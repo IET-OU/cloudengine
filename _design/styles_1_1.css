@@ -978,6 +978,12 @@ body#tags .c2of2 {
 
 /* About / privacy pages.
 ----------------------------------------------------------------------------------- */
+
+.page-index img[ src *= logo ] {
+  height: 65px;
+  width: auto;
+}
+
 /* GDPR/privacy */
 
 .page-privacy .revised {
