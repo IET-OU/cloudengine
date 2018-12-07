@@ -85,6 +85,8 @@ class About extends MY_Controller {
 				'body' => file_get_contents( $file_path ),
 			];
 		}
+
+		return $page;
 	}
-	return $page;
+
 }
