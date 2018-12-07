@@ -54,7 +54,7 @@ class About extends MY_Controller {
 	 * @param object $page Page database result.
 	 * @return object Page
 	 */
-	protected static _fix_page_urls($page) {
+	protected static function _fix_page_urls($page) {
 		$page->body = preg_replace('@([\[\( ])(https?:\/\/[\w\.\/]+)@', '$1<a href="$2">$2</a>', $page->body);
 
 		// Dynamically fix OU and Jisc logos.
@@ -74,7 +74,7 @@ class About extends MY_Controller {
 	 * @param object $page Page database result.
 	 * @return object Page
 	 */
-	protected static _try_get_static_page($page) {
+	protected static function _try_get_static_page($page) {
 
 		// Static pages are only available in English!
 		$file_path = __DIR__ . '/../../../static_pages/' . $name . /* '.en' */ '.html';
@@ -86,4 +86,5 @@ class About extends MY_Controller {
 			];
 		}
 	}
+	return $page;
 }
