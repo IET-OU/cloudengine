@@ -11,6 +11,8 @@
  */
 class About extends MY_Controller {
 
+	const STATIC_PAGE = __DIR__ . '/../../../static_pages/%s.html';
+
 	public function About ()
 	{
 		parent::MY_Controller();
@@ -32,7 +34,7 @@ class About extends MY_Controller {
 		$page = $this->page_model->get_page('about', $name, $this->lang->lang_code());
 
 		$page = self::_fix_page_urls($page);
-		$page = self::_try_get_static_page($page);
+		$page = self::_try_get_static_page($name, $page);
 
 		if (! $page || ! $page->body) {
 			return show_404();
@@ -55,6 +57,8 @@ class About extends MY_Controller {
 	 * @return object Page
 	 */
 	protected static function _fix_page_urls($page) {
+		if (! $page || ! $page->body) return null;
+
 		$page->body = preg_replace('@([\[\( ])(https?:\/\/[\w\.\/]+)@', '$1<a href="$2">$2</a>', $page->body);
 
 		// Dynamically fix OU and Jisc logos.
@@ -74,10 +78,10 @@ class About extends MY_Controller {
 	 * @param object $page Page database result.
 	 * @return object Page
 	 */
-	protected static function _try_get_static_page($page) {
+	protected static function _try_get_static_page($name, $page) {
 
 		// Static pages are only available in English!
-		$file_path = __DIR__ . '/../../../static_pages/' . $name . /* '.en' */ '.html';
+		$file_path = sprintf( self::STATIC_PAGE, $name ); // '.html' NOT '.en.html'.
 
 		if ((! $page || ! $page->body) && file_exists( $file_path )) {
 			$page = (object) [
