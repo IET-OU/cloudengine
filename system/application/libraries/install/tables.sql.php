@@ -370,6 +370,9 @@ CREATE TABLE `user` (
   `last_visit` datetime default NULL,
   `created` timestamp NOT NULL default CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL default '0000-00-00 00:00:00',
+  `change_email_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `new_email` varchar(254) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `do_not_delete` int(1) NOT NULL DEFAULT '0' COMMENT 'Emeritus, founders, past & present significant people.',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -396,8 +399,9 @@ CREATE TABLE `user_profile` (
   `whitelist` int(1) NOT NULL default '0',
   `email_events_attending` int(1) NOT NULL default '1',
   `do_not_use_editor` int(1) NOT NULL default '0',
-  `email_message_notify`  int(1) NOT NULL DEFAULT 1 , 
-  `deleted` int(1) NOT NULL default '0',   
+  `email_message_notify`  int(1) NOT NULL DEFAULT 1 ,
+  `deleted` int(1) NOT NULL default '0',
+  `moderate` tinyint(1) DEFAULT '0',
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -548,7 +552,7 @@ CREATE TABLE `settings` (
   `description` varchar(512) COLLATE utf8_unicode_ci DEFAULT NULL,
   `admin_output_section` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `type` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `notes` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,  
+  `notes` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Settings and configuration variables';
 
@@ -641,7 +645,7 @@ CREATE TABLE `message` (
   `author_user_id`  int(10) NOT NULL ,
   `content`  longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
   `created`  int(10) NOT NULL ,
-  `moderate` int(1) NOT NULL DEFAULT '0',  
+  `moderate` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`message_id`)
 ) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
   COMMENT='Message information, relates to the original author';
@@ -651,7 +655,7 @@ CREATE TABLE `message` (
 DROP TABLE IF EXISTS `message_recipient`;
 
 -- command split --
-  
+
 CREATE TABLE `message_recipient` (
   `message_id`  int(10) NOT NULL ,
   `recipient_user_id`  int(10) NOT NULL ,
@@ -660,27 +664,27 @@ CREATE TABLE `message_recipient` (
   `is_deleted`  tinyint(1) NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`message_id`, `recipient_user_id`)
 ) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-  COMMENT='Message information for recipients, e.g. copies of a message';  
- 
--- command split --
-
-DROP TABLE IF EXISTS `message_thread`; 
+  COMMENT='Message information for recipients, e.g. copies of a message';
 
 -- command split --
-  
+
+DROP TABLE IF EXISTS `message_thread`;
+
+-- command split --
+
 CREATE TABLE `message_thread` (
   `thread_id`  int(10) NOT NULL AUTO_INCREMENT ,
   `subject`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
   `author_user_id`  int(10) NOT NULL ,
   `created`  int(10) NULL DEFAULT NULL ,
-  `moderate` int(1) NOT NULL DEFAULT '0',  
+  `moderate` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`thread_id`)
-) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci 
+) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
   COMMENT='Information about threads, relates to original author';
- 
+
 -- command split --
 
-DROP TABLE IF EXISTS `message_thread_participant`; 
+DROP TABLE IF EXISTS `message_thread_participant`;
 
 -- command split --
 

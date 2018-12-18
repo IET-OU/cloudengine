@@ -15,7 +15,7 @@ This notice<del>document</del> applies to you for your use of the Cloudworks web
 
 ## 1. Who we are ##
 
-3	The Open University is the data controller in relation to the processing activities described below.
+<del>3	</del>The Open University is the data controller in relation to the processing activities described below.
 This means that the Open University decides why and how your personal information is processed.
 Where this document refers to “we”, “our” or “us” below, unless it mentions otherwise, it’s referring to The Open University.
 
@@ -28,14 +28,14 @@ Privacy and Electronic Communications (EC Directive) Regulations 2003.
 
 ## 3. What information do we collect about you, and how do we collect it? ##
 
-### Information that you give to us ###
+### 3.1. Information that you give to us ###
 
 When you register on the website, we collect the following data:
 username, e-mail address, full name, institution (organization), country and password.
 There is the option for you to add the name of your institutional department, and a photo or image of yourself.
 This information is held by the OU LTT team, and will be stored separately to any other records the University holds about you.   
 
-### Information that we collect automatically ###
+### 3.2. Information that we collect automatically ###
 
 We collect anonymised data and create cookies via a service _(e.g. Google Analytics)_ to understand usage patterns on the website.
 
@@ -86,7 +86,7 @@ determined by a number of factors including our purpose for using the informatio
 17	You have a number of rights in relation to your personal information, which apply in certain circumstances.
 In order to exercise any of these rights, please contact us using the details in section 9 of this document.
 
-18	You have the right
+<del>18	</del>You have the right
 
  * To access your personal information that we process
  * To rectify inaccuracies in the personal information that we hold about you
@@ -102,20 +102,22 @@ Please visit the ICO’s website [www.ico.org.uk][] for further details.
 
 ## 9. Contact us ##
 
-19	Please direct any queries about this document or about the way we process your personal information to our Data Protection Officer using the contact details below.
+<del>19	</del>Please direct any queries about this document or about the way we process your personal information to our Data Protection Officer using the contact details below.
 
- * Email [data-protection@open.ac.uk][email]
- * Telephone +44 (0)1908 653994
+ * Email: [data-protection@open.ac.uk][email]
+ * Telephone:  [+44 (0)1908 653994][tel]
  * By post: The Data Protection Officer, PO Box 497, The Open University, Walton Hall, Milton Keynes MK7 6AT.  
 
 ## 10. Changes to the privacy policy ##
 
-20	This Privacy notice may be updated from time to time.
+<del>20	</del>This Privacy notice may be updated from time to time.
 
 
 Last revised:<del>Policy last updated:</del>   <time>23rd<del>2</del> November 2018</time>.
 
+[cloudworks.ac.uk]: https://cloudworks.ac.uk
 [www.ico.org.uk]: https://ico.org.uk/
 [email]: mailto:data-protection@open.ac.uk?subject=Privacy+request+Cloudworks+%20https://cloudworks.ac.uk
+[tel]: tel:+44-1908-653994
 
 ---

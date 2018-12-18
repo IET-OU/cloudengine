@@ -81,6 +81,13 @@ SELECT p.id,LEFT(fullname, 35),LEFT(institution, 40),whitelist FROM cloudworks_l
 
 -- DELETE user_profile FROM user_profile AS p WHERE NOT EXISTS( SELECT id FROM user AS u WHERE u.id = p.id ); -- 07-Dec-2018. DONE. rows = 1095;
 
--- ...
+-- 9. Replace account(s) deleted in error(!)
+-- INSERT INTO cloudworks_live.user
+--  ( id, user_name, country_id, password, email, role, banned,forgotten_password_code, last_visit, created, modified, change_email_code, new_email )
+--    VALUES
+--  (7822,'KoXXxCh',225,'xxx','koXXX.chXXX@open.ac.uk','user',0,NULL,NULL,'2015-06-21 22:31:57','0000-00-00 00:00:00',NULL,NULL); -- DONE. 17-Dec-2018.
+-- UPDATE cloudworks_live.user SET do_not_delete = 1 WHERE user_name = 'KoXXxCh';
+-- INSERT INTO cloudworks_live.user_profile
+--  ( id, fullname, institution, description, twitter_username ) VALUES ( 7822, 'KoXXX ChXXX', 'The Open University', '','' ); -- ,'',NULL,NULL,1,1,1,1,0,0,1,0,1,0,0);
 
 -- End.

@@ -54,10 +54,13 @@ img, a img {
     border: none;
 }
 
+a[ href ^= tel ],
 time[ datetime ],
 abbr[ title ] {
     cursor: help;
     border-bottom:1px dotted gray;
+    padding-bottom: 1px;
+    text-decoration: none;
 }
 
 address {

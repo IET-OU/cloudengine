@@ -9,7 +9,7 @@ and aggregating ideas and resources. It is ideal for running events
 and fostering discussion. It is the free, open source software
 that powers [Cloudworks][].
 
-* <http://cloudworks.ac.uk>
+* <https://cloudworks.ac.uk>
 
 ## Installation
 
@@ -31,7 +31,7 @@ composer test
 
 Details of GDPR / privacy fixes can be found in [Bug #377][].
 
- * SQL :~ [`../gdpr-anonymise-delete.sql`][gdpr-sql]
+ * SQL script :~ [`../gdpr-anonymise-delete.sql`][gdpr-sql]
 
 ## License
 
@@ -54,11 +54,11 @@ Details of GDPR / privacy fixes can be found in [Bug #377][].
 [gpl]: https://gnu.org/licenses/gpl-2.0.html
 [license.txt]: https://github.com/IET-OU/cloudengine/blob/master/LICENCE.txt
 [credits.txt]: https://github.com/IET-OU/cloudengine/blob/master/CREDITS.txt
-[cloudworks]: http://cloudworks.ac.uk/
+[cloudworks]: https://cloudworks.ac.uk/
 [iet]: https://iet.open.ac.uk/ "Developed by the Institute of Educational Technology"
 [ou]: https://www.open.ac.uk/
 
 [Bug #377]: https://github.com/IET-OU/cloudengine/issues/377 "GDPR/data privacy"
 [gdpr-sql]: https://github.com/IET-OU/cloudengine/blob/master/system/application/cli/gdpr-anonymize-delete.sql
 
-[End]: //end.
+[End]: //.
