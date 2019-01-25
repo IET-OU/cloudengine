@@ -43,50 +43,50 @@ code without appropriate permission, please inform the team and we will fix asap
 
 CodeIgniter
 -----------
-Copyright: Copyright (c) 2008 - 2009, EllisLab, Inc.
-License: <http://codeigniter.com/user_guide/license.html>
-License: [CI License (archived)][ci-archived]
+ * Copyright: Copyright (c) 2008 - 2009, EllisLab, Inc.
+ * License: <http://codeigniter.com/user_guide/license.html>
+ * License: [CI License (archived)][ci-archived]
 
 Captcha/FreakAuth
 ----------
 The Captcha code is taken from FreakAuth and some of the authentication code is based/inspired
 by FreakAuth
 
-Location: `system/application/mlibraries/Captcha_lib.php`
-Author: Daniel Vecchiato
-Copyright:	Copyright (c) 2007, 4webby.com
-License: [GNU Lesser General Public License version 2.1 or later][lgpl]
-Link: http://freakauth.4webby.com/d
+ * Location: `system/application/mlibraries/Captcha_lib.php`
+ * Author: Daniel Vecchiato
+ * Copyright:	Copyright (c) 2007, 4webby.com
+ * License: [GNU Lesser General Public License version 2.1 or later][lgpl]
+ * Link: http://freakauth.4webby.com/d
 
 TinyMCE
 -------
-Files: `_scripts/tiny_mce`
-Author:	Moxiecode Systems
-Copyright:	Copyright (C) 2005-2009, Moxiecode Systems AB, All rights reserved.
-License: [GNU Lesser General Public License (LGPL) 2.1][lgpl]
+ * Files: `_scripts/tiny_mce`
+ * Author:	Moxiecode Systems
+ * Copyright:	Copyright (C) 2005-2009, Moxiecode Systems AB, All rights reserved.
+ * License: [GNU Lesser General Public License (LGPL) 2.1][lgpl]
 
 JQuery
 ------
-Files: `_scripts/jquery.js`
-Copyright:	Copyright 2010, John Resig
-License: Dual licensed under the [MIT][] or [GPL][] Version 2 licenses.
+ * Files: `_scripts/jquery.js`
+ * Copyright:	Copyright 2010, John Resig
+ * License: Dual licensed under the [MIT][] or [GPL][] Version 2 licenses.
 
 JQuery DatePicker
 -----------------
-Files: `_scripts/jquery.datePicker.js`
-Copyright:	Copyright (c) 2008 Kelvin Luck
-License: Dual licensed under the [MIT][] and [GPL][] licenses
+ * Files: `_scripts/jquery.datePicker.js`
+ * Copyright:	Copyright (c) 2008 Kelvin Luck
+ * License: Dual licensed under the [MIT][] and [GPL][] licenses
 
 JQuery OEmbed
 -------------
-Files: `_scripts/jquery.oembed.js`
-License: [MIT][]
+ * Files: `_scripts/jquery.oembed.js`
+ * License: [MIT][]
 
 Date extension
 --------------
-Files:  `_scripts/date.js`
-Copyright: (c) 2006 J�rn Zaefferer and Brandon Aaron
-License: Dual licensed under the [MIT][] and [GPL][] licenses
+ * Files:  `_scripts/date.js`
+ * Copyright: (c) 2006 J�rn Zaefferer and Brandon Aaron
+ * License: Dual licensed under the [MIT][] and [GPL][] licenses
 
 JSON helper
 -----------
@@ -179,40 +179,40 @@ _Distributed with permission of author_.
 
 CI Twitter
 ---------------------
-Files: system/application/libraries/Twitter.php
-Author:	Elliot Haughin
-License:  [GNU GENERAL PUBLIC LICENSE - Version 2, June 1991][gpl]
-Link: http://www.haughin.com/code/twitter
+ * Files: system/application/libraries/Twitter.php
+ * Author:	Elliot Haughin
+ * License:  [GNU GENERAL PUBLIC LICENSE - Version 2, June 1991][gpl]
+ * Link: http://www.haughin.com/code/twitter
 
 Zend Framework Loader
 ---------------------
-Files: system/application/libraries/Zend.php
-License: None specified, _distributed with permission of author_
-Link: http://codeigniter.com/forums/viewthread/99589/
+ * Files: system/application/libraries/Zend.php
+ * License: None specified, _distributed with permission of author_
+ * Link: http://codeigniter.com/forums/viewthread/99589/
 
 CI PHPMailer plugin
 ---------------------
-Files: system/application/plugins/phpmailer_pi.php
-Author:	The Open University, Thorpe Obazee
-License: [Creative Commons Attribution-Share Alike License][cc-by-sa].
-Link: http://codeigniter.com/wiki/PHPMailer/
+ * Files: system/application/plugins/phpmailer_pi.php
+ * Author:	The Open University, Thorpe Obazee
+ * License: [Creative Commons Attribution-Share Alike License][cc-by-sa].
+ * Link: http://codeigniter.com/wiki/PHPMailer/
 
 PHPMailer
 ---------------------
-Files: system/application/plugins/phpmailer
-Author:	Andy Prevost, Brent R. Matzelle
-Copyright: Copyright (C) 2001 - 2003 Brent R. Matzelle
-Copyright (c) 2004-2009, Andy Prevost. All Rights Reserved.
-License: [GNU Lesser General Public License (LGPL) 2.1][lgpl]
+ * Files: system/application/plugins/phpmailer
+ * Author:	Andy Prevost, Brent R. Matzelle
+ * Copyright: Copyright (C) 2001 - 2003 Brent R. Matzelle
+ * Copyright (c) 2004-2009, Andy Prevost. All Rights Reserved.
+ * License: [GNU Lesser General Public License (LGPL) 2.1][lgpl]
 
 Toast
 ------
-Files: `system/application/controllers/test/Toast.php`,
+ * Files: `system/application/controllers/test/Toast.php`,
        `system/application/controllers/test/Toast_all.php`,
-Author: Jens Roland
-Licence: [Creative Commons Attribution 3.0][cc-by-3]
-Copyright: 2009 Jens Roland
-Link: http://jensroland.com/projects/toast/
+ * Author: Jens Roland
+ * Licence: [Creative Commons Attribution 3.0][cc-by-3]
+ * Copyright: 2009 Jens Roland
+ * Link: http://jensroland.com/projects/toast/
 
 [iet]: https://iet.open.ac.uk/ "Institute of Educational Technology (IET), at The Open University"
 [ou]: https://www.open.ac.uk/
