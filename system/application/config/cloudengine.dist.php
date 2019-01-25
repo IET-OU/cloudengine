@@ -114,7 +114,7 @@ $config['x_gadgets_gfc_key'] = ''; // Google Friend Connect key to use for gadge
 // Config variable containing IDs of users regarded as 'team' for stats purposes.
 $config['team'] = '';
 
-// User IDs for people whose description should be shown. (Eg. deceased users)
+// Exceptional user IDs for people whose description should be shown. (E.g. deceased users)
 $config['users_show_description'] = [ /* 1230, 6789 */ ];
 
 
