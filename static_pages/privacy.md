@@ -90,7 +90,9 @@ In order to exercise any of these rights, please contact us using the details in
 
  * To access your personal information that we process
  * To rectify inaccuracies in the personal information that we hold about you
- * In some circumstances, you also have the right
+
+In some circumstances, you also have the right
+
  * To have your details removed from systems that we use to process your personal data
  * To restrict the processing of your personal data in certain ways
  * To obtain a copy of your personal data in a structured electronic data file
