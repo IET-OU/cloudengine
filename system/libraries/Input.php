@@ -214,14 +214,14 @@ class CI_Input {
 	*/
 	function _clean_input_keys($str)
 	{
-//ou-specific
+#ou-specific
 		// https://stackoverflow.com/questions/29744740/disallowed-key-characters-codeigniter-error
-		if ( ! preg_match("/^[a-z0-9%&\(\)\*\-\.\/\:;=_\|@ ]+$/i", $str))
+		if ( ! preg_match("/^[a-z0-9:_\/-@]+$/i", $str))
 		// WAS: if ( ! preg_match("/^[a-z0-9:_\/-]+$/i", $str))
 		{
 			exit('Disallowed Key Characters. ' . $str );
 		}
-//ou-specific ends.
+#ou-specific ends.
 
 		return $str;
 	}
