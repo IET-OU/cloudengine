@@ -6,6 +6,10 @@
 |--------------------------------------------------------------------------
 */
 
+// Site readonly and/ or debug settings.
+$config['readonly'] = false;
+$config['debug'] = false;
+
 // Basic site info
 
 $config['site_name']        = 'Your Site';

@@ -13,6 +13,7 @@ module.exports = function (grunt) {
 		},
 		jshint: {
 			options: {
+				esversion: 6, // Use 'const' etc.!
 				bitwise: true,
 				curly: true,
 				eqeqeq: true,

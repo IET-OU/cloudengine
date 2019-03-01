@@ -19,6 +19,16 @@ class Auth extends MY_Controller {
         $this->load->library('form_validation');
 	}
 
+	/** Remap: Site readonly.
+	*/
+	public function _remap($method) {
+		if (config_item('readonly')) {
+			$this->_show_readonly_page();
+		} else {
+			$this->$method();
+		}
+	}
+
 	/**
 	 * User login form and processing for user login form
 	 *
@@ -423,4 +433,19 @@ class Auth extends MY_Controller {
 
         return $contains_space;
     }
+
+		/** Site readonly page.
+		*/
+		protected function _show_readonly_page() {
+			header('HTTP/1.1 503 Not Available');
+
+			$this->load->library('Layout');
+			$this->layout->setLayout('layout_offline');
+
+			$view_data = array(
+				'title' => t('Site is readonly'),
+				'message' => t("Site login and registration are disabled. <pre>\n\n\n503 Not Available </pre>"),
+			);
+			echo $this->layout->view('error/site_offline', $view_data, true);
+		}
 }

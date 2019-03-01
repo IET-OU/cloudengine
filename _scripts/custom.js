@@ -51,4 +51,18 @@ window.jQuery(function ($) {
     function rot13(s) {
       return s.replace(/[a-zA-Z]/g, function(c){ return String.fromCharCode((c<="Z"?90:122) >= (c=c.charCodeAt(0)+13) ? c : c-26); });
     }
+
+    /* Site readonly.
+    */
+    const $READONLY = $('body.readonly');
+
+    $READONLY.find('#login-form, #register_form').find(':input').attr({ disabled: 'disabled', title: 'Readonly mode' });
+
+    $READONLY.find('a[ href *= auth ]').on('click', (ev) => {
+      ev.preventDefault();
+      console.warn('Readonly: auth click');
+    })
+    .addClass('disabled').attr({ title: 'Readonly mode' });
+
+    console.warn($READONLY.length ? 'Site readonly.' : 'Site read-write.');
 });
