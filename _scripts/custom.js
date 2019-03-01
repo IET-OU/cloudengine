@@ -54,15 +54,15 @@ window.jQuery(function ($) {
 
     /* Site readonly.
     */
-    const $READONLY = $('body.readonly');
+    var $READONLY = $('body.readonly');
 
     $READONLY.find('#login-form, #register_form').find(':input').attr({ disabled: 'disabled', title: 'Readonly mode' });
 
-    $READONLY.find('a[ href *= auth ]').on('click', (ev) => {
+    $READONLY.find('a[ href *= auth ]').on('click', function (ev) {
       ev.preventDefault();
       console.warn('Readonly: auth click');
     })
     .addClass('disabled').attr({ title: 'Readonly mode' });
 
-    console.warn($READONLY.length ? 'Site readonly.' : 'Site read-write.');
+    console.warn($READONLY.length ? 'CW: Site readonly.' : 'CW: Site read-write.');
 });

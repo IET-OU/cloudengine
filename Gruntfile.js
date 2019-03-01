@@ -13,7 +13,7 @@ module.exports = function (grunt) {
 		},
 		jshint: {
 			options: {
-				esversion: 6, // Use 'const' etc.!
+				// esversion: 6, // Use 'const' etc.!
 				bitwise: true,
 				curly: true,
 				eqeqeq: true,
@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 				//'-W116': true,    // Ignore Expected '{a}' and instead saw '{b}' -- brackets;
 				//'-W060': true,    // Ignore document.write can be a form of eval;
 				//'-W061': true,    // Ignore eval can be harmful;
-				globals: { jQuery: false, window: false, escape: false, ga: false, getOEmbedProvider: false }
+				globals: { X_jQuery: false, window: false, escape: false, X_ga: false, getOEmbedProvider: false }
 			},
 			JS: [ '_scripts/*.js', '!_scripts/jquery*', '!_scripts/buildpager.*', '!_scripts/date.*', '!_scripts/tiny_mce/*', '_scripts/*oembed.js' ],
 			Gruntfile: {

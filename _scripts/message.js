@@ -25,7 +25,7 @@
 
     $(".thread-list-row .cell-click").click( function() { //Was:.row-click.
 	  var parent = $(this).parent();
-	  var href = jQuery('.subject  a', parent).attr('href');
+	  var href = $('.subject  a', parent).attr('href');
       $(window.location).attr('href', href);
     });
 

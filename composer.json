@@ -27,6 +27,7 @@
         "ext-curl": "*",
         "ext-mbstring": "*",
         "ext-simplexml": "*",
+        "ext-zip": "*",
         "dariuszp/cli-progress-bar": "^1.0.2",
         "wesbos/burner-email-providers": "^1.0"
     },
