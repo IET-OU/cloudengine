@@ -7,7 +7,9 @@
 */
 
 // Site readonly and/ or debug settings.
-$config['readonly'] = false;
+$config['block_registration'] = false;
+$config['block_login'] = false;
+
 $config['debug'] = false;
 
 // Basic site info

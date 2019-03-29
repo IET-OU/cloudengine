@@ -54,15 +54,18 @@ window.jQuery(function ($) {
 
     /* Site readonly.
     */
-    var $READONLY = $('body.readonly');
+    var $BLOCK_REGIS = $('body.block-registration');
+    var $BLOCK_LOGIN = $('body.block-login');
 
-    $READONLY.find('#login-form, #register_form').find(':input').attr({ disabled: 'disabled', title: 'Readonly mode' });
+    $BLOCK_REGIS.find('#register_form').find(':input').attr({ disabled: 'disabled', title: 'Registration disabled' });
+    $BLOCK_LOGIN.find('#login-form').find(':input').attr({ disabled: 'disabled', title: 'User login disabled' });
 
-    $READONLY.find('a[ href *= auth ]').on('click', function (ev) {
+    $BLOCK_REGIS.find('a[ href *= "auth/reg" ]').on('click', function (ev) {
       ev.preventDefault();
-      console.warn('Readonly: auth click');
+      console.warn('Registration blocked: auth click');
     })
-    .addClass('disabled').attr({ title: 'Readonly mode' });
+    .addClass('disabled').attr({ title: 'Registration disabled' });
 
-    console.warn($READONLY.length ? 'CW: Site readonly.' : 'CW: Site read-write.');
+    console.warn($BLOCK_REGIS.length ? 'User registration blocked.' : 'User registration open.');
+    console.warn($BLOCK_LOGIN.length ? 'User login blocked.' : 'User login open.');
 });

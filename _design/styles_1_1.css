@@ -2507,8 +2507,8 @@ form.gsc-search-box input {
 
 /* Site readonly.
 */
-body.readonly a.disabled,
-body.readonly input[ disabled ],
+body a.disabled,
+body input[ disabled ],
 #login-form [ type = submit ][ disabled ] {
   cursor: not-allowed;
   /* pointer-events: none; */

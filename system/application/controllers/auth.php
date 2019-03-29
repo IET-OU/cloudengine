@@ -21,7 +21,7 @@ class Auth extends MY_Controller {
 
 	/** Remap: Site readonly.
 	*/
-	public function _remap($method) {
+	public function _X_NO_remap($method) {
 		if (config_item('readonly')) {
 			$this->_show_readonly_page();
 		} else {
@@ -34,6 +34,10 @@ class Auth extends MY_Controller {
 	 *
 	 */
     function login() {
+        if (config_item('block_login')) {
+            show_404();
+        }
+
         // We need to set the referrer so we can send the user back to the right page after
         // having logged in:
         $this->_save_referrer();
@@ -107,7 +111,11 @@ class Auth extends MY_Controller {
 	 * User registration form and registration form processing
 	 */
     function register() {
-		$display_form = TRUE;
+        if (config_item('block_registration')) {
+            show_404();
+        }
+
+        $display_form = true;
 
     	$data['title'] = t("Register");
 
