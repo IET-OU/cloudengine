@@ -536,9 +536,12 @@ class User_model extends Model {
             $alpha = 'A';
         }
 
-        $query = $this->db->query("SELECT institution, COUNT(*) AS total_users
-                                   FROM user_profile WHERE institution LIKE '$alpha%'
-                                   GROUP BY TRIM(institution) ORDER BY institution ASC");
+        $query = $this->db->query("SELECT p.institution, COUNT(*) AS total_users
+                                   FROM user_profile AS p
+                                   JOIN user AS u ON u.id = p.id
+                                   WHERE p.institution LIKE '$alpha%'
+                                   AND u.banned = 0
+                                   GROUP BY TRIM(p.institution) ORDER BY p.institution ASC");
         return $query->result();
     }
 
@@ -565,10 +568,23 @@ class User_model extends Model {
      * institution
      */
     function get_users_in_institution($institution) {
+        /*
+        SELECT p.id,p.full_name,p.institition
+          FROM user_profile AS p
+          JOIN user AS u ON u.id = p.id
+          WHERE p.institution = 'matressman'
+            AND u.banned = 0
+          ORDER BY p.full_name;
+        */
+        $this->db->join('user', 'user.id = user_profile.id');
         $this->db->order_by('fullname');
+
         $this->db->where('institution', $institution);
+        $this->db->where('banned', 0);
         $query = $this->db->get('user_profile');
-        return $query->result();
+        $result = $query->result();
+
+        return $result ?: null;
     }
 
     /***************************************************************************************

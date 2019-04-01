@@ -237,8 +237,6 @@ class User extends MY_Controller {
             send_email($to,  $this->config->item('site_email'), $subject, $message);
         }
 
-
-
         // Redirect to the followed user's profile page
         redirect('/user/view/'.$followed_user_id);
     }
@@ -266,6 +264,12 @@ class User extends MY_Controller {
      * @param string $alpha The letter of the alphabet
      */
     function institution_list($alpha = 'A') {
+        // Security!
+        if (strlen( $alpha ) > 0 || ! ctype_alpha( $alpha )) {
+            $this->_debug('security!');
+            show_404();
+        }
+
         // Get the data for the list and display it
         $data['institutions'] = $this->user_model->get_institutions($alpha);
         $data['title']        = t("Institutions");
@@ -280,11 +284,23 @@ class User extends MY_Controller {
      * @param string $institution The name of the institution (URL-encoded)
      */
     function institution($institution = '') {
+        if (strlen( $institution ) > 74) {
+            $this->_debug('security, institution too long!');
+            show_404();
+        }
+
+        $users = $this->user_model->get_users_in_institution($institution);
+
+        if (! $users) {
+            show_404();
+        }
+
         $institution         = urldecode($institution);
         $data['institution'] = $institution;
-        $data['users']       = $this->user_model->get_users_in_institution($institution);
+        $data['users']       = $users;
         $data['title']       = $institution;
         $data['navigation']  = 'people';
+
         $this->layout->view('user/institution', $data);
     }
 

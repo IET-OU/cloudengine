@@ -1874,10 +1874,10 @@ legend {
 .ok {
     background: #fee;
     color: #422;
-    border: 1px solid #f5c6cb;
-    border-radius: .4rem;
-    padding: .6rem 1.2rem;
-    margin: 0 0 1.6rem;
+    border: 2px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 10px 1.2rem;
+    margin: 0 0 1.7rem;
     text-align: center;
     font-size: medium;
     font-weight: normal;
