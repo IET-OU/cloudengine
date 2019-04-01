@@ -286,6 +286,8 @@ class User extends MY_Controller {
      * @param string $institution The name of the institution (URL-encoded)
      */
     function institution($institution = '') {
+        $institution = urldecode( $institution );
+
         if (strlen( $institution ) > self::MAX_INSTITUTION_LENGTH) {
             $this->_debug([ 'security, institution too long!', strlen($institution) ]);
             show_404();
@@ -297,7 +299,6 @@ class User extends MY_Controller {
             show_404();
         }
 
-        $institution         = urldecode($institution);
         $data['institution'] = $institution;
         $data['users']       = $users;
         $data['title']       = $institution;

@@ -584,7 +584,7 @@ class User_model extends Model {
         $query = $this->db->get('user_profile');
         $result = $query->result();
 
-        return $result ?: null;
+        return $result ?: false; // Just in this case, prefer 'false'
     }
 
     /***************************************************************************************
