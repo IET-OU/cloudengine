@@ -336,8 +336,8 @@ p.right {
 
 p.welcome {
     color: #333;
-    font-size:1.5em;
-    font-weight:bold;
+    font-size: 1.4em; /* Was: 1.5em */
+    font-weight: normal; /* Was: bold */
     line-height:1.4em;
     padding: 0 0 .5em 0;
     margin:0 0 1.4em 0;
@@ -1866,16 +1866,27 @@ legend {
 .poweredby{
     display:inline-block;    vertical-align:top;    margin:-11px 0 0 2px;}
 
-/*Form errors.. */
-.error, .warn, .test_install, .form_errors, .ok {
-    background:#fdd;    color:#222;    border:1px solid #c00;
-    border-radius:4px;
-    padding:6px;    margin:1em;    text-align:center;    font-size:medium;
+/* Form errors.. */
+.error,
+.warn,
+.test_install,
+.form_errors,
+.ok {
+    background: #fee;
+    color: #422;
+    border: 1px solid #f5c6cb;
+    border-radius: .4rem;
+    padding: .6rem 1.2rem;
+    margin: 0 0 1.6rem;
+    text-align: center;
+    font-size: medium;
+    font-weight: normal;
+    line-height: 1.5rem;
 }
 .ok {
-    background:#dfd;
-    color:#222;
-    border:1px solid #0c0;
+    background: #efe;
+    color: #232;
+    border-color: #c3e6cb;
 }
 
 /*HTML5 forms/ form validation. */

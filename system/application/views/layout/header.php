@@ -24,7 +24,7 @@
           <?php if (config_item('block_login')): ?>
             <p class="warn readonly-message"> The web-site is currently in readonly mode. Login and registration are disabled. </p>
           <?php else: ?>
-            <p class="warn no-reg-message"> User registration is disabled on this web-site. </p>
+            <p class="warn no-reg-message" style="display: none;"> User registration is disabled on this web-site. </p>
           <?php endif; ?>
         <?php endif; ?>
         <?php if (!config_item('x_live')): ?>
