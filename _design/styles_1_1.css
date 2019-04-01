@@ -1872,21 +1872,24 @@ legend {
 .test_install,
 .form_errors,
 .ok {
-    background: #fee;
+    background: #fff8f8;
     color: #422;
     border: 2px solid #f5c6cb;
     border-radius: 8px;
-    padding: 10px 1.2rem;
+    padding: 9px 1.2rem;
     margin: 0 0 1.7rem;
     text-align: center;
     font-size: medium;
     font-weight: normal;
-    line-height: 1.5rem;
+    line-height: 1.6rem;
 }
 .ok {
     background: #efe;
     color: #232;
     border-color: #c3e6cb;
+}
+.warn small {
+    display: block;
 }
 
 /*HTML5 forms/ form validation. */
