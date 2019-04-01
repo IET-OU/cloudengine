@@ -8,6 +8,8 @@
  */
 class User extends MY_Controller {
 
+  const MAX_INSTITUTION_LENGTH = 68;
+
 	function User() {
 		parent::MY_Controller();
 		$this->load->model('user_model');
@@ -265,8 +267,8 @@ class User extends MY_Controller {
      */
     function institution_list($alpha = 'A') {
         // Security!
-        if (strlen( $alpha ) > 0 || ! ctype_alpha( $alpha )) {
-            $this->_debug('security!');
+        if (strlen( $alpha ) > 1 || ! ctype_alpha( $alpha )) {
+            $this->_debug([ 'security!', strlen($alpha), ctype_alpha($alpha) ]);
             show_404();
         }
 
@@ -284,8 +286,8 @@ class User extends MY_Controller {
      * @param string $institution The name of the institution (URL-encoded)
      */
     function institution($institution = '') {
-        if (strlen( $institution ) > 74) {
-            $this->_debug('security, institution too long!');
+        if (strlen( $institution ) > self::MAX_INSTITUTION_LENGTH) {
+            $this->_debug([ 'security, institution too long!', strlen($institution) ]);
             show_404();
         }
 
