@@ -16,7 +16,7 @@
         <link href="<?=base_url()?>_scripts/jquery/css/redmond/jquery-ui-1.8.6.custom.css" rel="stylesheet" />
     <?php endif; ?>
     <?php if (config_item( 'gaad_widget' )): ?>
-        <script src="https://unpkg.com/gaad-widget@^3/dist/gaad-widget.min.js"
+        <script src="https://unpkg.com/gaad-widget@%5E3/dist/gaad-widget.min.js"
           data-gaad-widget='<?=json_encode(config_item( 'gaad_widget' ))?>'></script>
     <?php endif; ?>
     <?php if ($this->uri->segment(1) === 'search'): ?>

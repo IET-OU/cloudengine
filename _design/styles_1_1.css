@@ -1888,9 +1888,9 @@ legend {
     color: #232;
     border-color: #c3e6cb;
 }
-.warn small {
+/* .warn small {
     display: block;
-}
+} */
 
 /*HTML5 forms/ form validation. */
 ._h5 input {

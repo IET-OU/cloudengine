@@ -33,7 +33,7 @@ $(function()
         <?php if ($cloudscape_id): ?>
             <input type="hidden" id="cloudscape_id" name="cloudscape_id" value="<?=$cloudscape_id ?>" ?>
         <?php endif; ?>
-    
+
         <label for="title"><?=t("Title !required!")?>:</label>
         <input type="text" maxlength="165" name="title" id="title"  size="80" value="<?= $cloud->title ?>" />
         <?php if (!$new): ?>
@@ -54,7 +54,7 @@ $(function()
          <label for="event_date" class="text-above"><?=t("Event date")?>: </label>
  <input type="text" class="date-pick" maxlength="128" name="event_date" id="event_date"  size="95" value="<?php if ($cloud->event_date): ?><?= date('d F Y', $cloud->event_date) ?><?php endif; ?>" />
  <br />
-<br />  
+<br />
  <br />
 <br />
 	    <p><?=t("If this cloud is for a call of papers or for a call for book chapters, please enter the deadline here for it to appear in the diary.")?></p>
@@ -82,11 +82,11 @@ $(function()
 <p><?=t("We suggest the following sites:")?>
 <ul class="arrows">
 <li><?=t("Word Docs, PDFs, Powerpoint presentations: !site_link",
-    array('!site_link'=>'<a href="http://www.slideshare.net/">SlideShare</a>'))?></li>
+    array('!site_link'=>'<a href="https://www.slideshare.net/">SlideShare</a>'))?></li>
 <li><?=t("Videos: !site_link",
-    array('!site_link'=>'<a href="http://www.youtube.com/">YouTube</a>'))?></li>
+    array('!site_link'=>'<a href="https://www.youtube.com/">YouTube</a>'))?></li>
 <li><?=t("Photos: !site_link",
-    array('!site_link'=>'<a href="http://www.flickr.com">Flickr</a>'))?></li>
+    array('!site_link'=>'<a href="https://www.flickr.com">Flickr</a>'))?></li>
 </ul>
 
 </p>

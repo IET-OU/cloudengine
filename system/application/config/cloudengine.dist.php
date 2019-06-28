@@ -7,8 +7,8 @@
 */
 
 // Site readonly and/ or debug settings.
-$config['block_registration'] = false;
-$config['block_login'] = false;
+$config['block_registration'] = true;
+$config['block_login'] = true;
 
 $config['debug'] = false;
 
@@ -42,7 +42,7 @@ $config['theme_banner']     = 'themes/aurora/header-bg-aurora.jpg';
 $config['theme_favicon']    = 'themes/aurora/favicon-aurora.ico';
 
 // Flag whether this is a LIVE or developer/test install.
-$config['x_live'] = TRUE;
+$config['x_live'] = true;
 $config['test_install_message'] = 'This is a test install.'; // Message to display for test install
 
 // Set the path to Mercurial if this CloudEngine is hg-clone'd, to show
