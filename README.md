@@ -39,7 +39,7 @@ Details of GDPR / privacy fixes can be found in [Bug #377][].
 
 * License: [GNU General Public License version 2][gpl].
 
-* See [CREDITS.txt][] for a list of the third-party libraries incorporated
+* See [CREDITS.md][] for a list of the third-party libraries incorporated
   in CloudEngine, and their authors and licenses.
 
 
@@ -53,7 +53,7 @@ Details of GDPR / privacy fixes can be found in [Bug #377][].
 [travis-icon]: https://travis-ci.org/IET-OU/cloudengine.svg
 [gpl]: https://gnu.org/licenses/gpl-2.0.html
 [license.txt]: https://github.com/IET-OU/cloudengine/blob/master/LICENCE.txt
-[credits.txt]: https://github.com/IET-OU/cloudengine/blob/master/CREDITS.txt
+[credits.md]: https://github.com/IET-OU/cloudengine/blob/master/CREDITS.md
 [cloudworks]: https://cloudworks.ac.uk/
 [iet]: https://iet.open.ac.uk/ "Developed by the Institute of Educational Technology"
 [ou]: https://www.open.ac.uk/

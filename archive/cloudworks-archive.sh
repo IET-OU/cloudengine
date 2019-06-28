@@ -5,12 +5,10 @@
 #
 # See: https://gist.github.com/steveosoule/79d0ba5f2cad558642aace43c7126946
 
-# wget --no-clobber --convert-links --random-wait -r -p --level 1 -E -e robots=off --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"  http://www.headstar.com/site/
-
 # wget --no-clobber --convert-links --random-wait -r -p --level 1 -E -e robots=off --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:66.0) Gecko/20100101 Firefox/66.0" https://cloudworks.ac.uk/
 
 wget \
-  --level=8 \
+  --level=10 \
  	--mirror \
  	--recursive \
  	--execute robots=off \
@@ -22,10 +20,13 @@ wget \
  	--wait=1 \
  	--random-wait \
  	--domains cloudworks.ac.uk \
- 	--debug \
- 	--output-file=cloudworks.ac.uk-wget-2019-06-28.log \
- 	--progress=dot \
- 		https://cloudworks.ac.uk/
+	--debug \
+	--output-file=cloudworks.ac.uk-wget-2019-06-28--p2.log \
+	--progress=dot \
+	--show-progress \
+	--no-clobber \
+	--input-file=cloudworks-url-list.txt \
+		https://cloudworks.ac.uk/
 
 #  --directory-prefix=sample \
 
