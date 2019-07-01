@@ -1,6 +1,12 @@
 <?php
   $navigation = isset($navigation) ? $navigation : false;
 
+  if (config_item('archive_headers')) {
+    // Use past-date in header(s) to facilitate 'wget' mirror timestamping!
+    header('Date: Fri, 28 Jun 2019 01:00:00 GMT');
+    header('Last-Modified: Fri, 28 Jun 2019 01:00:00 GMT');
+  }
+
   @header("Content-Type: text/html; charset=".config_item("charset"));
   // We are using the HTML5 Doctype below, but not ready to use all HTML5
   // elements yet as have not included javascript shim for IE fallback

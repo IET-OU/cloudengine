@@ -9,6 +9,7 @@
 // Site readonly and/ or debug settings.
 $config['block_registration'] = true;
 $config['block_login'] = true;
+$config['archive_headers'] = true; 
 
 $config['debug'] = false;
 
