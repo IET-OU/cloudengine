@@ -86,6 +86,3 @@ https://cloudworks.ac.uk/tag/view/altc2009
 https://cloudworks.ac.uk/cloudscape/view/1870
 https://cloudworks.ac.uk/cloudscape/followers/1870
 https://cloudworks.ac.uk/search/result/
-https://cloudworks.ac.uk/auth/register
-https://cloudworks.ac.uk/auth/login
-https://cloudworks.ac.uk/auth/forgotten_password

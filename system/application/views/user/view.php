@@ -1,7 +1,7 @@
 
 <script src="<?=base_url()?>_scripts/iframe_strip.js"></script>
 
-<div id="user-profile" class="<?= $show_description() ? 'show-desc' : 'hide-desc' ?>" >
+<div id="user-profile" class="<?= $show_description() ? 'show-desc' : 'hide-desc' ?>"  data-do-not-delete="<?= $user->do_not_delete ?>">
 
 <div class="grid headline">
 
