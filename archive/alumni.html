@@ -13,106 +13,122 @@
 <script id="alumni-data">
 
 const CLOUDWORKS_ALUMNI = [
-  { "id":    1, "name": "Juliette Culver","inst": "OU",                  "last_v": "2019-01-18 10:29:25" },
+  { "id":    1, "name": "Juliette Culver","inst": "ou", "last_v": "2019-01-18 10:29:25" },
   { "id":    3, "name": "Gráinne Conole", "inst": "University of Leicester", "last_v": "2016-11-17 12:48:05" },
-  { "id":    5, "name": "Martin Weller ", "inst": "The Open University", "last_v": "2015-04-10 13:34:08" },
-  { "id":    6, "name": "Andrew Brasher", "inst": "The Open University", "last_v": "2018-01-24 17:19:03" },
-  { "id":    7, "name": "Perry Williams", "inst": "The Open University", "last_v": "2013-04-23 10:41:10" },
-  { "id":    8, "name": "Simon Cross   ", "inst": "The Open University", "last_v": "2013-11-26 17:44:21" },
-  { "id":    9, "name": "Paul Clark    ", "inst": "The Open University", "last_v": "2010-05-25 13:02:27" },
-  { "id":   10, "name": "Will Woods    ", "inst": "The Open University", "last_v": "2013-12-06 16:44:28" },
-  { "id":   13, "name": "Peter Devine  ", "inst": "The Open University", "last_v": "2009-09-14 14:34:12" },
-  { "id":   15, "name": "Simon Buckingham Shum", "inst": "The Open University", "last_v": "2014-06-16 18:04:46" },
-  { "id":   23, "name": "Alex Little   ", "inst": "Digital Campus     ", "last_v": "2013-03-11 12:08:27" },
-  { "id":   28, "name": "Chris Pegler  ", "inst": "The Open University", "last_v": "2014-09-29 20:43:20" },
-  { "id":   32, "name": "Gill Smith    ", "inst": "The Open University", "last_v": "2010-05-24 11:31:32" },
+  { "id":    5, "name": "Martin Weller ", "inst": "ou", "last_v": "2015-04-10 13:34:08" },
+  { "id":    6, "name": "Andrew Brasher", "inst": "ou", "last_v": "2018-01-24 17:19:03" },
+  { "id":    7, "name": "Perry Williams", "inst": "ou", "last_v": "2013-04-23 10:41:10" },
+  { "id":    8, "name": "Simon Cross   ", "inst": "ou", "last_v": "2013-11-26 17:44:21" },
+  { "id":    9, "name": "Paul Clark    ", "inst": "ou", "last_v": "2010-05-25 13:02:27" },
+  { "id":   10, "name": "Will Woods    ", "inst": "ou", "last_v": "2013-12-06 16:44:28" },
+  { "id":   13, "name": "Peter Devine  ", "inst": "ou", "last_v": "2009-09-14 14:34:12" },
+  { "id":   15, "name": "Simon Buckingham Shum", "inst": "ou", "last_v": "2014-06-16 18:04:46" },
+  { "id":   23, "name": "Alex Little   ", "inst": "Digital Campus", "last_v": "2013-03-11 12:08:27" },
+  { "id":   28, "name": "Chris Pegler  ", "inst": "ou", "last_v": "2014-09-29 20:43:20" },
+  { "id":   32, "name": "Gill Smith    ", "inst": "ou", "last_v": "2010-05-24 11:31:32" },
   { "id":   61, "name": "Terry Anderson", "inst": "Athabasca University", "last_v": "2011-04-21 15:07:45" },
-  { "id":   66, "name": "Patrick McAndrew", "inst": "The Open University", "last_v": "2017-06-23 12:30:51" },
-  { "id":   99, "name": "Yishay Mor    ", "inst": "consultant  ", "last_v": "2015-10-28 16:31:05" },
-  { "id":  103, "name": "Doug Clow     ", "inst": "The Open University", "last_v": "2016-03-15 15:58:11" },
-  { "id":  104, "name": "Graham Healing", "inst": "The Open University", "last_v": "2019-02-21 09:03:41" },
-  { "id":  105, "name": "Keren Mills   ", "inst": "The Open University", "last_v": "2013-01-08 11:45:49" },
+  { "id":   66, "name": "Patrick McAndrew", "inst": "ou", "last_v": "2017-06-23 12:30:51" },
+  { "id":   99, "name": "Yishay Mor    ", "inst": "consultant", "last_v": "2015-10-28 16:31:05" },
+  { "id":  103, "name": "Doug Clow     ", "inst": "ou", "last_v": "2016-03-15 15:58:11" },
+  { "id":  104, "name": "Graham Healing", "inst": "ou", "last_v": "2019-02-21 09:03:41" },
+  { "id":  105, "name": "Keren Mills   ", "inst": "ou", "last_v": "2013-01-08 11:45:49" },
   { "id":  109, "name": "George Roberts", "inst": "Oxford Brookes University", "last_v": "2013-02-07 00:10:55" },
-  { "id":  110, "name": "The Cloudworks Team  ", "inst": "The Open University", "last_v": "2016-12-12 11:02:29" },
+  { "id":  110, "name": "The Cloudworks Team  ", "inst": "ou", "last_v": "2016-12-12 11:02:29" },
   { "id":  136, "name": "Frances Bell  ", "inst": "University of Salford", "last_v": "2011-03-23 09:33:34" },
-  { "id":  145, "name": "Chris Douce   ", "inst": "The Open University", "last_v": "2009-09-17 13:20:18" },
-  { "id":  146, "name": "Andreia Inamorato Dos Santos" , "inst": "The Open University", "last_v": "2013-01-07 15:43:43" },
-  { "id":  158, "name": "Martin Dougiamas", "inst": "Moodle      ", "last_v": "2012-07-09 13:29:24" },
-  { "id":  163, "name": "Canan Blake   ", "inst": "The Open University", "last_v": "2014-04-16 14:48:14" },
-  { "id":  214, "name": "Liz Thackray  ", "inst": "The Open University", "last_v": "2014-05-13 14:26:36" },
-  { "id":  356, "name": "Martyn Cooper ", "inst": "The Open University", "last_v": "2013-01-03 12:23:12" },
-  { "id":  358, "name": "Eileen Scanlon", "inst": "The Open University", "last_v": "2009-09-08 10:22:49" },
-  { "id":  359, "name": "Ann Jones     ", "inst": "The Open University", "last_v": "2011-05-24 09:40:16" },
-  { "id":  363, "name": "Agnes Kukulska-Hulme", "inst": "The Open University", "last_v": "2011-06-10 19:19:06" },
-  { "id":  365, "name": "anne adams    ", "inst": "The Open University", "last_v": "2015-02-07 11:28:22" },
-  { "id":  367, "name": "Gill Clough   ", "inst": "The Open University", "last_v": "2017-01-10 12:56:04" },
-  { "id":  368, "name": "Gill Kirkup   ", "inst": "The Open University", "last_v": "2011-09-29 11:57:15" },
+  { "id":  145, "name": "Chris Douce   ", "inst": "ou", "last_v": "2009-09-17 13:20:18" },
+  { "id":  146, "name": "Andreia Inamorato Dos Santos" , "inst": "ou", "last_v": "2013-01-07 15:43:43" },
+  { "id":  158, "name": "Martin Dougiamas", "inst": "Moodle", "last_v": "2012-07-09 13:29:24" },
+  { "id":  163, "name": "Canan Blake   ", "inst": "ou", "last_v": "2014-04-16 14:48:14" },
+  { "id":  214, "name": "Liz Thackray  ", "inst": "ou", "last_v": "2014-05-13 14:26:36" },
+  { "id":  356, "name": "Martyn Cooper ", "inst": "ou", "last_v": "2013-01-03 12:23:12" },
+  { "id":  358, "name": "Eileen Scanlon", "inst": "ou", "last_v": "2009-09-08 10:22:49" },
+  { "id":  359, "name": "Ann Jones     ", "inst": "ou", "last_v": "2011-05-24 09:40:16" },
+  { "id":  363, "name": "Agnes Kukulska-Hulme", "inst": "ou", "last_v": "2011-06-10 19:19:06" },
+  { "id":  365, "name": "anne adams    ", "inst": "ou", "last_v": "2015-02-07 11:28:22" },
+  { "id":  367, "name": "Gill Clough   ", "inst": "ou", "last_v": "2017-01-10 12:56:04" },
+  { "id":  368, "name": "Gill Kirkup   ", "inst": "ou", "last_v": "2011-09-29 11:57:15" },
   { "id":  466, "name": "David Kernohan", "inst": "JISC", "last_v": "2012-07-19 11:43:13" },
-  { "id":  725, "name": "Julie Carle   ", "inst": "The Open University", "last_v": "2013-03-23 07:49:15" },
-  { "id":  863, "name": "Anna De Liddo ", "inst": "The Open University", "last_v": "2011-12-07 11:25:33" },
+  { "id":  725, "name": "Julie Carle   ", "inst": "ou", "last_v": "2013-03-23 07:49:15" },
+  { "id":  863, "name": "Anna De Liddo ", "inst": "ou", "last_v": "2011-12-07 11:25:33" },
   { "id":  895, "name": "Marianne Sheppard", "inst": "JISC infoNet", "last_v": "2012-06-08 09:16:25" },
-  { "id":  898, "name": "Josie Taylor  ", "inst": "The Open University", "last_v": "2010-03-23 17:16:37" },
-  { "id":  929, "name": "Ignatia / Inge de Waard" , "inst": "Institute of Tropical Medicine  ", "last_v": "2016-06-08 09:30:50" },
-  { "id":  967, "name": "John Wilkinson", "inst": "The Open University", "last_v": "2010-04-18 13:03:16" },
-  { "id":  981, "name": "ELPIDA MAKRIYANNIS", "inst": "The Open University", "last_v": "2011-11-15 10:56:51" },
-  { "id":  983, "name": "Rebecca Galley", "inst": "The Open University", "last_v": "2017-10-31 10:06:47" },
+  { "id":  898, "name": "Josie Taylor  ", "inst": "ou", "last_v": "2010-03-23 17:16:37" },
+  { "id":  929, "name": "Ignatia / Inge de Waard" , "inst": "Institute of Tropical Medicine", "last_v": "2016-06-08 09:30:50" },
+  { "id":  967, "name": "John Wilkinson", "inst": "ou", "last_v": "2010-04-18 13:03:16" },
+  { "id":  981, "name": "ELPIDA MAKRIYANNIS", "inst": "ou", "last_v": "2011-11-15 10:56:51" },
+  { "id":  983, "name": "Rebecca Galley", "inst": "ou", "last_v": "2017-10-31 10:06:47" },
   { "id":  985, "name": "Liz Masterman ", "inst": "University of Oxford", "last_v": "2013-08-27 12:17:38" },
   { "id":  987, "name": "Engin Kursun  ", "inst": "Middle East Technical University", "last_v": "2010-07-07 19:56:23" },
-  { "id": 1003, "name": "Giota Alevizou", "inst": "The Open University", "last_v": "2013-01-07 11:16:39" },
-  { "id": 1040, "name": "Nick Freear   ", "inst": "The Open University", "last_v": "2019-06-28 13:48:42" },
-  { "id": 1055, "name": "Rhodri Thomas ", "inst": "The Open University", "last_v": "2014-03-25 09:37:02" },
-  { "id": 1057, "name": "Bill Law", "inst": "Career-learning Café     ", "last_v": "2017-07-13 10:29:51" },
-  { "id": 1126, "name": "Rebecca Ferguson", "inst": "The Open University", "last_v": "2018-06-14 15:07:08" },
+  { "id": 1003, "name": "Giota Alevizou", "inst": "ou", "last_v": "2013-01-07 11:16:39" },
+  { "id": 1040, "name": "Nick Freear   ", "inst": "ou", "last_v": "2019-06-28 13:48:42" },
+  { "id": 1055, "name": "Rhodri Thomas ", "inst": "ou", "last_v": "2014-03-25 09:37:02" },
+  { "id": 1057, "name": "Bill Law", "inst": "Career-learning Café", "last_v": "2017-07-13 10:29:51" },
+  { "id": 1126, "name": "Rebecca Ferguson", "inst": "ou", "last_v": "2018-06-14 15:07:08" },
   { "id": 1137, "name": "Helen Beetham ", "inst": "JISC", "last_v": "2016-02-13 23:21:14" },
-  { "id": 1283, "name": "Martin Harvey ", "inst": "The Open University", "last_v": "0000-00-00 00:00:00" },
-  { "id": 1292, "name": "Kasia Kozinska", "inst": "The Open University", "last_v": "2011-03-31 14:32:16" },
-  { "id": 1596, "name": "Chris Valentine", "inst": "The Open University", "last_v": "2016-10-14 13:43:48" },
-  { "id": 1712, "name": "Anna Page     ", "inst": "Open University    ", "last_v": "2019-02-15 08:57:48" },
-  { "id": 1933, "name": "Denise Whitelock", "inst": "Open University  ", "last_v": "2011-06-14 01:31:44" },
-  { "id": 1943, "name": "SocialLearn   ", "inst": "The Open University", "last_v": "2016-01-07 15:09:01" },
-  { "id": 1965, "name": "Katharine Reedy", "inst": "Open University   ", "last_v": "2016-10-31 11:19:46" },
-  { "id": 2033, "name": "Lynda Davies  ", "inst": "The Open University", "last_v": "2014-03-31 10:22:50", "created": "2010-03-17 10:21:36" },
-  { "id": 2276, "name": "Chetz Colwell ", "inst": "Open University    ", "last_v": "2011-09-23 08:37:39" },
+  { "id": 1283, "name": "Martin Harvey ", "inst": "ou", "last_v": "0000-00-00 00:00:00" },
+  { "id": 1292, "name": "Kasia Kozinska", "inst": "ou", "last_v": "2011-03-31 14:32:16" },
+  { "id": 1596, "name": "Chris Valentine", "inst": "ou", "last_v": "2016-10-14 13:43:48" },
+  { "id": 1712, "name": "Anna Page     ", "inst": "ou", "last_v": "2019-02-15 08:57:48" },
+  { "id": 1933, "name": "Denise Whitelock", "inst": "Open University", "last_v": "2011-06-14 01:31:44" },
+  { "id": 1943, "name": "SocialLearn   ", "inst": "ou", "last_v": "2016-01-07 15:09:01" },
+  { "id": 1965, "name": "Katharine Reedy", "inst": "Open University", "last_v": "2016-10-31 11:19:46" },
+  { "id": 2033, "name": "Lynda Davies  ", "inst": "ou", "last_v": "2014-03-31 10:22:50" },
+  { "id": 2276, "name": "Chetz Colwell ", "inst": "ou", "last_v": "2011-09-23 08:37:39" },
   { "id": 2485, "name": "Martin Hawksey", "inst": "JISC RSC Scotland North & East", "last_v": "2012-11-19 17:34:01" },
-  { "id": 2755, "name": "Kevin McLeod  ", "inst": "The Open University", "last_v": "2019-06-25 08:38:51" },
-  { "id": 3078, "name": "K802 Module Team", "inst": "The Open University", "last_v": "2011-11-22 09:04:29" },
-  { "id": 3162, "name": "Rich Lovelock ", "inst": "Open University    ", "last_v": "2017-03-17 09:36:46" },
-  { "id": 3614, "name": "Richard Greenwood", "inst": "Open University    ", "last_v": "2019-01-25 09:48:02" },
+  { "id": 2755, "name": "Kevin McLeod  ", "inst": "ou", "last_v": "2019-06-25 08:38:51" },
+  { "id": 3078, "name": "K802 Module Team", "inst": "ou", "last_v": "2011-11-22 09:04:29" },
+  { "id": 3162, "name": "Rich Lovelock ", "inst": "ou", "last_v": "2017-03-17 09:36:46" },
+  { "id": 3614, "name": "Richard Greenwood", "inst": "ou", "last_v": "2019-01-25 09:48:02" },
   { "id": 3769, "name": "Tim Coughlan  ", "inst": "University of Nottingham", "last_v": "2013-01-07 15:15:39" },
-  { "id": 4020, "name": "Helen King    ", "inst": "University of Bath ", "last_v": "2011-11-17 18:21:23" },
+  { "id": 4020, "name": "Helen King    ", "inst": "University of Bath", "last_v": "2011-11-17 18:21:23" },
   { "id": 5005, "name": "Scott Millar  ", "inst": "Robert Gordons University", "last_v": "2013-07-29 20:52:33" },
-  { "id": 5094, "name": "Beck Pitt     ", "inst": "The Open University", "last_v": "2013-01-14 13:49:49" },
-  { "id": 6378, "name": "Greg Roach    ", "inst": "Open University    ", "last_v": "2016-11-10 09:45:30" },
-  { "id": 6651, "name": "Dr Simon Ball ", "inst": "Open University    ", "last_v": "2019-05-27 13:26:46" },
-  { "id": 6809, "name": "Bart Rienties ", "inst": "Open University    ", "last_v": "2016-03-15 10:44:53" },
-  { "id": 7623, "name": "Kate Lister   ", "inst": "Open University    ", "last_v": "2015-04-11 19:47:14" },
-  { "id": 7831, "name": "Lisette Toetenel", "inst": "Open University  ", "last_v": "2016-01-04 08:47:02" },
-  { "id": 8011, "name": "Nicki Berry   ", "inst": "Open University    ", "last_v": "2017-07-15 09:29:15" },
-  { "id": 8213, "name": "Dr Susan Morris", "inst": "The Open University", "last_v": "2016-12-15 10:29:55" },
-  { "id": 7822, "name": "Koula Charitonos","inst": "The Open University", "last_v": null },
+  { "id": 5094, "name": "Beck Pitt     ", "inst": "ou", "last_v": "2013-01-14 13:49:49" },
+  { "id": 6378, "name": "Greg Roach    ", "inst": "ou", "last_v": "2016-11-10 09:45:30" },
+  { "id": 6651, "name": "Dr Simon Ball ", "inst": "ou", "last_v": "2019-05-27 13:26:46" },
+  { "id": 6809, "name": "Bart Rienties ", "inst": "ou", "last_v": "2016-03-15 10:44:53" },
+  { "id": 7623, "name": "Kate Lister   ", "inst": "ou", "last_v": "2015-04-11 19:47:14" },
+  { "id": 7831, "name": "Lisette Toetenel","inst": "ou", "last_v": "2016-01-04 08:47:02" },
+  { "id": 8011, "name": "Nicki Berry   ", "inst": "ou", "last_v": "2017-07-15 09:29:15" },
+  { "id": 8213, "name": "Dr Susan Morris", "inst": "ou", "last_v": "2016-12-15 10:29:55" },
+  { "id": 7822, "name": "Koula Charitonos","inst": "ou", "last_v": null },
 ];
 </script>
 
-<script src="https://unpkg.com/jquery@3.4.1/dist/jquery.slim.min.js" charset="utf-8"></script>
 
 <script>
-  const $ = window.jQuery;
-  const $ELEM = $('#alumni-list');
-  const TPL = '<a href="https://cloudworks.ac.uk/user/view/%d" title="Institution: %in">%s</a>';
+((document, ALUMNI, selector) => {
+  const $ELEM = document.querySelector(selector);
+  const TPL = '<a data-n="%n" href="https://cloudworks.ac.uk/user/view/%d" title="Institution: %inst" data-id="%d" data-lv="%lv">%s</a>';
+
   let items = [];
 
-  console.warn('Alumni:', CLOUDWORKS_ALUMNI);
+  console.warn('Alumni:', ALUMNI);
 
-  $.each(CLOUDWORKS_ALUMNI, (k, user) => items.push(TPL.replace(/%d/, user.id).replace(/%s/, user.name).replace(/%in/, user.inst)));
+  ALUMNI.forEach((AL, idx) => items.push(replaceObj(TPL, {
+    '%n': idx, '%d': AL.id, '%s': AL.name, '%inst': inst(AL), '%lv': AL.last_v || '',
+  }) ));
 
-  $ELEM.html('<li>' + items.join('<li>'));
+  $ELEM.innerHTML = '<li>' + items.join('<li>');
+
+  function inst (user) {
+    return user.inst === 'ou' ? 'The Open University' : user.inst;
+  }
+
+  function replaceObj (str, mapObj) {
+    var re = new RegExp(Object.keys(mapObj).join('|'), 'g'); // Was: "gi".
+
+    return str.replace(re, function (matched) {
+      return mapObj[ matched ]; // Was: matched.toLowerCase().
+    });
+  }
+})(window.document, CLOUDWORKS_ALUMNI, '#alumni-list')
+
 </script>
 
 
 <pre>
 
 
-NDF / 02-July-2019 | https://gist.github.com/nfreear/7e4821e0209226175197dd8634e1c17b
+© Nick Freear, 02-Jul-2019 | https://gist.github.com/nfreear/7e4821e0209226175197dd8634e1c17b
 
  * https://cloudworks.ac.uk
  * https://github.com/IET-OU/cloudengine/issues/384
