@@ -14,7 +14,7 @@ wget \
  	--mirror \
  	--recursive \
  	--execute robots=off \
- 	--user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:66.0) Gecko wget/cloudworks-archiver' \
+	--user-agent='wget/cloudworks-archiver' \
  	--timestamping \
  	--page-requisites \
  	--html-extension \
