@@ -1,8 +1,8 @@
 <?php
 /**
- * Controller for Cloudworks "alumni" (founders, emeritus and significant users etc.)
+ * Controller for Cloudworks "influencers" (founders, emeritus and significant users etc.)
  *
- * @copyright 2009, 2010 The Open University. See CREDITS.txt
+ * @copyright 2009, 2019 The Open University. See CREDITS.txt
  * @license   http://gnu.org/licenses/gpl-2.0.html GNU GPL v2
  * @package User
  */
@@ -10,7 +10,6 @@
 class Alumni extends MY_Controller {
 
   public function index () {
-
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
@@ -21,6 +20,8 @@ class Alumni extends MY_Controller {
 
     foreach ($alumni as $user) {
         $user->reputation = $this->favourite_model->get_reputation($user->id);
+
+        $user->picture = ! $user->picture;
 
         if (preg_match('/((The )?Open University|OU)/i', $user->institution)) {
                 $user->institution = 'ou';
