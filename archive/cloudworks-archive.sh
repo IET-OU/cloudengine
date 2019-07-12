@@ -22,10 +22,11 @@ wget \
  	--restrict-file-names=windows \
   --reject-regex '(auth|add|rss)' \
  	--domains cloudworks.ac.uk \
-	--output-file=cloudworks.ac.uk-wget-2019-07-02--do-not-delete.log \
+	--output-file=cloudworks.ac.uk-wget-2019-07-12--do-not-delete.log \
 	--progress=dot \
 	--show-progress \
-  --input-file=/ABSOLUTE/PATH/TO/cloudworks-do-not-delete-users.txt
+  --directory-prefix=. \
+  --input-file=/Users/ndf42/workspace/cloudengine/archive/cloudworks-do-not-delete-users.txt
 	# --input-file=/ABSOLUTE/PATH/TO/cloudworks-url-list.txt
 
 # 	--wait=1 \
