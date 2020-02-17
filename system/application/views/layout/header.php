@@ -5,6 +5,7 @@
     // Use past-date in header(s) to facilitate 'wget' mirror timestamping!
     header('Date: Fri, 28 Jun 2019 01:00:00 GMT');
     header('Last-Modified: Fri, 28 Jun 2019 01:00:00 GMT');
+    header('Cache-Control: public, max-age=7200'); // 2 hours
   }
 
   @header("Content-Type: text/html; charset=".config_item("charset"));
