@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="<?=base_url().config_item('theme_stylesheet') ?>" />
     <?php endif; ?>
     <meta name="copyright" content="© 2009-2020 The Open University (IET)." />
-    <meta name="keywords" content="" />
-    <meta name="description" content="Welcome to Cloudworks, a place to share, find and discuss learning and teaching ideas and experiences." />
+    <meta name="keywords" content="archive, education, e-learning, online-learning" />
+    <meta name="description" content="Welcome to Cloudworks, a place to share, find and discuss learning and teaching ideas and experiences. (Archive)" />
+    <meta name="archive-date" content="2019-06-28T01:00:00Z" />
+    <link rel="archive-home-url" href="<?=base_url() ?>" />
 
 <?=$this->lang->meta_link() ?>
     <link rel="shortcut icon" href="<?=base_url().config_item('theme_favicon') ?>" />
