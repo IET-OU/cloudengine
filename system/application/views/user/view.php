@@ -95,7 +95,7 @@
           <?= anchor('user/institution/'.urlencode(trim($user->institution)),$user->institution) ?></p>
       <?php endif;?>
       <?php if ($user->department): ?><p><strong><?=t("Department")?></strong>: <?=$user->department ?></p><?php endif;?>
-  <?php if ($display_email): ?><p><strong><?=t("Email")?></strong>: <?= $user->email ?></a></p><?php endif;?>
+  <?php /* if ($display_email): ?><p><strong><?=t("Email")?></strong>: <?= $user->email ?></a></p><?php endif */ ?>
 
         </div>
 

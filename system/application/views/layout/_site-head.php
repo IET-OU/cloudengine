@@ -12,7 +12,7 @@
     <?php if(config_item('theme_stylesheet')): ?>
     <link rel="stylesheet" href="<?=base_url().config_item('theme_stylesheet') ?>" />
     <?php endif; ?>
-    <meta name="copyright" content="© 2009-2019 The Open University (IET)." />
+    <meta name="copyright" content="© 2009-2020 The Open University (IET)." />
     <meta name="keywords" content="" />
     <meta name="description" content="Welcome to Cloudworks, a place to share, find and discuss learning and teaching ideas and experiences." />
 

@@ -1,5 +1,6 @@
 
 <script
+  type="text/parameters"
   data-nofollow-count="<?= Nofollow::get_count() ?>"
   data-rtt=<?= json_encode(str_rot13(config_item('egg'))) ?>
   data-ga-analytics-id=<?= json_encode(config_item('google_analytics')) ?>
@@ -26,4 +27,4 @@
   <script src="<?=base_url()?>_scripts/custom.js"></script>
 <?php endif; ?>
 
-<script> console.warn('rel=nofollow count:', <?= Nofollow::get_count() ?>) </script>
+<?php /* <script> console.warn('rel=nofollow count:', <?= Nofollow::get_count() ?>) </script> */ ?>

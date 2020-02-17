@@ -144,7 +144,7 @@ $config['expire_temp_users_time'] = 3600*168;
 $config['max_login_attempts'] = 10;
 
 // GAAD-widget ~ "Global accessibility awareness day"
-$config['gaad_widget'] = [
+$config[ '_X_DISABLE__gaad_widget' ] = [
   'analytics' => false, // Incompatible with CloudEngine analytics.
   'debug' => true,
   'days_before' => 14,
