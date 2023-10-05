@@ -67,8 +67,8 @@ class Api_lib {
     public function log($level='error', $message, $php_error = FALSE) {
         $this->CI->load->library('user_agent');
         $ip = $_SERVER['SERVER_ADDR'];
-        $ref= $this->CI->agent->referrer();    #['HTTP_REFERER']
-        $ua = $this->CI->agent->agent_string();#['HTTP_USER_AGENT']
+        $ref= $this->CI->agent->referrer();     // ['HTTP_REFERER']
+        $ua = $this->CI->agent->agent_string(); // ['HTTP_USER_AGENT']
         $request = $this->CI->uri->uri_string().'?'.$_SERVER['QUERY_STRING'];
         // Play nice if no API clients are in DB (api keys may be configured to not required).
         $user_name = isset($this->api_client->user_name) ? 

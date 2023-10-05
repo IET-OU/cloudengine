@@ -30,7 +30,7 @@ class Hglib {
         } else {
             $hg_path = config_item('hg_path');
             if (!$hg_path) return FALSE;
-            if (!preg_match("#\/hg$#", $hg_path)) { #[/\\]
+            if (!preg_match("#\/hg$#", $hg_path)) { // [/\\]
                 echo "Error, unexpected 'hg_path' value in config/cloudengine.php, $hg_path";
                 return FALSE;
           }

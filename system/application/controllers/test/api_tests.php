@@ -48,7 +48,7 @@ public function index() {
   $success_tests = array(
     'clouds' => array(
       'id'  => 'cloud_id',
-      'terms'  => array(1, 2978, 2884, 390), #[new], ou-conf. , ..
+      'terms'  => array(1, 2978, 2884, 390), // [new], ou-conf. , ..
       'related'=> array(null, 'comments', 'followers', 'favourited', 'cloudscapes', ) #null='view', comments?
     ),
     // 'clouds/active' is a special case.
@@ -58,12 +58,12 @@ public function index() {
     ),
     'cloudscapes' => array(
       'id'  => 'cloudscape_id',
-      'terms'  => array(2, 2012, 1896, 1963, 387), #[new], ou-conf., image, event, other.
+      'terms'  => array(2, 2012, 1896, 1963, 387), // [new], ou-conf., image, event, other.
       'related'=> array(null, 'clouds', 'followers', 'favourited', 'attendees',)
     ),
     'users' => array(
       'id'  => 'user_id',
-      'terms'  => array(1, 3, 1,), #[new], GC.
+      'terms'  => array(1, 3, 1,), // [new], GC.
       'related'=> array(null, 'followers', 'favourites', 'clouds', 'cloudscapes', 'stream'),
     ),
     'tags' => array(
